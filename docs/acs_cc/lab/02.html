@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">02 - GPIO | Microprocessor Architecture</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pmrust.pages.upb.ro/img/docusaurus-social-card.png"><meta data-rh="true" name="twitter:image" content="https://pmrust.pages.upb.ro/img/docusaurus-social-card.png"><meta data-rh="true" property="og:url" content="https://pmrust.pages.upb.ro/docs/acs_cc/lab/02"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="acs_cc"><meta data-rh="true" name="docusaurus_tag" content="docs-default-acs_cc"><meta data-rh="true" name="docsearch:version" content="acs_cc"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-acs_cc"><meta data-rh="true" property="og:title" content="02 - GPIO | Microprocessor Architecture"><meta data-rh="true" name="description" content="General Purpose Input and Output using the Embassy Framework"><meta data-rh="true" property="og:description" content="General Purpose Input and Output using the Embassy Framework"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pmrust.pages.upb.ro/docs/acs_cc/lab/02"><link data-rh="true" rel="alternate" href="https://pmrust.pages.upb.ro/docs/acs_cc/lab/02" hreflang="en"><link data-rh="true" rel="alternate" href="https://pmrust.pages.upb.ro/docs/acs_cc/lab/02" hreflang="x-default"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.6dc7d0ad.css">
-<script src="/assets/js/runtime~main.cdf5920b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3a8b8d5f.js" defer="defer"></script>
 <script src="/assets/js/main.3777b500.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -263,6 +263,11 @@ add the <em>Embassy</em> <a href="#entry">entry</a>;</li>
 </ul>
 <p>Please make sure you comment out (using <code>#</code> in from of the line) all the Embassy&#x27;s crates
 that you do not plan to use.</p>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>Please make sure the <code>embassy_rp</code> crate is included in your build either:</p><ul>
+<li>by importing it with <code>use embassy_rp as _;</code></li>
+<li>or by initialising the peripherals</li>
+</ul><p>This crate provides the <code>.start_block</code> section that is needed by the RP2350 to boot. Not including
+this crate will prevent this section from being added and will prevent the RP2350 to boot.</p></div></div>
 <div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>For sure, you will  not use USB and WiFi. This is a trial
 and error job, just comment out all the creates that you think you won&#x27;t use and
 add them back if the compiler asks for them.</p></div></div>
