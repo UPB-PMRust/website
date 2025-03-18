@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">03 - PWM &amp; ADC | Microprocessor Architecture</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pmrust.pages.upb.ro/img/docusaurus-social-card.png"><meta data-rh="true" name="twitter:image" content="https://pmrust.pages.upb.ro/img/docusaurus-social-card.png"><meta data-rh="true" property="og:url" content="https://pmrust.pages.upb.ro/docs/fils_en/lab/03"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="fils_en"><meta data-rh="true" name="docusaurus_tag" content="docs-default-fils_en"><meta data-rh="true" name="docsearch:version" content="fils_en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-fils_en"><meta data-rh="true" property="og:title" content="03 - PWM &amp; ADC | Microprocessor Architecture"><meta data-rh="true" name="description" content="Pulse Width Modulation and Analog to Digital Converters"><meta data-rh="true" property="og:description" content="Pulse Width Modulation and Analog to Digital Converters"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pmrust.pages.upb.ro/docs/fils_en/lab/03"><link data-rh="true" rel="alternate" href="https://pmrust.pages.upb.ro/docs/fils_en/lab/03" hreflang="en"><link data-rh="true" rel="alternate" href="https://pmrust.pages.upb.ro/docs/fils_en/lab/03" hreflang="x-default"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.6dc7d0ad.css">
-<script src="/assets/js/runtime~main.2e5511f2.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.af9a69d9.js" defer="defer"></script>
 <script src="/assets/js/main.7e430265.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -64,7 +64,7 @@
 <p><img decoding="async" loading="lazy" alt="Counter" src="/assets/images/counter-f510d875d964f5993ebfa39e196df625.svg" width="381" height="294" class="img_ev3q"></p>
 <p>The way the counter works here is that it increments/decrements every clock cycle and checks whether or not it has reached its reset value. If is has, then it resets to its initial value and starts all over again.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="systick">SysTick<a href="#systick" class="hash-link" aria-label="Direct link to SysTick" title="Direct link to SysTick">​</a></h4>
-<p>The ARM Cortex-M0 used by RP2040 and RP2350 uses the SysTick time counter to keep track of time. This counter is decremented every microsecond, and when it reaches 0, it triggers an exception and then resets.</p>
+<p>The ARM Cortex-M0 used by RP2040 and the ARM Cortex-M33 used by RP2350 both use the SysTick time counter to keep track of time. This counter is decremented every microsecond, and when it reaches 0, it triggers an exception and then resets.</p>
 <ul>
 <li><code>SYST_CVR</code> register - the value of the timer itself</li>
 <li><code>SYST_RVR</code> register - the reset value</li>
