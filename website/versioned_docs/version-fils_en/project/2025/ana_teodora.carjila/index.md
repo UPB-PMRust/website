@@ -27,7 +27,7 @@ The project architecture includes the following components:
 
 This is the diagram that illustrates the components and their connections.
 
-![Schematic diagram](image.png)
+![Schematic diagram](image.webp)
 ## Log
 
 <!-- write your progress here every week -->
@@ -52,7 +52,7 @@ A MOSFET is used to safely drive the buzzer or LED from the Pico's GPIO, ensurin
 
 Place your KiCAD schematics here.
 Here is a KiCAD schemstics:
-![KiCAD scheme](image1.png)
+![KiCAD scheme](image1.webp)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
