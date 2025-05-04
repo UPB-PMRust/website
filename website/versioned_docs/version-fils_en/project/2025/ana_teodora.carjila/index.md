@@ -4,7 +4,7 @@ A smart door monitoring system giving real-time updates.
 :::info 
 
 **Author**: Carjila Ana Teodora, gr. 1221EC
-**GitHub Project Link**: <!-- link_to_github -->
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-AnaCarjil
 
 :::
 
