@@ -20,7 +20,7 @@ CactusCare was designed to make cactus care easier and smarter. It monitors soil
 
 The CactusCare system is designed to automate the monitoring and watering of cactus plants. It utilizes various sensors and actuators connected to a Raspberry Pi Pico W microcontroller and includes Wi-Fi capability to allow remote monitoring and control through an app.
 
-![CactusCare Architecture](/img/diagram.jpeg)
+![CactusCare Architecture](/img/diagram.webp)
 
 1. **Microcontroller:** Raspberry Pi Pico W
 Function: Acts as the central processing unit, reading sensor data and controlling actuators.
