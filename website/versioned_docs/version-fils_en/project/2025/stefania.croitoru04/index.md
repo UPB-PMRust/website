@@ -64,17 +64,6 @@ This is what the wiring looks like:
 ![Kicad schematic ](./KICAD.webp)
 This is the kicad schematic.
 
-### Bill of Materials
-
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
 
 ### Bill of Materials
 
