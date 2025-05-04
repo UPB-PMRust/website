@@ -2,8 +2,8 @@
 A Raspberry Pi-based weather monitoring system that collects temperature, humidity, air pressure, wind speed/direction, and rainfall data, displaying it locally and on a web dashboard.
 
 :::info 
-**Author**: Tone Rares-Mihai \
-**GitHub Project Link**: [Your GitHub Repo URL] 
+**Author**: Tone Rares-Mihai
+**GitHub Project Link**:
 :::
 
 ## Description
@@ -60,8 +60,8 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 | Debugger for Pico       | Debugger                 | 66 RON | [Link] |
 | DHT22 Sensor            | Temp/Humidity            | 25 RON | [Link] |
 | BMP280 Sensor           | Air pressure             | 35 RON | [Link] |
-| **Hall Sensor 3144**    | Anemometer integration   | 15 RON | [Link] |
-| **Wind Vane**           | Direction measurement    | 45 RON | [Link] |
+| Hall Sensor 3144        | Anemometer integration   | 15 RON | [Link] |
+| Wind Vane               | Direction measurement    | 45 RON | [Link] |
 | Rain Sensor             | Rainfall detection       | 20 RON | [Link] |
 
 ---
@@ -72,7 +72,7 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 | Python 3.10             | Core programming language        | [Python]     |
 | Adafruit_DHT            | DHT22 sensor library             | [GitHub]     |
 | Django                  | Web dashboard framework          | [Django]     |
-| **RPi.GPIO**            | Hall sensor/anemometer interface | [Docs]       |
+| RPi.GPIO                | Hall sensor/anemometer interface | [Docs]       |
 | Matplotlib              | Data graphing                    | [Matplotlib] |
 
 ---
