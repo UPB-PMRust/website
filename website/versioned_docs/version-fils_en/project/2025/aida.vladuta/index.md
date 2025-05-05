@@ -4,7 +4,7 @@ Smart Cactus Monitoring & Watering System
 :::info 
 
 **Author**: Vladuta Aida \
-**GitHub Project Link**: https://github.com/xwidaa/CactusCare
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-xwidaa
 
 :::
 
@@ -20,7 +20,7 @@ CactusCare was designed to make cactus care easier and smarter. It monitors soil
 
 The CactusCare system is designed to automate the monitoring and watering of cactus plants. It utilizes various sensors and actuators connected to a Raspberry Pi Pico W microcontroller and includes Wi-Fi capability to allow remote monitoring and control through an app.
 
-![CactusCare Architecture](/img/diagram.webp)
+![CactusCare Architecture](diagram.webp)
 
 1. **Microcontroller:** Raspberry Pi Pico W
 Function: Acts as the central processing unit, reading sensor data and controlling actuators.
@@ -115,7 +115,7 @@ The format is
 | [RGB LED 5mm](https://www.robofun.ro/componente/led-rgb.html) | Shows dry/wet status with colors | [11 RON](https://www.robofun.ro/componente/led-rgb.html) |
 | [LCD Module 16x2 Blue Backlight](https://www.robofun.ro/module/modul-afisaj-led-negru-galben.html) | Displays reservoir empty status | [35 RON](https://www.robofun.ro/module/modul-afisaj-led-negru-galben.html) |
 | [Mini Submersible Water Pump](https://sigmanortec.ro/Pompa-apa-submersibila-3-6VDC-verticala-p172447502?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=22174019478&gbraid=0AAAAAC3W72PlTkN1EMBw47dmMmOIsklJO&gclid=Cj0KCQjwoNzABhDbARIsALfY8VPQJgsP5wRyXyjoVF8LhSOLjNcPm5Z3VBNcR0cp0nAFcrESJ-D-Q00aAvO0EALw_wcB) | Pumps water to the plant | [10 RON](https://sigmanortec.ro/Pompa-apa-submersibila-3-6VDC-verticala-p172447502?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=22174019478&gbraid=0AAAAAC3W72PlTkN1EMBw47dmMmOIsklJO&gclid=Cj0KCQjwoNzABhDbARIsALfY8VPQJgsP5wRyXyjoVF8LhSOLjNcPm5Z3VBNcR0cp0nAFcrESJ-D-Q00aAvO0EALw_wcB) |
-| [Water Tank and Tube Kit](https://www.robofun.ro/mecanice/tub-silicon-pentru-pompa-peristaltica-1-metru.html) | Stores and channels water | [27 RON](https://www.robofun.ro/mecanice/tub-silicon-pentru-pompa-peristaltica-1-metru.htmll) |
+| [Water Tank and Tube Kit](https://www.robofun.ro/mecanice/tub-silicon-pentru-pompa-peristaltica-1-metru.html) | Stores and channels water | [27 RON](https://www.robofun.ro/mecanice/tub-silicon-pentru-pompa-peristaltica-1-metru.html) |
 | [Mini Breadboard 400 Holes](https://www.emag.ro/breadboard-placa-test-400-puncte-oky0005/pd/DSBXR1MBM/?gQT=1) | For prototyping and connections | [7 RON](https://www.emag.ro/breadboard-placa-test-400-puncte-oky0005/pd/DSBXR1MBM/?gQT=1) |
 | [Jumper Wires M-M 20cm ](https://www.robofun.ro/fire-conexiune-tata-tata-10-bucati-20cm.html?gad_source=1&gad_campaignid=20726321991&gbraid=0AAAAApSyPJXztoCXcRSbOFuSlj9i7Iql4&gclid=Cj0KCQjwoNzABhDbARIsALfY8VNT0OiqJawl2mxPwXJzD0xEF789u0CQtLksJjfnQ4TtoYzTh0tP1SoaAvhPEALw_wcB) | For connecting components | [5 RON](https://www.robofun.ro/fire-conexiune-tata-tata-10-bucati-20cm.html?gad_source=1&gad_campaignid=20726321991&gbraid=0AAAAApSyPJXztoCXcRSbOFuSlj9i7Iql4&gclid=Cj0KCQjwoNzABhDbARIsALfY8VNT0OiqJawl2mxPwXJzD0xEF789u0CQtLksJjfnQ4TtoYzTh0tP1SoaAvhPEALw_wcB) |
 | [Resistors](https://www.robofun.ro/componente/rezistor-220k-0-25w-set-10-bucati.html) | Used with sensors and LEDs | [3 RON](https://www.robofun.ro/componente/rezistor-220k-0-25w-set-10-bucati.html) |
@@ -132,8 +132,6 @@ The format is
 | [cortex-m-rt](https://github.com/rust-embedded/cortex-m-rt) | Rust runtime for ARM Cortex-M microcontrollers | Provides startup/runtime support for low-level embedded code |
 | [lcd](https://crates.io/crates/lcd) | Library for controlling LCD displays | Used to control the 16x2 LCD module |
 | [dc-motor](https://crates.io/crates/dc-motor) or [relay-control](https://crates.io/crates/relay-control) | Control DC motors or relays | Used for driving the water pump motor |
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems | Used for drawing to the display |
 | [esp-wifi](https://github.com/embassy-rs/embassy/tree/main/embassy-net) | Wi-Fi stack for RP2040 and ESP chips | Connects Raspberry Pi Pico W to Wi-Fi network |
 | [minimq](https://github.com/quartiq/minimq) | MQTT client library for embedded Rust | Publishes sensor data and subscribes to commands over MQTT |
 | [serde_json](https://crates.io/crates/serde_json) | JSON serialization/deserialization | Formats sensor readings into JSON for MQTT messages |
