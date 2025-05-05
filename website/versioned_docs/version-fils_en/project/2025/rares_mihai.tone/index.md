@@ -2,8 +2,8 @@
 A Raspberry Pi-based weather monitoring system that collects temperature, humidity, air pressure, wind speed/direction, and rainfall data, displaying it locally and on a web dashboard.
 
 :::info 
-**Author**: Tone Rares-Mihai
-**GitHub Project Link**:
+**Author**: Tone Rares-Mihai /
+**GitHub Project Link**: [Link]
 :::
 
 ## Description
