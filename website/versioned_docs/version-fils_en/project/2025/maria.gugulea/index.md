@@ -1,15 +1,18 @@
 # Smart Door Lock
-
 A biometric-based smart door lock system utilizing facial recognition technology to enhance home security by ensuring access control through used identification.
 
----
+:::info 
+
+**Author**: Gugulea Maria-Alexandra \
+**GitHub Project Link**: https://github.com/alexandra-gugulea
+
+:::
 
 ## Description
+
 This project presents the design and implemetation of a smart home security system incorporating a facial recognition-based smart door lock, developed using the Raspberry Pi Pico W Microcontroller. The system integrates multiple sensors and modules to ensure robust access control and tamper detection.
 
 A PIR motion sensor continously monitors for movement near the entrace and, upon detection, activates an ESP32-CAM module, which captures an image of the approaching individual. Facial recognition is then performed to determine user authorization. If a match is found, a servo motor is engaged to unlock the door. In addition, an SW-420 vibration sensor is embedded in the door handle to detect unusual vibrations or tampering attempts. Together, these components provide a multi-layered security system that combines biometric authentication, motion detection, and physical disturbance monitoring to enhance residential safety in an efficient and cost-effective manner.
-
----
 
 ## Motivation
 
@@ -17,10 +20,7 @@ In an age where smart technologies are becoming increasingly integrated into dai
 
 By combining biometric access control with motion and vibration sensing, the system aims to create a multi-layered defense mechanism against intrusion.
 
---
-
-## Architecture
-
+## Architecture 
 
 ### 1. Raspberry Pi Pico W
 
@@ -56,19 +56,60 @@ The servo's role is critical for translating electronic authentication into mech
 
 The buzzer is used for generating audible alerts in the system. It is connected to the Raspberry Pi Pico W and activated in response to specific events such as tampering (from the vibration sensor) or unauthorized access attempts. It can also be used to signal successful operations such as confirmed facial match. The buzzer enhances system feedback and serves as a deterrent to unauthorized individuals.
 
-       
-## Weekly Log
+## Log
 
-### Week 8 - April 17th
+### Week 14 - 18 April
 
 I began the project by conducting research on all the components required for the build. This included reviewing datasheets, compatibility, and use cases. After finalizing the list of components, I proceeded to order them online.
 
-### Week 9 - April 24th
+### Week 20 - 25 April
 
 Once the first batch of components arrived, I started soldering or attaching pins to the sensors and the other electronic parts. I also began prototyping by placing some of the components onto the breadboards to test their fit and layout.
 
-### Week 10 - May 1st
+### Week 5 - 11 May
 
-This week focused on documentation and planning. I wrote the necessary technical documentation outlining the project's motivation and architecture. 
+This week focused on documentation and planning. I wrote the necessary technical documentation outlining the project's motivation and architecture.
 
-Additionally, I designed and finalized the architecture schematics, which will serve as the foundation for the circuit design and overall system integration.
+### Week 12 - 18 May
+
+### Week 19 - 25 May
+
+## Hardware
+
+Detail in a few words the hardware used.
+
+### Schematics
+
+Place your KiCAD schematics here.
+
+### Bill of Materials
+
+<!-- Fill out this table with all the hardware components that you might need.
+
+The format is 
+```
+| [Device](link://to/device) | This is used ... | [price](link://to/store) |
+
+```
+
+-->
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+
+
+## Software
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+
+## Links
+
+<!-- Add a few links that inspired you and that you think you will use for your project -->
+
+1. [link](https://example.com)
+2. [link](https://example3.com)
+...
