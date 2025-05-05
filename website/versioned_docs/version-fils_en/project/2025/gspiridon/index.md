@@ -80,7 +80,7 @@ The hardware for the project is built around the Raspberry Pi Pico 2W microcontr
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|
 | [2 x Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=5056561803975&results=1) | The microcontroller + debugging| [79.32 RON]|
-[2 x Breadboard HQ]() | Used to assemble and connect components without soldering  | [19.96 RON] |
+2 x Breadboard HQ | Used to assemble and connect components without soldering  | [19.96 RON] |
 [2.8" SPI LCD Module with ILI9341 Controller (240 x 320 px)](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3544-modul-lcd-spi-de-28-cu-touchscreen-controller-ili9341-i-xpt2046-240x320-px.html?search_query=0104110000028952&results=1) | LCD Display | [69.99 RON] |
 [5 x Resistor 0.25W 10KΩ](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/1088-rezistor-025w-100k.html?search_query=0104210000010039&results=1) | Pull-down resistors to stabilize button input signals | [0.50 RON] |
 [5 x Tactile Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=0104210000010862&results=1) | Move cursor and select/change numbers | [1.80 RON] |
