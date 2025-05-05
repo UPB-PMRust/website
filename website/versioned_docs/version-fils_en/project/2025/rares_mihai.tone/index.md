@@ -61,7 +61,7 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 | DHT22 Sensor            | Temp/Humidity            | 25 RON | [Link] |
 | BMP280 Sensor           | Air pressure             | 35 RON | [Link] |
 | Hall Sensor 3144        | Anemometer integration   | 15 RON | [Link] |
-| Wind Vane               | Direction measurement    | 45 RON | [Link] |
+| Wind Vane               | Direction measurement    | 5  RON | [Link] |
 | Rain Sensor             | Rainfall detection       | 20 RON | [Link] |
 
 ---
