@@ -2,9 +2,13 @@
 
 A smart package security system to monitor and verify package integrity during transport
 
+:::info
+
 **Author**: Sebastian Stefan Bahrin  
 
 **GitHub Project Link**: [\[link_to_github\]](https://github.com/UPB-PMRust-Students/proiect-SebiBahrin)
+
+:::
 
 ## **Description**
 
@@ -90,6 +94,6 @@ TBA
 
 ## **Links**`
 
-1. [Link1](https://github.com/SebiBahrin)
-2. [Link2](https://github.com/SebiBahrin)
-3. [Link3](https://github.com/SebiBahrin)
+1. [I2C](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
+2. [WIFI](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07)
+
