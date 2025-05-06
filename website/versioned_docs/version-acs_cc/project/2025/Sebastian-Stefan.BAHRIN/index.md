@@ -3,7 +3,8 @@
 A smart package security system to monitor and verify package integrity during transport
 
 **Author**: Sebastian Stefan Bahrin  
-**GitHub Project Link**: [\[link_to_github\]](https://github.com/SebiBahrin/SafeDelivery)
+
+**GitHub Project Link**: [\[link_to_github\]](https://github.com/UPB-PMRust-Students/proiect-SebiBahrin)
 
 ## **Description**
 
@@ -62,19 +63,15 @@ TBA
 
 | **Device** | **Usage** | **Price** |
 |------------|-----------|-----------|
-| Raspberry Pi Pico 2W | The main microcontroller that manages all sensors and logs events | - RON |
-| Light Sensor (LDR) | Detects if the package has been opened (light exposure) | - RON |
-| Vibration Sensor (SW-420) | Detects shocks, movements, or violent handling of the package | - RON |
-| Reed Switch + Magnets | Detects if the package lid has been opened (magnetic seal broken) | - RON |
-| IMU Sensor (MPU6050) | Monitors orientation, detects abnormal tilting or positioning | - RON |
-| microSD + SPI Adapter | Stores all recorded events for later verification | - RON |
-| OLED 0.96" | Displays package status (intact/tampered) | - RON |
-| Active Buzzer | Emits sound alert if suspicious event is detected | - RON |
-| LED + Resistor | Visual display of package status (green = OK, red = tampered) | - RON |
-| Battery | Provides autonomous power during transport | - |
-| Breadboard / PCB | Organized mounting of components (prototype) | - RON |
-| Jumper Wires | Connection between sensors and microcontroller | - RON |
-| Case / Box | Simulates the sealed package in which sensors are mounted | - RON |
+| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico&results=26) | The main microcontroller that manages all sensors and logs events | 40 RON |
+| [Light Sensor (LDR)](https://www.bitmi.ro/electronica/modul-senzor-cu-fotorezistor-ldr-compatibil-arduino-10394.html) | Detects if the package has been opened (light exposure) | 5 RON |
+| [Vibration Sensor (SW-420)](https://www.bitmi.ro/electronica/senzor-vibratie-sw-420-11516.html) | Detects shocks, movements, or violent handling of the package | 5 RON |
+| [Reed Switch + Magnets](https://www.bitmi.ro/senzor-magnetic-digital-reed-magnetron-10460.html?gad_campaignid=22504586579) | Detects if the package lid has been opened (magnetic seal broken) | 20 RON |
+| [IMU Sensor (MPU6500)](https://www.bitmi.ro/module-electronice/modul-accelerometru-giroscop-pe-6-axe-i2c-mpu-6500-gy-6500-11213.html) | Monitors orientation, detects abnormal tilting or positioning | 13 RON |
+|  [LCD de 1.44''](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2167-lcd-de-144-pentru-stc-stm32-i-arduino.html?gad_campaignid=19615979487) | Displays package status (intact/tampered) and stores all recorded events for later verification with the SD card | 40 RON |
+| [GPS Module](https://www.optimusdigital.ro/ro/gps/8239-modul-gps-neo-7m.html?search_query=modul+gps&results=34) | Provides real-time location tracking of the package, allowing you to monitor its journey and verify if it has deviated from the intended route | 60 RON |
+| [Battery](https://www.optimusdigital.ro/ro/suporturi-de-baterii/4057-suport-pentru-baterie-de-12v-23a.html?search_query=baterie&results=311)  | Provides autonomous power during transport | 20 RON |
+| Case / Box | Simulates the sealed package in which sensors are mounted | Found at home |
 
 ## **Software**
 
