@@ -90,9 +90,6 @@ TBA
 
 ## **Links**`
 
-1. [Link1](https://github.com/SebiBahrin/SafeDelivery)
-2. [Link2](https://github.com/SebiBahrin/SafeDelivery)
-3. [Link3](https://github.com/SebiBahrin/SafeDelivery)
-4. [Link4](https://github.com/SebiBahrin/SafeDelivery)
-5. [Link5](https://github.com/SebiBahrin/SafeDelivery)
-6. [Link6](https://github.com/SebiBahrin/SafeDelivery)
+1. [Link1](https://github.com/SebiBahrin)
+2. [Link2](https://github.com/SebiBahrin)
+3. [Link3](https://github.com/SebiBahrin)
