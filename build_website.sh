@@ -3,8 +3,8 @@
 set -e
 
 cd slides
-npm install --ignore-scripts
-npx playwright install || true
+npm install
+npx playwright install-deps
 
 rm -rf ../website/static/slides
 echo Building Slides for ACS CC
@@ -16,4 +16,4 @@ cd ..
 cd website
 npm install
 npm run clear
-npm run buildgt
+npm run build
