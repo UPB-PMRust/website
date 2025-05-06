@@ -3,7 +3,6 @@
 A smart package security system to monitor and verify package integrity during transport
 
 **Author**: Sebastian Stefan Bahrin  
-**Group**: 331CC  
 **GitHub Project Link**: [\[link_to_github\]](https://github.com/SebiBahrin/SafeDelivery)
 
 ## **Description**
