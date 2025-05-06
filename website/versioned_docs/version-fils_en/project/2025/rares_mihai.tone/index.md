@@ -27,7 +27,6 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 
 ## Architecture
 ### Schematic Diagram
-![Schematic]
 
 **Key Components**:
 1. **Raspberry Pi**
@@ -49,31 +48,31 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 ### Week 1
 
 ### Week 2
-![Prototype]
+
 ---
 
 ## Hardware
 ### Bill of Materials
-| Component               | Purpose                  | Price  | Link |
-|-------------------------|--------------------------|--------|------|
-| Raspberry Pi 2W         | Main controller          | 40 RON | [Link] |
-| Debugger for Pico       | Debugger                 | 66 RON | [Link] |
-| DHT22 Sensor            | Temp/Humidity            | 25 RON | [Link] |
-| BMP280 Sensor           | Air pressure             | 35 RON | [Link] |
-| Hall Sensor 3144        | Anemometer integration   | 15 RON | [Link] |
-| Wind Vane               | Direction measurement    | 5  RON | [Link] |
-| Rain Sensor             | Rainfall detection       | 20 RON | [Link] |
-
+| Component               | Purpose                  | Price   | Link |
+|-------------------------|--------------------------|---------|------|
+| Raspberry Pi 2W         | Main controller          |  40 RON | https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=Raspberry+Pi+Pico+2W&results=26 |
+| Debugger for Pico       | Debugger                 |  66 RON | https://www.optimusdigital.ro/ro/accesorii/12777-placa-pentru-depanare-raspberry-pi.html?search_query=Placa+pentru+Depanare+Raspberry+Pi&results=5 |
+| DHT22 Sensor            | Temp/Humidity            |  25 RON | https://www.optimusdigital.ro/ro/senzori-senzori-de-temperatura/3157-senzor-de-temperatura-i-umiditate-dht22am2302b.html?search_query=dht22&results=6 |
+| BMP280 Sensor           | Air pressure             |  35 RON | https://www.optimusdigital.ro/ro/senzori-senzori-de-presiune/1666-modul-senzor-de-presiune-barometric-bmp280.html?search_query=Modul+Senzor+de+Presiune+Barometric+BMP280+GY&results=3 |
+| Hall Sensor 3144        | Anemometer integration   |  15 RON | https://www.optimusdigital.ro/ro/senzori-senzori-hall/596-modul-cu-senzor-hall-ys-27.html?search_query=Modul+cu+Senzor+Hall+YS-27&results=17 |
+| Wind Vane               | Direction measurement    |  5  RON | https://www.optimusdigital.ro/ro/mecanica-elice/421-elice-albastra-de-80-mm.html?search_query=Elice+Albastra+de+80+mm&results=3 |
+| Rain Sensor             | Rainfall detection       |  20 RON | https://www.optimusdigital.ro/ro/senzori-senzori-de-umiditate/5775-modul-senzor-de-ploaie.html?search_query=Modul+Senzor+de+Ploaie&results=1 |
+| Oled Display            | Local display of info    | 100 RON | https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3335-shield-featherwing-cu-ecran-oled-128-x-32-pentru-adafruit-feather.html?search_query=Shield+FeatherWing+cu+Ecran+OLED+128+x+32+pentru+Adafruit+Feather&results=1 |
 ---
 
 ## Software
 | Tool/Library            | Purpose                          | Link |
 |-------------------------|----------------------------------|------|
-| Python 3.10             | Core programming language        | [Python]     |
-| Adafruit_DHT            | DHT22 sensor library             | [GitHub]     |
-| Django                  | Web dashboard framework          | [Django]     |
-| RPi.GPIO                | Hall sensor/anemometer interface | [Docs]       |
-| Matplotlib              | Data graphing                    | [Matplotlib] |
+| Python 3.10             | Core programming language        | https://www.python.org     |
+| Adafruit_DHT            | DHT22 sensor library             | https://github.com/adafruit/DHT-sensor-library     |
+| Django                  | Web dashboard framework          | https://www.djangoproject.com     |
+| RPi.GPIO                | Hall sensor/anemometer interface | https://pypi.org/project/RPi.GPIO/       |
+| Matplotlib              | Data graphing                    | https://matplotlib.org |
 
 ---
 
