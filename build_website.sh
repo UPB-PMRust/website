@@ -16,4 +16,4 @@ cd ..
 cd website
 npm install
 npm run clear
-npm run build
+npm run buildgt
