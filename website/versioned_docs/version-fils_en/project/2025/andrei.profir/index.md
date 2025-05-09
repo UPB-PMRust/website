@@ -10,7 +10,10 @@ Poker Hand Identifier (Balatro in real life)
 
 ## Description
 
-This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a camera will be mounted somehow in a higher position, so it sees a 5-card poker hand, and it uses a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have a small Blue LED light up above them and a ding sound be made when their rank is added to the score.
+This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a camera will be mounted somehow in a higher position, so it sees a 5-card poker hand, and it uses a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have asmall Blue LED light up above them and a ding sound be made when their rank is added to the score.
+
+
+test
 
 ## Motivation
 
