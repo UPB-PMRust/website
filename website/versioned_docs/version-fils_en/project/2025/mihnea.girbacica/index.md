@@ -44,8 +44,8 @@ Hardware Changelog:
 
 Photos:
 
-![The interior of the box: Wiring](./rustscape-photo-1.png)
-![The closed chassis: RustScape!](./rustscape-photo-2.png)
+![The interior of the box: Wiring](./rustscape-photo-1.webp)
+![The closed chassis: RustScape!](./rustscape-photo-2.webp)
 
 ### Week 12 - 18 May
 
