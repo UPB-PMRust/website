@@ -35,8 +35,8 @@ I chose this project because I wanted to build a device that provides emotional 
 
 This week I received all the components including the TTS module and I've successfully tested all of them for a better understanding of their behavior. More precisely, I debugged the analog microphone using an oscilloscope and noticed that there were some interferences with the input signal and to solve this I added a capacitator and a resistor. However, this problem won't arise if I were to switch to a digital microphone. Also I've tested the display and the charging functionality to ensure the system's portability.
 
-![Week1](Week1(1).webp)
-![Week1](Week1(2).webp)
+![Week1](Week1-v1.webp)
+![Week1](Week1-v2.webp)
 
 ### Week 12 - 18 May
 
