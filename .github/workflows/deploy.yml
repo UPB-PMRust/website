@@ -48,6 +48,9 @@ jobs:
         working-directory: website
         run: npm run build
 
+      - name: GitLab Pages Script
+        run: cp gitlab-deploy.yml website/build/.gitlab-ci.yml
+
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
       - name: Deploy to GitHub Pages
@@ -56,6 +59,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Build output to publish to the `gh-pages` branch:
           publish_dir: ./website/build
+          force_orphan: true
           cname: embedded-rust-101.wyliodrin.com
           # The following lines assign commit authorship to the official
           # GH-Actions bot for deploys to `gh-pages` branch:
@@ -64,3 +68,30 @@ jobs:
           # You can swap them out with your own user credentials.
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com
+  push:
+    needs: deploy
+    name: Deploy to pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Important: get full history for pushing
+          ref: gh-pages
+
+      - name: Set up Git identity
+        run: |
+          git config --global user.email "pages@wyliodrin.com"
+          git config --global user.name "Pages Bot"
+
+      - name: Add GitLab remote
+        run: |
+          git remote add gitlab https://$GITLAB_USER:$GITLAB_TOKEN@gitlab.cs.pub.ro/PMRust/pmrust.pages.upb.ro.git
+        env:
+          GITLAB_USER: ${{ secrets.GITLAB_USER }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}
+
+      - name: Push to GitLab
+        run: |
+          git push gitlab gh-pages --force

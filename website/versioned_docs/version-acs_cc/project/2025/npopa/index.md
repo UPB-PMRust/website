@@ -95,7 +95,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 - Buttons: Input for interraction with the device.
 
 ## Schematics
-WIP...
+![Schematic](cratedigger_schematic.webp)
 
 ## Bill of Materials
 

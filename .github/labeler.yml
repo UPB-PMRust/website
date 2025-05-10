@@ -12,9 +12,11 @@ lecture:
 
 lab:
   - website/lab/**/*
+  - website/lab/*
 
 tutorial:
   - website/tutorial/**/*
+  - website/tutorial/*
 
 project:
   - website/versioned_docs/version-acs_cc/project/**/*
@@ -24,13 +26,12 @@ project:
 
 workflow:
   - .github/**/*
+  - .github/*
 
 website:
-  - website/src/**/*
-  - website/static/**/*
-  - '*.js'
-  - '*.json'
-  - '*.ts'
+  - website/*
+  - website/**/*
 
 slides:
+  - slides/*
   - slides/**/*
