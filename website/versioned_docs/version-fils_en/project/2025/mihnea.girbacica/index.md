@@ -27,7 +27,25 @@ As the owner of a Game Development Company, I've been fascinated by video games 
 
 ### Week 5 - 11 May
 
-*This week is still to come, to be added.*
+The main goal of the first week was to make all of the peripherals work. \
+Code Changelog:
+
+- Created the Cargo.toml, with all the required dependencies
+- Created module display_module.rs, that integrates the ST7735s display to the microcontroller
+- Created module sound_module.rs, that integrates the 2 Passive Buzzers (one for Bass and one for Melody) to the microcontroller
+- Created module controller_module.rs, that integrates all of the SHIELD buttons to the microcontroller.
+
+Hardware Changelog:
+
+- Decided to use the cardboard shipping box of the NUCLEO-F411RE as the chassis of the project
+- Test fitted the following parts to the box: ST7735s, 2x Passive Buzzer, Fundruino SHIELD
+- Glued inside of the box a small 3V3 and GND bus, taken from a small breadboard
+- Tested the placement of the buzzers so that the soundtrack can be heard easily
+
+Photos:
+
+![The interior of the box: Wiring](./rustscape-photo-1.png)
+![The closed chassis: RustScape!](./rustscape-photo-2.png)
 
 ### Week 12 - 18 May
 
@@ -43,7 +61,9 @@ RustScape is built using the NUCLEO-F411RE development board, which acts as the 
 
 ### Schematics
 
-*The KiCAD Schematic is not yet finished.*
+*The KiCAD Schematic is not yet finished, below is an unfinished version.*
+
+![The KiCAD Schematic for RustScape](./RustScape.svg)
 
 ### Bill of Materials
 
