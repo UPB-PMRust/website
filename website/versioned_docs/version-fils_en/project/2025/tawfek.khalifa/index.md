@@ -14,7 +14,7 @@ This project aims to build a voice controlled smart home assistant using the Ras
 
 ## Motivation
 
-I've always been fascinated by artificial intelligence, especially its ability to understand and respond to natural language. Integrating AI into a compact embedded system for home automation is both a technical and creative challenge. With the Raspberry Pi Pico 2W and OpenAI's API, this project bridges embedded systems and conversational AI to create a meaningful smart home experience.
+I've always been fascinated by artificial intelligence, especially its ability to understand and respond to natural language. Integrating AI into a compact embedded system for home automation is both a technical and creative challenge. With the Raspberry Pi Pico 2W and OpenAI's API this project bridges embedded systems and conversational AI to create a meaningful smart home experience.
 
 ## Architecture
 
