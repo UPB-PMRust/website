@@ -52,7 +52,7 @@ Cortex-M MPU (PMSAv7-m)
 - regions can overlap, *highest region number* takes *priority*
 - regions have access permissions (similar to rwx)
 
-$$ region\_size = min\lparen256, 2^{size}\rparen $$
+$$ region\_size = 2^{size}, size >= 8 $$
 $$ base\_address = region\_size \times N $$
 
 :: right ::
@@ -119,7 +119,7 @@ improve granularity
 }
 </style>
 
-$$ region\_size = min\lparen256, 2^{size}\rparen $$
+$$ region\_size = 2^{size}, size >= 8 $$
 $$ base\_address = region\_size \times N $$
 $$ subregion\_size = \frac{region\_size}{8} $$
 
