@@ -26,7 +26,17 @@ I have been playing Sudoku on and off since I was a little child, and over time,
 
 ## Log
 
+### Before week 5 - 11 May
+
+I had bought all necessary components way before and wired the Picos first. I flashed my debugger and then made sure everything worked by running the lab skeleton with the "Hello, world!" program. 
+
+Then I wired my keyboard module to make sure it worked properly, and wrote a program to get input from it in the terminal. After multiple tries and checks of the wiring and the code, I still didn't manage to do it.
+
 ### Week 5 - 11 May
+ 
+This week I finally managed to make the keyboard module work by continuously trying to find other solutions and methods to make it work. 
+
+Then I got started on the game logic.
 
 ### Week 12 - 18 May
 
@@ -36,6 +46,10 @@ I have been playing Sudoku on and off since I was a little child, and over time,
 * Raspberry Pi Pico 2W - main microcontroller used for game logic
 * Raspberry Pi Pico - debugger    
 * Keyboard module - number keyboard used for input and other controls 
+
+The pins of the keyboard module have a very interesting configuration. There are 9 pins, of which the first and last are NC (No Connect) pins. The remaining 7 pins each correspond to a row or a column. The picture below clearly shows the pin configuration.
+
+![alt text](./keyboardPicture.webp)
 
 ### Schematics
 ![alt text](./KicadSchematics.webp)
@@ -55,10 +69,11 @@ Total comes up to 88.1 RON.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | used for timekeeping, delays and timeouts in embedded systems | syncronization|
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xa/index.html) | HAL crate designed for the RP2040 and RP2350 microcontrollers | gpio and uart for the keyboard module
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | used for timekeeping, delays and timeouts in embedded systems | syncronization of tasks|
 | [embassy-usb](https://docs.embassy.dev/embassy-usb/git/default/index.html) | async USB device stack for embedded devices in Rust | connectivity between pico and laptop |
 | [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html) | no-std no-alloc async network stack, designed for embedded systems | networking |
-| [cyw43](https://docs.rs/cyw43/latest/cyw43/) | Rust driver for the CYW43439 wifi+bluetooth chip | display of sudoku game on website |
+| [cyw43](https://docs.rs/cyw43/latest/cyw43/) | Rust driver for the CYW43439 wifi+bluetooth chip | wifi connectivity |
 
 ## Links
 
