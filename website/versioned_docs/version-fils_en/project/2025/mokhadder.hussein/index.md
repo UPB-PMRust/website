@@ -66,7 +66,7 @@ o	The LCD Display (if installed) shows the relevant user information and scan st
 
 ### Schematics
 
-![My Diagram](Hardwaredesign.svg)
+![My Diagram](Hardware design.svg)
 ![My Diagram](projectphoto1.svg)
 ![My Diagram](projectphoto2.svg)
 ![My Diagram](projectphoto3.svg)
