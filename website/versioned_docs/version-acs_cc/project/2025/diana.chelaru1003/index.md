@@ -41,7 +41,10 @@ The entire system is powered through a USB cable connected to the Pico.
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week  - 11 May
+-modified/updated the schematic
+-assembled some components on the breadboard
+-started working on the software
 
 
 ### Week  -  May
