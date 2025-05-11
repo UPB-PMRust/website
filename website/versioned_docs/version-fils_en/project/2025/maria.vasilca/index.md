@@ -24,9 +24,9 @@ The sensors detect the black line and send data to the multiplexer, which select
 
 ## Log
 
-This week, the final components for my robot arrived. I began planning how to wire everything together by reviewing the pin configurations of the sensors, multiplexer, motor driver, and microcontroller. I then started creating the schematic in KiCad to organize the connections.
-
 ### Week 5 - 11 May
+
+This week, the final components for my robot arrived. I began planning how to wire everything together by reviewing the pin configurations of the sensors, multiplexer, motor driver, and microcontroller. I then started creating the schematic in KiCad to organize the connections.
 
 ### Week 12 - 18 May
 
