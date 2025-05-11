@@ -38,7 +38,7 @@ Image Handler: Receives image data over UART or forwards it to a connected devic
 
 
 ### Week 5 - 11 May
-
+This week, I completed the hardware setup for my smart door lock system. All components — including the keypad, LEDs, buzzer, solenoid, and ESP32-CAM module — have been connected and tested for basic functionality.
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
