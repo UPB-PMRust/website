@@ -21,7 +21,7 @@ Relevant labs/concepts applied:
 - Real-time data visualization
 
 ## Motivation
-I wanted to build a practical IoT device that bridges hardware and software, while contributing to environmental monitoring. This project challenges me to integrate multiple sensor protocols, design a user-friendly dashboard, and apply embedded systems knowledge from coursework.
+I wanted to build a practical IoT device that bridges hardware and software, while contributing to environmental monitoring. This project challenges me to integrate multiple sensor protocols, design a user-friendly dashboard, and apply embedded systems knowledge from coursework, which i find very interesting. 
 
 ---
 
