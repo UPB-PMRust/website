@@ -56,7 +56,7 @@ Wired 90% of the hardware. Also accidentally burnt one of the Picos while connec
 
 | **Description**                                              | **Quantity** | **Unit Price (RON)** | **Total Price (RON)** |
 | ------------------------------------------------------------ | ------------ | -------------------- | --------------------- |
-| Raspberry Pi Pico 2W                                         | 2            | 39,66                | 118,98                |
+| Raspberry Pi Pico 2W                                         | 3            | 39,66                | 118,98                |
 | AHT10 High-Precision Digital Humidity and Temperature Sensor | 1            | 14,99                | 14,99                 |
 | 0.25W 10KΩ Resistor                                          | 3            | 0,10                 | 0,30                  |
 | 0.25W 4.7KΩ Resistor                                         | 2            | 0,10                 | 0,20                  |
