@@ -21,13 +21,13 @@ I have quite a few plants at home and I often forget wattering them, which is qu
 
 The following components were used:
 
-- **soil moisture sensor**, that provides both digital and analog output. I will use the analog output to get good precision. For this, the sensor will be connected to an ADC capable pin of the board, namely pin 31.
+- **soil moisture sensor**, that provides both digital and analog output. I will use the analog output to get good precision. For this, the sensor will be connected to an ADC capable pin of the board, namely pin 26.
 - **water pump**, which will be put under water and will be connected to a relay in order to be controlled.
-- **one-channel relay**, connected with the water pump and a GPIO pin of the board. I will choose pin 29 for this.
-- **AHT10 humidity and temperature sensor**, which is I2C capable. I will connect it to pins 24 and 25 of the board.
-- **photoresistor**, which will send data about light intensity. I will connect it to pin 32 of the board, being an ADC capable pin.
-- **button** for toggling auto-watering mode. I will connect it to pin 21 of the board.
-- **red LED** for signaling a critical state of the plant. I will connect it to pin 22 of the board.
+- **one-channel relay**, connected with the water pump and a GPIO pin of the board. I will choose pin 22 for this.
+- **AHT10 humidity and temperature sensor**, which is I2C capable. I will connect it to pins 18 and 19 of the board.
+- **photoresistor**, which will send data about light intensity. I will connect it to pin 27 of the board, being an ADC capable pin.
+- **button** for toggling auto-watering mode. I will connect it to pin 16 of the board.
+- **red LED** for signaling a critical state of the plant. I will connect it to pin 17 of the board.
 - **Raspberry Pi Pico 2W board**, which will be the main component of the project. It is connected directly to (almost) all the other components and will also be used for its Wi-Fi capabilities.
 
 ![Architecture](pm-project-simple-diagram.webp)
