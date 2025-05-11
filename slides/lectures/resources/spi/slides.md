@@ -120,9 +120,8 @@ when data is read and written
 
 | | | |
 |-|-|-|
-| `CPOL` | Clock polarity | defines when the data bit is read <br> 0: *rising edge* <br> 1: *falling edge* |
-| `CPHA` | Clock phase | defines when the data is written to the line <br> 0: when `CS` *activates* or *clock edge* <br> 1: on *clock edge* (depends on `CPOL`) |
-
+| `CPOL` | Clock polarity | defines what the idle state is <br> 0: *active high* / *idle low* <br> 1: *active low* / *idle high* |
+| `CPHA` | Clock phase | defines when the data is sampled <br> 0: on the *leading edge* <br> 1: on the *trailing edge* |
 ---
 
 # Transmission Example
@@ -228,7 +227,7 @@ activate all the **sub** devices
 ---
 
 # Embassy API
-for RP2040, synchronous
+for RP2350, synchronous
 
 <div grid="~ cols-3 gap-5">
 
@@ -278,7 +277,7 @@ cs.set_high();
 ---
 
 # Embassy API
-for RP2040, asynchronous
+for RP2350, asynchronous
 
 ```rust {1|2|2,3|5-7|5-8|10,11|13|13,14,15|13,14,15,16|13,14,15,16,17|all}
 use embassy_rp::spi::Config as SpiConfig;
