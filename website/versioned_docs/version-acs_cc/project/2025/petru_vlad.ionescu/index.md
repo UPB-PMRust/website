@@ -40,7 +40,7 @@ Wrote project documentation, including all components and connections needed. Fi
 
 ### Week 1 May - 8 May
 
-to happen
+Wired 90% of the hardware. Also accidentally burnt one of the Picos while connecting the soil moisture sensor. Wrote the code for initializing all the periferics + reading data from the AHT10. Updated the KiCad schematics, having a small issue (one PIN badly connected). Updated the bill of materials.
 
 ## Hardware design
 
@@ -48,15 +48,15 @@ to happen
 
 ### Schematics
 
-![Hardware](kicad-scheme.svg)
+![Hardware](hardware-diagram.webp)
 
 ### Bill of materials
 
-All the **hardware** has been purchased from [Optimus Digital](https://www.optimusdigital.ro/):
+95% of the **hardware** has been purchased from [Optimus Digital](https://www.optimusdigital.ro/):
 
 | **Description**                                              | **Quantity** | **Unit Price (RON)** | **Total Price (RON)** |
 | ------------------------------------------------------------ | ------------ | -------------------- | --------------------- |
-| Raspberry Pi Pico 2W                                         | 1            | 39,66                | 39,66                 |
+| Raspberry Pi Pico 2W                                         | 2            | 39,66                | 118,98                |
 | AHT10 High-Precision Digital Humidity and Temperature Sensor | 1            | 14,99                | 14,99                 |
 | 0.25W 10KΩ Resistor                                          | 3            | 0,10                 | 0,30                  |
 | 0.25W 4.7KΩ Resistor                                         | 2            | 0,10                 | 0,20                  |
@@ -69,11 +69,18 @@ All the **hardware** has been purchased from [Optimus Digital](https://www.optim
 | Mini Submersible Water Pump                                  | 1            | 9,99                 | 9,99                  |
 | Colored Wires Male-Female (10p) 10 cm                        | 1            | 2,99                 | 2,99                  |
 | Red 5mm LED                                                  | 1            | 0,39                 | 0,39                  |
-| 0.25W 220Ω Resistor                                          | 1            | 0,10                 | 0,10                  |
+| 0.25W 220Ω Resistor                                          | 2            | 0,10                 | 0,20                  |
 | Black Micro USB Cable 1m                                     | 1            | 3,99                 | 3,99                  |
-| Green 2.54mm Pin Header (40p)                                | 1            | 0,99                 | 0,99                  |
+| Green 2.54mm Pin Header (40p)                                | 2            | 0,99                 | 1,98                  |
 | Colored Female-Female Wires (40p) 10 cm                      | 1            | 6,99                 | 6,99                  |
-| **Total**                                                    |              |                      | **109,45**            |
+| Breadboard (750 points)                                      | 1            | 8,98                 | 8,98                  |
+| Red 3mm LED                                                  | 4            | 0,39                 | 1,56                  |
+| Colored Female-Male Wires (10p) 20 cm                        | 2            | 3,99                 | 7,98                  |
+| Battery holder 4 x R6                                        | 1            | 9,43                 | 9,43                  |
+| 1N4007 Diode                                                 | 2            | 0,49                 | 0,98                  |
+| Duracell AA5                                                 | 1            | 24,99                | 24,98                 |
+| 6mm Hose (1m)                                                | 1            | 4,17                 | 4,17                  |
+| **Total**                                                    |              |                      | **246,97**            |
 
 ## Software design
 
