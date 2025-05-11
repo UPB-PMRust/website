@@ -79,6 +79,10 @@ The project has the following architecture:
 I started working on the project documentation and set up the GitLab repository to manage the documentation separately. I created the first version of the system block diagram using diagrams.net, drafted the initial list of hardware and software components and began designing the hardware schematic in KiCad, covering the main modules. I also outlined the structure for the final `index.md` file.
 
 ### Week 5 - 11 May
+Connected the two Raspberry Pi Pico 2W boards via UART (one for debugging, one as the main controller).  
+Ran the `defmt` debugger on the first Pico to monitor real-time behavior.  
+Fixed various hardware/software issues (wrong GPIO pins, button debounce).  
+Connected and tested initial components: buttons, buzzer, and LEDs using basic Rust code.
 
 ### Week 12 - 18 May
 
@@ -112,7 +116,7 @@ I am using two Raspberry Pi Pico 2W boards in this setup. The main Pico handles 
 
 ### Photos
 
-![Prototype](demo3.webp)
+![Prototype](demo.webp)
 
 
 ## Software
