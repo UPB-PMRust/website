@@ -140,7 +140,7 @@ as well as designing the initial system architecture. The key tasks accomplished
 
 
 ### Week 12 - 18 May
-
+# got the hardwares and working on the hardware .....
 ### Week 19 - 25 May
 
 ## Hardware
