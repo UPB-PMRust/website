@@ -90,10 +90,7 @@ If the LCD is not used, LED indicators will be added to signal the current mode 
 
 ### Schematics
 
-Place your KiCAD schematics here.
-
-> **Note**: The schematics are not yet available, but they will be created using KiCAD
-at a later stage of the project. The current focus is on the software and hardware integration.
+![alt text](PM_fair_schematic_kicad.svg)
 
 ### Bill of Materials
 
