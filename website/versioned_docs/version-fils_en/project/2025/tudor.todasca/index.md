@@ -48,8 +48,10 @@ I've always been passionate about cars, and I wanted to dive deeper into how som
 
 ## Log
 
+### Week 28 - 4 May
+Gathered all my parts for the car.
 ### Week 5 - 11 May
-
+Started working on the code for the car. Connected it to the laptop over internet and worked a little bit on the motor setup.
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
