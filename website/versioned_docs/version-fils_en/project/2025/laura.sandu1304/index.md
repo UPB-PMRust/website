@@ -32,6 +32,10 @@ I had bought all necessary components way before and wired the Picos first. I fl
 
 Then I wired my keyboard module to make sure it worked properly, and wrote a program to get input from it in the terminal. After multiple tries and checks of the wiring and the code, I still didn't manage to do it.
 
+![alt text](./firstCircuitPhoto1.webp)
+
+![alt text](./secondCircuitPhoto1.webp)
+
 ### Week 5 - 11 May
  
 This week I finally managed to make the keyboard module work by continuously trying to find other solutions and methods to make it work. 
