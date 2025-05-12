@@ -106,7 +106,7 @@ I started the project by gathering all the necessary components and setting up t
 
 
 ### Schematics
-![diagram][KiCad.webp]
+![diagram](KiCad.webp)
 
 ### Bill of Materials
 
