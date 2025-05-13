@@ -66,8 +66,12 @@ I started the project by gathering all the necessary components and setting up t
 
 ![diagram](Real_wiring.webp)
 
+
 ### Week 12 - 18 May
 
+Began putting all the pieces into place and designed the structure of the funnel and the way the candy will be dropped. The code is almost done, I just need to calibrate the angles of the servomotors and the color sensor to better recognise the colors.
+
+![diagram](Real_wiring2.webp)
 
 ### Week 19 - 25 May
  
