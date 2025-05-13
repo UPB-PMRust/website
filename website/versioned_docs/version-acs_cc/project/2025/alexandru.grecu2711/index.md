@@ -12,7 +12,7 @@ A custom-built gaming system with a WiFi-connected console and controller
 
 The project is similar to a PlayStation or an Xbox. It has:
  - a console that runs a game by itself and displays it on a screen
- - a controller with buttons and a joystick that runs separate from the console and transmits user input through WiFi
+ - a controller with buttons that runs separate from the console and transmits user input through WiFi
 
 ## Motivation
 
@@ -24,7 +24,7 @@ The system architecture consists of two main components: the Console and the Con
 
  - The Console includes the Raspberry Pi Pico W running the game logic, rendering 2D graphics (such as a Snake-like game) on an attached LCD display.
 
- - The Controller is a separate device, also based on a Raspberry Pi Pico W, equipped with tactile buttons and an analog joystick to capture user inputs.
+ - The Controller is a separate device, also based on a Raspberry Pi Pico W, equipped with tactile buttons to capture user inputs.
 
  - Communication between the Controller and the Console happens over WiFi. The Controller sends input data, and the Console processes it to update the game state and display it accordingly.
 
@@ -35,8 +35,10 @@ The system architecture consists of two main components: the Console and the Con
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Started the project by setting up the Raspberry Pi Pico 2W and the LCD display. I managed to display a simple "Hello World" message on the screen. I also started working on the controller, connecting the buttons and testing their functionality.
 
 ### Week 12 - 18 May
+I finished the whole harware setup, including drawing power from the 9V batteries. I also managed to send button presses from the controller to the console over WiFi. The console receives the input and displays the pressed button on the screen.
 
 ### Week 19 - 25 May
 
@@ -56,7 +58,6 @@ The project uses the following hardware components:
 #### Controller:
  - Raspberry Pi Pico 2W
  - Tactile Buttons
- - Analog Joystick Module
  - 9V Battery Support
  - 9V Battery
  - Breadboard, Required wiring and connectors
@@ -76,11 +77,10 @@ The project uses the following hardware components:
 | 2x DC-DC Step Down Module LM2596S | DC-DC Step Down Module | [26 RON](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html?search_query=Modul+DC-DC+Step+Down+LM2596S&results=2) |
 | 2x 9V Battery Support | 9V Battery Support | [2,60 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/20-conector-pentru-baterie-de-9-v.html?search_query=%09Suport+pentru+baterie+de+9+V&results=56) |
 | 2x 9V Battery | 9V Battery | 20 RON |
-| Set 5 Tactile Buttons | Tactile Buttons | [9 RON](https://www.robofun.ro/butoane-tastaturi/5pcs-set-electronic-building-blocks-big-key-button-module.html) |
-| [Analog Joystick Module PS2](https://docs.sunfounder.com/projects/sensorkit-v2-arduino/en/latest/lesson_12.html) | Joystick | [4 RON](https://www.robofun.ro/butoane-tastaturi/modul-joystick-ps2.html)
+| 4 Tactile Buttons | Tactile Buttons | 5 RON |
 | Breadboard, Required wiring and connectors | Breadboard, Required wiring and connectors | 30 RON
 | 3D Printed Plastic Cases | 3D Printed Plastic Cases | TBA |
-| Total | | 260.6 RON |
+| Total | | 252.6 RON |
 
 
 ## Software
