@@ -201,72 +201,72 @@ between components are made with female-to-male jumper wires, and the security
 of the collected banknotes is ensured by an electromagnetic lock.
 
 
-#### Reserved Pins
+### Reserved Pins
 Pins 0, 1, and 2 are unavailable as they are used by the SC0889 debugger, which is Raspberry Pi compatible.
 Pin 2 is GND, and it is also connected to the debugger.
-#### Outputs
-##### Pin 3 – Electromagnetic Lock Control
+### Outputs
+#### Pin 3 – Electromagnetic Lock Control
 -Acts as a GPIO output.
 -LOW: Lock is engaged (closed).
 -HIGH: Lock is disengaged (open).
-##### Pin 4 – Motor Control (Forward)
+#### Pin 4 – Motor Control (Forward)
 -Controls the forward motion of a motor (HP model RK-370CA-14420).
 When the presence sensor in the slot (connected to pin 15) detects a banknote, the motor is activated.
 The banknote is pulled in until a second presence sensor (connected to pin 14) detects it.
 Once detected, the motor stops, and the TCS230 color sensor begins reading the banknote.
 
-##### Pin 5 – 12V Light Control
+#### Pin 5 – 12V Light Control
 Powers a 12V light.
 
 The light turns on during the banknote reading process.
 
-##### Pin 27 – Buzzer Control
+#### Pin 27 – Buzzer Control
 -Controls a buzzer.
 -Activated when the door is open or under error conditions.
 
-##### Pin 28 – Status LEDs
+#### Pin 28 – Status LEDs
 -Controls red LEDs when the machine is working or the door is open.
 Controls green LEDs when the machine is in standby mode.
 
-#### TCS230 Color Sensor
+### TCS230 Color Sensor
 -Outputs a PWM signal (frequency modulation).
 -Pins 6 and 7 (Output): Control the output frequency.
 -Pins 8 and 9 (Output): Control color filter selection.
 -Pin 10 (Input): Receives RGB data.
 
-#### Inputs
-##### Buttons
-##### Pin 11 – On/Off Button:
+### Inputs
+#### Buttons
+#### Pin 11 – On/Off Button:
 -Used for low-power toggling of the device.
 
-##### Pin 13 – Reset Button:
+#### Pin 13 – Reset Button:
 -When pressed, it sends a command via Pin 3 to open the lock.
 -The screen displays 0 for the sum introduced.
 -If the door sensor becomes inactive, the buzzer is triggered for 0.5 seconds with a 1-second pause.
 
-#### Presence Sensors
-###### Pin 14 (Input):
+### Presence Sensors
+##### Pin 14 (Input):
 -Connected to the second presence sensor (near TCS230).
 -Detects the arrival of the banknote and signals the MCU to stop the motor.
 
-##### Pin 15 (Input):
+#### Pin 15 (Input):
 -Connected to the first presence sensor (inside the banknote slot).
 -Activates the motor to start pulling the banknote.
 
-##### Pins 19, 20, 21, 22 (Input):
+#### Pins 19, 20, 21, 22 (Input):
 -Connected to four presence sensors, each detecting a different coin type (1, 5, 10, 50).
 
-##### Pin 26 (Input):
+#### Pin 26 (Input):
 -Door sensor: If no presence is detected, the door is considered open, and the buzzer must be activated.
 
-#### LCD Display – 1602 (2 Rows × 16 Characters)
+### LCD Display – 1602 (2 Rows × 16 Characters)
 -Pins 16 (SDA) and 17 (SCL):
 -Used for I2C communication with the LCD via a PCF8574 expander.
 
-##### Initialization:
+#### Initialization:
 -The display is initialized using a custom lcd_init function.
 
-##### Data Transmission:
+#### Data Transmission:
 -Each byte is split into high nibble and low nibble
 -Each nibble is sent in two steps: With EN signal activated (with_en) and With EN signal deactivated (without)
 -After transmitting a full byte, the system waits 2 ms before continuing.
