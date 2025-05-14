@@ -265,8 +265,10 @@ libraries like embassy_executor and embassy_time.
 
 ## Links:
 
-https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/889/TCS230%20Datasheet.pdf
+[TCS230 datasheet](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/889/TCS230%20Datasheet.pdf)
 
-https://www.youtube.com/watch?v=7ILHtAPY29I
+[Mechanical sorting coins](https://www.youtube.com/watch?v=7ILHtAPY29I)
+
+[Datasheet for LCD1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf)
 
 
