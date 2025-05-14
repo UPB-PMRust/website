@@ -56,12 +56,13 @@ KiCAD schematic TBA
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [39.66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-| Capacitive Soil Moisture Sensor | The soil moisture sensor | [4.77 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
-| LM35D Analog Temperature Sensor (TO-92) | The temperature sensor | [4.99 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
-| Water Pump | The water dispenser | [13.49 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
+| [Capacitive Soil Moisture Sensor](https://www.datocms-assets.com/28969/1662716326-hw-101-hw-moisture-sensor-v1-0.pdf) | The soil moisture sensor | [4.77 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
+| [LM35D Analog Temperature Sensor (TO-92)](https://www.ti.com/lit/ds/symlink/lm35.pdf) | The temperature sensor | [4.99 RON](https://www.optimusdigital.ro/ro/senzori/1469-senzor-de-temperatura-analogic-lm35d-to-92.html?search_query=0104210000013399&results=1) |
+| Water Pump | The water dispenser | [13.49 RON](https://www.emag.ro/furtun-bipy-ker-apa-8-mm-1-m-vt8/pd/DN5CQCYBM/?utm_source=cns_confirmation&utm_medium=email&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&ref_id=1785626640) |
 | ø 8mm 1m Transparent Tube | Water transportation from the pump to the pot | [2.92 RON](https://www.emag.ro/furtun-bipy-ker-apa-8-mm-1-m-vt8/pd/DN5CQCYBM/?utm_source=cns_confirmation&utm_medium=email&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&ref_id=1785626640) |
-| 1 Channel 5V Relay Module| Water pump activation | [4.99 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-module-cu-releu/13084-modul-releu-cu-un-canal-comandat-cu-5-v.html) |
-| 1602 Green LCD Display with I2C adapter | Display for our parameters | [26.83 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
+| [1 Channel 5V Relay Module](https://handsontec.com/dataspecs/relay/1Ch-relay.pdf)| Water pump activation | [4.99 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-module-cu-releu/13084-modul-releu-cu-un-canal-comandat-cu-5-v.html) |
+| [1602 Green LCD Display with I2C adapter](https://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) | Display for our parameters | [26.83 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
+| [TXS0108E 8 Bit Bidirectional Logic Level Converter](https://www.ti.com/lit/ds/symlink/txs0108e.pdf) | Voltage converter to use 5V components with the PICO | [6.49 RON](https://www.optimusdigital.ro/ro/interfata-convertoare-de-niveluri/1380-convertor-de-niveluri-logice-bidirecional-pe-8-bii-txs0108e.html?search_query=0104110000012852&results=1) |
 | 3x 6 x 6 x 6 Push Buttons | Interaction with the display | [1.08 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton&results=213) |
 
 ## Software
@@ -82,3 +83,5 @@ KiCAD schematic TBA
 2. [DIY Raspberry Pi Arduino Plant Watering System by Caroline Dunn](https://youtu.be/DOaDnYj3vfI?si=0LPCuMySoOpkZZ3T)
 3. [How to create IOT Plant Watering System Using Raspberry Pi Pico W](https://kitflix.com/how-to-create-iot-plant-watering-system-using-raspberry-pi-pico-w/)
 4. [Pico Pico - Embedded Programming with Rust](https://pico.implrust.com/index.html)
+5. [Connect I2C 1602 LCD to Raspberry Pico](https://javed0863.medium.com/connect-i2c-1602-lcd-to-raspberry-pi-pico-rp2040-d52bc96d551f)
+6. [Breadboard Power Supply module - How to use it?](https://www.youtube.com/watch?v=u_cJCtaEmyA&t=87s)
