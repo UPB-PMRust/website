@@ -89,9 +89,10 @@ the lock are activated via 3.3V-controlled relays.
 -GPIO pins 6, 7, 8, 9, and 10 are used for communication with the TCS230 color
 sensor.
 
+-GPIO pin 3 controls the electromagnetic lock (it opens when reset is pressed)
 -GPIO pin 4 controls the motor that drives the rollers through Relay 1.
 
--GPIO pin 5 controls the electromagnetic lock through Relay 2.
+-GPIO pin 5 controls the lightbulb inside the dark chamber, where banknote reading is made
 
 -GPIO pin 15 receives data from the first presence sensor (when a banknote is
 detected, the motor starts → GPIO 4 is set to high).
@@ -99,15 +100,14 @@ detected, the motor starts → GPIO 4 is set to high).
 -GPIO pin 14 receives data from the second presence sensor (stops the banknote
 inside the box for RGB reading).
 
--GPIO pins 18, 19, 20, and 21 are used for presence sensors for 1, 5, 10, and 50
+-GPIO pins 19, 20, 21, and 22 are used for presence sensors for 1, 5, 10, and 50
 bani coins, respectively (they increment the value when a coin passes).
-
--The 4-digit 7-segment display uses GPIO pins 22, 26, 27, and 28.
+-The LCD 1602 uses only 2 pins from the MCU, 16 for SDA and 17 for SCL (LCD 1602 uses I2C as communication protocol)
 
 -GPIO pin 11 is an input pin for the ON/OFF button, helping reduce power
 consumption.
 
--GPIO pin 12 is an input pin for the RESET button. When pressed, the rear door
+-GPIO pin 13 is an input pin for the RESET button. When pressed, the rear door
 unlocks, the displayed total resets to 0, and the user can collect the stored
 money.
 
@@ -133,7 +133,7 @@ and pin 10 as input).
 
 
 
-### Week 17 April –23 April:
+### Week 17 April – 23 April:
 
 -I wrote code to integrate presence sensors into the project (programmed GPIO
 pins 14 and 15).
@@ -199,6 +199,8 @@ devices. Banknotes are recognized using a TCS230 color sensor, while detection
 of coins and banknotes is done through 8 infrared obstacle sensors. Connections
 between components are made with female-to-male jumper wires, and the security
 of the collected banknotes is ensured by an electromagnetic lock.
+
+### Connection with the microcontroller
 
 
 
