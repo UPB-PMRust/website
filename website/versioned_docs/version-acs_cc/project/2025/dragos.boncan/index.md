@@ -232,7 +232,7 @@ The light turns on during the banknote reading process.
 -Controls red LEDs when the machine is working or the door is open.
 Controls green LEDs when the machine is in standby mode.
 
-### TCS230 Color Sensor
+### [TCS230 Color Sensor](https://www.optimusdigital.ro/en/optical-sensors/1854-blue-tcs230-color-sensor-module.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02Nn7UqWH3XvXoJSabxmtseDuVm4aQH_EgTjFWKfGaQxev41fdBL5hEBoCsW4QAvD_BwE)
 -Outputs a PWM signal (frequency modulation).
 -Pins 6 and 7 (Output): Control the output frequency.
 -Pins 8 and 9 (Output): Control color filter selection.
