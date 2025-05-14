@@ -201,7 +201,7 @@ between components are made with female-to-male jumper wires, and the security
 of the collected banknotes is ensured by an electromagnetic lock.
 
 
-### Motor
+### [Motor](https://www.aliexpress.com/i/4001294507915.html)
 -A component used to spin the roles to take the banknote inside
 -it works at 9V, so I have a LM7809 between the 12V source and the motor
 -it can spin both ways
@@ -311,6 +311,12 @@ Controls green LEDs when the machine is in standby mode.
 -Each nibble is sent in two steps: With EN signal activated (with_en) and With EN signal deactivated (without)
 -After transmitting a full byte, the system waits 2 ms before continuing.
 
+
+### Power consumption
+	I have 2 circuits:
+-one at 5V, including Raspberry Pi Pico, TCS230 Color Sensor,all 7 presence sensors and the lcd 1602
+-one at 12V, featuring the engine, the lightbulb and some other leds.
+-P = U * I 
 
 ## Schematics
 
