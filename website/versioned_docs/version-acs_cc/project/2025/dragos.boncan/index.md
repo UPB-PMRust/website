@@ -204,17 +204,17 @@ of the collected banknotes is ensured by an electromagnetic lock.
 ### Reserved Pins
 Pins 0, 1, and 2 are unavailable as they are used by the SC0889 debugger, which is Raspberry Pi compatible.
 Pin 2 is GND, and it is also connected to the debugger.
-### Outputs
 
+### Outputs
 #### Pin 2 - Motor Control (Backward)
--Controls the backward motion of a motor (HP model RK-370CA-14420). When the banknote can't be recognized by my sensor, the pin 4 becomes
+-Controls the backward motion of a motor (HP model [RK-370CA-14420](https://datasheet4u.com/pdf-down/R/K/-/RK-370CAMABUCHI.pdf)). When the banknote can't be recognized by my sensor, the pin 4 becomes
 inactive and pin 2 becomes active. It spins back for 0.5 seconds in order to eject the banknote.
 #### Pin 3 – Electromagnetic Lock Control
 -Acts as a GPIO output.
 -LOW: Lock is engaged (closed).
 -HIGH: Lock is disengaged (open).
 #### Pin 4 – Motor Control (Forward)
--Controls the forward motion of a motor (HP model RK-370CA-14420).
+-Controls the forward motion of a motor (HP model [RK-370CA-14420](https://datasheet4u.com/pdf-down/R/K/-/RK-370CAMABUCHI.pdf)).
 When the presence sensor in the slot (connected to pin 15) detects a banknote, the motor is activated.
 The banknote is pulled in until a second presence sensor (connected to pin 14) detects it.
 Once detected, the motor stops, and the TCS230 color sensor begins reading the banknote.
@@ -267,7 +267,7 @@ Controls green LEDs when the machine is in standby mode.
 #### Pin 26 (Input):
 -Door sensor: If no presence is detected, the door is considered open, and the buzzer must be activated.
 
-### LCD Display – 1602 (2 Rows × 16 Characters)
+### [LCD Display – 1602 (2 Rows × 16 Characters)](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02NhSRhh6ZWsS9qRrYm8ebIyKZ_fdj1R9oZmFWQkiGQcS6CHtxoeJvFxoCkyoQAvD_BwE)
 -Pins 16 (SDA) and 17 (SCL):
 -Used for I2C communication with the LCD via a PCF8574 expander.
 
@@ -275,6 +275,7 @@ Controls green LEDs when the machine is in standby mode.
 -The display is initialized using a custom lcd_init function.
 
 #### Data Transmission:
+-I used this datasheet to see exactly how lcd 1602 actually works: [datasheet LCD 1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf)
 -Each byte is split into high nibble and low nibble
 -Each nibble is sent in two steps: With EN signal activated (with_en) and With EN signal deactivated (without)
 -After transmitting a full byte, the system waits 2 ms before continuing.
