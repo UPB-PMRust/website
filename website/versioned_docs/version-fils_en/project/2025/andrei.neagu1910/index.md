@@ -4,7 +4,7 @@ A mobile robot project with a camera for visual tracking, based on a Raspberry P
 
 :::info
 
-**Author**:  Neagu Andrei-Cristian 
+**Author**:  Neagu Andrei-Cristian\
 **GitHub Project Link**: "https://github.com/UPB-PMRust-Students/project-mohgTheOmen.git"
 
 :::
@@ -60,9 +60,11 @@ Connections Between Components:
 
 - Tested UART communication between the ESP32-S3 and the motor controller Pico 2W to ensure reliable data exchange.
 - Developed the motor control functionality to process commands received from the Bluetooth controller.
-- Integrated motor movement logic to dynamically adjust based on proximity feedback from the ultrasonic sensors.
 
 ### Week 12 - 18 May
+
+- Integrated motor movement logic to dynamically adjust based on proximity feedback from the ultrasonic sensors.
+- Began designing the chassis for the robot, focusing on structural stability and accommodating all hardware components.
 
 ### Week 19 - 25 May
 
@@ -73,18 +75,21 @@ Connections Between Components:
 - Raspberry Pi Pico 2W (Display Unit): Hosts an access point and displays telemetry data.
 - ST7735s: Display the telemetry data.
 - L298N Motor Driver: Drives the two DC motors.
-- 2 × DC Motors: Provide movement for the robot.
-- 2 × INA219 Current Sensors: Monitor motor currents to detect stalls or resistance changes.
-- 3 × HC-SR04 Ultrasonic Sensors: Detect obstacles in front of the robot.
+- 2× DC Motors: Provide movement for the robot.
+- 2× INA219 Current Sensors: Monitor motor currents to detect stalls or resistance changes.
+- 3× HC-SR04 Ultrasonic Sensors: Detect obstacles in front of the robot.
 - Power Bank or Li-ion Batteries: Powers the system.
 - Wires, Breadboard, and Connectors: For interconnecting all the components.
 
 ### Schematics
 
+#### ESP32-S3:
 ![ESP32-S3](./images/ESP.svg)
 
+#### Central Pico 2W:
 ![Central_Pico2W](./images/Central.svg)
 
+#### AP Pico 2W:
 ![Remote_Pico2W](./images/Remote.svg)
 
 ### Bill of Materials
