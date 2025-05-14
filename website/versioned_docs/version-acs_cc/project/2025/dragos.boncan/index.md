@@ -156,8 +156,37 @@ consistently read the same color for banknotes, minimizing the effect of ambient
 light.
 
 
-
 ### Week 1 May – 7 May:
+
+-I connected the presence sensors to pins 19, 20, 21, and 22 for the 4 types of 
+coins (1 ban, 5 bani, 10 bani, and 50 bani).
+
+-I calibrated the presence sensors to detect objects at the correct distance 
+(initially, they were detecting at too great a distance).
+
+-I built the coin separator (mechanical part).
+
+-I tried to program a 7-segment display to work via the SPI protocol (I stayed 
+in the lab until 11 PM on May 9th).
+
+### Week 8 May – 14 May:
+
+-I purchased a new LCD display (lcd1602), which works via I2C.
+
+-I used [`embassy_rp::peripherals::I2C0`](https://docs.rs/embassy-rp/latest/embassy_rp/peripherals/struct.I2C0.html) 
+to make it functional.
+
+-The display has GND, VCC, SDA, and SCL connections.
+
+-I used pins 16 and 17 on the Pico for SDA and SCL.
+
+-It can now display all kinds of characters (letters, numbers, and punctuation).
+
+-I built a new banknote slot (the old one was too long and the banknotes didn’t align properly with the rollers).
+
+-I added a door sensor to detect whether it is open or closed (not yet connected to the board).
+
+### Week 15 May – 21 May:
 
 -To be continued
 
