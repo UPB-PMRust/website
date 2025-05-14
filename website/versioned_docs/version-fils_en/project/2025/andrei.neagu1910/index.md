@@ -53,10 +53,14 @@ Connections Between Components:
 
 ### Week 28 April - 4 May
 
-- Set up the ESP32-S3 to stream the webserver.
-- Assembled the second Pico to display data received through TCP from the first Pico.
+- Configured the ESP32-S3 to connect to a Wi-Fi network and stream the live camera feed. This involved setting up the `esp_camera` library for capturing frames and integrating it with the `ESP-IDF` networking stack.
+- Configured the second Raspberry Pi Pico to display telemetry data received via TCP from the central Pico.
 
 ### Week 5 - 11 May
+
+- Tested UART communication between the ESP32-S3 and the motor controller Pico 2W to ensure reliable data exchange.
+- Developed the motor control functionality to process commands received from the Bluetooth controller.
+- Integrated motor movement logic to dynamically adjust based on proximity feedback from the ultrasonic sensors.
 
 ### Week 12 - 18 May
 
@@ -77,7 +81,11 @@ Connections Between Components:
 
 ### Schematics
 
-(*to be added*) - KiCad WIP
+![ESP32-S3](./images/ESP.svg)
+
+![Central_Pico2W](./images/Central.svg)
+
+![Remote_Pico2W](./images/Remote.svg)
 
 ### Bill of Materials
 
