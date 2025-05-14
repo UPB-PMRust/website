@@ -113,7 +113,7 @@ money.
 
 
 
-![image1.png](image1.svg)
+![block_scheme.png](block_scheme.svg)
 
 
 
