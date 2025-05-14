@@ -51,9 +51,9 @@ The DIY MIDI controller is built around the Raspberry Pi Pico 2W.
 Each of the 12 keys uses 2 tactile switches (one per elevation), totaling 24 inputs. To reduce GPIO usage, I used a 16-channel analog multiplexer (12 channels used). Switches connect to the multiplexer inputs; its selector pins go to the Pico’s GPIOs, and the SIG pin connects to an ADC.
 
 Each switch uses a voltage divider to produce distinct ADC levels for button states:
-- 2650: no press (send Note OFF)
-- 2000–2500: one pressed (start timer)
-- <1000: both pressed (stop timer, compute velocity, send Note ON)
+- more than 2650: no press (send Note OFF)
+- between 2000–2500: one pressed (start timer)
+- less than 1000: both pressed (stop timer, compute velocity, send Note ON)
 
 [TODO insert circuit image]
 
