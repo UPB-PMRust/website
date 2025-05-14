@@ -88,24 +88,28 @@ The following hardware was used:
 
 Tried to do something in Kicad (not for dark mode)
 
-![alt text](Audio_Player.svg)
+![kicad_schematic](Audio_Player.svg)
+
+### Photos
+
+![photo_of_hardware](photo_hardware_deadline.webp)
 
 ### Bill of Materials
 
 | Item                                      | Quantity | Unit Price (RON) | Total (RON) | Usage                                    |
 |-------------------------------------------|----------|------------------|-------------|------------------------------------------|
-| Raspberry Pi Pico 2W                      | 1        | 39.66            | 39.66       | Main controller                          |
-| Raspberry Pi Pico (debug / Picoprobe)     | 1        | 39.66            | 39.66       | Used for SWD debugging                   |
-| UDA1334A I2S DAC Module                   | 1        | 56.76            | 56.76       | Audio output module                      |
-| LCD SPI Display 1.8" (128x160) with SD slot | 1      | 28.99            | 28.99       | Used for UI and SD (via SPI)        |
-| Push Button (white round cap)             | 3        | 1.99             | 5.97        | Controls            |
-| Rotary Encoder Module                     | 1        | 4.99             | 4.99        | Controls           |
-| 10k Stereo Potentiometer                  | 1        | 1.99             | 1.99        | Analog Control (ADC input)       |
-| Breadboard HQ (830 points)                | 2        | 9.98             | 19.96       | For main Pico + Picoprobe wiring         |
-| Header pins (2.54 mm, 40p)                | 2        | 0.99             | 1.98        | For soldering Pico and accessories       |
-| Female Breakable Header (40p)             | 1        | 2.56             | 2.56        | Extra connectivity (LCD/SD)              |
-| Breadboard rigid wires                    | 1        | 12.49            | 12.49       | Neat wiring on breadboard                |
-| Breadboard jumper wires                   | 1        | 7.99             | 7.99        | General-purpose jumpers                  |
+| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=Raspberry+Pi+Pico+2W+&results=36)                      | 1        | 39.66            | 39.66       | Main controller                          |
+| [Raspberry Pi Pico 2W(debug / Picoprobe)](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=Raspberry+Pi+Pico+2W+&results=36)     | 1        | 39.66            | 39.66       | Used for SWD debugging                   |
+| [UDA1334A I2S DAC Module]()                   | 1        | 56.76            | 56.76       | Audio output module                      |
+| [LCD SPI Display 1.8" (128x160) with SD slot](https://www.optimusdigital.ro/en/lcds/1311-modul-lcd-spi-de-18-128x160.html?search_query=LCD+SPI+Display+1.8%22+%28128x160%29&results=4) | 1      | 28.99            | 28.99       | Used for UI and SD (via SPI)        |
+| [Push Button (white round cap)](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html?search_query=push&results=140)             | 3        | 1.99             | 5.97        | Controls            |
+| [Rotary Encoder Module](https://www.optimusdigital.ro/en/touch-sensors/7150-rotary-encoder-module.html?search_query=rotary+encoder&results=11)                     | 1        | 4.99             | 4.99        | Controls           |
+| [10k Stereo Potentiometer](https://www.optimusdigital.ro/en/potentiometers/1886-10k-stereo-potentiometer.html?search_query=potentiometer&results=225)                  | 1        | 1.99             | 1.99        | Analog Control (ADC input)       |
+| [Breadboard HQ (830 points)](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html?search_query=bread+board&results=420)                | 2        | 9.98             | 19.96       | For main Pico + Picoprobe wiring         |
+| [Header pins (2.54 mm, 40p)](https://www.optimusdigital.ro/en/pin-headers/463-colored-40p-254-mm-pitch-male-pin-header-white.html?search_query=Header+pins+%282.54+mm%2C+40p&results=8)                | 2        | 0.99             | 1.98        | For soldering Pico and accessories       |
+| [Female Breakable Header (40p)](https://www.optimusdigital.ro/en/pin-headers/1285-header-de-pini-mama-40p-254-mm-separabil.html?search_query=Header+pins+%282.54+mm%2C+40p&results=8)             | 1        | 2.56             | 2.56        | Extra connectivity (LCD/SD)              |
+| [Breadboard rigid wires](https://www.optimusdigital.ro/en/wires-without-connectors/899-set-de-fire-pentru-breadboard-rigide.html?search_query=rigid&results=151)                    | 1        | 12.49            | 12.49       | Neat wiring on breadboard                |
+| [Breadboard jumper wires](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html?search_query=jumper&results=237)                   | 1        | 7.99             | 7.99        | General-purpose jumpers                  |
 
 Total Estimated Cost: 229.60 RON (for now)
 
