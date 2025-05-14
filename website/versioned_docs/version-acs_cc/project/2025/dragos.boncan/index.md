@@ -228,7 +228,8 @@ of the collected banknotes is ensured by an electromagnetic lock.
 | [Buzzer](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/)                            | For audio feedback (e.g., valid/invalid banknote or coin)      |         5          |      1   |             5         |
 | [LCD 1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf) | I used an LCD 1602 with I2C to display the total amount of money stored in the safe, as well as the current state of the device (waiting, reading, open, closed). | [15](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html) | 1 | 15 |
 
-| **Total cost**                    |                                                                |                   |          |       **422**     |
+| **Total cost** |  |  |  | **422** |
+
 
 
 
