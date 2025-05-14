@@ -15,6 +15,7 @@ A chess engine and game running on the Pico that users can play on a LCD display
 - The game uses the display to allow the users to select the game mode: Player vs Player or Player vs AI.
 - The chess engine provided the validation and move generation AIs. 
 - A buzzer is used to serve different information about the cursor movement and piece and menu selections.
+- Two leds to show which of the players is to move.
 
 ## Motivation
 
@@ -38,18 +39,59 @@ Game Loop:
 
 ### Week 6 - 12 May
 
+- Received all the components for the project that were ordered in advance.
+- Put all the hardware components together.
+- Tested the chess engine and game loop developed before all the components had arrived.
+- The game is in a functional state, need to implement algorithms for optimal piece selection.
+- Updated log and documentation.
+
+
 ### Week 7 - 19 May
+- Continued work on the optimal piece selection.
+- Updated log and documentation.
+- Updated KiCad scheme.
+- Finished Hardware.
 
 ### Week 20 - 26 May
 
 ## Hardware
 
+### Pictures
+<table>
+<tr>
+<td>
+
+![1](assets/1.webp)
+
+</td>
+<td>
+
+![2](assets/2.webp)
+
+</td>
+</tr>
+<tr>
+<td>
+
+![3](assets/3.webp)
+
+</td>
+<td>
+
+![4](assets/4.webp)
+
+</td>
+</tr>
+</table>
+
+### Components Usage
 For the project, the following were used:
 
-- A Raspberry Pi Pico 2W for controlling the Display(Drawing to it), the MPR Keyboard Module(Getting input), the Active Buzzer Module and running the game loop and Chess Engine.
-- The ILI9341 LCD 240x320 Display was used to provide the user with the game GUI.
-- The MPR121 Keyboard Module provided the used input for piece movement and game mode selection.
-- The active buzzer was intented to offer an acustic signal to confirm keyboard press.
+- A **Raspberry Pi Pico 2W** for controlling the Display(Drawing to it), the MPR Keyboard Module(Getting input), the Active Buzzer Module and running the game loop and Chess Engine.
+- The **ILI9341 LCD 240x320 Display** was used to provide the user with the game GUI.
+- The **MPR121 Keyboard Module** provided the used input for piece movement and game mode selection.
+- The **Active Buzzer Module** was intented to offer an acustic signal to confirm keyboard press.
+- The **two leds** indicate the turn of the players(either white or black).
 
 
 ### Schematics
