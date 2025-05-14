@@ -256,6 +256,9 @@ libraries like embassy_executor and embassy_time.
 | [panic_probe](https://docs.rs/panic-probe/latest/panic_probe/)      | Panic handler – displays debug information on panic in embedded mode. | Handles potential runtime panics during execution.      |
 | [embassy_rp::gpio](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | GPIO pin control on the Raspberry Pi Pico (RP2040)     | Defines and controls pins as output (using Output) or input (using Input). |
 | [embassy_rp::init](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Initializes RP2040-specific peripherals               | let p = init(...) — make objects for all pins and peripherals. |
+| [embassy_rp::i2c](https://docs.embassy.dev/embassy-rp/git/rp2040/i2c/struct.I2c.html) | I2C is a two-wire communication protocol that enables data exchange between multiple devices using a shared bus.| Define the asynchronous I2C interface to enable communication between the board and the LCD 1602.  |
+| [embassy_rp::peripherals::I2C0]()https://docs.embassy.dev/embassy-rp/git/rp235xa/struct.Peripherals.html#structfield.I2C0|It provides access to the I2C0 peripheral on Raspberry Pi RP2040, enabling communication with I2C devices such as sensors and displays | Initializes I2C instance asynchronous: let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config)|
+|  [embedded_hal_async::i2c::I2c as AsyncI2c](https://github.com/rust-embedded/embedded-hal/blob/master/embedded-hal-async/src/i2c.rs)| Defines the asynchronous interface for I2C communication in embedded systems.| I used it for asynchronous functions using I2C(lcd_init, lcd_command, lcd_data, lcd_write_str)|
 
 
 
