@@ -235,7 +235,6 @@ Controls green LEDs when the machine is in standby mode.
 -Pin 10 (Input): Receives RGB data.
 
 ### Inputs
-#### Buttons
 #### Pin 11 – On/Off Button:
 -Used for low-power toggling of the device.
 
