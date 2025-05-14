@@ -77,7 +77,7 @@ Connections Between Components:
 
 ### Schematics
 
-(*to be added*)
+(*to be added*) - KiCad WIP
 
 ### Bill of Materials
 
