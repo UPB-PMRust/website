@@ -205,6 +205,10 @@ of the collected banknotes is ensured by an electromagnetic lock.
 Pins 0, 1, and 2 are unavailable as they are used by the SC0889 debugger, which is Raspberry Pi compatible.
 Pin 2 is GND, and it is also connected to the debugger.
 ### Outputs
+
+#### Pin 2 - Motor Control (Backward)
+-Controls the backward motion of a motor (HP model RK-370CA-14420). When the banknote can't be recognized by my sensor, the pin 4 becomes
+inactive and pin 2 becomes active. It spins back for 0.5 seconds in order to eject the banknote.
 #### Pin 3 – Electromagnetic Lock Control
 -Acts as a GPIO output.
 -LOW: Lock is engaged (closed).
@@ -243,10 +247,15 @@ Controls green LEDs when the machine is in standby mode.
 -The screen displays 0 for the sum introduced.
 -If the door sensor becomes inactive, the buzzer is triggered for 0.5 seconds with a 1-second pause.
 
-### Presence Sensors
+### [Presence Sensors](https://www.optimusdigital.ro/en/optical-sensors/4514-infrared-obstacle-sensor.html?search_query=infrared&results=156)
+-In this project, I use 7 presence sensors. There are 4 for coins, 2 for banknotes and one for door.
+-I calibrated these presence sensors using a screwdriver.
+-I have set the sensors to not detect beyond 2 cm, because they can interfere with the materials around them.
+
 ##### Pin 14 (Input):
 -Connected to the second presence sensor (near TCS230).
 -Detects the arrival of the banknote and signals the MCU to stop the motor.
+
 
 #### Pin 15 (Input):
 -Connected to the first presence sensor (inside the banknote slot).
