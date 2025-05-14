@@ -27,8 +27,59 @@ I decided to build a small robot that could take over that chore - and the good 
 this robot won't take anyone's job!
 
 ## Architecture 
-![Architecture](images/spongebot_arch.webp)
+```mermaid
+flowchart TD
 
+    PICO["Raspberry Pi Pico 2 W"]
+
+    subgraph Input Devices
+        CAM["OV7670 Camera"]
+        IR["4× IR Sensors"]
+        IMU["GY-521 (MPU6050)"]
+        WIFI["Wi-Fi Comm"]
+    end
+
+    subgraph Processing
+        VISION["Image Processing:<br>Detect Marker Traces"]
+        EDGE["Edge Detection Logic"]
+        NAV["Navigation & Path Planning"]
+        CTRL["Motor Control Logic"]
+        ADHESION["Adhesion Control Logic"]
+        STATUS["Status Display Logic"]
+    end
+
+    subgraph Output Devices
+        MOTOR["TB6612FNG Motor Driver"]
+        M1["GA12-N20 Motor A"]
+        M2["GA12-N20 Motor B"]
+        MAGNET["Electromagnet (via MOSFET)"]
+        OLED["0.96'' OLED Display"]
+    end
+
+    PICO --> CAM
+    PICO --> IR
+    PICO --> IMU
+    PICO --> WIFI
+
+    CAM --> VISION
+    IR --> EDGE
+    IMU --> NAV
+    WIFI --> NAV
+
+    VISION --> NAV
+    EDGE --> NAV
+
+    NAV --> CTRL
+    CTRL --> MOTOR
+    MOTOR --> M1
+    MOTOR --> M2
+
+    NAV --> ADHESION
+    ADHESION --> MAGNET
+
+    NAV --> STATUS
+    STATUS --> OLED
+```
 
 ## Log
 
