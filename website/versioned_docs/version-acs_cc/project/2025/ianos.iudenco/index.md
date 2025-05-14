@@ -79,7 +79,6 @@ the player will see the feedback of the word and the word will be visible on the
 
 ### Schematic
 ![schematic](./images/schematic.webp)
-![img](./images/img.webp)
 ![img2](./images/img2.webp)
 ![img3](./images/img3.webp)
 
