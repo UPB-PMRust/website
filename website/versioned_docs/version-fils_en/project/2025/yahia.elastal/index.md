@@ -124,7 +124,7 @@ This week, I focused on building the cardboard house and successfully completed 
 - Ambient Mode: Adjusts brightness automatically based on the light sensor readings using PWM.
 - LCD Screen: Continuously displays real-time information about room conditions, access activity, and fire alarm status.
 ### Schematics
-
+![KiKad Schematic](KiCad.webp)
 ### Bill of Materials
  
 
