@@ -366,6 +366,32 @@ I have 2 circuits:
 |                     |             |                          |                |
 | **TOTAL**           |     -       |         ~702             |     ~7.22      |
 
+
+## Hardware images
+
+### Reset button
+
+![Poza Buton Reset](Poza_butonreset.svg)
+
+### Working LCD 1602
+
+![Poza Ecran](Poza_ecran.svg)
+
+### Hardware overall
+
+![Hardware 2](hardware2.svg)
+
+### Breadboard with Raspberry Pi Pico 2
+
+![Hardware Overall](hardware_overall.svg)
+
+### Lock with presence sensor for the door
+
+![Incuietoare](incuietoare.svg)
+
+
+
+
 ## Schematics
 
 ![KICAD_schematic.PNG](KICAD_schematic.svg)
