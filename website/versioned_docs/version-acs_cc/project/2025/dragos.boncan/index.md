@@ -317,6 +317,19 @@ Controls green LEDs when the machine is in standby mode.
 -one at 5V, including Raspberry Pi Pico, TCS230 Color Sensor,all 7 presence sensors and the lcd 1602
 -one at 12V, featuring the engine, the lightbulb and some other leds.
 -P = U * I 
+|       Device        | Tension (V) | Current Intensity (mA) | Used Power (W) |
+|:-------------------:|:-----------:|:------------------------:|:--------------:|
+| TCS230 Color Sensor |     5V      |           2             |     0.01       |
+| IR Presence Sensors (×7) |   5V      |       7 × 20 = 140       |     0.70       |
+| LCD 1602 with I2C   |     5V      |           30            |     0.15       |
+| **Subtotal (5V)**   |     -       |          172            |     0.86       |
+|                     |             |                          |                |
+| Printer Motor (RK-370CA) |  12V     |          250            |     3.00       |
+| 12V Light (LED)     |    12V      |          200            |     2.40       |
+| Extra LEDs (×4)     |    12V      |       4 × 20 = 80        |     0.96       |
+| **Subtotal (12V)**  |     -       |          530            |     6.36       |
+|                     |             |                          |                |
+| **TOTAL**           |     -       |         ~702             |     ~7.22      |
 
 ## Schematics
 
