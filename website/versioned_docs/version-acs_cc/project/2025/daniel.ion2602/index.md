@@ -93,7 +93,7 @@ Other components:
 
 ### Schematics
 
-**Schematics will be added soon**
+![Schematics](images/spongebot_kicad.webp)
 
 ### Bill of Materials
 
