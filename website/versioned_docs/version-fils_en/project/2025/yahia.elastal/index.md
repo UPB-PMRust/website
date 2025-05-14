@@ -110,7 +110,15 @@ I bought all the cardboard needed for the build and drew out the floor plan on i
 - **Cardboard House Construction**:
 This week, I focused on building the cardboard house and successfully completed the main structure. The layout is now ready for installing components and starting the wiring process.
 ### Week 5 - 11 May
+- **Wiring and GPIO Allocation**:
+Completed all wiring for the sensors, LEDs , Push Buttons , Photoresistors, and display. Careful planning was essential during this stage, as nearly all available GPIO pins on the Raspberry Pi Pico W were used. Pin allocation was done with attention to communication protocols and compatibility.
+- **Code Testing**:
+Tested some code for the temperature sensors and LCD in order to intergrate them in the project
+- **KiCad Schematic**:
+Finalized the KiCad schematic for the full system, accurately reflecting all physical connections and components used in the project.
 ### Week 12 - 18 May
+- **Component Installation**:
+Started mounting components onto the cardboard structure. Fixed the LCD display, LEDs, sensors and RFID in their designated positions.
 ### Week 19 - 25 May
 ## Hardware
 - Infrared Flame Sensor: Used to detect any nearby fire in the kitchen area, triggering an emergency alarm when activated.
@@ -123,6 +131,11 @@ This week, I focused on building the cardboard house and successfully completed 
     - Manual Mode: Allows direct on/off control.
 - Ambient Mode: Adjusts brightness automatically based on the light sensor readings using PWM.
 - LCD Screen: Continuously displays real-time information about room conditions, access activity, and fire alarm status.
+
+- **This is how the wiring looks** :
+![Wiring](wiring.webp)
+- **This is how the the cardboard home came out** :
+![Cardboard](Cardboard.webp)
 ### Schematics
 ![KiKad Schematic](KiCad.webp)
 ### Bill of Materials
