@@ -86,7 +86,10 @@ flowchart TD
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-**To be updated**
+* Finished hardware design and completed component selection
+* Purchased and received all required components
+* Soldered key parts and researched power requirements, safe wiring and GPIO assignments
+* Set up defmt debugging to verify Pico functionality and test communication with peripherals
 
 ### Week 12 - 18 May
 **To be updated**
