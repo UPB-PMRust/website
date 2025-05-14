@@ -35,6 +35,14 @@ Docs week
 
 Hardware week
 
+I changed the fingerprint sensor with a different one. I think it is the same one
+but I found it cheaper. I also removed the step-up module, I will try to get the
+voltage from the battery or the VSYS pin (pin 39), the sensor needs 3.6V - 6.0V.
+
+I was unsure if I needed a step-down and a logic level translator for the pulse sensor
+but I found out that the component I bought already has LDO to lower the voltage to
+1.8V, so the module works with the 3.3V from the pico.
+
 *Week 19 - 25 May*
 
 Software week
@@ -50,14 +58,12 @@ Software week
 - Uses radio waves and satelite navigation to determine coordinates
 4. **Pulse Sensor MAX30100**
 - Measures the wearers pulse
-5. **Optic Fingerprint Sensor**
+5. **AS608 Optical Finger Print Sensor Module**
 - Used to start the device, only reacts to wearer's fingerprint
 6. **LCD Screen 1.44 inch diag (128x128 px)**
 - Displays data from the sensors, can cycle through multiple screens
-7. **Step-up Module MT3608**
-- Used to amplify the tension for the fingerprint sensor
-8. **Other stuff**
-- Batteries, wires, breadboard, resistors, buttons
+7. **Other stuff**
+- Batteries, wires, breadboard, buttons
 
 ## Schematics
 
@@ -69,11 +75,10 @@ Software week
 | [Barometric Pressure Sensor BMP280 GY](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf) | Pressure and temperature sensor | [8.49 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-presiune/1666-modul-senzor-de-presiune-barometric-bmp280.html) |
 | [GPS GY-NEO6MV2 with antenna](https://content.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_%28GPS.G6-HW-09005%29.pdf) | Tracks GPS coordinates | [44.95 RON](https://www.optimusdigital.ro/ro/gps/105-modul-gps-gy-neo6mv2.html) |
 | [Pulse Sensor MAX30100](https://www.analog.com/media/en/technical-documentation/data-sheets/max30100.pdf) | Monitors wearer's pulse | [24.99 RON](https://www.optimusdigital.ro/ro/senzori-altele/2166-modul-senzor-puls-max30100-rcwl-0530.html) |
-| [Optic Fingerprint Sensor](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-optical-fingerprint-sensor.pdf) | Scans wearer's fingerprint to start the device | [149.99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-optici/1276-senzor-optic-de-amprenta.html) |
+| [AS608 Optical Finger Print Sensor Module](https://handsontec.com/dataspecs/sensor/AS608%20Finger%20print%20Sensor.pdf)| Scans wearer's fingerprint to start the device | [68.37 RON](https://www.emag.ro/cititor-optic-de-amprenta-3-3v-500dpi-negru-as608-mod/pd/DKK0VYYBM) |
 | [1.44'' LCD Screen](http://www.lcdwiki.com/res/MSP1443/1.44inch_SPI_Module_MSP1443_User_Manual_EN.pdf) | Displays data from the sensors | [27.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html) |
-| [Step-up Module MT3608](https://www.olimex.com/Products/Breadboarding/BB-PWR-3608/resources/MT3608.pdf) | Raise voltage for fingerprint sensor | [3.70 RON](https://sigmanortec.ro/Modul-ridicator-tensiune-cu-micro-USB-2-24V-MT3608-p136286152) |
-| Other stuff (breadboard, wires, battery, resistors, buttons) | Used to assemble the device | 40 RON |
-| Total | - | 299.77 RON |
+| Other stuff (breadboard, wires, battery, buttons) | Used to assemble the device | 60 RON |
+| Total | - | 274.45 RON |
 
 ## Software
 | Library | Description | Usage |
