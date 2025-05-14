@@ -203,30 +203,43 @@ of the collected banknotes is ensured by an electromagnetic lock.
 
 ### [Motor](https://www.aliexpress.com/i/4001294507915.html)
 -A component used to spin the roles to take the banknote inside
+
 -it works at 9V, so I have a LM7809 between the 12V source and the motor
+
 -it can spin both ways
+
 -can eject banknote if it is not recognized by the color sensor
 
 ### Relay
 -I used a [relay](https://ampul.eu/cs/rele-magneticke-kontakty/3941-modul-8-rele-s-optickym-oddelenim-33v) with 3.3V command and 8 channels, because PICO can give output only up to 3.3V. So, a 5V relay will not work.
+
 -I used the first 4 channels. First channel is from pin 4 (output) that controls the motor. Second one is for light bulb (pin 5), that activates only when I read the banknote. 
+
 -the third channel is for electromagnetic lock.
+
 -the fourth one is used for the motor (but this time backwards).
 
 ### [TCS230 color sensor](https://www.optimusdigital.ro/en/optical-sensors/1854-blue-tcs230-color-sensor-module.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02Nn7UqWH3XvXoJSabxmtseDuVm4aQH_EgTjFWKfGaQxev41fdBL5hEBoCsW4QAvD_BwE)
 -used to see colors for banknotes
+
 -it uses 5 pins on my Pico (4 for input, one for output)
+
 -I made a dark chamber for this sensor, because it may get influenced by the outside light.
+
 -It has 8 pins(S0,S1,S2,S3 input in the sensor, out is input in the MCU on pin 10, gnd, vcc and output enable)
 
 ### [Presence sensors with infrared](https://www.optimusdigital.ro/en/optical-sensors/4514-infrared-obstacle-sensor.html?search_query=infrared&results=156)
 -the best option to check if something moved.
+
 -I calibrated them using a screwdriver, each of them can detect objects up to 2 cm in front of them
+
 -Each sensor has 3 pins: VCC, GND and OUT. OUT goes in my MCU on the INPUT pins.
 
 ### [1602 LCD](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02NhSRhh6ZWsS9qRrYm8ebIyKZ_fdj1R9oZmFWQkiGQcS6CHtxoeJvFxoCkyoQAvD_BwE)
 -It uses only 2 pins from my MCU (pin 16 SDA and pin 17 SCL)
+
 -It comunicates via I2C, at a frequency of 100KHz.
+
 -It prints any characters I need
 
 
@@ -240,8 +253,11 @@ Pin 2 is GND, and it is also connected to the debugger.
 inactive and pin 2 becomes active. It spins back for 0.5 seconds in order to eject the banknote.
 #### Pin 3 – Electromagnetic Lock Control
 -Acts as a GPIO output.
+
 -LOW: Lock is engaged (closed).
+
 -HIGH: Lock is disengaged (open).
+
 #### Pin 4 – Motor Control (Forward)
 -Controls the forward motion of a motor (HP model [RK-370CA-14420](https://datasheet4u.com/pdf-down/R/K/-/RK-370CAMABUCHI.pdf)).
 When the presence sensor in the slot (connected to pin 15) detects a banknote, the motor is activated.
@@ -255,6 +271,7 @@ The light turns on during the banknote reading process.
 
 #### Pin 27 – Buzzer Control
 -Controls a buzzer.
+
 -Activated when the door is open or under error conditions.
 
 #### Pin 28 – Status LEDs
@@ -263,9 +280,13 @@ Controls green LEDs when the machine is in standby mode.
 
 ### [TCS230 Color Sensor](https://www.optimusdigital.ro/en/optical-sensors/1854-blue-tcs230-color-sensor-module.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02Nn7UqWH3XvXoJSabxmtseDuVm4aQH_EgTjFWKfGaQxev41fdBL5hEBoCsW4QAvD_BwE)
 -The TCS230 sensor uses a 100 kHz PWM signal to analyze the colors of the banknotes, allowing for a quick response during processing.
+
 -Outputs a PWM (Pulse-Witdh Modulation) signal (frequency modulation).
+
 -Pins 6 and 7 (Output): Control the output frequency.
+
 -Pins 8 and 9 (Output): Control color filter selection.
+
 -Pin 10 (Input): Receives RGB data.
 
 ### Inputs
@@ -274,21 +295,27 @@ Controls green LEDs when the machine is in standby mode.
 
 #### Pin 13 – Reset Button:
 -When pressed, it sends a command via Pin 3 to open the lock.
+
 -The screen displays 0 for the sum introduced.
+
 -If the door sensor becomes inactive, the buzzer is triggered for 0.5 seconds with a 1-second pause.
 
 ### [Presence Sensors](https://www.optimusdigital.ro/en/optical-sensors/4514-infrared-obstacle-sensor.html?search_query=infrared&results=156)
 -In this project, I use 7 presence sensors. There are 4 for coins, 2 for banknotes and one for door.
+
 -I calibrated these presence sensors using a screwdriver.
+
 -I have set the sensors to not detect beyond 2 cm, because they can interfere with the materials around them.
 
 ##### Pin 14 (Input):
 -Connected to the second presence sensor (near TCS230).
+
 -Detects the arrival of the banknote and signals the MCU to stop the motor.
 
 
 #### Pin 15 (Input):
 -Connected to the first presence sensor (inside the banknote slot).
+
 -Activates the motor to start pulling the banknote.
 
 #### Pins 19, 20, 21, 22 (Input):
@@ -299,7 +326,9 @@ Controls green LEDs when the machine is in standby mode.
 
 ### [LCD Display – 1602 (2 Rows × 16 Characters)](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02NhSRhh6ZWsS9qRrYm8ebIyKZ_fdj1R9oZmFWQkiGQcS6CHtxoeJvFxoCkyoQAvD_BwE)
 -Pins 16 (SDA) and 17 (SCL)
+
 -Used for I2C communication with the LCD via a PCF8574 expander.
+
 -The 1602 LCD uses a transmission speed of 100 kHz for I2C communication, ensuring a quick update of the information on the display.
 
 #### Initialization:
@@ -307,8 +336,11 @@ Controls green LEDs when the machine is in standby mode.
 
 #### Data Transmission:
 -I used this datasheet to see exactly how lcd 1602 actually works: [datasheet LCD 1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf)
+
 -Each byte is split into high nibble and low nibble
+
 -Each nibble is sent in two steps: With EN signal activated (with_en) and With EN signal deactivated (without)
+
 -After transmitting a full byte, the system waits 2 ms before continuing.
 
 
@@ -318,6 +350,7 @@ I have 2 circuits:
 -one at 5V, including Raspberry Pi Pico, TCS230 Color Sensor,all 7 presence sensors and the lcd 1602
 
 -one at 12V, featuring the engine, the lightbulb and some other leds.
+
 -P = U * I 
 |       Device        | Tension (V) | Current Intensity (mA) | Used Power (W) |
 |:-------------------:|:-----------:|:------------------------:|:--------------:|
