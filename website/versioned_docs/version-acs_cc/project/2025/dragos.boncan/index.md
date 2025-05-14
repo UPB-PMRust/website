@@ -313,7 +313,7 @@ Controls green LEDs when the machine is in standby mode.
 
 
 ### Power consumption
-	I have 2 circuits:
+I have 2 circuits:
 -one at 5V, including Raspberry Pi Pico, TCS230 Color Sensor,all 7 presence sensors and the lcd 1602
 -one at 12V, featuring the engine, the lightbulb and some other leds.
 -P = U * I 
