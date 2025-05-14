@@ -368,7 +368,7 @@ I have 2 circuits:
 
 ## Schematics
 
-![Kicad_schematics.PNG](Kicad_schematics.svg)
+![KICAD_schematic.PNG](KICAD_schematic.svg)
 
 
 ## Bill of materials
