@@ -37,7 +37,7 @@ This project was chosen due to its potential to combine several embedded systems
 
 #### 4. Random Sequence Generator
 - *Function*: Generates a random sequence of LED combinations.
-- *Tool*: Uses the rand crate.
+- *Tool*: Uses `oorandom::Rand32`.
 - *Output*: Passes the generated sequence to the Output Task.
 
 #### 5. Output Task (LEDs + Buzzer)
@@ -58,7 +58,7 @@ This project was chosen due to its potential to combine several embedded systems
 
 #### 8. Reaction Time Measurer
 - *Function*: Measures the player's response time.
-- *Tool*: Uses embassy-time timers.
+- *Tool*: Uses `embassy-time` timers.
 - *Output*: Reaction time data used in scoring.
 
 #### 9. Scoring System
@@ -70,7 +70,7 @@ This project was chosen due to its potential to combine several embedded systems
 
 #### 10. LCD Display
 - *Function*: Displays game state and results.
-- *Tool*: Uses hd44780-driver.
+- *Tool*: Uses `hd44780-driver`.
 - *Content*:
   - Current difficulty
   - Reaction times
@@ -78,7 +78,7 @@ This project was chosen due to its potential to combine several embedded systems
 
 #### 11. Score Sender
 - *Function*: Sends final score to leaderboard.
-- *Tools*: embassy-net, reqwest, serde
+- *Tools*: `embassy-net`, `reqwest`, `serde`
 - *Behavior*:
   - Converts score to JSON
   - Sends via POST request to server
@@ -88,6 +88,21 @@ This project was chosen due to its potential to combine several embedded systems
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+
+#### Hardware Integration
+- Assembled the full hardware setup using jumper wires and two breadboards.
+- Connected the components: 4 LEDs, 6 push buttons, LCD1602 display (in 4-bit mode), Raspberry Pi Pico 2W microcontroller and Debug Probe.
+- Verified the functionality of each hardware component through basic individual tests (LED blinking, button press detection, display initialization).
+
+#### Software Development
+- Wrote the main application that defines the game logic and rules.
+- Initialized peripherals (LEDs, buttons, LCD) using `embassy_sync::Mutex` for safe concurrent access in async tasks.
+- Implemented the following:
+  - Random LED sequence generation using the `oorandom` crate.
+  - Input handling to compare player responses with the generated sequence.
+  - Visual feedback.
+  - Reaction time measurement using `embassy_time::Instant` and display on the LCD at the end of each correct input.
+  - Score display on the LCD at the end of each game.
 
 ### Week 12 - 18 May
 
@@ -115,7 +130,7 @@ All components are integrated onto the breadboard to form a compact and testable
 
 ### Schematics
 
-Place your KiCAD schematics here.
+...
 
 ### Bill of Materials
 
@@ -153,7 +168,7 @@ The format is
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Time handling for asynchronous applications | Used for managing timers and delays (Duration, Timer, Instant) |
 | [hd44780-driver](https://crates.io/crates/hd44780-driver) | LCD driver | Control of the LCD |
 | [heapless](https://crates.io/crates/heapless) | Fixed-size strings | Efficient string manipulation without heap |
-| [rand](https://github.com/rust-random/rand) | Random number generation library | LED sequence generation |
+| [oorandom](https://crates.io/crates/oorandom) | Random number generation library | LED sequence generation |
 | [reqwest](https://github.com/seanmonstar/reqwest) | HTTP client library | HTTP requests (POST for score submission) |
 | [serde](https://github.com/serde-rs/serde) | Serialization/deserialization framework | Used for serializing and deserializing data (JSON for network communication) |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient embedded logging framework | Debug output and panic diagnostics |
