@@ -129,21 +129,29 @@ The system consists of a Raspberry Pi Pico 2 microcontroller interfacing with fo
 | [2x Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The microcontroller | [39,66 RON x 2](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=36) |
 | [MFRC522 RFID Module](https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf) | RFID authentication | [9,99 RON](https://www.optimusdigital.ro/en/wireless-rfid/67-mfrc522-rfid-module.html?search_query=rfid&results=30) |
 | [28BYJ-48 Stepper Motor](https://components101.com/motors/28byj-48-stepper-motor) | Elevator vertical movement control | [16,97 RON](https://www.optimusdigital.ro/ro/motoare-motoare-pas-cu-pas/101-driver-uln2003-motor-pas-cu-pas-de-5-v-.html?search_query=motor+pas+cu+pas&results=117) |
-| [ST7735 TFT Display](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf) | Status and floor indicator display | [19,99 RON](https://www.optimusdigital.ro/en/oled-lcd-displays/8166-st7735-tft-display.html) |
-| [MG90S Micro Servo](https://components101.com/motors/mg90s-metal-gear-servo-motor) | Elevator door control | [12,90 RON](https://www.optimusdigital.ro/en/servomotors/34-micro-servomotor-mg90s.html) |
-| Consumables | Jumper wires, breadboard, pins, 3d printing, etc. | TBD |
+| [ST7735 TFT Display](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf) | Status and floor indicator display | [32 RON](https://www.amazon.com/DIYmalls-Display-128x128-ST7735S-Mega2560/dp/B0BFDJMQM8/ref=sr_1_3?dib=eyJ2IjoiMSJ9.EeYa777KcRStkuBrCG7ZoA4Qswze1zyaz9SUJ-htHek6MLb6p7q7AEIr9PImOKK3s3f-nZ50G1BSc8lcHvlno17H2JqNwkhXqHtunI_xYhxy4cTnKMiLvJnUHGNdmF8qJ3q8ex8N89xWIOOfTLoRUpqRjtJN9mrVL-BSs02BPKQ08dedLiYgbwf58F0dcBqLPN85GdprJWB45lnnUulraeJC5_g_pCYE7-Fd560KLJc.NOxibtaIJxCokZy8lKJxEuQfFbjHEtmhivlNHRxABns&dib_tag=se&keywords=st7735&qid=1747210396&sr=8-3&th=1) |
+| [MG90S Servo](https://components101.com/motors/mg90s-metal-gear-servo-motor) | Elevator door control | [19,33 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/271-servomotor-mg90s.html?search_query=mg90s&results=1) |
+| Consumables | Jumper wires, breadboard, pins, 3d printing, etc. | 100 RON |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rs](https://embassy.dev/) | Async embedded framework | Task scheduling and hardware abstraction |
-| [mfrc522](https://docs.rs/mfrc522/latest/mfrc522/) | RFID module driver | RFID card detection and authentication |
-| [embedded-hal](https://docs.rs/embedded-hal/latest/embedded_hal/) | Hardware abstraction layer | GPIO and SPI interface |
-| [st7735-lcd](https://docs.rs/st7735-lcd/latest/st7735_lcd/) | ST7735 display driver | Controlling the TFT display |
-| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Graphics library | Drawing UI elements on the display |
-| [defmt](https://defmt.ferrous-systems.com/) | Debug formatting | System logging and debugging |
-
+| [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/) | Async execution framework | Task management și main entry point |
+| [embassy-rp](https://docs.rs/embassy-rp/latest/embassy_rp/) | RP2040 HAL | GPIO, SPI, și PWM control |
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Time handling | Delays și timing control |
+| [embassy-sync](https://docs.rs/embassy-sync/latest/embassy_sync/) | Synchronization primitives | Mutex pentru shared SPI |
+| [embassy-embedded-hal](https://docs.rs/embassy-embedded-hal/latest/embassy_embedded_hal/) | HAL adapters | Shared bus management |
+| [mfrc522](https://docs.rs/mfrc522/latest/mfrc522/) | RFID module driver | Card detection și authentication |
+| [embedded-hal](https://docs.rs/embedded-hal/latest/embedded_hal/) | Hardware abstraction | Base interfacing traits |
+| [embedded-hal-bus](https://docs.rs/embedded-hal-bus/latest/embedded_hal_bus/) | Bus management | SPI device abstraction |
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | Display controller | ST7735 TFT display driver |
+| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | Display SPI interface | Communication with ST7735 |
+| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Graphics library | Text and graphics rendering |
+| [heapless](https://docs.rs/heapless/latest/heapless/) | No-allocator data structures | Fixed-capacity strings |
+| [defmt](https://defmt.ferrous-systems.com/) | Debug formatting | Logging și diagnostics |
+| [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | RTT transport | Debug output channel |
+| [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Panic handler | Error reporting to debug probe |
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
