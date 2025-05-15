@@ -1,5 +1,5 @@
-# Project Name
-Poker Hand Identifier (Balatro in real life)
+# Poker Hand Identifier
+A device that identifies a Poker Hand and computes a score
 
 :::info 
 
@@ -11,9 +11,6 @@ Poker Hand Identifier (Balatro in real life)
 ## Description
 
 This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a camera will be mounted somehow in a higher position, so it sees a 5-card poker hand, and it uses a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have asmall Blue LED light up above them and a ding sound be made when their rank is added to the score.
-
-
-test
 
 ## Motivation
 
@@ -27,9 +24,13 @@ Over the past few weeks, I have been playing a lot of Balatro. It's a video game
 
 <!-- write your progress here every week -->
 
-### Week 5 - 11 May
+### Week 28 April - 4 May
 
 This week I did research on my idea and made preparations for starting the project. The first thing I did, since components didn't arrive yet, was to try and do the hand and score computation logic. I wrote the code initially in C++, because I am more familiar with that language and I can work on it comfortably, so later on I can translate it to rust and fix any problems that may arise. In the meantime, the components arrived. I made sure I had everything and I looked into how they must be connected and what they can and can't exactly do.
+
+### Week 5 - 11 May
+
+In this week I started work on the hardware. I connected my components, the LEDs, the OLED displays and the camera to test them, as they will be later rearranged on multiple separate breadboards. Pictures of the testing setup will be uploaded, the final setup for the components is yet to be designed because I have to take measurements of the playing cards and determine the height of the camera. Funnily enough, because I don't want to spend money on 3d printing, the project may or may not be built out of legos.
 
 ### Week 12 - 18 May
 
