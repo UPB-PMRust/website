@@ -84,7 +84,7 @@ graph TD
 
 - **Week 5 – 11 May**  
   Placed an order for a second Raspberry Pi Pico 2 W to use it for debugging.  
-  TBD
+  Started to test components.
 
 - **Week 12 – 18 May**  
   TBD
