@@ -1,2 +1,23 @@
 [workspace]
 members = ["firmware/lab01"]
+
+[package]
+name = "pico2-blink"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rp235x-hal = { version = "0.3", features = ["defmt", "rt", "critical-section-impl"] }
+defmt = "0.3"
+defmt-rtt = "0.4"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+[features]
+default = ["rp235x-hal/defmt"]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
