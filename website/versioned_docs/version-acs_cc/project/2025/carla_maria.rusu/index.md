@@ -65,7 +65,41 @@ graph TD
 
 ### Week 5 - 11 May
 
+- Assembled the hardware setup on the breadboard:
+
+  - Connected the Raspberry Pi Pico 2W.
+  - Mounted the UDA1334A DAC, SD card module (SPI), LCD display, push buttons, and rotary encoder.
+  - Carefully routed all jumper wires to avoid conflicts, ensuring SPI and I2S lines were correctly mapped.
+
+- Wrote individual test functions for each hardware component:
+
+  - Verified SPI communication with the LCD and SD card.
+  - Tested I2S output to the DAC using dummy sine wave data.
+  - Checked button press detection and rotary encoder rotation.
+
+- Started experiencing SD card reliability issues:
+
+  - Sometimes initialization would fail or return incomplete filesystem data.
+  - Logging output revealed intermittent card detection failures.
+ 
+- Started the main function which (should) combines all functionalities
+
 ### Week 12 - 18 May
+
+- Implemented dedicated SD card diagnostics:
+
+  - Created test routines to check for card health. And eventually reseting.
+  - Integrated logging to display volume and partition status, with detailed error handling.
+
+- Combined individual modules into a single integrated player prototype:
+
+  - Managed concurrent use of SPI bus for both SD card and LCD.
+  - Synchronized SD card read with audio playback over I2S.
+
+- Encountered new reliability issues when combining all components:
+
+  - SD card will fail mid-playback or block access after a few operations or just not be initialized with the right size
+  - Not sure about the main culprit 
 
 ### Week 19 - 25 May
 
