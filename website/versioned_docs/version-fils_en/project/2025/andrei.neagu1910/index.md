@@ -5,7 +5,7 @@ A mobile robot project with a camera for visual tracking, based on a Raspberry P
 :::info
 
 **Author**:  Neagu Andrei-Cristian\
-**GitHub Project Link**: "https://github.com/UPB-PMRust-Students/project-mohgTheOmen.git"
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-mohgTheOmen.git
 
 :::
 
@@ -80,6 +80,19 @@ Connections Between Components:
 - 3× HC-SR04 Ultrasonic Sensors: Detect obstacles in front of the robot.
 - Power Bank or Li-ion Batteries: Powers the system.
 - Wires, Breadboard, and Connectors: For interconnecting all the components.
+
+### Pictures
+
+#### Overview:
+![Overview1](./images/overview1.svg)
+
+![Overview2](./images/overview2.svg)
+
+#### ESP32-S3:
+![ESP32-S3](./images/esp32-s3.svg)
+
+#### AP Pico 2W:
+![Remote](./images/remote_ap.svg)
 
 ### Schematics
 
