@@ -49,30 +49,35 @@ Connections:
 - USB cables (for Pico power/programming)
 
 ## Schematics
-*(KiCAD schematics to be added here)*
+![KiCad Schematic](./kicad.svg)
 
 ## Bill of Materials
 
-| Item                                              | Quantity | Unit Price | Total Price | Notes                                   |
-|---------------------------------------------------|----------|------------|-------------|-----------------------------------------|
-| [Jumper Wires for Breadboard](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html?search_query=Set+Fire+pentru+Breadboard&results=37) | 1        | 7.99 RON   | 7.99 RON    |                                         |
-| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=26) | 2        | 39.66 RON  | 79.32 RON   |                                         |
-| [Breadboard HQ (830 tie points)](https://sigmanortec.ro/Breadboard-830-puncte-MB-102-p125923983) | 1        | 9.98 RON   | 9.98 RON    |                                         |
-| [White Pin Header 2.54 mm (40p)](https://www.optimusdigital.ro/ro/cautare?controller=search&orderby=position&orderway=desc&search_query=header+pini+alb&submit_search=) | 2        | 0.99 RON   | 1.98 RON    |                                         |
-| [Colored Jumper Wires Female-Male (40p, 15 cm)](https://www.optimusdigital.ro/ro/toate-produsele/877-set-fire-mama-tata-40p-15-cm.html) | 1        | 7.99 RON   | 7.99 RON    |                                         |
-| [Electrolytic Capacitor 1000 µF, 35 V](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/3004-condensator-electrolitic-de-1000-uf-la-35-v.html?search_query=condensator+electrolitic&results=105) | 1        | 2.99 RON   | 2.99 RON    |                                         |
-| [Electrolytic Capacitor 470 µF, 50 V](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/3008-condensator-electrolitic-de-470-uf-la-50-v.html?search_query=condensator+electrolitic&results=105) | 1        | 0.79 RON   | 0.79 RON    |                                         |
-| USB Cables (for LEDs and Pico)                   | 2        | -          | -           | Powered from laptop                     |
-| [Addressable LED Strip WS2812, 10 cm (60led/m)](https://sigmanortec.ro/Banda-LED-adresabila-RGB-WS2812-60led-m-IP67-10cm-p166125661) | 3        | 2.69 RON   | 8.07 RON    |                                         |
-| [Button 12x12x7.3 mm](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) | 2        | 1.10 RON   | 2.20 RON    | For switching LED modes                 |
-| [Button Cap 12x12x7.3 mm, Blue](https://sigmanortec.ro/capac-buton-12x12x73-albastru) | 1        | 0.34 RON   | 0.34 RON    |                                         |
-| [Button Cap 12x12x7.3 mm, Red](https://sigmanortec.ro/capac-buton-12x12x73-albastru) | 1        | 0.34 RON   | 0.34 RON    |                                         |
-| [MAX4466 Microphone Module with Amplifier](https://sigmanortec.ro/modul-microfon-max4466-cu-amplificare-castig-reglabil-23-5vdc) | 1        | 7.18 RON   | 7.18 RON    |                                         |
-| [4-Channel Logic Level Converter Module](https://sigmanortec.ro/Modul-Translator-nivel-logic-I2C-IIC-bidirectional-8-canale-3-3V-5V-TXS0108E-p136254032) | 1        | 4.00 RON   | 4.00 RON    |                                         |
-| 330 Ω Resistor                                    | 2        | 0.12 RON   | 0.24 RON    | For buttons                             |
-| 10k Ω Resistor                                    | 1        | 0.13 RON   | 0.13 RON    | For data line                           |
+| Item                                                                                                  | Quantity | Unit Price                                                                                                                                                             | Total Price |
+|-------------------------------------------------------------------------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| Jumper Wires for Breadboard                                                                           | 1        | [7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html?search_query=Set+Fire+pentru+Breadboard&results=37)             | 7.99 RON    |
+| Raspberry Pi Pico W                                                                                   | 2        | [39.66 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=26)                          | 79.32 RON   |
+| Breadboard HQ (830 tie points)                                                                        | 1        | [9.98 RON](https://sigmanortec.ro/Breadboard-830-puncte-MB-102-p125923983)                                                                                            | 9.98 RON    |
+| White Pin Header 2.54 mm (40p)                                                                         | 3        | [0.99 RON](https://www.optimusdigital.ro/ro/cautare?controller=search&orderby=position&orderway=desc&search_query=header+pini+alb&submit_search=)                     | 2.97 RON    |
+| Colored Jumper Wires Female-Male (40p, 15 cm)                                                          | 1        | [7.99 RON](https://www.optimusdigital.ro/ro/toate-produsele/877-set-fire-mama-tata-40p-15-cm.html)                                                                    | 7.99 RON    |
+| Electrolytic Capacitor 1000 µF, 35 V                                                                   | 1        | [2.99 RON](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/3004-condensator-electrolitic-de-1000-uf-la-35-v.html?search_query=condensator+electrolitic&results=105) | 2.99 RON    |
+| Electrolytic Capacitor 470 µF, 50 V                                                                    | 1        | [0.79 RON](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/3008-condensator-electrolitic-de-470-uf-la-50-v.html?search_query=condensator+electrolitic&results=105) | 0.79 RON    |
+| USB Cable                                                                        | 1        | -                                                                                                                                                                      | -           |
+| Addressable LED Strip WS2812, 10 cm (60led/m)                                                          | 3        | [2.69 RON](https://sigmanortec.ro/Banda-LED-adresabila-RGB-WS2812-60led-m-IP67-10cm-p166125661)                                                                       | 8.07 RON    |
+| Button 12x12x7.3 mm                                                                                    | 2        | [1.10 RON](https://sigmanortec.ro/Buton-12x12x7-3-p160373654)                                                                                                          | 2.20 RON    |
+| Button Cap 12x12x7.3 mm, Blue                                                                          | 1        | [0.34 RON](https://sigmanortec.ro/capac-buton-12x12x73-albastru)                                                                                                       | 0.34 RON    |
+| Button Cap 12x12x7.3 mm, Red                                                                           | 1        | [0.34 RON](https://sigmanortec.ro/capac-buton-12x12x73-albastru)                                                                                                       | 0.34 RON    |
+| MAX4466 Microphone Module with Amplifier                                                               | 1        | [7.18 RON](https://sigmanortec.ro/modul-microfon-max4466-cu-amplificare-castig-reglabil-23-5vdc)                                                                      | 7.18 RON    |
+| 4-Channel Logic Level Converter Module                                                                 | 1        | [4.00 RON](https://sigmanortec.ro/Modul-Translator-nivel-logic-I2C-IIC-bidirectional-8-canale-3-3V-5V-TXS0108E-p136254032)                                            | 4.00 RON    |
+| 330 Ω Resistor                                                                                         | 2        | 0.12 RON                                                                                                                                                               | 0.24 RON    |
+| 10k Ω Resistor                                                                                         | 1        | 0.13 RON                                                                                                                                                               | 0.13 RON    |
+| Sursă alimentare 5V                                                                                    | 1        | [23.38 RON](https://sigmanortec.ro/sursa-alimentare-5v-3a-55x21-220vac)                                                                                                | 23.38 RON   |
+| Conector DC mamă                                                                                       | 1        | [2.07 RON](https://sigmanortec.ro/conector-dc-mama-55x21-25cm)                                                                                                         | 2.07 RON    |
+| Conector JST PH2.0 2P                                                                                  | 2        | [2.00 RON](https://sigmanortec.ro/conector-micro-jst-ph20-2p-tata-cu-cablu-15cm)                                                                                       | 4.00 RON    |
+| Jumper Wires Male-Male (40p, 30 cm)                                                                    | 1        | [8.00 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/890-set-fire-tata-tata-40p-30-cm.html?search_query=0104210000007886&results=1)                           | 8.00 RON    |
 
-**Estimated Total:** ~ 133.84 RON (excluding USB cables)
+**Estimated Total:** ~ 170.28 RON (excluding USB cables)
+
 
 
 
@@ -110,4 +115,8 @@ This list details the recommended Rust crates for the "Music Lights" project usi
 - [Lab4](https://pmrust.pages.upb.ro/docs/acs_cc/lab/04)
 - [Lab5](https://pmrust.pages.upb.ro/docs/acs_cc/lab/05)
 - [Lab6](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
-- [Lab7](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07)
+- [Setup Level Shifter](https://youtu.be/4oA4KKxxBXE?si=5sifG2gcFJKux5GH)
+- [Setup Led Strip WS2812](https://www.youtube.com/watch?v=MCBSYVftAWE)
+- [Setup Power Source for Led Strip](https://www.youtube.com/watch?v=TqDxBJFcFRQ)
+- [Setup Button](https://www.youtube.com/watch?v=q_sXuOMiWjY)
+- [Use of MAX4466](https://www.youtube.com/watch?v=dzHZVTsBX7Q)
