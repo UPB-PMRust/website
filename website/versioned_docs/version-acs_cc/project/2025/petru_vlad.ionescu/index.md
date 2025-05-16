@@ -42,13 +42,21 @@ Wrote project documentation, including all components and connections needed. Fi
 
 Wired 90% of the hardware. Also accidentally burnt one of the Picos while connecting the soil moisture sensor. Wrote the code for initializing all the periferics + reading data from the AHT10. Updated the KiCad schematics, having a small issue (one PIN badly connected). Updated the bill of materials.
 
+### Week 8 May - 15 May
+
+Wired correctly hardware, some complications with wiring the batteries, relay and water pump (could not get it done at the lab). Found the issue with the soil moisture sensor and solved it. Updated KiCad. Next up is writing up the software.
+
 ## Hardware design
 
 **Description of hardware used**: The Raspberry Pi Pico 2W is the central component of the project. It is connected to all the sensors and the water pump (indirectly). The sensors where chosen based on pricing and performance, so measurements would be accurate and useful. The water pump is used to water the plant when needed, and the relay is used to control it. The red LED is used to signal a critical state of the plant, while the button is used to toggle the auto-watering functionality.
 
 ### Schematics
 
-![Hardware](hardware-diagram.webp)
+![Hardware](kicad-scheme.webp)
+![HW PIC 1](hw-pic1.webp)
+![HW PIC 2](hw-pic2.webp)
+![HW PIC 3](hw-pic3.webp)
+![HW PIC 4](hw-pic4.webp)
 
 ### Bill of materials
 
