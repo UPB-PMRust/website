@@ -93,8 +93,8 @@ Rewrote some of the logic for the fingerprint sensor.
     - Sounds a short alert when the door is unlocked or about to be locked.
     - Controlled via PWM.
 
-**Breadboard Power source**
-    -Supplies power to components with higher current requirements, ensuring stable operation of the project.
+**Breadboard Power source:**
+    - Supplies power to components with higher current requirements, ensuring stable operation of the project.
 
 **All components connected on breadboard**
 
