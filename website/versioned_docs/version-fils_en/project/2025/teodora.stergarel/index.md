@@ -3,8 +3,9 @@ Noise-Triggered Visual Alert
 
 :::info 
 
-**Author**: Stergarel Teodora \
-**GitHub Project Link**: link_to_github
+**Author**: Stergarel Teodora 
+**GitHub Project Link**: https://github.com/teodora-stergarel/website
+>>>>>>> 9a63b72 (update)
 
 :::
 
@@ -53,7 +54,8 @@ The project is built around the **Raspberry Pi Pico W** microcontroller and inte
 
 Below is the schematics of the device:
 
-![Project Schematics:](/architecture.png)
+![Project Schematics:](/img/architecture.png)
+>>>>>>> 9a63b72 (update)
 
 ### Bill of Materials
 
