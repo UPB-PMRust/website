@@ -59,13 +59,13 @@ Added led color changing as well.
 
 ### Week 11 - 5 May - 11 May
 Added the other devices one by one to the project and programmed them depending on the locks state (such as Locked, Unlocked or Register Fingerprint). \
-Switched to async tasks for every device, coordinated through a pubsub channel, which transmits the current door state. \ 
-Found out I need an aditional another power source for the devices.
+Switched to async tasks for every device, coordinated through a pubsub channel, which transmits the current door state.
+Found out I need an aditional power source for the devices.
 
 ### Week 12 - 12 May - 18 May
 Remade the kicad schematic. \
 Set up a cardboard box mock-up to simulate the Smart Lock in a real-world scenario. Integrated all components into the enclosure and tested system functionality, including fingerprint authentication, locking mechanism, and status display. \
-Rewrote some of the logic for the fingerprint sensor. \ 
+Rewrote some of the logic for the fingerprint sensor. 
 
 
 ## Hardware
@@ -97,11 +97,13 @@ Rewrote some of the logic for the fingerprint sensor. \
     -Supplies power to components with higher current requirements, ensuring stable operation of the project.
 
 **All components connected on breadboard**
+
 ![img1](./hardware_1.webp)
 ![img2](./hardware_2.webp)
 
 
 **Project assembeled inside a carboard box**
+
 ![img3](./hardware_3.webp)
 ![img4](./hardware_4.webp)
 
