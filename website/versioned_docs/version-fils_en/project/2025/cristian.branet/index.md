@@ -108,6 +108,33 @@ Having finished all the individual functionalities of the boards, I moved on to 
    Indicate system status like barrier state or space availability.  
    Color-coded for easy understanding of events.
 
+7. **USB Hub**  
+   Used to supply current to the boards.  
+   Very useful to handle multiple USB connections to a Laptop while debugging the project.  
+   Cheap and reliable.
+
+*2 minutes demo of the current version:* [Demo](https://www.youtube.com/watch?v=qNot_UbnDCE)
+
+**Below, there are some images taken during the development process:** 
+
+Main board
+![main](main.webp)
+
+Infrared receiver board
+![ir](ir.webp)
+
+Display board
+![display](display.webp)
+
+**Photos when the components are integrated together:**
+![p1](done.webp)
+
+*Left - main board and motion sensor, Center - IR receiver board, Right - Display board*
+
+![p2](done2.webp)
+
+![p3](done3.webp)
+
 ### Schematics
 
 ![Kicad](kicad.webp)
@@ -137,3 +164,5 @@ Having finished all the individual functionalities of the boards, I moved on to 
 ## Links
 
 1. [First time trying sensors on RP](https://murraytodd.medium.com/using-rust-embedded-to-capture-sensor-data-37db1f726d5c)
+2. [Learning about IR receiver](https://www.youtube.com/watch?v=ddceKBDMKsE)
+3. [Demo](https://www.youtube.com/watch?v=qNot_UbnDCE)
