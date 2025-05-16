@@ -83,25 +83,26 @@ Connections:
 
 
 ## Software
+
 This list details the recommended Rust crates for the "Music Lights" project using the Embassy async runtime on the Raspberry Pi Pico.
 
-| Category          | Library                                      | crates.io Link                                       | Description & Usage in Project                                      |
-| :---------------- | :------------------------------------------- | :--------------------------------------------------- | :------------------------------------------------------------------ |
-| **Runtime Async** | `embassy-executor`                           | [link](https://crates.io/crates/embassy-executor)    | Core asynchronous task executor. Runs all concurrent operations.   |
-|                   | `embassy-time`                               | [link](https://crates.io/crates/embassy-time)        | Async time primitives (Delay, Timer, Instant). Essential for timing. |
-|                   | `embassy-sync`                               | [link](https://crates.io/crates/embassy-sync)        | Async synchronization (Mutex, Channel, Signal). For safe data sharing between tasks. |
-| **HAL (Embassy)** | `embassy-rp`                                 | [link](https://crates.io/crates/embassy-rp)          | Async HAL for RP2040 peripherals (ADC, PIO, GPIO, DMA, etc.).     |
-| **LED Control**   | `ws2812-pio`                                 | [link](https://crates.io/cratesx/ws2812-pio)        | **(Recommended)** PIO program & driver for WS2812 LEDs.             |
-|                   | `pio`                                        | [link](https://crates.io/crates/pio)             | Base crate for defining PIO programs (dependency for `ws2812-pio`). |
-| **Audio Proc.**   | `microfft`                                   | [link](https://crates.io/crates/microfft)        | `no_std` Fast Fourier Transform implementation for frequency analysis. |
-|                   | `libm`                                       | [link](https://crates.io/crates/libm)            | `no_std` math functions (sqrt, powf, etc.) for FFT post-processing. |
-| **Core Embedded** | `cortex-m`                                   | [link](https://crates.io/crates/cortex-m)        | Low-level access to ARM Cortex-M core APIs.                       |
-|                   | `cortex-m-rt`                                | [link](https://crates.io/crates/cortex-m-rt)     | Minimal runtime for Cortex-M (entry point, exceptions).           |
-|                   | `panic-probe`  *or* `panic-halt`         | [link](https://crates.io/crates/panic-probe)  [link](https://crates.io/crates/panic-halt) | Panic handler implementation. `panic-probe` works well with `defmt`. |
-| **Logging**       | `defmt`                                      | [link](https://crates.io/crates/defmt)           | **(Recommended)** Efficient embedded logging framework.             |
-|                   | `defmt-rtt`                                  | [link](https://crates.io/crates/defmt-rtt)       | **(Recommended)** RTT transport for `defmt` (requires debug probe). |
-| **HAL Utilities** | `embedded-hal`  `embedded-hal-async`    | [link](https://crates.io/crates/embedded-hal)  [link](https://crates.io/crates/embedded-hal-async) | Standard HAL traits used for interoperability (often dependencies). |
-|                   | `embedded-io`  `embedded-io-async`      | [link](https://crates.io/crates/embedded-io)  [link](https://crates.io/crates/embedded-io-async) | Standard IO traits (often dependencies).                          |
+| Library | Description | Usage |
+|--------|-------------|-------|
+| [`embassy-executor`](https://crates.io/crates/embassy-executor) | Core asynchronous task executor. | Runs all concurrent operations. |
+| [`embassy-time`](https://crates.io/crates/embassy-time) | Async time primitives (Delay, Timer, Instant). | Essential for timing. |
+| [`embassy-sync`](https://crates.io/crates/embassy-sync) | Async synchronization tools (Mutex, Channel, Signal). | Safe data sharing between async tasks. |
+| [`embassy-rp`](https://crates.io/crates/embassy-rp) | HAL for RP2040 peripherals (ADC, PIO, GPIO, DMA, etc.). | Access hardware features asynchronously. |
+| [`ws2812-pio`](https://crates.io/crates/ws2812-pio) | PIO program and driver for WS2812 LEDs. | Drives LED strip using RP2040’s PIO. |
+| [`pio`](https://crates.io/crates/pio) | Base crate for defining PIO programs. | Dependency for `ws2812-pio`. |
+| [`microfft`](https://crates.io/crates/microfft) | `no_std` FFT implementation. | Audio frequency analysis. |
+| [`libm`](https://crates.io/crates/libm) | `no_std` math functions. | Used with FFT (e.g. sqrt, powf). |
+| [`cortex-m`](https://crates.io/crates/cortex-m) | Access to ARM Cortex-M core peripherals. | Required for low-level operations. |
+| [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) | Minimal runtime for Cortex-M. | Defines program entry and exceptions. |
+| [`panic-probe`](https://crates.io/crates/panic-probe) / [`panic-halt`](https://crates.io/crates/panic-halt) | Panic handlers for embedded. | Choose one; `panic-probe` works with `defmt`. |
+| [`defmt`](https://crates.io/crates/defmt) | Efficient logging framework. | Embedded-friendly logs via RTT. |
+| [`defmt-rtt`](https://crates.io/crates/defmt-rtt) | RTT backend for `defmt`. | Enables real-time logs via debug probe. |
+| [`embedded-hal`](https://crates.io/crates/embedded-hal) / [`embedded-hal-async`](https://crates.io/crates/embedded-hal-async) | Standard HAL traits. | Used by drivers and HAL implementations. |
+| [`embedded-io`](https://crates.io/crates/embedded-io) / [`embedded-io-async`](https://crates.io/crates/embedded-io-async) | Standard IO traits. | Used for cross-crate compatibility. |
 
 **Notes:**
 
