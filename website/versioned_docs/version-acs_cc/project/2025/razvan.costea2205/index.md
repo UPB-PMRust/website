@@ -58,16 +58,10 @@ One of the biggest environmental threats that the modern world faces is global w
 6. Buzzer & LEDs:
 - the audible-visual alarm: when certain parameters are reached, the alarm is triggered
 
-<table>
-  <tr>
-    <td><img src="above.webp" width="380"/></td>
-    <td><img src="side.webp" width="380"/></td>
-  </tr>
-  <tr>
-    <td><img src="closeup.webp" width="380"/></td>
-    <td><img src="other.webp" width="380"/></td>
-  </tr>
-</table>
+![plot1](./above.webp)
+![plot2](./side.webp)
+![plot3](./closeup.webp)
+![plot4](./other.webp)
 
 The first three photos showcase the main circuit: both Picos on the breadboard,
 connected accordingly, the BME280 and TSL2561 sensors, a buzzer and an LED.
