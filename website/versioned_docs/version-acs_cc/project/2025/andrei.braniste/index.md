@@ -21,7 +21,7 @@ I chose this project because I wanted to build a device that provides emotional 
 - User Interaction: Captures audio input (voice / clap / whistle) via microphone.
 - Processing Core: Raspberry Pi Pico W handles sound detection, AI message requests, and control flow.
 - Cloud Interaction: Sends API requests (e.g., OpenAI) via WiFi when needed.
-- Audio Output: Plays back pre-recorded motivational audio clips via DFPlayer Mini or a TTS UART module.
+- Audio Output: Plays back AI-generated responses through a UART-based TTS module.
 - Visual Output: Displays emotional faces (happy, sad, excited) on the OLED screen based on interaction.
 - Power Supply: A rechargeable Li-ion battery powers the device through a TP4056 charging and protection module, allowing full portability.
 
@@ -54,10 +54,10 @@ This week I received all the components including the TTS module and I've succes
 - Purpose: Captures voice input
 - Function: Currently, the MAX9814 provides analog audio signals read via ADC. In the future, the INMP441 I2S digital microphone may be used if I2S functionality is implemented manually using PIO on the Pico.
 
-### DFPlayer Mini MP3 Module (planned upgrade to TTS module)
+### DTS33A TTS Module
 
 - Purpose: Voice response output
-- Function: Plays motivational audio responses stored on a microSD card. It is currently used for pre-recorded responses, but it may later be replaced by a UART-based TTS module to allow dynamic speech generation from AI output.
+- Function: Converts text to natural-sounding speech in real-time. Connected via UART to the Pico W, it enables dynamic voice responses from AI-generated text without requiring pre-recorded audio files. Supports multiple languages and adjustable speech parameters.
 
 ### 3W Speaker
 
@@ -99,13 +99,12 @@ The format is
 |--------|--------|-------|
 | [Raspberry Pi Pico W (RP2350)](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3AcTGZShwGGGHyKb6hmiamUi&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7bRaFkoivDwDjO8mJROErsIad_UwRPk2iXsDzBulHCu4bi6QBcqg-0aAu0XEALw_wcB) | Main controller with WiFi | ~40 RON |
 | [MAX9814 Microphone Module](https://ardushop.ro/ro/module/601-modul-microfon-senzor-sunet-6427854007254.html?gad_source=1&gad_campaignid=17003133061&gbraid=0AAAAADlKU-6dUy4bFkxt93_6LRYiF24yY&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7bi2AkmYQHCuLjP_W8XvRjMRwqjIHp8yg2ZJOOyiBG5y2f0xSR2J1EaAvOBEALw_wcB) | Voice input via analog signal | ~12 RON |
-| [DFPlayer Mini MP3 Module](https://www.optimusdigital.ro/ro/audio/1484-modul-mp3-player-in-miniatura-dfplayer-mini.html?srsltid=AfmBOope1wW6C27MG3PILZu3SYTrr8hankSmf1RcRVYdJpzdDX5Jr4IT) | Pre-recorded voice response playback | ~14 RON |
 | [Speaker 3W 4Ω 40mm](https://sigmanortec.ro/Speaker-40mm-3W-p134573662?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=22174019478&gbraid=0AAAAAC3W72OQeyuMV4-b9r8HXwBJWWOfH&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7ahLy71FJfw-ll6iyHTz54D-rAtNsxlZ9egZMBTpF9MC77nPe0JzEkaAqPSEALw_wcB) | Audio output from DFPlayer | ~10 RON |
 | [OLED Display 0.96'' I2C](https://ardushop.ro/ro/display-uri-si-led-uri/1577-display-oled-096-i2c-albastru-jmd096d-1-6427854023469.html?gad_source=1&gad_campaignid=17003133061&gbraid=0AAAAADlKU-6dUy4bFkxt93_6LRYiF24yY&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7ZPsF_3bJQ6rUO03LQC0yYZ7RaE0vP9STmpNRlYhaSvvUHSLFqUq10aAp6OEALw_wcB) | Visual display for AI face and emotions | ~21 RON |
 | [TP4056 Charging Module](https://www.optimusdigital.ro/en/chargers/80-tp4056-1-cell-lipo-charger-micro-usb.html?srsltid=AfmBOood1RMJS56U4bPANxpaVkFXFt8HYHQ3OXuXBJ0Jsw0ji7xknsEr) | Battery charging and protection | ~6 RON |
 | [Samsung 18650 25R 2500mAh Battery](https://www.emag.ro/acumulator-18650-li-ion-samsung-inr-2500mah-3-7v-25r-20a-186502600/pd/D1TJ2VBBM/) | Power source | ~26 RON |
 | [Push Button](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=button&results=491) | Triggers interaction or startup | ~1–2 RON |
-| [MicroSD Card (8–16 GB)](https://www.emag.ro/card-de-memorie-microsd-kingston-canvas-select-plus-128gb-100mb-s-cu-adaptor-sdcs2-128gb/pd/D799R8BBM/) | Stores MP3 files for DFPlayer | ~40 RON |
+| [DTS33A TTS Module](https://www.dfrobot.com/product-2337.html) | Text-to-Speech synthesis | ~30 RON |
 | Breadboard + jumpers | Wiring and prototyping | ~40 RON |
 
 
