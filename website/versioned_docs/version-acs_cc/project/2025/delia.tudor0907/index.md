@@ -26,11 +26,13 @@ Taking out the trash is a task often postponed, especially in shared living spac
 
 ## Log
 
+## Log
+
 ### Week 5 - 11 May
-- 
+- This week, I focused on shaping the overall concept of the project. I worked on the documentation, clarified the main functionalities, and outlined how the system should behave. I also made a first draft of the list of components I would need, researching their roles and how they would connect together.
 
 ### Week 12 - 18 May
-- 
+- I began working on the hardware side of the project. I started assembling the components, connecting the sensors and microcontroller, and testing how they work together on the breadboard. During this stage, I also finalized and completed the Bill of Materials based on the actual needs of the system.
 
 ### Week 19 - 25 May
 - 
@@ -47,23 +49,28 @@ Taking out the trash is a task often postponed, especially in shared living spac
 - **Battery Holder (2x 18650)** – powers the entire circuit without needing a USB connection.
 - **Mounting Bracket** – securely holds the ultrasonic sensor inside the trash can.
 
+![poza1](./poza1.webp)
+![poza2](./poza2.webp)
+![poza3](./poza3.webp)
+
 ## Schematics
 ![schematics Diagram](./schematic.webp) <!-- replace with the correct path if needed -->
 
 ## Bill of Materials
+## Bill of Materials
 
-| Component                                    | Quantity | Description                                                              | Price (RON) |
-|---------------------------------------------|----------|---------------------------------------------------------------------------|-------------|
-| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) | 2        | Main microcontroller unit                                                | 37.00 x 2   |
-| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) | 2        | Measures distance to detect if the trash bin is full                    | 9.00 x 2    |
-| [Infrared Obstacle Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) | 1        | Detects hand movement near the trash can                                | 3.50        |
-| [SG90 Micro Servo Motor](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) | 1        | Opens the bin lid automatically                                         | 8.00        |
-| [Active Buzzer 5V](https://www.optimusdigital.ro/en/buzzers/633-buzzer-activ-de-5-v.html) | 1        | Alerts when the bin is full and whose turn it is                        | 2.00        |
-| [LED & Resistor Kit](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) | 1 set    | Provides visual indicators (e.g., full bin signal)                      | 15.00       |
-| [Breadboard Kit with Wires & Power Supply](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html) | 1        | For prototyping and connecting components                               | 22.00       |
-| [Female Pin Headers](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4166-header-de-pini-mama-20p-254-mm.html) | 4 strips | Connect to male pins on the board and sensors                           | 2.00 x 4    |
-| [Battery Holder (2x18650)](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html) | 1        | Provides portable power to the system                                   | 6.50        |
-| [Bracket for HC-SR04 Sensor](https://www.optimusdigital.ro/en/holders-and-mounting-accessories/7104-mounting-bracked-for-hc-sr04-ultrasonic-sensor-red.html) | 1        | Mounts the ultrasonic sensor in position inside the trash can           | 3.00        |
+| Component | Quantity | Description | Price (RON) |
+|----------|----------|-------------|-------------|
+| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) | 2 | Main microcontroller unit | 37.00 x 2 |
+| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) | 2 | Measures distance to detect if the trash bin is full | 9.00 x 2 |
+| [Infrared Obstacle Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) | 1 | Detects hand movement near the trash can | 3.50 |
+| [SG90 Micro Servo Motor](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) | 1 | Opens the bin lid automatically | 11.99 |
+| [Active Buzzer 5V](https://www.optimusdigital.ro/en/buzzers/633-buzzer-activ-de-5-v.html) | 1 | Alerts when the bin is full and whose turn it is | 1.40 |
+| [Breadboard Kit with Wires & Power Supply](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html) | 1 | For prototyping and connecting components | 22.00 |
+| [Female Pin Headers](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4166-header-de-pini-mama-20p-254-mm.html) | 4 strips | Connect to male pins on the board and sensors | 2.00 x 4 |
+| [Battery Holder (2x18650)](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html) | 1 | Provides portable power to the system | 3.99 |
+| [DC-DC Step-Down Module LM2596HV](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html) | 1 | Regulates voltage from battery to appropriate level for components | 12.99 |
+
 
 <!-- **Estimated Total:** ~168.00 RON -->
 
