@@ -11,7 +11,7 @@ drawings:
 defaults:
   foo: true
 transition: slide-left
-title: MA - 09 - Secure Execution
+title: MA - 10 - Secure Execution
 mdc: true
 layout: cover
 themeConfig:
@@ -22,7 +22,7 @@ background:
 ---
 
 # Secure Execution
-Lecture 9
+Lecture 10
 
 ---
 ---

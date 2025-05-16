@@ -11,18 +11,18 @@ drawings:
 defaults:
   foo: true
 transition: slide-left
-title: MA - 10 - Embedded Operating Systems
+title: MA - 11 - Embedded Operating Systems
 mdc: true
 layout: cover
 themeConfig:
   primary: '#0060df'
 download: true
-exportFilename: ma-10
+exportFilename: ma-11
 background:
 ---
 
 # Embedded Operating Systems
-Lecture 10
+Lecture 11
 
 ---
 
