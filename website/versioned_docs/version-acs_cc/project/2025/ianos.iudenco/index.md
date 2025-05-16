@@ -42,7 +42,7 @@ I like to play logics games, so I decided to create a simple game who can easly 
 <ul> 
   <li>Interface: I2C1</li>
   <li>Pin connections SDA(GP14), SCL(GP15)</li>
-  <li>Display the word</li>
+  <li>Display used words</li>
 </ul>
 
 ##### MAX7219LED 8x8 Matrix Module
