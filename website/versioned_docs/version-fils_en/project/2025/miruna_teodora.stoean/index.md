@@ -28,7 +28,9 @@ The sound sensor picks up music and sends audio intensity data to the Raspberry 
 ### Week 5 - 11 May
 After purchasing all the necessary materials for my project, I began assembling the components, connected everything using jumper wires, performed debugging, and verified that my Raspberry Pi was functioning correctly.
 ### Week 12 - 18 May
-
+![poza1](poza1_hardware.webp)\
+![poza2](./poza2_hardware.webp)\
+This week, I began by individually testing all my RGB LEDs to ensure they were functioning properly. I then carefully connected them using two shift registers, which required a lot of patience and precision. After setting up the hardware, I created three distinct lighting effects: Rainbow, Pulse White, and Strobe Party—each selectable by the user. Finally, I made the effects respond to sound by connecting the LEDs to a sound sensor, allowing the lights to react dynamically to audio input.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -41,6 +43,11 @@ After purchasing all the necessary materials for my project, I began assembling 
 **5. 15× Resistors (220Ω–330Ω)** – Current-limiting resistors for each RGB channel.\
 **6. Power Supply (5V)** – External power source to provide enough current for the LEDs.\
 **7. Breadboard & Jumper Wires** – For assembling and wiring the circuit easily.\
+The project uses several hardware components working together to create light effects synchronized with music. The Raspberry Pi Pico 2W acts as the brain: it receives the audio signal from the microphone sensor, processes it, and controls the RGB LEDs based on the sound intensity. The 5 common-cathode RGB LEDs light up in different colors and pulse according to the music rhythm.
+
+To control all 15 RGB channels (3 colors × 5 LEDs) using only a few GPIO pins from the Pico, two 74HC595 shift registers are used. Each color channel has a resistor to limit current and protect the LEDs.
+
+The LEDs are powered separately by an external 5V power supply to ensure enough current and stable operation. All components are connected on a breadboard, with jumper wires used for easy wiring between them.
 
 ### Schematics
 
