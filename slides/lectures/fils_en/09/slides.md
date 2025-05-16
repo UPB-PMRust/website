@@ -48,4 +48,4 @@ we talked about
 
 - Exceptions
 - Interrupts
-- How the RP2040 boots and loads the software
+- How the RP2040 and RP2350 boot and load the software
