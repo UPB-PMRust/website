@@ -21,9 +21,9 @@ On a more personal note, I have a younger brother who’s been really into robot
 ## Architecture  
 The final system will include modules for:
 
-- **Environment sensing**: 
-  - DHT sensor for temperature and humidity
-  - Rain detection based on humidity threshold 
+- **Environment sensing**:  
+  - Analog humidity sensor (KS0203)
+  - Rain detection based on humidity threshold
 - **Output feedback**: LCD 1602 with I2C, for showing system status ("RAIN", "SUN", "UNLOCKED")
 - **Actuators**: Two servo motors: one for window control, one for door access   
 - **Input system**: 4x4 button matrix keypad for entering an unlock code
