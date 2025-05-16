@@ -15,11 +15,11 @@ As someone who started to play guitar recently, I found it frustrating that my g
 
 ## Architecture
 
-1. Raspberry Pi Pico: used for handling the logic of the project. It receives analog audio input from the microphone, makes it digital using ADC and performs signal processing to detect the frequency
-2. Microphone Module: captures the sound of the guitar being plucked, which is then sent to the microcontroller
-3. OLED Display: displays when the chord is in tune and the current string selected
+1. Raspberry Pi Pico: used for handling the logic of the project. It receives analog audio input from the microphone, makes it digital using ADC and performs signal processing to detect the frequency.
+2. Microphone Module: captures the sound of the guitar being plucked, which is then sent to the microcontroller.
+3. OLED Display: displays when the chord is in tune and the current string selected.
 4. Push Button: prompts the user to select between the 6 chords ( E, A, D, G, B, E) to select what to tune.
-5. LED: blinks red when guitar is out of tune, green when it is in tune
+5. LED: blinks red when guitar is out of tune, green when it is in tune.
 6. Buzzer: replicates the sound of the respective chord after it gets in tune.
 
 ![Guitar_Tuner](./diagrama.webp)
