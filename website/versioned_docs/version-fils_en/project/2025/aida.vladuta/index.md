@@ -83,7 +83,11 @@ element14 Community
 
 ### Week 5 - 11 May
 
+I managed to get my hand on all of the necessary components that i have to use for my project.I also soldered my components so that I can use them in my project. I connected my Raspberry Pi Pico 2W and the debugger and tested them using a simple code.
+
 ### Week 12 - 18 May
+
+This week, I successfully connected and integrated all the main components of my project. I wired the LCD display, RGB LED, soil moisture sensor, water level sensor, Raspberry Pi Pico 2W. After assembling the full setup, I tested it with a real plant and used an actual water container for the irrigation system. 
 
 ### Week 19 - 25 May
 
@@ -94,6 +98,8 @@ This project uses a Raspberry Pi Pico W as the main controller to automate plant
 ### Schematics
 
 Place your KiCAD schematics here.
+
+![CactusCare Schematics](KiCad.webp)
 
 ### Bill of Materials
 
