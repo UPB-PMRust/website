@@ -58,6 +58,30 @@ One of the biggest environmental threats that the modern world faces is global w
 6. Buzzer & LEDs:
 - the audible-visual alarm: when certain parameters are reached, the alarm is triggered
 
+<table>
+  <tr>
+    <td><img src="above.webp" width="380"/></td>
+    <td><img src="side.webp" width="380"/></td>
+  </tr>
+  <tr>
+    <td><img src="closeup.webp" width="380"/></td>
+    <td><img src="other.webp" width="380"/></td>
+  </tr>
+</table>
+
+The first three photos showcase the main circuit: both Picos on the breadboard,
+connected accordingly, the BME280 and TSL2561 sensors, a buzzer and an LED.
+The 4th picture contains the LCD screen and the GPS module, to be wired up.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5pqSocc1IFU" 
+frameborder="0" allowfullscreen></iframe>
+
+The video presents the current functionality of the project:
+- the MCU constantly reads readings from both sensors
+- measurements are displayed in the terminal
+- when the temperature is above 24 °C, an alarm is started
+- the alarm consists of a buzzer and a red LED
+
 ### Schematics
 
 ![kicad](./schematic.svg)
@@ -99,6 +123,7 @@ The format is
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor | Create different tasks |
 | [lcd1602-rs](https://crates.io/crates/lcd1602-rs) | Display library | Used for my 16 characters on 2 lines LCD screen |
 | [heapless](https://crates.io/crates/heapless) | Statically allocated data | Used to write strings for my LCD |
+| [tsl256x](https://crates.io/crates/tsl256x) | Platform agnostic driver for TSL256x | Read raw data from TSL2561 | 
 
 
 ## Links
