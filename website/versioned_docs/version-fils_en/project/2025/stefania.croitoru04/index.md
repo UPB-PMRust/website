@@ -58,7 +58,10 @@ Micro USB Cable: Powers and programs the Pico. \
 LED: Changes color to visually signal system status. 
 
 This is what the wiring looks like:
-![This is what the wiring looks like](./hardwarewires.webp)
+![This is what the wiring looks like initially](./hardwarewires.webp)
+![This is what the wiring looks like at the end](./hardwarewiresupdate.webp) 
+![A the close look](./closelook.webp) 
+
 
 
 ### Schematics
