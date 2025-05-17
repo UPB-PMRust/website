@@ -41,6 +41,10 @@ These components communicate in an event-driven and partially asynchronous manne
 - Verified all pin mappings against Rust codebase.
 - Began testing Embassy-based async control loop for both motors.
 - Integrated screen output for mode status (Manual / Auto / Paused).
+- First try mapping for automatic drawing patterns.
+- Implemented basic joystick input handling for manual mode.
+- Created a simple test program for the buttons and joystick to control the motors.
+- Implemented a simple way to show on screen the current mode and pattern.
 
 ### Week 19 - 25 May
 
@@ -83,11 +87,112 @@ These components communicate in an event-driven and partially asynchronous manne
 - **Function**: Shows current mode (Manual / Automatic / Paused), drawing pattern name, and progress. 
 LED indicators were considered as a fallback option, but the final system includes an LCD display.
 
-
 ### Metal Bar + Mechanical Structure
 
 - **Purpose**: Physical movement support
 - **Function**: Guides the motors and magnet system along defined X and Y axes, ensuring smooth and accurate motion beneath the sand layer.
+
+<details>
+<summary> Table Interfaces & Pinout</summary>
+
+## Table Interfaces & Pinout
+
+| Component                | Role                             | Interface            | Microcontroller Pins                        |
+|--------------------------|----------------------------------|----------------------|---------------------------------------------|
+| **Raspberry Pi Pico 2W** | Main controller                  | -                    | -                                           |
+| **Joystick**             | Manual ball control & mode toggle (K button) | ADC + GPIO          | ADC0 (GP26), ADC1 (GP27), K (GP18)          |
+| **Pause Button**         | Pauses/resumes current mode      | GPIO Input (Pull-up) | GP19                                        |
+| **Clear Button**         | Stops and clears current pattern | GPIO Input (Pull-up) | GP20                                        |
+| **Stepper Motor X**      | Moves magnet horizontally        | A4988 (DIR + STEP)   | DIR: GP16, STEP: GP17                       |
+| **Stepper Motor Y**      | Moves magnet vertically          | A4988 (DIR + STEP)   | DIR: GP14, STEP: GP15                       |
+| **TFT Display (ST7735S)**| Displays status and position     | SPI                  | SPI0 (GP2, GP3, GP4), CS: GP5, DC: GP7, RST: GP6 |
+
+</details>
+
+
+<details>
+<summary> Functional Validation</summary>
+
+## Functional Validation
+
+- Display was initialized and renders text and vector shapes (heart, star).
+- Joystick movement is mapped and read through ADC.
+- Stepper motor drivers tested with manual and automatic signals.
+- Push buttons successfully trigger mode changes and pauses.
+
+Each hardware component has been validated independently and in partial integration.
+
+</details>
+
+
+
+### Some reference images  
+<details>
+<summary> Screen Display (TFT)</summary>
+
+![Screen Photo](poza_ecran.webp)
+
+</details>
+
+<details>
+<summary> Breadboard Wiring</summary>
+
+![Breadboard Closeup](poza_breadboard_1.webp)
+
+</details>
+
+<details>
+<summary> Rod & Rail System</summary>
+
+![Rod/Structure Mechanism](poza_sistem_tije.webp)
+
+</details>
+
+
+
+
+### Video
+
+<!-- [![Video](thumbnail_Yt.webp)](https://youtu.be/zvSr5EOP77k)
+[*Play video here*](https://www.youtube.com/watch?v=zvSr5EOP77k) -->
+[![Video](https://img.youtube.com/vi/zvSr5EOP77k/0.jpg)](https://youtu.be/zvSr5EOP77k)
+
+[*Play video here*](https://www.youtube.com/watch?v=zvSr5EOP77k)
+
+<details>
+<summary> Detailed Hardware Description</summary>
+
+### 1. **Microcontroller – Raspberry Pi Pico 2W**
+Acts as the central controller running asynchronous Rust (via Embassy). Manages all sensors, motors, buttons, and display.
+
+### 2. **Stepper Motors + A4988 Drivers**
+- Two **NEMA 17HS4401** motors  
+- Controlled using **A4988** driver boards  
+- Connected via 12V power supply (Laptop charger)  
+- GPIOs used for `STEP` and `DIR` signals  
+- Maximum motion range capped via software  
+
+### 3. **Joystick**
+- 2-axis analog stick with integrated click  
+- Connected to ADC (GP26, GP27)  
+- `K` click is connected to GP18  
+- Used for manual movement and toggling mode  
+
+### 4. **Push Buttons**
+- **Pause** (GP19): pauses or resumes drawing  
+- **Clear** (GP20): stops current pattern and switches to manual  
+- Pull-up configured on both lines  
+
+### 5. **TFT LCD (1.8” ST7735S)**
+- Connected via SPI0  
+- Pins: CLK (GP2), MOSI (GP3), MISO (GP4), CS (GP5), DC (GP7), RST (GP6)  
+- Used to display current mode, pattern, and X/Y ball position  
+- Powered at 3.3V and initialized via `mipidsi` + `embedded-graphics`
+
+</details>
+
+
+
 
 ### Schematics
 
