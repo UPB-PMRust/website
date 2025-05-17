@@ -84,6 +84,8 @@ Placed all hardware components onto the breadboard.
 
 The project uses the Raspberry Pi Pico 2W as the main microcontroller responsible for handling all game logic, input processing, and LED matrix control. Two 8x8 LED matrix modules are combined to form a 16x8 display, providing a visual interface for the Glow Worm game. These matrices are driven using 74HC595 shift registers, which allow serial-to-parallel conversion and enable control of a large number of LEDs using limited GPIO pins. Four buttons are connected to GPIO pins to allow directional input from the user, enabling gameplay interaction. Additionally, an oled display is used to provide basic visual feedback for scoring.
 
+![HardWare](hardware.webp)
+
 
 ## Schematics
 
