@@ -31,6 +31,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 ### Display (ST7735R)
 
 **Interface:** SPI  
+
 **Connections:**  
 - SDA (Data Line) connected to Raspberry Pi Pico 2 SPI pins  
 - SCL (Clock Line) connected to Raspberry Pi Pico 2 SPI pins
@@ -41,8 +42,9 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 
 ### Buttons
 
-**Interface:** GPIO 
-**Connections:**  
+**Interface:** GPIO
+
+**Connections:**
 - Connected to GPIO pins for controls (playback, recording, navigation, sequencing)
 
 **Role:** Allows user input for sampling, playback, sequence control, and settings.
@@ -52,6 +54,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 ### Micro SD Card Module
 
 **Interface:** SPI  
+
 **Connections:**  
 - SCK (Serial Clock) connected to Pico SPI pin  
 - MOSI (Master Out Slave In) connected to Pico SPI pin  
@@ -65,6 +68,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 ### DAC (MAX98357A)
 
 **Interface:** I2S  
+
 **Connections:**  
 - Connected via I2S interface pins on the Raspberry Pi Pico 2
 
@@ -80,9 +84,12 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 
 ## Log
 - **Week 5 - 11 May**:  
-  WIP...
+  Began with a minimal setup: Pico and DAC, in order to verify the quality of the audio output.
+  Next, I have connected the button matrix and mapped the buttons to sounds of different frequencies.
+  By the end of the week I had a minimal implementation of the core functionality of the project.
 - **Week 12 - 18 May**:  
-  WIP...
+  Finished setting up the hardware parts on a breadboard, as well as tampering with the screen.
+  Made adjustments to the KiCad schematic in order to illustrate the complete hardware. 
 - **Week 19 - 25 May**:  
   WIP...
 
@@ -90,11 +97,26 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 - Raspberry Pi Pico 2 (RP2350): Main microcontroller handling audio processing and system logic.
 - I2S DAC – MAX98357A: Converts digital audio signals to analog for high-quality speaker output.
 - ST7735R display: Colored screen for animations.
-- Speaker: Outputs audio playback.
-- Two potentiometers: For adjustable controls (volume/effects).
+- 3.5mm socket: Outputs audio playback. (Headphones not included!)
 - Buttons: Input for interraction with the device.
 
+Below I have provided an overview of the project on a breadboard:
+
+![Overview](overview.webp)
+
+User input close-up:
+
+![Buttons](buttons.webp)
+
+DAC, 3.5mm socket and screen close-up:
+
+![Misc](screen_and_dac.webp)
+
 ## Schematics
+Made using KiCad, this schematic represents the electronic design for CrateDigger.
+The MAX98357 DAC and the 3.5mm socket are placed on the left and next to them is the 4x4 button matrix used for
+adding samples. The display is placed on the right, along with play/write buttons.
+
 ![Schematic](cratedigger_schematic.webp)
 
 ## Bill of Materials
@@ -105,7 +127,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 | [ST7735R Display](https://www.optimusdigital.ro/en/lcds/1311-modul-lcd-spi-de-18-128x160.html?search_query=0104110000012661&results=1) | OLED visual interface | 29 RON |
 | [MAX98357 I2S DAC](https://www.emag.ro/amplificator-audio-max98357-i2s-compatibil-cu-esp32-si-raspberry-pi-emg238/pd/DVYJWJYBM/?ref=history-shopping_418527241_221614_1) | Audio output module | 24 RON |
 | [4 Ohm Speaker](https://www.emag.ro/difuzor-mini-arduino-3w-4-ohm-40mm-diametru-z001351/pd/DX2RLHYBM/?ref=history-shopping_418528639_187129_1) | Sound playback | 40 RON |
-| Consumables (buttons, potentiometers, wires, etc.) | Various components | 50 RON |
+| Consumables (buttons,  wires, etc.) | Various components | 50 RON |
 
 ## Software
 
@@ -116,8 +138,10 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer (HAL) traits | Provides unified interfaces for hardware drivers |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the ST7735R display |
 | [st7735-lcd](https://github.com/almindor/st7735-lcd) | Rust driver for ST7735 display | Controls the ST7735R display |
+| [embassy_rp::pio_programs::i2s] | PIO-backed I²S output driver | Enables I²S audio output using the Programmable I/O system |
 
 ## Links
-- [link1](https://example.com)
-- [link2](https://example.com)
+- [Making some noise with Raspberry Pi Pico](https://community.element14.com/challenges-projects/design-challenges/pi-fest/b/blog/posts/pi-fest---making-some-noise-with-raspberry-pi-pico-blog1)
+- [Pico Sequencer](https://www.hackster.io/Arnov_Sharma_makes/pico-sequencer-173a5f)
+- [RP2040 Drum Machine](https://hackaday.io/project/171112-twrtdm) 
 
