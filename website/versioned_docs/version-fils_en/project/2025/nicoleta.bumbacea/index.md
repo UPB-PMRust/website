@@ -63,6 +63,7 @@ Camera Module - Captures an image when an incorrect code is entered.
 
 Power Supply  -Powers the Raspberry Pi Pico and all connected peripherals.
 
+![Hardware imagine](imghardware.webp)
 ### Schematics
 
 ![Kicad_Schematic](finalschematic.webp)
