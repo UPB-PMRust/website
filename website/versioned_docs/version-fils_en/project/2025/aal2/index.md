@@ -64,6 +64,8 @@ I've always had a strong interest in vehicles, especially trucks, and that passi
 ## Hardware
 The hardware setup consists of a Raspberry Pi Pico microcontroller as the central unit, coordinating the system’s logic and peripherals. Two infrared sensors are used to detect vehicles at the entry and exit points, each connected to digital GPIO pins. These sensors trigger servo motors, which physically control the gate barriers and are driven using PWM signals. A 1602 LCD display, connected via the I²C interface, shows the number of available parking spots in real time. All components are mounted on a cardboard structure simulating a miniature parking lot, providing both functional and visual representation of a real-world automated parking system.
 
+![Project](Project.webp)
+
 ### Schematics
 
 ### Bill of Materials
