@@ -37,13 +37,19 @@ I was inspired to create this classic game because of its nostalgic value to me,
 
 Here is the block scheme and how the components are all conected:
 
-![schema](schema.png)
+![schema](schema.webp)
 
 ## Log
 
 ### Week 5 - 11 May
 
+Bought the components and planned the project, preparing the hardware and software technologies.
+
 ### Week 12 - 18 May
+
+![proiect_hardware](proiect_hardware.webp)
+
+I assembled the components and tested them.
 
 ### Week 19 - 25 May
 
@@ -57,7 +63,7 @@ Here is the block scheme and how the components are all conected:
 
 ### Schematics
 
-![kicad](kicad.png)
+![kicad1](kicad1.webp)
 
 ### Bill of Materials
 
