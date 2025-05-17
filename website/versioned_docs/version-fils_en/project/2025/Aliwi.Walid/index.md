@@ -31,7 +31,6 @@ Initially I wanted to build a 3D printer, but due to the high cost, complexity a
 Since I had a clear idea of my project well before Week 7 and had already received approval, I ordered all the necessary components from AliExpress. This week, I 3D printed the structure of the CNC plotter and assembled the mechanical frame. I also created the initial architecture schematic and began researching which Rust crates I would need for motor control, serial communication, and other core features.
 One obstacle I encountered was that the STL file source I used did not specify the required screw sizes, which delayed the mechanical assembly. Here's how the build looked at this stage:
 
-
 ![alt text](image.webp)
 
 ### Week 12 – 18 May
@@ -39,12 +38,12 @@ One obstacle I encountered was that the STL file source I used did not specify t
 This week, I secured all the components to the CNC structure using the correct screws and mounted everything onto a wooden base to give it a solid foundation. I also decided to add an LCD screen to the project, which will display the current status while the CNC is running, such as when it's starting, drawing, or finished. I updated the system architecture and KiCad schematics to include this new addition.
 
 On the software side, I wrote the initial code to allow the CNC to draw basic shapes like squares. It's a good starting point, but I’ll continue improving it so the machine can handle more complex drawings in the coming updates.
-![alt text](AssembledCNC.webp)
+
+![alt text](AssembledCNC_with_bgc.webp)
 
 ### 19 -  25 May 
 
 After receiving the correct screws, I completed the physical assembly of the CNC plotter. With the hardware finalized and the software functional, I tested the full pipeline:Create a vector image, use JS-Cut to convert it into G-code, send the G-code to the Pico via a Python script over UART, the Pico reads and executes each command line-by-line to control the motors and draw the image on paper, this was the first complete end-to-end test, and it worked successfully!
-![alt text](image-4.webp)
 
 <!-- This week, I began work on the software side of the project. I wrote and tested code to control the stepper motors: first individually, then all three simultaneously. After that, I hardcoded some simple G-code movements to verify that the motors responded correctly for each axis. I also tested the USB-to-UART converter using a Python script to confirm that G-code could be sent correctly from the host to the Raspberry Pi Pico.
 In parallel, I finalized both the KiCad schematic and the overall system architecture diagram. -->
