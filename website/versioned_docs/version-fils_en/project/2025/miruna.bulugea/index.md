@@ -40,9 +40,9 @@ The main components of the project are:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+I have made resources about the components I need and bought them all .I have created the schematic using KiCad.
 ### Week 12 - 18 May
-
+I began by physically wiring all the key components of the system on a breadboard,so I can start to write the code and test it .
 ### Week 19 - 25 May
 
 ## Hardware
@@ -93,5 +93,6 @@ Outputs the audio from the DFPlayer Mini, playing the selected music track in re
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1.[Music Player using Raspberry Pi Pico and DFPPlayer](https://www.youtube.com/watch?v=1--GBKYXRyY)
+
 2. [pmrust/2025](https://pmrust.pages.upb.ro/docs/fils_en/project)
 ...
