@@ -68,6 +68,8 @@ The **buzzer** emits sound cues for actions and is connected to a GPIO pin
 - **Purpose**: Provide auditory feedback during gameplay.
 - **Function**: Emits sound cues for actions such as tile merges, successful moves, or game over.
 
+![top-view](top-view.webp)
+
 ### Schematics
 ![schematic](2048.svg)
 
