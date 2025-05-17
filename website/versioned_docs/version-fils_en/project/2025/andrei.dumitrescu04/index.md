@@ -10,8 +10,7 @@ A smart clock with an alarm, display, temperature/humidity monitoring and a web 
 
 ## Description
 
-This project is built using the Raspberry Pi Pico 2W, capable of displaying the current time and date on a small OLED display, and live temperature/humidity data on another small LCD display that also shows a real-time graph of both temperature and humidity. The current temperature and humidity also change color depending on their value. The device fetches accurate time from the internet every 3 to 6 hours, and offers a web interface for setting alarms. Alarms can be heard through a passive buzzer placed on the breadboard.
-
+This project is built using the Raspberry Pi Pico 2W, capable of displaying the current time and date on a small OLED display, and live temperature/humidity data on another small LCD display that also shows a real-time graph of both temperature and humidity. The current temperature and humidity also change color depending on their value. The device fetches accurate time from the internet every 2 hours, and offers the possibility to set alarms. Alarms can be heard through a passive buzzer placed on the breadboard.
 
 ## Motivation
 
@@ -32,7 +31,7 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 - **Sensor service**
     - polls DHT22 for temperature & humidity every 2 seconds and writes the data to the LCD display, updating the graphs in real time;
 - **Clock Service**
-    - fetches the exact time from the internet every 6h and keeps local RTC synced;
+    - fetches the exact time from the internet every 2h and keeps local RTC synced;
 - **Alarm Handler**
     - creates and triggers the alarm created by the user;
 - **Display units**
@@ -52,6 +51,12 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 ![progress1](./images/mai1.webp)
 
 ### Week 12 - 18 May
+
+- Got the second display (ssd1306 OLED) to display the correct date and time in hours:minutes:seconds in real time.
+- Added 2 buttons through which you can set alarms and view them on the screen.
+- When the alarm triggers, a buzzer will pulse for 3 seconds with 3 audible beeps on different pitched tones (50-200hz).
+
+![progress2](./images/progress2.webp)
  
 ### Week 19 - 25 May
 
@@ -62,7 +67,7 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 - **ST7735 TFT LCD display** (SPI): acts as a colored screen for displaying the temperature and humidity info, their graphs and color mapping if the paramters are healthy or not(green, yellow and red);  
 - **SSD1306 OLED** (secondary SPI display): used for displaying the clock, the date and the alarms;
 - **DHT22** (temperature + humidity sensor): used for monitoring the temperature and humidity of the air with the help;
-- **Passive buzzer + resistor** (GPIO controlled): a buzzer that is controlled through PWM on a PWM capable GPIO pin(15);
+- **Passive buzzer + resistor** (GPIO controlled): a buzzer that is controlled through PWM on a PWM capable GPIO pin(20);
 - **12V power supply** terminated to a barrel jack feeding the HW131 power supply that outputs regulated 3.3V and 5V DC. (I only use 3.3V for this project).
 
 ![hw1](./images/hw1.webp)
