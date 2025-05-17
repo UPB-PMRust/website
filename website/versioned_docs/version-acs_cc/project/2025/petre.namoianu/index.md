@@ -99,10 +99,15 @@ The format is
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [40 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
 | Red LED | Blinking when the alarm goes off | [0.39 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/696-led-rou-de-3-mm-cu-lentile-difuze.html) |
 | Blue LED | Blinking when the alarm goes off | [0.29 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/12237-led-albastru-de-5-mm.html) |
-| Buzzer | Used when the alarm goes off | 1 RON |
+| Buzzer | Used when the alarm goes off | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/635-buzzer-activ-de-3-v.html) |
 | PN532 RFID Module | Used for  opening the safe | 30 RON |
-
-\*Not Final
+| 9V Battery | Used for powering the motors and the RFID Module | 10 RON |
+| Battery Support | Connecting the battery to the breadboard | [1.29 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/20-conector-pentru-baterie-de-9-v.html) |
+| Breadboard | Connecting all the components | [4.56 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html) |
+| [Step-Down module](https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP1584EN-LF-Z/document_id/204/?srsltid=AfmBOorbWpoH9ILvxrVysau20kQVKT-H9PYR5KDHIYSkhpZNmCMDHyRe) | Used to limit the voltage to 5V | [6.49 RON](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/166-modul-dc-dc-step-down-mp1584en.html) |
+| [Servomotor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Safe locking mechanism | [11.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
+| [DC Motor](https://www.handsontec.com/dataspecs/GA12-N20.pdf) | Used for throwing small balls | 33 RON | 
+| Transistor | Used for commanding the DC motor | 2 RON |
 
 
 ## Software
