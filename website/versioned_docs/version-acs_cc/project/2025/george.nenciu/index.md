@@ -45,12 +45,12 @@ This project is using the following components:
 ## Photos
 <table>
   <tr>
-    <td><img src="./1.jpg" width="600"/></td>
-    <td><img src="./2.jpg" width="600"/></td>
+    <td><img src="./1.webp" width="600"/></td>
+    <td><img src="./2.webp" width="600"/></td>
   </tr>
   <tr>
-    <td><img src="./3.jpg" width="600"/></td>
-    <td><img src="./4.jpg" width="600"/></td>
+    <td><img src="./3.webp" width="600"/></td>
+    <td><img src="./4.webp" width="600"/></td>
   </tr>
 </table>
 
