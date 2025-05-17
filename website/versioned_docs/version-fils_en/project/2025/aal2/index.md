@@ -56,8 +56,22 @@ I've always had a strong interest in vehicles, especially trucks, and that passi
 
 ## Log
 ### Week 5 - 11 May
+- Finalized the wiring and organized the components inside the smart parking structure.
 
+- Completed testing for sensors, servos, and the LCD to ensure they all work together correctly.
+
+- Uploaded and tested the control code on the microcontroller (e.g., entry/exit logic, gate movement).
+
+- Integrated the system with the physical model and performed full functionality tests
 ### Week 12 - 18 May
+- Built the physical structure of the smart parking system.
+
+- Installed and fixed the motors, sensors, and display onto the model.
+
+- Secured all components in their final positions to prepare for wiring and system integration.
+
+- Ensured that the design allows easy access for future wiring and testing.
+
 
 ### Week 19 - 25 May
 
