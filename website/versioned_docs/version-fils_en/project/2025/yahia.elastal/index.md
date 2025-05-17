@@ -136,6 +136,9 @@ Started mounting components onto the cardboard structure. Fixed the LCD display,
 ![Wiring](wiring.webp)
 - **This is how the the cardboard home came out** :
 ![Cardboard](Cardboard.webp)
+- **And this is how to projects looks till now** :
+![TopView](Final_topview.webp)
+![SideView](Final_sideview.webp)
 ### Schematics
 ![KiKad Schematic](KiCad.webp)
 ### Bill of Materials
@@ -158,7 +161,8 @@ Started mounting components onto the cardboard structure. Fixed the LCD display,
 |Male-Male Wires 10cm |Connectivity |[1 x 4.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=Fire+&results=430)|
 |Female-Male Wires |Connectivity |[1 x 5.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html?search_query=Fire+20cm&results=18)|
 |Female-Female Wires |Connectivity|[1 x 7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/90-fire-colorate-mama-mama-40p.html?search_query=Fire+20cm&results=18)|
-| **TOTAL** | - | **171.19 RON** |
+|Mucava Cardboard|Building the house |22 RON|
+| **TOTAL** | - | **193.19 RON** |
 
 :::info Development Tool
 A [Raspberry Pi Debug Probe](https://www.optimusdigital.ro/ro/accesorii/12777-placa-pentru-depanare-raspberry-pi.html?search_query=Debug+probe&results=1) was used during development and debugging but it will not be included in the final build of the project.
