@@ -61,9 +61,11 @@ I built the hardware part of the project. I have made again the KiCad Schematics
 
 ## Hardware
 
-![alttext](harware1 (1)-1.webp)
-![alt text](hardware (1)-1.webp)
-![alt text](hardware2 (1)-2.webp)
+![alt text](harware1 (1).webp)
+
+![alt text](hardware (1).webp)
+
+![alt text](hardware2 (1).webp)
 
 - Pico Raspberry Pi 2 - central processing unit of the Pet Feeder
 - Servo Motor - dispenses food
