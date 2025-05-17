@@ -105,16 +105,16 @@ I connected the mini fan to the pin 3 beause I used pwm on channel 1B and I wrot
 
 I made some tests:
 - I wanted to test the buzzer and I started a flame in front of the flame sensor and the buzzer started to beep and the text on the screen turned red.
-[flame_detection](flame_detection.webp)
+![flame_detection](flame_detection.webp)
 - I decreased the temperature threshold to 26 degrees to test the fan and I verified that the fan started to turn on and the text on the screen turned green.
-[fan_starting](fan_starting.webp)
+![fan_starting](fan_starting.webp)
 - I test the buzzer and the fan together to see how they will appear on the screen and I verified that the buzzer started to beep and the text on the screen turned red and green.
-[flame_and_fan](flame_and_fan.webp)
+![flame_and_fan](flame_and_fan.webp)
 
 These tests were before I displayed the time and date on the screen, so I will did the test again to see how the screen will look like with the time and date on it. I verified that the text is not overlapping:
-[test1](test1.webp)
-[test2](test2.webp)
-[test3](test3.webp)
+![test1](test1.webp)
+![test2](test2.webp)
+![test3](test3.webp)
 
 ### Week 19 - 25 May
 
@@ -130,55 +130,57 @@ These tests were before I displayed the time and date on the screen, so I will d
 - **Function**: Acts as a user interface, used to display the data from the sensors in real time and show graphs of the data over time. The LCD will display the data in different colors depending on the value of the index. For example, if the temperature is too high, the text will be red, if it is normal, it will be green and if it is too low, it will be blue. The same will be done for all the indexes.
 - **Model**: ILI9341 & XPT2046 (240x320 px).
 
-[screen](screen.webp)
+![screen](screen.webp)
 
 4. **Pressure & Temperature sensor**:
 - **Function**: Calculates the pressure and temperature in the house. The data will be displayed on the LCD display.
 - **Model**: BMP280.
 
-[bmp280](bmp280.webp)
+![bmp280](bmp280.webp)
 
 5. **Real-time clock**:
 - **Function**: Keeps track of the time and date. The data will be displayed on the LCD display.
 - **Model**: DS3231.
 
-[rtc1](rtc1.webp)
-[rtc2](rtc2.webp)
+![rtc1](rtc1.webp)
+![rtc2](rtc2.webp)
 
 6. **Carbon monoxide sensor**:
 - **Function**: Calculates the CO level in the house. The data will be displayed on the LCD display. If the CO level is too high, the buzzer will be turned on to alert the user.
 - **Model**: MQ-7.
 
+![mq7](mq7.webp)
+
 7. **Noise sensor**:
 - **Function**: Detects the noise in the house. If the noise is detected, the lights in the house will be turned on.
 
-[sound_sensor](sound_sensor.webp)
+![sound_sensor](sound_sensor.webp)
 
 8. **Fire sensor**:
 - **Function**: Detects flame and smoke in the house. If a fire is detected, the buzzer will be turned on to alert the user and a notification will be sent to the user using the server.
 - **Model**: KY-026.
 
-[flame_sensor](flame_sensor.webp)
+![flame_sensor](flame_sensor.webp)
 
 9. **Ultraviolet radiation sensor**:
 - **Function**: Calculates the UV radiation level in the house. The data will be displayed on the LCD display.
 - **Model**: GUVA-S12SD.
 
-[uv_sensor](uv_sensor.webp)
+![uv_sensor](uv_sensor.webp)
 
 10. **Mini fan**:
 - **Function**: If the temperature or humidity is too high, the fan will be turned on to cool the room. The user can set this option in the code.
 
-[fan1](fan1.webp)
+![fan1](fan1.webp)
 
 11. **Buzzer module**:
 - **Function**: If the air quality is bad (eg. if the CO level is too high, if a fire is detected, if dust is too high etc.), the buzzer will be turned on to alert the user. The buzzer will be turned on automatically if the air quality is bad.
 
-[buzzer](buzzer.webp)
+![buzzer](buzzer.webp)
 
 ### Schematics
 
-[proiect_pm](proiect_pm.svg)
+![proiect_pm](proiect_pm.svg)
 
 ### Bill of Materials
 
