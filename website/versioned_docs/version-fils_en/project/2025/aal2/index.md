@@ -81,7 +81,7 @@ The hardware setup consists of a Raspberry Pi Pico microcontroller as the centra
 ![Project](Project.webp)
 
 ### Schematics
-
+![KiCad](KiCad.webp)
 ### Bill of Materials
 
 | Device | Usage | Price |
