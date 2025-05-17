@@ -84,7 +84,7 @@ A separate 5V external power source is used to power the stepper motors through 
 ### Schematics
 
 KiCad Schematic
-![alt text](KiCadFinal.webp)
+![alt text](KiCadFinal_with_bgc.webp)
 
 ### Bill of Materials
 
