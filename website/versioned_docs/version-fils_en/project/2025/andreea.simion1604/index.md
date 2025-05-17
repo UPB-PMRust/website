@@ -78,6 +78,8 @@ Light up when the player reaches certain scores
 
 ## Hardware
 
+The Raspberry Pi Pico 2W serves as the main microcontroller, running the game logic, handling input from various components, driving the display, and controlling game events such as scoring and game over. The game’s graphics are displayed on an ILI9341 LCD screen connected via SPI, utilizing the Embedded-graphics library. Player input is managed through a joystick connected via the ADC, allowing control of the bird's movement within the game area. A 4-digit 7-segment display connected through GPIO shows the player’s current score in real-time as they collect food. Sound effects for scoring or losing are produced by a buzzer controlled via PWM. All electronic components are connected using a breadboard and wires. Additionally, a push button connected through GPIO functions as a reset button, while LEDs, also connected via GPIO, light up when the player reaches certain scores.
+
 ![hardware](hardware1.webp)
 
 ## Schematics
