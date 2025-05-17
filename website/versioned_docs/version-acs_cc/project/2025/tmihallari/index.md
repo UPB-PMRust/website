@@ -77,6 +77,9 @@ Function: Connect all the components
 ![Schematic 1](no1.webp)
 ![Schematic 2](no2.webp)
 
+![Photo 1](pic1.webp)
+![Photo 2](pic2.webp)
+
 ### Bill of Materials
 
 | Device                                                                                       | Usage                  | Price                                                                                                                                                                                                                                   |
