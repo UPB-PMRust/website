@@ -11,7 +11,7 @@ A car equipped with front and back parking sensors.
 
 ## Description
 
-The project consists of a car equipped with 6 ultrasonic sensors (3 at the front and 3 at the rear), 2 DC motors that allow it to move forward and backward. It detects the obstacles nearby, expressing the distance using LEDs, and based on readings of the sensors it stops when getting too close to an object. Using the wifi chip on the Pico, data from the sensor is transmitted to a web page and signals (forward, stop or backward) are sent to the Pico.
+The project consists of a car equipped with 6 ultrasonic sensors (3 at the front and 3 at the rear), 2 DC motors that allow it to move forward, backward, left and right. It detects the obstacles nearby, expressing the distance using LEDs, and based on readings of the sensors it stops when getting close to an object and looks for a way to go around it. Using the wifi chip on the Pico, data from the sensor is transmitted to a web page and signals (forward, stop or backward) are sent to the Pico.
 
 ## Motivation
 
@@ -40,7 +40,7 @@ The reason behind choosing the theme for this project is my great passion for ca
 - Interface: GPIO
 
 **DC Motors**
-- Drive the car forward and backward
+- Drive the car forward, backward, right and left
 - Interface: GPIO
 
 ## Log
@@ -56,9 +56,9 @@ The Ultrasonic Sensors have arrived, so i began building the layers of the car. 
 - third layer is where the 2 breadboards are situated: first breadboard for the Pico and the connections with the sensors and motors; second breadboard for the LED's
 Secured the ultrasonic sensors to the board using small metal parts and attached the wires to them.
 ### Week 12 - 18 May
-I added to the base layer 2 DC Motors and L298N module on the first layer. I firstly screwed in a side of the Motor, but saw that it was wobbly and had glue it down using a Hot Glue Gun to secure it to the base. Wired them to the module and from the module to the Breadboard with the Pico.\
-Going to the last layer, because the second was already done. Placed the 2 breadboards on the last layer and attached to the larger one the Pico. Connected the previously attached wires from the sensors to the GPO pins of the Pico and the wires from the driver module. Added to the small breadboard the LEDs and connected them to the Pico. \
-This is how i got to the final form of the project.
+I added to the base layer 2 DC Motors and L298N module. I firstly screwed in a side of the Motor, but saw that it was wobbly and decided to use a Hot Glue Gun to secure it to the base. Wired them to the module and from the module to the Breadboard with the Pico.\
+Going to the last layer, because the second was already done. Placed the 2 breadboards on the last layer and attached to the larger one, the Pico. Connected the previously attached wires from the sensors to the GPIO pins of the Pico and the wires from the driver module. Added to the small breadboard the LEDs and connected them to the Pico. \
+This is the final form of the hardware. From now on, starting to implement the software. 
 
 ## Hardware
 
