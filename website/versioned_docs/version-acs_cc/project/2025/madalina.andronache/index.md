@@ -59,7 +59,7 @@ This phase involved experimenting with:
 - LCD 1602 screen functionality.
 
 While working with the LCD 1602, I initially encountered display issues.  
-la
+
 **Problem**: The display showed no visible characters, and I suspected a software communication error (wrong crate usage or I2C misconfiguration).
 
 **Solution**: After careful troubleshooting, I discovered that the issue was actually **hardware-related**: the **contrast potentiometer** on the back of the LCD module needed adjustment.  
