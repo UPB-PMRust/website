@@ -62,12 +62,12 @@ LCD 1602 - displays a message
 
 Power Supply - battery 5V
 
+![Schematics](./assets/hardware1.webp)
+![Schematics](./assets/hardware2.webp)
 
 ### Schematics
 
 ![Schematics](./assets/schema2v2.webp)
-![Schematics](./assets/hardware1.webp)
-![Schematics](./assets/hardware2.webp)
 
 ### Bill of Materials
 
