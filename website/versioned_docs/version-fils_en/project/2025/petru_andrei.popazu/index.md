@@ -11,7 +11,7 @@ A car equipped with front and back parking sensors.
 
 ## Description
 
-The project consists of a car equipped with 6 ultrasonic sensors (3 at the front and 3 at the rear), 2 DC motors that allow it to move forward, backward, left and right. It detects the obstacles nearby, expressing the distance using LEDs, and based on readings of the sensors it stops when getting close to an object and looks for a way to go around it. Using the wifi chip on the Pico, data from the sensor is transmitted to a web page and signals (forward, stop or backward) are sent to the Pico.
+The project consists of a car equipped with 6 ultrasonic sensors (3 at the front and 3 at the rear), 2 DC motors that allow it to move forward, backward, left and right. It detects the obstacles nearby, expressing the distance using LEDs, and based on readings of the sensors it stops when getting close to an object and looks for a way to go around it. Using the Wi-Fi chip on the Pico, sensor data is transmitted from the Pico to a web page, while control signals (such as forward, stop, or backward) are sent from the web page back to the Pico.
 
 ## Motivation
 
