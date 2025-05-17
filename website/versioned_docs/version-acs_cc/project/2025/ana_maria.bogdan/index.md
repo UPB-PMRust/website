@@ -49,11 +49,16 @@ The **Raspberry Pi Pico - RP2040** acts as the central unit, managing peripheral
 
 ### Week 5 – 11 May
 
-TO DO
+Completed hardware setup, including pin configuration and purchasing missing cables. Initialized the software repository.
 
 ### Week 12 – 18 May
 
-TO DO
+Completed final hardware steps: connected all peripherals to the Raspberry Pi Pico and verified connectivity. Created the KiCad schematics for the hardware setup. On the software side, set up all modules and peripherals, wrote initial test code for each to verify functionality, and pushed the code to GitHub.
+
+#### Photos
+![diagram](projectPMhardware1.webp)
+![diagram](projectPMhardware2.webp)
+![diagram](projectPMhardware3.webp)
 
 ### Week 19 – 25 May
 
@@ -83,7 +88,7 @@ TO DO
 - Powers the Raspberry Pi Pico and peripherals safely and consistently.
 
 ### Schematics
-TO DO
+![diagram](kicad_proj.svg)
 
 ## Bill of Materials
 
@@ -106,7 +111,7 @@ TOTAL: ~200 RON
 | [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | HAL Traits | I2C abstraction |
 | [ttp229](https://docs.rs/ttp229/latest/ttp229/) | Capacitive Sensor Driver | Used for the game input |
 | [st7735](https://docs.rs/st7735/0.1.0/st7735/) | OLED Driver | Display game mode and rules |
-| [ws2812_spi](https://docs.rs/st7735/0.1.0/st7735/) | LED Matrix Driver | Display game mode and rules |
+| [ws2812_spi](https://docs.rs/ws2812-spi/latest/ws2812_spi/) | LED Matrix Driver | Display game mode and rules |
 | [heapless](https://github.com/rust-embedded/heapless) | Fixed capacity collections | Buffer text messages for OLEDs |
 | [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging Framework | Used for real-time debug output over RTT, ideal for embedded logging |
 | [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic Handler | Provides panic messages compatible with defmt |
