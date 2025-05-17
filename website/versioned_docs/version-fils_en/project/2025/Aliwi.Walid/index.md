@@ -41,7 +41,7 @@ On the software side, I wrote the initial code to allow the CNC to draw basic sh
 
 ![alt text](AssembledCNC_with_bgc.webp)
 
-### 19 -  25 May 
+### Week 19 -  25 May 
 
 After receiving the correct screws, I completed the physical assembly of the CNC plotter. With the hardware finalized and the software functional, I tested the full pipeline:Create a vector image, use JS-Cut to convert it into G-code, send the G-code to the Pico via a Python script over UART, the Pico reads and executes each command line-by-line to control the motors and draw the image on paper, this was the first complete end-to-end test, and it worked successfully!
 
