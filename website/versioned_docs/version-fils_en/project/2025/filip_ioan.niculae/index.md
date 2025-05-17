@@ -133,8 +133,10 @@ The following diagram presents an overview of the physical interconnections in t
 <!-- write every week your progress here -->
 
 ### Week 6 - 12 May
+This week, I focused on getting all the hardware parts set up. I put together and wired up the NUCLEO board, all the sensors (BME280, HC-SR04, Soil Moisture, NTC), the relay module, and the water pumps, making sure the level translators and the 5V power supply were hooked up correctly. Once all the physical parts were connected and I double-checked everything, I drew up the circuit diagram for the system in KiCad to map out how all the components talk to each other.
 
 ### Week 7 - 19 May
+The primary focus shifted to software, starting with the Windows desktop GUI. I set up the ImGui and DirectX 11 environment and designed the basic UI layout for sensor data display and user controls. Concurrently, I began implementing the UART communication protocol on both the NUCLEO firmware and the desktop application to establish an initial data link. Basic sensor reading stubs were also added to the firmware.
 
 ### Week 8 - 26 May
 
@@ -144,7 +146,12 @@ The following diagram presents an overview of the physical interconnections in t
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![System schematic](./KiCad.svg)
+![System schematic](./1.webp)
+![System schematic](./2.webp)
+![System schematic](./3.webp)
+![System schematic](./4.webp)
+
 
 ### Bill of Materials
 
@@ -153,11 +160,14 @@ Place your KiCAD schematics here.
 | [NUCLEO F411RE](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F411RE?qs=Zt3UNFD9mQjdEJg18RwZ2g%3D%3D) | The microcontroller | [65 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F411RE?qs=Zt3UNFD9mQjdEJg18RwZ2g%3D%3D) |
 | [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/en/ultrasonic-sensors/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) | Distance Measurement | [15 RON](https://www.optimusdigital.ro/en/ultrasonic-sensors/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) |
 | [BME280 Module](https://www.optimusdigital.ro/en/pressure-sensors/5649-bme280-barometric-pressure-sensor-module.html) | Barometric Pressure & Temperature | [20 RON](https://www.optimusdigital.ro/en/pressure-sensors/5649-bme280-barometric-pressure-sensor-module.html) |
-| [4 Channel Level Translator](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) | Voltage Level Translator | [5 RON](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) |
+| [4 Channel Level Translator X2](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) | Voltage Level Translator | [10 RON](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) |
 | [4 Relay Module](https://www.optimusdigital.ro/en/relay-modules/478-blue-optoisolated-4-relay-module.html) | Controls devices | [14 RON](https://www.optimusdigital.ro/en/relay-modules/478-blue-optoisolated-4-relay-module.html) |
-| [Mini Submersible Water Pump](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) | Water Pump | [10 RON](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) |
+| [Mini Submersible Water Pump X2](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) | Water Pump | [20 RON](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) |
 | [Ground Humidity Sensor Module](https://www.optimusdigital.ro/en/humidity-sensors/73-ground-humidity-sensor-module.html) | Detects soil humidity | [10 RON](https://www.optimusdigital.ro/en/humidity-sensors/73-ground-humidity-sensor-module.html) |
-
+| [UTP CAT5E Cable](https://www.leroymerlin.ro/produse/cabluri-si-accesorii-multimedia/883/cablu-utp-cat5e-la-metru/113470) | Connecting Devices | [3 RON](https://www.leroymerlin.ro/produse/cabluri-si-accesorii-multimedia/883/cablu-utp-cat5e-la-metru/113470) |
+| [Double Surface-mount UTP CAT5e Outlet](https://www.a2t.ro/retele-si-telefonie/priza-dubla-aplicata-utp-cat5e-regleta-krone-gembird.html) | Connecting Cables | [14 RON](https://www.a2t.ro/retele-si-telefonie/priza-dubla-aplicata-utp-cat5e-regleta-krone-gembird.html) |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) | Supplies Power | [5 RON](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) |
+| [Water Hose](https://cleste.ro/furtun-plastic-1m.html) | Drives Water | [3 RON](https://cleste.ro/furtun-plastic-1m.html) |
 ---
 
 ## Software
