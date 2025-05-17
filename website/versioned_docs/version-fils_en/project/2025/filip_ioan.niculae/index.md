@@ -146,7 +146,12 @@ The primary focus shifted to software, starting with the Windows desktop GUI. I 
 
 ### Schematics
 
-![System schematic](./KiCad.jpg)
+![System schematic](./KiCad.svg)
+![System schematic](./1.webp)
+![System schematic](./2.webp)
+![System schematic](./3.webp)
+![System schematic](./4.webp)
+
 
 ### Bill of Materials
 
