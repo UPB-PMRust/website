@@ -55,23 +55,31 @@ In parallel, I finalized both the KiCad schematic and the overall system archite
 Each stepper motor is used to drive movement along one of the three axes—X, Y, and Z. They are each controlled by a dedicated ULN2003 driver board, with signal lines connected to the Raspberry Pi Pico via GPIO as follows:
 
 Stepper 1: GPIO 15, 14, 16, 17
+
 Stepper 2: GPIO 18, 19, 13, 12
+
 Stepper 3: GPIO 20, 21, 11, 10
 
 1× 1.8 Inch LCD (ST7735, SPI)
 Used to display messages like “CNC starting to plot…”, “CNC plotting…”, and “CNC has finished plotting!”. Connected to the Raspberry Pi Pico via SPI0 as follows:
 
 MOSI: GPIO 3
+
 SCK: GPIO 2
+
 DC (A0): GPIO 6
+
 RESET: GPIO 7
+
 CS: GPIO 5
+
 VCC and GND connected to 3.3V and GND respectively.
 
 CH340G USB-to-UART Converter
 This module establishes serial communication between the Raspberry Pi Pico and a host computer. It is used to send G-code commands from the host (via a Python script) to the Pico for real-time stepper control. The pin connections are:
 
 CH340G TX → Pico GPIO 1 (UART0 RX)
+
 CH340G RX → Pico GPIO 0 (UART0 TX)
 
 External Power Supply
