@@ -28,12 +28,33 @@ I decided from the beginning that I would either find something innovative or ma
 
 ## Architecture 
 
-![Architecture](Architecture.svg)
-> First Raspberry Pi Pico 2W
->> It connects to the ST7735 LCD display via SPI protocol to show instructions, clues, and puzzle status, receives input from the MPU6500 gyroscope/accelerometer via SPI protocol to detect cube orientation and movement for the motion-based puzzle, monitors the 7 push buttons via GPIO pins to handle the color sequence puzzle inputs, and communicates with the second Pico via UART to coordinate game state and puzzle progression.
+![Architecture](architecture.svg)
+### 1. User Interface (UI Module)
+This module is responsible for delivering visual feedback and guiding the player through the game:
++ **ST7735 LCD Display**: Displays puzzle instructions, clues, and status messages, via SPI
++ **4 Green LEDs**: Indicate the currently active puzzle face and provide progress feedback, via GPIO
++ **Dual 7-Segment LED Display with 74HC595 Shift Register**: Displays timing information or numerical values during gameplay, via GPIO + SPI-like control via shift register (74HC595)
 
-> Second Raspberry Pi Pico 2W
->> It reads the 4 Linear Hall Sensor Modules via GPIO pins to detect magnetic interactions for the map navigation puzzle, interfaces with the 4x4 Matrix Keypad via GPIO connections to receive numerical inputs for the calculation puzzles, controls the 4 green LEDs (one per puzzle) through GPIO pins to indicate which puzzle is currently active, and manages the 7-Segment LED Display with 74HC595 shift register via SPI for timing display.
+### 2. Physical Input Module
+Handles all direct physical interactions from the player:
++ **6 Colored Push Buttons**: Used in the color sequence puzzle and for starting the game, via GPIO
++ **4x4 Matrix Keypad**: Used for inputting numerical answers in the math puzzle, via GPIO
++ **MPU6500 Gyroscope/Accelerometer**: Detects cube movement and orientation for the motion-based puzzle, via I2C
++ **4 Linear Hall Effect Sensors (3144)**: Detect magnetic field presence on specific points of the map puzzle, via GPIO
+
+### 3. Core Processing Unit
+Manages game state, handles puzzle progression, processes input, and triggers outputs:
++ **Raspberry Pi Pico 2W**: Central microcontroller for all puzzle logic and hardware coordination which runs embedded Rust software and manages all communication with peripherals.
+
+### 4. Software & Logic Layer
+The software stack running on the Pico includes:
++ **Language**: Rust 
++ **Libraries/Frameworks**: embedded-hal, embassy-rp, embassy-time, etc. 
+
+### 5. Power Supply Module
+Provides portable and self-contained power for the system:
++ **9V Battery with DC Connector**: Supplies power to the Raspberry Pi Pico and all connected peripherals. 
++ **Breadboard and Wiring**: Used for prototyping and connecting components to the Pico's GPIO pins.
 
 ## Log
 
@@ -43,8 +64,10 @@ This week, I 3D printed the cube structure, with the white side functioning as t
 ![firstweek](firstweek.svg)
 
 ### Week 5 - 11 May
+This week, I finished the hardware part, and realized that I miscalculated some things and made some changes. Everything that I said in the sequence before can be seen in the video I made for the Hardware Milestone: [https://youtu.be/XMGbFsKHQaA](https://youtu.be/XMGbFsKHQaA).
 
 ### Week 12 - 18 May
+After finishing 90% of the hardware part, not the design of the outer faces of the cube, I started the software part, which can be seen in my Github repository: [https://github.com/UPB-PMRust-Students/proiect-claudia-golaes](https://github.com/UPB-PMRust-Students/proiect-claudia-golaes)
 
 ### Week 19 - 25 May
 
@@ -65,7 +88,7 @@ This week, I 3D printed the cube structure, with the white side functioning as t
 
 ### Schematics
 
-![schematics](schematics.svg)
+![Schematics](Schematics.svg)
 
 ### Bill of Materials
 
