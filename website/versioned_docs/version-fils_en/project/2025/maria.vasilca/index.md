@@ -28,7 +28,11 @@ The sensors detect the black line and send data to the multiplexer, which select
 
 This week, the final components for my robot arrived. I began planning how to wire everything together by reviewing the pin configurations of the sensors, multiplexer, motor driver, and microcontroller. I then started creating the schematic in KiCad to organize the connections.
 
+![ROBOT1](ROBOT1.webp)
+
 ### Week 12 - 18 May
+
+This week, I finished assembling all the hardware for my robot. I mounted all the components onto the chassis and completed the wiring between them. After I finished assembling it, I began working on the software, starting with testing the basic functionalities of the sensors, motors, and multiplexer.
 
 ### Week 19 - 25 May
 
@@ -48,6 +52,8 @@ L298N Motor Driver - It controls the motor speed and direction using signals fro
 Chassis + 2 Tires + Swivel Wheel - Provide structural support and movement capabilities for the robot.
 
 9V Battery - powers the robot by connecting to the motor power input of the L298N motor driver, whose onboard regulator steps it down to 5V; this 5V is then fed into the VSYS pin of the Raspberry Pi Pico 2W to power the microcontroller. 
+
+![ROBOT2](ROBOT2.webp)
 
 ### Schematics
 
