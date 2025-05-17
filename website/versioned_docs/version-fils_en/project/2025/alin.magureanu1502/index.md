@@ -36,6 +36,20 @@ I implemented the other components : the push button to select between strings, 
 
 
 ## Hardware
+1. **Raspberry Pi Pico 2**  
+Main control unit. Coordinates all used components - the microphone, the buzzer, the led's and the display. It performs signal processing to analyze the audio input and determine the string's frequency.
+2. **MAX9814 Microphone**   
+Captures audio. Detects the sound and sends the analog signal to the pico's analog-digital converter.
+3. **Push Button**  
+User interaction. Allows the user to cycle through guitar strings for tuning and is used to move to the next chord after a string gets tuned.
+4. **LED's**  
+Visual tuning indicators. When the correct frequency is detected, it means the guitar is in tune and the green led turns on. Otherwise, the red led is constantly turned on during the process.
+5. **Active Buzzer**  
+Audio feedback. Sounds a confirmation tone when a string is tuned correctly, providing audible confirmation alongside the green LED. The tone of the buzzer coresponds the sounds of the respective string.
+6. **OLED Display**  
+Display status. Shows messages such as the current string tuned or whether we need to tune up or down.  
+
+
 ![Hardware_Photo1](./hardware_off.webp)
 
 ![Hardware_Photo2](./hardware_tuned.webp)
