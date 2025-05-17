@@ -69,7 +69,7 @@ The **buzzer** emits sound cues for actions and is connected to a GPIO pin
 - **Function**: Emits sound cues for actions such as tile merges, successful moves, or game over.
 
 ### Schematics
-![schematic](schematic.svg)
+![schematic](2048.svg)
 
 ### Bill of Materials
 
