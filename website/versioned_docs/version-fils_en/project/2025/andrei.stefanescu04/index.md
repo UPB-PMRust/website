@@ -63,9 +63,15 @@ Main components used:
 
 ### Week 5 - 11 May
 
+During this week I've wired up and soldered most of the components, such as the screen and buttons. Other than that, I worked on my scientific session project, which will come up later, in the software development milestone. The sacrifice I made by developing for a different project will pay off.
+
 ### Week 12 - 18 May
 
+During this week I prepared for the hardware milestone by checking my electronic connections and finding several bad connections for SPI, which I've fixed, both physically and in the electric schematic below.
+
 ### Week 19 - 25 May
+
+TBA
 
 ## Hardware
 
@@ -73,7 +79,16 @@ The hardware consists of the Raspberry Pi Pico 2W microcontroller and various pe
 
 There are five buttons connected that control the graphical interface: Left, Ok, Right, Up and Down. Also, a small green LED is attached, indicating the boot status of the board.
 
-The most important peripherals attached are the ILI9341 touch screen module and the buzzer, which allow for an embedded game development platform. Every single peripheral is attached via GPIO, except for the screen, which communicates with the board via SPI. On the screen we draw a menu, allowing the user to select from a list of games to play.
+The most important peripherals attached are the ILI9341 touch screen module and the buzzer, which allow for an embedded game development platform. Every single peripheral is attached via GPIO, except for the screen, which communicates with the board via SPI. On the screen we draw a menu, allowing the user to select from a list of games to play. Details can be seen in the figures below.
+
+
+Figure 1
+
+![Top-down view of the hardware](hardware_pic1.webp "Top-down view of the hardware")
+
+Figure 2
+
+![Side view of the hardware](hardware_pic2.webp "Side view of the hardware")
 
 ## Schematics
 
