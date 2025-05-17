@@ -26,9 +26,9 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 
 ## Architecture
 ### Connections 
-(./comp_diagram.webp)
+![Components](comp_diagram.webp)
 ### Schematic Diagram
-(./Schematic.webp)
+![Electric Schematic](Schematic.webp)
 
 
 **Key Components**:
@@ -37,10 +37,10 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
    - Interfaces with all sensors via GPIO/I2C
 2. **YS-27 module with a3144 hall effect sensor + Propeller**
    - **Interface**: GPIO with interrupts
-   - **Role**: Measures wind speed and direction using the propeller 
+   - **Role**: Measures wind speed and direction using the magnets attached to the propeller 
 3. **DHT22 & BMP280 & YL-38**
    - **Interface**: I2C
-   - **Role**: Core environmental sensing
+   - **Role**: Core environmental sensing, like rain (YL-38), temperature and humidity (DHT22) and atmospheric pressure (BMP280)
 4. **OLED FeatherWing 128x32**
    - **Interface**: I2C
    - **Role**: Display information locally
@@ -48,10 +48,10 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 
 ## Log 
 ### Week 1
-The first week of the project was intense, but i got around to setting up the sensors, and even got around to working on the code. The only thing i still need to add is the propeller to indicate the wind direction and speed. I hope the code will turn out nicely as well. The only thing left for the hardware part is setting up the propeller, which im not sure yet how to do. I do have some ideas but i need to experiment. Also, i started working on the code for the other sensors, but i have some problems with the dht22 and the pressure bme280 sensor. The only one i got to work (other than the display) is the rain module, which displays if it's raining or not.
+The first week of the project was intense, but i got around to setting up the sensors, and even got around to working on the code. I hope the code will turn out nicely as well in the end. The only thing left for the hardware part is setting up the propeller, which im not sure yet how to do. I do have some ideas but i need to experiment. Also, i started working on the code for the other sensors, but i have some problems with the dht22 and the pressure bme280 sensor. The only one i got to work (other than the display) is the rain module, which displays if it's raining or not.
 This is how it looks so far:
-(./hardware1.webp)
-(./hardware2.webp)
+![first pic](./hardware1.webp)
+![second](./hardware2.webp)
 ### Week 2
 
 ---
