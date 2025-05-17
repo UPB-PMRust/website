@@ -1,6 +1,6 @@
 # Arcade Game
 
-A slots machine inspired from the the game GTA Online, in which the symbols are represented by the logos of programming languages.
+A slots machine inspired from the game GTA Online, in which the symbols are represented by the logos of programming languages.
 
 :::info 
 
@@ -11,7 +11,7 @@ A slots machine inspired from the the game GTA Online, in which the symbols are 
 
 ## Description
 
-The project uses a Raspberry Pi Pico 2W as the control unit, along with two displays — a main display showing the slot machine game and a secondary display showing the winning combinations. The balance is simulated using an RFID card reader and a memory module. For an even better simulation, LEDs and a passive buzzer are used for audio-visual effects.
+The project uses two Raspberry Pi Pico 2W as the control units, along with two displays — a main display showing the slot machine game and a secondary display showing the winning combinations. The balance is simulated using an RFID card reader and a memory module. For an even better simulation, LEDs and a passive buzzer are used for audio-visual effects.
 
 ## Motivation
 
@@ -32,7 +32,7 @@ The diagram shows all the components and its connections.
 
 **ILI9341**:
 
-+ **Purpose**: Displays the slot game, balance, bet ammount, last win and encouraging messages after a loss and win message after a win.
++ **Purpose**: Displays the slot game, balance, bet amount, last win and encouraging messages after a loss and win message after a win.
 + **Connections**: via SPI
     + **CS** (Chip Select): GPIO17
     + **CLK** (Clock): GPIO18
@@ -42,16 +42,16 @@ The diagram shows all the components and its connections.
     + **Reset**: GPIO15
     + **Vcc 3.3V_OUT** and **GND**
 
-**ST7735**:     NOT CONNECTED YET
+**ST7735**:
 
 + **Purpose**: Displays the winning combinations of symbols.
 + **Connections**: via SPI
-    + **CS** (Chip Select): GPIO
-    + **CLK** (Clock): GPIO
-    + **MOSI** (Master Out Slave In): GPIO
-    + **MISO** (Master In Slave Out): GPIO
-    + **DC** (Data/Command): GPIO
-    + **Reset**: GPIO
+    + **CS** (Chip Select): GPIO13
+    + **CLK** (Clock): GPIO10
+    + **MOSI** (Master Out Slave In): GPIO11
+    + **MISO** (Master In Slave Out): GPIO12
+    + **DC** (Data/Command): GPIO14
+    + **Reset**: GPIO15
     + **Vcc 3.3V_OUT** and **GND**
 
 **RFID MFRC522**:
@@ -71,8 +71,6 @@ The diagram shows all the components and its connections.
     + **SDA**: GPIO26
     + **SCL**: GPIO27
     + **Vcc 3.3V_OUT** ad **GND**
-
-    
 
 **Buttons**:
 
@@ -116,19 +114,25 @@ I added the buzzer and here i ran into some problems. Initially the buttons were
 
 ### Week 5 - 11 May
 
-TODO - adding rfid module\
-TODO - adding eeprom memory
+I added the RFID module, which is used for reading the card UID. Based on this UID, the slot machine assigns an associated number that simulates the card's balance. The UIDs and their associated balances are stored in external EEPROM memory, which simulates the real behavior of a card. The EEPROM is used because RFID cards do not have internal memory and cannot store information on their own. Additionally, EEPROM memory allows the storage of card UIDs and balances even after a fresh upload of the code to the Raspberry Pi Pico 2W.
 
 ### Week 12 - 18 May
 
-TODO - adding programming languages logos as symbols\
-TODO - second display
+I completed the actual slot game, replacing the colors with actual symbols and i defined the winning combinations rules. I also connected the second display which shows the winning combinations and their value.
 
 ## Hardware
 
-The project uses a Raspberry Pi Pico 2W microcontroller. It features two SPI-driven displays: an ILI9341 TFT screen for high-resolution color graphics for the main game and a ST7735 TFT screen for smaller secondary display. For RFID functionality, it integrates an MFRC522 module, capable of reading and writing RFID tags. Data storage is supported by an external EEPROM memory chip, useful for saving card details permanently, even after flashing the Pico again. The setup also includes eight LEDs paired with eight resistors for visual feedback, along with four push buttons to allow user interaction.
+The project uses two Raspberry Pi Pico 2W microcontrollers: one dedicated to running the main game logic and another to handle a secondary display. This dual-microcontroller setup addresses both pin limitations on the main board and compatibility issues between the embedded graphics libraries of the two displays. The system features two SPI-driven TFT displays: an ILI9341 screen for high-resolution color graphics in the main game, and a smaller ST7735 screen for secondary display. RFID functionality is provided by an MFRC522 module, used for reading RFID tags. Data storage is supported by an external EEPROM memory chip, useful for saving card details permanently, even after flashing the Pico again. The setup also includes eight LEDs paired with eight resistors for visual feedback, along with four push buttons to allow user interaction.
+
+Initial prototype:
 
 ![harware](hardware_proj.webp)
+
+Final project:
+
+![hardware_assembled](slots_machine_hardware.webp)
+
+![final_project](slots_machine_front.webp)
 
 3D Model:
 
@@ -136,7 +140,13 @@ The project uses a Raspberry Pi Pico 2W microcontroller. It features two SPI-dri
 
 ### Schematics
 
+Main Circuit:
+
 ![kicad1](project-kicad-scheme1.webp)
+
+Secondary Circuit:
+
+![kicad2](project-kicad-scheme2.webp)
 
 ### Bill of Materials
 
@@ -152,14 +162,14 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) | The microcontroller | [39.66 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
-| [ILI9341](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3550-modul-lcd-de-28-cu-spi-i-controller-ili9341-240x320-px.html) | Main display | [69.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3550-modul-lcd-de-28-cu-spi-i-controller-ili9341-240x320-px.html) |
-| [ST7735](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html) | Secondary display | [27.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html) |
-| [RFID MFRC522](https://www.optimusdigital.ro/ro/wireless-rfid/67-modul-cititor-rfid-mfrc522.html) | Card Reader | [9.99 RON](https://www.optimusdigital.ro/ro/wireless-rfid/67-modul-cititor-rfid-mfrc522.html) |
-| [AT24C256](https://www.optimusdigital.ro/ro/memorii/632-modul-eeprom-at24c256.html) | Stores the balance | [8.99 RON](https://www.optimusdigital.ro/ro/memorii/632-modul-eeprom-at24c256.html) |
-| [Passive Buzzer](https://www.optimusdigital.ro/ro/componente-electronice/12598-modul-buzzer-pasiv.html) | Audio Effects | [1.69 RON](https://www.optimusdigital.ro/ro/componente-electronice/12598-modul-buzzer-pasiv.html) |
-| [Red Cap Button](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html) | x4 | [1.99 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html) |
-| [LEDs](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) | x8 (from kit)| [26.99 RON](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) |
+| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The microcontroller x2 | [39.66 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
+| [ILI9341](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | Main display | [69.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3550-modul-lcd-de-28-cu-spi-i-controller-ili9341-240x320-px.html) |
+| [ST7735](https://www.hpinfotech.ro/ST7735S.pdf) | Secondary display | [27.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html) |
+| [RFID MFRC522](https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf) | Card Reader | [9.99 RON](https://www.optimusdigital.ro/ro/wireless-rfid/67-modul-cititor-rfid-mfrc522.html) |
+| [AT24C256](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0670.pdf) | Stores the balance | [8.99 RON](https://www.optimusdigital.ro/ro/memorii/632-modul-eeprom-at24c256.html) |
+| [Passive Buzzer](https://www.handsontec.com/dataspecs/module/passive%20buzzer.pdf) | Audio Effects | [1.69 RON](https://www.optimusdigital.ro/ro/componente-electronice/12598-modul-buzzer-pasiv.html) |
+| [Red Cap Button](https://baltacom.com/upload/uf/546/5462ae185a73b708af4e9df5946d9a3e.pdf) | x4 | [1.99 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html) |
+| [LEDs](https://www.farnell.com/datasheets/1498852.pdf) | x8 (from kit)| [26.99 RON](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) |
 | [220Ω Resistors](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) | x8 (from kit)| [26.99 RON](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) |
 
 
@@ -178,4 +188,9 @@ The format is
 [gpio](https://docs.embassy.dev/embassy-rp/git/rp235xb/gpio/index.html) | GPIO management | Used for controlling GPIO pins
 [pwm](https://docs.embassy.dev/embassy-rp/git/rp235xb/pwm/index.html) | PWM module | Used for controlling the buzzer
 [smallrng](https://docs.rs/rand/latest/rand/rngs/struct.SmallRng.html) | Random number generator | Used for slots simulation
+[mfrc522](https://docs.rs/mfrc522/latest/mfrc522/) | RFID reader | Used for reading card UIDs
 
+
+## Links
+
+1. [Personal Repo](https://github.com/Gabyyi/Arcade-Game)
