@@ -55,7 +55,7 @@ A schematic diagram is provided to illustrate the connections and layout of the 
 <!-- write every week your progress here -->
 
 ### Week 5 - 11 May
-
+New week.
 ### Week 6 - 18 May
 
 ### Week 19 - 25 May
