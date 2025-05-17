@@ -61,7 +61,7 @@ I built the hardware part of the project. I have made again the KiCad Schematics
 
 ## Hardware
 
-![alt text](harware1 (1)-1.webp)
+![alttext](harware1 (1)-1.webp)
 ![alt text](hardware (1)-1.webp)
 ![alt text](hardware2 (1)-2.webp)
 
