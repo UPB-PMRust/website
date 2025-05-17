@@ -105,13 +105,19 @@ I connected the mini fan to the pin 3 beause I used pwm on channel 1B and I wrot
 
 I made some tests:
 - I wanted to test the buzzer and I started a flame in front of the flame sensor and the buzzer started to beep and the text on the screen turned red.
+
 ![flame_detection](flame_detection.webp)
+
 - I decreased the temperature threshold to 26 degrees to test the fan and I verified that the fan started to turn on and the text on the screen turned green.
+
 ![fan_starting](fan_starting.webp)
+
 - I test the buzzer and the fan together to see how they will appear on the screen and I verified that the buzzer started to beep and the text on the screen turned red and green.
+
 ![flame_and_fan](flame_and_fan.webp)
 
 These tests were before I displayed the time and date on the screen, so I will did the test again to see how the screen will look like with the time and date on it. I verified that the text is not overlapping:
+
 ![test1](test1.webp)
 ![test2](test2.webp)
 ![test3](test3.webp)
