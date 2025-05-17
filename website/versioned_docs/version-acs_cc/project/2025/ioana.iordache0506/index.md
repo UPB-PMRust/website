@@ -103,7 +103,9 @@ graph TD
 
   Initially, I attempted to use a WS2812 RGB LED module for visual feedback, but due to limitations in Rust crate support and stability issues, I opted for a simpler and more robust solution: a 3W High Power LED module. To manage it, I implemented a lightweight `RgbLed` abstraction that mimics PWM behavior using basic GPIO toggling. While it doesn’t support full-spectrum control, it serves well for status indication and general on/off signaling.
 
-  Additionally, I started researching how to integrate a solar panel for charging an external battery. This is still under planning and not wired yet.
+  Additionally, I started researching on how to integrate a solar panel for charging an external battery. I finally managed to power the module using the Battery Power Module with Solar Port, connected to a 4.2V Li-ion battery and a small solar panel. If the battery and panel provide enough power, I’ll also be able to connect other parts of the system to the same power source in the future. It’s a nice step towards making the whole setup more independent and possibly usable outdoors without needing a wired power supply.
+  
+  I also started building a frame to integrate the hardware - basically a small “house.” I thought about how it could look and began working on the door and window mechanism. However, I consider these more related to the physical design than to the hardware itself, since the functionalities and connections are already in place. I’ll keep improving the appearance and details until the PM fair.😊🏠
 
 - **Week 19 – 25 May**  
   TBD
@@ -119,30 +121,38 @@ graph TD
 | Servo Motor #1             | Controls automatic door                   |
 | Servo Motor #2             | Controls automatic window                 |
 | 4x4 Keypad Matrix          | Secure unlock input                       |
-| 3W LED Module               | Basic visual status feedback              |
+| 3W LED Module              | Basic visual status feedback              |
 | *Optional: PIR Sensor*     | Motion detection                          |
 | *Optional: Gas Sensor*     | Safety detection                          |
 | *Optional: Solar Panel*    | Battery charging via sunlight             |
 
+![Entire Hardware](entire_hw.webp)
+
+![LCD Hardware](lcd_hw.webp)
 
 > **Note**: Solar power is planned as an optional future extension, not core requirements.
 
 
 ## Schematics  
-**TBD** – Will be provided after hardware setup is complete.
+![Mini Smart Home Schematic](mini_smart_home_schematic.svg)
 
-## Bill of Materials  
-| Device                                                           | Usage                         | Price (approx.) | Link                                                                                                                             |                                 |
-| ---------------------------------------------------------------- | ----------------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 2× Raspberry Pi Pico 2 W                                           | Controller with WiFi          | 39.66 RON each         | [Optimus Digital](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico+2+w&results=33)                                        |                                 |
-| KS0203 Humidity Sensor                                           | Rain detection                | 20 RON          | [Keyestudio](https://www.keyestudio.com/products/keyestudio-vapor-sensor-for-arduino)                           |                                 |
-| LCD 1602 with I2C interface                | Display                       | 16.34 RON       | [Optimus Digital](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html?search_query=lcd+i2c&results=17)      |                                 |
-| 2× SG90 servomotor                               | Door and window control       | 13.99 RON each       | [Optimus Digital](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servo&results=186)                                |                                 |
-| 4x4 Matrix Keypad                                            | Input interface               | 3.99 RON       | [Optimus Digital](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/2441-tastatura-matriceala-4x4-cu-butoane.html?search_query=matrice+butoane&results=8)                                   |                                 |
-| High power 3W LED module | Visual system indicator       | 10 RON       | [FunduinoShop](https://funduinoshop.com/en/components/active-components/leds-and-lights/high-power-3w-led-module-on-board-comparable-with-keyes-led-module) |                                 |
-| PIR Motion Sensor (optional)                                 | Motion detection              | 20 RON        | [Keyestudio](https://eckstein-shop.de/KeyestudioPIRMotionSensorModuleforArduino3-4meterEN)                                       |                                 |
-| Mini Solar Panel (optional) | Solar charging (future)       | 15 RON         | [Keyestudio](https://www.keyestudio.com/products/keyestudio-mini-pet-solar-panel-connected-to-charging-frosted-surface-high-conversion-rate-with-wires-tech-production-diy-component)                                                |                                 |
 
+## Bill of Materials
+
+| Device                                          | Usage                                    | Price (approx.) | Link                                                                                                                                                                                                                                                                                                   |
+| ----------------------------------------------- | ---------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2× Raspberry Pi Pico 2 W                        | Controller with WiFi                     | 39.66 RON each  | [Optimus Digital](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico+2+w&results=33)                                                                                                                                                               |
+| KS0203 Humidity Sensor                          | Rain detection                           | 20 RON          | [Keyestudio](https://www.keyestudio.com/products/keyestudio-vapor-sensor-for-arduino)                                                                                                                                                                                                                  |
+| LCD 1602 with I2C interface                     | Display                                  | 16.34 RON       | [Optimus Digital](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html?search_query=lcd+i2c&results=17)                                                                                                                                       |
+| 2× SG90 servomotor                              | Door and window control                  | 13.99 RON each  | [Optimus Digital](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servo&results=186)                                                                                                                                                                  |
+| 4x4 Matrix Keypad                               | Input interface                          | 3.99 RON        | [Optimus Digital](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/2441-tastatura-matriceala-4x4-cu-butoane.html?search_query=matrice+butoane&results=8)                                                                                                                                   |
+| High power 3W LED module                        | Visual system indicator                  | 10 RON          | [FunduinoShop](https://funduinoshop.com/en/components/active-components/leds-and-lights/high-power-3w-led-module-on-board-comparable-with-keyes-led-module)                                                                                                                                            |
+| PIR Motion Sensor (optional)                    | Motion detection                         | 20 RON          | [Keyestudio](https://eckstein-shop.de/KeyestudioPIRMotionSensorModuleforArduino3-4meterEN)                                                                                                                                                                                                             |
+| Mini Solar Panel (optional)                     | Solar charging (future)                  | 15 RON          | [Keyestudio](https://www.keyestudio.com/products/keyestudio-mini-pet-solar-panel-connected-to-charging-frosted-surface-high-conversion-rate-with-wires-tech-production-diy-component)                                                                                                                  |
+| Battery Power Module with Solar Port (optional) | Battery power supply with solar charging | 20 RON          | [Sigmanortec](https://sigmanortec.ro/modul-incarcare-solara-acumulator-37v-cn3065?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=22174019478&gbraid=0AAAAAC3W72PBSB9trWS1_CCs8llsimAhN&gclid=CjwKCAjw56DBBhAkEiwAaFsG-td4aXIvnqv01kv9lhIPOvxqi8xEkqTN5fJVQizllL3Fsm1Pfy44VhoCAFUQAvD_BwE) |
+| Breadboard HQ                        | Circuit prototyping                      | 4.56 RON         | [Optimus Digital](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard&results=125)                                                                                                                |
+
+> **Note**: Not all the links point to Romanian websites. Some parts I already had, so I included links where I could find them easily.
 
 ## Software  
 
@@ -162,10 +172,10 @@ graph TD
 
 ## Links  
 
-- [Core Electronics Pico Tutorial (YouTube)](https://www.youtube.com/watch?v=Ic4ExTusoTw&t=334s&ab_channel=CoreElectronics) – super helpful 4h video that explains microcontrollers really well; even if it’s not in Rust, it made a lot of embedded concepts much clearer
+- [Core Electronics Pico Tutorial](https://www.youtube.com/watch?v=Ic4ExTusoTw&t=334s&ab_channel=CoreElectronics) – super helpful 4h video that explains microcontrollers really well; even if it’s not in Rust, it made a lot of embedded concepts much clearer
 
-- [Raspberry Pi Pico + Servo Motor Tutorial (RandomNerdTutorials)](https://randomnerdtutorials.com/raspberry-pi-pico-servo-motor-micropython/) – helped me understand how to wire and control a servo from the Pico, even though it’s in MicroPython
+- [Raspberry Pi Pico + Servo Motor Tutorial](https://randomnerdtutorials.com/raspberry-pi-pico-servo-motor-micropython/) – helped me understand how to wire and control a servo from the Pico, even though it’s in MicroPython
 
-- [Servo Door Mechanism (Roboarmy, YouTube)](https://www.youtube.com/watch?v=LJ1xLmmuTUs&ab_channel=Roboarmy) – quick video that gave me the idea for how to physically move the door using a servo
+- [Servo Door Mechanism](https://www.youtube.com/watch?v=LJ1xLmmuTUs&ab_channel=Roboarmy) – quick video that gave me the idea for how to physically move the door using a servo
 
-- [Servo vs Stepper (YouTube Shorts)](https://www.youtube.com/shorts/rift8UbrAyQ) – a short but clear explanation of the difference between servo and stepper motors, from the same guy in the long tutorial
+- [Servo vs Stepper](https://www.youtube.com/shorts/rift8UbrAyQ) – a short but clear explanation of the difference between servo and stepper motors, from the same guy in the long tutorial
