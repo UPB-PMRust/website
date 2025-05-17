@@ -46,6 +46,9 @@ I had a plant that i've forgot to water and died.
 - RGB LED
     - feedback of watering level
 
+### Schematic
+![Plant Watering Alarm System Schematic](schematic.jpg)
+
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
