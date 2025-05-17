@@ -73,7 +73,7 @@ Light up when the player reaches certain scores
 ## Log
 
 - *Week 5 - 11 May*: Planned the architecture of the project, bought all the required components and created the documentation of the project.
-- *Week 12 - 18 May*: This week I received all the hardware components and began wiring them on the breadboard.
+- *Week 12 - 18 May*: This week, I received all the hardware components, created the KiCad schematic, and started wiring the components on the breadboard.
 - *Week 19 - 25 May*: 
 
 ## Hardware
