@@ -45,6 +45,10 @@ Performing tests on the sensors using an Arduino to observe accuracy.
 ### Week 19 - 25 May
 
 ## Hardware
+![picture1](inirialhardware1.jpg)
+![picture1](inirialhardware2.jpg)
+![picture1](inirialhardware3.jpg)
+![picture1](inirialhardware4.jpg)
 
 Detail in a few words the hardware used.
 
