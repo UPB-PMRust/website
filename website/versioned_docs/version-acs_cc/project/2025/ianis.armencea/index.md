@@ -41,6 +41,10 @@ if the project turns out well i will be using the device myself to tune my guita
 
 ## Schematics
 ![alt text](schematic_final.webp)
+![alt text](hardware_1.webp)
+![alt text](hardware_2.webp)
+![alt text](hardware_3.webp)
+
 
 
 ## Bill of Materials
