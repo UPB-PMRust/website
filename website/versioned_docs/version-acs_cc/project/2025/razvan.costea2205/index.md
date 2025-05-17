@@ -58,6 +58,26 @@ One of the biggest environmental threats that the modern world faces is global w
 6. Buzzer & LEDs:
 - the audible-visual alarm: when certain parameters are reached, the alarm is triggered
 
+![plot1](./above.webp)
+![plot2](./side.webp)
+![plot3](./closeup.webp)
+![plot4](./other.webp)
+
+The first three photos showcase the main circuit: both Picos on the breadboard,
+connected accordingly, the BME280 and TSL2561 sensors, the GPS module, 
+a buzzer and an LED.
+The 4th picture contains the GPS module and the LCD screen, which is yet to be
+wired up.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5pqSocc1IFU" 
+frameborder="0" allowfullscreen></iframe>
+
+The video presents the current functionality of the project:
+- the MCU constantly reads readings from both sensors
+- measurements are displayed in the terminal
+- when the temperature is above 24 °C, an alarm is started
+- the alarm consists of a buzzer and a red LED
+
 ### Schematics
 
 ![kicad](./schematic.svg)
@@ -99,6 +119,8 @@ The format is
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor | Create different tasks |
 | [lcd1602-rs](https://crates.io/crates/lcd1602-rs) | Display library | Used for my 16 characters on 2 lines LCD screen |
 | [heapless](https://crates.io/crates/heapless) | Statically allocated data | Used to write strings for my LCD |
+| [tsl256x](https://crates.io/crates/tsl256x) | Platform agnostic driver for TSL256x | Read raw data from TSL2561 |
+| [libm](https://crates.io/crates/libm) | libm in pure Rust | Use mathematical functions, such as `pow` | 
 
 
 ## Links
