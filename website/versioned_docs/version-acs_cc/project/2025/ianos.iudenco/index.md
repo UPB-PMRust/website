@@ -78,7 +78,7 @@ appear on the LCD, the player can press the Enter key to send the word. On the M
 the player will see the feedback of the word and the word will be visible on the second display.
 
 ### Schematic
-![schematic](./images/schematic.webp)
+![schematic](./images/schematic.svg)
 ![img2](./images/img2.webp)
 ![img3](./images/img3.webp)
 
