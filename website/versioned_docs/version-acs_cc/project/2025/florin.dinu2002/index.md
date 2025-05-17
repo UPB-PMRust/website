@@ -118,6 +118,9 @@ Here’s a concise description of the hardware components used in my project:
 - 7-Segment Display – shows the number of free parking spaces available in real time.
 - Voltage Source – provides 5V power to the sensors, servo, and display.
 
+  ![Poza 1](poza1.webp)
+  ![Poza 2](poza2.webp)
+
 ### Schematics
 
 Place your KiCAD schematics here.
