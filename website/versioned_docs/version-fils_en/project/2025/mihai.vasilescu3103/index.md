@@ -48,6 +48,8 @@ The Pico uses Embassy for efficient multitasking and synchronization between gam
 
 ### Schematics
 ![Block Diagram](BlockDigram.webp)
+This is the kicad schematic of my circuit.
+![Kicad Schematic](kicad.webp)
 
 
 ### Bill of Materials
