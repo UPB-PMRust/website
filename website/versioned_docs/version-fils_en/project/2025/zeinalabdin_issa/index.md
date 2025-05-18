@@ -47,15 +47,15 @@ The Raspberry Pi Pico controls the smart parking lot system using Ultrasonic sen
 
 Here is the actual setup:
 
-![](./image1.webp)
+![front view](./image1.webp)
 
-![](./image2.webp)
+![side view1](./image2.webp)
 
-![](./image3.webp)
+![side view2](./image3.webp)
 
 ## Schematics
 
-![KiSchematic Diagram](Schematics.webp) 
+![KiSchematic Diagram](Kischematic.webp) 
 
 ## Bill of Materials
 
