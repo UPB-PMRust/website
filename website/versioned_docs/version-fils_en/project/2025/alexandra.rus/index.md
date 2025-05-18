@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-# Project Name
-=======
- Project Name
->>>>>>> 9d7efb1 (Actualizez index.md și adaug schema și screenshot)
+
+
 Guitar Tuner
 
 :::info 
@@ -104,7 +101,7 @@ On the software side, I started developing the signal acquisition system. I succ
 During this process, I encountered several issues with the OLED display — sometimes it showed static noise (“white noise” pixels), other times it worked normally. After multiple attempts to debug the wiring and refresh timings, I decided to order a new display and plan to replace the current one for better reliability.
 
 Overall, this week was focused on finalizing the core of the hardware setup and initiating the software logic for sound analysis.
->>>>>>> 9d7efb1 (Actualizez index.md și adaug schema și screenshot)
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -163,14 +160,13 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
  ![Tinkercad schematics](Design.png)
 
  ![Kicad schematics](Screenshot.png)
- [The schematics can be downloaded here](./kicad2.kicad_sch)
-
+ 
  Here are some pictures of the project in current state. I am going to use a 3D printer to make it a case for the design part and also a peg clip for the stepper motor.
  ![](image1.jpeg)
   ![](Image2.jpeg)
    ![](image3.jpeg)
     ![](image4.jpeg)
->>>>>>> 9d7efb1 (Actualizez index.md și adaug schema și screenshot)
+
 
 
 ### Bill of Materials
