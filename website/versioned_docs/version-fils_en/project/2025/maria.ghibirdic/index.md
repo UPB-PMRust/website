@@ -152,7 +152,7 @@ Observing the overall development of my project, I decided to add a few function
 
 The Kicad scheme of the project: 
 
-![](smartwatch_KiCad.webp)
+![](smartwatch.svg)
 
 A picture of the project:
 
