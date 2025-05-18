@@ -108,6 +108,7 @@ All components are connected using the **breadboard** for modularity and ease of
 - **Purpose**: Prototyping and wiring  
 - **Function**: Enable modular and safe interconnection between all components without soldering.
 
+![Schema kicad](./Pico_project.svg)
 ---
 
 ### Hardware Overview
