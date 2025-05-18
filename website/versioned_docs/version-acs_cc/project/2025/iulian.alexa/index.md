@@ -24,7 +24,7 @@ I also thought it would be interesting to try and connect a USB keyboard to a mi
 
 - The Raspberry Pi Pico 2W acts as the central processing unit, running the software.
 - The display is driven by the Pico 2W to provide the visual interface for all menus, games, and feedback.
-- The MicroSD module integrated in the TFT display module allows for writing and reading leaderboard scores.
+- The SD module integrated in the TFT display module allows for writing and reading leaderboard scores.
 - The buzzer, connected to a GPIO pin on the Pico 2W, provides simple audio cues.
 - The USB hub allows the Pico 2W to receive input from the two keypads.
 - LEDs are used for additional visual feedback.
@@ -45,22 +45,35 @@ I also thought it would be interesting to try and connect a USB keyboard to a mi
 
 ### Week 5 - 11 May
 
+- ordered more hardware components
+- wrote the HID driver for the cotton\_usb\_host crate
+- tested the SD card reader, display, LEDs and buzzer
+
 ### Week 12 - 18 May
+
+- ordered the numeric keypads and the USB hub
+- created the channel to pass keystrokes from the usb_task to the main task
+- started working on minigames
+- updated the KiCad schematic (couldn't find common cathode LEDs; updated to common anode)
+
+My plan for the next week is to finish the minigames, and also create a 3D printed enclosure for the device to improve the overall look.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
 - Raspberry Pi Pico 2W - The microcontroller
-- 2.2'' LCD TFT SPI 320x240 ILI9341 display - Display and Micro SD module
+- 2.2'' LCD TFT SPI 320x240 ILI9341 display - Display and SD module
 - 2x A4Tech NumericPad Fstyler FK13 USB Black - User Input
 - LOGILINK Hub USB 2.0 4 ports - Join Keyboards to allow connecting to MCU USB
 - Active Buzzer - Audio feedback
 - LEDs - Additional visual feedback
 
+![hardware](./hardware.webp)
+
 ### Schematics
 
-![block](./kicad.webp)
+![schematic](./kicad.webp)
 
 ### Bill of Materials
 
@@ -75,10 +88,10 @@ I also thought it would be interesting to try and connect a USB keyboard to a mi
 | Female USB-A to Male Micro USB Adapter | USB Hub input | [5 RON](https://www.optimusdigital.ro/ro/raspberry-pi-zero/3867-adaptor-usb-mama-la-micro-usb-tata.html) |
 | Jumper Wires | Connecting Components | [5 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html) |
 | 3xR6 Battery Holder | Portable Power Source | [4 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/1090-suport-baterii-3-x-r6.html) |
-| 2x Active Buzzer | Audio Feedback | [2x 2 RON](https://www.optimusdigital.ro/ro/audio-buzzere/633-buzzer-activ-de-5-v.html) |
+| 1x Active Buzzer | Audio Feedback | [2 RON](https://www.optimusdigital.ro/ro/audio-buzzere/633-buzzer-activ-de-5-v.html) |
 | Resistors | Voltage regulation and signal protection for components | 3 RON |
 | LEDs | Visual Feedback | 3 RON |
-| **Total** | | 273 RON |
+| **Total** | | 271 RON |
 
 ## Software
 
@@ -90,7 +103,7 @@ I also thought it would be interesting to try and connect a USB keyboard to a mi
 | [cotton-usb-host](https://github.com/pdh11/cotton/tree/main) | USB Host Stack | Enable the Keyboards |
 | [rp235x-pac](https://github.com/rp-rs/rp235x-pac) | PAC for RP2350 | Used by cotton-usb-host |
 | [defmt](https://github.com/knurling-rs/defmt) | Deferred formatting | Logging during testing |
-
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD Card | Log scoreboard on the SD Card |
 ## Links
 
 1. [PM Rust Lab](https://pmrust.pages.upb.ro/docs/acs_cc/category/lab)
@@ -98,3 +111,4 @@ I also thought it would be interesting to try and connect a USB keyboard to a mi
 3. [TinyUSB](https://docs.tinyusb.org/en/latest/reference/getting_started.html)
 4. [cotton_usb_host](https://docs.rs/cotton-usb-host/latest/cotton_usb_host/)
 5. [RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
+6. [USB Human Interface Devices](https://wiki.osdev.org/USB_Human_Interface_Devices)
