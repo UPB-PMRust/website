@@ -41,7 +41,11 @@ The LED accompanies the buzzer in lighting up with each heartbeat.
 
 ### Week 5 - 11 May
 
+I wired the main pico to the one that serves as a debugger. I flashed the debug probe firmware on one of the picos.
+
 ### Week 12 - 18 May
+
+I finished putting together all the harware components. I started downloading the necessary crates for the LCD.
 
 ### Week 19 - 25 May
 
@@ -61,9 +65,11 @@ An LED that will light up with every heartbeat.
 
 A generic electronics kit that contains a breadboard, jumper wires, resistors, capacitors.
 
+![Hardware](Hardware.webp)
+
 ### Schematics
 
-![Schematic](KiCad-Schematic.webp)
+![Schematic](KICAD Schematic.webp)
 
 ### Bill of Materials
 
