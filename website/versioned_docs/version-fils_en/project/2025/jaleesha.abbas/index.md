@@ -135,7 +135,7 @@ Continuing the progress. Will update as soon as I reach the milestone.
 ## Schematic
  
 
-![Schematic](./schematic.kicas_sch)
+![Schematic](./schematic.svg)
 
 ---
 
