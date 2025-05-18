@@ -119,18 +119,19 @@ Up next here are presented some pictures with the hardware.
 Top View of the Main PICO used to reel in and signal the fisherman about different states of the fishing process:
 ![Main_PICO_TOP_VIEW.webp](Main_PICO_TOP_VIEW.webp)
 
+
 Side View of the optical sensor which is supposed to measure if the ray can pass through the disk in order to detect the fish who took the bait:
 ![Optical_sensor_next_to_reel.webp](Optical_sensor_next_to_reel.webp)
+
 
 Side View of the second pico which is supposed to give the proximity data of the fish to the main MCU:
 ![Second_PICO_SIDE_VIEW.webp](Second_PICO_SIDE_VIEW.webp)
 
+
 Top view of the second pico:
 ![Second_PICO_TOP_VIEW.webp](Second_PICO_TOP_VIEW.webp)
 
-
-  
-
+ 
 ### Schematics
 
 Here is presented the KiCAD Schematic:
