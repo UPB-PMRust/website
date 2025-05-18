@@ -33,12 +33,21 @@ I chose this project because I wanted to build a device that provides emotional 
 
 ### Week 5 - 11 May
 
-This week I received all the components including the TTS module and I've successfully tested all of them for a better understanding of their behavior. More precisely, I debugged the analog microphone using an oscilloscope and noticed that there were some interferences with the input signal and to solve this I added a capacitator and a resistor. However, this problem won't arise if I were to switch to a digital microphone. Also I've tested the display and the charging functionality to ensure the system's portability.
+This week I received all the components including the TTS module and I've successfully tested all of them for a better understanding of their behavior. More precisely, I debugged the analog microphone using an oscilloscope and noticed that there were some interferences with the input signal and to solve this I added a capacitor and a resistor. However, this problem won't arise if I were to switch to a digital microphone. Also I've tested the display and the charging functionality to ensure the system's portability.
 
 ![Week1](Week1-v1.webp)
 ![Week1](Week1-v2.webp)
 
 ### Week 12 - 18 May
+
+This week I successfully completed the initial communication pipeline with the ChatGPT API. I can now send text-only requests from the pico and retrieve the responses directly from the API. In addition, I implemented the TTS (text-to-speech) module, enabling audio playback of ChatGPT’s responses through the speaker, making interactions audible for the first time.
+
+[Demo1 Video](https://www.youtube.com/watch?v=kSItIN3lMy4&ab_channel=Nightmare123)
+
+On the hardware side, I began placing key components on the PCB. I’ve focused on positioning the battery and the charging module, where I tried to properly align the powering system for future placement considerations.
+
+![Week2](Week2-v1.webp)
+
 
 ### Week 19 - 25 May
 
