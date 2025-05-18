@@ -11,7 +11,7 @@ Magnetic robot that erases whiteboard marker strokes and can be driven remotely 
 ## Description
 
 SpongeBot SteelPants is a two-wheel robot designed to automate the process of cleaning
-whiteboards. It clings to the board with a PWM-controlled electromagned and either:
+whiteboards. It clings to the board with a PWM-controlled electromagnet and either:
 * automatic sweep mode - systematically scans the entire board in a lawn-mower pattern
 * remote mode - receives real-time drive commands from a phone/PC over Wi-Fi.
 
@@ -85,7 +85,7 @@ flowchart TD
 * Set up defmt debugging to verify Pico functionality and test communication with peripherals
 
 ### Week 12 - 18 May
-* Selected an appropiate chassis, then mounted and organized every module on it
+* Selected an appropriate chassis, then mounted and organized every module on it
 * Assembled complete hardware stack and performed an initial test of all the components
 * Implemented and validated test functions for all critical peripherals (MPU-6050, I²C bus, OLED Display), 
 confirming data flow
