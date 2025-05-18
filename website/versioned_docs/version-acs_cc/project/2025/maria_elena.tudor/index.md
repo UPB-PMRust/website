@@ -63,7 +63,7 @@ First Schematic
 ![Kicad Schematic](kicad.webp)
 
 Schematic after Hardware Milestone
-![Kicad Schematic after Hardware Milestone](kicad2.webp)
+![Kicad Schematic after Hardware Milestone](kicad_nou.webp)
 
 ### Bill of Materials
 
