@@ -14,6 +14,12 @@ This project is built using two Raspberry Pi Pico 2W, one servo-motor and one en
 ## Motivation
 The motivation behind this project is to create an affordable and automated solution for protecting homes from incoming rain. By using a simple external fan as a wind-speed sensor and Raspberry Pi Pico microcontrollers, the system detects high wind speeds—often a precursor to rain—and automatically signals to close windows. This adds a layer of convenience and protection for homeowners, especially when they are away or unable to act quickly.
 ## Architecture 
+
+![alt text](architecture1.webp)
+
+![alt text](architecture2.webp)
+
+
 ### Schematic Diagram
 This is the diagram that illustrates the components and their connections.
 
