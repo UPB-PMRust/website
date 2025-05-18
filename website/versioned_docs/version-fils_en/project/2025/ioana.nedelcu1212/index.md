@@ -44,7 +44,6 @@ Finished ordering any remaining parts that I might have needed. My components en
 8. **Wires**: Used for connecting the components.
 
 ![](ProjectImg1.webp)
-![](ProjectImg2.webp)
 
 ### Schematics
 
