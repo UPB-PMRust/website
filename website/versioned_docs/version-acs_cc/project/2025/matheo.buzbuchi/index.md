@@ -75,7 +75,10 @@ The following hardware components were used to build the automated fishing rod s
 
 ### Schematics
 
-Place your KiCAD schematics here. (Work in progress)
+Here is presented the KiCAD Schematic:
+
+![KiCAD Rod Schematic](Schema_all_components_fishing_Rod_3.png)
+
 
 ### Bill of Materials
 
