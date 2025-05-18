@@ -58,7 +58,7 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ### Week 10 - 4 May: I submitted the documentation and made the necessary changes.
 
-### Week 11 - 11 May:`
+### Week 11 - 11 May:
 
 ### Week 12 - 18 May:
 
