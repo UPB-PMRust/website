@@ -1,11 +1,9 @@
-# Project Name
-Noise-Triggered Visual Alert 
+# Noise-Triggered Visual Alert 
 
 :::info 
 
-**Author**: Stergarel Teodora 
+**Author**: Stergarel Teodora \
 **GitHub Project Link**: https://github.com/teodora-stergarel/website
->>>>>>> 9a63b72 (update)
 
 :::
 
@@ -38,8 +36,6 @@ This project aims to provide an accessible, real-time visual alert system that r
 
 ## Hardware
 
-## Hardware
-
 The project is built around the **Raspberry Pi Pico W** microcontroller and integrates the following components:
 
 - **INMP441 MEMS Microphone** (I2S): Used to detect ambient sounds and recognize keywords like “Hello”, “Attention”, and “Help”.
@@ -55,7 +51,11 @@ The project is built around the **Raspberry Pi Pico W** microcontroller and inte
 Below is the schematics of the device:
 
 ![Project Schematics:](/img/architecture.png)
->>>>>>> 9a63b72 (update)
+
+KiCad Schematics:
+
+![KiCad Schematics:](/img/kicad.webp)
+
 
 ### Bill of Materials
 
