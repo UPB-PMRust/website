@@ -66,6 +66,9 @@ The hardware setup includes:
 
 ## Schematic
 
+At the moment, the temperature sensors used in the prototype are OKY3066-2 (LM35-based). However, they have shown inconsistent or unstable readings during testing. As a result, they will be replaced with LM75B digital temperature sensors, as indicated in the schematic, to improve reliability and I2C-based integration.
+
+
 ![Schematic made in Kicad](./schematic.webp)
 
 ## Bill of Materials 
@@ -112,4 +115,7 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 
 
 ## Links
+
+- [PixyCam Setup Guide](https://pixycam.com/start) – Used to successfully connect and configure the PixyCam 2 with the Raspberry Pi Pico 2W
+
 
