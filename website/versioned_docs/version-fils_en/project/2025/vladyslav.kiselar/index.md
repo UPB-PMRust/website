@@ -31,9 +31,6 @@ Once the coin is successfully deposited, the display is updated to show the curr
 For collecting the stored coins, the system integrates a locking mechanism. A metal latch is mechanically actuated by a servo motor. This acts as an electronically controlled lock. To unlock the compartment, the user must authenticate using an NFC module. If the scanned card/tag is authorized, the servo moves the latch to allow access.
 
 ![Architecture Diagram](architecture_diagram.webp)  
-*As of now, at the Week 5-11 May, DC jack module is being used to power the coin selector, while all other components are running on a battery supply. This setup is inefficient and not fully reliable, as the battery struggles to provide stable power for continuous operation of the system.*
-
-*Looking ahead, a voltage regulator is planned to supply power to both the coin selector and all other modules from a single source. However, it remains an open question whether this setup will deliver sufficient current for stable and reliable operation of the entire system.*
 
 
 ## Log
@@ -56,6 +53,20 @@ Looking forward, the plan is to introduce a voltage regulator to supply both the
 
 ### Week 12 - 18 May
 
+This week marked a significant step forward in finalizing the physical structure and improving power stability. I successfully introduced a voltage regulator module to convert 12V input down to 5V, which now supplies power to both the coin selector and all other components. This change eliminates the need for a separate 9V battery and has greatly improved system stability and reliability under continuous operation.
+
+![Voltage Regulator 1](voltage_regulator1.webp)  
+
+![Voltage Regulator 2](voltage_regulator2.webp)  
+
+With the electronics now reliably powered, I moved on to constructing the final enclosure. The entire prototype has been rebuilt using LEGO bricks, replacing the earlier cardboard mock-up. This new “home” includes well-structured coin sorting boxes, each custom-built from LEGO to match the coin types and sorting paths.
+
+![Hardware Components 1](hardware_components1.webp)  
+
+Additionally, I installed a locking mechanism for the coin collection compartment using a servo-controlled door system. The enclosure also features cleanly cut access ports, allowing easy connection to a 12V power source and facilitating code uploads to the Raspberry Pi Pico via USB without disassembling the setup.
+
+![Hardware Components 3](hardware_components3.webp)
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -64,16 +75,15 @@ The control logic of Coins Keeper is implemented on Raspberry Pi Pico 2W boards.
 
 A 16x2 I2C LCD displays the current balance and system messages, while a passive buzzer and status LED provide audio and visual feedback. An NFC reader module is integrated for access control. When an authorized NFC card or tag is scanned, the system activates a servo-driven physical latch to unlock the compartment — securing the coins from unauthorized access.
 
-![Hardware](hardware.webp) 
+![Hardware Components 2](hardware_components2.webp)
 
-Most components are currently wired on a breadboard and mounted inside a cardboard test box to prototype layout and positioning. In the final version, the housing and compartments will be built from LEGO bricks, with parts fixed in place using a hot glue gun. Coin bins are yet to be implemented but will also be constructed from LEGO.
+Most components are now permanently wired and installed inside a LEGO-built enclosure. All servos, stepper motors, and sensors are connected, and coin bins have been fully constructed from LEGO to match sorting paths. Parts are fixed in place using a hot glue gun for stability.
 
-For now, the coin selector runs on 12V via a DC jack, while all other components are powered through a 5V breadboard power module connected to a 9V battery. A voltage regulator is planned to power the entire system from a single 12V input, though its ability to handle total current demand is still under evaluation.
+The system is now powered from a single 12V input through a voltage regulator that steps down to 5V, supplying all components including the coin selector. This setup has replaced the previous 9V battery and breadboard power module, and has proven to be more stable during ongoing system testing.
 
 ### Schematics
 
 ![KiCad Schematic](KiCad.webp)  
-*Not final version - not all components are connected yet.*
 
 ### Bill of Materials
 
