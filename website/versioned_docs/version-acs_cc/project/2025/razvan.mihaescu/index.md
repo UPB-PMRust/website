@@ -238,4 +238,7 @@ The format is
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
-
+https://ai.thestempedia.com/extension/iot-house-quarky/
+https://www.youtube.com/watch?v=VK_0CKheeUY
+https://www.youtube.com/watch?v=eidD14dXW8s
+https://ocw.cs.pub.ro/courses/pm/prj2023/ncaroi/smart-home?&#rezultate_obtinute
