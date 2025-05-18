@@ -45,13 +45,13 @@ These components interact as follows:
 
 ## Hardware
 
-![Hardware](Hardware.jpeg)
+![Hardware](Hardware.svg)
 
 The project uses a Raspberry Pi Pico W as the main controller, with a 2.4" LCD screen for display, a TPA3118 mono audio amplifier for sound feedback, and an AT24C256 EEPROM module for data storage. Buttons for input and basic resistors are used for the interface.
 
 ### Schematics
 
-![HardwareSchematics](KiCadScheme.jpeg)
+![HardwareSchematics](KiCadScheme.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
