@@ -75,7 +75,7 @@ flowchart TD
 ### Week 19 - 25 May
 
 ## Hardware
-
+  For my safe, I used a Raspberry Pi Pico 2W as my MCU. With the help of a PN532 module I am able to scan any access keys with NFC/RFID. My locking mechanism is a SG90 servomotor. I have also installed two LEDs, one blue and one red, and an active buzzer, meant to resemble an alarm. The "projectiles" are fired with the help of a DC motor that is spinning a wheel.
 
 
 ### Schematics
@@ -100,7 +100,7 @@ The format is
 | Red LED | Blinking when the alarm goes off | [0.39 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/696-led-rou-de-3-mm-cu-lentile-difuze.html) |
 | Blue LED | Blinking when the alarm goes off | [0.29 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/12237-led-albastru-de-5-mm.html) |
 | Buzzer | Used when the alarm goes off | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/635-buzzer-activ-de-3-v.html) |
-| PN532 RFID Module | Used for  opening the safe | 30 RON |
+| [PN532 RFID Module](https://www.nxp.com/docs/en/nxp/data-sheets/PN532_C1.pdf) | Used for  opening the safe | 30 RON |
 | 9V Battery | Used for powering the motors and the RFID Module | 10 RON |
 | Battery Support | Connecting the battery to the breadboard | [1.29 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/20-conector-pentru-baterie-de-9-v.html) |
 | Breadboard | Connecting all the components | [4.56 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html) |
