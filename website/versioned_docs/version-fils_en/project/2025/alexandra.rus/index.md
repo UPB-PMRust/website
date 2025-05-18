@@ -157,15 +157,15 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
 
 ### Schematics
 
- ![Tinkercad schematics](Design.png)
+ ![Tinkercad schematics](Design.webp)
 
- ![Kicad schematics](Screenshot.png)
+ ![Kicad schematics](Screenshot.webp)
 
  Here are some pictures of the project in current state. I am going to use a 3D printer to make it a case for the design part and also a peg clip for the stepper motor.
- ![](image1.jpeg)
-  ![](Image2.jpeg)
-   ![](image3.jpeg)
-    ![](image4.jpeg)
+ ![](image1.webp)
+  ![](Image2.webp)
+   ![](image3.webp)
+    ![](image4.webp)
 
 
 
@@ -185,10 +185,6 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
 | [Set de LED-uri Asortate de 5 mm si 3 mm (310 buc)](https://www.optimusdigital.ro/en/leds/0104110000045102-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) | For visual feedback and debugging (optional)     | [25,00 RON](https://www.optimusdigital.ro/en/leds/0104110000045102-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) | 25,00 RON |
 | [Kit GPIO compatibil Raspberry Pi OKY1201](https://www.emag.ro/kit-gpio-pentru-raspberry-pi-10107500-oky1201/pd/D946KDMBM/) | To connect Raspberry Pi to various components    | [12,00 RON](https://www.emag.ro/kit-gpio-pentru-raspberry-pi-10107500-oky1201/pd/D946KDMBM/) | 12,00 RON |
 | **Total**                                  |                                                  |                                                                                  | **183,25 RON** |
-
-
-
-
 
 
 ## Software
