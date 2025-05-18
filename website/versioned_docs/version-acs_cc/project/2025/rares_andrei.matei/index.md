@@ -101,15 +101,14 @@ Software week
 7. **Other stuff**
 - Batteries, wires, breadboard, buttons
 
+This is the device's circuit. I need to make a small case to hide the wires and the components, except the screen, fingerprint sensor, pulse sensor and the buttons.
+
+![Circuit_image](circuit.webp)
+
 ## Schematics
 
 ![Schematic_image](schematic.webp)
 
-## Device
-
-This is the device's circuit. I need to make a small case to hide the wires and the components, except the screen, fingerprint sensor and pulse sensor.
-
-![Circuit_image](circuit.webp)
 
 ## Bill of Materials
 
