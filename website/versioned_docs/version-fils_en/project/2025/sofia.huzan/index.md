@@ -181,6 +181,7 @@ Focused on implementing the remote control functionality and integrating it with
 ### Schematics
 
 Here is the KiCad schematics
+
 ![](kicad.webp)
 
 ### Bill of Materials
