@@ -54,6 +54,7 @@ A MOSFET is used to safely drive the buzzer or LED from the Pico's GPIO, ensurin
 ![Hardware log](image2.webp)
 
 
+
 ### Schematics
 
 Place your KiCAD schematics here.
