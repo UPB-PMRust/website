@@ -50,13 +50,16 @@ Song of the week is: [Kanye West - Runaway](https://www.youtube.com/watch?v=EMnQ
 Setup consists of 3 Raspeberry Pi Pico 2W boards, one for each hand and one acting as the main unit for playing the music. The music is played through a speaker connected to a DFPlayer module which receives signal from the main Pico board.
 The DFPlayer connects to the main Pico 2W through UART and to the speaker via the SPK pins. VCC is supplied by the Pico board. 5 incline sensors are connected through GPIO to a Pico 2W for each hand.
 
-[Main Part](main_and_speaker.webp)
+![Main Part](main_and_speaker.webp)
+
 This will be the main pico (in this case the debug probe is still connected and it can stay for the project). I soldered wires to the speaker because it's very hard to test while holding 2 wires in place with my hands. I also added a button for changing the instrument to add complexity.
 
-[The Hand Picos](boards.webp)
+![The Hand Picos](boards.webp)
+
 These are the 2 boards that will be places on the gloves. I have partially soldered them to the prototyping board and also soldered pins for VCC and GND for the sensors, 6 pins, 5 for the sensors and 1 for the connection to the board with a wire. It's easier this way I reckon.
 
-[The Sensors](sensors.webp)
+![The Sensors](sensors.webp)
+
 Finally, these are the sensors. They are tested and work fine but I have yet to connect ALL of them to the boards. This will be done when I test the final version of the code.
 
 ### Schematics
@@ -71,7 +74,7 @@ I used KiCAD to draw this schematic. Nothing to add to this really, it's quite c
 | [DFPlayer Mini](https://picaxe.com/docs/spe033.pdf) | MP3 Module with SD Card | [14 RON](https://www.optimusdigital.ro/en/audio/1484-dfplayer-mini-miniature-mp3-player-module.html) |
 | [10x Incline Sensor](https://components101.com/sensors/sw-520d-tilt-sensor-module)| Incline Sensor | [10x5 RON](https://www.bitmi.ro/electronica/senzor-inclinare-sw-520d-11527.html) |
 | [Resistor 1K Ohm](https://www.optimusdigital.ro/en/resistors/10928-250-pcs-plusivo-resistor-kit.html)| Resistor from Kit  | [15 RON](https://www.optimusdigital.ro/en/resistors/10928-250-pcs-plusivo-resistor-kit.html) |
-| [Wires](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) | Wires, Male-Male and Female-Female | [~10 RON](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) |
+| Wires | Wires, Male-Male and Female-Female | [~10 RON](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) |
 | Speaker 8Ohm 1W | Speaker | [4,28 RON](https://ardushop.ro/ro/componente-discrete/1084-difuzor-1w-8ohm-50mm-6427854014900.html) |
 | Prototyping Board | Light-weight breadboard for the gloves | [4 RON](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/721-placa-de-test-universala-verde-70x90-mm.html)
 
