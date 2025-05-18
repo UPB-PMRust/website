@@ -93,6 +93,7 @@ The project uses the following hardware components:
 | [GY-521 (MPU6050)](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326) | Gyroscope and accelerometer module | 24.16 RON |
 | [VL53L0X Time-of-Flight Sensor](https://sigmanortec.ro/Modul-VL53L0X-timp-de-zbor-p126182383) | Measures distance to user's hand | 16.76 RON |
 | [ESC 30A](https://sigmanortec.ro/Controller-Motor-ESC-30A-p139673260) | Controls brushless motor | 47.15 RON |
+| [ESC 40A](https://www.electronicmarket.ro/ro/product/controller-motor-40a-esc-2-4s) | Controls brushless motor | 46.10 RON |
 | [Brushless Propeller Set 6045 CW/CCW](https://sigmanortec.ro/Elice-drona-6045-p139673087) | Attached to motor for thrust | 9.84 RON |
 | [Brushless Motor (BLDC)](https://www.emag.ro/motor-brushless-rqiurpn-a2212-kv2200-3-17mm-pentru-drone-diy-22-brushlessmotors/pd/DNJRFSYBM/) | Keeps the hand in needed position. | 45 RON |
 | [5V Fan (Raspberry Pi, 3030)](https://sigmanortec.ro/ventilator-5v-raspberry-pi-02a-3030) | Used as a cooler | 8.04 RON |
@@ -101,8 +102,10 @@ The project uses the following hardware components:
 | [4mm Banana Connector (Male, Red) x3](https://sigmanortec.ro/Conector-Banana-4mm-Rosu-p209905097) | Power cable end | 2.94 RON |
 | [4mm Banana Connector (Male, Black) x3](https://sigmanortec.ro/Conector-Banana-4mm-Negru-p128736095) | Ground cable end | 2.94 RON |
 | [Hinge](physical shop) | Makes the arm mobile. | 8 RON |
+| [Capacitor](physical shop) | Current filter. | 2 RON |
+| [Servo Programmer](https://www.optimusdigital.ro/ro/altele/1162-tester-pentru-servomotoare.html?gad_source=1&gad_campaignid=19615979487&gclid=Cj0KCQjww-HABhCGARIsALLO6XzU0eiPdqvZNTl-pr_RmSFb-neRpErQ2fZkC3viI5TatsqdWgOR0YMaAjd7EALw_wcB) | Testing the motor. | 10 RON |
 
-**Total estimated cost: ~215 RON**
+**Total estimated cost: ~270 RON**
 
 
 ## Software
