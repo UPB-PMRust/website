@@ -72,7 +72,9 @@ Detail in a few words the hardware used.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Hardware milestone](Schema_kicad.webp)
+![Hardware milestone](poza1.webp)
+![Hardware milestone](poza2.webp)
 
 ### Bill of Materials
 
