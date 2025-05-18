@@ -40,7 +40,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 **Connections:**
 - GPIO → Motor Driver (control signals)
-- GPIO ← IR Proximity Sensors, Ultrasonic Sensor, IR Receiver, Buttons
+- GPIO ← IR Proximity Sensors, Ultrasonic Sensor, Buttons
 - SPI → Display
 - WiFi ↔ Web App (bidirectional)
 - Power Input ← Battery (5V via Power Supply Module)
@@ -67,7 +67,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 3. IR Proximity Sensors (Left and Right)
+### 3. IR Proximity Sensors (LefT, Right and Rear)
 
 **Role:** Detects nearby objects for navigation or avoidance
 
@@ -99,22 +99,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 5. IR Receiver
-
-**Role:** Receives commands from remote control
-
-**Interface:** GPIO (digital)
-
-**Functions:**
-- Receives modulated IR signals
-- Decodes remote control button presses
-
-**Connections:**
-- Signal → Pico GPIO
-
----
-
-### 6. Buttons (Red and Blue)
+### 5. Buttons (Red and Blue)
 
 **Role:** Manual input for control
 
@@ -128,7 +113,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 7. Display (SPI)
+### 6. Display (SPI)
 
 **Role:** Provides visual feedback
 
@@ -142,7 +127,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 8. Web App
+### 7. Web App
 
 **Role:** Enables remote control and monitoring
 
@@ -157,10 +142,10 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 9. Power Supplies
+### 8. Power Supplies
 
 - **Pico:** Powered by a battery via Power Supply Module
-- **Motor Driver:** Powered directly from 12V battery
+- **Motor Driver:** Powered directly from 9V + 4×1.5V batteries
 
 ## Log
 
@@ -170,6 +155,8 @@ After receiving the components, I tested their functionality and researched comp
 
 ### Week 12 - 18 May
 
+Focused on implementing the remote control functionality and integrating it with the display system. Developed the basic logic for the menu navigation and began working on the on-screen keyboard, including input handling and layout structuring.
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -178,17 +165,18 @@ After receiving the components, I tested their functionality and researched comp
 - **Raspberry Pi Pico 2W**: The brain of the operation, running all control logic
 - **DC Motors**: 4 gearmotors providing wheel movement (2 per side)
 - **L298N Driver**: Powers and controls motor speed/direction
-- **Infrared Sensors**: Left/right obstacle detection (reflectance sensors)
+- **Infrared Sensors**: Left/right/rear obstacle detection (reflectance sensors)
 - **Ultrasonic Sensor**: Front-facing distance measurement (2cm-400cm range)
 - **TFT Display**: 2.4" color screen with touch input for user interface
-- **IR Receiver**: Decodes signals from standard remote controls and transfers to the pico
 - **Buttons**: Physical input for selection
 - **Dupont Wires**: Jumper cables for all electrical connections
 - **Chassis**: Frame holding all components
 
-![](keyboard.webp)
 ![](top.webp)
-![](rear.webp)
+![](motor.webp)
+![](back.webp)
+![](front.webp)
+![](keyboard.webp)
 
 ### Schematics
 
@@ -197,19 +185,18 @@ Here is the KiCad schematics
 
 ### Bill of Materials
 
-| Device | Usage | Price |
-|--------|-------|-------|
-| [Raspberry Pi Pico 2W *2](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | Microcontroller board | [39.66 RON each(79.32 RON total)](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
-| [DC Motor (×4)](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html) | Wheel drive motors | ~7 RON each (28 RON total) |
-| [L298N Dual Motor Driver Module](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html) | Motor control | 10.99 RON |
-| [Infrared Obstacle Sensor (×2)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) | Object detection | 3.49 RON each (6.98 RON total) |
-| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4513-senzor-ultrasonic-hc-sr04.html) | Distance measurement | 39.66 RON |
-| [10cm Dupont Wires (40-pin)](https://www.optimusdigital.ro/ro/fire-fire-mufate/653-fire-colorate-mama-tata-40p-10-cm.html) | Short connections | 5.17 RON |
-| [20cm Dupont Wires (40-pin)](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html) | Long connections | 5.99 RON |
-| [2.4" SPI TFT Display](https://www.optimusdigital.ro/ro/afișaje/4516-afișaj-tft-24-spi-240x320.html) | User interface | 47.99 RON |
-| [KY-022 IR Receiver (VS1838B)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4515-modul-receptor-ir-vs1838b-ky-022.html) | Infrared signal reception | 1.99 RON |
-| [Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?search_query=buton&results=213) | User selection | 1.99 RON each(3.98 RON in total) |
-| Chasis | Base for the robot | 30 RON |
+| Device                                                                                                                                   | Usage                     | Price |
+|------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
+| [Raspberry Pi Pico 2W (×2)](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)                           | Microcontroller board     | [39.66 RON each(79.32 RON total)](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
+| [DC Motor (×4)](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html)                               | Wheel drive motors        | ~7 RON each (28 RON total) |
+| [L298N Dual Motor Driver Module](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html)     | Motor control             | 10.99 RON |
+| [Infrared Obstacle Sensor (×3)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html)         | Object detection          | 3.49 RON each (6.98 RON total) |
+| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4513-senzor-ultrasonic-hc-sr04.html)                 | Distance measurement      | 39.66 RON |
+| [10cm Dupont Wires (40-pin)](https://www.optimusdigital.ro/ro/fire-fire-mufate/653-fire-colorate-mama-tata-40p-10-cm.html)               | Short connections         | 5.17 RON |
+| [20cm Dupont Wires (40-pin)](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html)                      | Long connections          | 5.99 RON |
+| [2.4" SPI TFT Display](https://www.optimusdigital.ro/ro/afișaje/4516-afișaj-tft-24-spi-240x320.html)                                     | User interface            | 47.99 RON |
+| [Buttons(×2)](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?search_query=buton&results=213) | Option selection          | 1.99 RON each(3.98 RON in total) |
+| Chasis                                                                                                                                   | Base for the robot        | 30 RON |
 
 ## Software
 
@@ -228,5 +215,3 @@ Here is the KiCad schematics
 ## Links
 
 1. Inspiration: [Delievery robots](https://www.youtube.com/shorts/X4sxt9EzPo8)
-2. [IR Remote](https://www.youtube.com/watch?v=q97VE3oEwIc)
-...
