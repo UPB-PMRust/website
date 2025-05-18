@@ -86,7 +86,7 @@ Developed the software using Rust and the Embassy framework. Implemented the gas
    - **Purpose**: Visual indicator.
    - **Function**: Green = safe, Red = alert; driven by Pico GPIO lines via current‑limiting resistors.
 
-7. **Passive Buzzer 3 V – 3.3 V**:
+7. **Passive Buzzer 3 V - 3.3 V**:
    - **Purpose**: Audible warning when gas thresholds are exceeded.
    - **Function**: Generates a tone when toggled by a Pico GPIO pin.
 
@@ -98,11 +98,13 @@ Developed the software using Rust and the Embassy framework. Implemented the gas
 - Based on air conditions, it controls the **ventilator** and the **motors**.
 - LEDs give real-time feedback on air concentration.
 
+![System Photo](poza_proiect.svg)
+
 ---
 
 ### Schematics
 
-![System Diagram](schematic.svg)
+![System Scheematic](schematic.svg)
 
 ---
 
@@ -147,5 +149,5 @@ Developed the software using Rust and the Embassy framework. Implemented the gas
 5. [embedded-hal crate](https://docs.rs/embedded-hal/latest/embedded_hal/) – Interfață standard pentru periferice embedded (GPIO, ADC, PWM etc).
 6. [defmt (embedded logging)](https://github.com/knurling-rs/defmt) – Sistem de logare eficient pentru debugging embedded.
 7. [fixed crate](https://docs.rs/fixed/latest/fixed/) – Tipuri de date cu virgulă fixă folosite pentru divizoare PWM.
-8. [probe-rs](https://probe.rs/) – Toolchain pentru debugging, flashing și RTT log în Rust embedded.
+8. [probe-rs](https://probe.rs/) - Toolchain pentru debugging, flashing și RTT log în Rust embedded.
 9. [embassy-examples](https://github.com/embassy-rs/embassy/tree/main/examples/rp) – Exemple oficiale Embassy pentru RP2040.
