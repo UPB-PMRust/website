@@ -75,10 +75,14 @@ flowchart TD
 ### Week 19 - 25 May
 
 ## Hardware
-  For my safe, I used a Raspberry Pi Pico 2W as my MCU. With the help of a PN532 module I am able to scan any access keys with NFC/RFID. My locking mechanism is a SG90 servomotor. I have also installed two LEDs, one blue and one red, and an active buzzer, meant to resemble an alarm. The "projectiles" are fired with the help of a DC motor that is spinning a wheel.
+  For my safe, I used a Raspberry Pi Pico 2W as my MCU. With the help of a PN532 module I am able to scan any access keys with NFC/RFID. My locking mechanism is a SG90 servomotor. I have also installed two LEDs, one blue and one red, and an active buzzer, meant to resemble an alarm. The "projectiles" are fired with the help of a DC motor that is spinning a wheel. Below is a photo with the hardware outside the box:
+
+![Hardware](hardware.webp)
 
 
 ### Schematics
+
+![Kicad](kicad.webp)
 
 
 
