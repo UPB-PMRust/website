@@ -28,7 +28,11 @@ if the project turns out well i will be using the device myself to tune my guita
 
 ## Log
 ### Week 5 - 11 May
+**Purchased the components**
+
 ### Week 12-18 May
+**Assembled the project**
+
 ### Week 19-25 May
 
 ## Hardware
