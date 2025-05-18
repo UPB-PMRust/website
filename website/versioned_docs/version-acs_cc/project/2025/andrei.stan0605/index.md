@@ -39,6 +39,9 @@ I chose this project because it addresses a real need for monitoring urban envir
 The three types of nodes will be based on Raspberry Pi Pico 2W boards. Sensor nodes will be equipped with a temperature and atmospheric pressure sensor, as well as a sound sensor. Additionally, these nodes will include distance sensors to detect when a bus is at the stop, allowing data transfer to begin. A Real-Time Clock (RTC) will also be used to record the exact time when the data is collected.
 
 Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, which will store and forward the collected data.
+![Poza breadpoard](Proiect_prototip(1).webp)
+![Poza prototype board](Proiect_senzor(1).webp)
+![Poza_toate_nodurile](Proiect_toate_nodurile(1).webp)
 
 ## Schematics
 
