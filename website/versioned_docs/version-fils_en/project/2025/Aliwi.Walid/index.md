@@ -85,6 +85,10 @@ CH340G RX → Pico GPIO 0 (UART0 TX)
 External Power Supply
 A separate 5V external power source is used to power the stepper motors through the ULN2003 driver boards. This is necessary to avoid overloading the Raspberry Pi Pico, which cannot provide sufficient current for motor operation. Ground from the external power supply is tied to the system ground to ensure a common reference.
 
+Here is what the hardware is looking like so far:
+
+![alt text](hardwarepic.webp)
+
 ### Schematics
 
 KiCad Schematic
