@@ -32,10 +32,11 @@ If the correct PIN is entered or the unlock button is pressed on the HTTP web pa
 
 <!-- write your progress here every week -->
 
+
 ### Week 5 - 11 May
-
+I created documentation that includes how the components interact and how I planned the implementation from the beginning. I described the main idea of the project, and listed the hardware used. I also included details about the system logic.
 ### Week 12 - 18 May
-
+I worked on the hardware part of the project, where I physically connected all the components and made sure everything worked as expected. I also created the circuit schematic using KiCad to have a clear and organized view of the connections.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -43,16 +44,20 @@ If the correct PIN is entered or the unlock button is pressed on the HTTP web pa
 The system uses the following components:
 
 - Raspberry Pi Pico: acts as the central control unit
-- 4 push buttons: used for entering the PIN
-- Servo motor: used to physically open and close the door
+- 8 push buttons(2 x 4 matrix): used for entering the PIN
+- Servo motor: used to physically lock and unlock the door
 - Green LED: lights up when the door is successfully unlocked
 - Red LED: lights up when the PIN is incorrect or the door remains locked
 - Active buzzer: emits a warning sound when a wrong PIN is entered
 - Power supply: external battery powering the system
 - Breadboard and jumper wires: used for prototyping and connecting components
 
-### Schematics
+![Hardware Image 1](hardware_image1.webp)
+![Hardware Image 2](hardware_image2.webp)
 
+
+### Schematics
+![KiCad](schematic.webp)
 
 ### Bill of Materials
 
@@ -72,16 +77,17 @@ The system uses the following components:
 
 ### Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| embassy-executor | Asynchronous executor for embedded Rust | Running tasks asynchronously |
-| embassy-rp | Embassy support for Raspberry Pi Pico W | Access peripherals |
-| embassy-time | Timer driver and time utilities  | Delays, alarms, and timekeeping|
-| embassy-sync | Async channels, signals, and mutexes | Communication between tasks |
-| cyw43 | Wi-Fi driver for CYW43439 chip | Wi-Fi connectivity |
-| embassy-net | Asynchronous embedded TCP/IP stack | HTTP over TCP |
-| defmt | Efficient logging framework for embedded devices | Debug print messages |
-| static_cell | Safe statics for no_std environments | Static allocation |
+| Library         | Description                                    | Usage                          |
+|----------------|------------------------------------------------|--------------------------------|
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Asynchronous executor for embedded Rust | Running tasks asynchronously |
+| [embassy-rp](https://crates.io/crates/embassy-rp)             | Embassy support for Raspberry Pi Pico W | Access peripherals          |
+| [embassy-time](https://crates.io/crates/embassy-time)         | Timer driver and time utilities         | Delays, alarms, and timekeeping |
+| [embassy-sync](https://crates.io/crates/embassy-sync)         | Async channels, signals, and mutexes    | Communication between tasks |
+| [cyw43](https://crates.io/crates/cyw43)                       | Wi-Fi driver for CYW43439 chip          | Wi-Fi connectivity          |
+| [embassy-net](https://crates.io/crates/embassy-net)           | Asynchronous embedded TCP/IP stack      | HTTP over TCP               |
+| [defmt](https://crates.io/crates/defmt)                       | Efficient logging framework for embedded devices | Debug print messages |
+| [static_cell](https://crates.io/crates/static_cell)           | Safe statics for no_std environments    | Static allocation           |
+
 
 
 
