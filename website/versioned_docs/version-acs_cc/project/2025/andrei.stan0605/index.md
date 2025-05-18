@@ -43,6 +43,10 @@ Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, whic
 ![Poza prototype board](Proiect_senzor(1).webp)
 ![Poza_toate_nodurile](Proiect_toate_nodurile(1).webp)
 
+I have also included a demo video
+
+[Video_demo](Video_demo4.mp4)
+
 ## Schematics
 
 ![Diagrama_senzor](sensor_diagram.svg)
@@ -69,3 +73,5 @@ Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, whic
 
 ## Links
 
+ - [Pollution map](https://aqicn.org/map/bucharest//ro/)
+ - [Sensors](https://www.germanelectronics.ro/aparate-de-masura-surse-de-alimentare/meteo/senzori-externi-accesorii-statii-meteo)
