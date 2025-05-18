@@ -43,7 +43,27 @@ This hardware setup allows for real-time control and monitoring, with the LEDs r
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![My schematic](KICAD.webp)
+
+![Hardware](POZA.webp)
+
+![Hardware2](POZAA.webp)
+
+### Bill of Materials
+
+
+
+| Device     | Usage                 | Price  |
+|------------|-----------------------|------- |
+|raspberry pi|microcontroller unit   |56.23lei|
+| -pico wh   |                       |        |
+|sound sensor|audio signal detection |5.4lei  |
+|ST3775screen|visual data output     |43.58lei|
+|logic level |voltage translation    |6.49lei |
+|-shifter    |                       |        |
+|led strip   | visual display        |6.99lei |
+|jumper wires|connecting components  |15 lei  |
+|breadboard  | creating the setup    |8.98    |
 
 
 
@@ -56,13 +76,6 @@ Place your KiCAD schematics here.
 | ST7735 driver     |display driver| Used for the display for the Pico Explorer Base |
 | embedded-graphics |2D graphics   | Used for drawing to the display                 |
 
-
-### Bill of Materials
-
-
-
-| Device | Usage | Price |
-|--------|--------|-------|
 
 
 
