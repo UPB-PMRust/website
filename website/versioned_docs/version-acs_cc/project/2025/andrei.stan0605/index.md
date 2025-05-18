@@ -40,6 +40,11 @@ The three types of nodes will be based on Raspberry Pi Pico 2W boards. Sensor no
 
 Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, which will store and forward the collected data.
 
+## Schematics
+
+![Diagrama_senzor](sensor_diagram.svg)
+![Diagrama_collector_aggregator](collector_aggregator_diagram.svg)
+
 ## Bill of Materials
 
 | Device | Usage | Price |
