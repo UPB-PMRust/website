@@ -78,8 +78,24 @@ Commercial GPS trackers are expensive and full of subscriptions. This DIY altern
 
 ### Schematics
 
-![kicad](./cat_tracker_kicad.webp)
-![kicad](./homebase_kicad.webp)
+![kicad](./kicad_v1.webp)
+![kicad](./kicad_v2.webp)
+
+
+
+## Schematics
+**ABOVE**
+![diagram](lower_3.webp)
+
+**SIDE**
+![diagram](lower_1.webp)
+
+**COLAR**
+![diagram](lower_2.webp)
+
+
+
+
 
 ### Bill of Materials
 
@@ -95,18 +111,17 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico2w-technical-specification) | The microcontroller and debugger | [39.66 RON × 2](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
+| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico2w-technical-specification) | The microcontroller and debugger | [39.66 RON × 3](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
 | [TSL2561](https://cdn-learn.adafruit.com/downloads/pdf/tsl2561.pdf) | Light intensity sensor | [22.99 RON](https://www.optimusdigital.ro/en/optical-sensors/137-tsl2561-light-intensity-sensor-module.html) |
 | [GY-NEO6MV2](https://www.mantech.co.za/datasheets/products/GY-NEO6MV2.pdf?srsltid=AfmBOopLKLqdQ1J7A7ymF9OSc_P0oyHDmRPk4yhrHdXcxkb17nsCUqgT) | GPS Module | [44.95 RON](https://www.optimusdigital.ro/en/gps/105-gy-neo6mv2-gps-module.html) |
-| SD Card Module | Write data locally | [7,14 RON](https://ardushop.ro/ro/module/1553-groundstudio-microsd-module-6427854023056.html?gad_source=1&gbraid=0AAAAADlKU-4NO_j3AMeKNI3Vj8E7PKnMk&gclid=Cj0KCQjwoNzABhDbARIsALfY8VOC7sI-NGcbl6xPTyYjJ7L86sEljt_rdWMfbnpgOtR70S88sRSyc24aAk4xEALw_wcB) |
 | Breadboard | Connect all the components | [9.98 RON x2](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
 | LCD screen | Display the sensors' measurements | [16.34 RON](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html) |
 | Buzzer | Audio alarm | [1.40 RON x2](https://www.optimusdigital.ro/en/buzzers/634-5v-passive-buzzer.html) |
 | Push Buttons | Remote commands | [0,49 RON x2](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/8585-buton-smd-4-x-4-x-15-mm.html?gad_source=1&gbraid=0AAAAADv-p3ANSmBXgzfvJpe3E86DHpwLt&gclid=Cj0KCQjwoNzABhDbARIsALfY8VNLoFcAWnMuWyKtui9UEPItQS4YjLcDfaB3ppHb1_aHJZ8QLUjy46IaAmUlEALw_wcB) |
 | LED | Visual alarm | [0.39 RON × 2](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html) |
 | Pin header | Connect components to the breadboard | [0.99 RON × 10](https://www.optimusdigital.ro/en/pin-headers/464-colored-40p-254-mm-pitch-male-pin-header-red.html) |
-| Battery holder | Power the circuit | [3.95 RON](https://www.optimusdigital.ro/en/battery-holders/1090-3-x-r6-battery-holder.html) |
-| Total | - | 209,11 RON |
+| Battery | Power the circuit | [60.00 RON](https://ampul.eu/ro/baterii/4292-baterie-li-pol-1000mah-37v-523450?gad_source=1&gad_campaignid=17339270587&gbraid=0AAAAADSG6LGS2RVOxxoCAwPIMxeuiyRLW&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkZ3iI0qDqWb6CUqsdIzNTqvXcvScrz3jXA4keBdxxhp5xyv6VECMUYaAhUmEALw_wcB) |
+| Total | - | ~ 300 RON |
 
 
 ## Software
@@ -119,7 +134,6 @@ The format is
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor | Create different tasks |
 | [lcd1602-rs](https://crates.io/crates/lcd1602-rs) | Display library | Display coordinates |
 | [heapless](https://crates.io/crates/heapless) | Statically allocated data | Buffers for display and packets |
-| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | Filesystem access to SD card | Log coordinates when offline |
 
 
 ## Links
