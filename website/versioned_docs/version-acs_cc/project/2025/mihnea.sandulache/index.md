@@ -69,7 +69,7 @@ I started the project by gathering all the necessary components and setting up t
 
 ### Week 12 - 18 May
 
-Began putting all the pieces into place and designed the structure of the funnel and the way the candy will be dropped. The code is almost done, I just need to calibrate the angles of the servomotors and the color sensor to better recognise the colors.
+Began putting all the pieces into place and designed the structure of the funnel and the way the candy will be dropped. The code is almost done, I just need to calibrate the angles of the servomotors and the color sensor to better recognise the colors. I am also attaching a drive link to a [video](https://drive.google.com/file/d/10OZsfYCC7r9oA9sq6YKw8RO7cOUaYR02/view?usp=sharing) of the candy sorter in action which is almost complete software-wise.
 
 ![diagram](Real_wiring2.webp)
 
