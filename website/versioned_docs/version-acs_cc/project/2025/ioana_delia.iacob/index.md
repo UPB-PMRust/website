@@ -30,16 +30,22 @@ Pets are a significant part of our lives and important members of our families. 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-In this week I connected all the components to the microcontroller. I started with the sensors and successfully read values from the infrared sensor using ADC, and from the accelerometer using I2C.
+This week I connected all the components to the microcontroller. I started with the sensors and successfully read values from the infrared sensor using ADC, and from the accelerometer using I2C.
 
 Connecting the motors was a bit trickier though. For the DC motors, although controlling them through PWM works, the debugger crashes shortly after the program is ran. Besides them, I also tried connecting the servomotor, but it couldn't draw enough current from the pico. As such, I also bought a 4 AA batteries case and a LM2596S Step Down module.
 ### Week 12 - 18 May
-This week I successfully connected all the components to the microcontroller and wrote code for randomly starting and stopping the motors. For this, I used the feature small_rng from the rand crate to randomly generate numbers in a non std environment. The motors also stop when the infrared sensor detects an obstacle.
+I successfully connected all the components to the microcontroller and wrote code for randomly starting and stopping the motors. For this, I used the feature small_rng from the rand crate to randomly generate numbers in a non std environment. The motors also stop when the infrared sensor detects an obstacle.
 
-I also designed the support on which I'll be putting all the components. To save space, I decided to put the breadboard on top of the battery pack. I also added plenty of holes that will be used for wire management.
+![3d](3d.webp "3d")
+
+I also designed the support on which I'll be putting all the components. To save space, I decided to put the breadboard on top of the battery pack. I also added plenty of holes that will be used for wire management. To make sure everything fits correctly I created placeholder boxes with the exact dimensions of the components.
 ### Week 19 - 25 May
 
 ## Hardware
+
+![hardware](hardware.webp "Hardware")
+
+Since the pico is, for now, drawing power from the debugger, I'm currently using another breadboard to supply power to the other components. The plan is that, by the end, everything will be connected to the batteries using the smaller breadboard.
 
 * Raspberry pi pico 2w: the microcontroller
 * The accelerometer: used for detecting changes in the movement of the robot
