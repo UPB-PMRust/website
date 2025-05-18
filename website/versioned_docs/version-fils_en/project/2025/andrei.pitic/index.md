@@ -1,6 +1,4 @@
-# Project Name  
-
-3x3 SLOTS MACHINE
+# 3x3 SLOTS MACHINE  
 
 :::info
 
@@ -49,10 +47,15 @@ Input (button press) → Game Logic → Display Update → (Optional) Sound Outp
 
 ### Week 12 - 18 May  
 
+-finished the hardware with the kicad scheme
+-moved the project in rust (initially in python) and initialized the cargo project 
+-left with making a connection between input and output in hardware from software
 
 ### Week 19 - 25 May  
 
 ## Hardware
+
+![Hardware components put together](Hardware.jpeg)
 
 - Raspberry Pi Pico W as the main controller  
 - 2.4-inch Arduino LCD for displaying the slot grid and game information  
@@ -65,7 +68,7 @@ Input (button press) → Game Logic → Display Update → (Optional) Sound Outp
 
 ### Schematics
 
-![Circuit diagram for the 3x3 Slots Machine showing connections between Raspberry Pi Pico W, display, buttons, and other components](slots-machine-kicad-schematic.svg)
+![Circuit diagram for the 3x3 Slots Machine showing connections between Raspberry Pi Pico W, display, buttons, and other components](KiCadScheme.jpeg)
 
 
 ### Bill of Materials
