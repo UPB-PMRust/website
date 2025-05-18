@@ -90,3 +90,9 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 
 
 ## Links
+
+## Schematic
+
+![Schematic made in Kicad](./schematic.webp)
+
+
