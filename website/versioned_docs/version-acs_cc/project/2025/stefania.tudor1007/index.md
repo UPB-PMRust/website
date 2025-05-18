@@ -92,18 +92,23 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 - **Web Server:** Hosts a real-time dashboard displaying sensor data and live video feed.
 
 
-## Software Libraries
+## Bill of Materials
 
-| Library             | Description                                                                 | Usage in Project                                                            |
-|---------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| `embassy-rs`        | An async embedded framework for Rust, providing task scheduling and HALs.  | Used to create async tasks for motor control, sensor reading, and server.   |
-| `embedded-hal`      | A set of standard traits for embedded hardware abstractions in Rust.       | Used as a foundation to write portable drivers for I2C, PWM, and GPIO.      |
-| `nb`                | Provides traits for non-blocking operations in embedded systems.            | Ensures sensor reading and UART comms are non-blocking in async tasks.      |
-| `mpu6050`           | A driver for the MPU6050 accelerometer and gyroscope sensor.               | Reads orientation data from the MPU6050 via I2C for stability analysis.     |
-| `pwm-pio`           | A crate for generating PWM signals on RP2040 using PIO.                     | Generates PWM signals for controlling the speed of the DC motors.           |
-| `embassy-net`       | An async TCP/IP network stack for embedded systems written in Rust.         | Implements a web server that exposes sensor data via HTTP.                  |
-| `bluetooth-serial`  | Serial communication over classic Bluetooth (RFCOMM).                       | Receives control commands from the gaming controller via Bluetooth.         |
-| `defmt`             | Efficient logging framework for embedded systems in Rust.                   | Provides lightweight debugging logs via serial output or RTT.               |
+| Item                                                                                              | Quantity | Unit Price (RON) | Total (RON) | Usage                                           |
+|---------------------------------------------------------------------------------------------------|----------|------------------|-------------|------------------------------------------------|
+| [Raspberry Pi Pico 2W (Optimus)](https://www.optimusdigital.ro/ro/raspberry-pi/21133-raspberry-pi-pico-w-wireless.html) | 1 | 39.66            | 39.66       | Main controller                                |
+| Raspberry Pi Pico (debug / Picoprobe)                                                             | 1        | 39.66            | 39.66       | Used for SWD debugging                         |
+| UDA1334A I2S DAC Module                                                                           | 1        | 56.76            | 56.76       | Audio output module                            |
+| LCD SPI Display 1.8" (128x160) with SD slot                                                       | 1        | 28.99            | 28.99       | Used for UI and SD (via SPI)                   |
+| Push Button (white round cap)                                                                     | 3        | 1.99             | 5.97        | Controls                                        |
+| Rotary Encoder Module                                                                             | 1        | 4.99             | 4.99        | Controls                                        |
+| 10k Stereo Potentiometer                                                                          | 1        | 1.99             | 1.99        | Analog Control (ADC input)                     |
+| Breadboard HQ (830 points)                                                                        | 2        | 9.98             | 19.96       | For main Pico + Picoprobe wiring               |
+| [Header pins (2.54 mm, 40p) – Optimus](https://www.optimusdigital.ro/ro/headeri-si-pini/226-header-pini-tati-2-54mm-40p-strip.html) | 2 | 0.99             | 1.98        | For soldering Pico and accessories             |
+| Female Breakable Header (40p)                                                                     | 1        | 2.56             | 2.56        | Extra connectivity (LCD/SD)                    |
+| Breadboard rigid wires                                                                            | 1        | 12.49            | 12.49       | Neat wiring on breadboard                      |
+| Breadboard jumper wires                                                                           | 1        | 7.99             | 7.99        | General-purpose jumpers                        |
+| [Resistor kit (assorted values)](https://www.optimusdigital.ro/ro/rezistori/548-kit-rezistori-600bucati.html) | 1 | ~9.50          | ~9.50       | Pull-ups, voltage dividers, LED current limit  |
 
 
 ## Links
