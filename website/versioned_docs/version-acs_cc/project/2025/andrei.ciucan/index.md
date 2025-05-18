@@ -115,7 +115,7 @@ To reduce high-frequency electrical noise caused by the buzzer’s PWM signal, a
 
 ### Schematics
 
-![KiCad](photo_KiCad.webp)
+![KiCad](photo_KiCad.svg)
 
 ### Photos
 
