@@ -125,10 +125,10 @@ Side View of the optical sensor which is supposed to measure if the ray can pass
 
 
 Side View of the second pico which is supposed to give the proximity data of the fish to the main MCU:  
-![Second PICO SIDE VIEW](Second PICO SIDE VIEW.webp)
+![Second PICO SIDE VIEW](Second_PICO_SIDE_VIEW.webp)
 
 Top view of the second pico:  
-![Second PICO TOP VIEW](Second PICO TOP VIEW.webp)
+![Second PICO TOP VIEW](Second_PICO_TOP_VIEW.webp)
 
  
 ### Schematics
