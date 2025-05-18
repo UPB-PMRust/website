@@ -90,15 +90,13 @@ Schematic after Hardware Milestone
 | [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Async timing utilities | 	Provides Timer, Delay, and Instant for non-blocking delays |
 | [emabssy_rp](https://docs.rs/embassy-rp/latest/embassy_rp/) | RP2040 board support for Embassy | 	HAL for GPIO, SPI, I2C, PIO, DMA on the RP2040 microcontroller |
 | [static-cell](https://crates.io/crates/static-cell) | Runtime-initialized static storage | Safely initializes globals like BUS and FS_MGR at runtime |
-| [embedded_sdmmc](https://docs.rs/embedded-sdmmc/latest/embedded_sdmmc/) | FAT filesystem and SD-card driver |
-Interfaces with SD card over SPI, manages volumes and files |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics for embedded displays|
-Renders text and primitives onto the OLED buffer |
+| [embedded_sdmmc](https://docs.rs/embedded-sdmmc/latest/embedded_sdmmc/) | FAT filesystem and SD-card driver | Interfaces with SD card over SPI, manages volumes and files |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics for embedded displays| Renders text and primitives onto the OLED buffer |
 
 ## Links
 
 1. https://www.hackster.io/Ramji_Patel/raspberry-pi-pico-and-button-321059
-2. https://embeddedcomputing.com/technology/processing/interface-io simple-mp3-audio-playback-with-raspberry-pi-pico
+2. https://embeddedcomputing.com/technology/processing/interface-io/simple-mp3-audio-playback-with-raspberry-pi-pico
 3. https://pmrust.pages.upb.ro/docs/acs_cc/category/lab
 4. https://esp32.implrust.com/sdcard/read-sdcard.html
 5. https://orionrobots.co.uk/2023/09/04/i2s-playback.html
