@@ -64,7 +64,7 @@ I focused on gathering the necessary hardware components for the project. I purc
 ![](hardware1.webp)
 
 ### Week 12 - 18 May
-
+I decided to add an RGB led that turns green when the answer is correct and red when it is not. I completed the hardware part and started implementing the Sudoku game. 
 
 ### Week 19 - 25 May
 
@@ -76,6 +76,9 @@ The hardware for the project is built around the Raspberry Pi Pico 2W microcontr
 
 
 ### Schematics
+
+![](kicad_scheme.webp)
+
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|
