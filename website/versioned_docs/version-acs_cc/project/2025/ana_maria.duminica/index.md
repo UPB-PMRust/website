@@ -43,6 +43,10 @@ In this week, I assembled the full hardware setup by wiring all the sensors and 
 
 I also connected the DFPlayer Mini audio module using UART communication pins (TX and RX). While the module powers on and the microSD card is detected, I am still working on getting audio playback to work. I suspect the issue may be related to voltage levels or incorrect communication timing, so I will continue troubleshooting. I also plan to add a 1kΩ resistor or level shifter between the TX (Pico) and RX (DFPlayer) for protection.
 
+![Hardware Setup](./hardware_2.webp)
+
+![Hardware Setup](./hardware_1.webp)
+
 ### Week 19 - 25 May
 
 
@@ -68,16 +72,12 @@ For audio output, I used the DFPlayer Mini module connected to an external 8 ohm
 **Push Button**
 A standard push-button was used to toggle between lighting patterns. It is connected to a GPIO pin with pull-up configuration and used to demonstrate simple mechanical input.
 
-![Hardware Setup](./hardware_2.webp)
-
-![Hardware Setup](./hardware_1.webp)
-
 All components were assembled across three connected breadboards in a single compact layout. The design prioritizes accessibility and minimization of wire length.
 All components share a common GND rail, and power lines are distributed using the breadboard rails (3.3V or 5V depending on the device). Color-coded jumper wires were used where possible, although the complexity of the layout led to inevitable overlap between wires.
 This configuration allowed for fast prototyping and iterative testing of each module.
 
 ### Schematics 
-![Schematics](./pm_project_kicad.svg)
+![Schematics](./pm_project_kicad.webp)
 
 ### Bill of Materials
 | Device                                       | Usage                                            | Price |
