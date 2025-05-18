@@ -41,6 +41,7 @@ The processor works in at least two modes:
 ---
 layout: two-cols
 ---
+
 # Paging
 the memory *unit* is the page
 
@@ -51,7 +52,7 @@ the memory *unit* is the page
 *logical addresses* are translated to *physical addresses* using a **page table**
 
 the **page table** is located in the **physical memory**
-  - <span color="red">each memory access requires at least memory 2 accesses</span>
+  - each memory access requires at least <span v-mark.underline.red>2 memory accesses</span>
 
 <style>
 .two-columns {

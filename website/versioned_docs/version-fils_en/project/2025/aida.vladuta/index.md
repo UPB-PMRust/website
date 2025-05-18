@@ -83,9 +83,11 @@ element14 Community
 
 ### Week 5 - 11 May
 
+
 I managed to get my hand on all of the necessary components that i have to use for my project.I also soldered my components so that I can use them in my project. I connected my Raspberry Pi Pico 2W and the debugger and tested them using a simple code.
 
 ### Week 12 - 18 May
+
 
 This week, I successfully connected and integrated all the main components of my project. I wired the LCD display, RGB LED, soil moisture sensor, water level sensor, Raspberry Pi Pico 2W. After assembling the full setup, I tested it with a real plant and used an actual water container for the irrigation system. 
 
@@ -95,6 +97,7 @@ This week, I successfully connected and integrated all the main components of my
 
 This project uses a Raspberry Pi Pico W as the main controller to automate plant watering. A soil humidity sensor monitors the moisture level in the soil, while a water level sensor checks if there is enough water in the reservoir. An RGB LED visually indicates the soil's condition—dry or wet—and an LCD module displays a warning when the reservoir is empty. When the soil is dry and water is available, a small water pump motor is activated to water the plant through connected tubing. All components are connected using a breadboard, jumper wires, and appropriate resistors, and the system is powered by a battery for portability.
 
+
 ![CactusCare Hardware](picture3.webp)
 ![CactusCare Hardware](picture1.webp)
 ![CactusCare Hardware](picture2.webp)
@@ -103,6 +106,9 @@ This project uses a Raspberry Pi Pico W as the main controller to automate plant
 ### Schematics
 
 ![CactusCare Schematics](KiCad.webp)
+
+
+
 
 ### Bill of Materials
 
