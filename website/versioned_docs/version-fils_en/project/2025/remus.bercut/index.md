@@ -35,16 +35,35 @@ I got the idea after browsing optimus and seeing incline sensors. I knew immedia
 
 I've received all 12 incline sensors and the DFPlayer last week so I can finally start to test everything. The sensors can communicate through GPIO since their signal need not be processed, but I'm having trouble figuring how the DFPlayer works and how to use UART.
 
-Song of the week is: TOOL - Reflection
+Song of the week is: [TOOL - Reflection](https://youtu.be/4MzVuHqsNoM?si=4Z2zsSdlizm-3E6u)
 
 ### Week 12-18 May
 
+Finally I got the DFPlayer working. It's really magic, it does all I need and I found some example code in the library of the **ONLY** crate for the module, [dfplayer_async](https://docs.rs/dfplayer-async/latest/dfplayer_async/), which is honestly **GOATED**. I also got some 8Ohm, 1W and 2W speakers and they sound great! I am considering upgrading the project to make it more complex - that being, to add a button of some sort to change the instrument, so **Pico Piano** will become **Pico Band**??, haven't yet decided the name.
+
+I have yet to solder everything in place, but I know for a fact everything is working, except for the Wi-Fi which I haven't tested, that's a formality. I bought some battery holders for 2x AA's (that's 3V, so it was a waste), I'll need to order 3x for 4x AA holders. My project is a mosaic of every Optimus Digital order I've ever placed, even for battery holders.
+
+Song of the week is: [Kanye West - Runaway](https://www.youtube.com/watch?v=EMnQwBTJnMM)
+
 ## Hardware
+
 Setup consists of 3 Raspeberry Pi Pico 2W boards, one for each hand and one acting as the main unit for playing the music. The music is played through a speaker connected to a DFPlayer module which receives signal from the main Pico board.
-The DFPlayer connects to the main Pico 2W through SPI and to the speaker via the SPK pin. VCC is supplied by the Pico board. 5 incline sensors are connected through GPIO to a Pico 2W for each hand.
+The DFPlayer connects to the main Pico 2W through UART and to the speaker via the SPK pins. VCC is supplied by the Pico board. 5 incline sensors are connected through GPIO to a Pico 2W for each hand.
+
+[Main Part](main_and_speaker.webp)
+This will be the main pico (in this case the debug probe is still connected and it can stay for the project). I soldered wires to the speaker because it's very hard to test while holding 2 wires in place with my hands. I also added a button for changing the instrument to add complexity.
+
+[The Hand Picos](boards.webp)
+These are the 2 boards that will be places on the gloves. I have partially soldered them to the prototyping board and also soldered pins for VCC and GND for the sensors, 6 pins, 5 for the sensors and 1 for the connection to the board with a wire. It's easier this way I reckon.
+
+[The Sensors](sensors.webp)
+Finally, these are the sensors. They are tested and work fine but I have yet to connect ALL of them to the boards. This will be done when I test the final version of the code.
+
 ### Schematics
 
-![KiCAD Scheme](KiCADScheme.webp)
+I used KiCAD to draw this schematic. Nothing to add to this really, it's quite clear.
+![KiCAD Scheme](SchematicUpdated.webp)
+
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|
@@ -53,7 +72,8 @@ The DFPlayer connects to the main Pico 2W through SPI and to the speaker via the
 | [10x Incline Sensor](https://components101.com/sensors/sw-520d-tilt-sensor-module)| Incline Sensor | [10x5 RON](https://www.bitmi.ro/electronica/senzor-inclinare-sw-520d-11527.html) |
 | [Resistor 1K Ohm](https://www.optimusdigital.ro/en/resistors/10928-250-pcs-plusivo-resistor-kit.html)| Resistor from Kit  | [15 RON](https://www.optimusdigital.ro/en/resistors/10928-250-pcs-plusivo-resistor-kit.html) |
 | [Wires](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) | Wires, Male-Male and Female-Female | [~10 RON](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) |
-| Speaker 8Ohm | Speaker | Couldn't find speakers available anywhere for a good price actually, nobody seems to sell these anymore, I ripped one out of a toy, I will edit this later if I buy a speaker |
+| Speaker 8Ohm 1W | Speaker | [4,28 RON](https://ardushop.ro/ro/componente-discrete/1084-difuzor-1w-8ohm-50mm-6427854014900.html) |
+| Prototyping Board | Light-weight breadboard for the gloves | [4 RON](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/721-placa-de-test-universala-verde-70x90-mm.html)
 
 ## Software
 | Library | Description | Usage |
