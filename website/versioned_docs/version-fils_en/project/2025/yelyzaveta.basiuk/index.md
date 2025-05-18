@@ -82,19 +82,21 @@ The diagram above shows the overall system architecture of the guitar tuner.
 
 This week I finalized the basic design for the project and gathered all the necessary components. I focused on checking that everything works correctly and started outlining the system architecture. I also worked on the initial documentation. I began testing the microphone to see if I can get a stable signal through the ADC. If that works, I’ll move on to the next steps in signal processing and note detection.
 
-### Week 12 - 18 May
+### Week 12 – 18 May  
+I focused on testing the microphone input and checking if I could get stable frequency detection and feedback on the LCD. I also began setting up the logic for note selection using two buttons and confirmed that the correct LED lights up based on the selected note. As well finished the hardware setup.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-The system is built around a Raspberry Pi Pico W. It uses an analog microphone to capture the guitar sound, two push buttons to select the target note, and LEDs to indicate which note is currently selected. A small LCD display shows the detected frequency and tuning status. The project is powered by a 9V battery with proper voltage regulation for portability.
+The system is built around a Raspberry Pi Pico W. It uses an analog microphone to capture the guitar sound, two push buttons to select the target note, and LEDs to indicate which note is currently selected. A small LCD display shows the detected frequency and tuning status. Initially, I planned to power the circuit using a 9V battery with a voltage regulator, but for now I decided to stick with USB power for simplicity and reliability during testing and development.
+
 
 ![Breadboard Setup](./hardware1.webp)
-_Fig.1 – Prototype setup on breadboard_
+_Fig.1 – Setup on breadboard_
 
 ![](./hardware2.webp)
-_Fig.2 -_
+_Fig.2 – Display and microphone module_
 
 ### Schematics
 
