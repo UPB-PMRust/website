@@ -76,16 +76,15 @@ The format is
 | Raspberry Pi Pico RP2040 | Debugger | [30.00 Lei](https://www.emag.ro/microcontroller-raspberry-pi-rp2040-pico/pd/DKQQWNMBM/) |
 | Breadboard kit | Electrical connections | [22 Lei](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=Kit+Breadboard+HQ830+cu+Fire+%C8%99i+Sursa)|
 | Infrared sensor | Obstacle avoidance | [3.49 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html?search_query=+Modul+Senzor+Infrarosu+de+Obstacole+&results=6)|
-| Micro Motor DC N60 | DC motors | [4.99 Lei](https://www.optimusdigital.ro/ro/motoare-micro-motoare-cu-reductor/2308-micro-motor-dc-n60-14500-rpm-la-3-v.html?search_query=Micro+Motor+DC+N60&results=1) x 2|
+| Motor 130-13200 | DC motors | [4.99 Lei](https://www.optimusdigital.ro/ro/motoare-motoare-fara-reductor/361-motor-130-13200.html?search_query=motor+dc&results=612) x 2|
 | Dual Motor driver | Motor control | [3.73 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=Modul+Driver+de+Motoare+Dual+in+Miniatura&results=1)|
 | Ball support | Ease of movement | [3.95 Lei](https://www.optimusdigital.ro/ro/mecanica-suporturi-cu-bila/74-ball-caster.html?search_query=Suport+cu+Bila+&results=118)|
 | Accelerometer | Movement sensor | [12.99 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=Modul+Accelerometru+cu+3+axe+ADXL345&results=2)|
-| Battery wire | Power supply | [1.49 Lei](https://www.optimusdigital.ro/ro/fire-fire-mufate/896-fir-pentru-baterie-de-9v.html)|
-| 9V Battery | Power supply | [4.87 Lei](https://www.emag.ro/baterie-zinc-carbon-gp-6f22-greencell-1604glf-b-1-buc-9v-gp1604glf-2ue1/pd/DGSJ13MBM/) |
 | Micro Servomotor | Tail movement mechanism | [11.99](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
+| Step Down module LM2596S | Converting voltage | [12.99](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html)|
+| Battery support | Power supply | [9.43 Lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/2806-suport-baterii-4-x-r6.html)|
 
 
-Total: 144.17
 
 ## Software
 
