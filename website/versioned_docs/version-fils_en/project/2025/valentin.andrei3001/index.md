@@ -4,7 +4,7 @@ A rotative solar panel that moves toward the sun.
 :::info 
 
 **Author**: Andrei Valentin-Alexandru \
-**GitHub Project Link**: https://github.com/ValiRupe
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-ValiRupe
 
 :::
 
