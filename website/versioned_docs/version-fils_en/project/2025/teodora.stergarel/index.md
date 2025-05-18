@@ -36,6 +36,9 @@ This project aims to provide an accessible, real-time visual alert system that r
 
 ## Hardware
 
+![1:](/img/1.jpg)
+![2:](/img/2.jpg)
+
 The project is built around the **Raspberry Pi Pico W** microcontroller and integrates the following components:
 
 - **INMP441 MEMS Microphone** (I2S): Used to detect ambient sounds and recognize keywords like “Hello”, “Attention”, and “Help”.
