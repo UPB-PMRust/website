@@ -160,7 +160,7 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
  ![Tinkercad schematics](Design.png)
 
  ![Kicad schematics](Screenshot.png)
- 
+
  Here are some pictures of the project in current state. I am going to use a 3D printer to make it a case for the design part and also a peg clip for the stepper motor.
  ![](image1.jpeg)
   ![](Image2.jpeg)
@@ -210,7 +210,5 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
 
 1. [link](https://www.instructables.com/Raspberry-Pi-Guitar-Tuner/)
 2. [link](https://www.reddit.com/r/raspberry_pi/comments/pn7z7y/automatic_guitar_tuner_with_the_pico_sound_on/?rdt=52573)
-<<<<<<< HEAD
 
-=======
->>>>>>> 9d7efb1 (Actualizez index.md și adaug schema și screenshot)
+
