@@ -25,13 +25,23 @@ I chose to implement Minesweeper over other games because it seemed to offer an 
 
 ## Log
 
-### TODO
-
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
 
+I bought the hardware components from Optimus Digital and soldered the headers on 2 picos, as well as some jumper wires for the SD card interfaces.
+
 ### Week 12 - 18 May
+
+I couldn't get probe-rs to work, so I ended up working with only one pico. Debugging is done via USB. The runner in config.toml was changed from probe-rs to picotool.
+This is how you can run the project:
+
+1. Plug in the USB while holding BOOTSEL if you want to change the firmware.
+2. `cargo run`
+3. Run `sudo minicom -b 115200 -o -D /dev/ttyACM0` to view the debug messages in a separate terminal. You need to install minicom on your system.
+4. Exit from minicom with Ctrl+A, X
+
+I assembled all of the hardware and wrote code for debugging via USB, initializing the display, and testing the buzzer, vibration motor and buttons.
 
 ### Week 19 - 25 May
 
@@ -39,11 +49,13 @@ I chose to implement Minesweeper over other games because it seemed to offer an 
 
 The project utilizes a Raspberry Pi Pico W microcontroller as the central processing unit. User interaction is handled by a biaxial joystick for grid navigation and menu control, along with several push buttons for actions like placing flags, restarting, accessing the menu, and potentially other features. Visual feedback is provided through a 2.8" SPI LCD display (ILI9341 controller). Audio and haptic feedback are implemented using a passive buzzer and a vibration motor. Game state persistence and map storage are managed using a microSD card connected via SPI. The Pico W's wireless capability is used to host a local HTTP server, allowing saved maps to be viewed remotely. A second Pico is used as a debug probe (Picoprobe).
 
+Here are some pics to see how the project is assembled.
+![Hardware_turned_off](Turned_off.webp)
+![Hardware_turned_on](Turned_on.webp)
+
 ### Schematics
 
-### TODO
-
-Place your KiCAD schematics here.
+![KiCad_Schematic](kicad_schematic.webp)
 
 ### Bill of Materials
 
@@ -61,6 +73,7 @@ The format is
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Breadboard HQ (830 Puncte)                                                                                                                                    | Breadboard                                        | [10 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html?search_query=breadboard+HQ+830&results=15)                                                                                                                                    |
 | Set de fire Rigide pentru Breadboard                                                                                                                          | Jumper cables                                     | [12.5 RON](https://www.optimusdigital.ro/ro/fire-fire-nemufate/899-set-de-fire-pentru-breadboard-rigide.html?search_query=Set+de+fire+Rigide+pentru+Breadboard&results=1)                                                                                                       |
+| Fire Colorate Mamă-Tată (10p) 20 cm                                                                                                                           | Jumper cables (male-female)                       | [4 RON](no link avalible)                                                                                                                                                                                                                                                       |
 | [Modul LCD SPI de 2.8" cu Touchscreen - Controller ILI9341 și XPT2046 (240x320 px)](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf)                     | The LCD display                                   | [70 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3544-modul-lcd-spi-de-28-cu-touchscreen-controller-ili9341-i-xpt2046-240x320-px.html?search_query=Modul+LCD+SPI+de+2.8%27%27+cu+Touchscreen+-+Controller+ILI9341+%C8%99i+XPT2046+%28240x320+px%29+&results=2) |
 | [Motor cu vibratii A1027](https://buybestelectronic.com/part-image/15684/datasheet/15684.pdf)                                                                 | The Vibration motor                               | [10 RON](https://www.optimusdigital.ro/ro/motoare-motoare-cu-vibratii/86-motor-cu-vibratii-a1027.html?search_query=Motor+cu+vibratii+A1027&results=2)                                                                                                                           |
 | Buzzer Pasiv de 3.3V sau 3V                                                                                                                                   | Passive buzzer                                    | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=Buzzer+Pasiv+de+3.3V+sau+3V+&results=1)                                                                                                                               |
