@@ -135,7 +135,7 @@ Top view of the second pico:
 
 Here is presented the KiCAD Schematic:
 
-![KiCAD Rod Schematic](Schema_all_components_fishing_Rod_3.png)
+![KiCAD Rod Schematic](Schema_all_components_fishing_Rod.webp)
 
 
 ### Bill of Materials
