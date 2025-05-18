@@ -1,5 +1,5 @@
 # SpongeBot SteelPants
-Magnetic robot that erases whiteboard marker strokes using camera detection
+Magnetic robot that erases whiteboard marker strokes and can be driven remotely over Wi-Fi
 
 :::info 
 
@@ -11,12 +11,9 @@ Magnetic robot that erases whiteboard marker strokes using camera detection
 ## Description
 
 SpongeBot SteelPants is a two-wheel robot designed to automate the process of cleaning
-whiteboards. Clinging magnetically to surfaces via a PWM-controlled electromagnet, the
-robot uses a low-res OV7670 camera to detect marker strokes. Once a trace is identified,
-the robot navigates over it and wipes it clean using an attached sponge. \
-The system is built around a Raspberry Pi Pico 2W which handles image processing,
-sensor input and motor control. The components have been chosen to keep the bot as
-lightweight as possible.
+whiteboards. It clings to the board with a PWM-controlled electromagned and either:
+* automatic sweep mode - systematically scans the entire board in a lawn-mower pattern
+* remote mode - receives real-time drive commands from a phone/PC over Wi-Fi.
 
 ## Motivation
 
@@ -33,18 +30,17 @@ flowchart TD
     PICO["Raspberry Pi Pico 2 W"]
 
     subgraph Input Devices
-        CAM["OV7670 Camera"]
         IR["4× IR Sensors"]
         IMU["GY-521 (MPU6050)"]
-        WIFI["Wi-Fi Comm"]
+        WIFI["Wi-Fi Link"]
     end
 
     subgraph Processing
-        VISION["Image Processing:<br>Detect Marker Traces"]
         EDGE["Edge Detection Logic"]
         NAV["Navigation & Path Planning"]
         CTRL["Motor Control Logic"]
         ADHESION["Adhesion Control Logic"]
+        COMM["Wi‑Fi Command Handler"]
         STATUS["Status Display Logic"]
     end
 
@@ -56,17 +52,14 @@ flowchart TD
         OLED["0.96'' OLED Display"]
     end
 
-    PICO --> CAM
     PICO --> IR
     PICO --> IMU
     PICO --> WIFI
 
-    CAM --> VISION
     IR --> EDGE
     IMU --> NAV
     WIFI --> NAV
 
-    VISION --> NAV
     EDGE --> NAV
 
     NAV --> CTRL
@@ -122,19 +115,15 @@ module
 * Small and light, these motors provide the torque needed to pull a sponge and a magnet
 across a whiteboard
 
-6. **OV7670 Camera Module**
-* Provides low-res frames, good enough to determine by applying a grayscale where the
-marker strokes are
-
-7. **IR Obstacle Sensors (x4)**
+6. **IR Obstacle Sensors (x4)**
 * IR LEDs mounted at the corners to prevent the robot from falling off the edge of the
 whiteboard.
 
-8. **Electromagnet 5 V/25 N**
+7. **Electromagnet 5 V/25 N**
 * Strong enough to cling the small robot to the whiteboard
 * PWM-driven grip allows for adjustable adhesion
 
-9. **0.96 OLED Display**
+8. **0.96 OLED Display**
 * Indicates the mode which the robot is currently using (cleaning by using the camera
 module or just simply going around)
 * Displays remaining battery charge
@@ -168,14 +157,13 @@ The format is
 | [TB6612FNG Motor Driver](https://cdn.sparkfun.com/datasheets/Robotics/TB6612FNG.pdf) | Dual H-bridge to control 2 DC motors via PWM | [24.99 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/134-tb6612fng-dual-motor-driver-1-a.html) |
 | [D4184 MOSFET Module](https://protosupplies.com/product/d4184-mosfet-control-module/) | Switches the electromagnet on/off using PWM | [5.00 RON](https://www.optimusdigital.ro/en/relay-modules/12509-d4184-mosfet-control-module-replacement-relay.html) |
 | [GY-521 (MPU-6050)](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf) | Measures tilt to adjust magnet force dynamically | [24.16 RON](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326) |
-| [OV7670 Camera Module](https://web.mit.edu/6.111/www/f2016/tools/OV7670_2006.pdf) | Captures low-res frames to detect marker strokes | [12.66 RON](https://sigmanortec.ro/Modul-camera-OV7670-p135315688) |
 | [IR Obstacle Sensor](https://protosupplies.com/product/ir-obstacle-avoidance-sensor-module/) | Detects whiteboard edges to prevent falling | [3.07 RON × 4](https://sigmanortec.ro/Senzor-obstacol-IR-p125423458) |
 | [0.96″ OLED Display (SSD1306)](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Shows battery level and operating mode | [16.35 RON](https://sigmanortec.ro/Display-OLED-0-96-I2C-IIC-Albastru-p135055705) |
 | [Electromagnet 5V / 25N](https://www.adafruit.com/product/3872#technical-details) | Holds robot against whiteboard via magnetic force | ~[27.00 RON](https://ampul.eu/ro/electromagnei-adezivi/2169-1602-electromagnet-25kg-25n-20x15mm#/432-tensiune-5_v_dc) |
 | WAGO 5-pin Connector (221-415) | Splits battery power and ground safely | [2.98 RON × 2](https://sigmanortec.ro/en/wago-5-pin-connector) |
 | 4×AA Battery Holder | Powers the robot with 4 AA batteries | [6.24 RON](https://sigmanortec.ro/Suport-4-baterii-AA-cu-capac-si-intrerupator-p172447738) |
 | Miscellaneous (breadboards, wires, diodes, etc.) | Circuit prototyping, motor connection, edge detection, and mechanical assembly | ~70 RON |
-| Total | - | 294.28 RON |
+| Total | - | 281.62 RON |
 
 ## Software
 
