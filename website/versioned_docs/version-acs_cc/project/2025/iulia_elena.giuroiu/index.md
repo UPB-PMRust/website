@@ -96,6 +96,19 @@ and reading input from the push button (button.rs).
 
 These tests ensured that the electrical connections were correct and that each peripheral worked reliably before integrating them into the main system.
 
+### Build Gallery
+
+Here are several photos taken during development and testing:
+
+| System Overview | LCD & Servo Testing |
+|------------------|----------------------|
+| ![Final Build](images/hello-world-full.webp) | ![LCD Servo](images/traieste-lcd-servo.webp) |
+
+| LED Indicator Test | Keypad + PIR + Buzzer Test |
+|--------------------|-----------------------------|
+| ![LEDs](images/leds-test.webp) | ![Keypad PIR](images/keypad-pir-buzzer.webp) |
+
+
 ### Week 19 - 25 May
 
 ## Hardware
