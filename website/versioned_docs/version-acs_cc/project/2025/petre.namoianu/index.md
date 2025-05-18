@@ -69,9 +69,9 @@ flowchart TD
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+  Started gathering the required components, checked to see what voltage some parts work at. Started writing the documentation and researching how to make a safe shoot "projectiles".
 ### Week 12 - 18 May
-
+  During this week I acquired all the remaining parts, decided to switch from 4x1.5V batteries to a single 9V battery in case my DC motor needed more voltage to spin faster. I put all my hardware in the safe for the first time and came up with a rough idea for the launching mechanism for the "projectiles". 
 ### Week 19 - 25 May
 
 ## Hardware
