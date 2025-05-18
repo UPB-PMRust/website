@@ -47,6 +47,7 @@ Architectural Diagram:
 I've acquired all the necessary hardware, which is likely still subject to be rethought and changed. I've set up a configuration with two Pico 2Ws, one of them being a debugger for another one. Currently I'm in the process of getting LCD to work and looking for suitable libraries and crates for the project.
 
 ### Week 12 - 18 May
+I managed to implement a basic version of Snake Game. Although initially it was choppy due to optimisation flaws in screen updates, I managed to fix it and the game now runs at buttery smooth 60 fps. The console is fully functional, but barebones and a little wonky to use for now. For now my plan is to add new gameplay features to the game which are not currently present, and add LEDs for visual feedback. Since I haven't done that yet my KiCad schematic doesn't include RGB LEDs, in the next weekly log I'll make sure to include that as well, as the project will reach a more finished and polished state.
 
 ### Week 19 - 25 May
 
@@ -57,8 +58,8 @@ Consists of RP Pico 2W (2x), LCD TFT 2.2" module, buttons and resistors and 2 br
 ![](pic2.webp)
 
 ### Schematics
-
-At the moment KiCad schematic cannot be done as I am unsure about connections. For now I will only provide architectural schematic, KiCad schematic is WIP.
+Here's a KiCad schematic for the current version of the console:
+![KiCad schematic](kicad.webp)
 
 ### Bill of Materials
 
