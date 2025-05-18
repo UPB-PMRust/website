@@ -92,7 +92,7 @@ Aside from wires, resistors, diodes and transistors, no additional sensors or wi
 
 ### Schematics
 
-![Diagram](schematic.webp)
+![Diagram](schematic.svg)
 
 ### Images
 
