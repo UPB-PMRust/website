@@ -111,7 +111,7 @@ This diagram reflects the concept of connections of every part in this project.
 
 *Role:* Audible notification system
 
-*Connections:* GPIO5
+*Connections:* GPIO28
 
 *Function:* Sounds alerts
 
@@ -132,7 +132,15 @@ This diagram reflects the concept of connections of every part in this project.
 
 ### Week 5 - 11 May
 
+I imported all my work-in-progress materials to the project's repository where every component was tested except MAX30102, which I was trying to replace that time. I made all the connections with respect to the uploaded KiCAD schematics.
+
+![HardwareWeek1](hardware_1.webp)
+
 ### Week 12 - 18 May
+
+My goal was to unify all the code that I had had before and make one program with several tasks from it. What is more, I have started to work on the UI of the project. The biggest issue I faced was handling the signal from BPE sensor which was too difficult to set up.
+
+![HardwareWeek2](hardware_2.webp)
 
 ### Week 19 - 25 May
 
@@ -140,7 +148,7 @@ This diagram reflects the concept of connections of every part in this project.
 
 VitalPi utilizes a Raspberry Pi Pico 2W microcontroller as its processing core and webbite communicator, paired with a TFT LCD touchscreen (240×320px) for user interaction. Health monitoring is provided through an AD8232 ECG sensor module for cardiac activity, an MLX90614ESF infrared temperature sensor for contactless temperature readings, and a GY-MAX30102 optical heart rate and blood oxygen sensor. Environmental monitoring comes from an MQ135 gas sensor configured with a 10kΩ/20kΩ resistor voltage divider. User notifications are delivered via an RGB LED (with 220Ω current-limiting resistors) for visual alerts and a passive buzzer for audible warnings.
 
-![Hardware](hardware.webp)
+![Hardware](hardware_2.webp)
 
 ### Schematics
 
