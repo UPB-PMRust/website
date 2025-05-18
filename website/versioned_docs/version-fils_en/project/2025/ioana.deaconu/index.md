@@ -106,6 +106,18 @@ This project was chosen due to its potential to combine several embedded systems
 
 ### Week 12 - 18 May
 
+#### Hardware Integration
+- Integrated the passive buzzer into the hardware setup.
+- Successfully verified its functionality through basic sound tests, including varying tones and frequencies.
+
+#### Software Development
+- Implemented the following:
+  - Audio feedback for each LED activation and for each button press during user input.
+  - Difficulty selection via button presses before game start and display on the LCD.
+  - Game initiation after difficulty selection via "Play" button.
+  - Game-over function that plays a short melody and animates LEDs in a playful pattern.
+  - Game restart without USB reset.
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -130,7 +142,9 @@ All components are integrated onto the breadboard to form a compact and testable
 
 ### Schematics
 
-...
+![KiCad Schematic](kicad_schematic.webp)
+
+![Project Setup](project_photo1.webp)
 
 ### Bill of Materials
 
