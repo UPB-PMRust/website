@@ -52,9 +52,17 @@ Buzzer – audio signal
 
 LEDs – reservoir level indicators
 
+![Hardware](img1.webp)
+![Hardware](img2.webp)
+![Hardware](img3.webp)
+![Hardware](img4.webp)
+![Hardware](img5.webp)
+
+
 ### Schematics
 
-Place your KiCAD schematics here.
+![Schematic](alessia.webp)
+
 
 ### Bill of Materials
 
