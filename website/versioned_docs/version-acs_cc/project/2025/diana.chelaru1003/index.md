@@ -85,6 +85,10 @@ The entire system is powered through a USB cable connected to the Pico.
 **Purpose**: Ensure physical and electrical connections between components.
 **Function**: Carry data signals and power between the Raspberry Pi Pico and all peripheral devices.
 
+![diagram](Poza1.webp)
+![diagram](Poza2.webp)
+![diagram](Poza3.webp)
+
 ### Schematics
 ![diagram](Schematic.webp)
 
