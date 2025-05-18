@@ -85,7 +85,10 @@ flowchart TD
 * Set up defmt debugging to verify Pico functionality and test communication with peripherals
 
 ### Week 12 - 18 May
-**To be updated**
+* Selected an appropiate chassis, then mounted and organized every module on it
+* Assembled complete hardware stack and performed an initial test of all the components
+* Implemented and validated test functions for all critical peripherals (MPU-6050, I²C bus, OLED Display), 
+confirming data flow
 
 ### Week 19 - 25 May
 **To be updated**
@@ -137,6 +140,10 @@ Other components:
 ### Schematics
 
 ![Schematics](images/spongebot_kicad.webp)
+
+### Photos
+![Photo_HighAngle](images/photo_high.webp)
+![Photo_LowAngle](images/photo_down.webp)
 
 ### Bill of Materials
 
