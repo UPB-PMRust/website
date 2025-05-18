@@ -46,6 +46,8 @@ Finished tying up loose end in the research for the project and made the documan
 
 ### Week 12 - 18 May
 
+Finished the car chassis and asamballed most of it. Also cheked all the connections.
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -59,8 +61,8 @@ are:
 
 ### Schematics
 
-Place your KiCAD schematics here.
-
+![diagram](kicad.webp)
+![diagram](car.webp)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
