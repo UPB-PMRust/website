@@ -60,7 +60,7 @@ Pulsometrul a fost ales pentru a putea măsura pulsul unei persoane.
 
 ### Schematics
 
-![Schema_Kicad](Kicad_Proiect.webp)
+![Schema_Kicad](Kicad_schematic.svg)
 
 ### Bill of Materials
 
