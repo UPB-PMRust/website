@@ -90,7 +90,7 @@ On the hardware side, I began placing key components on the PCB. I’ve focused 
 
 ### Schematics
 
-![Scheme (not final!)](Scheme_EmotiBuddy.webp)
+![Scheme (not final!)](Scheme_EmotiBuddy.svg)
 
 ### Bill of Materials
 
