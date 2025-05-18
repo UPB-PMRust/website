@@ -4,7 +4,7 @@ A miniature slot machine inspired by early electromechanical casino models.
 :::info
 
 **Author**: Androne Andrei \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-AndroneAndrei
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-andronedrei
 
 :::
 
@@ -50,8 +50,14 @@ Alongside its educational purpose, the project applies several concepts covered 
 ## Log
 
 ### Week 5 - 11 May
+I bought all the necessary components and started testing the crates I can use in development. I also crafted some of the structural parts of my project, such as a slot machine wheel.
 
 ### Week 12 - 18 May
+I created custom structures to improve abstraction. I developed a system for precise control of the stepper motor’s rotation. I also built the initial phase of the project, which includes the connected wheel, spin button, and a screen to display income during play. I created the first part of the algorithms that simulate the game mechanics.
+
+![Initial Work](Work1.webp)
+
+(See the link at the end of the page for further demonstration)
 
 ### Week 19 - 25 May
 
@@ -69,13 +75,15 @@ Controls – Three push‑buttons (Start/Spin, Mode/Bet-Double/Stop, Select-Sum)
 Power – Everything runs from a 5 V USB supply (a battery will be added in later developement). The Pico makes its own 3.3 V for logic; motors and audio stay on 5 V.
 
 ## Schematics
-TO DO (KiCad)
+![Schematics](KiCad.webp)
 
 ## Bill of Materials
 
 | Device | Usage | Price |
 |:------:|:-----:|:-----:|
-| [2x Raspberry Pi Pico 2 W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=rb+pi+pico&results=33) | Microcontroller | 80 RON |
+| [1x Raspberry Pi Pico 2 W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=rb+pi+pico&results=33) | Microcontroller | 40 RON |
+| [1x Raspberry Pi Debug Pro](https://www.optimusdigital.ro/en/accesories/12777-raspberry-pi-debug-probe.html?srsltid=AfmBOooHwuQpCRxRgXHjv-_NAa7ifqsU04u6a5yY03Mvc5v7HP6nT0HC) | Debug Probe | 62 RON |
+| [1x Raspberry Expansion Board](https://www.optimusdigital.ro/en/accesories/12680-quad-gpio-expander-for-raspberry-pi-pico-four-sets-of-male-headers-usb-power-connector.html?search_query=rb+pico&results=52) | Quad Expander Board | 80 RON |
 | [DFPlayer Mini](https://www.optimusdigital.ro/ro/audio/1484-modul-mp3-player-in-miniatura-dfplayer-mini.html?search_query=Modul+MP3+Player+in+Miniatura+DFPlayer+Mini+&results=1) | MP3 Mini Player | 14 RON |
 | [50mm Speaker - 2W - 32ohm](https://ardushop.ro/en/electronics/1962-50mm-speaker-2w-32ohm-6427854029898.html) | Generic Mini Speaker | 5 RON |
 | [1602A](https://www.conexelectronic.ro/afisaje-lcd/16628-DISPLAY-LCD-1602A-I2C-ALBASTRU.html?srsltid=AfmBOooUZ1h1w4HOgB00LHVgVOKTkkAHYW9aRtFuG0dBQyG3iZTs1Qiw) | LCD display | 29 RON |
@@ -91,8 +99,8 @@ TO DO (KiCad)
 | [embassy‑executor](https://crates.io/crates/embassy-executor/) | Async runtime | Runs cooperative tasks on the Pico |
 | [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Timers within async developement | Different pauses |
 | [embassy-rp](https://embassy.dev/) | RP2350 hardware abstraction | GPIO, UART, I2C, etc. |
-| [ag-lcd](https://docs.rs/ag-lcd/latest/ag_lcd/) | LCD diplsay library | Used for my mini screen display |
-| [port_expander](https://docs.rs/port-expander/latest/port_expander/index.html) | Library providing a common abstraction for I2C port-expanders | Used for my PCF8574 |
+| [dfplayer-async](https://crates.io/crates/dfplayer-async) | Crate for use of DFPlayer through UART | Music player in my project |
+| [lcd1602-diver](https://docs.rs/lcd1602-diver/latest/lcd1602_diver/) | lcd1602 communication | LCD Screen with a PCF I2c expander |
 | [rand](https://docs.rs/rand/latest/rand/) | Utilities for random number generator | Used in software part that controls game flow |
 
 ## Links
@@ -100,3 +108,4 @@ TO DO (KiCad)
 - [similar arduino project 2](https://www.youtube.com/watch?v=QCF7HrBWTgs)
 - [labs](https://pmrust.pages.upb.ro/docs/acs_cc/category/lab)
 - [addiction explanation](https://www.youtube.com/shorts/iFQr5vMsKwQ)
+- [second week demonstration](https://youtube.com/shorts/gn8Lovvy9Aw)
