@@ -1,4 +1,4 @@
-# Fan Rotation Detection with Door Control
+# Fan Rotation Detection with Window Control
 If a fan exceeds a certain number of RPMs, the Pico closes the door.
 
 
@@ -8,8 +8,8 @@ If a fan exceeds a certain number of RPMs, the Pico closes the door.
 
 
 ## Description
-This project is built using two Raspberry Pi Pico 2W and two servo-motors. The first Pico monitors temperature and pressure, controls the fan, and detects when the fan is rotating.
- When fan rotation is detected, the first Pico transmits a signal to a second Pico which controls a door mechanism to close it.
+This project is built using two Raspberry Pi Pico 2W, one servo-motor and one encoder. The first Pico monitors detects when the fan is rotating.
+ When fan rotation is detected, the first Pico transmits a signal to a second Pico which controls a window mechanism to close it.
 
 ## Motivation
 The motivation behind this project is to create an affordable and automated solution for protecting homes from incoming rain. By using a simple external fan as a wind-speed sensor and Raspberry Pi Pico microcontrollers, the system detects high wind speeds—often a precursor to rain—and automatically signals to close windows. This adds a layer of convenience and protection for homeowners, especially when they are away or unable to act quickly.
@@ -22,15 +22,12 @@ This is the diagram that illustrates the components and their connections.
 
 
 **Raspberry Pi Pico 2W**
-- **Role**: The brain of the system.Reads signals from the Hall effect sensor.Controls the LED based on fan rotation status.Processes sensor data to determine if the fan is moving.
+- **Role**: The brain of the system. Reads signals from the encoder. Processes sensor data to determine if the fan is moving and transmits a signal to a second Pico which controls a window mechanism to close it.
 
 
-**LEDs**
-- **Role**: Visual indicator. Lights up when the Hall sensor detects rotation (fan is ON). Turns off when no rotation is detected (fan is OFF). Resistor Purpose: Limits current to prevent LED burnout.
 
-
-**Hall Effect Sensor**
-- **Role**: Detects fan rotation. Senses the magnetic field from the magnet attached to the fan blade. Outputs a digital signal (HIGH/LOW) to the Pico each time the magnet passes by. Note: Requires a magnet mounted on the fan blade.
+**Encoder**
+- **Role**: Detects fan rotation. Outputs a digital signal to the Pico when the rpm's reaches a certain number.
 
 **Breadboard & Jumper Wires**
 - **Role**:  System assembly. Provides a platform for prototyping without soldering. Jumper wires connect components to the Pico.
@@ -38,15 +35,6 @@ This is the diagram that illustrates the components and their connections.
 **USB Cable**
 - **Role**:   Power and programming. Powers the Pico during development. Used to upload code to the microcontroller.
 
-**Neodymium Magnet**
-- **Role**:  Triggers the Hall effect sensor.
-Mounted on one fan blade. Each rotation brings the magnet close to the sensor, generating a detectable pulse.
-
-
- **220Ω Resistor**
-  - **Interface**: SPI
-  - **Role**: Protects the LED. Limits current flow through the LED to a safe level (typically 5–20mA). Connected in series with the LED.
-  
 ## Log
 ### Week 5 - 11 May
 Once the project was approved, I collected all the required components and began assembling the hardware. I also started designing a 3D model for the fan, but paused the design temporarily since I had not finalized the component layout for the final setup. After completing the hardware assembly, I moved on to researching the crates I planned to use for software development.
