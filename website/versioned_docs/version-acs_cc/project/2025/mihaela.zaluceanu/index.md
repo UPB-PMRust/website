@@ -10,7 +10,7 @@ An ultrasonic **radar system** that detects objects' positions using sound waves
 
 ## Description
 
-This project is a small-scale ultrasonic RADAR system that detects the presence and relative position of objects in the horizontal plane. It uses the **HC-SR04 ultrasonic sensor** for distance measurements and the **SG90 micro servo motor** to rotate the sensor across a 180° arc, enabling area scanning. The system is controlled by a **Raspberry Pi Pico 2W**.
+This project is a small-scale ultrasonic RADAR system that detects the presence and relative position of objects in the horizontal plane. It uses the **HC-SR04 ultrasonic sensor** for distance measurements and the **SG90 micro servo motor** to rotate the sensor across a 180° arc, enabling area scanning. The system is controlled by a **Raspberry Pi Pico 2**.
 Designed as a modular component, this project can be integrated into larger systems where echolocation improves spatial awareness and obstacle detection.
 
 ## Motivation
@@ -26,8 +26,10 @@ This project is modular and can be integrated into larger robotics or IoT projec
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Writing project's documentation.
 
 ### Week 12 - 18 May
+I assembled the hardware components and wrote a demo code to make sure everything was assembled correctly.
 
 ### Week 19 - 25 May
 
@@ -38,6 +40,11 @@ This project is modular and can be integrated into larger robotics or IoT projec
 - HC-SR04 ultrasonic distance sensor;
 - 3k3 Resistor;
 - 6k8 Resistor;
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/JmNvgwWPilE)](https://youtu.be/JmNvgwWPilE)
+
+![](p1.jpg)              |  ![](p2.jpg)
+:-------------------------:|:-------------------------:
 
 ### Schematics
 
