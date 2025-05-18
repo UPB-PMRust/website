@@ -5,13 +5,13 @@ class: text-center
 highlighter: shiki
 lineNumbers: true
 info: |
-  ## Embedded Operating Systems
+  ## Memory Protection
 drawings:
   persist: false
 defaults:
   foo: true
 transition: slide-left
-title: MA - 10 - Embedded Operating Systems
+title: MA - 10 - Secure Execution
 mdc: true
 layout: cover
 themeConfig:
@@ -21,49 +21,33 @@ exportFilename: ma-10
 background:
 ---
 
-# Embedded Operating Systems
+# Secure Execution
 Lecture 10
 
 ---
-
-# Embedded Operating Systems
-usually called RTOS
-
-- The purpose of an operating system
-  - Abstractions
-  - System calls
-- Embedded Operating Systems
-  - Real Time
-- Tock OS
-
-<!-- os -->
-
----
-src: ../../resources/os/slides.md
 ---
 
-<!-- rtos -->
+# Secure Execution
 
----
-src: ../../resources/rtos/slides.md
----
-
-<!-- tock -->
-
----
-src: ../../resources/tock/slides.md
----
-
-
+- Security Model
+  - Secure
+  - Non Secure
+  - Non Secure Callable
+- ARM TrustZone
+- RP2350 Secure 
+- Software
 
 ---
 ---
-# Conclusion
-we talked about
+# Memory Types
 
-- The purpose of an operating system
-  - Abstractions
-  - System calls
-- Embedded Operating Systems
-  - Real Time
-- Tock OS
+| Type | Symbol | Description |
+|-|-|-|
+| *Secure* | **S** | Can be accessed only by code running in **secure mode** |
+| *NonSecure Callable* | **NSC** | code running in **non-secure mode** can make function calls into it with some restrictions |
+| *NonSecure* | **NS** | any code running in **any mode** can access it |
+
+---
+---
+# Security Attribution Unit
+
