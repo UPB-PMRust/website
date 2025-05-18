@@ -8,7 +8,7 @@ An emotional journal based on button inputs for daily mood tracking
 :::
 
 ## Description
-A simple mood tracking device that allows users to record their daily emotional state by pressing buttons. The device saves these states and displays a graph of the last 7 days on a small LCD screen, providing a visual representation of emotional patterns.
+A simple mood tracking device that allows users to record their daily emotional state by pressing buttons. The device saves these states and displays a graph of the last 7 days on a small LCD screen, providing a visual representation of emotional patterns.After the 7 inputs a mood analysis will be done via ChatGPT with its API
 
 ## Motivation
 I chose this project because keeping track of one's emotional state can be beneficial for mental health awareness. A physical device with simple button inputs makes the process of mood tracking more tangible and accessible than smartphone apps, potentially encouraging more consistent usage. I'm also interested in creating a device that combines hardware interaction with data visualization.
@@ -37,15 +37,21 @@ These components interact as follows:
 - Researched EEPROM interfacing with Raspberry Pi Pico
 
 ### Week 12 - 18 May
+-Initialized the Rust project and strated working with the software
+-Finished the hardware for the milestone 
+-Research in data visualization with matplotlab
 
 ### Week 19 - 25 May
 
 ## Hardware
+
+![Hardware](Hardware.jpeg)
+
 The project uses a Raspberry Pi Pico W as the main controller, with a 2.4" LCD screen for display, a TPA3118 mono audio amplifier for sound feedback, and an AT24C256 EEPROM module for data storage. Buttons for input and basic resistors are used for the interface.
 
 ### Schematics
 
-![HardwareSchematics] (mood-tracker-schematic.svg)
+![HardwareSchematics](KiCadScheme.jpeg)
 
 ### Bill of Materials
 | Device | Usage | Price |
