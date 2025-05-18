@@ -41,7 +41,7 @@ The entire system is powered through a USB cable connected to the Pico.
 
 <!-- write every week your progress here -->
 
-### Week  - 11 May
+### Week 4 - 11 May
 -modified/updated the schematic
 
 -assembled some components on the breadboard
@@ -49,8 +49,12 @@ The entire system is powered through a USB cable connected to the Pico.
 -started working on the software
 
 
-### Week  -  May
+### Week 12 - 18 May
+-modified/updated the schematic again
 
+-assembled all components on the breadboard
+
+-made some progress on the software
 
 ### Week  -  May
  
