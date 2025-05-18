@@ -32,7 +32,17 @@ Components: The phone communicates through wi-fi with the microcontroller. Pico 
 
 ## Log
 
+### Week 27 April - 4 May
+
+I thought about what improvements I could make to the main idea of ​​the robot. I researched how I could build a mini car, what materials I would need and which device to use to control it.
+
+### Week 4 May - 18 May
+
+In these weeks, I bought all the hardware components and assembled the mini car. I also designed the case for the robot.
+
 ## Hardware
+
+![Hardware picture](hardware.webp)
 
 Raspberry Pi Pico 2W: Microcontroller with Wi-Fi integrated for the interraction of the application,
 acts as the central controller.\
@@ -64,4 +74,10 @@ Ball Caster: Used as a "front wheel".
 
 ## Software
 
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy](https://github.com/embassy-rs/embassy) | Embassy | A Rust library designed for for constructing embedded applications |
+
 ## Links
+
+1. [Obstacle Avoiding Robot Car](https://www.youtube.com/watch?v=nUas-A0THDo).
