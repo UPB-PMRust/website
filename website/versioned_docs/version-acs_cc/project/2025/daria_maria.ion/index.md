@@ -43,7 +43,8 @@ Connections:
 Make documentation
 
 ### Week 12 - 18 May
-Connecting the hardware components
+Connecting the hardware components.
+
 Updating the documentation
 
 
