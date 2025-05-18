@@ -40,9 +40,12 @@ Connections:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
- Connecting the hardware components
+Make documentation
 
 ### Week 12 - 18 May
+Connecting the hardware components
+Updating the documentation
+
 
 ### Week 19 - 25 May
 
@@ -54,6 +57,10 @@ The project uses the following hardware:
 - Two MG996R servo motors for motion effects
 - RGB LED connector for visual lighting
 - Power smoothing components: 470Ω resistor and 1000µF capacitor
+
+![poza1](./poza1.webp)
+![poza2](./poza2.webp)
+
 
 
 ### Schematics
@@ -74,13 +81,15 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico&results=33) | Main microcontroller | ~39 RON |
+| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico&results=33) | Main microcontroller | ~39 RON x2|
 | [KY-037 Sound Sensor](https://www.bitmi.ro/modul-senzor-sunet-cu-sensibilitate-ridicata-ky-037-10634.html) | Detects sound intensity | ~5 RON |
 | [MG996R Servo Motor](https://sigmanortec.ro/servomotor-mg996r-180-13kg) | Rotation / motion effect | ~30 RON x2 |
 | [WS2812B RGB LED Strip](https://ardushop.ro/ro/electronica/900-1193-leduri-rgb-la-banda-neopixels-ws2812b-pretul-este-pentru-un-led.html) | Visual LED effects | ~2.5 RON/LED |
 | [Rezistor 330Ω](https://www.emag.ro/rezistor-tht-330-0-25-w-5-toleranta-galben-z000431/pd/D8DQLHYBM/) | Data line protection for LED | ~2.62 RON |
 | [Condensator 1000μF / 6.3V](https://www.emag.ro/condensator-electrolitic-1000uf-6-3v-pentru-pc-135250/pd/DZ614KMBM/) | Voltage stabilization for LED | ~3.5 RON |
 | [Fire jumper (M-M)](https://www.optimusdigital.ro/ro/fire-fire-mufate/881-set-fire-mama-mama-40p-15-cm.html) | Wiring connections | ~7 RON |
+| [Fire jumper (M-T)](https://www.optimusdigital.ro/ro/fire-fire-mufate/653-fire-colorate-mama-tata-40p-10-cm.html) | Wiring connections | ~6 RON |
+| [Fire jumper (T-T)](https://www.optimusdigital.ro/ro/fire-fire-mufate/889-set-fire-tata-tata-10p-20-cm.html) | Wiring connections | ~4.5 RON |
 | Breadboard | Rapid prototyping | ~10 RON |
 
 ## Software
