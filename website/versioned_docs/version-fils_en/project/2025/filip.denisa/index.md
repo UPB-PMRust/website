@@ -58,7 +58,7 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ### Week 10 - 4 May: I submitted the documentation and made the necessary changes.
 
-### Week 11 - 11 May:
+### Week 11 - 11 May:`
 
 ### Week 12 - 18 May:
 
@@ -73,9 +73,12 @@ RGB LEDs (2x): Provide visual feedback—colors change (e.g., green to red) base
 
 Buzzers (2x): Emit sound alerts that increase in frequency as the object gets closer, enhancing the warning system.
 
-  
+![Hardware](h1.svg)
+![Hardware](h2.svg)
+![Hardware](h3.svg)
+![Hardware](h4.svg)
 
-  
+
   
 ## Schematics
 
