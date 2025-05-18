@@ -91,7 +91,7 @@ How the Components Connect:
 
 ### Week 5 - 11 May
 
-=======
+
 This week, I soldered the hardware components in the lab to improve stability and reduce noise. I also placed the final order for the stepper motor, which I plan to use later for automatic tuning. Meanwhile, I focused on debugging using probe-rs, and successfully tested the OLED display, buzzer, LEDs, and microphone input. Sampling works correctly, and I’m now able to capture real-time sound data. I also wrote code to test each component individually, to check that they were working properly and I integrated them in the project. 
 ### Week 12 - 18 May
 I drew the first version of my Tinkercad schematics, and made some modifications afterwards, while performing tests on my components. Afterwards, I draw the Kicad schematics. This week I completed the hardware connections for the project, with the exception of the stepper motor, which I am still waiting to arrive. Once everything is stable and functional, I will integrate the motor into the system for automatic tuning. I also created the schematic in Tinkercad and adjusted it as needed while testing different components and wiring configurations.
