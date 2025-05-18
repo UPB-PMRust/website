@@ -78,7 +78,7 @@ I also started the software development and began designing the external casing 
 
 ### Schematics
 
-![diagram](Proiect_PM.webp)
+![diagram](Proiect_PM.svg)
 
 ### Bill of Materials
 
