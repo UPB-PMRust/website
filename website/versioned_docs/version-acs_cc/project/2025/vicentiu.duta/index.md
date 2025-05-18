@@ -115,7 +115,18 @@ TODO
 
 ## Hardware
 
-The system consists of a Raspberry Pi Pico 2 microcontroller interfacing with five main components: an MFRC522 RFID reader for contactless card authentication via SPI protocol, a NEMA 17 stepper motor (17HS4401) with DRV8825 driver for powerful and precise elevator movement control, an ST7735 color TFT display for providing rich visual feedback on system status, and an MG90S servo motor for controlling the elevator door. The RFID reader and display both communicate via SPI, while the stepper motor driver uses direct GPIO control with step/direction interface and the servo motor is controlled through PWM. The DRV8825 driver supports microstepping for smoother operation and provides the necessary current for the NEMA 17 motor. All modules connect directly to the Pico, creating a compact, integrated access control system with automated mechanical components.
+The system consists of a Raspberry Pi Pico 2 microcontroller serving as the central control unit, interfacing with several key components:
+
+* **MFRC522 RFID Reader**: Provides contactless card authentication via SPI protocol, identifying authorized users and their floor access permissions
+* **NEMA 17 Stepper Motor (17HS4401)**: Delivers torque for powerful and precise vertical movement of the elevator cabin
+* **DRV8825 Driver**: Controls the stepper motor with microstepping capability, providing smooth motion and precise positioning
+* **ST7735 Color TFT Display**: Offers real-time visual feedback showing elevator position, status, and operation mode
+* **MG90S Servo Motor**: Controls the elevator door mechanism, automatically opening and closing at floor stops
+
+These components are integrated through different communication protocols:
+* SPI for the RFID reader and display
+* GPIO with step/direction signaling for the stepper motor driver
+* PWM for servo motor control
 
 ### Schematics
 ![Schematic](schematic.svg)
