@@ -21,29 +21,38 @@ I got the idea from the game *Rust*, where you can build autoturrets that shoot 
 The system has two main parts:
 
 - **Vision + Targeting (Python)**: A Python script runs object detection (YOLO) on a laptop and identifies the target based on color or shape. It sends coordinates to the turret controller.
-- **Control (Rust)**: A Raspberry Pi 2W runs a Rust program that controls two servo motors — one for horizontal rotation, one for vertical — and points the camera and laser to track the target. It also reads a distance sensor.
+- **Control (Rust)**: A Raspberry Pi 2W runs a Rust program that controls two servo motors — one for horizontal rotation, one for vertical — and points the camera and laser to track the target.
 - The camera and laser are mounted on the same platform, so they move together.
+
+![Simple schematic](./Schema_simpla.webp)
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-TBD
+Researched similar turret systems for inspiration and finalized the design plan. Ordered all necessary hardware components based on system requirements and constraints.
 
 ### Week 12 - 18 May
-TBD
+Received the components and assembled the mechanical structure, including the servo mounts, camera bracket, and laser holder. Verified that all parts fit together and are functional.
 
 ### Week 19 - 25 May
 TBD
 
 ## Hardware
 
-Detail in a few words the hardware used. TBD
+A list of the main hardware components used in the project:
+
+- **Raspberry Pi Pico 2W** – Acts as the main controller for servo movement and USB communication.
+- **2x SG90 Servo Motors** – Control the pan and tilt movement of the turret.
+- **USB Camera** – Captures video feed for real-time object detection.
+- **Laser Pointer** – Visually highlights the target being tracked.
+- **Breadboard + Jumper Wires** – For quick and modular connections.
+- **5V Power Supply** – Powers the servo motors reliably.
 
 ### Schematics
 
-Place your KiCAD schematics here. TBD
+![Schematic](Schematic.webp)
 
 ### Bill of Materials
 
