@@ -32,6 +32,8 @@ It was a favorite game I used to play as a kid when the internet was down. I wan
 
 ### Week 12 – 18 May
 
+I have soldered both Raspberry Pi Pico 2 W, the main controller, and the Raspberry Pi Pico 1 W used as the debugger. I connected the all the buttons, the lcd, the buzzer and the vibration motor to the microcontroller. I build the schematic of the project in kiCad. 
+
 ### Week 19 – 25 May
 
 ## Hardware
@@ -63,6 +65,14 @@ It was a favorite game I used to play as a kid when the internet was down. I wan
 - The **ILI9341 LCD** renders the game grid, menus, and battery level in real time.  
 - The **Buzzer** provides immediate audio cues for safe tile reveals, mine hits, and victories.  
 - The **Vibration Motor** delivers a tactile buzz when a mine is uncovered, reinforcing the loss event.
+
+Hardware video that showes that everything connected workes as expected: https://imgur.com/WwEwjHi .
+
+![Hardware Picture1](hard1.webp)
+
+![Hardware Picture2](hard2.webp)
+
+![Hardware Picture3](hard3.webp)
 
 ## Schematics
 
