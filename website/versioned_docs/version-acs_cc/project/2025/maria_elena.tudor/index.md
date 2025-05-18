@@ -1,5 +1,5 @@
 # 2000s Romanian Pop Music Player
-A coin-operated music player that plays Romanian pop hits from the 2000s and displays track metadata on an OLED screen.
+A coin-operated music player that plays Romanian pop hits from the 2000s and displays track data on an OLED screen.
 
 :::info
 
@@ -10,7 +10,7 @@ A coin-operated music player that plays Romanian pop hits from the 2000s and dis
 
 ## Description
 
-This project combines the nostalgic feel of classic jukeboxes with a curated playlist of Romanian pop music from the 2000s. Users insert a coin to unlock playback; track information (title, artist, duration, release year) is shown on an OLED display. Physical buttons allow play/pause, previous/next, shuffle, and volume control.
+This project combines the nostalgic feel of classic jukeboxes with a curated playlist of Romanian pop music from the 2000s. Users insert a coin to unlock playback; track information (title, artist, duration, release year) is shown on an OLED display. Physical buttons allow play/pause, previous/next and volume control.
 
 ## Motivation
 
@@ -40,17 +40,27 @@ At every party I attend, Romanian hits from the 2000s always come on—and I lov
 
 ### Week 5 - 11 May
 
+All components arrived and I started working on basic test codes to make sure everything is in working condition.
+I managed to do the sensor and the display this week.
+
 ### Week 12 - 18 May
+
+I managed basic reading from the SD card and sending audio output to a speaker, then I started working on making all the components interact with one another and work at the same time. Lastly, I added the buttons.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-The entire system is built around a Raspberry Pi Pico 2 W running embedded Rust, which reads MP3 files off a microSD card, drives a compact SSD1306 OLED screen for track info, and monitors both tactile buttons and a coin‐validator sensor for user input. Audio is streamed digitally to an amplifier and speaker, while everything is powered from a single regulated 5 V source and prototyped on a breadboard for easy iteration.
+The entire system is built around a Raspberry Pi Pico 2 W running embedded Rust, which reads .WAV files off a microSD card, drives a compact SSD1306 OLED screen for track info, and monitors both tactile buttons and a coin‐validator sensor for user input. Audio is streamed to an amplifier and speaker, while everything is powered from a laptop and prototyped on a breadboard for easy iteration.
+Youtube link for the hardware milestone: https://www.youtube.com/shorts/a_Oh2vH7xY4
+
+![Hardware Milestone](hw_1.webp)
+![Hardware Milestone](hw2.webp)
 
 ### Schematics
 
 ![Kicad Schematic](kicad.webp)
+![Kicad Schematic after Hardware Milestone](kicad2.webp)
 
 ### Bill of Materials
 
