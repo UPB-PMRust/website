@@ -52,7 +52,13 @@ After, I worked on an example system for the metronome. Since I don't yet have m
 - *Speaker*: Used in order to play the sound files, hooked up to an amplifier.
 - *PAM8403 Amplifier*: This is used to strengthen the audio files to be later sent to the speaker.
 - *Potentiometer*: Used to change volume.
-- *Buttons*: Used for keys, as well as supplementary features. 
+- *Buttons*: Used for keys, as well as supplementary features.
+
+### Photos
+
+ ![PAM8403 Amplifier connected to a speaker (left), 9v Battery connected to a Power Supply (right)](hardware1.webp)
+ ![Intermediate board, contains the SD Card Reader and potentiometer (left), will contain other wires to connect from function buttons to GPIOs as well as a Digital-to-Analog converter](hardware2.webp)
+ ![Main breadboard with picos (top), currently 1/2 breadboards for the buttons to control the piano keys (bottom)](hardware3.webp)
 
 ### Schematics
 
