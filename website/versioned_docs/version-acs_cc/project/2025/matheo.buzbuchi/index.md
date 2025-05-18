@@ -53,6 +53,24 @@ Below is the architecture diagram:
 
 ### Week 5 - 11 May
 
+This week, I began approaching the core of the project by collecting relevant information that could help me find a reliable way to automate the fishing process. To complement online research—which often provided ambiguous or incomplete insights—I consulted a local experienced fisherman to validate my understanding of the practical aspects involved.
+
+From our discussions, I learned that different types of fishing lines are used depending on the context, and that even though the hook typically attaches to the fish quite easily, the fisherman must actively ensure the hook pierces through the fish’s lip before starting the reeling process. One of the most challenging aspects in automating this behavior is replicating the fisherman’s instinct: reeling too early or simultaneously with the fish's resistance might cause the line to twist or, in the worst case, snap entirely.
+
+In parallel with this research, I also analyzed related projects and documentation, which helped refine and validate my proposed system architecture.
+
+One of the most difficult tasks was figuring out how to reliably detect the moment a fish bites the bait. Initially, I considered using force-sensitive resistors (FSRs) placed near the rod's string. However, I discovered that FSRs primarily detect vertical pressure, not horizontal tension. I explored mounting the sensor at the rod tip, but that idea proved problematic due to humidity or water drops that could eventually damage the sensor or surrounding components.
+
+Another idea was to mount the sensor near the reel (mulinetă), with two metal bars from a luggage frame enclosing the string. The FSR would be placed so that, when the fish pulls, the tension in the string would press against the sensor. Unfortunately, this again involved horizontal force rather than vertical pressure, so reliability remained an issue.
+
+Looking for inspiration, I came across a Microsoft research project where they tackled a similar problem. Their solution involved a complex chamber and conductor system that isolated vertical force components—too sophisticated to reproduce in just three weeks.
+
+After discussing the challenge with a neighbor who repairs cars, I learned about safety sensors in car windows—specifically limiters that stop the window when an obstruction is detected (like a hand). Inspired by this, I considered adapting a similar mechanism for the rod: when the string lifts due to a fish pull, it could be detected by a sensor positioned just beneath the default rest point.
+
+While this research consumed a significant amount of time, I also began acquiring the actual components for the build, intending to refine the detection mechanism while the parts arrived. After iterating on several concepts, I reached an overall perspective on the system structure and clarified how the main modules—sensors, motor, and controllers could interact.
+
+These efforts marked a key milestone in the planning phase and prepared me to confidently move into prototyping next week.
+
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
