@@ -36,9 +36,9 @@ Connections:
 - **Common Ground:** Crucial connection between Pico GND, Level Shifter GND, and the Separate 5V Power Supply GND.
 
 ## Log
-- **Week 5 - 11 May**: Research and initial setup of Raspberry Pi Pico and LED strip. Completed the project description.
-- **Week 12 - 18 May**:
-- **Week 19 - 25 May**:   
+- **Week 5 - 11 May**: Set up the Raspberry Pi Pico and assembled the main hardware components.
+- **Week 12 - 18 May**: Completed the full hardware assembly and tested each component with example code.
+- **Week 19 - 25 May**:
 
 ## Hardware
 - Raspberry Pi Pico W (x2 - one for development/debug)
@@ -50,6 +50,14 @@ Connections:
 
 ## Schematics
 ![KiCad Schematic](./kicad.svg)
+
+## Project Photos
+
+![LED Strip in Action](./leduri.webp)
+![Project Overview1](./poza1.webp)
+![Project Overview2](./poza2.webp)
+![Project Overview3](./poza3.webp)
+![Project Overview4](./poza4.webp)
 
 ## Bill of Materials
 
@@ -75,8 +83,9 @@ Connections:
 | Conector DC mamă                                                                                       | 1        | [2.07 RON](https://sigmanortec.ro/conector-dc-mama-55x21-25cm)                                                                                                         | 2.07 RON    |
 | Conector JST PH2.0 2P                                                                                  | 2        | [2.00 RON](https://sigmanortec.ro/conector-micro-jst-ph20-2p-tata-cu-cablu-15cm)                                                                                       | 4.00 RON    |
 | Jumper Wires Male-Male (40p, 30 cm)                                                                    | 1        | [8.00 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/890-set-fire-tata-tata-40p-30-cm.html?search_query=0104210000007886&results=1)                           | 8.00 RON    |
+| Conector pentru LED                                                                                    | 1        | [2.99 RON](https://www.optimusdigital.ro/ro/conectori/12551-set-conector-pentru-led-10-mm-cu-3-pini.html?search_query=0104110000084446&results=1)           | 2.99 RON    |
 
-**Estimated Total:** ~ 170.28 RON (excluding USB cables)
+**Estimated Total:** ~ 173.27 RON (excluding USB cables)
 
 
 
@@ -86,28 +95,28 @@ Connections:
 
 This list details the recommended Rust crates for the "Music Lights" project using the Embassy async runtime on the Raspberry Pi Pico.
 
-| Library | Description | Usage |
-|--------|-------------|-------|
-| [`embassy-executor`](https://crates.io/crates/embassy-executor) | Core asynchronous task executor. | Runs all concurrent operations. |
-| [`embassy-time`](https://crates.io/crates/embassy-time) | Async time primitives (Delay, Timer, Instant). | Essential for timing. |
-| [`embassy-sync`](https://crates.io/crates/embassy-sync) | Async synchronization tools (Mutex, Channel, Signal). | Safe data sharing between async tasks. |
-| [`embassy-rp`](https://crates.io/crates/embassy-rp) | HAL for RP2040 peripherals (ADC, PIO, GPIO, DMA, etc.). | Access hardware features asynchronously. |
-| [`ws2812-pio`](https://crates.io/crates/ws2812-pio) | PIO program and driver for WS2812 LEDs. | Drives LED strip using RP2040’s PIO. |
-| [`pio`](https://crates.io/crates/pio) | Base crate for defining PIO programs. | Dependency for `ws2812-pio`. |
-| [`microfft`](https://crates.io/crates/microfft) | `no_std` FFT implementation. | Audio frequency analysis. |
-| [`libm`](https://crates.io/crates/libm) | `no_std` math functions. | Used with FFT (e.g. sqrt, powf). |
-| [`cortex-m`](https://crates.io/crates/cortex-m) | Access to ARM Cortex-M core peripherals. | Required for low-level operations. |
-| [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt) | Minimal runtime for Cortex-M. | Defines program entry and exceptions. |
-| [`panic-probe`](https://crates.io/crates/panic-probe) / [`panic-halt`](https://crates.io/crates/panic-halt) | Panic handlers for embedded. | Choose one; `panic-probe` works with `defmt`. |
-| [`defmt`](https://crates.io/crates/defmt) | Efficient logging framework. | Embedded-friendly logs via RTT. |
-| [`defmt-rtt`](https://crates.io/crates/defmt-rtt) | RTT backend for `defmt`. | Enables real-time logs via debug probe. |
-| [`embedded-hal`](https://crates.io/crates/embedded-hal) / [`embedded-hal-async`](https://crates.io/crates/embedded-hal-async) | Standard HAL traits. | Used by drivers and HAL implementations. |
-| [`embedded-io`](https://crates.io/crates/embedded-io) / [`embedded-io-async`](https://crates.io/crates/embedded-io-async) | Standard IO traits. | Used for cross-crate compatibility. |
+| Library                                                                                                     | Description                                                           | Usage                                                                     |
+| ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`embassy-executor`](https://crates.io/crates/embassy-executor)                                             | Core asynchronous task executor.                                      | Runs all concurrent operations.                                           |
+| [`embassy-time`](https://crates.io/crates/embassy-time)                                                     | Async time primitives (Delay, Timer, Instant).                        | Essential for timing and scheduling.                                      |
+| [`embassy-sync`](https://crates.io/crates/embassy-sync)                                                     | Async synchronization tools (Mutex, Channel, Signal).                 | Enables safe data sharing between async tasks.                            |
+| [`embassy-rp`](https://crates.io/crates/embassy-rp)                                                         | HAL for RP2040 peripherals (ADC, GPIO, DMA, SPI, etc.).               | Async access to hardware on the RP2040.                                   |
+| [`embedded-hal`](https://crates.io/crates/embedded-hal)                                                     | Standard HAL traits.                                                  | Used by embedded drivers like `ws2812-spi`. (\[Docs.rs]\[1])              |
+| [`embedded-hal-async`](https://crates.io/crates/embedded-hal-async)                                         | Async HAL traits.                                                     | For async control of peripherals like SPI, I2C, etc.                      |
+| **[`ws2812-spi`](https://crates.io/crates/ws2812-spi)**                                                     | SPI-based driver for WS2812 & SK6812, implements `SmartLedsWrite`.    | Sends LED data over SPI to WS2812 strips. (\[Crates]\[2], \[Docs.rs]\[1]) |
+| **[`smart-leds`](https://crates.io/crates/smart-leds)**                                                     | Utilities and types (RGB8, effects, gamma, brightness).               | Defines LED colors and visual effects. (\[Docs.rs]\[3], \[Crates]\[4])    |
+| **[`smart-leds-trait`](https://crates.io/crates/smart-leds-trait)**                                         | Traits for smart LED drivers (`SmartLedsWrite`).                      | Enables calling `write()` on `Ws2812<SPI>`. (\[Crates]\[5])               |
+| **[`microfft`](https://crates.io/crates/microfft)**                                                         | `no_std` FFT implementation (Radix-2 in-place).                       | Real-time audio frequency analysis for LED effects. (\[Crates]\[6])       |
+| **[`libm`](https://crates.io/crates/libm)**                                                                 | Pure Rust implementations of C math functions (`sqrt`, `powf`, etc.). | Required for FFT math operations and signal processing. (\[Docs.rs]\[7])  |
+| [`cortex-m`](https://crates.io/crates/cortex-m)                                                             | Access to ARM Cortex-M core peripherals.                              | Used for low-level embedded operations.                                   |
+| [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt)                                                       | Minimal runtime for Cortex-M.                                         | Defines program entry and exception vectors.                              |
+| [`panic-probe`](https://crates.io/crates/panic-probe) / [`panic-halt`](https://crates.io/crates/panic-halt) | Panic handlers for embedded targets.                                  | Choose one; `panic-probe` works well with `defmt`.                        |
+| [`defmt`](https://crates.io/crates/defmt)                                                                   | Efficient logging for embedded (RTT).                                 | Enables lightweight debugging output.                                     |
+| [`defmt-rtt`](https://crates.io/crates/defmt-rtt)                                                           | RTT backend for `defmt`.                                              | Enables real-time logging via debug probe.                                |
+| [`embedded-io`](https://crates.io/crates/embedded-io)                                                       | Standard I/O traits.                                                  | Enables cross-crate I/O compatibility.                                    |
+| [`embedded-io-async`](https://crates.io/crates/embedded-io-async)                                           | Async I/O traits.                                                     | Used for async communication drivers.                                     |
+| [`heapless`](https://crates.io/crates/heapless)                                                             | `no_std` data structures (Vec, String, etc.).                         | Useful for fixed-size buffers without dynamic allocation.                 |
 
-**Notes:**
-
-1.  `ws2812-pio` or a similar PIO-based implementation is recommended for controlling WS2812 LEDs with `embassy-rp` on the RP2040, leveraging its Programmable I/O capabilities. An alternative like `ws2812-spi` might require adaptation for async use.
-2.  Using `defmt` also typically involves adding `defmt-rtt` for transport and a suitable panic handler like `panic-probe`. Basic runtime crates like `cortex-m` and `cortex-m-rt` are also fundamental dependencies.
 
 ## Links
 - [Lab1](https://pmrust.pages.upb.ro/docs/acs_cc/lab/01)
