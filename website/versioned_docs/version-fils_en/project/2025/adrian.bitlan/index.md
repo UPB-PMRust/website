@@ -103,6 +103,17 @@ In the second week, I connected the MFRC522 RFID reader and the LCD1602 I2C disp
 
 ## Hardware
 
+• **Raspberry Pi Pico 2W** → Acts as the central controller, coordinating all inputs and outputs for access control.  
+• **LCD1602 Display (I2C)** → Displays access prompts, user greetings, and authentication status.  
+• **4x4 Matrix Keypad** → Captures user-entered PIN codes for authentication.  
+• **RFID Reader (MFRC522)** → Reads RFID card UIDs to identify authorized users.  
+• **Green LED** → Lights up to indicate access has been granted.  
+• **Red LED** → Lights up to signal that access has been denied.  
+• **Passive Buzzer** → Emits an alert sound based on access result (granted or denied).  
+• **Servo Motor** → Simulates a door unlocking mechanism when access is granted.  
+• **External 5V Battery** → Provides sufficient power for high-draw components like the servo motor.  
+
+
 ![LateralStanga](./Lateral_stanga.webp)
 
 ![CentruSus](./Centru_sus.webp)
@@ -128,7 +139,7 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-2-family) | The main board | [40 LEI](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-1-family) | Used as debug probe | [40](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12395-raspberry-pi-pico-wh.html?search_query=pi+pico+w&results=33) |
+| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-1-family) | Used as debug probe | [40 LEI](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12395-raspberry-pi-pico-wh.html?search_query=pi+pico+w&results=33) |
 | [MFRC522 RFID Reader](https://www.handsontec.com/dataspecs/RC522.pdf) | Reads RFID tags | [10 LEI](https://www.optimusdigital.ro/ro/wireless-rfid/67-modul-cititor-rfid-mfrc522.html?search_query=Modul+RFID+RC522+%28similar+cu+MFRC522%29&results=1) |
 | [LCD1602 with I2C](https://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) | Displays prompts and status | [17 LEI](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html?search_query=0104110000003584&results=1) |
 | [4x4 Matrix Keypad](https://cdn.sparkfun.com/assets/f/f/a/5/0/DS-16038.pdf) | PIN input method | [7 LEI](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/470-tastatura-matriceala-4x4-cu-conector-pin-de-tip-mama.html?search_query=0104110000002747&results=1) |
