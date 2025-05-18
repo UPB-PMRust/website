@@ -59,7 +59,6 @@ The goal of this project was to design a lamp that is both visually appealing an
 - **Interface**: HTTP API  
 - **Role**: Allows remote control of lighting modes and sensor settings
 
-![image5](./img5.webp)
 
 ![image1](./img1.webp)
 
@@ -76,6 +75,8 @@ Bought all components and tested them on a breadboard. Verified that all sensors
 
 ### Week 12 – 18 May  
 Implemented the FSM logic in Rust using the `embassy` async framework. Integrated all sensors into the code and mapped them to different modes. Used UART communication to send commands to a second board that drives the LED ring. Buttons were added for adjusting brightness and changing color. Five modes are working: Night, Alarm, Standard, Party, RandomParty, and BeatSync. Core functionality is finished, with only Wi-Fi control left to implement.
+
+![image5](./img5.webp)
 
 ### Week 19 – 25 May  
 
