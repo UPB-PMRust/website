@@ -56,7 +56,12 @@ Power setup:
 ---
 
 ## Log
+### Week 12
+- Moved my hardware from the breadboard to a protoboard
 
+### Week 11
+- Decided on a screen to use for the final hardware iteration of the project
+- Developed a working program that receives ADC data and displays it on the screen
 
 ### Week 10
 - Wrote the documentation
@@ -97,7 +102,8 @@ Power setup:
 - 1x Op-amp (MCP6002, non-inverting configuration)
 - Power source
 - Raspberry Pi Pico 2
-- Display
+- Raspberry Pi Pico H
+- Display: WaveShare Pico-ResTouch-LCD-2.8
 - Probe
 
 ### Function of Components
@@ -125,6 +131,16 @@ Power setup:
 **Signal on screen:**  
 ![Display Demo](pictures/screen_demo.webp)
 
+### Final Hardware Photos
+
+**Digital Oscilloscope Unit:**
+![Top View](pictures/topview.webp)
+
+**Side View:**
+![Side View](pictures/sideview.webp)
+
+**Demo:**
+![Demo](pictures/demo.webp)
 ---
 
 ### Schematics
@@ -154,7 +170,7 @@ The connections of the components described previously can be seen on the follow
 | [Oscilloscope Probe](https://www.virtins.com/P6060.shtml) | Signal acquisition | [79.99 RON](https://www.optimusdigital.ro/accesorii/1017-sonda-de-osciloscop-p6060-de-60-mhz.html) |
 | [Raspberry Pi Pico 2](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf) | Microcontroller unit (MPU) | [39.66 RON](https://ardushop.ro/ro/raspberry-pi/2453-raspberry-pi-pico-2-5056561803951.html) |
 | [Raspberry Pi Pico H](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Debugging | [42.74 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12393-raspberry-pi-pico-h.html) |
-| [Display OLED 1.3" (Prototype)](https://www.mouser.com/datasheet/2/1398/Soldered_333099-3395096.pdf) | Shows signal and parameters | [20.99 RON](https://ardushop.ro/ro/display-uri-si-led-uri/1577-display-oled-096-i2c-albastru-jmd096d-1-6427854023469.html) |
+| [WaveShare Pico-ResTouch-LCD-2.8](https://www.waveshare.com/wiki/Pico-ResTouch-LCD-2.8) | Shows signal and parameters | [86.11 RON](https://www.emag.ro/ecran-lcd-tft-tactil-waveshare-2-8-inch-320x240-compatibil-cu-raspberry-pi-pico-restouch-lcd-2-8waveshare19804/pd/DBJZXQMBM/) |
 | [IC Socket](https://www.mouser.com/pdfDocs/te-connectivity-dip-socket-data.pdf?srsltid=AfmBOorTl-JuFRXVDn0Gy8AO-NJMjdgZ-fLtzpp4Q_E8__QewjH7AlPZ) | Socket for op-amp | [1.37 RON](https://sigmanortec.ro/soclu-dip-8-pini) |
 | [Header Pins](https://voron.ua/files/pdf/razjem/zl201.pdf) | Connects Raspberry Pico | [0.95 RON](https://www.adelaida.ro/bareta-20-pini-zl201-20g.html) |
 | [Breadboard + Prototype Power Source](https://microcontrollerslab.com/mb102-breadboard-power-supply-module-pinout-and-how-to-use-it/) | Prototyping circuit | [25.57 RON](https://sigmanortec.ro/Kit-Breadboard-MB102-Sursa-Fire-dupont-p136264993) |
