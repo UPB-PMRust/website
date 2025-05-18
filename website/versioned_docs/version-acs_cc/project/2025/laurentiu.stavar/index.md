@@ -51,11 +51,11 @@ The **Raspberry Pi Pico 2 - RP2350A** acts as the central unit, managing periphe
 
 ### Week 5 – 11 May
 
-TO DO
+Finished the setup. Implemented buttons and LEDs functionalities. Also made the Game State OLED work properly.
 
 ### Week 12 – 18 May
 
-TO DO
+Implemented all the game logic(cards, deck, hands, state, etc). Started working with the I2C MUX and the 8 OLEDs for the cards display. The only thing left to do is showing the cards on the OLEDs(they are already working).
 
 ### Week 19 – 25 May
 
@@ -82,17 +82,27 @@ TO DO
 
 ![diagram](KiCad.webp)
 
+## Photos and videos
+
+![diagram](photo1.webp)
+
+![diagram](photo2.webp)
+
+![diagram](photo3.webp)
+
+https://drive.google.com/file/d/1Ra2BIl7wVw8DB3zTOpI6kNC0RgWqssET/view?usp=sharing
+
 ## Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=36) | Microcontroller | 40 RON x 2 |
-| [TCA9548A I2C Mux](https://www.optimusdigital.ro/en/power-multiplexers/1692-tca9548a-i2c-multiplexer-module.html?search_query=Modul+Multiplexor+I2C+TCA9548A&results=1) | OLED Routing | 20 RON |
-| [OLED 128x64 Displays](https://www.bitmi.ro/componente-electronice/ecran-oled-0-96-cu-interfata-iic-i2c-10488.html) ×9 | Visual display | 19 RON ×9 |
-| [RGB LED](https://www.bitmi.ro/module-electronice/modul-led-rgb-3-culori-10401.html) ×2 | Player/Dealer Indicators | 2 RON ×2 |
-| [Push Buttons](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html?search_query=buttons&results=259) ×3 | Game Inputs | 2 RON ×3 |
-| [Breadboard](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html?search_query=breadboard&results=363) | Connectivity | 10 RON |
-| [Jumpers](https://www.bitmi.ro/componente-electronice/40-fire-dupont-tata-mama-30cm-10504.html) | Connectivity | 8 RON |
+| [Raspberry Pi Pico 2](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf) | Microcontroller | [40 RON x 2](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=36) |
+| [TCA9548A I2C MUX](https://www.ti.com/lit/ds/symlink/tca9548a.pdf) | OLED Routing | [20 RON](https://www.optimusdigital.ro/en/power-multiplexers/1692-tca9548a-i2c-multiplexer-module.html?search_query=Modul+Multiplexor+I2C+TCA9548A&results=1) |
+| [OLED 128x64 Displays](https://www.vishay.com/docs/37902/oled128o064dbpp3n00000.pdf) × 9 | Visual display | [19 RON × 9](https://www.bitmi.ro/componente-electronice/ecran-oled-0-96-cu-interfata-iic-i2c-10488.html) |
+| [RGB LED]() × 2 | Player/Dealer Indicators | [2 RON × 2](https://www.bitmi.ro/module-electronice/modul-led-rgb-3-culori-10401.html) |
+| [Push Buttons]() × 3 | Game Inputs | [2 RON × 3](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html?search_query=buttons&results=259) |
+| [Breadboard]() | Connectivity | [10 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html?search_query=breadboard&results=363) |
+| [Jumpers]() | Connectivity | [8 RON](https://www.bitmi.ro/componente-electronice/40-fire-dupont-tata-mama-30cm-10504.html) |
 
 TOTAL: ~300 RON
 
