@@ -6,9 +6,6 @@ Rusty Rythm is a simple rhythm game where you press buttons to the beat of a tra
 **Author**: NEDELCU Ioana \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-ioqnq
 
-! - to fill in \
-? - subject to change
-
 :::
 
 ## Description
@@ -23,12 +20,10 @@ While being more familiar with mobile, touch-screen based rhythm games, I've alw
 
 ![Architechture Diagram](ArchitectureSchematicRustyRythm.webp)
 
-## Log !
-
-<!-- write every week your progress here -->
+## Log
 
 ### Week 6 - 12 May
-<!-- I connected all the components and made the electronic circuit according to the shape of the stage and tested it.  -->
+Finished ordering any remaining parts that I might have needed. My components ended up requiring more current than I was expecting so I couldn't power everything using the pico as I had planned (went for a battery + step down module set up instead). Brought KiCad scheme in its final form.
 
 ### Week 7 - 19 May
 <!-- I made the KiCad Schematic for the project. Because I couldn't find any symbol for Pico Display Pack, I created it and added to the schematic. -->
@@ -48,17 +43,15 @@ While being more familiar with mobile, touch-screen based rhythm games, I've alw
 7. **Breadboard**: Used for building the circuit.
 8. **Wires**: Used for connecting the components.
 
+![](ProjectImg1.webp)
+![](ProjectImg2.webp)
+
+### Schematics
+
+![KiCad Schematic](ProjectKicadScheme.webp)
 
 
-### Schematics !
-
-<!-- ![KiCad Schematics](kicad.webp)
-![Circuit picture 1](circuit.webp)
-![Circuit picture 2](circuit1.webp)
-![Circuit picture 3](circuit2.webp) -->
-
-
-### Final Look !
+### Final Look
 <!-- ![Final look](scena_final.webp) -->
 
 
@@ -77,15 +70,16 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Rapspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-2-family) | The microcontroller | [39,66 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico&results=26) |
-| Male-Female Wires | Electronic Components | [4,45 RON](https://www.optimusdigital.ro/ro/toate-produsele/876-set-fire-mama-tata-10p-15-cm.html?search_query=mama+15cm&results=3) |
-| Jumper Wires Set | Electronic Components | [7,99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html?search_query=set+fire&results=110) |
-| Breadboard 400 | Electronic Components | [4,56 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard+hq&results=128) |
-| Breadboard 830 | Electronic Components | [4,99 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard+hq&results=128) |
-| Push Buttons | Game inputs | [1,44 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton+6&results=213) |
+| [Male-Female Wires](https://www.optimusdigital.ro/ro/toate-produsele/876-set-fire-mama-tata-10p-15-cm.html?search_query=mama+15cm&results=3) | Electronic Components | [4,45 RON](https://www.optimusdigital.ro/ro/toate-produsele/876-set-fire-mama-tata-10p-15-cm.html?search_query=mama+15cm&results=3) |
+| [Jumper Wires Set](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html?search_query=set+fire&results=110) | Electronic Components | [7,99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html?search_query=set+fire&results=110) |
+| [Breadboard 400](https://www.mouser.com/datasheet/2/58/BPS-DAT-(BB400)-Datasheet-932623.pdf?srsltid=AfmBOor87ADUyjMbDJu3F6IKgb9pBw2YChJln_o68OGvC4oivuXkb2aS) | Electronic Components | [4,56 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard+hq&results=128) |
+| [Breadboard 830](http://www.busboard.com/documents/datasheets/BPS-DAT-(BB830)-Datasheet.pdf) | Electronic Components | [4,99 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard+hq&results=128) |
+| [DC-DC Step Down LM2596S](https://www.ti.com/lit/ds/symlink/lm2596.pdf)| Electronic Components | [12,99 RON](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html?search_query=step+down&results=69) |
+| [Push Buttons](https://components101.com/switches/push-button) | Game inputs | [1,44 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton+6&results=213) |
 | [MP3 Player Mini](https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299)| Reads song | [13,99 RON](https://www.optimusdigital.ro/ro/audio/1484-modul-mp3-player-in-miniatura-dfplayer-mini.html?search_query=mp3&results=45) |
 | [LCD SPI Module Screen](https://ardushop.ro/en/displays-and-leds/1349-modul-lcd-spi-128x160-6427854019561.html) | Display | [43,58 RON](https://ardushop.ro/en/displays-and-leds/1349-modul-lcd-spi-128x160-6427854019561.html) |
-| Speaker 2W | Outputs song | [4,98 RON](https://ardushop.ro/en/modules/1898-difuzor-2w-8ohm-6427854028723.html) |
-| Passive Buzzer Module | Game feedback | [1,69 RON](https://www.optimusdigital.ro/ro/componente-electronice/12598-modul-buzzer-pasiv.html?search_query=modul+buzzer&results=30) |
+| [Speaker](https://www.farnell.com/datasheets/3004596.pdf) | Outputs song | [4,98 RON](https://ardushop.ro/en/modules/1898-difuzor-2w-8ohm-6427854028723.html) |
+| [Passive Buzzer Module](https://www.handsontec.com/dataspecs/module/passive%20buzzer.pdf)| Game feedback | [1,69 RON](https://www.optimusdigital.ro/ro/componente-electronice/12598-modul-buzzer-pasiv.html?search_query=modul+buzzer&results=30) |
 | [Rapspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-1-family) | Debugger | [31,50 RON](https://ardushop.ro/en/raspberry-pi/513-raspberry-pi-pico-6427854006004.html) |
 
 
@@ -94,7 +88,7 @@ The format is
 
 
 
-## Software ?
+## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
@@ -104,13 +98,15 @@ The format is
 | [embedded-time](https://crates.io/crates/embedded-time) | Durations, clocks, rates | Beatmap timings |
 | [fugit](https://crates.io/crates/fugit) | Precise timing utilities | Beatmap timings |
 | [heapless](https://docs.rs/heapless/latest/heapless/) | Static data structures | Beatmap storing |
+| [mipidsi](https://docs.rs/heapless/latest/heapless/) | SPI Driver | Screen Controller |
 
 
-## Links ?
+## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project --> 
 
 1. [Additional project inspiration](https://www.youtube.com/watch?v=SYxIqJ6wqH0)
 2. [Raspbery Pi Pico 2W with DFPlayerMini MP3 Player](https://www.youtube.com/watch?v=Tuc359wUx_E)
 3. [DFPlayer Raspberry Pi Pico Audio Player Project](https://www.youtube.com/watch?v=IDCNz7A6sWA)
-
+4. [DFPlayer Mini Set Up Tutorial](https://www.youtube.com/watch?v=7WiSeQxb1bU)
+5. [LM2596 DC-DC Buck Converter Adjustable Tutorial](https://www.youtube.com/watch?v=Lk51i-F1CD4)
