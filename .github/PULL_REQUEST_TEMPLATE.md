@@ -1,22 +1,4 @@
-### Pull Request Overview
+Please go to the `Preview` tab and select the appropriate sub-template:
 
-This pull request adds/changes/fixes...
-
-
-### Testing Strategy
-
-This pull request was tested by...
-
-
-### TODO or Help Wanted
-
-This pull request still needs...
-
-
-### Build
-
-- [ ] Ran `./build.sh`.
-
-### Author
-
-Signed-off-by: Your Name <Your Email@example.com>
+* [Default](?expand=1&template=default.md) to submit a pull request
+* [Project](?expand=1&template=project.md) to submit a project pull request

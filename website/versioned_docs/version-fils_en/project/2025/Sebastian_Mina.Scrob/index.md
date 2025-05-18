@@ -48,6 +48,7 @@ Parts have arived and got the bords to work.
 ### Week 12 - 18 May
 Coding for the dispaly and keypad is in progress.
 
+
 ### Week 19 - 25 May
 WIP
 
@@ -62,7 +63,9 @@ WIP
 ### Schematics
 
 
+
 ![Schematic diagram2](kicad_v1.webp)
+
 
 ### Bill of Materials
 
