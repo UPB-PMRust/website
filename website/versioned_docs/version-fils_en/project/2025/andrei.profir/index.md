@@ -10,15 +10,23 @@ A device that identifies a Poker Hand and computes a score
 
 ## Description
 
-This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a camera will be mounted somehow in a higher position, so it sees a 5-card poker hand, and it uses a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have asmall Blue LED light up above them and a ding sound be made when their rank is added to the score.
+This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a camera will be mounted somehow in a higher position, so it sees a 5-card poker hand, and it uses a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have asmall Blue LED light up above them and a ding sound be made when their rank is added to the score. I also thought of the scenario where 2 or more hands are detected, so for example, a Full House will always contain a Two Pair, so the algorithm will only take into account the highest scoring hand.
 
 ## Motivation
 
 Over the past few weeks, I have been playing a lot of Balatro. It's a video game where you make poker hands and get a score (I know it sounds lame but trust me it won game of the year for a reason). As I was playing it to procrastinate for this project, a brilliant idea came to mind, why don't I build this game in real life? This will be just a prototype, but it will work for a regular deck of cards and will be able to compute a score. To be completely honest, this project isn't really something "useful" in day-to-day life, but it is a very fun concept for me and I'm looking forward to building it, I'm sure people will find it cool.
 
+If I manage to finish what I want to do and I have more time left, I will also add "secret" poker hands that require more than one deck, and maybe I will add something that increases the score if a banana is present near the cards, because that would be really funny.
+
 ## Architecture 
 
-![schematic](schematic.webp)
+The pico is connected to the 5 LEDs and the 2 LCDs (in the picture only 1 LCD is connected) and to the power source. The pico's TX and RX pins io0 and io1 are connected to the esp32-cam's TX and RX pins respectively. Everything is then connected to the power source.
+
+![picture of the circuit](circuitpic.webp)
+this is what it looks like now
+
+![card holder built out of legos](legos.webp)
+Because my family and I are moving, I did some cleaning up and found old legos, which I decided I can repurpose for this project so I don't 3D print. Turns out the setup I build is the perfect size for playing cards so I was very lucky.
 
 ## Log
 
@@ -34,6 +42,8 @@ In this week I started work on the hardware. I connected my components, the LEDs
 
 ### Week 12 - 18 May
 
+Sadly, I wasn't able to get much work done this week. Because my family and I are moving (very unfortunate timing), and I also had 2 exams, it was very hard to find time to work, but I did manage to build what I had to build out of legos so I saved money on 3d printing. Additionally, I tested all of the hardware components and made sure they all work. Every component is set in stone and is connected correctly, except for the camera, because its position depends on how the software part will go, I have to determine the correct height and position for it to function so that's why it isn't set up yet.
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -42,7 +52,9 @@ For the hardware, I use a Raspberry Pi Pico WH for convenience-sake, a breadboar
 
 ### Schematics
 
-TBA
+![original plan](schematic.webp)
+
+![i know this is awful, the potato is the power source](imsorry.webp)
 
 ### Bill of Materials
 
