@@ -75,12 +75,12 @@ At the moment, the temperature sensors used in the prototype are OKY3066-2 (LM35
 
 | Item                                                                                              | Quantity | Estimated Price (RON) | Total (RON) | Usage                                           |
 |---------------------------------------------------------------------------------------------------|----------|------------------------|-------------|------------------------------------------------|
-| [GY-6500 (Gyro + Magnetometer)](https://contactelectric.ro/module-diverse-arduino/1577-gy-6500-modul-magnetometru-giroscop) | 1        | ~24.90                 | 24.90       | Motion sensing (gyro + mag)                   |
-| [L9110S Motor Driver](https://contactelectric.ro/drivere-motor/2779-oky3199-3-driver-motor-cu-l9110s-h-bridge-dc)           | 1        | ~8.50                  | 8.50        | Dual DC motor driver                           |
-| [28BYJ-48 Stepper Motor](https://contactelectric.ro/motoare-arduino/478-motor-pas-cu-pas-28ybj-48-cu-4-faze-5-fire-5vdc)    | 1        | ~11.50                 | 11.50       | DRS mechanism (stepper)                        |
-| [Miniature DC Motor 3–6V](https://contactelectric.ro/motoare-arduino/7803-motor-miniatura-dc-3-6v-oky5022-3)                | 2        | ~5.00                  | 10.00       | Main propulsion motors                         |
-| [LM35 Temperature Sensor](https://contactelectric.ro/senzori-arduino/2386-senzor-de-temperatura-cu-lm35-4-30v-oky3066-2)    | 4        | ~4.90                  | 19.60       | Ambient/motor temperature sensing              |
-| [ULN2003 Stepper Driver](https://contactelectric.ro/drivere-motor/2073-driver-motor-stepper-cu-uln2003-oky3192-10107101)    | 1        | ~6.50                  | 6.50        | Drives stepper motor (DRS)                     |
+| [GY-6500 (Gyro + Magnetometer)](https://contactelectric.ro/module-diverse-arduino/1577-gy-6500-modul-magnetometru-giroscop) | 1        | 24.90                 | 24.90       | Motion sensing (gyro + mag)                   |
+| [L9110S Motor Driver](https://contactelectric.ro/drivere-motor/2779-oky3199-3-driver-motor-cu-l9110s-h-bridge-dc)           | 1        | 8.50                  | 8.50        | Dual DC motor driver                           |
+| [28BYJ-48 Stepper Motor](https://contactelectric.ro/motoare-arduino/478-motor-pas-cu-pas-28ybj-48-cu-4-faze-5-fire-5vdc)    | 1        | 11.50                 | 11.50       | DRS mechanism (stepper)                        |
+| [Miniature DC Motor 3–6V](https://contactelectric.ro/motoare-arduino/7803-motor-miniatura-dc-3-6v-oky5022-3)                | 2        | 5.00                  | 10.00       | Main propulsion motors                         |
+| [LM35 Temperature Sensor](https://contactelectric.ro/senzori-arduino/2386-senzor-de-temperatura-cu-lm35-4-30v-oky3066-2)    | 4        | 4.90                  | 19.60       | Ambient/motor temperature sensing              |
+| [ULN2003 Stepper Driver](https://contactelectric.ro/drivere-motor/2073-driver-motor-stepper-cu-uln2003-oky3192-10107101)    | 1        | 6.50                  | 6.50        | Drives stepper motor (DRS)                     |
 | [9V Battery Holder with Wires](https://contactelectric.ro/module-diverse-arduino/8399-suport-cu-fire-pentru-baterii-9v-oky0252-1) | 2   | ~2.50                  | 5.00        | Power supply (motor + peripherals)             |
 | [Raspberry Pi Pico 2W (Optimus)](https://www.optimusdigital.ro/ro/raspberry-pi/21133-raspberry-pi-pico-w-wireless.html)     | 2        | 39.66                  | 79.32       | Main controller & wireless communication       |
 | PixyCam 2                                                                                          | 1        | ~299.00                | 299.00      | Visual tracking and object detection           |
@@ -93,25 +93,6 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 - **Motor Control:** PWM signals generated for precise motor operation.
 - **Sensor Data Acquisition:** I2C communication with temperature and motion sensors.
 - **Web Server:** Hosts a real-time dashboard displaying sensor data and live video feed.
-
-
-## Bill of Materials
-
-| Item                                                                                              | Quantity | Unit Price (RON) | Total (RON) | Usage                                           |
-|---------------------------------------------------------------------------------------------------|----------|------------------|-------------|------------------------------------------------|
-| [Raspberry Pi Pico 2W (Optimus)](https://www.optimusdigital.ro/ro/raspberry-pi/21133-raspberry-pi-pico-w-wireless.html) | 1 | 39.66            | 39.66       | Main controller                                |
-| Raspberry Pi Pico (debug / Picoprobe)                                                             | 1        | 39.66            | 39.66       | Used for SWD debugging                         |
-| UDA1334A I2S DAC Module                                                                           | 1        | 56.76            | 56.76       | Audio output module                            |
-| LCD SPI Display 1.8" (128x160) with SD slot                                                       | 1        | 28.99            | 28.99       | Used for UI and SD (via SPI)                   |
-| Push Button (white round cap)                                                                     | 3        | 1.99             | 5.97        | Controls                                        |
-| Rotary Encoder Module                                                                             | 1        | 4.99             | 4.99        | Controls                                        |
-| 10k Stereo Potentiometer                                                                          | 1        | 1.99             | 1.99        | Analog Control (ADC input)                     |
-| Breadboard HQ (830 points)                                                                        | 2        | 9.98             | 19.96       | For main Pico + Picoprobe wiring               |
-| [Header pins (2.54 mm, 40p) – Optimus](https://www.optimusdigital.ro/ro/headeri-si-pini/226-header-pini-tati-2-54mm-40p-strip.html) | 2 | 0.99             | 1.98        | For soldering Pico and accessories             |
-| Female Breakable Header (40p)                                                                     | 1        | 2.56             | 2.56        | Extra connectivity (LCD/SD)                    |
-| Breadboard rigid wires                                                                            | 1        | 12.49            | 12.49       | Neat wiring on breadboard                      |
-| Breadboard jumper wires                                                                           | 1        | 7.99             | 7.99        | General-purpose jumpers                        |
-| [Resistor kit (assorted values)](https://www.optimusdigital.ro/ro/rezistori/548-kit-rezistori-600bucati.html) | 1 | ~9.50          | ~9.50       | Pull-ups, voltage dividers, LED current limit  |
 
 
 ## Links
