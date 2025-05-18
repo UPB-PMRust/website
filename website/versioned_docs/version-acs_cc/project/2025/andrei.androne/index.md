@@ -57,7 +57,7 @@ I created custom structures to improve abstraction. I developed a system for pre
 
 ![Initial Work](Work1.webp)
 
-(See the link at the end of the page for further demonstration)
+( See the link at the end of the page for further demonstration )
 
 ### Week 19 - 25 May
 
