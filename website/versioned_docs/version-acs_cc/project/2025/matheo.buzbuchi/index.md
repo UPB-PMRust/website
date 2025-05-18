@@ -61,13 +61,17 @@ Below is the architecture diagram:
 
 The following hardware components were used to build the automated fishing rod system:
 
-- `Raspberry Pi Pico WH (RP2350)` — Acts as the main microcontroller, managing inputs and triggering actions.
-- `MPU6050 Accelerometer` — Embedded inside the fishing bobber to detect nearby fish motion through water vibrations.
-- `Force-Sensitive Resistor (FSR, e.g. FSR402)` — Placed along the fishing line to detect sudden tension spikes indicating a bite.
+- `Raspberry Pi Pico 2 WH (RP2350)` — Acts as the main microcontroller, Reading fish bite detection via the ITR9608-F optical sensor which verifies if the corresponding infrared beam emited by the sensor
+                                      can pass trough some small gaps of the wheel which spins acording to the fish strength to pull the string (normally the sensor light cannot pass trough the circle
+                                      after a certain treshold the light passes trough the gaps).
+- `Raspberry Pi Pico 2 WH (RP2350)` — Acts as the secondary microcontroller, to monitor fish activity in the proximity of the bobber.
+- `ADXL345 Accelerometer` — Embedded inside the fishing bobber to detect nearby fish motion through water vibrations.
+- `ITR9608 Senzor Fotoelectric Infrarosu` — An IR reflective optical sensor used to detect interruptions (like a rotating slit disk).
 - `Red LED` — Provides a visual alert when motion is detected near the hook.
-- `Buzzer` — Gives an audible signal when a fish bite is detected via the FSR.
-- `3 Push Buttons` — Used by the fisherman to select the rod type (for customizing pulling behavior).
-- `Servo Motor` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
+- `Buzzer` — Gives an audible signal when a fish bite is detected via the ITR.
+- `L298N H-Bridge driver` - Driver used by the motor in order to process rotation direction and speed.
+- `DC Motor` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
+- `Rezistor` - Used either to set high logical level, protect diodes by limiting the current and manage the current that reaches certain components (Buzzer). 
 
 ### Schematics
 
