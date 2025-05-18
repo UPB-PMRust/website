@@ -45,9 +45,13 @@ The project consists of two main components:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+I ordered the necessary components, worked on project documentation, and planned the schematic design.
+I placed the ESP32 boards on separate breadboards, connected the WS2812 LED ring. I also ordered additional
+components such as jumper wires, resistors, capacitor, and a button for mode switching.
 ### Week 12 - 18 May
-
+I assembled the hardware setup on breadboards, connected both ESP32 boards via UART, added the LED ring,
+button, and protective components. I began working on the software side, setting up the basic structure of the Rust project.
+I also started the software development and began designing the external casing of the lamp to match the decorative theme.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -69,9 +73,12 @@ The project consists of two main components:
 5. **Power Bank (5V / 2A)**  
    - Portable power supply for both ESP32 boards and the LED ring.
 
+![diagram](montaj.webp)
+![diagram](montaj2.webp)
+
 ### Schematics
 
-![diagram](schematic.webp)
+![diagram](Proiect_PM.webp)
 
 ### Bill of Materials
 
@@ -100,6 +107,7 @@ The format is
 | [470Ω Resistor](https://www.optimusdigital.ro/en/resistors/1099-025w-470-resistor.html) | Signal line protection | [0,10 lei](https://www.optimusdigital.ro/en/resistors/1099-025w-470-resistor.html) |
 | Enclosure Box | Component protection | |
 | [White Round Button](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html) | Mode switch | [1,99 lei](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html) |
+| [3xR6 Battery Holder](https://www.optimusdigital.ro/ro/suporturi-de-baterii/1090-suport-baterii-3-x-r6.html) | Battery holder | [3,95 lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/1090-suport-baterii-3-x-r6.html) |
 | Power Bank PROMATE Bolt-20PD | Power supply | |
 
 Total: ~200 de lei
