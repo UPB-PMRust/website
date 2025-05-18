@@ -59,6 +59,8 @@ The goal of this project was to design a lamp that is both visually appealing an
 - **Interface**: HTTP API  
 - **Role**: Allows remote control of lighting modes and sensor settings
 
+![image5](./img5.webp)
+
 ![image1](./img1.webp)
 
 ![image2](./img2.webp)
