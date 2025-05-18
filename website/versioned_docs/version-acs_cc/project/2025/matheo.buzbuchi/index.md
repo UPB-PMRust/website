@@ -112,7 +112,20 @@ The following hardware components were used to build the automated fishing rod s
 - `Buzzer` — Gives an audible signal when a fish bite is detected via the ITR.
 - `L298N H-Bridge driver` - Driver used by the motor in order to process rotation direction and speed.
 - `DC Motor` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
-- `Rezistor` - Used either to set high logical level, protect diodes by limiting the current and manage the current that reaches certain components (Buzzer). 
+- `Rezistor` - Used either to set high logical level, protect diodes by limiting the current and manage the current that reaches certain components (Buzzer).
+
+Up next here are presented some pictures with the hardware.
+
+![Top VIew of the Main PICO used to reel in and signal the fisherman about diffrent satetes of the fishing process:](Main_PICO_TOP_VIEW.webp)
+
+![Side View of the optical sensor which is supposed to measure if the ray can pass trough the disk in order to detect the fish who took the bait:](Optical_sensor_next_to_reel.webp)
+
+![SIde View of the second pico which is suposed to give the proximity data of the fish to the main mcu:](Second_PICO_SIDE_VIEW.webp)
+
+![Top view of the second pico:](Second_PICO_TOP_VIEW.webp)
+
+
+  
 
 ### Schematics
 
