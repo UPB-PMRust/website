@@ -77,9 +77,6 @@ Current component lineup:
 | [`panic-probe`](https://github.com/knurling-rs/panic-probe)            | Panic handler with defmt support & backtraces | Prints panic info & backtraces via RTT |
 | [`embassy-rp`](https://github.com/embassy-rs/embassy)                  | Embassy support crate for RP2040               | GPIO abstractions (`Input`, `Output`, `Pull`, `Level`) |
 
-
-## Photos and Schematics
-
 ## Logs
 ### Log — Week 1 (28 Apr – 4 May 2025)
 
@@ -93,3 +90,9 @@ Current component lineup:
 | Date       | Activity |
 |------------|----------|
 | 5 May 2025 | Added `embedded-hal`, `defmt-rtt`, `nb`, and `usb-device` crates to the software stack for better hardware abstraction, logging, non-blocking operations, and USB support. And add pricing to my tables.|
+
+### Log — Week 3 (12-18 May 2025)
+
+| Date       | Activity |
+|------------|----------|
+| 12 May 2025 | Add photos and the schematics of the project.|
