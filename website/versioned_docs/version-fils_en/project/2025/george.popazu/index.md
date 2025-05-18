@@ -15,22 +15,16 @@ This project is built using two Raspberry Pi Pico 2W, one servo-motor and one en
 The motivation behind this project is to create an affordable and automated solution for protecting homes from incoming rain. By using a simple external fan as a wind-speed sensor and Raspberry Pi Pico microcontrollers, the system detects high wind speeds—often a precursor to rain—and automatically signals to close windows. This adds a layer of convenience and protection for homeowners, especially when they are away or unable to act quickly.
 ## Architecture 
 
-![alt text](architecture1.webp)
-
-![alt text](architecture2.webp)
-
-
 ### Schematic Diagram
 This is the diagram that illustrates the components and their connections.
 
-
-![alt text](fan_rotation_schematic.webp)
-
+![alt text](fan_rotation_schematic-1.webp)
 
 **Raspberry Pi Pico 2W**
 - **Role**: The brain of the system. Reads signals from the encoder. Processes sensor data to determine if the fan is moving and transmits a signal to a second Pico which controls a window mechanism to close it.
 
-
+**Servo motor**
+- **Role**:  Is a precision-controlled motor that adjusts its position, speed, or torque based on feedback, commonly used in robotics and automation.
 
 **Encoder**
 - **Role**: Detects fan rotation. Outputs a digital signal to the Pico when the rpm's reaches a certain number.
@@ -52,21 +46,25 @@ Once the project was approved, I collected all the required components and began
 
 
 ## Hardware
-The hardware setup consists of a Raspberry Pi Pico microcontroller as the core unit, interfacing with multiple peripherals.
+The hardware setup consists of a two Raspberry Pi Pico microcontroller as the core units, interfacing with multiple peripherals.
 
-A Hall effect sensor (A44E), connected to a digital GPIO pin, detects rotational movement by sensing magnetic pulses from a neodymium magnet mounted on the fan blade. The sensor's output signal is processed by the Pico to determine real-time fan operation status.
+An encoder detects the fan's RPM, and if it exceeds a set limit, the connected Pico sends a signal to another Pico.
 
-An LED indicator, driven through a current-limiting 220Ω resistor, provides immediate visual feedback by illuminating when fan rotation is detected. The LED connects to a dedicated GPIO pin configured for digital output control.
+A servo motor opens a window when the Raspberry Pi Pico receives a signal from another Raspberry Pi Pico.
 
-Power is supplied through the Pico's USB interface or external 5V source, with onboard voltage regulation ensuring stable 3.3V operation for all components. The compact design uses a breadboard or soldered perfboard for reliable interconnections between the Pico, sensor, and indicator circuit.
+Power is supplied through the Pico's USB interface or external 3.3V source, with onboard voltage regulation ensuring stable 3.3V operation for all components. The compact design uses a breadboard or soldered perfboard for reliable interconnections between the Pico, sensor, and indicator circuit.
+
+
+![alt text](architecture1.webp)
+
+![alt text](architecture2.webp)
+
 
 
 ### Schematics
 KiCad Scheme
 
-![alt text](KiCad.webp)
-
-
+![alt text](KiCad-1.webp)
 
 ### Bill of Materials
 | Component | Purpose | Price |  
