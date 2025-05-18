@@ -74,7 +74,7 @@ Now that everything’s coming together, I have officially started working on th
  ![alt text](image1.webp)
 ![alt text](image4.webp)
 ### Schematics
-![alt text](image2.webp)
+![alt text](image2.svg)
 ### Bill of Materials
 | Device | Usage | Price |
 |--------|--------|-------|
