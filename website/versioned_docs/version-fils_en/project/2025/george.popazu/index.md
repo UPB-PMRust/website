@@ -42,6 +42,8 @@ Once the project was approved, I collected all the required components and began
 
 ### Week 12 - 18 May
 
+After finalizing the hardware, I proceeded with software implementation, achieving stable control and initial testing.
+
 ### Week 19 - 25 May
 
 
@@ -69,13 +71,13 @@ KiCad Scheme
 ### Bill of Materials
 | Component | Purpose | Price |  
 |-----------|---------|----------|  
-| 2X [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Microcontroller | [34.50 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) | 
-|2X [Breadboard 175 x 67 x 9 mm](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/13244-breadboard-175-x-67-x-9-mm.html?search_query=bread+board&results=129) | Motherboard | [11,99 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) |   
+|[2X Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Microcontroller | [34.50 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) | 
+|[2X Breadboard 175 x 67 x 9 mm](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/13244-breadboard-175-x-67-x-9-mm.html?search_query=bread+board&results=129) | Motherboard | [11,99 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) |   
 | [Servo Motor](https://towerpro.com.tw/product/sg90-7/) | Mounts on fan blade | [13.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servo+motor&results=145) |    
 | [15 cm 10p Male-Female Wires](https://www.optimusdigital.ro/en/all-products/876-15-cm-male-female-wires-10p.html?search_query=male-male&results=808) | Male-Female Wires | [4.45 RON](https://www.optimusdigital.ro/en/all-products/876-15-cm-male-female-wires-10p.html?search_query=male-male&results=808)|
 [10 cm 40p Male-Female Wires](https://www.optimusdigital.ro/en/wires-with-connectors/653-10-cm-40p-male-to-female-wire.html?search_query=male-male&results=808) | Male-Male Wires | [5.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/653-10-cm-40p-male-to-female-wire.html?search_query=male-male&results=808)|
 [RotaryEncoder](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/7150-modul-encoder-rotativ.html?search_query=encoder&results=34) | Detects fan rotation | [4,99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/7150-modul-encoder-rotativ.html?search_query=encoder&results=34)|
-| 3X[Fan](https://www.optimusdigital.ro/ro/mecanica-elice/1300-elice-neagra-1147-cu-gaura-de-6-mm.html?search_query=elice&results=129) | Is rotating  | [8,49 RON](https://www.optimusdigital.ro/ro/mecanica-elice/1300-elice-neagra-1147-cu-gaura-de-6-mm.html?search_query=elice&results=129)|
+|[3X Fan](https://www.optimusdigital.ro/ro/mecanica-elice/1300-elice-neagra-1147-cu-gaura-de-6-mm.html?search_query=elice&results=129) | Is rotating  | [8,49 RON](https://www.optimusdigital.ro/ro/mecanica-elice/1300-elice-neagra-1147-cu-gaura-de-6-mm.html?search_query=elice&results=129)|
 
 
 
