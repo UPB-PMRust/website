@@ -46,7 +46,9 @@ The primary drive behind this project is simple: **lightsabers are cool**. Beyon
 - Researched libraries for audio and LED control.
 
 ### Week 12 (May 18)
-*(To be filled)*
+- Wired the final circuit.
+- Flashed the debugger with the uf2 file.
+- Coded the functionality for an incipient version of the LED strip.
 
 ### Week 19 (May 25)
 *(To be filled)*
@@ -64,11 +66,14 @@ The lightsaber blade is illuminated using a **WS2811 addressable LED strip**. A 
 
 Power is supplied via a **7.6V LiPo battery**, regulated to 5V and 3.3V using a **power supply module**.
 
-User input (powering on/off, switching modes) is handled via **4-pin push buttons**.
+User input (powering on/off, switching modes) is handled via **4-pin push button**.
 
 ### Schematic  
 ![Schematic](./Schematic.webp)
 
+
+###
+![Imagine](./Imagine.webp)
 
 
 ## Bill of Materials
@@ -81,13 +86,11 @@ User input (powering on/off, switching modes) is handled via **4-pin push button
 | [MPU6500 Gyroscope](https://invensense.tdk.com/wp-content/uploads/2020/06/PS-MPU-6500A-01-v1.3.pdf) | Movement detection | [15 RON](https://ardushop.ro/ro/electronica/741-mpu6500-modul-accelerometru-si-giroscop-6427854009449.html) |
 | [MAX98357A Amplifier](https://www.robofun.ro/module/amplificator-3w-i2s-max98357a.html) | Audio output | [17 RON](https://ardushop.ro/ro/module/1549-amplificator-3w-i2s-max98357a-clasa-d-6427854022967.html) |
 | Power Supply Module (5V–3.3V) | Voltage regulation | [5 RON](https://ardushop.ro/en/power-supply/2296-power-supply-module-5v-33v-for-breadboard-6427854032867.html) |
-| GENS ACE Tattu 7.6V LiPo Battery | Power source | [60 RON](https://www.sierra.ro/cumpara/acumulator-lipo-gens-ace-tattu-7-6v-300-ma-75c-1951) |
-| 6×6×6 Push Button | Control interface | [1 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html) |
+| 4 x 4 Push Button | Control interface | [1 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html) |
 | 2× Breadboard (750 Points) | Circuit prototyping | [18 RON](https://www.optimusdigital.ro/en/breadboards/13245-breadboard-750-points.html) |
 | Jumper Wires | Circuit connections | [8 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
+| USB to Jack  | Connections         | [12 RON](https://www.emag.ro/cablu-de-alimentare-retoo-mobiletech-usb-dc-2-1-5-5mm-5v-incarcare-rapida-compatibil-cu-dispozitive-electronice-alimentare-pentru-led-uri-routere-boxe-lungime-80cm-conectori-durabili-design-compact-cu/pd/DH9F26MBM/?provider=rec&recid=rec_74_25b61e4445a87627a557cac8420598682a7f870bdc69f879d549c385cd68bdb2_1739094866&ref=fp_growth_widget_2_3&scenario_ID=74) |
 | 20cm 40p Male-Female Wires | Circuit connections | [8 RON](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html) |
-| USB to MicroUSB Adapter Shim | Connectivity | [3 RON](https://www.optimusdigital.ro/en/connectors/5583-usb-to-microusb-adapter-shim.html) |
-| USB Cable | Power and data | [6 RON](https://ardushop.ro/ro/fire-si-conectori/914-cablu-usb-a-la-usb-c-1m-negru-6427854012159.html) |
 | Speaker (8Ω, 2W) | Audio playback | [5 RON](https://ardushop.ro/ro/module/1898-difuzor-36mm-2w-8ohm-6427854028723.html) |
 
 
