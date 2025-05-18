@@ -10,7 +10,7 @@ Play sudoku using a Raspberry Pi Pico 2W and a keyboard module
 
 ## Description
 
-My project makes it possible to play Sudoku by inputting the numbers and moving from one cell to another by using a keyboard module. The game is visible on a webpage on an older phone. Games are previously added and players can choose what difficulty to play. Players will be able to start a new game, input numbers, use the undo and redo operations and check if their answers are correct.
+My project makes it possible to play Sudoku by inputting the numbers and moving from one cell to another by using a keyboard module. The game is visible on a webpage on the laptop. Games are previously added and players can choose what difficulty to play. Players will be able to start a new game, input numbers, use the undo and redo operations and check if their answers are correct.
 
 Sudoku is a logic-based, combinatorial number placement puzzle. The objective is to fill the 9x9 grid with numbers so that each column, each row, and each 3x3 subgrid contain the numbers from 1 to 9 without repetition.
 
@@ -22,7 +22,7 @@ I have been playing Sudoku on and off since I was a little child, and over time,
 
 ## Architecture 
 
-![alt text](./Untitled%20Diagram.drawio.webp)
+![alt text](./diagramaFINALA.webp)
 
 ## Log
 
@@ -56,7 +56,7 @@ The pins of the keyboard module have a very interesting configuration. There are
 ![alt text](./keyboardPicture.webp)
 
 ### Schematics
-![alt text](./KicadSchematics.webp)
+![alt text](./schemaFINALAKicad.webp)
 
 ### Bill of Materials
 
