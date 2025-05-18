@@ -1,4 +1,5 @@
 
+
 # Radu: Measuring the Speed of Light
 
 Radu: Measuring the Speed of Light in a 6x1 setup.
@@ -63,12 +64,12 @@ More about these in the **hardware** part
 - [ ] Add pictures with the mirror setup. (tbd on Monday)
 
 ### Week 19 - 25 May
-- [] Setup the Motor Control via PID by Tuesday
-- [] Setup the Laser Optics Setup by Tuesday
-- [] Setup the Signal Capturing using the esp32 by Wednesday
-- [] Build the Dashboard by Friday
-- [] Wireless connectivity by Sunday (ESP-NOW and WiFi)
-- [] MQTT data transfer by Sunday
+- [ ] Setup the Motor Control via PID by Tuesday
+- [ ] Setup the Laser Optics Setup by Tuesday
+- [ ] Setup the Signal Capturing using the esp32 by Wednesday
+- [ ] Build the Dashboard by Friday
+- [ ] Wireless connectivity by Sunday (ESP-NOW and WiFi)
+- [ ] MQTT data transfer by Sunday
 
 ## Hardware
 
@@ -156,5 +157,5 @@ Inspiration
 2. [Fizeau Experiment](https://www.youtube.com/watch?v=a6gl8KZM0PM)
 
 Extra References
-1. [InfluxDB](influxdata.com)
-2. [RabbitMQ](rabbitmq.com)
+1. [InfluxDB](https://influxdata.com)
+2. [RabbitMQ](https://rabbitmq.com)
