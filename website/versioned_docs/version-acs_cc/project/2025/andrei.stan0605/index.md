@@ -42,10 +42,14 @@ Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, whic
 ![Poza breadpoard](Proiect_prototip(1).webp)
 ![Poza prototype board](Proiect_senzor(1).webp)
 ![Poza_toate_nodurile](Proiect_toate_nodurile(1).webp)
+<iframe width="1024" height="768"
+    src="https://www.youtube.com/embed/is8oZhdyjjo"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+</iframe>
 
-I have also included a demo video
-
-[Video_demo](Video_demo4.mp4)
 
 ## Schematics
 
