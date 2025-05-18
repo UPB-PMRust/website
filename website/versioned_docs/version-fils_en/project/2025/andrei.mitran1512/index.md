@@ -48,17 +48,24 @@ Traditional manual access control systems are slow and inefficient. By automatin
 
 ### Week 19 - 25 May
 - Connected Camera to Pico.
+(Hardware2.svg)
 
 ## Hardware
 
-Detail in a few words the hardware used.
+The **Raspberry Pi Pico W 2** serves as the central microcontroller for the barrier system, running all the Rust-based software that coordinates the operation. It manages real-time interactions between the components and acts as the control hub of the project. An **OV7670** camera is connected via *I2C*, allowing the system to capture live images for visual monitoring. A **servomotor** functions as a replacement for an **irl barrier**, controlled by the *Pico W 2* to simulate opening and closing based on vehicle presence. Motion detection is handled by an **IR sensor** (infrared), which triggers the system when a car approaches. Although hardware integration was pretty challenging... the final assembly successfully combines sensing, control, and imaging into a functional prototype . 
+
+*A photo of the finished setup is provided below:*
+
+(Hardware1.svg)
+
+## Use of components in short:
 
 - **Raspberry Pi Pico 2W**: Main microcontroller for running the logic.
 - **OV7670 (or 511OVO)**: For capturing license plate images.
 - **Servo Motor**: To open/close the barrier.
 - **Infrared sensor**: Detect car.
 - **Power Supply**: Micro-usb.
-- **Basic breadboards, wires, LEDs & resistors**: ... 
+- **Basic breadboards, wires, LEDs & resistors**: Usual use. 
 
 ### Schematics
 
