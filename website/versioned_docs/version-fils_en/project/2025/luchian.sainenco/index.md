@@ -1,6 +1,7 @@
-# Project Name
 
-Radu: Measuring the Speed of Light in a 3x1 setup.
+# Radu: Measuring the Speed of Light
+
+Radu: Measuring the Speed of Light in a 6x1 setup.
 
 :::info
 
@@ -50,12 +51,28 @@ More about these in the **hardware** part
 - [x] Theoretical setup and architecture for the actual project.
 
 ### Week 12 - 18 May
+- [x] Tested the disc with a VFD. Won the **the first place** at SCSS FILS ETTI with the experimental setup.
+- [x] Tried to build a AC driver circuit for the motors.
+- [x] Found a decent DC motor and driver (thanks to RoboBadgers). Will replace the second PID laser sensor with a Hall sensor.
+- [ ] 3D design the case for the dashboard. (tbd by Tuesday)
+- [ ] 3D design holders for the small calibrating mirrors. (tbd by Monday)
+- [x] Print the hardware to integrate the DC motor into the Grinder case.
+- [x] Ordered a new laser because the old one burned during the experimental setup.
+- [x] Designed holders for the high reflectivity mirrors.
+- [ ] Add pictures with the Diode Amp Circuit. (tbd on Monday)
+- [ ] Add pictures with the mirror setup. (tbd on Monday)
 
 ### Week 19 - 25 May
+- [] Setup the Motor Control via PID by Tuesday
+- [] Setup the Laser Optics Setup by Tuesday
+- [] Setup the Signal Capturing using the esp32 by Wednesday
+- [] Build the Dashboard by Friday
+- [] Wireless connectivity by Sunday (ESP-NOW and WiFi)
+- [] MQTT data transfer by Sunday
 
 ## Hardware
 
-The hardware will be built around three chips made by espressif (because of their **amazing** Rust support and idf).
+The hardware will be built around three chips made by espressiff.
 
 ### Control Panel Component
 
@@ -76,8 +93,9 @@ This is the control panel for the whole setup.
 This is the Motor System.
 
 - A high power H-bridge will drive the motor
-- A power supply is needed (aluminium disk at 7000 rpm will eat some juice)
-- A small power laser and diode detector will be used to measure the real speed of the motor
+- ~A power supply is needed (aluminium disk at 7000 rpm will eat some juice)~ A grinder can be powered directly by AC. A dimmer circuit is needed
+  - I no longer have a VFD. Tried to build my own VFD, the bought IC was broken. Ordered a dimmer circuit with pwm control and got a good DC motor.
+- ~A small power laser and diode detector will be used to measure the real speed of the motor~ A Hall sensor can be used here for more accuracy.
   - A closed loop is thus created, making PID control possible.
 - Everything driven by the ESP32-S2.
 
@@ -85,15 +103,18 @@ This is the Motor System.
 
 This is the Optics Control System.
 
-- A Class 3B (200mW) laser is used as a beam source (PLEASE REMIND ME TO NOT LOOK INTO THE LASER WHEN IT'S RUNNING).
-- Stationary high reflectivity mirrors (about 97% reflected intensity) will reflect the ray back and forth
-- Mobile high reflectivity mirrors will be used to focus the beam back into the aperture.
+- A Class 3B (250mW) laser is used as a beam source (a class 3 B laser is dangerous. Wear protecting glasses when it's running).
+- Stationary high reflectivity mirrors (about 98% reflected intensity) will reflect the ray back and forth
+- Mobile high reflectivity mirrors will be used to focus the beam back into the aperture (calibration will be done manually).
 - Diode detector will be used to focus the beam onto the detector diode.
 - Everything driven by the ESP32-Wroom
 
 ### Schematics
 
-Schematics will be added after final hardware components are bought.
+![Op amp diode circuit](./op-amp.webp)
+[Disc cad file](https://blog.lucasain.dev/content/images/2025/05/-----3.webp)
+[Disc 3d view file 1](https://blog.lucasain.dev/content/images/2025/05/-----2.webp)
+[Disc 3d view file 2](https://blog.lucasain.dev/content/images/2025/05/-----.webp)
 
 ### Bill of Materials
 
@@ -112,19 +133,28 @@ Schematics will be added after final hardware components are bought.
 | Red laser module                                                                                                                         | Motor Speed Measurement                                   | [2.99RON](https://www.optimusdigital.ro/en/optoelectronice-laser/605-red-laser-diode-module.html?search_query=laser&results=51)                                                                                                                                                                                                                                                                                                                                                                      |
 | Photodiodes (x2)                                                                                                                         | Motor Speed Measurement and Sampling of the signal        | ??? Searching for this                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | High Power H-Bridge                                                                                                                      | Motor Control                                             | [99RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/476-vnh2sp30-dual-motor-driver-shield.html)                                                                                                                                                                                                                                                                                                                                                                                           |
-| Motor                                                                                                                                    | Rotation of the aluminium disk                            | ??? (will recycle one)                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Aluminium disk                                                                                                                           | Rotation of apertures                                     | Ordered from Moldova ???                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| DC 7000 rpm motor/(or Makita Grinder)                                                                                                                                    | Rotation of the aluminium disk                            | sponsored by RoboBadgers                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Aluminium disk                                                                                                                           | Rotation of apertures                                     | Free, Recycled                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | 5V DC Power Supply                                                                                                                       | Class 3B Laser Power Supply                               | Free, Recycled                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 10A Power Supply                                                                                                                         | Motor Power Supply                                        | ??? (will recycle one)                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Motor Driver                                                                                                                        | Motor Speed PWM control                                        | sponsored by RoboBadgers                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Red LED (x2)                                                                                                                             | Motor and laser status                                    | Free, Recycled                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## Software
 
-Will be added after all the hardware is bought.
+|sofware| purpose| documentation|
+|---------|-------| -----|
+|esp-idf-hal/esp-hal| esp32 based-devices hal | [documentation](https://docs.esp-rs.org/book/) |
+|pid| pid control for motor rpm |[documentation](https://crates.io/crates/pid) |
+|esp-wifi/esp-wifi-sys| wifi and esp-now bindings | [documentation](https://crates.io/crates/esp-wifi-sys)
+|minimq| mqtt library |[documentation](https://github.com/quartiq/minimq) |
+
 
 ## Links
 
 Inspiration
+1. [LLM on ESP32, IT'S POSSIBLE](https://www.youtube.com/watch?v=E6E_KrfyWFQ)
+2. [Fizeau Experiment](https://www.youtube.com/watch?v=a6gl8KZM0PM)
 
-0. [LLM on ESP32, IT'S POSSIBLE](https://www.youtube.com/watch?v=E6E_KrfyWFQ)
-1. [Fizeau Experiment](https://www.youtube.com/watch?v=a6gl8KZM0PM)
+Extra References
+1. [InfluxDB](influxdata.com)
+2. [RabbitMQ](rabbitmq.com)
