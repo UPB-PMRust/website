@@ -34,9 +34,9 @@ The DC Motor is connected to a 3D printed tuning peg gripper and rotates to tune
 ## Log
 
 ### Week 5 - 11 May
-
+I finished purchasing all the components necessary for the project and now I am starting to connect and understand each component
 ### Week 12 - 18 May
-
+I completed assembling the circuit and ensuring that each component is properly wired and powered. With the hardware setup in place. I also finished making the blueprint for the 3D component that I will be attaching to the motor.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -58,6 +58,8 @@ Generic Electronics Kit – includes breadboard, jumper wires, resistors, and co
 3D Printed Tuning Peg Handle – a custom attachment mounted to the motor shaft to grip and turn the tuning peg of the guitar.
 
 The system is powered by a 2S LiPo battery which supplies approximately 7.4V. This is stepped down using the LM2596S module to a regulated 5V that powers the Raspberry Pi Pico 2W, motor driver, microphone, and the motor itself via the L9110S.
+
+![Hardware](hardware.webp)
 
 ### Schematics
 
