@@ -76,27 +76,42 @@ This week focused on documentation and planning. I wrote the necessary technical
 
 ## Hardware
 
-Detail in a few words the hardware used.
+The purpose of the hardware milestone is to assemble and validate all essential electronic components required for the smart door lock system. This ensures that each hardware component is properly connected, tested for functionality, and integrated with the Raspberry Pi Pico before advancing to software integration and logic development.
+
+### Raspberry Pi Pico
+The Raspberry Pi Pico is a compact and cost-effective microcontroller board powered by the RP2040 chip. It features a dual-core ARM Cortex-M0+ processor running at up to 133 MHz, 264 KB of SRAM, and 2 MB of onboard Flash memory. It supports multiple I/O protocols including GPIO, SPI, I2C, UART, PWM, and ADC, making it versatile for embedded applications. In this project, the Pico acts as the central controller, coordinating input from sensors and controlling outputs like the servo motor.
+
+### ESP32-CAM
+The ESP32-CAM is a compact module that combines the powerful ESP32 microcontroller with a camera interface, onboard Wi-Fi, and an SD card slot. It's especially useful for adding facial recognition or motion-triggered image capture capabilities to your system, acting as an intelligent visual sensor for additional security or logging.
+
+### HC-SR505 PIR Motion Sensor
+The HC-SR505 is a mini passive infrared (PIR) motion sensor designated for small-scale embedded systems. It detects infrared radiation emitted by moving objects like humans and triggers a digital high signal when motion is detected. In this project, it is used to sense when someone approaches the door, triggering the rest of the system to evaluate further input from other sensors components.
+
+### SW-420 Vibration Sensor
+The SW-420 is a vibration switch module that detects physical vibrations or shocks. It outputs a digital signal when the threshold vibration is detected, typically used in anti-theft or tamper-detection systems. In the smart door lock project, the SW-420 provides an extra layer of security by sensing forced entry attempts or unusual tampering at the door, prompting the system to sound an alert or take preventative actions.
+
+### SG90 Servo Motor
+The SG90 is a micro servo motor commonly used in DIY electronics and robotics projects. It operates on a pulse width modulation (PWM) signal to rotate its output shaft between 0 and 180 degrees. In the context of the smart door lock, the servo motor physically controls the locking mechanism, opening or closing the latch when the system grants or denies access based on sensor input or other logic conditions.
+
+### Buzzer
+The buzzer is a simple audio output device that emits a sound when powered. It can be driven by a GPIO pin to produce beeps or alarms, alering users to specific events such as motion detection, tampering, or successful lock/unlock actions. In this project, it serves as an auditory feedback tool to indicate system states or intrusions, enhancing the interactivity and security of the setup.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![KiCad Schematics](schematics_good.webp)
+![1st Image](set_up1good.webp)
+![2nd Image](set_up2good.webp)
+![3rd Image](set_up3good.webp)
 
 ### Bill of Materials
 
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
-
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller that acts central controller for the smart lock system. It receives input from sensors (motion, vibration), processes logic, and controls actuators like the servo and buzzer. | [47 RON](https://ardushop.ro/ro/raspberry-pi/2453-raspberry-pi-pico-2-5056561803951.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMIzOvO_M2qjQMVWgcGAB17YBkyEAQYASABEgKKw_D_BwE) |
+| [ESP32-CAM](https://ardushop.ro/ro/comunicatie/1374-modul-esp32-cu-camera-6427854020031.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMI94yh0c6qjQMV2WVBAh1GTTwuEAQYASABEgIOA_D_BwE) | Planned for future enhancement to provide visual verification at the door | [65 RON](https://ardushop.ro/ro/comunicatie/1374-modul-esp32-cu-camera-6427854020031.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMI94yh0c6qjQMV2WVBAh1GTTwuEAQYASABEgIOA_D_BwE) |
+| [HC-SR505 PIR Motion Sensor](https://static.rapidonline.com/pdf/78-4110_v1.pdf) | Detects motion near the door. When someone approaches, it triggers the Pico to prepare for possible unlock logic. | [10 RON](https://ardushop.ro/ro/module/508-modul-mini-senzor-pir-hc-sr505-6427854005922.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMIo7rDwNCqjQMV7QYGAB3XIi1fEAQYBCABEgIyafD_BwE) |
+| [SW-420 Vibration Sensor](https://media.digikey.com/pdf/Data%20Sheets/Seeed%20Technology/Grove_Vibration_Sensor_SW-420_Web.pdf) | Detects strong vibrations or knocks on the door | [6 RON](https://www.bitmi.ro/senzor-vibratie-sw-420-11516.html?gad_source=1&gad_campaignid=22005142538&gclid=EAIaIQobChMI4Ie_4uuqjQMVgz4GAB3aFg6TEAQYASABEgKrUPD_BwE) |
+| [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Physically locks or unlocks a latch or bolt by rotating to a defined angle. | [10 RON](https://www.bitmi.ro/servomotor-sg90-180-grade-9g-10496.html?gad_source=1&gad_campaignid=22005721655&gclid=EAIaIQobChMIqISq6eyqjQMVvzsGAB1aXgsNEAQYASABEgIpwPD_BwE) | 
 
 
 ## Software
