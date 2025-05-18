@@ -55,18 +55,23 @@ The project is made up of several parts that work together to create the Simon S
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+Started working on my Simon Says game using a Raspberry Pi Pico2W and Rust. Chose this project to explore embedded Rust and hardware interaction. Defined the concept: 9 inline LEDs, 4x3 keypad, buzzer, and 16x2 LCD. Focused on planning and selecting components.
 ### Week 12 - 18 May
-
+Connected the LCD via I2C and displayed simple messages. Tested individual LEDs and the buzzer to confirm they work correctly. Began setting up the breadboard layout for the full game circuit. Verified power supply and pin assignments
 ### Week 19 - 25 May
 
 ## Hardware
 
-Detail in a few words the hardware used.
+![Simon Says Schematic](./1.webp)
+![Simon Says Schematic](./2.webp)
+![Simon Says Schematic](./3.webp)
+![Simon Says Schematic](./4.webp)
+![Simon Says Schematic](./5.webp)
+
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Simon Says Schematic](./KiCad.webp)
 
 ### Bill of Materials
 
@@ -91,6 +96,7 @@ The format is
 | [Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/7330-50-cm-40p-female-female-wire.html) | Connect components | [23 RON](https://www.optimusdigital.ro/en/wires-with-connectors/7330-50-cm-40p-female-female-wire.html) |
 | [Buzzer](https://www.optimusdigital.ro/en/buzzers/10-active-buzzer-module.html) | Audio feedback | [3 RON](https://www.optimusdigital.ro/en/buzzers/10-active-buzzer-module.html) |
 | [Numpad](https://www.optimusdigital.ro/en/others/5825-keyboard-module.html?gad_source=1&gad_campaignid=19615979487&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QC84GTPPIBHt5XXHiNGdmiLp44m6mMsmXymzOsN6fYGzXHPE1uBhEaAtJKEALw_wcB) | Controlling the game | [19 RON](https://www.optimusdigital.ro/en/others/5825-keyboard-module.html?gad_source=1&gad_campaignid=19615979487&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QC84GTPPIBHt5XXHiNGdmiLp44m6mMsmXymzOsN6fYGzXHPE1uBhEaAtJKEALw_wcB) |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) | Supplies 3.3V & 5V Power | [5 RON](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) |
 
 
 ## Software
