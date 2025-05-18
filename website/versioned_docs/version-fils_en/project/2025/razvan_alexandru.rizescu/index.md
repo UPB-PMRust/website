@@ -102,12 +102,15 @@ Diagram:
 
 | Item              | Quantity | Purpose                    | Estimated Price (RON) |
 |-------------------|----------|----------------------------|------------------------|
-| Raspberry Pi Pico | 1        | Controller                 | $46.99                 |
-| DS3231 RTC Module | 1        | Timekeeping                | $15.98                 |
-| Relay Module      | 1        | Switches water pump        | $04.99                 |
-| Water Pump        | 1        | Sprays water               | $15.99                 |
-| Buzzer            | 1        | Audio alarm                | $05.78                 |
-| Breadboard        | 1        | Prototyping circuit        | $12.10                 |
+| [Raspberry Pi Pico](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico&results=26) | 1        | Controller                 | $46.99                 |
+| [Raspberry Pi Pico](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico&results=26) | 1        | Controller                 | $46.99           >
+| [StepDown](https://www.optimusdigital.ro/ro/interfata-convertoare-de-niveluri/1380-convertor-de-niveluri-logice-bidirecional-pe-8-bii-txs0108e.html?search_query=convertor+de+niveluri&results=15)          | 1        | Minimizing Source          | $8.99            >
+|[Alimentating Source](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html?search_query=sursa+alimentare+breadboard&results=10)| 1        | Alimentation               | $4.69            >
+|[ DS3231 RTC Module](https://www.optimusdigital.ro/ro/altele/1102-modul-cu-ceas-in-timp-real-ds3231.html?search_query=ds3231&results=6) | 1        | Timekeeping                | $15.98                 |
+|[ Relay Module](https://www.optimusdigital.ro/ro/electronica-de-putere-module-cu-releu/2389-modul-releu-normal-deschis-cu-intarziere.html?search_query=releu&results=107)      | 1        | Switches water pump        | $04.99                 |
+|[ Water Pump](https://www.optimusdigital.ro/ro/altele/8141-mini-pompa-de-apa-12-v.html?search_query=pompa+apa&results=7)        | 1        | Sprays water               | $15.99                 |
+|[ Buzzer](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=62)            | 1        | Audio alarm                | $05.78                 |
+|[ Breadboard](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/13244-breadboard-175-x-67-x-9-mm.html?search_query=breadboard&results=125)        | 1        | Prototyping circuit        | $12.10                 |
 | Jumper Wires      | 10+      | Connections                | $15.90                 |
 | USB Power Adapter | 1        | Power supply               | $10.49                 |
 
@@ -127,8 +130,24 @@ Diagram:
 
 ---
 
+# KiCAD Scheme
+
+![KiCAD](./SS.svg)
+
+
+---
+
+
+## Hardware Picture
+
+![Hardware](./Hardware.svg)
+
+
+---
+
 ## 🌐 Links
 
-1. No links just yet,
+1. https://www.instructables.com/Raspberry-Pi-Pico-Alarm-Clock/
+2.https://www.makeuseof.com/how-to-make-an-intruder-alarm-with-raspberry-pi-pico/
 
 ---
