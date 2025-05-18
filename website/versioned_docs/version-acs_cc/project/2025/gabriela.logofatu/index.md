@@ -120,6 +120,8 @@ All components are connected using the **breadboard** for modularity and ease of
 - **LEDs** and **buzzer** offer quick and intuitive feedback.  
 - The entire circuit is assembled on a **breadboard**, allowing flexibility in testing and debugging.
 
+![Schema Hard](./hard.png)
+
 ---
 
 ### Bill of Materials
