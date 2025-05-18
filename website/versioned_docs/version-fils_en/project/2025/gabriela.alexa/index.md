@@ -38,11 +38,32 @@ These components are interconnected to form a closed-loop control system that co
 
 ### Week 5 - 11 May
 
+- Assembled the main part of the project: the moving arm. Created a base so that it is easy to take it off if needed.
+
+![Photo shoud show here](base.webp)
+- Connected the wires and the electrical components.
+- Tested each component using suggested test code.
+- Something went wrong and the motor stoped working. Opened and tested the ESC individually to diagnose the issue. A transistor had burned due to a small piece of solder (manufacturing flaw :/). The ESC could not be repaired.
+
+![Photo shoud show here](esc.webp)
+- Ordered a new 40A ESC to replace the faulty 30A one. Delivery took longer than expected...
+- To safely test the motor, I began using a servo tester. The setup includes only the power source, the ESC, a 1000µF 25V capacitor to filter the current, and the servo tester.
+
+
 ### Week 12 - 18 May
+- Studied PID control theory through documentation and online tutorials.
+- Uploaded rust on ESP32.
+- Attempted to implement a basic PID controller in Rust.
+- Connected the new 40A ESC (yay).
+- Continued testing the system in parts for safety reasons. Due to the high RPM of the motor and the sharp propeller, I am avoiding full assembly until basic control is achieved.
+- Considering 3D printing a support structure for the gyro and maybe the distance sensor as well.
+
+![Photo shoud show here](front.webp)
+
+![Photo shoud show here](sideView-1.webp)
 
 ### Week 19 - 25 May
 
-## Hardware
 
 ## Hardware
 
