@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#f0f0f0"/>
+  
+  <!-- Title Block -->
+  <rect x="700" y="610" width="290" height="80" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+  <text x="710" y="630" font-family="Arial" font-size="12">Title: 3x3 Slots Machine</text>
+  <text x="710" y="650" font-family="Arial" font-size="12">Author: Pitic Andrei</text>
+  <text x="710" y="670" font-family="Arial" font-size="12">Date: May 2025</text>
+  <text x="710" y="690" font-family="Arial" font-size="12">Rev: 1.0</text>
+  
+  <!-- Raspberry Pi Pico W -->
+  <rect x="400" y="150" width="200" height="280" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="425" y="140" font-family="Arial" font-size="14" font-weight="bold">Raspberry Pi Pico W</text>
+  
+  <!-- Pico Pins (Left Side) -->
+  <text x="405" y="180" font-family="Arial" font-size="10">1 GP0</text>
+  <text x="405" y="200" font-family="Arial" font-size="10">2 GP1</text>
+  <text x="405" y="220" font-family="Arial" font-size="10">3 GND</text>
+  <text x="405" y="240" font-family="Arial" font-size="10">4 GP2</text>
+  <text x="405" y="260" font-family="Arial" font-size="10">5 GP3</text>
+  <text x="405" y="280" font-family="Arial" font-size="10">6 GP4</text>
+  <text x="405" y="300" font-family="Arial" font-size="10">7 GP5</text>
+  <text x="405" y="320" font-family="Arial" font-size="10">8 GND</text>
+  <text x="405" y="340" font-family="Arial" font-size="10">9 GP6</text>
+  <text x="405" y="360" font-family="Arial" font-size="10">10 GP7</text>
+  <text x="405" y="380" font-family="Arial" font-size="10">11 GP8</text>
+  <text x="405" y="400" font-family="Arial" font-size="10">12 GP9</text>
+  <text x="405" y="420" font-family="Arial" font-size="10">13 GND</text>
+  
+  <!-- Pico Pins (Right Side) -->
+  <text x="530" y="180" font-family="Arial" font-size="10">40 VBUS</text>
+  <text x="530" y="200" font-family="Arial" font-size="10">39 VSYS</text>
+  <text x="530" y="220" font-family="Arial" font-size="10">38 GND</text>
+  <text x="530" y="240" font-family="Arial" font-size="10">37 3V3_EN</text>
+  <text x="530" y="260" font-family="Arial" font-size="10">36 3V3(OUT)</text>
+  <text x="530" y="280" font-family="Arial" font-size="10">35 ADC_VREF</text>
+  <text x="530" y="300" font-family="Arial" font-size="10">34 GP28</text>
+  <text x="530" y="320" font-family="Arial" font-size="10">33 GND</text>
+  <text x="530" y="340" font-family="Arial" font-size="10">32 GP27</text>
+  <text x="530" y="360" font-family="Arial" font-size="10">31 GP26</text>
+  <text x="530" y="380" font-family="Arial" font-size="10">30 RUN</text>
+  <text x="530" y="400" font-family="Arial" font-size="10">29 GP22</text>
+  <text x="530" y="420" font-family="Arial" font-size="10">28 GND</text>
+  
+  <!-- ST7789 LCD Display -->
+  <rect x="700" y="150" width="150" height="160" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="725" y="140" font-family="Arial" font-size="14" font-weight="bold">ST7789 LCD</text>
+  <text x="710" y="180" font-family="Arial" font-size="10">1 VCC</text>
+  <text x="710" y="200" font-family="Arial" font-size="10">2 GND</text>
+  <text x="710" y="220" font-family="Arial" font-size="10">3 SCL/SCK</text>
+  <text x="710" y="240" font-family="Arial" font-size="10">4 SDA/MOSI</text>
+  <text x="710" y="260" font-family="Arial" font-size="10">5 RES/RST</text>
+  <text x="710" y="280" font-family="Arial" font-size="10">6 DC</text>
+  <text x="710" y="300" font-family="Arial" font-size="10">7 CS</text>
+  <text x="710" y="320" font-family="Arial" font-size="10">8 BL</text>
+  
+  <!-- TPA3118 Audio Amplifier -->
+  <rect x="700" y="350" width="150" height="120" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="710" y="340" font-family="Arial" font-size="14" font-weight="bold">TPA3118 Amplifier</text>
+  <text x="710" y="380" font-family="Arial" font-size="10">1 VCC</text>
+  <text x="710" y="400" font-family="Arial" font-size="10">2 GND</text>
+  <text x="710" y="420" font-family="Arial" font-size="10">3 IN+</text>
+  <text x="710" y="440" font-family="Arial" font-size="10">4 IN-</text>
+  <text x="710" y="460" font-family="Arial" font-size="10">5 OUT+</text>
+  <text x="710" y="480" font-family="Arial" font-size="10">6 OUT-</text>
+  
+  <!-- Speaker -->
+  <circle cx="925" cy="430" r="40" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="905" y="435" font-family="Arial" font-size="14" font-weight="bold">SPKR</text>
+  
+  <!-- AT24C256 EEPROM -->
+  <rect x="150" y="150" width="150" height="120" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="175" y="140" font-family="Arial" font-size="14" font-weight="bold">AT24C256</text>
+  <text x="160" y="180" font-family="Arial" font-size="10">1 A0</text>
+  <text x="160" y="200" font-family="Arial" font-size="10">2 A1</text>
+  <text x="160" y="220" font-family="Arial" font-size="10">3 A2</text>
+  <text x="160" y="240" font-family="Arial" font-size="10">4 GND</text>
+  <text x="160" y="260" font-family="Arial" font-size="10">5 SDA</text>
+  <text x="160" y="280" font-family="Arial" font-size="10">6 SCL</text>
+  <text x="160" y="300" font-family="Arial" font-size="10">7 WP</text>
+  <text x="160" y="320" font-family="Arial" font-size="10">8 VCC</text>
+  
+  <!-- Buttons & Resistors -->
+  <rect x="150" y="350" width="60" height="40" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="165" y="375" font-family="Arial" font-size="10">BTN1</text>
+  <text x="140" y="340" font-family="Arial" font-size="12" font-weight="bold">Spin</text>
+  
+  <rect x="150" y="420" width="60" height="40" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="165" y="445" font-family="Arial" font-size="10">BTN2</text>
+  <text x="140" y="410" font-family="Arial" font-size="12" font-weight="bold">1</text>
+  
+  <rect x="150" y="490" width="60" height="40" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="165" y="515" font-family="Arial" font-size="10">BTN3</text>
+  <text x="140" y="480" font-family="Arial" font-size="12" font-weight="bold">2</text>
+  
+  <!-- Resistors -->
+  <line x1="240" y1="370" x2="280" y2="370" stroke="#000000" stroke-width="2"/>
+  <rect x="280" y="360" width="40" height="20" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="285" y="375" font-family="Arial" font-size="10">10kΩ</text>
+  
+  <line x1="240" y1="440" x2="280" y2="440" stroke="#000000" stroke-width="2"/>
+  <rect x="280" y="430" width="40" height="20" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="285" y="445" font-family="Arial" font-size="10">10kΩ</text>
+  
+  <line x1="240" y1="510" x2="280" y2="510" stroke="#000000" stroke-width="2"/>
+  <rect x="280" y="500" width="40" height="20" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="285" y="515" font-family="Arial" font-size="10">10kΩ</text>
+  
+  <!-- Connections -->
+  <!-- LCD Connections -->
+  <line x1="600" y1="180" x2="700" y2="180" stroke="#ff0000" stroke-width="2"/>
+  <text x="620" y="175" font-family="Arial" font-size="10">3.3V</text>
+  
+  <line x1="600" y1="220" x2="700" y2="200" stroke="#000000" stroke-width="2"/>
+  <text x="620" y="210" font-family="Arial" font-size="10">GND</text>
+  
+  <line x1="600" y1="300" x2="700" y2="220" stroke="#0000ff" stroke-width="2"/>
+  <text x="620" y="290" font-family="Arial" font-size="10">SPI SCK (GP5)</text>
+  
+  <line x1="600" y1="280" x2="700" y2="240" stroke="#0000ff" stroke-width="2"/>
+  <text x="620" y="270" font-family="Arial" font-size="10">SPI MOSI (GP4)</text>
+  
+  <line x1="600" y1="260" x2="700" y2="260" stroke="#0000ff" stroke-width="2"/>
+  <text x="620" y="250" font-family="Arial" font-size="10">RST (GP3)</text>
+  
+  <line x1="600" y1="240" x2="700" y2="280" stroke="#0000ff" stroke-width="2"/>
+  <text x="620" y="230" font-family="Arial" font-size="10">DC (GP2)</text>
+  
+  <line x1="600" y1="200" x2="700" y2="300" stroke="#0000ff" stroke-width="2"/>
+  <text x="620" y="190" font-family="Arial" font-size="10">CS (GP1)</text>
+  
+  <line x1="600" y1="180" x2="700" y2="320" stroke="#ff0000" stroke-width="2"/>
+  <text x="620" y="175" font-family="Arial" font-size="10">BL/3.3V</text>
+  
+  <!-- Amplifier Connections -->
+  <line x1="600" y1="260" x2="700" y2="380" stroke="#ff0000" stroke-width="2"/>
+  <text x="620" y="330" font-family="Arial" font-size="10">3.3V</text>
+  
+  <line x1="600" y1="320" x2="700" y2="400" stroke="#000000" stroke-width="2"/>
+  <text x="620" y="350" font-family="Arial" font-size="10">GND</text>
+  
+  <line x1="600" y1="400" x2="700" y2="420" stroke="#00a000" stroke-width="2"/>
+  <text x="620" y="410" font-family="Arial" font-size="10">PWM (GP9)</text>
+  
+  <line x1="600" y1="320" x2="700" y2="440" stroke="#000000" stroke-width="2"/>
+  <text x="620" y="370" font-family="Arial" font-size="10">GND</text>
+  
+  <!-- Speaker Connections -->
+  <line x1="850" y1="460" x2="885" y2="430" stroke="#000000" stroke-width="2"/>
+  <line x1="850" y1="480" x2="925" y2="470" stroke="#000000" stroke-width="2"/>
+  
+  <!-- EEPROM Connections -->
+  <line x1="400" y1="260" x2="300" y2="260" stroke="#800080" stroke-width="2"/>
+  <text x="320" y="250" font-family="Arial" font-size="10">I2C SDA (GP3)</text>
+  
+  <line x1="400" y1="280" x2="300" y2="280" stroke="#800080" stroke-width="2"/>
+  <text x="320" y="270" font-family="Arial" font-size="10">I2C SCL (GP4)</text>
+  
+  <line x1="400" y1="220" x2="300" y2="240" stroke="#000000" stroke-width="2"/>
+  <text x="320" y="230" font-family="Arial" font-size="10">GND</text>
+  
+  <line x1="400" y1="260" x2="300" y2="320" stroke="#ff0000" stroke-width="2"/>
+  <text x="320" y="290" font-family="Arial" font-size="10">3.3V</text>
+  
+  <!-- Button Connections -->
+  <line x1="210" y1="370" x2="240" y2="370" stroke="#000000" stroke-width="2"/>
+  <line x1="210" y1="440" x2="240" y2="440" stroke="#000000" stroke-width="2"/>
+  <line x1="210" y1="510" x2="240" y2="510" stroke="#000000" stroke-width="2"/>
+  
+  <line x1="150" y1="370" x2="120" y2="370" stroke="#000000" stroke-width="2"/>
+  <line x1="120" y1="370" x2="120" y2="540" stroke="#000000" stroke-width="2"/>
+  <line x1="120" y1="440" x2="150" y2="440" stroke="#000000" stroke-width="2"/>
+  <line x1="120" y1="510" x2="150" y2="510" stroke="#000000" stroke-width="2"/>
+  <line x1="120" y1="540" x2="400" y2="540" stroke="#000000" stroke-width="2"/>
+  <text x="200" y="550" font-family="Arial" font-size="10">GND</text>
+  
+  <line x1="320" y1="370" x2="350" y2="370" stroke="#ff0000" stroke-width="2"/>
+  <line x1="350" y1="260" x2="350" y2="510" stroke="#ff0000" stroke-width="2"/>
+  <line x1="350" y1="260" x2="400" y2="260" stroke="#ff0000" stroke-width="2"/>
+  <line x1="320" y1="440" x2="350" y2="440" stroke="#ff0000" stroke-width="2"/>
+  <line x1="320" y1="510" x2="350" y2="510" stroke="#ff0000" stroke-width="2"/>
+  <text x="360" y="390" font-family="Arial" font-size="10">3.3V</text>
+  
+  <line x1="240" y1="370" x2="240" y2="180" stroke="#0000ff" stroke-width="2"/>
+  <line x1="240" y1="180" x2="400" y2="180" stroke="#0000ff" stroke-width="2"/>
+  <text x="320" y="170" font-family="Arial" font-size="10">BTN1/GP0</text>
+  
+  <line x1="230" y1="440" x2="230" y2="200" stroke="#0000ff" stroke-width="2"/>
+  <line x1="230" y1="200" x2="400" y2="200" stroke="#0000ff" stroke-width="2"/>
+  <text x="320" y="190" font-family="Arial" font-size="10">BTN2/GP1</text>
+  
+  <line x1="220" y1="510" x2="220" y2="240" stroke="#0000ff" stroke-width="2"/>
+  <line x1="220" y1="240" x2="400" y2="240" stroke="#0000ff" stroke-width="2"/>
+  <text x="320" y="230" font-family="Arial" font-size="10">BTN3/GP2</text>
+  
+  <!-- Power Labels -->
+  <text x="40" y="40" font-family="Arial" font-size="12" font-weight="bold">Power Color Scheme:</text>
+  <line x1="40" y1="60" x2="80" y2="60" stroke="#ff0000" stroke-width="2"/>
+  <text x="90" y="65" font-family="Arial" font-size="10">3.3V</text>
+  <line x1="40" y1="80" x2="80" y2="80" stroke="#000000" stroke-width="2"/>
+  <text x="90" y="85" font-family="Arial" font-size="10">GND</text>
+  <line x1="40" y1="100" x2="80" y2="100" stroke="#0000ff" stroke-width="2"/>
+  <text x="90" y="105" font-family="Arial" font-size="10">Signal/Data</text>
+  <line x1="40" y1="120" x2="80" y2="120" stroke="#00a000" stroke-width="2"/>
+  <text x="90" y="125" font-family="Arial" font-size="10">Audio</text>
+  <line x1="40" y1="140" x2="80" y2="140" stroke="#800080" stroke-width="2"/>
+  <text x="90" y="145" font-family="Arial" font-size="10">I2C Bus</text>
+
+  <!-- Notes -->
+  <text x="40" y="600" font-family="Arial" font-size="12" font-weight="bold">Notes:</text>
+  <text x="40" y="620" font-family="Arial" font-size="10">1. All resistors are 10kΩ pull-up resistors for buttons</text>
+  <text x="40" y="640" font-family="Arial" font-size="10">2. SPI connections for ST7789: GP5 (SCK), GP4 (MOSI), GP1 (CS)</text>
+  <text x="40" y="660" font-family="Arial" font-size="10">3. I2C connections for EEPROM: GP3 (SDA), GP4 (SCL)</text>
+  <text x="40" y="680" font-family="Arial" font-size="10">4. PWM audio output on GP9</text>
+</svg>

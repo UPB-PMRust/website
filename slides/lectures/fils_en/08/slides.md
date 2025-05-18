@@ -5,13 +5,13 @@ class: text-center
 highlighter: shiki
 lineNumbers: true
 info: |
-  ## Exceptions and Interrupts
+  ## Memory Protection
 drawings:
   persist: false
 defaults:
   foo: true
 transition: slide-left
-title: MA - 08 - Exceptions and Interrupts
+title: MA - 08 - Memory Protection
 mdc: true
 layout: cover
 themeConfig:
@@ -21,31 +21,80 @@ exportFilename: ma-08
 background:
 ---
 
-# Exceptions and Interrupts
+# Memory Protection
 Lecture 8
 
 ---
+---
 
-# Exceptions and Interrupts
-used by RP2
+# Memory Protection
 
-- Exceptions
-- Interrupts
-- Boot
+- Memory Protection Unit
+  - Privilege Modes
+  - Regions
+- Memory Management Unit
+  - Pages
+  - Frames
+  - TLB
 
-<!--
-Exceptions
--->
+<!-- mpu -->
 
 ---
-src: ../../resources/exceptions/slides.md
+src: ../../resources/mpu/slides.md
 ---
+
+---
+src: ../../resources/mpu_rp2040/slides.md
+---
+
+---
+src: ../../resources/mpu_rp2350/slides.md
+---
+
+<!-- mmu -->
+
+---
+src: ../../resources/mmu/slides.md
+---
+
+---
+layout: two-cols
+---
+# Microcontroller (MCU)
+Integrated in embedded systems for certain tasks
+
+- low operating frequency (MHz)
+- a lot of I/O ports
+- controls hardware
+- does not require an Operating System
+- costs $0.1 - $25
+- uses **Memory Protection Unit**
+
+<img src="./pico2w.png" class="m-5 h-30 rounded">
+
+
+:: right ::
+
+# Microprocessor (CPU)
+General purpose, for PC & workstations
+
+- high operating frequency (GHz)
+- limited number of I/O ports
+- usually requires an Operating System
+- costs $75 - $500
+- uses **Memory Management Unit**
+
+<img src="./pi5.jpg" class="m-5 h-50 rounded">
 
 ---
 ---
 # Conclusion
 we talked about
 
-- Exceptions
-- Interrupts
-- How the RP2040 boots and loads the software
+- Memory Protection Unit
+  - Privilege Modes
+  - Regions
+- Memory Management Unit
+  - Pages
+  - Frames
+  - TLB

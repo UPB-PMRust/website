@@ -429,7 +429,7 @@ To read data from the EEPROM, you first need to write the memory address you wan
 
 ```rust
 let mem_addr: u16 = 0xCAFE; // 16 bit address
-let mem_buff: [u8; 2] = mem_addr.to_be_bytes(); // `be` stands for big endian
+let memory_address: [u8; 2] = mem_addr.to_be_bytes(); // `be` stands for big endian
 let mut data: [u8; 1] = [0];
 
 i2c.write_read(EEPROM_ADDR, &memory_address, &mut data).await.unwrap();
