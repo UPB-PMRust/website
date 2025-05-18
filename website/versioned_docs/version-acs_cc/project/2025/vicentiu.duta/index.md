@@ -132,9 +132,9 @@ These components are integrated through different communication protocols:
 ![Schematic](schematic.svg)
 
 ### Hardware Images
-![circuit](poza_circuit.svg)
-![cabina](poza_cabina.svg)
-![lift](poza_lift.svg)
+![circuit](poza_circuit.webp)
+![cabina](poza_cabina.webp)
+![lift](poza_lift.webp)
 
 ### Bill of Materials
 
