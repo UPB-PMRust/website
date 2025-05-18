@@ -72,6 +72,29 @@ While this research consumed a significant amount of time, I also began acquirin
 These efforts marked a key milestone in the planning phase and prepared me to confidently move into prototyping next week.
 
 ### Week 12 - 18 May
+For the current weekend came the transition from documentation to implementation, as I moved from conceptual design to breadboard prototyping.
+
+I began by designing a full schematic in KiCAD before assembling components on the breadboard. This schematic helped me determine the types of connectors and spacing requirements, streamlining the hardware integration phase. I successfully wired both Raspberry Pi Pico W boards, ensuring connections for sensors, actuators, and the motor driver.
+
+A major challenge was the delayed arrival of essential components, which put pressure on the woarkload I had to acchieve by the end of the week. However, with support from my lab assistant, we managed to agree on the fish biting detection component so that it was more efficient to focus on the core mechanism rather than immediately pursuing a polished case or enclosure.
+
+Another take/idea (which is also what I've agreed on using for the hardware part), we explored was integrating an optical detection system using the ITR9608-F sensor and a rotating disk (pseudo-mulinet). Initially, I considered placing the sensor at the tip of the disk so that the fish's pull would block the IR beam (initially it is placed in the exposed slit made on the disk). But this proved unreliable—waves could falsely trigger detection. We concluded that the sensor should be positioned at a deeper angle (at least >25 grade inside the reel structure from the slit) so that only an intentional pull from a fish allows the slit on the rotating disk to align and pass the IR beam.
+
+Much of the weekend was dedicated to constructing this precision mechanism. The rotating disk was made from two thin plastic pieces with an embedded sink gasket acting as a soft coupling. I crafted a polystyrene enclosure to elevate the motor—ensuring the reeling action wouldn't collide with the breadboard or other components. This positioning also kept the sensor safe while maintaining compactness.
+
+For the bobber module, I mounted the ADXL343 accelerometer along with its corresponding Pico onto a carved polystyrene block for protection and waterproofing simulation.
+
+Major technical milestones this week include:
+
+Integrated the ITR9608-F optical sensor in a pull-up configuration, correctly routing VCC and GND. I validated its behavior using a slit disk to simulate a fish bite.
+
+Wired the ADXL343 accelerometer to the secondary Pico via I2C (GPIO0/GPIO1). This module will later detect nearby fish movement via motion sensing.
+
+Powered the L298N motor driver and conected it to the dc motor, making sure that in1 and in2 are used in order for the reel to pull.
+
+Resolved GND referencing issues by connecting a unified ground rail across all modules, ensuring signal consistency.
+
+Updated and committed the KiCAD schematic to the GitHub repository, and added some refrence picture of the progress regarding the project this week.
 
 ### Week 19 - 25 May
 
