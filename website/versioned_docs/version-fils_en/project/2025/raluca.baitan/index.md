@@ -2,11 +2,12 @@
 # Mood-Light-Lamp  
 An interactive smart lamp that dynamically adjusts lighting based on touch, motion, and sound inputs, now also remotely controllable via Wi-Fi.
 
-:::info  
+:::info 
+
 **Author**: Băițan Raluca \
 **GitHub Project Link**: [https://github.com/UPB-PMRust-Students/project-RalucaBaitan](https://github.com/UPB-PMRust-Students/project-RalucaBaitan)  
-::::
 
+:::
 
 ## Description  
 This project is a mood-responsive RGB lamp powered by a Raspberry Pi Pico 2W. It uses a Finite State Machine (FSM) to manage and cycle through a set of interactive lighting modes:  
@@ -58,6 +59,14 @@ The goal of this project was to design a lamp that is both visually appealing an
 - **Interface**: HTTP API  
 - **Role**: Allows remote control of lighting modes and sensor settings
 
+![image1](./img1.webp)
+
+![image2](./img2.webp)
+
+![image3](./img3.webp)
+
+![image4](./img4.webp)
+
 
 ## Log  
 ### Week 5 – 11 May  
@@ -69,14 +78,12 @@ Implemented the FSM logic in Rust using the `embassy` async framework. Integrate
 ### Week 19 – 25 May  
 
 
-
-
 ## Hardware
 
 This project uses a modular hardware architecture based on multiple **Raspberry Pi Pico 2W** boards, each assigned a specific role to simplify development, debugging, and hardware interaction.
 
 - The **main Pico 2W** (RP2350) runs the application logic written in Rust. It handles the finite state machine (FSM), processes input from the motion, sound, and touch sensors, and manages the overall behavior of the RGB lamp.
-- A second **Pico 2W** was used as a **CMSIS-DAP debugger**, connected via SWD, to flash and debug the main board during development.
+- A second **Pico 2W** was used as a CMSIS-DAP debugger, connected via SWD, to flash and debug the main board during development.
 - A third **Pico W** was dedicated to driving the **WS2812B LED ring**. The LED control code, originally designed for the RP2040 chip, was not compatible with the RP2350 variant used on the main board. To overcome this, the LED board was flashed with a simple MicroPython script and controlled via UART from the main Rust application.
 
 This separation allowed the LED board to interpret UART commands (such as setting color and brightness) independently, while the main board remained focused on logic and sensor input.
@@ -124,5 +131,12 @@ Power is provided via standard 5V USB adapters, and components are interconnecte
 | `panic-probe` | Panic handler for embedded Rust | Debug on panic (via RTT) |
 | `core::fmt::Write` | Core trait for writing to strings | Formats UART commands |
 
-## Links  
+## Links
+
+- [https://github.com/smart-leds-rs/ws2812-spi-rs](https://github.com/smart-leds-rs/ws2812-spi-rs)
+- [https://docs.rs/ws2812-pio/latest/ws2812_pio/](https://docs.rs/ws2812-pio/latest/ws2812_pio/)
+- [https://github.com/tomarrell/rasp-ws2812b](https://github.com/tomarrell/rasp-ws2812b)
+- [https://github.com/makerportal/rpi-pico-ws2812](https://github.com/makerportal/rpi-pico-ws2812)
+- [https://github.com/rust-embedded/awesome-embedded-rust](https://github.com/rust-embedded/awesome-embedded-rust)
+
 
