@@ -48,7 +48,11 @@ Playing piano is one of my hobbies and I always liked the idea of being able to 
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![alt text](schematics.svg)
+
+### Photo
+
+![alt text](hardware.png)
 
 ### Bill of Materials
 
