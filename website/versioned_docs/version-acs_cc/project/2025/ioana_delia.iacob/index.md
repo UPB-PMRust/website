@@ -91,9 +91,8 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | HAL for the Raspberry Pi PICO 2W microcontroller | Used to program the Pico |
-| [infrared](https://docs.rs/infrared/latest/infrared/) | Infrared sensor library | Used for the infrared sensors |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor designed for embedded usage | Used for task execution |
-| [syact](https://docs.rs/syact/latest/syact/) | Library for controlling more complex motors, such as servomotors | Used for controlling the servomotor |
+
 
 ## Links
 
