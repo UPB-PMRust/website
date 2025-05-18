@@ -77,7 +77,7 @@ All components share a common GND rail, and power lines are distributed using th
 This configuration allowed for fast prototyping and iterative testing of each module.
 
 ### Schematics 
-![Schematics](./pm_project_kicad.webp)
+![Schematics](./pm_project_kicad.svg)
 
 ### Bill of Materials
 | Device                                       | Usage                                            | Price |
