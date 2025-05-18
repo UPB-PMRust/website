@@ -4,7 +4,7 @@ A smart access control system using username and PIN authentication
 :::info 
 
 **Author**: Iulia-Elena Giuroiu  \
-**Group**: 333CC
+**Group**: 333CC \
 **GitHub Project Link**: [source code](https://github.com/UPB-PMRust-Students/proiect-IuliaGIE)
 
 :::
