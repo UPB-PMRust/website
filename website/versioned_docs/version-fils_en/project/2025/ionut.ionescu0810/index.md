@@ -1,6 +1,6 @@
 # iScope
 
-**Author**: Ionescu Ionut \
+**Author**: Ionescu Ionut. \
 **GitHub Project Link**: [https://github.com/UPB-PMRust-Students/project-ionutz04.git](https://github.com/UPB-PMRust-Students/project-ionutz04.git)
 
 This project presents a miniaturized, dual-microcontroller oscilloscope system designed to address the limitations of traditional oscilloscope equipment through an accessible web interface.
