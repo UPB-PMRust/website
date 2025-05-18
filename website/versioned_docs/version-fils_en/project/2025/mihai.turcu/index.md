@@ -77,7 +77,7 @@ The project uses two Raspberry Pi Pico 2 boards (one as debugger), ultrasonic pr
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Schematic diagram](KiCad.webp)
 
 ### Bill of Materials
 
