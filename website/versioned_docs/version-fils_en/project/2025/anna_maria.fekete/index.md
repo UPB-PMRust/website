@@ -39,9 +39,9 @@ Receiving  most of the necesarry hardware and testing it to ensure functionality
 Performing tests on the sensors using an Arduino to observe accuracy.
 
 ### Week 5 - 11 May
-
+Starting to test my hardware on the STM that i wish to use for the project. Firstly testing an easy example on the board to ensure functionality then starting th e hardware and a small part of the software. startinf to encounter issues at the esnd of the week.
 ### Week 12 - 18 May
-
+Trying o solve the newly discoverde board issues while putting together the hardware of my project. Finishing the layout of the breadboard while still encountering problems on my board.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -50,10 +50,11 @@ Performing tests on the sensors using an Arduino to observe accuracy.
 ![picture1](inirialhardware3.jpg)
 ![picture1](inirialhardware4.jpg)
 
-Detail in a few words the hardware used.
+For the second milestone of the Smart Weather Station project, the base hardware setup has been completed and assembled on a breadboard. The current system includes key environmental sensors such as the DHT11 for temperature and humidity, the BMP280 for atmospheric pressure, a UV sensor, a rain sensor, and an MQ-2 gas sensor for detecting harmful gases. A 16x2 LCD screen is included to display the readings in real time, all managed by the Nucleo STM32F767ZI development board. This configuration forms the foundation of the weather station and is fully functional for monitoring environmental conditions. While this setup may remain as the final version, there is potential for future expansion with the addition of components like buttons, LEDs, and a buzzer for enhanced interactivity and alert features.
+
 
 ### Schematics
-
+![picture1](KiCADdiagram.jpg)
 Place your KiCAD schematics here.
 
 ### Bill of Materials
