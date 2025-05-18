@@ -55,9 +55,9 @@ A schematic diagram is provided to illustrate the connections and layout of the 
 <!-- write every week your progress here -->
 
 ### Week 5 - 11 May
-New week.
+This week i have finished the first version of the 3D design and i already started printing the first variant, I also have started to see how i can control the servos and how to read from the JoyStick.
 ### Week 6 - 18 May
-
+After another couple of variants i have the final design and i am very proud of it, the turret is able to move on all of the axis and the shooting mechanism has been tested and it works even with multiple darts in the magazine!
 ### Week 19 - 25 May
 
 ## Hardware
@@ -74,6 +74,13 @@ This is the current progress of the Turret project. So far, i have prepared the 
 
 ![FourthPicrture](project_picture_4.webp)
 
+![FifthPicture](Hardware1.webp)
+
+![SixthPicture](Hardware2.webp)
+
+![SeventhPicture](Hardware3.webp)
+
+![EightPicture](Hardware4.webp)
 ### Schematics
 
 This schematic, created with KiCad, illustrates the electronic design of the Turret project. It provides a detailed layout of the connections and components, ensuring accurate assembly and functionality.
