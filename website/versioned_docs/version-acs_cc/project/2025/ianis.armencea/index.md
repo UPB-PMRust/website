@@ -44,7 +44,7 @@ if the project turns out well i will be using the device myself to tune my guita
 5. **OLED display**: Displays the current note that is being tuned to.
 
 ## Schematics
-![alt text](schematic_final.webp)
+![alt text](pm_schematic.svg)
 ![alt text](hardware_1.webp)
 ![alt text](hardware_2.webp)
 ![alt text](hardware_3.webp)
