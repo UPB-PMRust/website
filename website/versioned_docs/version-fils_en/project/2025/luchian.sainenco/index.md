@@ -113,9 +113,9 @@ This is the Optics Control System.
 ### Schematics
 
 ![Op amp diode circuit](./op-amp.webp)
-[Disc cad file](https://blog.lucasain.dev/content/images/2025/05/-----3.webp)
-[Disc 3d view file 1](https://blog.lucasain.dev/content/images/2025/05/-----2.webp)
-[Disc 3d view file 2](https://blog.lucasain.dev/content/images/2025/05/-----.webp)
+![Disc cad file](./stand3.webp)
+![Disc 3d view file 1](./stand2.webp)
+![Disc 3d view file 2](./stand1.webp)
 
 ### Bill of Materials
 
