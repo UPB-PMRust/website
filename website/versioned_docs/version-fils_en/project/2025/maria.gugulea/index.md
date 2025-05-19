@@ -100,7 +100,7 @@ The buzzer is a simple audio output device that emits a sound when powered. It c
 
 ### Schematics
 
-![KiCad Schematics](schematics_good1.svg)
+![KiCad Schematics](schematics.svg)
 ![1st Image](set_up1good.webp)
 ![2nd Image](set_up2good.webp)
 ![3rd Image](set_up3good.webp)
