@@ -45,10 +45,10 @@ Trying o solve the newly discoverde board issues while putting together the hard
 ### Week 19 - 25 May
 
 ## Hardware
-![picture1](inirialhardware1.jpg)
-![picture1](inirialhardware2.jpg)
-![picture1](inirialhardware3.jpg)
-![picture1](inirialhardware4.jpg)
+![picture1](inirialhardware1.webp)
+![picture1](inirialhardware2.webp)
+![picture1](inirialhardware3.webp)
+![picture1](inirialhardware4.webp)
 
 For the second milestone of the Smart Weather Station project, the base hardware setup has been completed and assembled on a breadboard. The current system includes key environmental sensors such as the DHT11 for temperature and humidity, the BMP280 for atmospheric pressure, a UV sensor, a rain sensor, and an MQ-2 gas sensor for detecting harmful gases. A 16x2 LCD screen is included to display the readings in real time, all managed by the Nucleo STM32F767ZI development board. This configuration forms the foundation of the weather station and is fully functional for monitoring environmental conditions. While this setup may remain as the final version, there is potential for future expansion with the addition of components like buttons, LEDs, and a buzzer for enhanced interactivity and alert features.
 
