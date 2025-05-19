@@ -94,7 +94,7 @@ The entire system is powered through a USB cable connected to the Pico.
 ![diagram](Poza3.webp)
 
 ### Schematics
-![diagram](Schematic.webp)
+![diagram](Schematic.svg)
 
 ### Bill of Materials
 
