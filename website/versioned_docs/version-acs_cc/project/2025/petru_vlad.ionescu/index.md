@@ -52,7 +52,7 @@ Wired correctly hardware, some complications with wiring the batteries, relay an
 
 ### Schematics
 
-![Hardware](kicad-scheme.webp)
+![Hardware](hardware-scheme.svg)
 ![HW PIC 1](hw-pic1.webp)
 ![HW PIC 2](hw-pic2.webp)
 ![HW PIC 3](hw-pic3.webp)
