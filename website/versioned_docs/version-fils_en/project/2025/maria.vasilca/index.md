@@ -58,7 +58,7 @@ Chassis + 2 Tires + Swivel Wheel - Provide structural support and movement capab
 ### Schematics
 
 <!--Place your KiCAD schematics here.-->
-![Schematics](Schematics.webp)
+![KiCadLineFollower](KiCadLineFollower.svg)
 
 ### Bill of Materials
 
