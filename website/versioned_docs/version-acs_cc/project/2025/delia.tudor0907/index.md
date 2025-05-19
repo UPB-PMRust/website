@@ -26,8 +26,6 @@ Taking out the trash is a task often postponed, especially in shared living spac
 
 ## Log
 
-## Log
-
 ### Week 5 - 11 May
 - This week, I focused on shaping the overall concept of the project. I worked on the documentation, clarified the main functionalities, and outlined how the system should behave. I also made a first draft of the list of components I would need, researching their roles and how they would connect together.
 
@@ -54,9 +52,8 @@ Taking out the trash is a task often postponed, especially in shared living spac
 ![poza3](./poza3.webp)
 
 ## Schematics
-![schematics Diagram](./schematic.webp) <!-- replace with the correct path if needed -->
+![schematics Diagram](./schematic.svg) <!-- replace with the correct path if needed -->
 
-## Bill of Materials
 ## Bill of Materials
 
 | Component | Quantity | Description | Price (RON) |
