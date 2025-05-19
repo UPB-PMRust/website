@@ -48,7 +48,7 @@ I assembled the hardware components and wrote a demo code to make sure everythin
 
 ### Schematics
 
-![Radar](kicad.png)
+![kicad](schema.svg)
 
 ### Bill of Materials
 
