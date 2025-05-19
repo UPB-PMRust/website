@@ -77,10 +77,10 @@ During this week I workde on finishing the hardware components, connecting all m
 KiCad Scheme
 
 The Car:
-![](Car-redesign.webp)
+![](kicad-circ.svg)
 
 The Controller:
-![](Controller-redesign.webp)
+![](Controller.svg)
 
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
