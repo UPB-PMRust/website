@@ -56,7 +56,7 @@ Am asamblat hardware-ul si am inceput implementarea software-ului.
 
 ### Schematics
 
-![image](diagrama_kicad.webp)
+![image](diagrama_kicad.svg)
 
 
 | Device | Usage | Price |
