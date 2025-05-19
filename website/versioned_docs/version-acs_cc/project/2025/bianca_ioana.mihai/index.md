@@ -54,7 +54,7 @@ The main architecture components and their interactions:
 ### Schematics
 
 <!--Place your KiCAD schematics here. -->
-![Schematic](./schematic.webp)
+![Schematic](./schematic.svg)
 
 ### Photos
 ![Photo1](./poza1.webp)
