@@ -62,7 +62,7 @@ The Octane project is built around an ESP32-S2 Mini, which handles both Wi-Fi co
 
 ### Schematics
 
-![KiCad schematic](KiCad.webp)
+![KiCad schematic](KiCad.svg)
 
 ### Bill of Materials
 
