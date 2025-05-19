@@ -60,7 +60,7 @@ Detail in a few words the hardware used.
 
 ### Schematics
 
-![](schem.webp)
+![](schem.svg)
 
 ### Bill of Materials
 
