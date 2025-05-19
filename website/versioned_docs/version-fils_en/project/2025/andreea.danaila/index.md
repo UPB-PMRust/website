@@ -53,7 +53,7 @@ For the project enclosure, I recycled a cupboard box that I painted red.
 
 ### Schematics
 
-[!KICAD Picture](kicad.svg)
+[!KICAD Picture](proiect.svg)
 
 ### Bill of Materials
 
