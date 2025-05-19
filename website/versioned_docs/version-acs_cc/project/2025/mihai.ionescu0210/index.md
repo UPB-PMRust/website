@@ -54,7 +54,7 @@ and a dual-axis XY joystick for navigating between cells.
 ### Schematic
 
 <!-- Place your KiCAD schematics here. -->
-![Schematic](images/Schematic.webp)
+![Schematic](images/Schematic.svg)
 
 ### Bill of Materials
 
