@@ -142,20 +142,10 @@ This reduces the 5V ECHO pulse to ~3.3V, making it safe for the RP2040 input.
 
 The following images show the current stage of hardware assembly, including breadboard layout, wiring details, and sensor positioning.
 
-####  Overview of the entire setup
-![Full Setup](photo1.svg)
-
-####  Close-up of the PICO
-![Pico](photo2.svg)
-
-####  LEDs
-![LEDs](photo3.svg)
-
-####  MOSFETs
-![MOSFETs](photo4.svg)
 
 #### KiCad Schematic
-![KiCad](KiCad.svg)
+
+<img src="ProiectMicroprocesoare.svg" alt="Full Setup" width="500"/>
 
 ## Bill of Materials
 
