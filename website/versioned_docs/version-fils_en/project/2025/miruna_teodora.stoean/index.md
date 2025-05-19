@@ -51,7 +51,7 @@ The LEDs are powered separately by an external 5V power supply to ensure enough 
 
 ### Schematics
 
-![schema](./kicad_bun.webp)
+![schema](./kicad_resized.svg)
 
 ### Bill of Materials
 
