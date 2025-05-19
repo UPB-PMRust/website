@@ -139,7 +139,7 @@ Other components:
 
 ### Schematics
 
-![Schematics](images/spongebot_kicad.webp)
+![Schematics](images/spongebot_kicad.svg)
 
 ### Photos
 ![Photo_HighAngle](images/photo_high.webp)
