@@ -99,7 +99,7 @@ Here are some photos of the final hardware implementation:
 
 ### Schematics
 
-![alt text](Final_schematic.webp)
+![alt text](Schema_kicad.svg)
 
 ### Bill of materials
 
