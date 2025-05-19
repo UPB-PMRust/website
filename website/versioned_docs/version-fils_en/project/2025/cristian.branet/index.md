@@ -70,15 +70,74 @@ Uploaded a part of the documentation for the project. Started working on each in
 
 ### Week 12 - 18 May
 
+Having acquired all the necessary hardware, I continued working on creating IR receiver functionality in Rust, having previously used MicroPython, and succeeded(implementing more exactly, the NEC 8 bit protocol), I continued testing the main board's servo motor and motion detection sensors for proper functioning, then moved on to setting up the display. 
+
+Having finished all the individual functionalities of the boards, I moved on to integrating them together and making sure they communicate properly via WIFI. I also defined the format for data that is transmitted and what every board expects to receive. Will continue testing and deciding on the components' arrangements on the breadboard and on the cardboard parking lot replica.
+
 ### Week 19 - 25 May
 
 ## Hardware
 
-Detail in a few words the hardware used.
+1. **Infrared Sensor VS1838B**  
+   IR receiver module that decodes signals from remote controls.  
+   Connected to a secondary board to receive parking commands.  
+   Cheap, simple, and ideal for remote input tasks.
+
+2. **Infrared Remote**  
+   Standard remote control that emits IR signals to communicate commands.  
+   Used to simulate a user requesting to open or lock the barrier.  
+   Paired with the VS1838B sensor for command input.
+
+3. **SG90 Servo Motor**  
+   Miniature 180° servo motor for basic actuation tasks.  
+   Used to physically open and close the parking barrier.  
+   Controlled via PWM signals from the main board.
+
+4. **Display SSD1306**  
+   0.96" OLED display module with I2C interface.  
+   Used to show real-time parking lot status (free/occupied spots).  
+   Compact and energy-efficient visual output component.
+
+5. **Infrared Obstacle Sensor**  
+   Detects the presence of objects (e.g., parked cars) using reflected IR light.  
+   Notifies the main board when a spot is occupied.  
+   Essential for automatic status updates of parking spaces.
+
+6. **LEDs**  
+   Standard 5mm LEDs used for visual feedback.  
+   Indicate system status like barrier state or space availability.  
+   Color-coded for easy understanding of events.
+
+7. **USB Hub**  
+   Used to supply current to the boards.  
+   Very useful to handle multiple USB connections to a Laptop while debugging the project.  
+   Cheap and reliable.
+
+*2 minutes demo of the current version:* [Demo](https://www.youtube.com/watch?v=qNot_UbnDCE)
+
+**Below, there are some images taken during the development process:** 
+
+Main board
+![main](main.webp)
+
+Infrared receiver board
+![ir](ir.webp)
+
+Display board
+![display](display.webp)
+
+**Photos when the components are integrated together:**
+![p1](done.webp)
+
+*Left - main board and motion sensor, Center - IR receiver board, Right - Display board*
+
+![p2](done2.webp)
+
+![p3](done3.webp)
 
 ### Schematics
 
-![Kicad](kicad.webp)
+![Kicad](kicad.svg)
 
 ### Bill of Materials
 
@@ -90,7 +149,7 @@ Detail in a few words the hardware used.
 | [Infrared Remote](https://ardushop.ro/ro/comunicatie/2358-kit-ir-telecomanda-receptor-cablu-6427854032461.html) | Send IR signals | [10 RON](https://ardushop.ro/ro/comunicatie/2358-kit-ir-telecomanda-receptor-cablu-6427854032461.html)|
 | [SG90 Servo Motor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Used to move the barrier | [12 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html)
 | [Display SSD1306](https://www.mouser.com/datasheet/2/1398/Soldered_333099-3395096.pdf?srsltid=AfmBOorDRNE8qWa15NdQ-YsWSvowft21MKXJtvTkFzpYuBffTD88NhD5) | Display parking space info | [34 RON](https://www.emag.ro/afisaj-oled-ssd1306-oled-i2c-compatibil-arduino-si-raspberry-pi-27x27x4-mm-albastru-c9/pd/D3C7C1YBM/?utm_medium=ios&utm_source=mobile%20app&utm_campaign=share%20product) | 
-| [Motion Sensor PIR HC SR505](https://static.rapidonline.com/pdf/78-4110_v1.pdf) | Detects a parked car | [10 RON](https://ardushop.ro/ro/module/508-modul-mini-senzor-pir-hc-sr505-6427854005922.html)|
+| [Infrared Obstacle Sensor](https://www.handsontec.com/dataspecs/sensor/IR%20Obstacle%20Detector.pdf) | Detects a parked car | [3.5 RON](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html)|
 | [LEDs](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/) | Used to signal certain events | [0.30 RON](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/)|
 | [Resistances](https://ardushop.ro/ro/componente-discrete/465-801-rezistor-1-4w-1-buc-alege-valoarea.html#) | Fundamental in every circuit | [0.10 RON](https://ardushop.ro/ro/componente-discrete/465-801-rezistor-1-4w-1-buc-alege-valoarea.html#)|
 
@@ -105,3 +164,5 @@ Detail in a few words the hardware used.
 ## Links
 
 1. [First time trying sensors on RP](https://murraytodd.medium.com/using-rust-embedded-to-capture-sensor-data-37db1f726d5c)
+2. [Learning about IR receiver](https://www.youtube.com/watch?v=ddceKBDMKsE)
+3. [Demo](https://www.youtube.com/watch?v=qNot_UbnDCE)
