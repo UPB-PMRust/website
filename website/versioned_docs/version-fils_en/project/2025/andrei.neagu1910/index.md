@@ -84,15 +84,15 @@ Connections Between Components:
 ### Pictures
 
 #### Overview:
-![Overview1](./images/overview1.svg)
+![Overview1](./images/overview1.webp)
 
-![Overview2](./images/overview2.svg)
+![Overview2](./images/overview2.webp)
 
 #### ESP32-S3:
-![ESP32-S3](./images/esp32-s3.svg)
+![ESP32-S3](./images/esp32-s3.webp)
 
 #### AP Pico 2W:
-![Remote](./images/remote_ap.svg)
+![Remote](./images/remote_ap.webp)
 
 ### Schematics
 
