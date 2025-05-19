@@ -28,7 +28,7 @@ I chose this project because I am fan of 20th century history and I like the old
 
 ## Architecture
 
-![Architecture photo](./Raw_Architecture.webp)
+![Architecture photo](./Raw_Arhitecture.webp)
 
 1. **Browser** (HTML/CSS/JS)
 2. **Node.js** bridge (HTTP + WebSocket + TCP)
