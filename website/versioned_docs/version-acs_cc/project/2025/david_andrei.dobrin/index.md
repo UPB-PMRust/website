@@ -76,7 +76,7 @@ Hardware video that showes that everything connected workes as expected: https:/
 
 ## Schematics
 
-![Minesweeper KiCad schematic](kiCad.webp)
+![Minesweeper KiCad schematic](kicad_project.svg)
 
 ## Bill of Materials
 
