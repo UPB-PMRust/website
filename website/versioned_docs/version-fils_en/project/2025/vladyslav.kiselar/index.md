@@ -83,7 +83,7 @@ The system is now powered from a single 12V input through a voltage regulator th
 
 ### Schematics
 
-![KiCad Schematic](KiCad.webp)  
+![KiCad Schematic](KiCad.svg)  
 
 ### Bill of Materials
 
