@@ -73,7 +73,7 @@ The life system is physically implemented using multiple red LEDs connected to G
 ### Schematics
 KiCad Scheme
 
-![](KiCad.webp)
+![](KiCad.svg)
 
 TinkerCad Scheme
 
