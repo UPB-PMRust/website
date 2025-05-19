@@ -28,7 +28,7 @@ The system architecture consists of two main components: the Console and the Con
 
  - Communication between the Controller and the Console happens over WiFi. The Controller sends input data, and the Console processes it to update the game state and display it accordingly.
 
-![Game Console Architecture Diagram](architecture.webp)
+![Game Console Architecture Diagram](architecture.svg)
 
 ## Log
 
@@ -65,8 +65,8 @@ The project uses the following hardware components:
 
 ### Schematics
 
-![Console Schematic](console.webp)
-![Controller Schematic](controller.webp)
+![Console Schematic](console.svg)
+![Controller Schematic](controller.svg)
 
 ### Bill of Materials
 
