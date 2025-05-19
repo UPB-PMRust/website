@@ -57,7 +57,9 @@ Tested functionality of ESP32-CAM module and different image formats.
 ## Hardware
 
 Hardware Setup
+
 ![Hardware Setup](setup_pic.webp)
+
 
 - **STM32F767ZI Board**: Acts as the central controller, responsible for timing the capture of images and processing them. It coordinates the system and sends commands to other components.
 - **ESP32-CAM Module**: A camera module used to capture grayscale images of the object. It is connected to the STM for image acquisition.
