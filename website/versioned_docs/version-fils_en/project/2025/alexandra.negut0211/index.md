@@ -73,7 +73,7 @@ I built the hardware part of the project. I have made again the KiCad Schematics
 
 ### Schematics
 
-![alt text](<kicad pet feeder-1.webp>)
+![alt text](<project.pet.feeder.svg>)
 
 ### Bill of Materials
 
