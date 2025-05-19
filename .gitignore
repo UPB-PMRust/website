@@ -34,5 +34,3 @@ index.html
 .remote-assets
 components.d.ts
 .idea/
-# Website-specific ignores
-package-lock.json
