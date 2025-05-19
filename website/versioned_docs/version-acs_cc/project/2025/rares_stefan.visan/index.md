@@ -82,7 +82,7 @@ The wire configuration will be rearranged for a better and cleaner appearance.
 
 ### Schematics
 
-![Schematic KiCad](schematic_kicad.webp)
+![Schematic KiCad](schematic_kicad.svg)
 
 ### Bill of Materials
 
