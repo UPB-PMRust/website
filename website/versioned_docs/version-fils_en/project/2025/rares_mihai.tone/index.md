@@ -28,7 +28,7 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 ### Connections 
 ![Components](comp_diagram.webp)
 ### Schematic Diagram
-![Electric Schematic](Schematic.svg)
+![Electric Schematic](SmartWeatherStation.svg)
 
 
 **Key Components**:
