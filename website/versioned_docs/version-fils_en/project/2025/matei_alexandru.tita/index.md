@@ -57,7 +57,8 @@ The goal of this project is to explore a practical application of embedded syste
 ---
 ![Hardware image](Hardware.webp)
 
-![Kicad scheme](scheme.svg)
+![Scheme](https://raw.githubusercontent.com/MateiTita/matei_tita_project/main/website/versioned_docs/version-fils_en/project/2025/matei_alexandru.tita/Scheme.svg)
+
 ## 🗓️ Development Log
 
 ### Week 1 – Initial Planning
