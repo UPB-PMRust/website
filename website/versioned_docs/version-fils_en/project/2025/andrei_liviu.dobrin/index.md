@@ -71,7 +71,7 @@ Connected the LCD via I2C and displayed simple messages. Tested individual LEDs 
 
 ### Schematics
 
-![Simon Says Schematic](./KiCad.webp)
+![Simon Says Schematic](./KiCad.svg)
 
 ### Bill of Materials
 
