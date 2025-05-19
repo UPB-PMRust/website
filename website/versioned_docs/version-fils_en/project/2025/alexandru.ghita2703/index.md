@@ -50,7 +50,7 @@ The car is built on a 2-wheel drive chassis from a robot kit. It uses two DC mot
 
 ### Schematics
 
-![Schematic](./assets/KicadSchemev2.webp)
+![Schematic](./assets/kicadscheme.svg)
 
 This is the kicad schematic.
 
