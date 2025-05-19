@@ -30,6 +30,7 @@ Started working on the documentation for the project. I bought every necessary c
 I began assembling all the components. I started also to look into the programming part, what features need to be implemented and I also 3D printed the structure.
 ### Week 12-18 May
 The exterior design is finished and fully assembled. I continue making progress with the software milestone in order to interconnect all the parts' functions.
+
 ### Week 19-25 May
 
 
@@ -44,12 +45,14 @@ The exterior design is finished and fully assembled. I continue making progress 
 8. Breadboard
 9. Resistors
 
+
 ![Hardware_Photo1](./hardware2.webp)
 ![Hardware_Photo2](./hardware1.webp)
 
 ### Schematics
 
 ![KiCad_schematic](./kicad.svg)
+
 
 ### Bill of Materials
 | Device | Usage | Price |
@@ -82,5 +85,4 @@ The exterior design is finished and fully assembled. I continue making progress 
 https://pico.implrust.com/ultrasonic/index.html
 https://www.raspberrypi.com/documentation/
 https://pmrust.pages.upb.ro/docs/fils_en/welcome
-
 
