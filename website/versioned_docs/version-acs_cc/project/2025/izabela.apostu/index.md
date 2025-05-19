@@ -69,7 +69,7 @@ TO DO
 
 ## Schematics
 
-![Schematics](schematic_final.webp)
+![Schematics](schematic_final.svg)
 
 
 ## Bill of Materials
