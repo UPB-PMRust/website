@@ -115,7 +115,7 @@ Completed the hardware assembly phase of the project. Connected all components a
 
 ## Schematics  
 
-![PulseBeats Circuit Schematic](schematic.webp)
+![PulseBeats Circuit Schematic](pulsebeats-schematic.svg)
 
 ![poza1](poza1.webp)
 ![poza2](poza2.webp)
