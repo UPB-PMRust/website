@@ -69,7 +69,7 @@ Without further ado, I began contemplating the software part more deeply and com
 ![cargo](cargo.webp)
 
 ## Schematics
-![Schematic](KiCad.webp)
+![Schematic](Ki_Cad.svg)
 
 
 
