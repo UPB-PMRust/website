@@ -2,31 +2,34 @@
 
 A human memory and reflexes tester
 
-> **info**  
-> **Author**: Stoica Vlad-Alexandru
-> **GitHub Project Link**: *soon to be added*
+:::info
 
-## Description[](#description)
+**Author**: Stoica Vlad-Alexandru
+**Github Project Link**: https://github.com/UPB-PMRust-Students/project-Playsu
+
+:::
+
+## Description
 
 A device that is used to see the reaction time and the memory score of people in a fun and interactive way.
 
-## Motivation[](#motivation)
+## Motivation
 
 I always liked to use sites like HumanBenchmark to see the differences between me and my friends. We used it in a competitive way and I figured that it would make an interesting project for this subject.
 
-## Architecture[](#architecture)
+## Architecture
 
 Here is the schematic of the project:
 
 ![Project Architecture Diagram](architecture.svg)
 
-## Log[](#log)
+## Log
 
-### Week 5 - 11 May[](#week-5---11-may)
+### Week 5 - 11 May
 
 I bought all necessary components for the project. This involved researching and selecting the appropriate hardware specifications to match the project requirements and placing orders for all components.
 
-### Week 12 - 18 May[](#week-12---18-may)
+### Week 12 - 18 May
 
 I focused on building the complete hardware setup of the device. This included:
 - Connecting the main Raspberry Pi Pico 2W to the LCD shield using the 8-bit parallel interface
@@ -36,19 +39,19 @@ I focused on building the complete hardware setup of the device. This included:
 
 By the end of the week, I had a fully assembled hardware prototype ready for the software implementation phase.
 
-### Week 19 - 25 May[](#week-19---25-may)
+### Week 19 - 25 May
 
-## Hardware[](#hardware)
+## Hardware
 
 The project uses two Raspberry Pi Pico 2W microcontrollers - one as the main controller and one as a debugger. The display is a 2.4" TFT LCD Shield with ILI9325 controller that provides both visual output and touch input capabilities. For persistent storage, an AT24C256 EEPROM module stores game highscores. The system is powered by a breadboard power supply connected to a 12V adapter, which was chosen to provide sufficient power for the LCD's higher current requirements. All components are connected using jumper wires on a breadboard.
 
 The main Pico 2W is connected to the LCD through an 8-bit parallel interface (D0-D7) plus control signals (RS, WR, RD, CS, RST), while the EEPROM communicates with the Pico via I2C (SDA, SCL). The second Pico 2W is configured as a debugger using the SWD interface, allowing for real-time debugging and program uploading.
 
-### Schematics[](#schematics)
+### Schematics
 
 ![KiCAD Schematic](KiCad Scheme.svg)
 
-### Bill of Materials(#bill-of-materials)
+### Bill of Materials
 | Device | Usage | Price |
 |--------|-------|-------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Main microcontroller for running the game logic and interfacing with peripherals | [40 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2W&results=36) |
@@ -60,8 +63,8 @@ The main Pico 2W is connected to the LCD through an 8-bit parallel interface (D0
 | 2 Separate Breadboards | Prototyping platform for connecting components | 18 RON |
 | 2 Micro-USB cables | Connecting the 2 Raspberry Pi Pico 2W | [8 RON](https://www.optimusdigital.ro/en/usb-cables/11939-micro-usb-black-cable-1-m.html?search_query=micro+usb+1m&results=474) |
 
-## Software[](#software)
+## Software
 
 
 
-## Links[](#links)
+## Links
