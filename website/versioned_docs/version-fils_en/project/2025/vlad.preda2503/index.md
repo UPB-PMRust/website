@@ -62,7 +62,7 @@ After, I worked on an example system for the metronome. Since I don't yet have m
 
 ### Schematics
 
- ![Schematic](schematic.webp)
+ ![Schematic](schematic.svg)
 
 ### Bill of Materials
 
