@@ -37,7 +37,7 @@ The project consists of two main components:
 - Controlled via a physical button connected to ESP32 A
 - Toggles between ONLINE mode (API weather) and LOCAL mode (simulated weather)
 
-![diagram](./Architecture.webp)
+![diagram](./Architecture.svg)
 
 
 ## Log
