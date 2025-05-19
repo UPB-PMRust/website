@@ -62,7 +62,7 @@ Here are some pictures of my project:
 ![5](photos/5.webp)
 
 ### Schematics
-![diagram](KiCad.webp)
+![diagram](KiCad.svg)
 
 
 ### Bill of Materials
