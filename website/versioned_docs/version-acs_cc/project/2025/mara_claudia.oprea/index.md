@@ -52,7 +52,7 @@ Playing piano is one of my hobbies and I always liked the idea of being able to 
 
 ### Photo
 
-![alt text](hardware.png)
+![alt text](hardware.webp)
 
 ### Bill of Materials
 
