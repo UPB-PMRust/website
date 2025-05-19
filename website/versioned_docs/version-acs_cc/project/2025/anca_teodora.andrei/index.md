@@ -89,7 +89,7 @@ The project uses the Raspberry Pi Pico 2W as the main microcontroller responsibl
 
 ## Schematics
 
-![KiCAD Schematic](kicad_schema.webp)
+![KiCAD Schematic](kicad_schema.svg)
 
 
 
