@@ -54,7 +54,7 @@ For the second milestone of the Smart Weather Station project, the base hardware
 
 
 ### Schematics
-![picture1](KiCADdiagram.jpg)
+![picture1](PMproject.svg)
 Place your KiCAD schematics here.
 
 ### Bill of Materials
