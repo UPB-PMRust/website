@@ -70,6 +70,7 @@ This is the diagram that illustrates the components and their connections.
 - Conceptualized a hat-based wearable form factor as a potential solution to wire length constraints and component size
 - Planned next steps: finalize WiFi functionality before transitioning to battery power with breadboard power supply
 
+
 ### Week 19 - 25 May
   
 
