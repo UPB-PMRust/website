@@ -69,7 +69,7 @@ A generic electronics kit that contains a breadboard, jumper wires, resistors, c
 
 ### Schematics
 
-![Schematic](KICAD Schematic.webp)
+![Schematic](Schematic.svg)
 
 ### Bill of Materials
 
