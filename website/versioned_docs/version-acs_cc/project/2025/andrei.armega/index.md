@@ -69,7 +69,7 @@ Power is supplied via a **7.6V LiPo battery**, regulated to 5V and 3.3V using a 
 User input (powering on/off, switching modes) is handled via **4-pin push button**.
 
 ### Schematic  
-![Schematic](./Schematic.webp)
+![Schematic](./Schematic.svg)
 
 
 ###
