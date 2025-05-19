@@ -41,7 +41,7 @@ Aparatura hardware folosita este una interactiva, oarecum asemanatoare cu ce am 
 ![poza2](img2.webp)
 
 ### Schematics
-![Schematic Screenshot](schematic.webp)
+![Schematic Screenshot](schematic.svg)
 
 ### Bill of Materials
 
