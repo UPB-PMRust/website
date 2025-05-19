@@ -82,7 +82,7 @@ flowchart TD
 
 ### Schematics
 
-![Kicad](kicad.webp)
+![Kicad](kicad.svg)
 
 
 
