@@ -72,7 +72,7 @@ The project uses the following hardware components:
 
 ### Schematics
 
-![KiCad Schematics](kicad.webp)
+![KiCad Schematics](kicad.svg)
 ![Circuit picture 1](im1.webp)
 ![Circuit picture 2](im2.webp)
 ![Circuit picture 3](im3.webp)
