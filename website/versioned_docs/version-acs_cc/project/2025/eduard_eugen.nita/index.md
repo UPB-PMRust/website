@@ -32,7 +32,16 @@ I always wondered what is the best method to sort waste as the public bins are s
 
 ### Week 5 - 11 May
 
+Defining the concept of the project and the list of components.
+Ideating the general design of the bin.
+Order of the components and compatiblity check.
+
 ### Week 12 - 18 May
+
+Started the assembly and wiring of the components.
+Compatiblity problems and new order for camera.
+(The current camera module will be replaced.)
+Testing the assembled components.
 
 ### Week 19 - 25 May
 
