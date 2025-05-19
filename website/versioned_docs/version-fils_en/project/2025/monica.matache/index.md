@@ -39,7 +39,7 @@ Detail in a few words the hardware used.
 ### Schematics
 
 Place your KiCAD schematics here.
-
+![Schematic](./Schematic_MA.svg)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
