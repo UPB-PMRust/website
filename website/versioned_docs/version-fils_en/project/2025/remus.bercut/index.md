@@ -65,7 +65,7 @@ Finally, these are the sensors. They are tested and work fine but I have yet to 
 ### Schematics
 
 I used KiCAD to draw this schematic. Nothing to add to this really, it's quite clear.
-![KiCAD Scheme](SchematicUpdated.webp)
+![KiCAD Scheme](SchematicSVG.svg)
 
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
