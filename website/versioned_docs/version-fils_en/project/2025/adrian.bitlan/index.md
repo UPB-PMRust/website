@@ -122,7 +122,7 @@ In the second week, I connected the MFRC522 RFID reader and the LCD1602 I2C disp
 
 ### Schematics
 
-![KiCadScheme](./KiCad_Scheme.webp)
+![KiCadScheme](./Schema_Kicad.svg)
 
 ### Bill of Materials
 
