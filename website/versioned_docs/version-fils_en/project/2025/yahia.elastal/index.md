@@ -140,7 +140,7 @@ Started mounting components onto the cardboard structure. Fixed the LCD display,
 ![TopView](Final_topview.webp)
 ![SideView](Final_sideview.webp)
 ### Schematics
-![KiCad Schematic](KiCad.webp)
+![KiCad Schematic](Schematic.svg)
 ### Bill of Materials
  
 
