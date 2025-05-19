@@ -74,7 +74,7 @@ This is how the game looks right now without the 3D printed parts of the game.
 ### Schematics
 
 
-![Schematic](./Whack_a_Mole_KiCad_Schematic.webp)
+![Schematic](./Whack_a_Mole_KiCad_Schematic.svg)
 
 
 ### Bill of Materials
