@@ -81,6 +81,7 @@ All connections are made using jumper wires, and resistors are used where necess
  ![alt text](poza1.webp)
 
  ![Schema Kicad](schema.svg)
+ 
 
 ### Bill of Materials
 
