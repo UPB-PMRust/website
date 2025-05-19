@@ -81,7 +81,7 @@ In this week I started to assemble my project, step by step. I also decided to i
 
 ### Schematics
 
-![KiCAD schematic](updated_kicad.webp)
+![KiCAD schematic](updated_kicad.svg)
 
 ### Bill of Materials
 
