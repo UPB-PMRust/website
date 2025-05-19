@@ -83,10 +83,10 @@ Total : 83.84RON
 
 ## Pictures
 A Picture of the Hardware assembled and wired.
-![block](hardware.png)
+![block](hardware.webp)
 
 A picture of the Hardware working.
-!![block](working_hardware.png)
+!![block](working_hardware.webp)
 
 
 ## Links
