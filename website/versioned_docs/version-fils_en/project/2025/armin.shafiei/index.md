@@ -51,7 +51,7 @@ In my project, I have used two Raspberry Pi Pico 2W ( one as a debugger and the 
 
 ### Schematics
 
-![alt text](schematic.webp)
+![alt text](schematic.svg)
 
 
 ### Bill of Materials
