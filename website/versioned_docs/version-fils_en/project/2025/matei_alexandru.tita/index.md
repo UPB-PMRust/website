@@ -57,7 +57,7 @@ The goal of this project is to explore a practical application of embedded syste
 ---
 ![Hardware image](Hardware.webp)
 
-![Kicad scheme](kicad.webp)
+![Kicad scheme](scheme.svg)
 ## 🗓️ Development Log
 
 ### Week 1 – Initial Planning
