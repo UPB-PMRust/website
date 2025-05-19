@@ -52,7 +52,7 @@ Button: allows the user to switch between modes
 
 ### Schematics
 
-![SchemaKiCad](SchemaKiCad.webp)
+![schemafinalkicad](schemafinalkicad.svg)
 ![Poza](Poza.webp)
 
 ### Bill of Materials
