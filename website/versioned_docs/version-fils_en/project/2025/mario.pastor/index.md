@@ -55,13 +55,13 @@ I consulted with my lab teacher regarding the 3D casing for the sensors, and we 
 
 ## Hardware
 
-My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. As of now, this is how the hardware looks like, but in the following week I will design the 3D cases for the sensor in order to make the device wearable.
+My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. As of now, this is how the hardware looks like, but in the following week I will design the 3D cases for the sensors in order to make the device wearable.
 
 ![hardware](assets/hardware1.webp)
 
 ### Schematics
 
-![kicad-schematic](assets/kicad_schematic.webp)
+![kicad-schematic](assets/kicad_schematic.svg)
 
 ### Bill of Materials
 
