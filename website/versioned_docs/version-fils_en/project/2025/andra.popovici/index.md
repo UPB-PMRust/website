@@ -7,7 +7,7 @@ Our favourite childhood toys meet modern technology! Smart Ride is an improved r
 
 **Author**: Popovici Andra-Raluca
 
-**GitHub Project Link**: https://github.com/andra-raluca-pop/website#
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-andra-raluca-pop
 
 :::
 
