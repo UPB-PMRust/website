@@ -76,7 +76,7 @@ The project uses the following components:
 ### Schematics
 
 This is the Kicad Schematic:
-![KiCad Schematics](Schematic.webp)
+![KiCad Schematics](Schematic.svg)
 Instead of a keypad schematic I have used connection pins to represent the rows and columns of the keypad in the KiCad representation of the project
 
 ![First Photo](Project1.webp)
