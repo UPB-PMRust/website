@@ -117,7 +117,7 @@ Made using KiCad, this schematic represents the electronic design for CrateDigge
 The MAX98357 DAC and the 3.5mm socket are placed on the left and next to them is the 4x4 button matrix used for
 adding samples. The display is placed on the right, along with play/write buttons.
 
-![Schematic](cratedigger_schematic.webp)
+![Schematic](cratedigger_schematic.svg)
 
 ## Bill of Materials
 
