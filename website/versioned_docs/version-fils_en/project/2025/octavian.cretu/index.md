@@ -109,7 +109,7 @@ Rewrote some of the logic for the fingerprint sensor.
 
 ### Schematics
 
-![Schematic](./MPA%20-%20Project%20Schematic.svg)
+![Schematic](./Schematic.svg)
 
 ### Bill of Materials
 
