@@ -69,7 +69,7 @@ Hardware Setup
 ### Schematics
 
 KiCad Schematic
-![KiCad Scheme](KiCad_scheme.webp)
+![KiCad Scheme](KiCad_scheme.svg)
 
 ### Bill of Materials
 
