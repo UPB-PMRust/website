@@ -74,7 +74,7 @@ Sensor for temperature - NTC 100k
 
 ### Schematics 
 ![Scheme](./scheme.webp)
-![Scheme-electric](./scheme-electric.webp)
+![Scheme-electric](./solar.svg)
 
 Place your KiCAD schematics here.
 
