@@ -4,7 +4,7 @@ A lighting system based on an addressable LED strip controlled by sound and IR r
 
 :::info 
 
-**Author**: Izabela-Elena Apostu  
+**Author**: Izabela-Elena Apostu \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-iza03
 :::
 
