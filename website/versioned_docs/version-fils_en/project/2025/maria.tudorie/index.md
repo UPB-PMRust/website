@@ -43,7 +43,7 @@ This hardware setup allows for real-time control and monitoring, with the LEDs r
 
 ### Schematics
 
-![My schematic](KICAD.svg)
+![My schematic](kicad_scheme.svg)
 
 ![Hardware](POZA.webp)
 
