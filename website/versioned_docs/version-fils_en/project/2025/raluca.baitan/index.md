@@ -101,7 +101,7 @@ Power is provided via standard 5V USB adapters, and components are interconnecte
 
 ## Schematics  
 
-![Schematics](./lamp.webp)
+![Schematics](./lamp.svg)
  
 ### Bill of Materials
 
