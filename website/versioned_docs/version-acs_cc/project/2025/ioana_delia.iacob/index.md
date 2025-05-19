@@ -56,7 +56,7 @@ Since the pico is, for now, drawing power from the debugger, I'm currently using
 * Step down module LM2596S: converts the 6V supplied by the batteries to the 5V needed by the pico
 ### Schematics
 
-![diagram](schematic.webp "schematic")
+![schematic](pm_project_schematic_small.svg "schematic")
 
 ### Bill of Materials
 
