@@ -80,7 +80,7 @@ The main challenge regarding hardware was having components that operate on 5V, 
 
 ### Schematics
 
-![KiCAD Schematic](kicad_scheme.webp)
+![KiCAD Schematic](kicad_scheme.svg)
 
 ### Bill of Materials
 
