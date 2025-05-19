@@ -85,7 +85,7 @@ This is the current progress of the Turret project. So far, i have prepared the 
 
 This schematic, created with KiCad, illustrates the electronic design of the Turret project. It provides a detailed layout of the connections and components, ensuring accurate assembly and functionality.
 
-![The kicad schematic](KiCad1.webp)
+![The kicad schematic](KiCad1.svg)
 
 ### Bill of Materials
 
