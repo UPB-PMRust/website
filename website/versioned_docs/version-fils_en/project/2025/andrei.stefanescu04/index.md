@@ -94,7 +94,7 @@ Figure 2
 
 Electrical schematic
 
-![Electrical schematic](kicad_schematic.webp "Electrical schematic")
+![Electrical schematic](kicad_schematic.svg "Electrical schematic")
 
 ## Bill of Materials
 
