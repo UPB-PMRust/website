@@ -105,9 +105,8 @@ This project uses a Raspberry Pi Pico W as the main controller to automate plant
 
 ### Schematics
 
-Place your KiCAD schematics here.
 
-![CactusCare Schematics](KiCad.webp)
+![CactusCare Schematics](KiCad.svg)
 
 
 
