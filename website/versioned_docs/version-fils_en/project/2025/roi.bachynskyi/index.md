@@ -154,7 +154,7 @@ VitalPi utilizes a Raspberry Pi Pico 2W microcontroller as its processing core a
 
 This is the KiCad Schematics of the project.
 
-![KiCAD Schematics](kicad.webp)
+![KiCAD Schematics](kicad.svg)
 
 ### Bill of Materials
 
