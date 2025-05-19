@@ -100,8 +100,8 @@ _Fig.2 – Display and microphone module_
 
 ### Schematics
 
-![Schematic Diagram](./schematic.webp)
-_Fig.3 – Initial Schematic_
+![Schematic Diagram](./schematic.svg)
+_Fig.3 – Schematic_
 
 ### Bill of Materials
 
