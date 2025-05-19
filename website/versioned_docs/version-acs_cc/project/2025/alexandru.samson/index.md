@@ -46,7 +46,7 @@ The main hardware is the Raspberry Pi Pico 2W microcontroller, which provides pr
 
 ### Schematics
 
-![KiCad](KiCad.webp)
+![KiCad](KiCad.svg)
 
 ### Bill of Materials
 
