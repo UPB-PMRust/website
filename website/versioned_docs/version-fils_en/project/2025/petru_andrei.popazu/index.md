@@ -95,7 +95,7 @@ Overall view
 
 This is the Kicad schematic.
 
-![Kicad Schematic](Schematica_f1.webp)
+![Kicad Schematic](car1.svg)
 
 ### Bill of Materials
 
