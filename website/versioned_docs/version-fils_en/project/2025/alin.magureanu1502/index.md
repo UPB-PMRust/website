@@ -57,7 +57,7 @@ Display status. Shows messages such as the current string tuned or whether we ne
 ![Hardware_Photo3](./hardware_not_tuned.webp)
 ### Schematics
 
-![KiCad_Schematic](./kicad.svg)
+![KiCad_Schematic](./kicad2.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
