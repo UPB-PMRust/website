@@ -55,7 +55,7 @@ Each switch uses a voltage divider to produce distinct ADC levels for button sta
 - between 2000–2500: one pressed (start timer)
 - less than 1000: both pressed (stop timer, compute velocity, send Note ON)
 
-[TODO insert circuit image]
+![Circuit](Hardware.webp)
 
 The controller also includes a potentiometer for filter control and a button to control octave switching and filter selection through a carousel-like menu. This menu is displayed on an integrated screen, allowing users to navigate settings with short and long presses.
 
