@@ -123,7 +123,7 @@ I assembled the hardware on a breadboard according to the schematic, testing the
 - **LEDs** and **buzzer** offer quick and intuitive feedback.  
 - The entire circuit is assembled on a **breadboard**, allowing flexibility in testing and debugging.
 
-![Schema Hard](./hard.png)
+![Schema Hard](./hardware.webp)
 
 ---
 
