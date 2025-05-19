@@ -45,12 +45,12 @@ I soldered the pins for the sensor and for the LCD screen, built the KiCad schem
 - **LEDs**: for emitting visual warnings
 - **Breadboard 830 pct.**: base on which the project is assembled
 
-![Local Image](./hardware1.svg)
-![Local Image](./hardware2.svg)
+![Local Image](./hardware1.webp)
+![Local Image](./hardware2.webp)
 
 ### Schematics
 
-![Local Image](./kicad.svg)
+![Local Image](./kicad.webp)
 
 ### Bill of Materials
 
