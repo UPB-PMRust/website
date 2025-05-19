@@ -68,7 +68,7 @@ The full circuit is prototyped on a breadboard, allowing for flexible testing an
 
 ### Schematics
 
-![Schematic diagram](KiCadscheme5.webp)
+![Schematic diagram](KicadSchemeGood.svg)
 
 ### Bill of Materials
 
