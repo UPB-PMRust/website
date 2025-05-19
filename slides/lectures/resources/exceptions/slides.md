@@ -27,7 +27,7 @@ what happens if something does not work as required
 
 ---
 ---
-# ARM Cortex-M0+ Exceptions
+# ARM Cortex-M Exceptions
 what happens if something does not work as required
 
 ![Exceptions](./cortex-m.svg)
@@ -79,7 +79,7 @@ flowchart LR
     class S3 start
 ```
 
-- the exception table of RP2040 at address 0x1000_0100 (start of the boot area + 4 bytes)
+- the exception table of RP2040 at address 0x1000_0100, RP2350 at address 0x1000_0000
 - the processor generates a *Reset* exception when it starts
 
 ---
@@ -108,7 +108,7 @@ for this section
 ---
 ---
 
-# ARM Cortex-M0+ Interrupts
+# ARM Cortex-M Interrupts
 some hardware device notifies the MCU
 
 <div align="center">
@@ -118,7 +118,7 @@ some hardware device notifies the MCU
 ---
 ---
 # Interrupt Handling
-ARM Cortex-M0+
+ARM Cortex-M
 
 ```mermaid
 flowchart LR
@@ -168,8 +168,9 @@ flowchart LR
 
 <div>
 
-- the interrupt vector (table) of RP2040 starts at address 0x1000_0040 (after the exceptions table with 15 interrupts)
-- ARM Cortex-M0+ has a maximum of 32 interrupt requests (IRQs)
+- the interrupt vector (table) of RP2350 starts at address 0x1000_0040 (after the exceptions table with 15 interrupts)
+- ARM Cortex-M0+ has a maximum of 32 IRQs
+- ARM Cortex-M33 has a maximum of 480 IRQs
 
 </div>
 </div>
@@ -252,7 +253,7 @@ flowchart LR
 layout: section
 ---
 # Boot
-of the RP2040
+of the RP2040 and RP2350
 
 ---
 ---
@@ -265,10 +266,14 @@ for this section
      - Section 2.8 - *Bootrom*
        - Subsection 2.8.1 - *Processor Controlled Boot Sequence*
 
+**Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+   - Chapter 5 - *Bootrom*
+     - Section 5.1 - *Bootrom concepts*
+
 ---
 ---
 # Boot
-how the ARM Cortex-M0+ starts
+how the ARM Cortex-M starts
 
 ```mermaid
 flowchart LR
@@ -301,7 +306,8 @@ flowchart LR
 ```
 
 - the *start_address* for RP2040 is 0x1000_0100
-- RP2040 has another boot loader that it loads from 0x1000_0000
+- the *start_address* for RP2350 depends on the *Start Block* items
+- RP2040 & RP2350 have another boot loader that it loads from 0x0000_0000
 
 
 ---
@@ -371,6 +377,75 @@ The internal boot loader cannot be overwritten and assures that bricking the dev
 
 <div align="center">
 <img src="./flash_address.svg" class="rounded w-70">
+</div>
+
+---
+layout: two-cols
+---
+# Boot
+
+<style>
+.two-columns {
+    grid-template-columns: 2fr 1fr;
+}
+</style>
+
+The RP2350 boot process
+
+```mermaid
+flowchart LR
+    S(PowerUp) --> I
+    subgraph I0[Internal Boot Loader]
+        I{BOOTSEL
+        Pressed} -- Yes --> U
+        I -- NO --> R(Search
+        Start Block between
+        @x1000_0000 - @0x1000_4000)
+        R -- Error --> U(Show USB
+        Drive)
+    end
+    R -- Success --> E2(Load
+    Interrupt
+    Vector)
+    E2 -- Fault --> E3(Jump to
+    HardFault
+    Handler)
+    E3 -- Fault --> L(Lockup
+    or
+    Reset)
+    E2 --> S2(Set Stack
+    Pointer)
+    S2 --> E(Jump to
+    Reset
+    Exception
+    Handler)
+    E -- Invalid --> E3
+    E --> F(Fetch
+    Instruction)
+
+    classDef memory fill:#B0E3E6,stroke:#0E8088
+    classDef instruction fill:#B1DDF0,stroke:#10739E
+    classDef processor fill:#FFE6CC,stroke:#D79B00
+    classDef exception fill:#F8CECC,stroke:#B85450
+    classDef error fill:#ff0000,stroke:#ae0000,color:#ffffff
+    classDef start fill:#00ef00
+    classDef rom fill:#f7ffe7
+
+    class A,E,E2,S2 instruction
+    class R,F memory
+    class B,V,R2,I,I2,I3,H,U processor
+    class L error
+    class E3 exception
+    class S start
+    class I0 rom
+```
+
+The internal boot loader cannot be overwritten and assures that bricking the device is difficult.
+
+:: right ::
+
+<div align="center">
+<img src="./flash_address_rp2350.svg" class="rounded w-70">
 </div>
 
 ---
