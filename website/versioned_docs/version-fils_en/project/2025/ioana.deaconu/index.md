@@ -142,7 +142,7 @@ All components are integrated onto the breadboard to form a compact and testable
 
 ### Schematics
 
-![KiCad Schematic](kicad_schematic.webp)
+![KiCad Schematic](kicad_schematic.svg)
 
 ![Project Setup](project_photo1.webp)
 
