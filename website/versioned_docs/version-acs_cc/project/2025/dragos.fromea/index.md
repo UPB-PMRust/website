@@ -57,7 +57,7 @@ The system uses the following components:
 
 
 ### Schematics
-![KiCad](schematic.webp)
+![KiCad](schematic.svg)
 
 ### Bill of Materials
 
