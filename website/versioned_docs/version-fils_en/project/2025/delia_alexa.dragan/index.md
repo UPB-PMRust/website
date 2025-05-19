@@ -77,11 +77,11 @@ Purchased more components after finding out about some possible errors (a 9V bat
 
 ## Hardware
 
-In this project, the core piece is a Raspberry Pi Pico 2W that gets its digital audio play-back from an SD card inserted in a module, interfaced via SPI connection, and outputs it through a speaker, powered by a PAM8403D amplifier. The amplifier functions with analog signal, which is why a MCP4821-E/P DAC (Digital-Analog converter) is used, that gets its power from a 5V power supply with a 9V alkaline battery. A 1602 LCD displays via I2C protocol the currently playing song's title. The emmitted sound's volume is controlled by a manually adjustable variable resistor (potentiometer). There are also three buttons connected to the microcontroller's GPIO pins meant to play, pause and navigate through the songs. 
+In this project, the core piece is a Raspberry Pi Pico 2W that gets its digital audio play-back from an SD card inserted in a module, interfaced via SPI connection, and outputs it through a speaker, powered by a PAM8403D amplifier. The amplifier functions with analog signal, which is why a MCP4821-E/P DAC (Digital-Analog converter) is used, that gets its power from a 5V power supply with a 9V alkaline battery. A 1602 LCD displays via I2C protocol the currently playing song's title. The emitted sound's volume is controlled by a manually adjustable variable resistor (potentiometer). There are also three buttons connected to the microcontroller's GPIO pins meant to play, pause and navigate through the songs. 
 
 ### Schematics
 
-![KiCAD.webp](KiCAD.webp)
+![kicad.svg](kicad.svg)
 
 ### Bill of Materials
 
@@ -117,9 +117,8 @@ The format is
 | [defmt](https://docs.rs/defmt/latest/defmt/) | Highly efficient logging framework | Used for debugging |
 | [cortex-m](https://crates.io/crates/cortex-m) | Low-level access to Cortex-M processors | Used for accesing Cortex-M processor |
 | [lcd-lcm1602-i2c](https://crates.io/crates/lcd-lcm1602-i2c) | Driver for LCD1602 | Used to control the display |
-<!-- | [rodio](https://link) | USAGE | Used for tblablaba |
-| [name](https://link) | USAGE | Used for tblablaba |
-| [name](https://link) | USAGE | Used for tblablaba | -->
+<!-- | [rodio](https://link) | USAGE | Used for ... |
+| [name](https://link) | USAGE | Used for ... | -->
 
 ## Links
 
