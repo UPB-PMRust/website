@@ -34,7 +34,7 @@ Current component lineup:
 - [Breadboard jumper-wire set](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html)  
 - [Plusivo 250-piece resistor kit](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/10928-plusivo-kit-250-buc-rezistoare.html)  
 - [Micro-USB cable (1 m)](https://www.optimusdigital.ro/ro/cabluri-cabluri-usb/11939-cablu-negru-micro-usb-1-m.html)  
-- [Battery holder for two × 18650 cells](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html)  
+- [Battery holder for 4 × AA/R6 cells](https://www.optimusdigital.ro/ro/toate-produsele/2374-suport-baterii-4-x-r6-patrat.html)  
 
 ## Bill of Materials
 
@@ -46,7 +46,7 @@ Current component lineup:
 | [Breadboard jumper-wire set](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html) | 1 | 7.99 | 7.99 |
 | [Plusivo resistor kit (250 pcs)](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/10928-plusivo-kit-250-buc-rezistoare.html) | 1 | 14.99 | 14.99 |
 | [Micro-USB cable (1 m)](https://www.optimusdigital.ro/ro/cabluri-cabluri-usb/11939-cablu-negru-micro-usb-1-m.html) | 2 | 3.99 | 7.98 |
-| [Battery holder for two × 18650 cells](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html) | 1 | 3.99 | 3.99 |
+| [Battery holder for 4 × AA/R6 cells](https://www.optimusdigital.ro/ro/toate-produsele/2374-suport-baterii-4-x-r6-patrat.html) | 1 | 5.33| 5.33 |
 | [HC-SR04 ultrasonic sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) | 1 | 14.99 |29.98 |
 | [Tactile push-button (6×6×6 mm)](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html) | 3 | 0,36 | 1.08 |
 | [Submersible pump (3–6 V DC)](https://sigmanortec.ro/Pompa-apa-submersibila-3-6VDC-verticala-p172447502) | 3 | 7.15 | 21.45 |
