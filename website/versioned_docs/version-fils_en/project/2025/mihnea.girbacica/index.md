@@ -27,7 +27,8 @@ As the owner of a Game Development Company, I've been fascinated by video games 
 
 ### Week 5 - 11 May
 
-The main goal of the first week was to make all of the peripherals work. Code Changelog:
+The main goal of the first week was to make all of the peripherals work. \
+Code Changelog:
 
 - Created the Cargo.toml, with all the required dependencies
 - Created module display_module.rs, that integrates the ST7735s display to the microcontroller
