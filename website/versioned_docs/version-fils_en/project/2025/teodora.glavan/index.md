@@ -102,7 +102,7 @@ Function: Provides sufficient power for the servos and other components that req
 ### Schematics
 
 Place your KiCAD schematics here.
-![Schematic](./Schematickicadteo.webp)
+![Schematic](./Tema.svg)
 Device                                                                                                                                                                                                                                                                                   | Usage                                                 | Price       |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------- |
 | [ESP32 Dev Board](https://www.optimusdigital.ro/ro/placi-cu-bluetooth/4371-placa-de-dezvoltare-esp32-cu-wifi-i-bluetooth-42.html?search_query=Placa+de+Dezvoltare+ESP32+cu+WiFi+%C8%99i+Bluetooth+4.2&results=8)                                                                         | The microcontroller for controlling the entire system | 35 RON      |
