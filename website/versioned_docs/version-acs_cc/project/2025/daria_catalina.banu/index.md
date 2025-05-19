@@ -66,7 +66,7 @@ Controls two stepper motors for horizontal and vertical movement. Uses a state m
 Coordinates input from the sensors and sends precise motor commands. Includes logic for tolerance thresholds, and movement limits.
 
 - Display Module
-Shows real-time status info (e.g., direction, light levels, current position) on the LCD2004 screen using `hd44780-driver`
+Shows real-time status info (e.g., direction, light levels, current position) on the LCD2004 screen using pcf8754T module and i2c-characther-display crate
 
 - Debug & Logging (defmt)
 All internal states, sensor readings, and motor steps are logged via RTT for debugging and tuning purposes.
@@ -115,7 +115,7 @@ I started using a power supply for breadboard module which can provide 5V or 3v3
 
 ### Schematics
 
-![Full Schematic](./schematic-pm.webp)
+![Full Schematic](./proiect.svg)
 
 
 ### Bill of Materials
