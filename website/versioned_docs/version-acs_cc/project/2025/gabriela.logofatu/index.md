@@ -57,13 +57,16 @@ All components are connected using the **breadboard** for modularity and ease of
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 1
+I created the project documentation, including its purpose, the required components, and the general architecture.
 
 
-### Week  -  May
+### Week 2
+I worked on the hardware documentation, detailing the connections between components, the power supply, and specific information about each module used.
 
 
-### Week  -  May
+### Week 3
+I assembled the hardware on a breadboard according to the schematic, testing the connections and integration of components (LCD, TCS3200, motors, buzzer, etc.).
  
 
 ## Hardware
