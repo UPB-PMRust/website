@@ -28,8 +28,11 @@ Playing piano is one of my hobbies and I always liked the idea of being able to 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Ordered the remaining hardware components required for the project.
 
 ### Week 12 - 18 May
+I have all the hardware components and the project is assembled.
+
 
 ### Week 19 - 25 May
 
