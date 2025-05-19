@@ -55,7 +55,7 @@ Here is the actual setup:
 
 ## Schematics
 
-![KiSchematic Diagram](Kischematic.webp) 
+![KiSchematic Diagram](Kischematic.svg) 
 
 ## Bill of Materials
 
