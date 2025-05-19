@@ -56,9 +56,9 @@ This is the description of the system components and their interactions:
 ### Week 28 - 4 May
 I have started the project following the steps to set-up the gitlab page and I have sketched the documentations
 ### Week 5 - 11 May
-
+I bought all the parts for the project and began to assemble it. I have also written the first lines of code for the sofware
 ### Week 12 - 18 May
-
+I finished assembeling the project with only minor things left to sort out
 ### Week 19 - 25 May
 
 ## Hardware
@@ -117,8 +117,7 @@ The format is
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
+// Add a few links that inspired you and that you think you will use for your project
 
-<!-- 1. [link](https://example.com)
-2. [link](https://example3.com)
-... -->
+ 1. [How to Use a Hall Effect Sensor with Raspberry Pi Pico](https://www.electronicshub.org/hall-effect-sensor-raspberry-pi-pico/) – Practical Hall sensor usage
+ 2. [Raspberry Pi Pico Projects and Tutorials](https://www.tomshardware.com/how-to/raspberry-pi-pico) – General Pico W project ideas and tutorials
