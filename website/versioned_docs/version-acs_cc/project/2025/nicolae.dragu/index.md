@@ -63,7 +63,7 @@ I assembled the components and tested them.
 
 ### Schematics
 
-![kicad1](kicad1.webp)
+![kicad](kicad.svg)
 
 ### Bill of Materials
 
