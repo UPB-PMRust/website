@@ -92,7 +92,7 @@ Here is what the hardware is looking like so far:
 ### Schematics
 
 KiCad Schematic
-![alt text](KiCadFinal_with_bgc.webp)
+![alt text](Circuit.svg)
 
 ### Bill of Materials
 
