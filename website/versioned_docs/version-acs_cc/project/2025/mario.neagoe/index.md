@@ -96,7 +96,7 @@ The ultrasonic distance sensor, connected via GPIO, enables the turret to measur
 
 
 ### Schematics
-![Kicad Schematic](kicad.webp)
+![Kicad Schematic](kicad.svg)
 
 ## Photos
 ![Picture 1](project1.webp)
