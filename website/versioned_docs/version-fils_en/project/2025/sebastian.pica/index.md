@@ -118,6 +118,3 @@ The format is
 ## Links
 
 // Add a few links that inspired you and that you think you will use for your project
-
- 1. [How to Use a Hall Effect Sensor with Raspberry Pi Pico](https://www.electronicshub.org/hall-effect-sensor-raspberry-pi-pico/) – Practical Hall sensor usage
- 2. [Raspberry Pi Pico Projects and Tutorials](https://www.tomshardware.com/how-to/raspberry-pi-pico) – General Pico W project ideas and tutorials
