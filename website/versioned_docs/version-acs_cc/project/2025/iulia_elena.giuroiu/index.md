@@ -131,7 +131,7 @@ The system uses two Raspberry Pi Pico 2W boards. The main board handles authenti
 
 ### Schematics
 
-![Electrical Schematic](schematic.webp)
+![Electrical Schematic](schematic.svg)
 
 ### Bill of Materials
 
