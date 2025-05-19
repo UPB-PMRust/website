@@ -1,8 +1,8 @@
 # Project Documentation
 
-Student: Andrei Valentin-Alexandru
-Group: 1222EEA
-Project Name: Solar Panel
+Student: Your Full Name
+Group: Your Group
+Project Name: your project's name
 
 ## Checklist
 
@@ -20,4 +20,4 @@ Please make sure that you have done all these actions:
 
 ## Author
 
-Signed-off-by: Andrei Valentin <valentin.andrei3001@stud.fils.upb.ro>
+Signed-off-by: Your Name <username@stud.acs/fils.upb.ro>
