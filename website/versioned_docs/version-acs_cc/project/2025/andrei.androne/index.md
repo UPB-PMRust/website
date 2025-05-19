@@ -75,7 +75,7 @@ Controls – Three push‑buttons (Start/Spin, Mode/Bet-Double/Stop, Select-Sum)
 Power – Everything runs from a 5 V USB supply (a battery will be added in later developement). The Pico makes its own 3.3 V for logic; motors and audio stay on 5 V.
 
 ## Schematics
-![Schematics](KiCad.webp)
+![Schematics](KiCad.svg)
 
 ## Bill of Materials
 
