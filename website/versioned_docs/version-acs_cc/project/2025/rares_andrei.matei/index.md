@@ -23,7 +23,38 @@ one of the most interesting worlds in gaming fiction, so I thought that I should
 build something from it and the Pip-Boy 2000 seemed the obvious choice.
 
 ## Architecture
-![Architecture_image](architecture_pm.webp)
+```mermaid
+
+flowchart TD
+    RP["Raspberry Pi Pico 2W"]
+    FS["Fingerprint Sensor"]
+    BMP["BMP280 Sensor"]
+    GPS["GPS GY-NEO6MV2"]
+    PS["Pulse Sensor MAX30100"]
+    BTN["Buttons"]
+    S1["Starts device"]
+    S2["Measures atmospheric pressure and temperature"]
+    S3["Tracks coordinates"]
+    S4["Saves location"]
+    S5["Monitors pulse rate"]
+    S6["Changes screen"]
+    LCD["LCD Screen"]
+
+    RP --> FS
+    RP --> BMP
+    RP --> GPS
+    RP --> PS
+    RP --> BTN
+
+    FS --> S1
+    BMP --> S2 --> LCD
+    GPS --> S3 --> LCD
+    GPS --> S4 --> LCD
+    PS --> S5 --> LCD
+    BTN --> S6 --> LCD
+
+
+```
 
 ## Log
 
@@ -107,7 +138,7 @@ This is the device's circuit. I need to make a small case to hide the wires and 
 
 ## Schematics
 
-![Schematic_image](schematic.webp)
+![Schematic_image](schematic.svg)
 
 
 ## Bill of Materials
