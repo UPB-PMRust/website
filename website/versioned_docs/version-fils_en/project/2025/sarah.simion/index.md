@@ -56,7 +56,7 @@ This are the hardware parts that I would like to use:
 
 ### Schematics
 
-![Alt text](pic2.webp)
+![Alt text](schematic.svg)
 
 ### Bill of Materials
 
