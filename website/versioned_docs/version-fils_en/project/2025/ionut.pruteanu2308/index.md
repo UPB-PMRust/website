@@ -142,11 +142,11 @@ Final project:
 
 Main Circuit:
 
-![kicad1](project-kicad-scheme1.webp)
+![kicad1](project_kicad1.svg)
 
 Secondary Circuit:
 
-![kicad2](project-kicad-scheme2.webp)
+![kicad2](project_kicad2.svg)
 
 ### Bill of Materials
 
