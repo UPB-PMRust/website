@@ -66,7 +66,7 @@ We use off-the-shelf components mounted on a breadboard and powered by a 5 V sup
 
 ### Schematics
 
-![KiCAD-Schematic](KiCAD_PM.webp)
+![KiCAD-Schematic](Proiect_PM.svg)
 
 ### Bill of Materials
 | Device                    | Usage                                 | Price (RON) |
