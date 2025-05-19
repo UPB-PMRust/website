@@ -67,7 +67,7 @@ Power Supply - battery 5V
 
 ### Schematics
 
-![Schematics](./assets/schema2v2.webp)
+![Schematics](./assets/kicadscheme.svg)
 
 ### Bill of Materials
 
