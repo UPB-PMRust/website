@@ -60,7 +60,7 @@ Youtube link for the hardware milestone: https://www.youtube.com/shorts/a_Oh2vH7
 ### Schematics
 
 Schematic after Hardware Milestone
-![Kicad Schematic after Hardware Milestone](kicad_nou.webp)
+![Kicad Schematic after Hardware Milestone](kicad_sch.svg)
 
 ### Bill of Materials
 
