@@ -110,7 +110,7 @@ Began putting all the pieces into place and designed the structure of the funnel
 
 
 ### Schematics
-![diagram](KiCad.webp)
+![diagram](KiCad.svg)
 
 ### Bill of Materials
 
