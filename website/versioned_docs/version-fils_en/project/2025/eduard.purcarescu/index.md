@@ -49,7 +49,7 @@ The exterior design is finished and fully assembled. I continue making progress 
 
 ### Schematics
 
-![KiCad_schematic](./kicad.webp)
+![KiCad_schematic](./kicad.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
