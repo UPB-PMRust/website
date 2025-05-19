@@ -76,7 +76,7 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 
 **KiCAD schematic**
 
-![kicad](./images/kicad.webp)
+![kicad](./images/kicad-schema.svg)
 
 
 ### Bill of Materials
