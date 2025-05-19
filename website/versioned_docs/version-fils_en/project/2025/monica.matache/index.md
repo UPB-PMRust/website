@@ -33,9 +33,9 @@ Add here the schematics with the architecture of your project. Make sure to incl
 ### Week 19 - 25 May
 
 ## Hardware
-
-Detail in a few words the hardware used.
-
+In my project, the Raspberry Pi Pico microcontroller serves as the central processing unit, mandated for the task. Its low power consumption ensures efficiency throughout. It also reads data and time from the DS3231 real time clock module and DHT22 Sensor and displays them, while also being able to send electrical signals to a motion sensor for an alarm effect.
+![photo](./Hardware1.webp)
+![photo](./Hardware2.webp)
 ### Schematics
 
 Place your KiCAD schematics here.
@@ -54,8 +54,12 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-
+| [Raspberry Pi Pico WH](https://ardushop.ro/ro/raspberry-pi/1945-raspberry-pi-pico-wh-wirelessheaders-6427854029621.html) | The main microcontroller with wireless and pre-soldered headers | [53 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [HC-SR505 PIR Motion Sensor](https://ardushop.ro/ro/module/508-modul-mini-senzor-pir-hc-sr505-6427854005922.html) | Detects motion to trigger the display of time and environmental data | [10,28 RON](https://ardushop.ro/ro/module/508-modul-mini-senzor-pir-hc-sr505-6427854005922.html) |
+| [SPI LCD 1.8" 128x160 Module](https://ardushop.ro/ro/electronica/2124-modul-lcd-spi-128x160-6427854032546.html) | Displays time, temperature, humidity and weather | [43,58 RON](https://ardushop.ro/ro/electronica/2124-modul-lcd-spi-128x160-6427854032546.html) |
+| [DS3231 Real-Time Clock Module](https://www.optimusdigital.ro/en/others/1102-ds3231-real-time-clock-module.html?search_query=DS3231+Real-time+Clock+Module&results=3) | Keeps accurate time even when the main power is off | [19 RON](https://www.optimusdigital.ro/en/others/1102-ds3231-real-time-clock-module.html) |
+| [DHT22-Humidity and Temperature sensor](https://ardushop.ro/ro/electronica/2302-senzor-de-temperatura-si-umiditate-dht22-6427854031617.html) | Sense the humidity and temperature from the room| [18 RON](https://ardushop.ro/ro/electronica/2302-senzor-de-temperatura-si-umiditate-dht22-6427854031617.html) |
+| Breadboard + jumper wires | Used to prototype the circuit without soldering | ~15 RON |
 
 ## Software
 
