@@ -88,7 +88,7 @@ pen-and-paper game turned digital like Tic-Tac-Toe.
 
 ### Schematics
 
-![Schematic](schematic.webp)
+![Schematic](schematic.svg)
 
 ### Bill of Materials
 
