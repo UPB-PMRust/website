@@ -86,7 +86,7 @@ The Raspberry Pi Pico 2W serves as the main microcontroller, running the game lo
 
 KiCAD schematics
 
-![KiCAD scheme](kicad.webp)
+![KiCAD scheme](kicad.svg)
 
 
 ## Bill of Materials
