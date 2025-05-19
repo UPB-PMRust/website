@@ -57,7 +57,7 @@ Assemble hardware components and write demo source code.
 ![](demo.jpeg)
 
 ### Schematic
-![](schematic.png)
+![](schematic.svg)
 
 ### Bill of Materials
 
