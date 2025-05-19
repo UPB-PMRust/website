@@ -72,6 +72,8 @@ This week focused on documentation and planning. I wrote the necessary technical
 
 ### Week 12 - 18 May
 
+This week focused entirely creating a strong basis for the project, by ensuring that all the hardware is placed correctly and writing the first lines of code. Additionaly, I completed the hardware milestone, describing all the components used, as well as their purpose in the course of my project, whilst also adding pictures of everything I've achieved so far. 
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -98,7 +100,7 @@ The buzzer is a simple audio output device that emits a sound when powered. It c
 
 ### Schematics
 
-![KiCad Schematics](schematics_good.webp)
+![KiCad Schematics](schematics_good1.svg)
 ![1st Image](set_up1good.webp)
 ![2nd Image](set_up2good.webp)
 ![3rd Image](set_up3good.webp)
