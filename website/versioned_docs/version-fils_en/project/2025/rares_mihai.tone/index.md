@@ -50,8 +50,8 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 ### Week 1
 The first week of the project was intense, but i got around to setting up the sensors, and even got around to working on the code. I hope the code will turn out nicely as well in the end. The only thing left for the hardware part is setting up the propeller, which im not sure yet how to do. I do have some ideas but i need to experiment. Also, i started working on the code for the other sensors, but i have some problems with the dht22 and the pressure bme280 sensor. The only one i got to work (other than the display) is the rain module, which displays if it's raining or not.
 This is how it looks so far:
-![first pic](./hardware1.webp)
-![second](./hardware2.webp)
+![first pic](hardware1.webp)
+![second](hardware2.webp)
 ### Week 2
 
 ---
