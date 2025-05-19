@@ -22,29 +22,32 @@ Initially I wanted to build a 3D printer, but due to the high cost, complexity a
 
 ## Architecture 
 
- ![alt text](image-2.webp)
+ ![alt text](ArchitectureFinal.webp)
 
-## Log (not final version)
+## Log 
 
-### Week 7 – 14 April
+### Week 5 – 11 May
 
 Since I had a clear idea of my project well before Week 7 and had already received approval, I ordered all the necessary components from AliExpress. This week, I 3D printed the structure of the CNC plotter and assembled the mechanical frame. I also created the initial architecture schematic and began researching which Rust crates I would need for motor control, serial communication, and other core features.
 One obstacle I encountered was that the STL file source I used did not specify the required screw sizes, which delayed the mechanical assembly. Here's how the build looked at this stage:
 
-
 ![alt text](image.webp)
 
-### 8 – 21 April 
+### Week 12 – 18 May
 
-This week, I began work on the software side of the project. I wrote and tested code to control the stepper motors: first individually, then all three simultaneously. After that, I hardcoded some simple G-code movements to verify that the motors responded correctly for each axis. I also tested the USB-to-UART converter using a Python script to confirm that G-code could be sent correctly from the host to the Raspberry Pi Pico.
-In parallel, I finalized both the KiCad schematic and the overall system architecture diagram.
+This week, I secured all the components to the CNC structure using the correct screws and mounted everything onto a wooden base to give it a solid foundation. I also decided to add an LCD screen to the project, which will display the current status while the CNC is running, such as when it's starting, drawing, or finished. I updated the system architecture and KiCad schematics to include this new addition.
 
-### 9 -  28 April 
+On the software side, I wrote the initial code to allow the CNC to draw basic shapes like squares. It's a good starting point, but I’ll continue improving it so the machine can handle more complex drawings in the coming updates.
+
+![alt text](AssembledCNC_with_bgc.webp)
+
+### Week 19 -  25 May 
 
 After receiving the correct screws, I completed the physical assembly of the CNC plotter. With the hardware finalized and the software functional, I tested the full pipeline:Create a vector image, use JS-Cut to convert it into G-code, send the G-code to the Pico via a Python script over UART, the Pico reads and executes each command line-by-line to control the motors and draw the image on paper, this was the first complete end-to-end test, and it worked successfully!
-![alt text](image-4.webp)
 
-(yes i know the usb to uart converter should not be on the breadboard, i just put it there because otherwise i will lose it :) )
+<!-- This week, I began work on the software side of the project. I wrote and tested code to control the stepper motors: first individually, then all three simultaneously. After that, I hardcoded some simple G-code movements to verify that the motors responded correctly for each axis. I also tested the USB-to-UART converter using a Python script to confirm that G-code could be sent correctly from the host to the Raspberry Pi Pico.
+In parallel, I finalized both the KiCad schematic and the overall system architecture diagram. -->
+
 
 ## Hardware
 
@@ -57,6 +60,21 @@ Stepper 2: GPIO 18, 19, 13, 12
 
 Stepper 3: GPIO 20, 21, 11, 10
 
+1× 1.8 Inch LCD (ST7735, SPI)
+Used to display messages like “CNC starting to plot…”, “CNC plotting…”, and “CNC has finished plotting!”. Connected to the Raspberry Pi Pico via SPI0 as follows:
+
+MOSI: GPIO 3
+
+SCK: GPIO 2
+
+DC (A0): GPIO 6
+
+RESET: GPIO 7
+
+CS: GPIO 5
+
+VCC and GND connected to 3.3V and GND respectively.
+
 CH340G USB-to-UART Converter
 This module establishes serial communication between the Raspberry Pi Pico and a host computer. It is used to send G-code commands from the host (via a Python script) to the Pico for real-time stepper control. The pin connections are:
 
@@ -67,9 +85,14 @@ CH340G RX → Pico GPIO 0 (UART0 TX)
 External Power Supply
 A separate 5V external power source is used to power the stepper motors through the ULN2003 driver boards. This is necessary to avoid overloading the Raspberry Pi Pico, which cannot provide sufficient current for motor operation. Ground from the external power supply is tied to the system ground to ensure a common reference.
 
+Here is what the hardware is looking like so far:
+
+![alt text](hardwarepic.webp)
+
 ### Schematics
 
-![alt text](image-1.webp)
+KiCad Schematic
+![alt text](Circuit.svg)
 
 ### Bill of Materials
 
@@ -91,6 +114,7 @@ The format is
 | [28BYJ-48 + ULN2003](https://lastminuteengineers.com/28byj48-stepper-motor-arduino-tutorial/) | Stepper motors + drivers | [27.1 RON for a set of 3](https://www.aliexpress.com/item/1005008459804020.html?spm=a2g0o.productlist.main.1.472221F521F5lV&algo_pvid=fa09f8dd-b1aa-4823-864d-1b22b5867b0e&algo_exp_id=fa09f8dd-b1aa-4823-864d-1b22b5867b0e-0&pdp_ext_f=%7B%22order%22%3A%22212%22%2C%22eval%22%3A%221%22%7D&pdp_npi=4%40dis%21RON%2129.35%2127.10%21%21%2147.39%2143.76%21%4021038e1e17461121743717643e31bb%2112000045226842612%21sea%21RO%210%21ABX&curPageLogUid=cUGyI5R7byiR&utparam-url=scene%3Asearch%7Cquery_from%3A) |
 | [Male to male/female jumper wires](https://www.cedist.com/sites/default/files/associated_files/s-w604_spec.pdf) | Wires | [0.1 * 23 = 2.3 RON](https://www.aliexpress.com/item/1005008590208433.html?spm=a2g0o.productlist.main.1.7b87ekDlekDlUc&algo_pvid=890a91ee-70aa-41f3-bb0a-5c23ababac74&algo_exp_id=890a91ee-70aa-41f3-bb0a-5c23ababac74-0&pdp_ext_f=%7B%22order%22%3A%22359%22%2C%22eval%22%3A%221%22%7D&pdp_npi=4%40dis%21RON%2116.84%216.00%21%21%2127.20%219.70%21%402103864c17461138312566697e492f%2112000045859835216%21sea%21RO%210%21ABX&curPageLogUid=cknCL6Z9dxQm&utparam-url=scene%3Asearch%7Cquery_from%3A) |
 | [Breadboard Power Supply + battery](https://www.handsontec.com/dataspecs/mb102-ps.pdf) | External power for motors | [4.69 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3AcTGZShwGGGHyKb6hmiamUi&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7YOxRovs32Q07WVmirNWilixqspoP2c5FE1Ab6qyN14nl4svQBPRkQaAuTXEALw_wcB) |
+| [1.8 inch TFT LCD ST7735](https://cdn-learn.adafruit.com/downloads/pdf/1-8-tft-display.pdf) | LCD Display | [4.42 RON](https://www.aliexpress.com/item/1005006690968351.html?srcSns=sns_WhatsApp&spreadType=socialShare&bizType=ProductDetail&social_params=61107930956&aff_fcid=60f6be70f43f47fd97276124a372c9d8-1747465522772-00738-_EyRvIm2&tt=MG&aff_fsk=_EyRvIm2&aff_platform=default&sk=_EyRvIm2&aff_trace_key=60f6be70f43f47fd97276124a372c9d8-1747465522772-00738-_EyRvIm2&shareId=61107930956&businessType=ProductDetail&platform=AE&terminal_id=7b80dd8a4d4f42518da6116a2d93f65f&afSmartRedirect=y#nav-specification) |
 
 
 
@@ -105,8 +129,12 @@ The format is
 | [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT backend for defmt logging | Sends logs from device to host over RTT |
 | [heapless](https://crates.io/crates/heapless) | `static`-friendly data structures without heap allocation | Used for queues, buffers, and collections without `alloc` |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Minimal runtime for Cortex-M microcontrollers | Sets up vector table, stack, and entry point |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library that is focused on memory constrained embedded devices. | Used to display the messages on the LCD |
+| [st7735-lcd-rs](https://github.com/Phoenixovich/st7735-lcd-rs) | Rust library for displays using the ST7735 driver with embedded_graphics | Driver for the LCD |
 
-//TODO add stuff for python script also
+
+
+<!-- TODO: add stuff for python script also -->
 
 ## Links
 
