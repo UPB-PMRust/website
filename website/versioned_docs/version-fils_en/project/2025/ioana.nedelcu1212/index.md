@@ -47,7 +47,8 @@ Finished ordering any remaining parts that I might have needed. My components en
 
 ### Schematics
 
-![KiCad Schematic](ProjectKicadScheme.webp)
+<!-- ![KiCad Schematic](ProjectKicadScheme.webp) -->
+![KiCad Schematic](rustProj.svg)
 
 
 ### Final Look
