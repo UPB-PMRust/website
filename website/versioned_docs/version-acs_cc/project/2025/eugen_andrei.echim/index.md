@@ -80,7 +80,7 @@ Laser tag and arcade shooting games are widely popular and engaging. This projec
 
 ### Schematics
 
-![Schematic](Schema_Kicad.webp)
+![Schematic](Schema_Kicad.svg)
 
 ### Photos of the device
 
