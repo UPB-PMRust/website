@@ -71,9 +71,13 @@ My plan for the next week is to finish the minigames, and also create a 3D print
 
 ![hardware](./hardware.webp)
 
+Testing the USB input and the display (will update once the keypads arrive):
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZnOTKcUffeg?si=e8z89CIGbP-maL7r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Schematics
 
-![schematic](./kicad.webp)
+![schematic](./schematic.svg) 
 
 ### Bill of Materials
 
