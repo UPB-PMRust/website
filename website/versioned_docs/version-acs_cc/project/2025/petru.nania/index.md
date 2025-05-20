@@ -83,11 +83,7 @@ This is achieved by using an external microSD module.
 
 The processed signal is sent to an external DAC module, filtered again, and ultimately sent to the amplifier.
 
-<table>
-  <tr>
-    <td><img src="assets/hardware.webp" width="1024"/></td>
-  </tr>
-</table>
+![Hardware-1](assets/hardware.webp)
 
 Here are the components from the image:
 - the two Picos are the green rectangles (left for debug, right for project)
