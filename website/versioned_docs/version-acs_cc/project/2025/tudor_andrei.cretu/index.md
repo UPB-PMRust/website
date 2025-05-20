@@ -50,7 +50,7 @@ As the main hardware part I used the Raspberry Pi Pico 2W to create the game. Fo
 
 ### Schematics
 
-![schematic](schematic_cretu_tudor.webp)
+![schematic](schematic_cretu_tudor.svg)
 
 ### Bill of materials
 | Device | Usage | Price |
