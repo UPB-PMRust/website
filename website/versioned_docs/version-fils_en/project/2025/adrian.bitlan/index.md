@@ -20,39 +20,109 @@ In an increasingly connected world, secure and flexible access control solutions
 
 ## Architecture 
 
-he heart of the system is the **Raspberry Pi Pico 2W**, which acts as the main controller, coordinating all connected components via its GPIO, I2C, SPI, and PWM interfaces.
+**Raspberry Pi Pico 2W**  
+  • **Role:** Acts as the "brain" of the system — it controls all components: handles input from the RFID reader and keypad, updates the LCD display, drives the LEDs and buzzer, and sends signals to the servo 	  motor.  
+  • **Connections:**  
+    • I2C (GP20 = SDA, GP21 = SCL) to LCD  
+    • SPI (GP16 = MISO, GP17 = CS, GP18 = SCK, GP19 = MOSI) to RFID  
+    • GPIO (GP2–GP9) to keypad  
+    • PWM (GP15) to servo  
+    • GPIO (GP14) to buzzer  
+    • GPIO (GP26 = Green LED, GP27 = Red LED)
 
-The **LCD1602 display** with an I2C interface is responsible for showing status messages and prompts. It is connected to **GPIO0** (SDA, Pin 1) and **GPIO1** (SCL, Pin 2), powered by the Pico's **3.3V (Pin 36)** and grounded at **GND (Pin 38)**.
+**LCD1602 Display (I2C)**  
+  • **Interface:** I2C  
+  • **Role:** Displays prompts, user greetings, and access status messages.  
+  • **Connections:**  
+    • SDA to GP20  
+    • SCL to GP21  
+    • VCC to 3.3V  
+    • GND to GND
 
-User input is captured through a **4x4 Matrix Keypad**, which uses 8 GPIOs for scanning: **GPIO2 to GPIO9** (Pins 4 to 11). The keypad is powered from the **3.3V** rail and shares ground with the Pico.
+**4x4 Matrix Keypad**  
+  • **Interface:** GPIO  
+  • **Role:** Accepts numeric PIN input from the user for access control.  
+  • **Connections:**  
+    • Rows to GP2, GP3, GP4, GP5  
+    • Columns to GP6, GP7, GP8, GP9  
+    • Powered from 3.3V and GND
 
-The **RC522 RFID Reader** communicates via SPI. It connects as follows: **SDA to GPIO16 (CS, Pin 21)**, **SCK to GPIO18 (Pin 24)**, **MOSI to GPIO19 (Pin 25)**, **MISO to GPIO20 (Pin 26)**, **RST to GPIO17 (Pin 22)**, and **IRQ to GPIO22 (Pin 29)**. It draws power from the **3.3V (Pin 36)** and is grounded to **GND (Pin 38)**.
+**RFID Reader (MFRC522)**  
+  • **Interface:** SPI  
+  • **Role:** Reads the UID from RFID cards or tags for identity verification.  
+  • **Connections:**  
+    • SDA/CS to GP17  
+    • SCK to GP18  
+    • MOSI to GP19  
+    • MISO to GP16  
+    • RST to GP22  
+    • VCC to 3.3V  
+    • GND to GND
 
-Two LEDs are used to visually indicate access status. The **Green LED** is connected to **GPIO26 (Pin 31)**, and the **Red LED** is connected to **GPIO27 (Pin 32)**, both with current-limiting resistors to ground.
+**Green & Red LEDs**  
+  • **Interface:** GPIO  
+  • **Role:** Visual feedback — green for access granted, red for access denied.  
+  • **Connections:**  
+    • Green LED to GP26 (with 330Ω resistor to GND)  
+    • Red LED to GP27 (with 330Ω resistor to GND)
 
-A **Servo Motor** is responsible for physically simulating door lock movement. Its PWM signal is controlled via **GPIO28 (Pin 34)**. The motor is powered directly from an **external 5V battery** through a shared **NPN transistor switch**, ensuring it doesn't overload the Pico.
+**Passive Buzzer**  
+  • **Interface:** GPIO  
+  • **Role:** Emits a tone as sound feedback when access is granted or denied.  
+  • **Connections:**  
+    • Signal to GP14  
+    • VCC to 3.3V  
+    • GND to GND
 
-A **Buzzer** is used for audio feedback and shares the same control transistor as the servo motor. The transistor's **base** is connected through a resistor to **GPIO15 (Pin 20)**, its **collector** to the GND side of the motor and buzzer, and its **emitter** to **GND**. The positive side of the buzzer and servo is wired to the **5V external battery’s V+**.
+**Servo Motor**  
+  • **Interface:** PWM  
+  • **Role:** Simulates door movement when access is granted.  
+  • **Connections:**  
+    • Signal to GP15  
+    • VCC to External 5V battery  
+    • GND to Shared GND with Pico
 
-The **external 5V battery** is connected with its **V+** feeding the servo and buzzer, and its **GND** tied to the Pico’s **GND (Pin 38)** to ensure a common reference.
+**External 5V Battery**  
+  • **Role:** Powers the servo motor which requires more current than the Pico’s 3.3V rail can provide.  
+  • **Connections:**  
+    • +5V to Servo VCC  
+    • GND to Pico GND (shared ground reference)
 
 ## Log
 
-<!-- write your progress here every week -->
 
 ### Week 5 - 11 May
 
+In the first week, I bought all my components for the project, including the Raspberry Pi Pico 2W, MFRC522 RFID reader, LCD1602 I2C display, 4x4 keypad, LEDs, passive buzzer, servo motor, and jumper wires. I organized and connected them on a breadboard, preparing for testing and prototyping.
+
 ### Week 12 - 18 May
+
+In the second week, I connected the MFRC522 RFID reader and the LCD1602 I2C display to the Raspberry Pi Pico 2W and successfully displayed messages on the screen after scanning RFID cards. I also tested the green and red LEDs — they turn on based on access permission status from RFID scanning.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-Detail in a few words the hardware used.
+• **Raspberry Pi Pico 2W** → Acts as the central controller, coordinating all inputs and outputs for access control.  
+• **LCD1602 Display (I2C)** → Displays access prompts, user greetings, and authentication status.  
+• **4x4 Matrix Keypad** → Captures user-entered PIN codes for authentication.  
+• **RFID Reader (MFRC522)** → Reads RFID card UIDs to identify authorized users.  
+• **Green LED** → Lights up to indicate access has been granted.  
+• **Red LED** → Lights up to signal that access has been denied.  
+• **Passive Buzzer** → Emits an alert sound based on access result (granted or denied).  
+• **Servo Motor** → Simulates a door unlocking mechanism when access is granted.  
+• **External 5V Battery** → Provides sufficient power for high-draw components like the servo motor.  
+
+
+![LateralStanga](./Lateral_stanga.webp)
+
+![CentruSus](./Centru_sus.webp)
+
+![LateralDreapta](./Lateral_dreapta.webp)
 
 ### Schematics
 
-![KiCadScheme](./KiCad_Scheme.webp)
+![KiCadScheme](./Schema_Kicad.svg)
 
 ### Bill of Materials
 
@@ -69,14 +139,14 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-2-family) | The main board | [40 LEI](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
+| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-1-family) | Used as debug probe | [40 LEI](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12395-raspberry-pi-pico-wh.html?search_query=pi+pico+w&results=33) |
 | [MFRC522 RFID Reader](https://www.handsontec.com/dataspecs/RC522.pdf) | Reads RFID tags | [10 LEI](https://www.optimusdigital.ro/ro/wireless-rfid/67-modul-cititor-rfid-mfrc522.html?search_query=Modul+RFID+RC522+%28similar+cu+MFRC522%29&results=1) |
 | [LCD1602 with I2C](https://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) | Displays prompts and status | [17 LEI](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html?search_query=0104110000003584&results=1) |
 | [4x4 Matrix Keypad](https://cdn.sparkfun.com/assets/f/f/a/5/0/DS-16038.pdf) | PIN input method | [7 LEI](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/470-tastatura-matriceala-4x4-cu-conector-pin-de-tip-mama.html?search_query=0104110000002747&results=1) |
 | [SG90 Servo Motor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Used to move the barrier | [12 LEI](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
 | [Buzzer Pasiv](https://www.handsontec.com/dataspecs/module/passive%20buzzer.pdf) | Emits sound feedback | [2 LEI](https://www.optimusdigital.ro/ro/audio-buzzere/634-buzzer-pasiv-de-5-v.html?search_query=0104210000007343&results=1) |
-| [NPN Transistor (2N2222)](https://datasheet4u.com/pdf-down/2/N/2/2N2222-SEMTECH.pdf) | Controls servo & buzzer | [0.20 LEI](https://www.optimusdigital.ro/ro/componente-electronice-tranzistoare/935-tranzistor-s9013-npn-50-pcs-set.html?search_query=Tranzistor+NPN+2n2222+TO-92&results=9) |
 | [GREEN Led](https://www.farnell.com/datasheets/1498852.pdf) | Indicates "Access Permitted." | [0.40 LEI](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html?search_query=led&results=2049) |
-| [RED Led](https://www.farnell.com/datasheets/1498852.pdf) | Indicates "Access Denied." | [0.40 LEI](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html?search_query=led&results=2179)    |
+| [RED Led](https://www.farnell.com/datasheets/1498852.pdf) | Indicates "Access Denied." | [0.40 LEI](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html?search_query=led&results=2179)   |
 | [Breadboard](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html) | Put components on it | [30 LEI](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html) |
 | [Female-to-Male Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/650-fire-colorate-mama-tata-10p.html?search_query=0104210000003871&results=1) | For wiring | [3 LEI](https://www.optimusdigital.ro/ro/fire-fire-mufate/650-fire-colorate-mama-tata-10p.html?search_query=0104210000003871&results=1) |
 | [Male-to-Male Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/885-set-fire-tata-tata-10p-10-cm.html?search_query=0104210000009040&results=1) | For wiring | [30 LEI](https://www.optimusdigital.ro/ro/fire-fire-mufate/885-set-fire-tata-tata-10p-10-cm.html?search_query=0104210000009040&results=1) |

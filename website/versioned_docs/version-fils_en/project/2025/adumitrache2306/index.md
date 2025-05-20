@@ -50,6 +50,12 @@ After the project was approved, I gathered most of the necessary parts for the p
 ### Week 8-9
 I also began designing a 3D model for the chassis of the robot, but I haven't decided yet about the final product. I started the hardware assembly and made the sensors and the alerts on telegram work except the movement part because I don't have the chassis yet, nor the wheels.
 
+### Week 9-11
+I 3D-printed and assembled the full chassis, tested all major components including motors and sensors, and began developing the robot's basic movement and obstacle avoidance logic. The LED matrix has been mounted but remains untested and unprogrammed. The next step is to integrate facial expressions into the system and finalize the software.
+
+![Hardware front-photo](front.webp) ![Hardware side-photo](side.webp)
+
+
 ## Hardware
 The core of the project is the Raspberry Pi Pico 2W, which controls all the peripherals and handles logic, sensing, and communication. For motion detection, a PIR sensor is used to detect any presence or movement in the area being monitored. An ultrasonic sensor is mounted at the front of the robot to detect obstacles and prevent collisions during navigation.
 For movement, the robot uses two DC motors connected to a motor driver module, allowing it to drive forward, backward, and turn left or right.
@@ -70,8 +76,8 @@ The robot has a RGB LED matrix mounted on the front, representing a face. It dis
 [PIR Sensor](https://www.mpja.com/download/31227sc.pdf) | Motion-detection  | [6 RON](https://www.optimusdigital.ro/ro/senzori-senzori-pir/106-modul-senzor-pir-hc-sr501.html?search_query=pir&results=292) |
 [Ultrasonic Sensor](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | To avoid obstacles | [6.49 RON](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/9-senzor-ultrasonic-hc-sr04-.html?search_query=ultra+sonic&results=47) |
 [L298N Dual H-Bridge Motor Driver](https://www.st.com/resource/en/datasheet/l298.pdf) | Controls two DC Motors | [11 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=L298N&results=4) |
-[2xDC Motors](https://ardushop.ro/en/electronics/833-1152-micro-motor-with-reduction-gears.html#/390-rpm-500) | Movement | [59.40 RON](hhttps://ardushop.ro/en/electronics/833-1152-micro-motor-with-reduction-gears.html#/390-rpm-500) |
-[Matrix Led](https://www.optimusdigital.ro/en/led-matrices/5663-5x8-matrix-with-ws2812b-addressable-rgb-leds.html) | For the "face" | [79 RON](https://www.optimusdigital.ro/en/led-matrices/5663-5x8-matrix-with-ws2812b-addressable-rgb-leds.html) |
+[2xGear Motors with Wheels](https://www.optimusdigital.ro/en/others/139-gearmotor-with-wheel.html) | Movement | [30 RON](https://www.optimusdigital.ro/en/others/139-gearmotor-with-wheel.html) |
+[Matrix Led](https://ardushop.ro/en/displays-and-leds/1274-led-matrix-8x8-with-ic-6427854018335.html) | For the "face" | [22 RON](https://ardushop.ro/en/displays-and-leds/1274-led-matrix-8x8-with-ic-6427854018335.html) |
 [LM2596S](https://www.optimusdigital.ro/en/adjustable-step-down-power-supplies/150-lm2596-adj-power-supply-module.html) | Voltage reduction | [5.21 RON](https://www.optimusdigital.ro/en/adjustable-step-down-power-supplies/150-lm2596-adj-power-supply-module.html) |
 
 
