@@ -85,7 +85,7 @@ The **microSD card module** stores the image, while WiFi can send it to a remote
 ![System architecture diagram](./poza_schema1.webp)
 ![System architecture diagram](./poza_schema2.webp)
 ![System architecture diagram](./poza_schema3.webp)
-![System architecture diagram](./schema_kicad.webp)
+![System architecture diagram](./schema_kicad.svg)
 1. **Raspberry Pi Pico 2W**  
    – Acts as the main controller and WiFi client
 
