@@ -81,7 +81,7 @@ This project was built with breadboard prototyping and basic soldered connectors
 
 Electrical schematic created in KiCad. For illustration, refer to the image below:
 
-![Schematic](Schematic.webp)
+![Schematic](Schematic.svg)
 ![Poza1](Poza1.webp)
 ![Poza2](Poza2.webp)
 ![Poza3](Poza3.webp)
