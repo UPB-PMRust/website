@@ -10,21 +10,27 @@ An ambient-aware music controller built on Raspberry Pi Pico W using embedded Ru
 
 ## Description
 
-Smart Station is an IoT music controller that adjusts playback based on ambient light, offers a touchscreen interface, and includes clock and alarm features.
+Smart Station is an IoT music controller that adjusts playback based on ambient light, includes alarm features.
 
 ## Motivation
 
 This project was chosen to explore embedded Rust for IoT applications, combining sensor-driven automation with an interactive user interface to create a practical, engaging device.
 
-## Architecture
+# Architecture
 
 The Smart Station consists of the following main components:
+- **Sensor Processing**:  
+  Handles input from the light sensor (LDR) to detect ambient brightness and trigger actions.
+- **User Interface**:  
+  Integrates an OLED screen configured as an Equalizer display for visual feedback. It also includes a joystick and buttons for music playback control.
+- **Playback Control**:  
+  Coordinates music playback from a connected PC, integrating sensor data and user inputs for volume and track control.
+- **Visual Feedback**:  
+  Drives an RGB LED to indicate system status and provides music-synced visuals on the OLED Equalizer screen.
+- **Time Management**:  
+  Uses LEDs to display time in binary format, utilizing an RTC module for accurate timekeeping.  
+  Additionally, includes a buzzer for periodic alarms (e.g., every 45 minutes) to remind users to take breaks.
 
-- **Sensor Processing**: Handles input from the light sensor (LDR) to detect ambient brightness and trigger playback.
-- **User Interface**: Manages the OLED touchscreen for music controls, clock display, and alarm settings.
-- **Playback Control**: Coordinates music playback logic, integrating sensor data and user inputs.
-- **Visual Feedback**: Drives the RGB LED to indicate system status and provide music-synced visuals.
-- **Time Management**: Uses the RTC module for clock display and alarm scheduling.
 
 **Connections**:
 - The Sensor Processing component feeds brightness data to the Playback Control.
@@ -44,20 +50,32 @@ What was already done:
 - Initial testing of LDR sensor for ambient light detection.
 
 ### Week 12 - 18 May
-What I plan to do :
-- Integrated SSD1306 OLED touchscreen with `embedded-graphics` for UI rendering.
-- Implemented basic music controls (play, pause, next, previous).
-- Added RTC module (DS3231) for timekeeping and tested clock display.
+Initially, I planned to use the OLED screen as a standalone control station for the Smart Station. However, I encountered persistent issues with the screen's firmware—specifically, it continuously mirrored all output. Due to these limitations, I decided to repurpose the OLED solely as a visual equalizer display.
+
+To achieve this, I used pre-processed audio data (converted into frequency slices using Rust) and mapped it to graphical bars on the OLED screen. I utilized the minifb crate for initial testing and the SSD1306 driver for actual rendering on the screen.
+
+I now plan to incorporate binary clocks (using LEDs), a buzzer for periodic reminders, and a joystick with buttons to reintroduce the interactivity that the screen was initially intended to provide.
+
+The equalizer has been tested with one audio track and is currently displaying frequency bands accurately. I aim to expand this to support around five compositions, broadening the use case of my Smart Station prototype and enhancing the user experience.
 
 ### Week 19 - 25 May
 What I plan to do :
-- Finalized playback logic based on light thresholds.
-- Added alarm functionality with RTC scheduling.
-- Optimized RGB LED pulsing for music feedback and completed system testing.
+
+- Finalize playback interaction logic using joystick and buttons.
+
+- Add buzzer functionality with RTC-based scheduling (e.g., every 45 minutes as a reminder).
+
+- Implement binary clock using LEDs.
+
+- Optimize OLED equalizer display and test with multiple tracks.
+
+- Integrate and test joystick/button controls for volume and track navigation.
 
 ## Hardware
 
-The Smart Station uses a Raspberry Pi Pico W, OLED touchscreen, light sensor, RGB LED, and RTC module for a responsive music control system.
+The Smart Station uses a Raspberry Pi Pico W, OLED , light sensor, RGB LED, and RTC module for a responsive music control system.
+
+![Sample of how all will be connected](hardware_ph.webp)
 
 ### Schematics
 
