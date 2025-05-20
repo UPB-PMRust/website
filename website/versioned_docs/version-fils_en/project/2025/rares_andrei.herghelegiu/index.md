@@ -79,7 +79,7 @@ The format is
 | [Raspberry Pi Pico Marble](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5562/Marble%20Pico.pdf) | Debugger | [24 RON](https://ardushop.ro/ro/groundstudio/1590-groundstudio-marble-pico-6427854000682.html) |
 | [Raspberry Pi Pico 2W](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf) | The microcontroller | [28 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13266-raspberry-pi-pico-2.html) |
 | [BMP280 Sensor](https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001-11.pdf) | Temperature sensor | [8,5 RON](https://www.optimusdigital.ro/en/pressure-sensors/1777-bmp280-barometric-pressure-sensor-module.html)
-| [LCD 16x2](...) | Display | [58 RON](https://www.optimusdigital.ro/en/lcds/1158-lcd-hat-1602-pentru-raspberry-pi.html?search_query=lcd+&results=257)
+| [LCD 16x2](https://werner.rothschopf.net/microcontroller/202105_arduino_liquid_crystal_mcp23017_en.htm) | Display | [58 RON](https://www.optimusdigital.ro/en/lcds/1158-lcd-hat-1602-pentru-raspberry-pi.html?search_query=lcd+&results=257)
 
 
 
