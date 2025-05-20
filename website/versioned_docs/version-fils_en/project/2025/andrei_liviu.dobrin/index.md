@@ -55,18 +55,35 @@ The project is made up of several parts that work together to create the Simon S
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+Started working on my Simon Says game using a Raspberry Pi Pico2W and Rust. Chose this project to explore embedded Rust and hardware interaction. Defined the concept: 9 inline LEDs, 4x3 keypad, buzzer, and 16x2 LCD. Focused on planning and selecting components.
 ### Week 12 - 18 May
-
+Connected the LCD via I2C and displayed simple messages. Tested individual LEDs and the buzzer to confirm they work correctly. Began setting up the breadboard layout for the full game circuit. Verified power supply and pin assignments
 ### Week 19 - 25 May
 
 ## Hardware
+The Simon Says game is built around several key hardware components, each playing a crucial role in its functionality:
 
-Detail in a few words the hardware used.
+*   **Raspberry Pi Pico W**: It acts as the central microcontroller, responsible for running the game logic, generating light patterns, reading player input, and controlling the display and buzzer.
+*   **16x2 I2C LCD Screen**: Displays game information to the player.
+*   **LEDs (x9)**: Provide the primary visual output for the game. They light up in specific sequences that the player must memorize and replicate using the numpad.
+*   **330Ω Resistors (x9)**: Act as current-limiting resistors for each of the 9 LEDs, protecting them from damage by ensuring they receive the correct amount of electrical current.
+*   **10kΩ Resistors (x9)**: Used as pull-down resistors for the numpad buttons. They ensure that each button input pin on the microcontroller reads a defined LOW state when a button is not pressed, preventing floating inputs.
+*   **Breadboard**: A prototyping board that helps to assembly all electronic components without soldering.
+*   **Jumper Wires**: Wires used to establish electrical connections.
+*   **Buzzer**: An auditory output device that provides sound feedback for various game events, such as correct or incorrect button presses, level completion, or game over signals.
+*   **Numpad**: The main input interface for the player. It is used to enter the sequence of lights they have memorized, attempting to match the pattern shown by the LEDs.
+*   **Breadboard Power Supply**: Provides the voltage from an external source to power all components on the breadboard.
+
+![Simon Says Schematic](./1.webp)
+![Simon Says Schematic](./2.webp)
+![Simon Says Schematic](./3.webp)
+![Simon Says Schematic](./4.webp)
+![Simon Says Schematic](./5.webp)
+
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Simon Says Schematic](./KiCad.svg)
 
 ### Bill of Materials
 
@@ -91,6 +108,7 @@ The format is
 | [Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/7330-50-cm-40p-female-female-wire.html) | Connect components | [23 RON](https://www.optimusdigital.ro/en/wires-with-connectors/7330-50-cm-40p-female-female-wire.html) |
 | [Buzzer](https://www.optimusdigital.ro/en/buzzers/10-active-buzzer-module.html) | Audio feedback | [3 RON](https://www.optimusdigital.ro/en/buzzers/10-active-buzzer-module.html) |
 | [Numpad](https://www.optimusdigital.ro/en/others/5825-keyboard-module.html?gad_source=1&gad_campaignid=19615979487&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QC84GTPPIBHt5XXHiNGdmiLp44m6mMsmXymzOsN6fYGzXHPE1uBhEaAtJKEALw_wcB) | Controlling the game | [19 RON](https://www.optimusdigital.ro/en/others/5825-keyboard-module.html?gad_source=1&gad_campaignid=19615979487&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QC84GTPPIBHt5XXHiNGdmiLp44m6mMsmXymzOsN6fYGzXHPE1uBhEaAtJKEALw_wcB) |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) | Supplies 3.3V & 5V Power | [5 RON](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) |
 
 
 ## Software

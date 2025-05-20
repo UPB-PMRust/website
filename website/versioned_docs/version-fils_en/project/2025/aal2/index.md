@@ -56,16 +56,32 @@ I've always had a strong interest in vehicles, especially trucks, and that passi
 
 ## Log
 ### Week 5 - 11 May
+- Finalized the wiring and organized the components inside the smart parking structure.
 
+- Completed testing for sensors, servos, and the LCD to ensure they all work together correctly.
+
+- Uploaded and tested the control code on the microcontroller (e.g., entry/exit logic, gate movement).
+
+- Integrated the system with the physical model and performed full functionality tests
 ### Week 12 - 18 May
+- Built the physical structure of the smart parking system.
+
+- Installed and fixed the motors, sensors, and display onto the model.
+
+- Secured all components in their final positions to prepare for wiring and system integration.
+
+- Ensured that the design allows easy access for future wiring and testing.
+
 
 ### Week 19 - 25 May
 
 ## Hardware
 The hardware setup consists of a Raspberry Pi Pico microcontroller as the central unit, coordinating the system’s logic and peripherals. Two infrared sensors are used to detect vehicles at the entry and exit points, each connected to digital GPIO pins. These sensors trigger servo motors, which physically control the gate barriers and are driven using PWM signals. A 1602 LCD display, connected via the I²C interface, shows the number of available parking spots in real time. All components are mounted on a cardboard structure simulating a miniature parking lot, providing both functional and visual representation of a real-world automated parking system.
 
-### Schematics
+![Project](Project.webp)
 
+### Schematics
+![KiCad](Ahmad.svg)
 ### Bill of Materials
 
 | Device | Usage | Price |
