@@ -30,51 +30,63 @@ The motivation behind this project is to create a fun and interactive device tha
 
 ```mermaid
 graph TD
-    A[User Interface Module] --> B[Control System]
-    B --> C[Card Input System]
-    B --> D[Shuffling System]
-    B --> E[Card Distribution System]
-    B --> F[Sensor System]
+   A[User Interface Module] --> B[Control System]
+   B --> C[Card Input System]
+   B --> D[Shuffling System]
+   B --> E[Card Distribution System]
 
-    A -->|"OLED Display<br>Control Buttons"| B
-    B -->|"Main Controller Logic<br>Game Settings"| C
-    B -->|"Shuffle Algorithm<br>Motor Control"| D
-    B -->|"Player Distribution<br>Rotation Control"| E
-    B -->|"Card Detection<br>System Monitoring"| F
-    
-    F -->|"Card Detection Signals"| B
-    C -->|"Cards Flow"| D
-    D -->|"Shuffled Cards"| E
+   A -->|"WiFi Interface<br>Control Buttons"| B
+   B -->|"Main Controller Logic<br>Game Settings"| C
+   B -->|"Shuffle Algorithm<br>Motor Control"| D
+   B -->|"Player Distribution<br>Rotation Control"| E
+   
+   C -->|"Cards Flow"| D
+   D -->|"Shuffled Cards"| E
 ```
 
 ## Log
 
 ### Week 5 - 11 May
 
+- Purchased all necessary components for the project
+- Individually tested all motors to verify functionality
+- Completed the 3D design of the device
+
 ### Week 12 - 18 May
+
+- Assembled the 3D printed parts
+- Attached the motors to the main structure
+- Started software development, focusing on motor control
+- Configured WiFi communication for the user interface
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-The automatic card shuffler uses a Raspberry Pi Pico 2W as the main controller, connected to an OLED display and buttons for user interface. The mechanical system includes three DC motors driving rubber rollers for card movement, one stepper motor for the rotating dealing platform, and IR sensors for card detection, all powered through a wall outlet.
+The automatic card shuffler uses a Raspberry Pi Pico 2W as the main controller, which connects to the local WiFi network and is controlled through a web interface. The mechanical system includes three DC motors driving rubber rollers for card movement and one stepper motor for the rotating dealing platform, all powered through a wall outlet.
+
+| Breadboard | DC Motor View | Dealer View |
+|:----------:|:-------------:|:-----------:|
+| ![Breadboard](breadboard.webp) | ![DC Motor View](dc_view.webp) | ![Dealer View](dealer_view.webp) |
+
+| Full View | Side View |
+|:---------:|:---------:|
+| ![Full View](full_view.webp) | ![Side View](side_view.webp) |
 
 ### Schematics
 
-![Project Diagram](proiect-PM.svg)
+![Schematics](proiect-PM.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The main microcontroller that runs the embedded Rust software and controls all system components | [35 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico+2w&results=33) |
+| [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The main microcontroller that runs the embedded Rust software and controls all system components | [35 RON x](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico+2w&results=33) |
 | [ULN2003 Stepper Motor Driver](https://www.optimusdigital.ro/ro/motoare-motoare-pas-cu-pas/101-driver-uln2003-motor-pas-cu-pas-de-5-v-.html) | Controls the stepper motor for precise rotation of the card distribution platform | [17 RON](https://www.optimusdigital.ro/ro/motoare-motoare-pas-cu-pas/101-driver-uln2003-motor-pas-cu-pas-de-5-v-.html) |
-| [GA12-N20 DC Motor with Gearbox](https://www.optimusdigital.ro/ro/motoare-micro-motoare-cu-reductor/678-micro-motor-cu-reductor-ga12-n20-130.html) | Drives the rubber rollers for card movement and shuffling (need 3 units) | [75 RON](https://www.optimusdigital.ro/ro/motoare-micro-motoare-cu-reductor/678-micro-motor-cu-reductor-ga12-n20-130.html) |
-| [LM2596HV DC-DC Step-down Module](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html) | Regulates power from the wall adapter to appropriate voltage levels for motors and electronics | [12 RON](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html) |
-| [Round Cap Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html) | User interface controls for selecting number of players, cards per player, and distribution angle | [3 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html) |
-| [V-Groove Roller with Bearing](https://www.optimusdigital.ro/ro/mecanica-rulmenti/3826-rola-neagra-pentru-profil-v-cu-rulment-v-625.html) | Provides smooth, low-friction movement of cards through the shuffling mechanism (need 4-5 units) | [17 RON](https://www.optimusdigital.ro/ro/mecanica-rulmenti/3826-rola-neagra-pentru-profil-v-cu-rulment-v-625.html) |
-| [OLED Screen](https://www.amazon.de/-/en/gp/aw/d/B0CWN27HVB) | Detects card presence at various points in the system for automated control and error detection | [27 RON](https://www.amazon.de/-/en/gp/aw/d/B0CWN27HVB?psc=1&ref=ppx_pop_mob_b_asin_title) |
-| [L298N Dual Motor Driver](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=l298&results=5) | Controls the DC motors for the shuffling mechanism | [20 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=l298&results=5) |
+| [GA12-N20 DC Motor with Gearbox](https://sigmanortec.ro/Motor-DC-Micro-Metal-6V-HPCB-Perii-Carbon-30-1-p200733572) | Drives the rubber rollers for card movement and shuffling (need 3 units) | [75 RON](https://sigmanortec.ro/Motor-DC-Micro-Metal-6V-HPCB-Perii-Carbon-30-1-p200733572) |
+| [L298N Dual Motor Driver](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=l298&results=5) | Controls the DC motors for the shuffling mechanism (need 2) | [40 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=l298&results=5) |
+| [Servomotor MG90S](https://www.optimusdigital.ro/ro/motoare-servomotoare/271-servomotor-mg90s.html) | Provides precise control for the card distribution platform rotation | [25 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/271-servomotor-mg90s.html) |
+| [Motor cu reductor si roata](https://www.optimusdigital.ro/ro/motoare-altele/139-motor-cu-reductor-si-roata.html) | Used for additional mechanical movement in the card distribution system | [30 RON](https://www.optimusdigital.ro/ro/motoare-altele/139-motor-cu-reductor-si-roata.html) |
 | [Consumables](https://www.optimusdigital.ro) | Cards, adhesives, and other small items needed for assembly and operation | [30 RON](https://www.optimusdigital.ro) |
 
 ## Software
@@ -85,8 +97,9 @@ The automatic card shuffler uses a Raspberry Pi Pico 2W as the main controller, 
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Timekeeping and delays | Timing for motors, animations, and card distribution |
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2350 HAL | Hardware interface for Raspberry Pi Pico |
 | [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Synchronization primitives | Resource sharing between tasks |
-| [st7735](https://crates.io/crates/st7735-lcd) | Display driver for ST7735 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-net](https://github.com/embassy-rs/embassy/tree/main/embassy-net) | Network stack | Networking interface for WiFi connectivity |
+| [cyw43](https://github.com/embassy-rs/embassy/tree/main/cyw43) | WiFi Chip Driver | Driver for the Pico W's onboard WiFi chip |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for creating interface elements for web display |
 | [tinybmp](https://crates.io/crates/tinybmp) | BMP image handling | Loading and displaying card images |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework | Debug information during development |
 | [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT debug channel | Real-time debugging output |
@@ -96,9 +109,9 @@ The automatic card shuffler uses a Raspberry Pi Pico 2W as the main controller, 
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Runtime support | Core functionality for ARM Cortex-M |
 | [critical-section](https://crates.io/crates/critical-section) | Critical section API | Thread-safe operations for motor control |
 | [panic-probe](https://crates.io/crates/panic-probe) | Panic handler | Error handling during development |
-| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI display interface | Communication with the display |
+| [serde](https://crates.io/crates/serde) | Serialization framework | Data serialization for web communication |
+| [serde-json-core](https://crates.io/crates/serde-json-core) | JSON serialization | JSON encoding/decoding for web interface |
 | [step-dir](https://crates.io/crates/step-dir) | Stepper motor control | Precise control for rotating platform |
-| [ssd1306](https://crates.io/crates/ssd1306) | OLED display driver | Alternative display option if needed |
 
 ## Links
 

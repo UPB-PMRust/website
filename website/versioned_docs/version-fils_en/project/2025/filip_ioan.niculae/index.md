@@ -168,7 +168,6 @@ The Smart Irrigation System is built around several key hardware components, eac
 ![System schematic](./KiCad.svg)
 
 
-
 ### Bill of Materials
 
 | Device | Usage | Price |
