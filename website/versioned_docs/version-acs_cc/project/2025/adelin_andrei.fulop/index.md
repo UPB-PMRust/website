@@ -38,7 +38,7 @@ Week 12 May - 18 May:
 As hardware components, I chosed the best quality per price components, keeping simple and concise project. I selected a rapsberry pi pico, a joystick, an oled display, a breadboard and wires for connectivity between components.
 
 ## Schematics
-![alt text](image_schematic.webp)
+![alt text](image_schematic.svg)
 
 ## Bill of Materials
 | Component | Usage | Price (RON) |
