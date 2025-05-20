@@ -67,5 +67,6 @@ The console is built around the Raspberry Pi Pico 2W, and is powered by a 9V bat
 | [ili9341-driver](https://github.com/maciekglowka/lcd-ili9341-spi) | A Rust driver for ILI9341-based TFT displays over SPI, compatible with embedded-graphics. | Used to control and render graphics on the 2.8" TFT LCD |
 | [tinybmp](https://docs.rs/tinybmp/latest/tinybmp/) | A parser for BMP image files with no std dependency, useful for rendering sprites. | Loads and draws bitmap assets onto the display |
 
+
 ## Links
 
