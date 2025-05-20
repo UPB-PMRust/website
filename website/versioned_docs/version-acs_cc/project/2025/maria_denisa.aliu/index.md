@@ -201,7 +201,8 @@ Acts as the central controller running asynchronous Rust (via Embassy). Manages 
 
 ### Schematics
 
-![alt text](PM_fair_schematic_kicad.svg)
+![alt text](SCHEMA.svg)
+
 
 ### Bill of Materials
 
