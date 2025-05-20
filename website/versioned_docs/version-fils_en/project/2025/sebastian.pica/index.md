@@ -79,6 +79,10 @@ This is the Kicad Schematic:
 ![KiCad Schematics](Schematic.webp)
 Instead of a keypad schematic I have used connection pins to represent the rows and columns of the keypad in the KiCad representation of the project
 
+![First Photo](Project1.webp)
+
+![Second Photo](Project2.webp)
+
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
