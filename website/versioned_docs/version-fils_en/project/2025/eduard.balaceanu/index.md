@@ -144,6 +144,8 @@ The following images show the current stage of hardware assembly, including brea
 
 ![alt text](photo1-1.webp)
 ![alt text](photo4-1.webp)
+
+
 #### KiCad Schematic
 
 <img src="ProiectMicroprocesoare.svg" alt="Full Setup" width="500"/>
