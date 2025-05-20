@@ -150,14 +150,11 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ### Week 5 - 11 May
 
-After receiving the components, I tested their functionality and researched compatible software libraries for my
-hardware setup. Once verified, I proceeded with system design.
+After receiving the components, I tested their functionality and researched compatible software libraries for my hardware setup. Once verified, I proceeded with system design.
 
 ### Week 12 - 18 May
 
-Focused on implementing the remote control functionality and integrating it with the display system. Developed the basic
-logic for the menu navigation and began working on the on-screen keyboard, including input handling and layout
-structuring.
+Focused on implementing the remote control functionality and integrating it with the display system. Developed the basic logic for the menu navigation and began working on the on-screen keyboard, including input handling and layout structuring.
 
 ### Week 19 - 25 May
 
