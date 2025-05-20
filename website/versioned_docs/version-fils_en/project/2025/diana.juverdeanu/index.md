@@ -68,9 +68,10 @@ Power Supply - battery 5V
 
 ### Schematics
 
+This is the kicad schematic.
+
 ![Schematics](./assets/kicadscheme.svg)
 
-This is the kicad schematic.
 ### Bill of Materials
 
 | Device | Usage | Price |
