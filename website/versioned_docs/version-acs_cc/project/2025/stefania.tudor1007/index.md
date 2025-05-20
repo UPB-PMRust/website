@@ -72,7 +72,7 @@ At the moment, the temperature sensors used in the prototype are OKY3066-2 (LM35
 ![Schematic made in Kicad](schematic.svg)
 
 ## Pictures
-
+![Circuit](./circuit.webp)
 
 
 ## Bill of Materials 
