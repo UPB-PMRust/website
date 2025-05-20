@@ -44,10 +44,8 @@ The system architecture is divided into four main logical components:
 ![Architecture Diagram](schematics/architecture.svg)
 
 ### KiCad Schematic
-![KiCad Schematic](schematics/schemaKiCad.svg)
+![KiCad Schematic](schematics/my_kicad.svg)
 
-### Hardware 
-![Hardware Diagram](schematics/img.svg)
 
 
 ## Log 
