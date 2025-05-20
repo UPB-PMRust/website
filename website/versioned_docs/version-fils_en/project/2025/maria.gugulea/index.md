@@ -4,7 +4,7 @@ A biometric-based smart door lock system utilizing facial recognition technology
 :::info 
 
 **Author**: Gugulea Maria-Alexandra \
-**GitHub Project Link**: https://github.com/alexandra-gugulea/website
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-alexandra-gugulea
 
 :::
 
