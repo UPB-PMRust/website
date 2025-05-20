@@ -143,14 +143,30 @@ The primary focus shifted to software, starting with the Windows desktop GUI. I 
 ---
 
 ## Hardware
+The Smart Irrigation System is built around several key hardware components, each playing a crucial role in its functionality:
 
-### Schematics
+*   **NUCLEO-F411RE**: Serves as the brain of the system. It acts as the central controller, responsible for reading data from multiple sensors, implementing the irrigation logic (both automatic and manual modes) and managing UART communication with the Windows desktop application.
+*   **BME280 Sensor**: Functions as an environmental sensor, specifically measuring atmospheric temperature and pressure.
+*   **HC-SR04 Ultrasonic Sensor**: Used to monitor the water level in the tank. It measures the distance to the water surface, allowing the system to estimate the remaining water volume.
+*   **Soil Moisture Sensor** : Acts as the primary sensor for automated irrigation. It detects the humidity level in the soil, and its readings trigger the irrigation process in AUTO mode.
+*   **NTC Thermistor**: Provides temperature reading.
+*   **4-Channel Relay Module**: Works as an electromechanical switch. It is controlled by the NUCLEO board (via a level translator) to turn the Mini Submersible Water Pump on or off.
+*   **Mini Submersible Water Pump**: The actuator responsible for water delivery. It pumps water from the tank to the cultivated area when activated by the relay module.
+*   **Passive Buzzer**: Serves as an auditory alert system, signaling conditions such as critically dry soil, low water levels in the tank, or other system events.
+*   **Level Translator** : An essential interface component that safely converts the 3.3V logic signals from the NUCLEO's GPIO pins to the 5V required to operate the relay module.
+*   **5V Power Source**: Provides the necessary power for higher-voltage components like the relay module and the water pump, separate from the NUCLEO's USB power.
+*   **UTP CAT5E Cable and Double Surface-mount UTP CAT5e Outlet**: These are used to make good, organized cable connections.
+*   **Breadboard Power Supply**: Gives stable power distribution to components.
 
-![System schematic](./KiCad.svg)
 ![System schematic](./1.webp)
 ![System schematic](./2.webp)
 ![System schematic](./3.webp)
 ![System schematic](./4.webp)
+
+### Schematics
+
+![System schematic](./KiCad.svg)
+
 
 
 ### Bill of Materials
