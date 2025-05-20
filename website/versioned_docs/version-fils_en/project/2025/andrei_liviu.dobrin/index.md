@@ -61,6 +61,18 @@ Connected the LCD via I2C and displayed simple messages. Tested individual LEDs 
 ### Week 19 - 25 May
 
 ## Hardware
+The Simon Says game is built around several key hardware components, each playing a crucial role in its functionality:
+
+*   **Raspberry Pi Pico W**: It acts as the central microcontroller, responsible for running the game logic, generating light patterns, reading player input, and controlling the display and buzzer.
+*   **16x2 I2C LCD Screen**: Displays game information to the player.
+*   **LEDs (x9)**: Provide the primary visual output for the game. They light up in specific sequences that the player must memorize and replicate using the numpad.
+*   **330Ω Resistors (x9)**: Act as current-limiting resistors for each of the 9 LEDs, protecting them from damage by ensuring they receive the correct amount of electrical current.
+*   **10kΩ Resistors (x9)**: Used as pull-down resistors for the numpad buttons. They ensure that each button input pin on the microcontroller reads a defined LOW state when a button is not pressed, preventing floating inputs.
+*   **Breadboard**: A prototyping board that helps to assembly all electronic components without soldering.
+*   **Jumper Wires**: Wires used to establish electrical connections.
+*   **Buzzer**: An auditory output device that provides sound feedback for various game events, such as correct or incorrect button presses, level completion, or game over signals.
+*   **Numpad**: The main input interface for the player. It is used to enter the sequence of lights they have memorized, attempting to match the pattern shown by the LEDs.
+*   **Breadboard Power Supply**: Provides the voltage from an external source to power all components on the breadboard.
 
 ![Simon Says Schematic](./1.webp)
 ![Simon Says Schematic](./2.webp)
