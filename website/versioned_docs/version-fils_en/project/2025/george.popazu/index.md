@@ -18,7 +18,7 @@ The motivation behind this project is to create an affordable and automated solu
 ### Schematic Diagram
 This is the diagram that illustrates the components and their connections.
 
-![alt text](fan_rotation_schematic-1.webp)
+![alt text](fan_rotation_schematic.webp)
 
 **Raspberry Pi Pico 2W**
 - **Role**: The brain of the system. Reads signals from the encoder. Processes sensor data to determine if the fan is moving and transmits a signal to a second Pico which controls a window mechanism to close it.
@@ -56,12 +56,7 @@ A servo motor opens a window when the Raspberry Pi Pico receives a signal from a
 
 Power is supplied through the Pico's USB interface or external 3.3V source, with onboard voltage regulation ensuring stable 3.3V operation for all components. The compact design uses a breadboard or soldered perfboard for reliable interconnections between the Pico, sensor, and indicator circuit.
 
-
 ![alt text](architecture1.webp)
-
-![alt text](architecture2.webp)
-
-
 
 ### Schematics
 KiCad Scheme
