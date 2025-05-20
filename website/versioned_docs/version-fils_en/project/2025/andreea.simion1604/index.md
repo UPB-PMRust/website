@@ -4,8 +4,8 @@ Don't Touch The Spikes game based on a raspberry pi pico 2W
 
 :::info 
 
-- **Author**: Andreea Simion \
-- **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-elizasimion-2004
+**Author**: Andreea Simion \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-elizasimion-2004
 
 :::
 
