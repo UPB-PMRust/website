@@ -65,19 +65,7 @@ The **Raspberry Pi Pico 2W** serves as the core controller, interfacing with the
 
 ## Schematics
 **OVERALL**
-![diagram](overall.webp)
-
-**Display**
-![diagram](4-digit.webp)
-
-**LED**
-![diagram](rgb.webp)
-
-**RIM SENSORS**
-![diagram](rim_sensors.webp)
-
-**TOP SENSOR**
-![diagram](hc-sr04.webp)
+![diagram](smart_hoop.svg)
 
 ## Photos
 **FRONT**
@@ -94,11 +82,11 @@ The **Raspberry Pi Pico 2W** serves as the core controller, interfacing with the
 | [Small basketball hoop](https://www.decathlon.ro/p/mini-cos-de-baschet-sk100-negru-auriu/_/R-p-346317?mc=8901657) | Skeleton | 65 RON
 | [Jumpers](https://www.bitmi.ro/componente-electronice/40-fire-dupont-tata-mama-30cm-10504.html) | Connectivity | 8 RON |
 | [IOE-SR05 Ultrasonic Distance Sensor with Serial Interface (3 - 5.5 V)](https://www.optimusdigital.ro/ro/senzori-senzori-de-distanta/8152-senzor-de-distana-ultrasonic-ioe-sr05-cu-interfaa-seriala-3-55-v.html?search_query=ultrasonic&results=47) | Getting data | 20 RON x 3
-| [74HC595 2 Digits 7 Segment LED Display](https://www.optimusdigital.ro/en/led-displays/5605-74hc595-2-digits-7-segment-led-display.html?srsltid=AfmBOooWyQfFC3hv-Gp_PNDsWUwUZ5Xn56lRWl8V-sAAV3vUrpmnz7F7) | Visual display | 9 RON |
+| [Display LED 4 digit TM1637](https://www.bitmi.ro/modul-display-led-4-biti-tm1637-0-36-anod-comun-10673.html?gad_source=1&gad_campaignid=22005142538&gbraid=0AAAAADLag-lb0hv37FVqo9ngxLMEQloLJ&gclid=Cj0KCQjw0LDBBhCnARIsAMpYlAryXOHGNFbXlJQ9n_QizxTG0eCuTQ0Ioq2tGBjabu4RY6cxirZU8-QaAr8UEALw_wcB) | Visual display | 6 RON |
 | [RGB LEDS](https://www.optimusdigital.ro/en/leds/5618-144-pcs-rgb-led-neopixels-ws2812b.html?gad_source=1&gad_campaignid=21360696715&gbraid=0AAAAADv-p3B2c0vBEDSIvQOgdRjvNBiy7&gclid=Cj0KCQjwoNzABhDbARIsALfY8VPsUSj4vp2kUib3_-QPmvutuwetDTkopSimuhPmvOD4ns7v9FyjVNIaAqXsEALw_wcB ) | Feedback for Player | 50 RON |
 | [HC-SR04 Ultrasonic Distance Sensor](https://ardushop.ro/ro/electronica/2289-modul-senzor-ultrasonic-detector-distanta-hc-sr04-6427854030726.html?gad_source=1&gad_campaignid=22058879462&gbraid=0AAAAADlKU-6Mwhj2CaAa-5jV0Ic3VkQvP&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkYevXzdwh0-sLh_WThlxYnUHZ5OZbnyspcSWvaxLTNA0JLXkTwlSVMaAsS2EALw_wcB) | Getting data | 10 RON
 
-TOTAL: ~220 RON
+TOTAL: ~217 RON
 
 ## Software
 
