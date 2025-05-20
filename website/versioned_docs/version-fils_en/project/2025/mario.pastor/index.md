@@ -42,20 +42,26 @@ I started to assemble the parts on the breadboards in order to test each compone
 ![testing-components](assets/week10_update.webp)
 
 ### Week 5 - 11 May
+I successfully implemented and tested the algorithm for step count detection using the accelerometer. Additionally, I wrote the code for displaying all the collected data (step count, heart rate, SpO₂) on the screen.
+
+![screen-data](assets/week11_update.webp)
 
 ### Week 12 - 18 May
+I consulted with my lab teacher regarding the 3D casing for the sensors, and we concluded that designing a separate case for each sensor would be more efficient. For the pulse oximeter, I used [a pre-existing 3D finger clip found online](https://www.thingiverse.com/thing:4395147). The next step is to drill holes in the case to allow the wires to pass through properly.
+
+![oximeter-finger-clip](assets/week12_update.webp)
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. As of now, this is how the hardware looks like, but in the following weeks I will design a 3D case in order to make the device wearable.
+My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. As of now, this is how the hardware looks like, but in the following week I will design the 3D cases for the sensors in order to make the device wearable.
 
 ![hardware](assets/hardware1.webp)
 
 ### Schematics
 
-![kicad-schematic](assets/kicad_schematic.webp)
+![kicad-schematic](assets/kicad_schematic.svg)
 
 ### Bill of Materials
 
@@ -80,7 +86,10 @@ My project is built around the Raspberry Pi Pico 2W microcontroller, which colle
 | [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI display abstraction | Facilitates SPI communication between SSD1306 and device |
 | [defmt](https://crates.io/crates/defmt) | Lightweight logging crate | Used for logging data |
 | [heapless](https://crates.io/crates/heapless) | Data structures | Used for creating strings |
+| [libm](https://crates.io/crates/libm) | Float math functions | Used for computing math functions |
+
 
 ## Links
 
 1. [Measure Heart Rate and SpO2 with MAX30102](https://projecthub.arduino.cc/SurtrTech/measure-heart-rate-and-spo2-with-max30102-eb4f74)
+2. [MAX30102 Finger Clip 3D Model](https://www.thingiverse.com/thing:4395147)
