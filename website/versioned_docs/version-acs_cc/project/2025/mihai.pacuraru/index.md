@@ -67,9 +67,9 @@ Assemble hardware components and write demo source code.
 =======
 <!-- [![](https://markdown-videos-api.jorgenkh.no/youtube/EuqZ8Y21hg4)](https://youtu.be/EuqZ8Y21hg4) -->
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EuqZ8Y21hg4?si=xL99fmc-H0W0BoAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="auto" height="512" src="https://www.youtube.com/embed/EuqZ8Y21hg4?si=xL99fmc-H0W0BoAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-![](demo.jpeg)
+![](demo.webp)
 
 ### Schematic
 <<<<<<< HEAD
