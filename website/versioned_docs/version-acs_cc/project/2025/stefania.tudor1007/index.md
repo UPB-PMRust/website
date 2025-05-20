@@ -69,7 +69,7 @@ The hardware setup includes:
 At the moment, the temperature sensors used in the prototype are OKY3066-2 (LM35-based). However, they have shown inconsistent or unstable readings during testing. As a result, they will be replaced with LM75B digital temperature sensors, as indicated in the schematic, to improve reliability and I2C-based integration.
 
 
-![Schematic made in Kicad](./schematic.svg)
+![Schematic made in Kicad](schematic.svg)
 
 ## Pictures
 
