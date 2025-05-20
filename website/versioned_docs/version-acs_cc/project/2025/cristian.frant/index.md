@@ -36,7 +36,7 @@ The Xtreme Math Alarm Clock is an innovative solution that introduces an intelle
 
 All components are controlled and synchronized by the Raspberry Pi Pico 2W, which acts as the system's brain. The RTC provides timekeeping, and when the alarm time is reached, the Pico activates the buzzer and displays a math question. The user must input the correct answer through the keypad. In the meantime, the sound level is progressively increased using the digital potentiometer.
 
-![Logic Diagram](schema1.webp)
+![Logic Diagram](schema1.svg)
 
 ## Log
 
@@ -72,7 +72,7 @@ Passive buzzer 3.3 volt
 ### Schematics
 
 Place your KiCAD schematics here.
-![KiCAD schematics](kicad%20diagram.webp)
+![KiCAD schematics](pm-circuit.svg)
 
 ### Bill of Materials
 
