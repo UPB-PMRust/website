@@ -52,7 +52,7 @@ A list of the main hardware components used in the project:
 
 ### Schematics
 
-![Schematic](Schematic.webp)
+![Schematic](./Schematic.svg)
 
 ### Bill of Materials
 
