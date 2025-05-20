@@ -19,7 +19,7 @@ I got the idea after browsing optimus and seeing incline sensors. I knew immedia
 
 ## Architecture
 
-![Schematic](Schematic.webp)
+![Architecture](Architecture.webp)
 
 **Components used**
 
