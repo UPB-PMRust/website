@@ -41,6 +41,8 @@ I assembled the components on a breadboard for testing, created the initial KiCa
 
 ### Week 7 - 19 May
 
+After testing each component on its own, I looked into the right crates and methods needed for my project. I focused on understanding how to control the sensors and other parts using Embassy, and then started putting together the main logic of the system.
+
 ### Week 20 - 26 May
 
 ## Hardware
