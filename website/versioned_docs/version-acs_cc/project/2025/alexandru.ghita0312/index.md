@@ -18,7 +18,7 @@ I wanted to create something practical and enjoyable for use at home. As a cat o
 
 ## Architecture
 
-![Architecture](Architecture.webp)
+![Architecture](Architecture.svg)
 
 The main software components of the project include:
 - **Control Module**: Handles manual input from a joystick (ADC) and button presses (GPIO) to switch modes and patterns.
@@ -61,7 +61,7 @@ TBD
 
 ### Schematics
 
-![KiCad](KiCad.webp)
+![KiCad](KiCad.svg)
 
 ### Bill of Materials
 
