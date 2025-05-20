@@ -51,7 +51,7 @@ Breadboard - to simplify the connections
 
 ### Schematics
 
-![schematic](schema_amalia.webp)
+![schematic](schema_amalia.svg)
 
 ### Bill of materials
 
