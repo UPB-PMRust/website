@@ -125,7 +125,7 @@ Ever since I was a child, I’ve had a deep passion for music—spending hours e
 
 <!-- Place your KiCAD schematics here. -->
 
-![schematic](schematic.webp)
+![schematic](schematic.svg)
 
 ### Images
 
