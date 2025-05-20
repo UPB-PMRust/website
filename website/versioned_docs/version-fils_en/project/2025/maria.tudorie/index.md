@@ -45,9 +45,9 @@ This hardware setup allows for real-time control and monitoring, with the LEDs r
 
 ![My schematic](kicad_scheme.svg)
 
-![Hardware](POZAX.webp)
+![Hardware](POZAXnou.webp)
 
-![Hardware2](POZAAX.webp)
+![Hardware2](POZAAXnou.webp)
 
 ### Bill of Materials
 
