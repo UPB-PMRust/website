@@ -22,7 +22,7 @@ Growing up I've never had a remote controlled car and so I chose to build one fo
 
 The diagram of the project:
 
-![Schematic](pic4.webp)
+![Schematic](pic4.svg)
 
 **Raspberry Pi Pico 2W**
 - **Role**: Controls every component. In the case of the car it controls the motors and the LEDs. In the case of the controller it reads the input from the buttons and the joystick.
