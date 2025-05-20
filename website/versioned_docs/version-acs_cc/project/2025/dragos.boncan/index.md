@@ -371,23 +371,23 @@ I have 2 circuits:
 
 ### Reset button
 
-![Poza Buton Reset](Poza_butonreset.svg)
+![Poza Buton Reset](Poza_butonreset.webp)
 
 ### Working LCD 1602
 
-![Poza Ecran](Poza_ecran.svg)
+![Poza Ecran](Poza_ecran.webp)
 
 ### Hardware overall
 
-![Hardware 2](hardware2.svg)
+![Hardware 2](hardware.webp)
 
 ### Breadboard with Raspberry Pi Pico 2
 
-![Hardware Overall](hardware_overall.svg)
+![Hardware Overall](hardware_overall.webp)
 
 ### Lock with presence sensor for the door
 
-![Incuietoare](incuietoare.svg)
+![Incuietoare](incuietoare.webp)
 
 
 
