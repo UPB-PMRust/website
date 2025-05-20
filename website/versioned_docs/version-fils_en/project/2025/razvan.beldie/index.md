@@ -163,7 +163,7 @@ Accessories:
 ### Schematics
 
 
-![Schematic diagram](KiCad.webp)
+![Schematic diagram](KiCad.svg)
 
 Place your KiCAD schematics here.
 
