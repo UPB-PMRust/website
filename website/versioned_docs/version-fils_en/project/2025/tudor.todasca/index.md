@@ -79,7 +79,7 @@ I implemented the sensor in the code. Connected everything. Now i only need the 
 
 ### Schematics
 
-![Kicad](./intelicar.webp)
+![Kicad](./intelicar.svg)
 
 ### Bill of Materials
 
