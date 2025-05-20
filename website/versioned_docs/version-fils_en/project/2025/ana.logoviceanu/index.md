@@ -3,7 +3,7 @@ Barrier Access System
 
 :::info 
 
-**Author**: Logoviceanu Ana Lorena \
+**Author**: Logoviceanu Ana Lorena
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-Ana0420
 
 :::
@@ -75,19 +75,19 @@ External 5V Power Supply (optional) – For powering servo and 5V devices
 
 ### Schematics
 
-![kicad_schematic](kicad_schematic.webp)
+![kicad_schematic](Barrier-Access-System.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The main microcontroller that controls the system | [40 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico&results=33) |
-| [TCS34725 Color Sensor](https://www.alldatasheet.com/datasheet-pdf/view/894928/AMSCO/TCS34725.html) | Used to detect color-coded license plates | [22,05 RON](https://ardushop.ro/ro/senzori/1454-modul-senzor-de-culoare-tcs34725-6427854021342.html) |
-| [HC-SR04 Ultrasonic Sensor](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | Detects the presence of a vehicle | [5,56 RON](https://ardushop.ro/ro/electronica/2289-modul-senzor-ultrasonic-detector-distanta-hc-sr04-6427854030726.html) |
-| [SG90 Servo Motor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Raises and lowers the barrier | [11,12 RON](https://ardushop.ro/ro/electronica/1874-servomotor-sg90-6427854028365.html) |
-| [SD Card Module](https://static.chipdip.ru/lib/395/DOC050395146.pdf) | Stores the list of registered license plates | [7,14 RON](https://ardushop.ro/ro/module/1553-groundstudio-microsd-module-6427854023056.html) |
-| Micro SD Card (≥1 GB) | Storage medium for the license data | 0 RON|
-| Breadboard | Prototyping the circuit, Jumper Wires, Voltage Divider, 220Ω Resistors, RGB LED, USB cable | [60 RON](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/?utm_medium=ios&utm_source=mobile%20app&utm_campaign=share%20product)|
+| [TCS34725 Color Sensor](https://www.alldatasheet.com/datasheet-pdf/view/894928/AMSCO/TCS34725.html) | Used to detect color-coded license plates | [22,05 RON] (https://ardushop.ro/ro/senzori/1454-modul-senzor-de-culoare-tcs34725-6427854021342.html) |
+| [HC-SR04 Ultrasonic Sensor] (https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | Detects the presence of a vehicle | [5,56 RON] (https://ardushop.ro/ro/electronica/2289-modul-senzor-ultrasonic-detector-distanta-hc-sr04-6427854030726.html) |
+| [SG90 Servo Motor] (http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Raises and lowers the barrier | [11,12 RON](https://ardushop.ro/ro/electronica/1874-servomotor-sg90-6427854028365.html) |
+| [SD Card Module] (https://static.chipdip.ru/lib/395/DOC050395146.pdf) | Stores the list of registered license plates | [7,14 RON] (https://ardushop.ro/ro/module/1553-groundstudio-microsd-module-6427854023056.html) |
+| Micro SD Card (≥1 GB) | Storage medium for the license data | [0]|
+| Breadboard | Prototyping the circuit, Jumper Wires, Voltage Divider, 220Ω Resistors, RGB LED, USB cable | [60 RON] (https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/?utm_medium=ios&utm_source=mobile%20app&utm_campaign=share%20product)|
 
 
 
@@ -108,4 +108,4 @@ External 5V Power Supply (optional) – For powering servo and 5V devices
 
 1. [raspberrypi](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
 2. [embedded-hal](https://docs.rs/embedded-hal/latest/embedded_hal/)
-3. [ultrasonic sensor tutorial](https://pico.implrust.com/ultrasonic/index.html)
+3. [ultrasonic sensor tutorial] (https://pico.implrust.com/ultrasonic/index.html)
