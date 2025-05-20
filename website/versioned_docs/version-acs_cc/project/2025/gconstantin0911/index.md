@@ -1,4 +1,4 @@
-# Smart parking sistem
+# Smart Parking Sistem
 A parking sistem that use infrared sensors, ultrasound sensors and Raspberry Pi Pico 2W
 
 :::info
@@ -18,7 +18,7 @@ I chose this project because it addresses a real-world problem related to the or
 
 ## Architecture
 
-![alt text](DiagramaPico.drawio.svg)
+![alt text](PICO.drawio.svg)
 
 The **Raspberry Pi Pico 2W** acts as the central controller, managing all data exchange and operations between input and output modules.
 The **ultrasonic sensors** detect vehicle presence near the entry and exit, triggering barrier actions.
@@ -33,13 +33,31 @@ The **PC** is used for programming and optional debugging, while the battery sup
 
 ### Week 5 - 11 May
 
+Acquired the development boards and the necessary peripherals.
+
+Set up the Rust Embassy development environment on my laptop.
+
+Created the project webpage.
+
 ### Week 12 - 18 May
+
+Tested the functionality of the peripherals and replaced the ones that were not working.
+
+Designed the schematic in KiCad.
+
+Connected the components on the breadboards.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
 ### Schematics
+
+![alt text](Schematic.svg)
+
+### Photos
+
+![alt text](ProjectPhoto.webp)
 
 ### Bill of materials
 
@@ -63,12 +81,16 @@ The **PC** is used for programming and optional debugging, while the battery sup
 | [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)| Peripheral access crate for the RP2040 chip used in Raspberry Pi Pico | Used to interact with the microcontroller's hardware|
 | [embassy-executor](https://docs.embassy.dev/embassy-executor/git/std/index.html)| Asynchronous task executor for embedded systems| Enables non-blocking async execution|
 | [embassy-time](https://embassy.dev/book/dev/time_keeping.html)| Time management library| Used for implementing delays and measuring durations|
-| [gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html)| General-purpose input/output abstraction| Used to read sensor data (e.g., IR sensor) or control devices like LEDs|
-| [pwm](https://docs.embassy.dev/embassy-nrf/git/nrf52840/pwm/index.html)| Pulse-width modulation control| Used to control RGB LED brightness and SG90 servo positioning|
 | [log](https://docs.embassy.dev/embassy-usb-logger/git/default/index.html)| Logging facade for embedded Rust| Used to add structured logging|
 | [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html)| Asynchronous embedded networking stack built on smoltcp| Used for network connection|
 | [embassy-net-driver](https://docs.embassy.dev/embassy-net-driver/git/default/index.html)| Network interface drivers for embassy-net| Used to connect embassy-net with hardware like the CYW43 Wi-Fi chip on the Raspberry Pi Pico 2W|
+| [embedded-hal-async](https://docs.rs/embedded-hal-async/1.0.0/embedded_hal_async/)| 	Async traits for embedded hardware| Needed for async I2C communication (used by LCD)|
+| [lcd1602-diver](https://docs.rs/lcd1602-diver/latest/lcd1602_diver/)| LCD driver over I2C| Used to control the LCD1602 screen using Embassy I2C|
+| [heapless](https://docs.rs/heapless/0.8.0/heapless/)| Fixed-capacity data structures| Used for memory-safe strings in no_std environments|
+
 
 ## Links
 
--
+1. [I2C LCD 1602 with Raspberry Pi Pico](https://www.tomshardware.com/how-to/lcd-display-raspberry-pi-pico)
+2. [IR Sensor on Raspberry Pi Pico](https://www.youtube.com/watch?v=zh_g6J6T_5w&ab_channel=YoungWonks)
+3. [For Wi-Fi](https://murraytodd.medium.com/rust-networking-with-the-raspberry-pi-pico-w-002384a5954b)
