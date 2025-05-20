@@ -1,4 +1,4 @@
-# Rust Calculator 
+# Rust Calculator
 A calculator that take numbers and opperations as inputs and outputs results and can use wifi
 
 :::info 
@@ -46,8 +46,7 @@ I wanted to make something practical for my project and I use calculators all th
 Parts have arived and got the bords to work.
 
 ### Week 12 - 18 May
-Coding for the dispaly and keypad is in progress.
-
+Schematics and wireing done. Now coding for the dispaly and keypad is in progress.
 
 ### Week 19 - 25 May
 WIP
@@ -62,10 +61,7 @@ WIP
 
 ### Schematics
 
-
-
-![Schematic diagram2](kicad_v1.webp)
-
+![Schematic diagram2](MAproject1.svg)
 
 ### Bill of Materials
 
