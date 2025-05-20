@@ -1,4 +1,4 @@
-# Project Name
+# Solar Panel
 A rotative solar panel that moves toward the sun.
 
 :::info 
