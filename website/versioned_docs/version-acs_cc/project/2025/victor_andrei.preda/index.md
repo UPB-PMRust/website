@@ -93,6 +93,8 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 
 ![Hardaware4](images/hardware4.webp)
 
+![Hardaware5](images/hardware5.webp)
+
 
 ### Schematics
 
