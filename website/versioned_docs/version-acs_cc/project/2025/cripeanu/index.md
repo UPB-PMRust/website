@@ -49,16 +49,43 @@ The **microSD card module** stores the image, while WiFi can send it to a remote
 
 ## Log
 
-### Week  -  May
+### Week 1 – May 6–12
 
+- Chose the project topic: a speed measurement system using the HB100 radar sensor.
+- Studied documentation for the HB100 module and its compatibility with the RP2040 Pico W board.
+- Created the initial wiring plan (breadboard layout and power distribution).
+- Began the schematic documentation using KiCad.
+- Set up the development environment: Embassy + probe-rs + defmt logging.
+- Wrote a simple test program to verify GPIO functionality and LCD output.
 
-### Week  -  May
+### Week 2 – May 13–19
+
+- Purchased the following components:
+  - HB100 radar sensor
+  - LCD 1602 with I²C interface
+  - 5V active buzzer
+  - Tactile push buttons
+  - LEDs and resistors (220 Ω, 10 kΩ)
+  - Capacitors (10 nF, 220 µF)
+  - Jumper wires and large breadboard
+  - OV2640 camera module (for future use)
+- Tested the HB100 sensor in both digital and analog modes using RP2040 and defmt logging.
+- Partially completed the KiCad schematic:
+  - Added components: RP2040 Pico, HB100, LCD, buzzer, buttons, and LEDs.
+  - Learned how to add, rename, and manage components in KiCad.
+- Analyzed HB100 behavior with and without filtering (resistor + capacitors).
+- Clarified the power supply layout: +5V on RR, GND on RB, common ground with Pico.
+- Documented all necessary pin connections for the Pico board in the project setup.
 
 
 ### Week  -  May
  
 
 ## Hardware
+![System architecture diagram](./poza_schema1.webp)
+![System architecture diagram](./poza_schema2.webp)
+![System architecture diagram](./poza_schema3.webp)
+![System architecture diagram](./schema_kicad.svg)
 1. **Raspberry Pi Pico 2W**  
    – Acts as the main controller and WiFi client
 
