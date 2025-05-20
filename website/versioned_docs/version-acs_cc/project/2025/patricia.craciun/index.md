@@ -53,10 +53,10 @@ The Smart Mirror is built around an ESP32 microcontroller, which handles the LED
 
 Bluetooth audio is received by the MH-M28 module and passed to a TPA3116D2 amplifier, powering two 60W speakers. The whole system is powered by a 12V/5A adapter, and a LM2596 converter supplies 5V for components like the ESP32 and IR receiver. Power lines are split cleanly using WAGO connectors, and everything is prototyped on a breadboard.
 
-![Hardware](./hardware1.jpg)
-![Hardware](./hardware2.jpg)
-![Hardware](./hardware3.jpg)
-![Hardware](./hardware4.jpg)
+![Hardware](./hardware1.webp)
+![Hardware](./hardware2.webp)
+![Hardware](./hardware3.webp)
+![Hardware](./hardware4.webp)
 
 
 ### Schematics
