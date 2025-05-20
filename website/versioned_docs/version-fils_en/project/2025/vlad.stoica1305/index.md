@@ -49,7 +49,7 @@ The main Pico 2W is connected to the LCD through an 8-bit parallel interface (D0
 
 ### Schematics
 
-![KiCAD Schematic](KiCad Scheme.svg)
+![KiCAD Schematic](KiCadScheme.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
