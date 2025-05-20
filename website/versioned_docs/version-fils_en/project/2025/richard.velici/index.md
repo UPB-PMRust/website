@@ -61,7 +61,7 @@ are:
 
 ### Schematics
 
-![diagram](kicad.webp)
+![diagram](kicad.svg)
 ![diagram](car.webp)
 ### Bill of Materials
 
