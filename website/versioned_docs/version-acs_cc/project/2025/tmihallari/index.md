@@ -50,9 +50,16 @@ Ultrasonic sensor - HC-SR04
 
 ### Week 5 - 11 May
 
+Hardware assembly,planification
+
 ### Week 12 - 18 May
 
+Microbit-Rust research,getting to know things and what to use to
+make them work
+
 ### Week 19 - 25 May
+19 - first commit of software with the first 2 games,the second needs 
+a bit more work
 
 ## Hardware
 
@@ -74,8 +81,11 @@ Function: Connect all the components
 
 ### Schematics
 
-![Schematic 1](no1.webp)
-![Schematic 2](no2.webp)
+![Schematic 1](no1.svg)
+![Schematic 2](no2.svg)
+
+![Photo 1](pic1.webp)
+![Photo 2](pic2.webp)
 
 ### Bill of Materials
 
@@ -88,7 +98,30 @@ Function: Connect all the components
 
 ## Software
 
+| **Library**         | **Description**                                              | **Usage**                                                |
+|---------------------|--------------------------------------------------------------|-----------------------------------------------------------|
+| `defmt`             | Lightweight logging framework                                | Efficient debug output (e.g., over RTT for microcontrollers) |
+| `defmt-rtt`         | RTT (Real-Time Transfer) backend for `defmt`                 | Sends log messages to host over debug interface          |
+| `panic-halt`        | Minimal panic handler                                        | Halts MCU on panic (no backtrace)                        |
+| `cortex-m`          | Low-level Cortex-M functionality                             | Access to interrupts, critical sections, etc.            |
+| `cortex-m-rt`       | Runtime for Cortex-M                                         | Defines the `#[entry]` point for bare-metal apps         |
+| `embedded-hal`      | Hardware Abstraction Layer (HAL) traits                     | Traits for GPIO, Delay, RNG, etc.                        |
+| `microbit`          | HAL and board support crate for BBC micro:bit                | Access to board pins, peripherals, display, etc.         |
+
+
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
+I used this repo as a starting point and as a scheleton for my project
+
+https://github.com/nrf-rs/microbit
+
+Big thanks to the microbit-Rust community!
+
+Also usefull
+
+https://docs.rs/microbit/latest/microbit/
+
+https://docs.rust-embedded.org/discovery/microbit/
+
 ...

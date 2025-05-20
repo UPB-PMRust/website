@@ -25,7 +25,15 @@ I created 4Clash to explore the intersection between digital gaming and physical
 
 ### Week 5 - 11 May
 
+I finished the CAD version on the project.
+
+I started printing all the components, taking around 60h of printing time.
+
 ### Week 12 - 18 May
+
+I switched the mechanism to use a timing belt, instead of a rope and spool.
+
+I changed the communication protocol, instead of using TCP to communicate, i started using UDP for lower latency.
 
 ### Week 19 - 25 May
 
@@ -42,6 +50,12 @@ I created 4Clash to explore the intersection between digital gaming and physical
 - Bolts and nuts - Used to assemble the 3D printed parts and wood parts together.
 - Wires and connectors - Used to connect the various components together.
 - Breadboard - Used for prototyping and testing the circuit connections before final assembly.
+
+![Render](4Clash_Render.webp) 
+![Player](Player_1.webp)
+![Player](Player_2.webp)
+![Player](Player_3.webp)
+![Player](Player_4.webp)
 
 ### Schematics
 
