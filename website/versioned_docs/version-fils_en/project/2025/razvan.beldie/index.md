@@ -1,4 +1,7 @@
-# SNAKE GAME
+
+# 2-Player Snake
+
+
 
 A snake game inspired by the timeless classic that aims to bring back the good times of the past and a modern touch with a 2-player mode and touch-screen compatibility.
 
@@ -82,11 +85,30 @@ Each state dictates what is drawn on the screen and how user input is interprete
 
 ### Week 5 - 11 May
 
+
+- Wrote the main part of the documentation milestone
+- Finally collected all the necessary components
+- Started the software base
+
 ### Week 12 - 18 May
+
+- Finished the hardware side of things
+- Continued working on the software, implementing the display connection
+
+
+### Week 12 - 18 May
+
 
 ### Week 19 - 25 May
 
 ## Hardware
+
+
+![Schematic diagram](Angle1.webp)
+![Schematic diagram](Angle2.webp)
+![Schematic diagram](Angle3.webp)
+
+
 
 This project utilizes the following hardware components:
 
@@ -140,7 +162,11 @@ Accessories:
 
 ### Schematics
 
+
+![Schematic diagram](KiCad.svg)
+
 Place your KiCAD schematics here.
+
 
 ### Bill of Materials
 
