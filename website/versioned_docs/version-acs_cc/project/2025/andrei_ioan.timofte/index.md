@@ -1,4 +1,4 @@
-# Bluetooth distance tracker
+# Bluetooth Distance Tracker
 A Bluetooth based system that estimates how far your phone is and makes a sound if it goes too far away.
 
 :::info 
@@ -68,13 +68,11 @@ SPI driver for an ST7735 1.8" TFT using the `st7789` crate.
 
 ## Log
 
-<!-- write your progress here every week -->
-
 ### Week 5 - 11 May
-TODO
+Setting up the framework to run a Raspberry Pi Pico 2W with another MCU as the debugger. Researching for methods to communicate with another device via BLE in Embassy. Acquired all the components needed for this project.
 
 ### Week 12 - 18 May
-TODO
+Connected all the components and tested that the buttons can controll the passive buzzer. Also connected the LCD and started working on the menu options and wrote the software in order to controll the buzzer and the LCD. Started working on the software to receive Bluetooth signals.
 
 ### Week 19 - 25 May
 TODO
@@ -94,27 +92,24 @@ Aside from wires, resistors, diodes and transistors, no additional sensors or wi
 
 ### Schematics
 
-TODO
+![Diagram](schematic.svg)
+
+### Images
+
+![Diagram](first_image.webp)
+
+![Diagram](second_image.webp)
 
 ### Bill of Materials
-
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
 
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [2x35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-| [Passive Buzzer](https://components101.com/sites/default/files/component_datasheet/Buzzer%20Datasheet.pdf) | For emitting sounds | [2 RON](https://www.optimusdigital.ro/ro/audio-buzzere/634-buzzer-pasiv-de-5-v.html?search_query=buzzer+pasiv&results=15) |
 | [Display TFT LCD 1.8"](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf) | To display the map and menu  | [34 RON](https://www.emag.ro/display-tft-lcd-1-8-inch-128x160-spi-st7735s-arduino-emg204/pd/D8RPFSYBM/) |
+| [Passive Buzzer](https://components101.com/sites/default/files/component_datasheet/Buzzer%20Datasheet.pdf) | For emitting sounds | [2 RON](https://www.optimusdigital.ro/ro/audio-buzzere/634-buzzer-pasiv-de-5-v.html?search_query=buzzer+pasiv&results=15) |
 | [10 Male to male wires](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Wires | [2x5 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=Fire+Colorate+Tata-Tata+%2840p%2C+10+cm%29&results=10) |
-| Buttons, resistors, transistors | For connecting the components | 10 RON |
+| Buttons | For user input | [3x0.36 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=buttons&results=258) |
+| Resistors, transistors | For connecting the components | 2 RON |
 
 
 
@@ -127,11 +122,14 @@ The format is
 | [pwm](https://docs.rs/rp2040-hal/latest/rp2040_hal/pwm/index.html) | Pulse width modulation| For controlling the passive buzzer |
 | [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | RP2350 support crates | Used for initializing and interacting with peripherals |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [cyw43](https://crates.io/crates/cyw43) | Bluetooth/WiFi library | Used to activate the CYW43439 chip| 
+| [trouble_host](https://docs.embassy.dev/trouble-host/git/default/index.html)| BLE Host | Used for creating a host and receiving BLE signals |
 | [embedded-kalman](https://crates.io/crates/embedded-kalman) | Kalman filtering | Used for smoothing RSSI before distance computing |
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [CYW43439 Wifi/BLE](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07#wi-fi-in-embassy)
+2. [SPI with screen](https://pmrust.pages.upb.ro/docs/acs_cc/lab/05#screen)
+3. [GPIO](https://pmrust.pages.upb.ro/docs/acs_cc/lab/02)

@@ -5,7 +5,7 @@ Rust-based interactive memory game with lights.
 
 
 :::info
-**Author:** Toacă Andreia \
+**Author:** Toacă Andreia  
 **GitHub Project Link:** [https://github.com/UPB-PMRust-Students/proiect-andreia-toaca](https://github.com/UPB-PMRust-Students/proiect-andreia-toaca)
 :::
 
@@ -44,9 +44,11 @@ The entire interaction is cyclic:
 ## Log
 
 ### Week 6 – 12 May
+During this week, I gathered all the components needed for my Simon Says game. This includes the Raspberry Pi Pico W, 4 LEDs in different colors, 4 push buttons, a buzzer, an OLED display, resistors, jumper wires, and a breadboard. I checked that each part is compatible with the Pico and made sure I understand where and how it will be connected. All the parts were organized and prepared, so I can easily start building the circuit in the next step. 
 
 
 ### Week 7 – 19 May  
+This week I created the circuit schematic in KiCad, connecting all the components virtually to plan the real setup. After that, I placed the components on the breadboard following the same connections from the schematic. I made sure that the OLED display, LEDs, buttons, buzzer, and Raspberry Pi Pico are correctly connected and ready to be tested.
 
 
 ### Week 8 – 26 May  
@@ -76,6 +78,9 @@ The hardware setup consists of the following components:
 ## Schematics
 
 ![Schematics ](./project_schematics.svg)
+![image1 ](./image1.webp)
+![image2 ](./image2.webp)
+![image3 ](./image3.webp)
 
 ## Bill of Materials
 
@@ -84,13 +89,14 @@ The hardware setup consists of the following components:
 | [Raspberry Pi Pico 2 (RP2350, 2pcs)](https://www.raspberrypi.com/products/raspberry-pi-pico-2/)   | The microcontroller              | [79.32 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?srsltid=AfmBOopT8Y9ultcTpCnplLLBvfYiR-1ehIjvuN4Q_uidpizk46YSSxWM)     |
 | RGB LEDs (4pcs)                  | LED sequence                     | [1.2 RON](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html?gad_source=1&gbraid=0AAAAADlKU-7m8tvyuVfJMIXYMetezkndV&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-RlwuC8AUDzaVayGZwuKJ4qlQ-M8NUku7Or-8V5DS7vlqUY01mmlo0aAo9vEALw_wcB#/culoare-rosu)        |
 | Push buttons (5pcs)              | Player input                     | [1.8 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html)     |
-| [Buzzer](https://components101.com/misc/buzzer-pinout-working-datasheet)                  | Sound feedback                   | [1.40 RON](https://www.optimusdigital.ro/ro/audio-buzzere/634-buzzer-pasiv-de-5-v.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3AcTGZShwGGGHyKb6hmiamUi&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7YPMtgXTFjWKLn3MWBlraNUlYMT4JcFVcbQl9i0ydQGvLpv05ozqvAaAqUQEALw_wcB)|
+| [Buzzer](https://components101.com/misc/buzzer-pinout-working-datasheet)                  | Sound feedback                   | [0.99 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DpzQivl1HoGD6feRIlY_6Bz&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkYiNmbbR6wtiKxtw_Z-az7s0-IqqgHVrrbAzRrgrk-mZn9BDgP7iL4aAq9kEALw_wcB)|
 | [OLED display](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-oled-displays-for-raspberry-pi.pdf)| Display game feedback | [23.29 RON](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/)     |
-| [Resistors (220Ω, 4pcs)](https://www.electronicwings.com/components/resistor-220-ohms/1/datasheet) | Limit LED current            | [0.40 RON](https://www.optimusdigital.ro/en/resistors/1097-025w-220-resistor.html)|
+| [Resistors (220Ω, 5pcs)](https://www.electronicwings.com/components/resistor-220-ohms/1/datasheet) | Limit LED current and protect the buzzer from overcurrent            | [0.50 RON](https://www.optimusdigital.ro/en/resistors/1097-025w-220-resistor.html)|
+| Resistors (10kΩ, 5pcs) | Used as pull-down resistors for buttons | [3.21 RON](https://www.emag.ro/rezistor-10k-ohm-set-10-bucati-ai249-s143/pd/DGB423MBM/?ref=history-shopping_423410733_112784_1)|
 | Male Pin Header (40p, 2.54mm, 2pcs)  | Connects Pico to breadboard      | [1.98 RON](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/465-header-de-pini-galben-254-mm-40p.html)|| Breadboard                     | Prototype Platform               | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html?search_query=Breadboard&results=363)|
-| Breadboard | Prototyping platform for wiring components | [14.28 RON](https://www.emag.ro/breadboard-830-puncte-mb102-cl01/pd/DF0C5JBBM/?utm_campaign=share%20product&utm_source=mobile%20app&utm_medium=ios) |
-| Jumper wires(Male to Male, 10pcs, 10 cm) | Connections between Raspberry Pi Pico and breadboard| [ 2.85 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/885-set-fire-tata-tata-10p-10-cm.html?search_query=fire+tata-tata&results=73)|
-| Jumper wires(Male to Male, 10pcs, 20 cm) | Connections between Raspberry Pi Pico and breadboard| [ 2.53 RON](https://www.emag.ro/10-x-fire-dupont-tata-tata-20cm-cl55/pd/DV8M9WBBM/)|
+| Breadboard (2pcs) | Prototyping platform for wiring components | [23.8 RON](https://www.emag.ro/breadboard-830-puncte-mb102-cl01/pd/DF0C5JBBM/?utm_campaign=share%20product&utm_source=mobile%20app&utm_medium=ios) |
+| Jumper wires(Male to Male, 20pcs, 10 cm) | Connections between Raspberry Pi Pico and breadboard| [ 5.7 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/885-set-fire-tata-tata-10p-10-cm.html?search_query=fire+tata-tata&results=73)|
+| Jumper wires(Male to Male, 20pcs, 20 cm) | Connections between Raspberry Pi Pico and breadboard| [ 5.06 RON](https://www.emag.ro/10-x-fire-dupont-tata-tata-20cm-cl55/pd/DV8M9WBBM/)|
 | Jumper wires(Male to Female, 40 pcs, 20 cm) | Connections between Raspberry Pi Pico and hardware modules | [ 7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html)|
 
 
