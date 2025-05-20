@@ -52,16 +52,16 @@ Buzzer – audio signal
 
 LEDs – reservoir level indicators
 
-![Hardware](img1.webp)
-![Hardware](img2.webp)
-![Hardware](img3.webp)
-![Hardware](img4.webp)
-![Hardware](img5.webp)
+![Hardware](image1.webp)
+![Hardware](image2.webp)
+![Hardware](image3.webp)
+![Hardware](image4.webp)
+![Hardware](image5.webp)
 
 
 ### Schematics
 
-![Schematic](alessia.webp)
+![Schematic](schematic.svg)
 
 
 ### Bill of Materials
