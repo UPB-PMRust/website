@@ -20,7 +20,7 @@ I always wondered what is the best method to sort waste as the public bins are s
 ## Architecture
 
 ![Diagram](images/diagram.svg)
-![Schematic](images/schematic.webp)
+![Schematic](images/schematic_kicad.svg)
 ![Servos](images/servos.webp)
 ![LCD](images/lcd.webp)
 ![Distance_Sensor](images/distance_sensor.webp)
