@@ -102,14 +102,14 @@ This breakout makes adding removable flash storage trivial via the RP2040’s SP
 
 ## Log
 - **Week 5 - 11 May**:  
-  WIP...
+  Documentation implemented
 - **Week 12 - 18 May**:  
   Added schematic and hardware photo of the project
 - **Week 19 - 25 May**:  
-  WIP...
+  Hardware presentation, final adjustments, working on the software part
 
 ## Schematics
-![Schematic](Schematic.webp)
+![Schematic](Schematic.svg)
 
 ## Photo
 ![Hardware Photo](hardware_photo.webp)
