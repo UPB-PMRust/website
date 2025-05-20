@@ -26,9 +26,9 @@ Motivația principală a proiectului a fost promovarea unui stil de viață săn
 ## Architecture
 
 ![Schema_Bloc](Schema_Bloc.webp)
-![Poza_Proiect_1](Poză_Proiect_1.webp)
-![Poza_Proiect_2](Poză_Proiect_2.webp)
-![Poza_Proiect_3](Poză_Proiect_3.webp)
+![Poza_Proiect_1](Poza_Proiect_1.webp)
+![Poza_Proiect_2](Poza_Proiect_2.webp)
+![Poza_Proiect_3](Poza_Proiect_3.webp)
 
 ## Log
 
