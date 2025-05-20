@@ -56,12 +56,12 @@ A servo motor opens a window when the Raspberry Pi Pico receives a signal from a
 
 Power is supplied through the Pico's USB interface or external 3.3V source, with onboard voltage regulation ensuring stable 3.3V operation for all components. The compact design uses a breadboard or soldered perfboard for reliable interconnections between the Pico, sensor, and indicator circuit.
 
-![alt text](architecture1.webp)
+![alt text](architecture.webp)
 
 ### Schematics
 KiCad Scheme
 
-![alt text](KiCad-1.webp)
+![alt text](Fan-rotation.svg)
 
 ### Bill of Materials
 | Component | Purpose | Price |  
