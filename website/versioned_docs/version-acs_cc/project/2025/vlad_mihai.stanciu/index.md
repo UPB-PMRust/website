@@ -110,7 +110,7 @@ TO DO
 
 ## Schematics
 
-![diagram](./photos/schematic.webp)
+![diagram](./photos/schematic.svg)
 
 ## Bill of Materials
 
