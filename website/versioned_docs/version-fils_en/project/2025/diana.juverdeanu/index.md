@@ -65,10 +65,12 @@ Power Supply - battery 5V
 ![Schematics](./assets/hardware1.webp)
 ![Schematics](./assets/hardware2.webp)
 
+
 ### Schematics
 
 ![Schematics](./assets/kicadscheme.svg)
 
+This is the kicad schematic.
 ### Bill of Materials
 
 | Device | Usage | Price |
