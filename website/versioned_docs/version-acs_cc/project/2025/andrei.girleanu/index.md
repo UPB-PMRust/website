@@ -56,7 +56,7 @@ Ball Caster: Used as a "front wheel".
 
 ### Schematics
 
-![Schematic diagram](schematics.webp)
+![Schematic diagram](schematics.svg)
 
 ### Bill of Materials
 
