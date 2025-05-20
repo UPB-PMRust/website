@@ -93,10 +93,10 @@ The **2x18650 battery pack** supplies power to the water pump, regulated to 5V b
 ### Imagine 1
 ![Hard 1](./hard1.webp)
 
-### Imagine 1
+### Imagine 2
 ![Hard 2](./hard2.webp)
 
-### Imagine 1
+### Imagine 3
 ![Hard 3](./hard3.webp)
 
 ---
@@ -110,7 +110,7 @@ The **2x18650 battery pack** supplies power to the water pump, regulated to 5V b
 ---
 
 ### Schematics
-![Schematics](./schematic.webp)
+![Schematics](./SmartPlantWateringSystem.svg)
 
 ---
 
