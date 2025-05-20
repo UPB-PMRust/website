@@ -82,7 +82,7 @@ How the Components Connect:
         If stepper motors are added later, the Raspberry Pi would control them to adjust the string tension automatically based on the detected frequency.
        
        
-        ![Architecture Diagram](image-resized.png)
+        ![Architecture Diagram](image.webp)
 
 
 ## Log
