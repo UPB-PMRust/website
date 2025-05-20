@@ -61,6 +61,7 @@ Current component lineup:
 ![block](./Pumps.webp)
 ![block](./Sensor.webp)
 ![block](./Stepdown.webp)
+![block](./Scheme.webp)
 ![block](./Schema_1.svg)
 ## Software
 
