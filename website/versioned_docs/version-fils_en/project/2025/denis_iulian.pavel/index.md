@@ -19,11 +19,13 @@ I chose this project because I decided to implement a multiple features and util
 ## Architecture 
 
 Raspberry Pi Pico 2W to:
-- rgb_tft screen 128x160
+- RGB_TFT LCD Screen 128x160
 - A, B, Special, Start buttons
-- Joystick
-- buzzer
-- sensors (to be determined)
+- Left, Right and Up, Down buttons
+- Buzzer
+- Temperature Sensor
+- Vibration Sensor
+- Touch Sensor
 
 ## Log
 
@@ -31,17 +33,25 @@ Raspberry Pi Pico 2W to:
 
 ### Week 5 - 11 May
 
+Established main board connections. Connected debugger, main board, a b c d buttons, screen and buzzer.
+Wrote code to initialize and test functionality for these.
+Wrote a script to display chroma keyed sprites on the screen so I can use background images and one to play sounds for the buzzer.
+
 ### Week 12 - 18 May
+
+Purchased sensors. Scrapped joystick and replaced with buttons.
+Established connections between the rest of the components.
+![Main Board with full hardware](boardhardware1.webp)
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-Raspberry Pi Pico 2W, Buttons, Joystick, Screen (rgb_tft 128x160), sensors
+Raspberry Pi Pico 2W, Buttons, Screen (rgb_tft 128x160), Temperature Sensor, Touch Sensor, Vibration Sensor.
 
 ### Schematics
 
-No schematic yet
+![Architecture diagram](picogame_therpg.svg)
 
 ### Bill of Materials
 
@@ -52,7 +62,10 @@ No schematic yet
 |Electronic Components Kit|Basic Components|[15.63 RON (SALE)](https://www.aliexpress.com/item/1005007636611675.html?spm=a2g0o.order_list.order_list_main.5.3bab1802f07p9F)|
 |1.8-inch SPI TFT Module LCD Display|Screen|[15.45 RON (SALE)](https://www.aliexpress.com/item/1005007174990368.html?spm=a2g0o.order_list.order_list_main.10.3bab1802f07p9F)|
 |Breadboard HQ (830 Puncte)|Extra Breadboard|9.98 RON (DELISTED)|
-|Modul Joystick Biaxial Negru cu 5 pini|Navigation|[5.35 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/742-modul-joystick-ps2-biaxial-negru-cu-5-pini.html?search_query=joystick&results=40)|
+|Vibration Sensor SW-18020P|Earthquake attack|[1.29 RON](https://www.optimusdigital.ro/ro/senzori-de-vibraii/13038-senzor-de-vibratii-sw-18020p.html)|
+|[LM35D Analog Temperature Sensor](https://www.optimusdigital.ro/en/index.php?controller=attachment&id_attachment=1448)|Randomization elements|[4.99 RON](https://www.optimusdigital.ro/en/sensors/1469-lm35d-analog-temperature-sensor-to-92.html)|
+|Touch Sensor LM393|Touch Attack|[4.99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/12986-senzor-de-atingere-lm393.html)|
+|Total Cost|Full price for the hardware|91.99 RON|
 
 ## Software
 
