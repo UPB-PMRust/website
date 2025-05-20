@@ -72,7 +72,7 @@ Detail in a few words the hardware used.
 
 ### Schematics
 
-![Hardware milestone](Schema_kicad.webp)
+![Hardware milestone](schema_pm.svg)
 ![Hardware milestone](poza1.webp)
 ![Hardware milestone](poza2.webp)
 
