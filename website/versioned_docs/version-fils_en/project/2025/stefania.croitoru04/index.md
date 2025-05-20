@@ -29,7 +29,7 @@ Display Interface: \
 A laptop connects to the Raspberry Pi Pico 2W via Wi-Fi, it displays motion and sound activity data, alert status, and allows basic system monitoring and control.
 
 ![Architecture](./archi.webp)
-![Architecture Scheme](./architecturechema.svg)
+![Architecture Scheme](./architecturechema.webp)
 
 ## Log
 
