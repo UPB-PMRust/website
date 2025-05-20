@@ -59,7 +59,7 @@ Consists of RP Pico 2W (2x), LCD TFT 2.2" module, buttons and resistors and 2 br
 
 ### Schematics
 Here's a KiCad schematic for the current version of the console:
-![KiCad schematic](kicad.webp)
+![KiCad schematic](kicad.svg)
 
 ### Bill of Materials
 
