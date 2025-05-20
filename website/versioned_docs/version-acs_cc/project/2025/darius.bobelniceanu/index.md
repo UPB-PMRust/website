@@ -60,12 +60,17 @@ The architecture of DoubleUp! is centered around the following key components:
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 5 - 11  May
+I have documented each hardware component and carefully tried to place them correctly, linking them to my Raspberry Pi Pico 2W. The setup included connecting the display, buttons, LEDs, resistors, speaker, DFPlayer Mini, and level converter. This phase required close attention to details and deeply tested my creativity.
 
+### Week 12 - 18  May
+I tested each individual component to ensure they worked with the correct parameters and set up the proper environment for software implementation. The main challenge was rendering images and text on the display, which required significant debugging of the SPI communication protocol. Additionally, fixing the speaker system proved challenging due to voltage compatibility issues between the Pico and DFPlayer Mini, which was resolved using the level converter.
 
-### Week  -  May
-
-
+![diagram](Hardware1_resized.webp)
+![diagram](Hardware2_resized.webp)
+![diagram](Hardware3_resized.webp)
+![diagram](Hardware4_resized.webp)
+![diagram](Hardware5_resized.webp)
 ### Week  -  May
  
 
@@ -122,7 +127,6 @@ The architecture of DoubleUp! is centered around the following key components:
 - **Buttons** provide manual input.
 - **DFPlayer Mini** plays authentic sounds.
 - **Level Converter** ensures safe voltage communication.
-
 
 
 
