@@ -96,7 +96,7 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 
 ### Schematics
 
-![Schematicul sistemului](images/sch.svg)
+![Schematicul sistemului](images/schemat.svg)
 
 
 ### Bill of materials
