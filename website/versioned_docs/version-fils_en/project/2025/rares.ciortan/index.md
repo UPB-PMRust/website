@@ -36,11 +36,9 @@ wip
 The hardware consists of a raspberry pi pico 2W microcontroller as the core unit, around 3 displays used for displaying the cards, balance etc. , buttons for checking, folding, betting.
 
 ### Schematics
-![Kicad](<kicad project.svg>)
-
-![Hardware 1](<Poza Bomba 1.webp>)
-
-![Hardware 2](<Poza Bomba 2.webp>)
+![Kicad](kicad_project.svg)
+![Hardware1](Poza_Bomba_1.webp)
+![Hardware2](Poza_Bomba_2.webp)
 
 ## Bill of materials
 | Device                                                  | Usage                        | Price                           |
