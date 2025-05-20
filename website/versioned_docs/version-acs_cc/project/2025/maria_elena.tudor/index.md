@@ -54,8 +54,8 @@ I managed basic reading from the SD card and sending audio output to a speaker, 
 The entire system is built around a Raspberry Pi Pico 2 W running embedded Rust, which reads .WAV files off a microSD card, drives a compact SSD1306 OLED screen for track info, and monitors both tactile buttons and a coin‐validator sensor for user input. Audio is streamed to an amplifier and speaker, while everything is powered from a laptop and prototyped on a breadboard for easy iteration.
 Youtube link for the hardware milestone: https://www.youtube.com/shorts/a_Oh2vH7xY4
 
-![Hardware Milestone](hw1.webp)
-![Hardware Milestone](hw2.webp)
+![Hardware Milestone](pic1.webp)
+![Hardware Milestone](pic2.webp)
 
 ### Schematics
 
