@@ -80,7 +80,7 @@ TO DO
 
 ## Schematics
 
-![diagram](KiCad.webp)
+![diagram](KiCad.svg)
 
 ## Photos and videos
 
