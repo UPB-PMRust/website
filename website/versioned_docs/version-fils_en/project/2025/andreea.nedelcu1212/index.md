@@ -76,7 +76,6 @@ The main challenge regarding hardware was having components that operate on 5V, 
 
 ![Hardware wide shot](wide.webp)
 ![Breadboard close-up](breadboard.webp)
-*another wire added for common ground since pictures were taken
 
 ### Schematics
 
