@@ -38,7 +38,7 @@ Started working on wiring and power supply for the full system.
 
 ## Hardware
 
-![Hardware photo](./hardware_ready.webp)
+![Hardware photo](./photo_hardware.webp)
 
 - Raspberry Pi Pico 2W: the main microcontroller
 - 4x4 Matrix Keypad: used to securely enter the PIN code to unlock the safe
