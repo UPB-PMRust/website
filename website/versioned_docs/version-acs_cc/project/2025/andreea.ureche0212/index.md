@@ -67,9 +67,8 @@ A 1602 LCD is also included in the system to display useful information when smo
 <!-- Place your KiCAD schematics here. -->
 ![Schematics](./SchematicPM.svg)
 
-![Image1](./pozasch2.webp)
-![Image3](./pozasch.webp)
-![Image2](./pozasch3.webp)
+![Image1](./poza1.webp)
+![Image2](./poza3.webp)
 #### Bill Of Materials
 
 
