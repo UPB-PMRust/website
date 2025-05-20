@@ -159,7 +159,7 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
 
  ![Tinkercad schematics](Design.webp)
 
- ![Kicad schematics](Screenshot.webp)
+ ![Kicad schematics](kicad2.svg)
 
  Here are some pictures of the project in current state. I am going to use a 3D printer to make it a case for the design part and also a peg clip for the stepper motor.
  ![](image1.webp)
