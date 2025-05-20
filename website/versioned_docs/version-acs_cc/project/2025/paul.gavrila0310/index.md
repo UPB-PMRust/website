@@ -50,7 +50,7 @@ I soldered the pins for the sensor and for the LCD screen, built the KiCad schem
 
 ### Schematics
 
-![Local Image](./kicad.webp)
+![Local Image](./kicad.svg)
 
 ### Bill of Materials
 
