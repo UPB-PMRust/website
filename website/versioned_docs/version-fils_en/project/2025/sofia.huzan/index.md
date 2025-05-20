@@ -10,11 +10,12 @@ A robotic message and small item delivery system
 
 ## Description
 
-PicoDeliver is a robotic system that delivers messages and small items within a local area. Messages can be entered  either through the device's display interface or via a web interface. The robot wanders around. When the recipient, and when they signal their presence through the website, the robot stops to deliver its payload.
+PicoDeliver is a robotic system that delivers messages and small items within a local area. Messages can be entered either through the device's display interface or via a web interface. The robot wanders around. When the recipient, and when they signal their presence through the website, the robot stops to deliver its payload.
+
 
 ## Motivation
 
-I built this because robots are cool. There’s something satisfying about making a machine move, react to sensors, and  follow commands. It’s like bringing code to life, and that never gets old.
+I built this because robots are cool. There’s something satisfying about making a machine move, react to sensors, and follow commands. It’s like bringing code to life, and that never gets old.
 
 But beyond just fun, I wanted something more personal than another phone notification. Why text my roommate "Where’s the charger?" when a little robot could deliver the message instead? It’s playful, practical, and a great way to learn.
 
