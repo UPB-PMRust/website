@@ -43,7 +43,7 @@ I assembled the hardware components and wrote a demo code to make sure everythin
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/JmNvgwWPilE)](https://youtu.be/JmNvgwWPilE)
 
-![](p1.jpg)              |  ![](p2.jpg)
+![](p1.webp)              |  ![](p2.webp)
 :-------------------------:|:-------------------------:
 
 ### Schematics
