@@ -78,8 +78,8 @@ Commercial GPS trackers are expensive and full of subscriptions. This DIY altern
 
 ### Schematics
 
-![kicad](./kicad_v1.webp)
-![kicad](./kicad_v2.webp)
+![kicad](./schita1.svg)
+
 
 
 
