@@ -132,10 +132,3 @@ The format is
 | [embassy-time](https://docs.embassy.dev/embassy-time/) | Time management | Handling delays and timers in an async context |
 | [embassy-executor](https://docs.embassy.dev/embassy-executor/) | Async executor | Running async tasks on the microcontroller |
 
-## Links
-
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
