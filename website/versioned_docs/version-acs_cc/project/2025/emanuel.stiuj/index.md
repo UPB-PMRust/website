@@ -54,7 +54,7 @@ The system is built around a central microcontroller, the **Raspberry Pi Pico 2W
 - Created a minimalist Rust app on Ubuntu to send commands via Bluetooth.
 - Implemented and successfully tested fundamental movement functions: forward, backward, left, and right — validating motor control logic and responsiveness.
 
-![Image1](car_image1.webp)  
+![Image1](car_image1.webp)
 
 ![Image2](car_image2.webp)
 
@@ -73,7 +73,7 @@ The system is built around a central microcontroller, the **Raspberry Pi Pico 2W
 
 ### Schematics
 
-![Schematic](schematic.webp)
+![Schematic](schematic.svg)
 
 ### Bill of Materials
 
