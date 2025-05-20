@@ -77,7 +77,7 @@ The hardware for the project is built around the Raspberry Pi Pico 2W microcontr
 
 ### Schematics
 
-![](kicad_scheme.webp)
+![](kicad.svg)
 
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
