@@ -62,7 +62,7 @@ I have finished the hardware section, a few more issues are on the clarity of th
 
 ### Schematics
 
-![Schematic](./schematic.webp)
+![Schematic](./schematic.svg)
 
 ### Bill of Materials
 
