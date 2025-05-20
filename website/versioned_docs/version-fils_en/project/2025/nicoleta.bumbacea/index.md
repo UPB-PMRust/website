@@ -38,9 +38,9 @@ Image Handler: Receives image data over UART or forwards it to a connected devic
 
 
 ### Week 5 - 11 May
-
+This week, I completed the hardware setup for my smart door lock system. All components — including the keypad, LEDs, buzzer, solenoid, and ESP32-CAM module — have been connected and tested for basic functionality.
 ### Week 12 - 18 May
-
+I transitioned into the software development stage. I initialized the Rust project using the Embassy framework and began writing basic control logic to interact with the hardware, starting with GPIO testing for LEDs and preparing the structure for handling keypad input. This lays the groundwork for implementing core features like code verification and door control in the coming week.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -61,11 +61,13 @@ Solenoid Lock - Mechanically controls the locking/unlocking of the door.
 
 Camera Module - Captures an image when an incorrect code is entered.
 
-Power Supply (USB or 5V external) -Powers the Raspberry Pi Pico and all connected peripherals.
+Power Supply  -Powers the Raspberry Pi Pico and all connected peripherals.
+
+![Hardware imagine](imghardware.webp)
 
 ### Schematics
 
-![Kicad_Schematic](kicadschematic.webp)
+![Kicad_Schematic](kicad_schematic.svg)
 
 
 ### Bill of Materials
@@ -79,6 +81,7 @@ Power Supply (USB or 5V external) -Powers the Raspberry Pi Pico and all connecte
 |Solenoid - 5v|Locks/unlocks the door|[37 RON](https://www.robofun.ro/mecanice/solenoid-5v-small.html)|
 |Relay module|Controls the solenoid safely from Pico|[5 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-module-cu-releu/13084-modul-releu-cu-un-canal-comandat-cu-5-v.html?search_query=relay&results=24)|
 |Breadboard kit|For circuit prototyping (includes breadboard, wires, LEDs, resistors,etc.)|[70 RON](https://www.emag.ro/set-componente-electronice-led-uri-breadboard-830-puncte-componente-pentru-incepatori-compatibil-arduino-si-raspberry-pi-ouylaf-308-10149-409/pd/DH8RVLYBM/)|
+|Suport carcasa baterie 9V + mufa|powers the components|[3.18 RON](https://ardushop.ro/ro/carcase-i-suporturi/1060-suport-carcasa-baterie-9v-mufa-6427854014559.html)|
 
 ## Software
 
