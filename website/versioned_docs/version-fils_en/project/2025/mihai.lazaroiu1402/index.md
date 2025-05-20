@@ -147,7 +147,7 @@ Power setup:
 
 The connections of the components described previously can be seen on the following electric diagram.
 
-![schematics](pictures/hardware_schematic.webp)
+![schematics](pictures/hardware_schematic.svg)
 
 ---
 
