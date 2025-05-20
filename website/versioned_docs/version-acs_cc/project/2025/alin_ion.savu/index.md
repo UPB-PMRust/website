@@ -48,7 +48,7 @@ The project has the following architecture:
 
 ## HARDWARE
 
-![alt text](<Proiect - Pet Feeder.svg>)
+![alt text](Pet-AutoFeeder.svg)
 ![alt text](poza1.webp)
 ![alt text](poza2.webp)
 ![alt text](poza3.webp)
