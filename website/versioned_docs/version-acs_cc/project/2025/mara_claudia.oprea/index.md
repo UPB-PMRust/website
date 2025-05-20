@@ -28,10 +28,10 @@ Playing piano is one of my hobbies and I always liked the idea of being able to 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-Ordered the remaining hardware components required for the project.
+This week, I finalized the list of hardware components needed for my project and placed the last order. I made sure all components (including the MPR121 sensor, LCD display, buttons and LED) are compatible with the Raspberry Pi Pico and meet the project's requirements.
 
 ### Week 12 - 18 May
-I have all the hardware components and the project is assembled.
+All the hardware components have arrived. I have soldered header pins to all the components that required it, including the Raspberry Pi Pico I use for debugging. I completed the physical assembly on a breadboard, connecting the MPR121 capacitive touch sensor, LCD screen, buttons, and LED to the Raspberry Pi Pico.
 
 
 ### Week 19 - 25 May
