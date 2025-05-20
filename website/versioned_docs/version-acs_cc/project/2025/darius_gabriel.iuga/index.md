@@ -21,7 +21,7 @@ I chose to implement Minesweeper over other games because it seemed to offer an 
 
 ## Architecture
 
-![drawio_diagram](minesweeper_pico_diagram.svg)
+![drawio_diagram](Pico_Minesweeper.svg)
 
 ## Log
 
@@ -55,7 +55,7 @@ Here are some pics to see how the project is assembled.
 
 ### Schematics
 
-![KiCad_Schematic](kicad_schematic.svg)
+![KiCad_Schematic](KiCad_project.svg)
 
 ### Bill of Materials
 
