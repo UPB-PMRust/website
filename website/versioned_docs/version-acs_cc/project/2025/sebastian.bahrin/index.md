@@ -37,7 +37,7 @@ Beyond individual consumers, this technology has significant implications for in
 
 ### Connection Diagram:
 ## System Diagram
-![Diagrama](./diagrama.webp) 
+![Diagrama](./Diagrama.svg) 
 
 ## **Hardware**
 
