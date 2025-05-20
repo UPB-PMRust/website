@@ -79,7 +79,7 @@ First Layer
 
 Second Layer
 
-![Second Layer](Poaz3.webp)
+![Second Layer](Poza3.webp)
 
 Third Layer
 
