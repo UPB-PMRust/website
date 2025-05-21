@@ -4,7 +4,6 @@ A remote controlled car designed to drive around for entertainment using a physi
 :::info 
 
 **Author**: Gheorghe Alin-Ioan
-
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-blue-v27
 
 :::
