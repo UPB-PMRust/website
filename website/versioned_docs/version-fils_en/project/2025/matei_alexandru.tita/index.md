@@ -1,7 +1,6 @@
 # 🔐 Smart Door Lock with Face Recognition
 A secure, AI-powered door lock system using ESP32-CAM and Raspberry Pi Pico 2.
 
-
 :::info
 
 **Author**: Matei-Alexandru Tiță \
