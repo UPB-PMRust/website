@@ -61,7 +61,7 @@ This setup ensures a compact, low-cost prototype suitable for quick testing and 
 
 ### Schematics
 
-![Schema Kicad](poza_schema%20(1).webp)
+![Schema Kicad](schema_kicad.svg)
 
 ### Bill of Materials
 
