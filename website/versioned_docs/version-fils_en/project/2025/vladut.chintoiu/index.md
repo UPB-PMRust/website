@@ -27,7 +27,6 @@ Objects are central to our existence, from housing and food to tools and enterta
 Main components:
  - STM32F767ZI board - handles the timing and processing of images during the 3D scanning process
  - ESP32-CAM module - captures grayscale images of the object being scanned
- - ESP32 - transmits the captured data via Wi-Fi from the STM32 to the computer for further processing
 
 Secondary components
  - Servomotor - rotates the object at precise angles to capture images from multiple perspectives.
@@ -35,9 +34,8 @@ Secondary components
  - Lights - provides optimal illumination to enhance the contrast between the object and its background
 
 Connections:
- - ESP32-CAM &lt;-&gt; STM32 : UART
- - STM32 &lt;-&gt; ESP32 : SPI
- - ESP32 &lt;-&gt; PC : Wi-Fi
+ - ESP32-CAM &lt;-&gt; STM32 : SPI
+ - STM32 &lt;-&gt; PC : UART
  - STM32 &lt;-&gt; Secondary components : PWM/Digital
 
 ![Architecture diagram](diagram.svg)
@@ -58,6 +56,11 @@ Tested functionality of ESP32-CAM module and different image formats.
 
 ## Hardware
 
+Hardware Setup
+
+![Hardware Setup](setup_pic.webp)
+
+
 - **STM32F767ZI Board**: Acts as the central controller, responsible for timing the capture of images and processing them. It coordinates the system and sends commands to other components.
 - **ESP32-CAM Module**: A camera module used to capture grayscale images of the object. It is connected to the STM for image acquisition.
 - **ESP32**: Used to wirelessly transmit the captured image data from the STM to a PC for further processing and 3D reconstruction.
@@ -67,8 +70,8 @@ Tested functionality of ESP32-CAM module and different image formats.
 
 ### Schematics
 
-//TODO
-Place your KiCAD schematics here.
+KiCad Schematic
+![KiCad Scheme](KiCad_scheme.svg)
 
 ### Bill of Materials
 
