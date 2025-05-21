@@ -77,7 +77,7 @@ This is the diagram that illustrates the components and their connections.
 
 ![Hardware](hardware.webp)
 
-The Accessible Navigation Assistant uses a Raspberry Pi Pico W as its core microcontroller, which connects to ultrasonic sensors for obstacle detection and vibration motors for haptic feedback. The system is designed to be compact, lightweight, and wearable, with a focus on power efficiency for prolonged use.
+The Accessible Navigation Assistant uses a Raspberry Pi Pico W as its core microcontroller, which connects to ultrasonic sensors for obstacle detection and vibration motors for haptic feedback.
 
 ### Schematics
 
