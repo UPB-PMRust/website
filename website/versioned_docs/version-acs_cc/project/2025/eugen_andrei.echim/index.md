@@ -19,13 +19,12 @@ Laser tag and arcade shooting games are widely popular and engaging. This projec
 
 ## Architecture
 
--   Raspberry Pi Pico 2W x2 - One reads sensor input, controls servo motors, and handles game logic and the other is used for debugging.
--   Photoresistors (LDRs) - Detect laser light intensity. Connected via voltage divider circuits to ADC pins on the Pico.
--   Push Buttons - Used for game control (reset, start game, type name, stop game).
--   Stepper Motors - Physically raise and lower targets. Driven using motor driver modules connected to GPIO pins.
--   Green LED - Flashes when target is hit. Connected to GPIO pin with a current-limiting resistor.
--   LCD Display - Shows current score and possibly additional messages. Connected via I2C interface to Pico 2W
--   Buttons - Used to write score name on LCD. Connected to digital input pins with pull-down or pull-up resistors
+-   **Raspberry Pi Pico W x2** – One handles sensor input, servo control, and game logic; the other is used for debugging and serial logging.
+-   **Photoresistors (LDRs) x3** – Detect laser light intensity. Connected via voltage divider circuits to ADC pins on the Pico.
+-   **Servomotors x3** – Physically raise and lower the game targets.
+-   **Green LED** – Flashes when a target is hit. Connected to a GPIO pin with a current-limiting resistor.
+-   **LCD Display with button shield** – Displays the game menu, current score, and leaderboard. The buttons allow user navigation through the interface.
+-   **EEPROM Memory** – Stores the top 5 leaderboard scores persistently, even after power loss.
 
 ![diagram](Diagrama.webp)
 
@@ -33,7 +32,12 @@ Laser tag and arcade shooting games are widely popular and engaging. This projec
 
 ### Week 5 - 11 May
 
+-   Created the initial documentation.
+-   Researched suitable hardware components for the project and placed the necessary orders.
+
 ### Week 12 - 18 May
+
+-   Assembled the hardware setup and started writing the initial part of the code.
 
 ### Week 19 - 25 May
 
@@ -41,62 +45,79 @@ Laser tag and arcade shooting games are widely popular and engaging. This projec
 
 **Raspberry Pi Pico 2W**
 
--   **Purpose:** Controls all components
--   **Function:** Coordinates operations of sensors, motors, and LCD display
+-   **Purpose:** Main control units
+-   **Function:** One Pico manages all core components: sensors, servomotors, LCD display, EEPROM memory, and the LED. The second is used for debugging and system monitoring.
 
 **Photoresistors (LDRs)**
 
--   **Purpose:** Detect laser hits
--   **Function:** Monitor light intensity
+-   **Purpose:** Laser hit detection
+-   **Function:** Measure ambient light intensity to detect when a laser beam hits the target.
 
-**Stepper Motors**
+**Servomotors**
 
--   **Purpose:** Raise/lower targets
--   **Function:** Trigger movement upon hit detection
+-   **Purpose:** Target movement
+-   **Function:** Raise and lower physical targets based on game logic.
 
-**Push Buttons**
+**Push Buttons (on LCD shield)**
 
--   **Purpose:** User interface
--   **Function:** Write score name, reset game
+-   **Purpose:** User interaction
+-   **Function:** Allow the player to navigate menus, input initials for scores, and reset the game.
 
 **Green LED**
 
--   **Purpose:** Visual hit feedback
--   **Function:** Blink on hit detection
+-   **Purpose:** Visual feedback
+-   **Function:** Flashes to indicate a successful hit.
 
 **LCD Display**
 
--   **Purpose:** Show score and interface
--   **Function:** Real-time game info
+-   **Purpose:** Game interface
+-   **Function:** Displays game logic, score, and leaderboard. Buttons provide menu navigation.
+
+**EEPROM Memory**
+
+-   **Purpose:** Persistent score storage
+-   **Function:** Saves the top 5 high scores along with player initials, ensuring data is retained across power cycles.
 
 ### Schematics
 
-![Schematic](Schema_Kicad.webp)
+![Schematic](Schema_Kicad.svg)
+
+### Photos of the device
+
+![Photo1](Photo1.webp)
+![Photo2](Photo2.webp)
 
 ### Bill of Materials
 
-| Device               | Usage                 | Price |
-| -------------------- | --------------------- | ----- |
-| Raspberry Pi Pico 2W | Main microcontrollers | 39.66 |
-| Stepper Motors       | Target actuation      | 16.97 |
-| LDR                  | Detects laser light   | 9.60  |
-| LCD Display          | LCD for score         | 23.99 |
-| Resistor 220 ohm     | For LED               | 0.07  |
-| Push Buttons         | For LCD navigation    | 0.37  |
-| Breadboard           | Circuit prototyping   | 9.98  |
-| Jumper wires         | Circuit connections   | 0.37  |
-| LED Green            | Visual feedback       | 0.39  |
-| Cardboard/Wood       | Target construction   | -     |
+| Device                                            | Usage                                       | Price |
+| ------------------------------------------------- | ------------------------------------------- | ----- |
+| [Raspberry Pi Pico 2W](https://shorturl.at/lTGLQ) | Main microcontrollers for logic and control | 39.66 |
+| [Servomotors](https://shorturl.at/g2V5g)          | Physically raise and lower the targets      | 11.99 |
+| [LDR](https://shorturl.at/sYUWR)                  | Detect laser light intensity on targets     | 3.20  |
+| [LCD Display](https://shorturl.at/TeJtM)          | Display game logic, score, and menu         | 21.69 |
+| [EEPROM Memory](https://shorturl.at/uKPkF)        | Store top 5 scores with player initials     | 8.99  |
+| [Resistors](https://tinyurl.com/37tb2s9j)         | Used in voltage dividers and LED circuit    | 14.91 |
+| [Breadboard](https://tinyurl.com/ec36tzht)        | Prototyping and testing the circuit         | 6.38  |
+| [Wires](https://tinyurl.com/3z9e5ndt)             | Connect components on breadboard            | 5.99  |
+| [LED Green](https://tinyurl.com/y2wc5zda)         | Blinks on target hit as visual feedback     | 0.39  |
 
 ## Software
 
-| Library                                                                  | Description                             | Usage                                                 |
-| ------------------------------------------------------------------------ | --------------------------------------- | ----------------------------------------------------- |
-| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2040 Peripherals                      | Used for accessing the peripherals with async support |
-| [rp2040-hal](https://github.com/rp-rs/rp-hal)                            | Raspberry Pi Pico HAL                   | Low-level peripheral access                           |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal)            | Abstraction traits for embedded devices | Used for writing generic driver code                  |
-| [lcd1602](https://crates.io/crates/lcd1602-rs)                           | LCD Display via I2C                     | To display the score and messages on the LCD          |
-| [stepper](https://crates.io/crates/stepper)                              | Stepper motor control                   | Used to raise and lower targets                       |
+| Library                                                                  | Description                                     | Usage                                                    |
+| ------------------------------------------------------------------------ | ----------------------------------------------- | -------------------------------------------------------- |
+| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Async runtime and drivers for RP2040            | Used to interface with RP2040 peripherals asynchronously |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal)            | Traits for embedded hardware abstraction        | Used to write platform-independent drivers               |
+| [embedded-executor](https://github.com/embassy-rs/embassy)               | Async task executor for embedded systems        | Provides async task scheduling in `no_std` environments  |
+| [embedded-time](https://github.com/embedded-time/embedded-time)          | Timekeeping and duration types for embedded use | Used for expressing delays and time durations            |
+| [fixed](https://github.com/aldanor/fixed)                                | Fixed point arithmetic support                  | Used for precise fractional calculations (if needed)     |
+| [hd44780-driver](https://crates.io/crates/hd44780-driver)                | Driver for HD44780 compatible LCDs              | Used to display scores and messages on the LCD           |
+| [eeprom24x](https://crates.io/crates/eeprom24x)                          | Driver for 24x-series I2C EEPROM chips          | Used to store and read leaderboard scores persistently   |
+| [defmt](https://crates.io/crates/defmt)                                  | Logging framework optimized for embedded        | Used for efficient debug logging                         |
+| [defmt-rtt](https://crates.io/crates/defmt-rtt)                          | RTT (Real-Time Transfer) transport for defmt    | Used to output defmt logs via RTT                        |
+| [panic-probe](https://crates.io/crates/panic-probe)                      | Panic handler for embedded with defmt support   | Used to display panic messages during development        |
+| [itoa](https://crates.io/crates/itoa)                                    | Fast integer to string conversion               | Used to convert integers to strings for display          |
+| [core::fmt](https://doc.rust-lang.org/core/fmt/index.html)               | Rust core formatting module                     | Used to format text for display (e.g. score lines)       |
+| [heapless](https://crates.io/crates/heapless)                            | Data structures without dynamic allocation      | Used for string buffers and fixed-size arrays            |
 
 ## Links
 
