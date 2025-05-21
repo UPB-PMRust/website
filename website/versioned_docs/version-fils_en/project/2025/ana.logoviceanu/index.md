@@ -1,9 +1,8 @@
-# Project Name
-Barrier Access System
+# Barrier Access System
 
-:::info 
+:::A simple barrier access system that lifts the barrier when a registered license plate is recognized.
 
-**Author**: Logoviceanu Ana Lorena
+**Author**: Logoviceanu Ana Lorena \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-Ana0420
 
 :::
