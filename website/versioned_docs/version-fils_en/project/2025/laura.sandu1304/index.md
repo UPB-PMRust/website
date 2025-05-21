@@ -56,7 +56,7 @@ The pins of the keyboard module have a very interesting configuration. There are
 ![alt text](./keyboardPicture.webp)
 
 ### Schematics
-![alt text](./schemaFINALAKicad.webp)
+![alt text](./kicad_finalFINAL.svg)
 
 ### Bill of Materials
 
