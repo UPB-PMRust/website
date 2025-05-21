@@ -11,7 +11,6 @@ Physical chess meets electronics: a sensor-equipped board that wirelessly connec
 
 
 ## Description
-
 Picture this: It's Saturday night. You've returned from university, exhausted your gaming options, and suddenly spot your old chess board gathering dust in the corner. Nostalgia hits and you feel like a game of over the board chess is exactly what you need. But there's a problem—who's going to play with you? Enter the Smart Chess project. No more desperately calling friends who can barely distinguish a rook from a pawn, or interrupting your father's weekend relaxation time. And let's be serious, no online chess platform could ever beat the tactile feeling of moving chess pieces across the board. Now you are going to face much better oponents and take a taste of the real deal!
 
 ## Motivation
@@ -24,7 +23,7 @@ The core of the system revolves around the detection of chess piece positions th
 
 This project diagram illustrates the connectivity of the system utilizing a Arduino Nano ESP32 as the main controller. The Arduino Nano ESP32 is connected to various components including four multiplexers which are connected to sixty four hall effect sensors themselves, as well as an LCD 16x2 Character Display with an I2C controller.
 
-![Architecture2](Architecture2.webp)
+![Architecture](Architecture.svg)
 
 ___
 
@@ -80,9 +79,37 @@ ___
 
 Once the project had been approved I had began researching the components that I needed as well as building the framework of the chess board. Since then I have assembled a debug board with all the necessary components in order to test the behavior of the sensors and I have also started builiding the data transmission pipeline with the use of Bluetooth.
 
+
 ![setup2](setup2.webp)
 
+**Status of the chess board during first week**:
+![board1](board1.webp)
+![board2](board2.webp)
+
+**Debug board** \
+![setup1](setup1.webp)
+![multiplexers](multiplexers.webp)
+
 ### Week 7 - 19 May
+
+After outlining a roadmap and documenting the project's architecture, I began assembling the hardware components.
+
+The first step involved modifying each chess piece to accommodate a magnet. Using a drill, I created cavities inside each piece and securely glued a neodymium magnet in place using silicone rubber. This allows the Hall effect sensors to detect the presence of each piece.
+
+![piecesandboard](piecesandboard.webp)
+
+One of the most challenging tasks was soldering the connections for the 64 Hall effect sensors. Each sensor has three pins (VCC, GND, and output), which adds up to a total of 192 individual connections. This required careful planning and patience to ensure all joints were clean and reliable.
+
+Additionally, since the wires coming from each output pin of the Hall sensors had to be inserted into breadboards but didn’t have headers attached, I had to solder pins onto each individual output wire.
+
+![multiplexersupdate](multiplexerupdate.webp)
+
+Besides that, I had to make sure that the "wire management" is well done so that I won't have to deal with a nightmare of wires behind the scenes. So I labeled each and every single sensor as well as its output pin wire according to their position on the chess board.
+
+![boardupdate1](boardupdate1.webp)
+![boardupdate2](boardupdate2.webp)
+
+A wooden plate was also added to the side, in order to accommodate the two breadboards and two small wooden side walls, which will later be used to support a protective plexiglass cover. This enclosure is intended to shield the breadboards and components from accidental mechanical damage
 
 ### Week 20 - 26 May
 
@@ -100,22 +127,11 @@ Chess Pieces: Standard pieces fitted with neodymium magnets
 
 1602 LCD with I2C Controller: Displays chess engine moves and game information
 
-Here are some pictures of the project:\
-**Please do note that the images are subject to change as this is just a debug setup.**
-
-**Chess board**:\
-![board1](board1.webp)
-![board2](board2.webp)
-
-**Hardware**:\
-![setup1](setup1.webp)
-![multiplexers](multiplexers.webp)
-
 ### Schematics
 
 Here is presented the KiCad schematic:
 
-![KiCad](KiCad.webp)
+![KiCad](Kicad.svg)
 
 For ease of understanding, only one Hall effect sensor is represented as to not clutter the schematic.
 
