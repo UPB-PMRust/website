@@ -71,8 +71,11 @@ At the same time, this project gave me the opportunity to deepen my skills in **
 ## Log
 
 ### Week 5 - 11 May
+I  bought the necessary components and started assembling them on the breadboard, except for the LCD screen, which still needs the pins soldered in the next lab session. I also configured a Raspberry Pi Pico 2W to be used as a debugger. I tested with a simple code to check if the LEDs,the pulse sensor and the button work correctly and are connected properly.
+![](week5.webp)
 
 ### Week 12 - 18 May
+Connected all hardware components and started initial code development
 
 
 ### Week 19 - 25 May
@@ -85,7 +88,7 @@ The device is built around the Raspberry Pi Pico 2W microcontroller, which serve
 A tactile push button allows the user to manually start each detection session. All components are connected using a breadboard, jumper wires, and pin headers for prototyping. Basic electronic components like resistors are used for signal conditioning and LED current limiting.
 
 ### Schematics
-
+![](scheme.svg)
 
 
 ### Bill of Materials
