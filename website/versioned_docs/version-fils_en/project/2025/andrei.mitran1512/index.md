@@ -48,6 +48,7 @@ Traditional manual access control systems are slow and inefficient. By automatin
 
 ### Week 19 - 25 May
 - Connected Camera to Pico.
+Image below:
 (imnvhmnvmage.webp)
 
 ## Hardware
