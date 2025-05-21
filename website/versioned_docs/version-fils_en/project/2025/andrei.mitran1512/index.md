@@ -48,7 +48,7 @@ Traditional manual access control systems are slow and inefficient. By automatin
 
 ### Week 19 - 25 May
 - Connected Camera to Pico.
-(Hardware2.svg)
+(imnvhmnvmage.webp)
 
 ## Hardware
 
@@ -56,7 +56,7 @@ The **Raspberry Pi Pico W 2** serves as the central microcontroller for the barr
 
 *A photo of the finished setup is provided below:*
 
-(Hardware1.svg)
+(imhgghmhage.webp)
 
 ## Use of components in short:
 
