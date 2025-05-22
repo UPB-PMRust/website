@@ -7,7 +7,6 @@ Plant soil moisture and surrounding's humidity and temperature monitoring system
 ## Info
 
 **Author:** Aleksandar Petreski    
-**Group:** Erasmus    
 **GitHub Project Link:** [GitHub Repository](https://github.com/aleksandarce/micro_rust_code)
 
 ---
@@ -31,19 +30,19 @@ The architecture consists of the following main components:
 * **Air Sensor Module (DHT22):** Measures ambient temperature and humidity.
 * **Display Module:** Manages output to the bicolor LED screen (red / green).
 * **Alert Module:** Triggers a buzzer when humidity drops below the threshold.
-* **Controller Module:** Central logic running on the Raspberry Pi Pico W to coordinate tasks.
+* **Controller Module:** Central logic running on the Raspberry Pi Pico W to coordinate tasks.   
 
-### Diagram
-
-![Diagram](diagram_final.png)
+![Diagram](diagram_res.svg)
 
 ---
 
 ## Log
 
+**Initially:** Brainstormed some project ideas and decided on the final one.   
 **Week 28  April - 4 May:** Defined the project scope and wrote the initial documentation.   
 **Week 12 - 18 May:** Ordered the components.   
-**Week 19 - 25 May:** Put everything together and started building the software; completed the code and ran system tests.   
+**Week 19 - 25 May:** Put everything together and started building the software.   
+**Week 26 - 29 May:** Completed the code and ran the tests.
 
 ---
 
@@ -60,7 +59,7 @@ The architecture consists of the following main components:
 
 ## Schematics
 
-![Scheme](scheme.png)
+![Scheme](scheme_res.svg)
 
 ---
 
@@ -92,5 +91,5 @@ The architecture consists of the following main components:
 
 ## Links
 
-* [Embassy Framework](https://embassy.dev)
-* [DHT Sensor Rust Crate](https://crates.io/crates/dht-sensor)
+* [Embassy framework](https://embassy.dev)
+* [DHT sensor Rust crate](https://crates.io/crates/dht-sensor)
