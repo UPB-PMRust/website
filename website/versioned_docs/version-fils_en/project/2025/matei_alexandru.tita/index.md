@@ -56,7 +56,7 @@ The goal of this project is to explore a practical application of embedded syste
 ---
 ![Hardware image](Hardware.webp)
 
-![Scheme](https://raw.githubusercontent.com/MateiTita/matei_tita_project/main/website/versioned_docs/version-fils_en/project/2025/matei_alexandru.tita/Scheme.svg)
+![Scheme](Scheme.svg)
 
 ## 🗓️ Development Log
 
