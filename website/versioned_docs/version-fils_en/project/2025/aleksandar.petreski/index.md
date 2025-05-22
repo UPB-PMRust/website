@@ -8,7 +8,7 @@ Plant soil moisture and surrounding's humidity and temperature monitoring system
 
 **Author:** Aleksandar Petreski    
 **Group:** Erasmus    
-**GitHub Project Link:** [GitHub Repository](https://github.com/aleksandarce/website/tree/aleksandarce-patch-1/website/versioned_docs/version-fils_en/project/2025/aleksandar.petreski)
+**GitHub Project Link:** [GitHub Repository](https://github.com/aleksandarce/micro_rust_code)
 
 ---
 
