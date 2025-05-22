@@ -132,7 +132,7 @@ Diagram:
 
 # KiCAD Scheme
 
-![KiCAD](./SS.svg)
+![KiCAD](./kicad.svg)
 
 
 ---
@@ -140,7 +140,7 @@ Diagram:
 
 ## Hardware Picture
 
-![Hardware](./Hardware.svg)
+![Hardware](./Harrrd.webp)
 
 
 ---
