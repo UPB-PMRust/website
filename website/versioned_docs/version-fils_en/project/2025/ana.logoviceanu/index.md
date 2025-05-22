@@ -1,6 +1,7 @@
 # Barrier Access System
+A simple barrier access system that lifts the barrier when a registered license plate is recognized.
 
-:::A simple barrier access system that lifts the barrier when a registered license plate is recognized.
+:::info
 
 **Author**: Logoviceanu Ana Lorena \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-Ana0420
