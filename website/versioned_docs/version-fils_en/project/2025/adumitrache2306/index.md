@@ -7,7 +7,7 @@ Security robot that detects motion, avoids obstacles, displays facial expression
 
 ::::
 ## Description
-This project uses a Raspberry Pi Pico W as the brain of security robot. The robot is equipped with motion and ultrasonic sensors for intruder detection and obstacle avoidance, DC motors for movement, and a facial display made of an RGB LED matrix. The LED face changes expression depending on its environment-green (happy) when safe, and red (angry) when detecting motion or obstacles. It connects to Wi-Fi to send alerts to a Telegram bot, allowing real-time monitoring.
+This project uses a Raspberry Pi Pico W as the brain of security robot. The robot is equipped with motion and ultrasonic sensors for intruder detection and obstacle avoidance, DC motors for movement, and a facial display made of an RGB LED matrix. The LED face changes expression depending on its environment- happy when safe, and angry when detecting motion or obstacles. It connects to Wi-Fi to send alerts to a Telegram bot, allowing real-time monitoring.
 ## Motivation
 The inspiration for this project came from two sources. First, I saw a robot dog on TikTok that could move autonomously and respond to its environment. It looked alive and expressive, which sparked the idea of building something similar—simple, fun, and reactive—but using only the components I had access to. Second, as a fan of the game Rust, I liked how the game alerts you in real-time if someone invades your base. I thought it would be interesting to bring that concept into the real world by making a small robot that can guard an area, detect movement, and notify you instantly through Telegram. 
 ## Architecture 
@@ -32,7 +32,7 @@ The inspiration for this project came from two sources. First, I saw a robot dog
 **RGB LED Matrix**
 - **Interface**: GPIO
 - **Role**:  Shows a “face” that reacts to environment (happy/angry).
-- **Expression Logic**: Green when safe(no motion,no obstacle) and Red when motion is detected.
+- **Expression Logic**: Happy when safe(no motion,no obstacle) and Angry when motion is detected.
 
  **2x DC Motors and L298N Motor Driver Module**
   - **Interface**: GPIO, PWM
@@ -59,14 +59,14 @@ I 3D-printed and assembled the full chassis, tested all major components includi
 ## Hardware
 The core of the project is the Raspberry Pi Pico 2W, which controls all the peripherals and handles logic, sensing, and communication. For motion detection, a PIR sensor is used to detect any presence or movement in the area being monitored. An ultrasonic sensor is mounted at the front of the robot to detect obstacles and prevent collisions during navigation.
 For movement, the robot uses two DC motors connected to a motor driver module, allowing it to drive forward, backward, and turn left or right.
-The robot has a RGB LED matrix mounted on the front, representing a face. It displays different expressions: green and smiling when the environment is safe, and red and angry when danger is detected (motion is sensed).
+The robot has a RGB LED matrix mounted on the front, representing a face. It displays different expressions:smiling when the environment is safe,and angry when danger is detected (motion is sensed).
 
 
 
 ### Schematics
 
 
-![Schematic diagram](schematickicad.webp)
+![Schematic diagram](schematic.svg)
 
 
 ### Bill of Materials
