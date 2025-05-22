@@ -64,7 +64,8 @@ A compact MP3 player module that can read audio files from a microSD card. It’
 
 Speaker:
 Outputs the audio from the DFPlayer Mini, playing the selected music track in real time based on the mood button pressed
-![Hardware](Hardware.webp)
+![Hardware image](./pictures/Hardware.webp)
+
 ### Schematics
 ![Schematic](pictures/Scematic.svg)
 ### Bill of Materials
