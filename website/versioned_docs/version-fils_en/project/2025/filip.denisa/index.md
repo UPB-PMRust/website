@@ -33,7 +33,7 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ## Architecture
 
-![architecture](arch.svg)
+![architecture](arch.webp)
 
 
 
@@ -73,9 +73,12 @@ RGB LEDs (2x): Provide visual feedback—colors change (e.g., green to red) base
 
 Buzzers (2x): Emit sound alerts that increase in frequency as the object gets closer, enhancing the warning system.
 
-  
+![Hardware](h1.webp)
+![Hardware](h2.webp)
+![Hardware](h3.webp)
+![Hardware](h4.webp)
 
-  
+
   
 ## Schematics
 
