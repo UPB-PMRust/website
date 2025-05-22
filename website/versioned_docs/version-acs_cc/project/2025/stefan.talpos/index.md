@@ -53,15 +53,15 @@ The components are connected using jumper wires on a 400-point breadboard. Power
 This setup ensures a compact, low-cost prototype suitable for quick testing and deployment.
 
 ![Microprocessors](imagine1.webp)
-![Motor, Driver, Stepdown](imagine2.webp)
-![Baterries, Stepdown](imagine3.webp)
+![Motor, Driver and Stepdown](imagine2.webp)
+![Baterries and Stepdown](imagine3.webp)
 ![Display](imagine4.webp)
 ![Sensor](imagine5.webp)
 ![Whole Setup](imagine6.webp)
 
 ### Schematics
 
-![Schema Kicad](schema_kicad.svg)
+![Schema Kicad](schemakicad.svg)
 
 ### Bill of Materials
 
