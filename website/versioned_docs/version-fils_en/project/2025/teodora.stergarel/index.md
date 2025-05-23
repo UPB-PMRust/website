@@ -2,7 +2,7 @@
 
 :::info 
 
-**Author**: Stergarel Teodora \
+**Author**: Stergarel Teodora 
 **GitHub Project Link**: https://github.com/teodora-stergarel/website
 
 :::
@@ -29,15 +29,15 @@ This project aims to provide an accessible, real-time visual alert system that r
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+In the first week, I focused on thoroughly researching the project idea. I explored different options for implementing a visual noise alert system and evaluated the necessary hardware. I compared different microphones, displays, and microcontrollers to ensure compatibility with Rust and the RP2040 platform. After finalizing the hardware design, I placed the component orders and started drafting the documentation. I created the initial project page, describing the purpose, architecture, and goals of the system.
 ### Week 12 - 18 May
-
+This week, the hardware components arrived, and I got the headers to the two Raspberry Pi Pico 2W boards soldered - one designated as the main board and the other as a debugger. I encountered challenges in setting up the debug probe correctly but resolved them by following the probe-rs documentation and ensuring the correct GND/VCC wiring between boards. I proceeded to wire all the components onto the breadboard, carefully verifying connections for the microphone, button, display, and logic level shifter. I also designed and completed a detailed schematic in KiCad, which reflects the real wiring. Finally, I tested each component individually - confirming that the button and OLED display functioned - and determined that the OLED required a level shifter for stable operation.
 ### Week 19 - 25 May
 
 ## Hardware
 
-![1:](/img/1.jpg)
-![2:](/img/2.jpg)
+![1:](/1.jpg)
+![2:](/2.jpg)
 
 The project is built around the **Raspberry Pi Pico W** microcontroller and integrates the following components:
 
@@ -53,11 +53,11 @@ The project is built around the **Raspberry Pi Pico W** microcontroller and inte
 
 Below is the schematics of the device:
 
-![Project Schematics:](/img/architecture.png)
+![Project Schematics:](/architecture.png)
 
 KiCad Schematics:
 
-![KiCad Schematics:](/img/kicad.webp)
+![KiCad Schematics:](/rust.svg)
 
 
 ### Bill of Materials
