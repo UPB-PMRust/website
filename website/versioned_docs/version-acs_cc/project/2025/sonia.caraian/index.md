@@ -34,7 +34,7 @@ Done the hardware.
 
 The console is built around the Raspberry Pi Pico 2W, and is powered by a 9V battery regulated through a step-down voltage module. User input is handled via push buttons connected on a breadboard, while game audio is played through a buzzer. An LCD display is used for game output.
 
-![Hardware](hw.webp)
+![Hardware](hw.svg)
 
 ### Schematics
  
