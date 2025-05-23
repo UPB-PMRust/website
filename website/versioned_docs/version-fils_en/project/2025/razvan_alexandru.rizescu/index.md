@@ -140,7 +140,7 @@ Diagram:
 
 ## Hardware Picture
 
-![Hardware](./Harrrd.webp)
+![Hardware](./harrrd.webp)
 
 
 ---
