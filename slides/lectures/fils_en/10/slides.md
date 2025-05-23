@@ -32,7 +32,7 @@ Lecture 10
 - ARM TrustZone
   - Memory Attributes
   - Bus Attributes
-- Secure Boot
+- Trusted Firmware
 - OTP
 
 ---
@@ -40,7 +40,7 @@ src: ./security_extension.md
 ---
 
 ---
-src: ./secure_boot.md
+src: ./trusted_firmware.md
 ---
 
 ---
@@ -51,5 +51,5 @@ src: ./secure_boot.md
 - ARM TrustZone
   - Memory Attributes
   - Bus Attributes
-- Secure Boot
+- Trusted Firmware
 - OTP

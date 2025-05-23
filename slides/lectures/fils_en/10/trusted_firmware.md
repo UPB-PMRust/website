@@ -1,7 +1,7 @@
 ---
 layout: section
 ---
-# Secure Boot
+# Trusted Firmware
 
 ---
 ---
@@ -12,6 +12,66 @@ for this section
    - Chapter 10 - *Security*
      - Section 10.1 - *Overview (Arm)*
    - Chapter 13 - *OTP*
+
+**ARM**, *[Trusted Firmware-M Documentation](https://trustedfirmware-m.readthedocs.io/en/latest/index.html#)*
+  - *Introduction*
+  - *Getting Started*
+  - *Security*
+
+---
+---
+# Trusted Firmware-M
+what it does
+
+- Secure Boot
+- Secure Update
+- Secure API
+
+Requires
+- ARM microcontrollers that provide TrustZone
+- Examples
+  - STM32L5, STM32U5
+  - RP2350
+
+---
+---
+# Secure Firmware / Bootloader
+provided by the vendor
+
+Depends on the MCU
+
+- implements the TF-M standard (Trusted Firmware - Cortex M)
+- certification levels 1 - 3
+  - **Level 1**: Software-based isolation; foundational crypto, attestation, and secure boot.
+  - **Level 2**: Adds protection against non-invasive attacks.
+  - **Level 3**: Adds protection against side-channel and invasive attacks; often requires hardware features like tamper detection and secure key storage.
+
+---
+---
+# ARM TF-M Reference Implementation
+open source
+
+<img src="./arm_tfm_v8.webp" class="rounded">
+
+---
+---
+# STM32 Implementation
+Provided in SDK
+
+<div align="center">
+<img src="./stm32_secure_firmware.png" class="w-170 rounded">
+</div>
+
+---
+---
+# RP2350
+
+- provides a ROM bootloader:
+  - Secure Boot
+  - Secure Update
+  - Try-before-you-by
+  - A/B partitioning
+  - Rollback
 
 ---
 layout: two-cols-header
