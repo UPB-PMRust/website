@@ -46,6 +46,10 @@ Wired 90% of the hardware. Also accidentally burnt one of the Picos while connec
 
 Wired correctly hardware, some complications with wiring the batteries, relay and water pump (could not get it done at the lab). Found the issue with the soil moisture sensor and solved it. Updated KiCad. Next up is writing up the software.
 
+### Week 15 May - 22 May
+
+Hardware done, software wrote and tested, working as expected. Next up is PM Fair.
+
 ## Hardware design
 
 **Description of hardware used**: The Raspberry Pi Pico 2W is the central component of the project. It is connected to all the sensors and the water pump (indirectly). The sensors where chosen based on pricing and performance, so measurements would be accurate and useful. The water pump is used to water the plant when needed, and the relay is used to control it. The red LED is used to signal a critical state of the plant, while the button is used to toggle the auto-watering functionality.
@@ -92,13 +96,29 @@ Wired correctly hardware, some complications with wiring the batteries, relay an
 
 ## Software design
 
-The program will periodically check the sensors values and will determine if the plant needs to be watered or not. It will use an algorithm based on soil moisture, temperature, light and air humidity. The user will also get a notification if needed. Toggling the button will change the auto-watering functionality, so the relay will or will not activate the water pump. More will come when the software part will be finished.
+The program will periodically check the sensors values and will determine if the plant needs to be watered or not. It will use an algorithm based on soil moisture, temperature, light and air humidity. The user will be notified on the frontend regarding the health status of the plant. Toggling the button will change the auto-watering functionality, so the relay will or will not activate the water pump.
+
+The software repository also contains the server and the frontend client. Data is send each second from the Pico 2W to the TCP server and back.
 
 Regarding the **software** libraries:
 
-| **Library**    | **Description**                                                   | **Usage**                                                                             |
-| -------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `embassy-rp`   | Embassy support for Raspberry Pi Pico.                            | Includes GPIO, ADC, I2C, and other peripherals for Raspberry Pi Pico.                 |
-| `embassy-wifi` | Wi-Fi driver for supported chips like ESP8266, ESP32, and RP2040. | Enables Wi-Fi connectivity.                                                           |
-| `defmt`        | Efficient logging framework for embedded systems in Rust.         | Used for logging with minimal overhead, useful for debugging in embedded projects.    |
-| `defmt-rtt`    | Real-Time Trace (RTT) support for `defmt`.                        | Enables logging output over RTT for easier debugging with minimal performance impact. |
+| **Library**          | **Description**                                                         | **Usage**                                     |
+| -------------------- | ----------------------------------------------------------------------- | --------------------------------------------- |
+| `embassy-rp`         | HAL for Raspberry Pi                                                    | ADC, Channel, I2C and GPIO functionalities.   |
+| `embassy-sync`       | no-std, no-alloc synchronization primitives with async support          | Communication using `Signal`                  |
+| `embassy-time`       | Working with time in embassy                                            | Setting timers                                |
+| `embedded-hal-async` | async Hardware Abstraction Layer for embedded                           | I2C communication                             |
+| `itoa`               | integer primitive to string conversion                                  | serializing data to be sent over TCP          |
+| `static_cell`        | Statically allocated, initialized at runtime cell                       | For `RESOURCES` during Wi-Fi configuration    |
+| `embassy-net`        | Async TCP/IP network stack for embedded systems                         | Wi-Fi                                         |
+| `embassy-futures`    | no-std, no-alloc utilities for working with futures                     | `yield_now` for button and LED                |
+| `embassy-executor`   | async/await executor designed for embedded usage                        | Spawning to be executed almost simultaneously |
+| `cyw43`              | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W | Wi-Fi                                         |
+| `defmt`              | Logging framework for embedded systems                                  | Used for logging and debugging                |
+| `defmt-rtt`          | Real-Time Trace (RTT) support for `defmt`.                              | Enables logging output over RTT               |
+
+## Links
+
+1. [How to wire soil moisture sensor](https://www.youtube.com/shorts/gc1FjjOtuaQ)
+2. [AHT10 datasheet](https://robu.in/wp-content/uploads/2021/01/AHT10.pdf)
+3. [Relay info](https://grobotronics.com/relay-module-1-channel-5v-high-level-trigger.html?sl=en&srsltid=AfmBOoo7KZo8qwIFu1lN-3SXBlrCxfdO31ETjD6K1-E1wLPNu-ViIdcn)
