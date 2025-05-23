@@ -151,13 +151,17 @@ Completed the hardware assembly phase of the project. Connected all components a
 | [embassy-rs](https://github.com/embassy-rs/embassy) | Async multitasking framework for embedded systems | Used to manage asynchronous tasks |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer for embedded systems | Used to interface with embedded peripherals generically |
 | [max3010x](https://github.com/almindor/max3010x) | Driver for MAX30100/MAX30102 pulse oximeter sensors | Used to read heart rate and SpO₂ data |
-| [dfplayer-rs](https://github.com/samcrow/dfplayer-rs) | Library for controlling the DFPlayer Mini MP3 module | Used for audio playback via serial communication |
+| [dfplayer-async](https://crates.io/crates/dfplayer-async) | Library for controlling the DFPlayer Mini MP3 module | Used for audio playback via serial communication |
 | [hd44780-driver](https://github.com/eldruin/hd44780-driver) | LCD driver for HD44780-compatible displays over I2C | Used to show text on LCD1602 screens |
 
 ---
 
 ## Links  
-TBD
+https://crates.io/crates/dfplayer-async
+https://sensorkit.joy-it.net/en/sensors/ky-039
+https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299
+
+
 
 
 
