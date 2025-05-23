@@ -119,7 +119,13 @@ Finalized the KiCad schematic for the full system, accurately reflecting all phy
 ### Week 12 - 18 May
 - **Component Installation**:
 Started mounting components onto the cardboard structure. Fixed the LCD display, LEDs, sensors and RFID in their designated positions.
+- **Smart Lighting Feature**:
+Completed the implementation of the smart lighting logic. Each LED now adjusts its brightness automatically based on readings from its corresponding LDR sensor, and the system can switch between OFF, ON, and SMART modes using push buttons.
 ### Week 19 - 25 May
+- **Code Progress**:
+Focused on finalizing the integration of the LCD screen and the temperature sensors.
+- **Project Polishing**:
+Worked on improving the visual appearance of the cardboard house by adding decorations and details to make the model more presentable for demonstration.
 ## Hardware
 - Infrared Flame Sensor: Used to detect any nearby fire in the kitchen area, triggering an emergency alarm when activated.
 - Active Buzzer Module: Provides audio feedback; it is activated both when a fire is detected and when an unauthorized RFID tag is scanned at the entrance.
@@ -183,4 +189,4 @@ A [Raspberry Pi Debug Probe](https://www.optimusdigital.ro/ro/accesorii/12777-pl
 | [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Graphics library for embedded displays | Used for rendering shapes, text, and layouts on the LCD screen |
 
 ## Links
-
+[Projects 2024](https://pmrust.pages.upb.ro/docs/fils_en/category/projects-2024)
