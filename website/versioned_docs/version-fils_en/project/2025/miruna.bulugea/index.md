@@ -1,7 +1,7 @@
 # VibeBox
 A Raspberry Pi Pico-based music mood controller with LEDs, LCD, buttons and a speaker
 
-:::info 
+:::info
 
 **Author**: Bulugea Miruna Elena \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-mirunabulugea
@@ -10,14 +10,14 @@ A Raspberry Pi Pico-based music mood controller with LEDs, LCD, buttons and a sp
 
 ## Description
 
-A Raspberry Pi Pico project that uses four buttons, each representing a mood(happy,sad,energetic and chill). When a button is pressed, a corresponding playlist is played through a speaker via a DFP Player Mini MP3 module. The LCD displays the mood name, and four LEDs light up in sync with the music beat.
+A Raspberry Pi Pico project that uses four buttons, each representing a mood(happy,sad,energetic and chill). When a button is pressed, a co>
 
-## Motivation 
+## Motivation
 
-I chose this project because I wanted to build something that combines music, hardware interaction, and visual feedback.I’ve always wanted to have a small device on my wall where I could simply press a button based on how I’m feeling, and instantly have music I’ve selected start playing. Along with the music, I imagined a light show synced to the beat.
-## Architecture 
+I chose this project because I wanted to build something that combines music, hardware interaction, and visual feedback.I’ve always wanted >
+## Architecture
 
-![Diagram](./DiagramComp.webp)
+![DiagramKicad](pictures/DiagramComp.webp)
 
 The main components of the project are:  
 
@@ -40,52 +40,53 @@ The main components of the project are:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+I have made resources about the components I need and bought them all .I have created the schematic using KiCad.
 
 ### Week 12 - 18 May
+I began by physically wiring all the key components of the system on a breadboard,so I can start to write the code and test it .
 
 ### Week 19 - 25 May
 
 ## Hardware
 
 Raspberry Pi Pico W:
-A compact, Wi-Fi-enabled microcontroller board that serves as the core controller for the entire system. It handles button inputs, controls the LEDs, sends data to the LCD display, and communicates with the MP3 player module via UART.
+A compact, Wi-Fi-enabled microcontroller board that serves as the core controller for the entire system. It handles button inputs, controls>
 
 4 Push Buttons:
-Physical input controls, each one assigned to a specific mood: Happy, Sad, Energetic, and Chill. When a button is pressed, it triggers the corresponding music playlist and lighting pattern.
-
 4 LEDs:
 Visual feedback components that light up and blink in sync with the beat of the currently playing track.
 
 1602 LCD Display with I2C Module:
-A simple character display used to show the current selected mood. The I2C module simplifies wiring by reducing the number of GPIO pins needed for connection.
+A simple character display used to show the current selected mood. The I2C module simplifies wiring by reducing the number of GPIO pins nee>
 
 DFPlayer Mini MP3 Module:
-A compact MP3 player module that can read audio files from a microSD card. It’s controlled via UART from the Raspberry Pi Pico W and outputs audio to a connected speaker.
+A compact MP3 player module that can read audio files from a microSD card. It’s controlled via UART from the Raspberry Pi Pico W and output>
 
 Speaker:
 Outputs the audio from the DFPlayer Mini, playing the selected music track in real time based on the mood button pressed
-### Schematics
-![Schematic](./Scematic_1024x768.svg)
-### Bill of Materials
+![Hardware image](./pictures/Hardware.webp)
 
+### Schematics
+![Schematic](pictures/Scematic.svg)
+### Bill of Materials
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?gad_source=1&gbraid=0AAAAADv-p3B_VkQFxiPfaNoAEcFAPICVQ&gclid=Cj0KCQjw2tHABhCiARIsANZzDWrM0Dls3-gjJIN_HhPFamtX-n--3ZgfenMrOB1iqqYLpUBZqKTlVGcaAqeAEALw_wcB) | Microcontroller board that controls the entire system | 39,66 LEI |
-| [Electronic Components Kit (LEDs, Buttons, Wires, Resistors, Breadboard)](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/?utm_medium=ios&utm_source=mobile%20app&utm_campaign=share%20product) | Interface elements and basic electronics for user input/output | 60,38 LEI |
-| [DFPlayer Mini MP3 Module](https://www.optimusdigital.ro/ro/audio/1484-modul-mp3-player-in-miniatura-dfplayer-mini.html) | Plays audio files based on selected mood | 13,99 LEI |
-| [Speaker](https://ro.farnell.com/multicomp-pro/abs-224-rc/speaker-200hz-to-20khz-4ohm-83db/dp/1761631) | Outputs audio from the MP3 module | 16,31 LEI |
-| [LCD with I2C Interface and Blue Backlight](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html) | Displays the current mood and track information | 16,34 LEI |
+| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?gad_source=1&gbraid=0AAAAADv->
+| [Electronic Components Kit (LEDs, Buttons, Wires, Resistors, Breadboard)](https://www.emag.ro/set-componente-electronice-breadboard-830-p>
+| [DFPlayer Mini MP3 Module](https://www.optimusdigital.ro/ro/audio/1484-modul-mp3-player-in-miniatura-dfplayer-mini.html) | Plays audio fi>
+| [Speaker](https://ro.farnell.com/multicomp-pro/abs-224-rc/speaker-200hz-to-20khz-4ohm-83db/dp/1761631) | Outputs audio from the MP3 modul>
+| [LCD with I2C Interface and Blue Backlight](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlig>
 ## Software
 
 
 | Crate / Library | Description | Usage |
 |:----------------|:----------------------------------------|:------------------------------------|
-| [rp-hal](https://github.com/rp-rs/rp-hal) | Hardware Abstraction Layer (HAL) for Raspberry Pi RP2040 microcontrollers | Controls GPIO pins, delays, and peripherals like buttons, LEDs, and LCD |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits for embedded systems | Provides standard interfaces for digital output, delays, and other peripherals |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems | Draws text and simple graphics on the LCD display |
-| [embassy](https://github.com/embassy-rs/embassy) (optional) | Modern async framework for embedded systems | For async task management (optional for your setup) |
-| [log](https://github.com/rust-lang/log) | Logging facade for Rust applications | Debugging and logging events like button presses or errors |
-| [panic-halt](https://github.com/rust-embedded/panic-halt) | Minimal panic handler for embedded systems | Stops execution and halts the MCU on panic |
+| [rp-hal](https://github.com/rp-rs/rp-hal) | Hardware Abstraction Layer (HAL) for Raspberry Pi RP2040 microcontrollers | Controls GPIO pin>
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits for embedded systems | Provides standard inte>
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems | Draws text and s>
+| [embassy](https://github.com/embassy-rs/embassy) (optional) | Modern async framework for embedded systems | For async task management (op>
+| [log](https://github.com/rust-lang/log) | Logging facade for Rust applications | Debugging and logging events like button presses or erro>
+| [panic-halt](https://github.com/rust-embedded/panic-halt) | Minimal panic handler for embedded systems | Stops execution and halts the MC>
 
 ---
 ## Links
