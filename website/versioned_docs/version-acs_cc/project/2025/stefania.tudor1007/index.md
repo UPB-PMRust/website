@@ -64,6 +64,30 @@ The hardware setup includes:
 - **Camera:** Raspberry Pi Camera Module
 - **Power Supply:** 9V Batteries (x2)
 
+## Schematic
+
+At the moment, the temperature sensors used in the prototype are OKY3066-2 (LM35-based). However, they have shown inconsistent or unstable readings during testing. As a result, they will be replaced with LM75B digital temperature sensors, as indicated in the schematic, to improve reliability and I2C-based integration.
+
+
+![Schematic made in Kicad](schematicnew.svg)
+
+## Pictures
+![Circuit](./circuit.webp)
+
+
+## Bill of Materials 
+
+| Item                                                                                              | Quantity | Estimated Price (RON) | Total (RON) | Usage                                           |
+|---------------------------------------------------------------------------------------------------|----------|------------------------|-------------|------------------------------------------------|
+| [GY-6500 (Gyro + Magnetometer)](https://contactelectric.ro/module-diverse-arduino/1577-gy-6500-modul-magnetometru-giroscop) | 1        | 24.90                 | 24.90       | Motion sensing (gyro + mag)                   |
+| [L9110S Motor Driver](https://contactelectric.ro/drivere-motor/2779-oky3199-3-driver-motor-cu-l9110s-h-bridge-dc)           | 1        | 8.50                  | 8.50        | Dual DC motor driver                           |
+| [28BYJ-48 Stepper Motor](https://contactelectric.ro/motoare-arduino/478-motor-pas-cu-pas-28ybj-48-cu-4-faze-5-fire-5vdc)    | 1        | 11.50                 | 11.50       | DRS mechanism (stepper)                        |
+| [Miniature DC Motor 3–6V](https://contactelectric.ro/motoare-arduino/7803-motor-miniatura-dc-3-6v-oky5022-3)                | 2        | 5.00                  | 10.00       | Main propulsion motors                         |
+| [LM35 Temperature Sensor](https://contactelectric.ro/senzori-arduino/2386-senzor-de-temperatura-cu-lm35-4-30v-oky3066-2)    | 4        | 4.90                  | 19.60       | Ambient/motor temperature sensing              |
+| [ULN2003 Stepper Driver](https://contactelectric.ro/drivere-motor/2073-driver-motor-stepper-cu-uln2003-oky3192-10107101)    | 1        | 6.50                  | 6.50        | Drives stepper motor (DRS)                     |
+| [9V Battery Holder with Wires](https://contactelectric.ro/module-diverse-arduino/8399-suport-cu-fire-pentru-baterii-9v-oky0252-1) | 2   | 2.50                  | 5.00        | Power supply (motor + peripherals)             |
+| [Raspberry Pi Pico 2W (Optimus)](https://www.optimusdigital.ro/ro/raspberry-pi/21133-raspberry-pi-pico-w-wireless.html)     | 2        | 39.66                  | 79.32       | Main controller & wireless communication       |
+| PixyCam 2                                                                                          | 1        | 299.00                | 299.00      | Visual tracking and object detection           |
 
 
 ## Software
@@ -75,18 +99,8 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 - **Web Server:** Hosts a real-time dashboard displaying sensor data and live video feed.
 
 
-## Software Libraries
-
-| Library             | Description                                                                 | Usage in Project                                                            |
-|---------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| `embassy-rs`        | An async embedded framework for Rust, providing task scheduling and HALs.  | Used to create async tasks for motor control, sensor reading, and server.   |
-| `embedded-hal`      | A set of standard traits for embedded hardware abstractions in Rust.       | Used as a foundation to write portable drivers for I2C, PWM, and GPIO.      |
-| `nb`                | Provides traits for non-blocking operations in embedded systems.            | Ensures sensor reading and UART comms are non-blocking in async tasks.      |
-| `mpu6050`           | A driver for the MPU6050 accelerometer and gyroscope sensor.               | Reads orientation data from the MPU6050 via I2C for stability analysis.     |
-| `pwm-pio`           | A crate for generating PWM signals on RP2040 using PIO.                     | Generates PWM signals for controlling the speed of the DC motors.           |
-| `embassy-net`       | An async TCP/IP network stack for embedded systems written in Rust.         | Implements a web server that exposes sensor data via HTTP.                  |
-| `bluetooth-serial`  | Serial communication over classic Bluetooth (RFCOMM).                       | Receives control commands from the gaming controller via Bluetooth.         |
-| `defmt`             | Efficient logging framework for embedded systems in Rust.                   | Provides lightweight debugging logs via serial output or RTT.               |
-
-
 ## Links
+
+- [PixyCam Setup Guide](https://pixycam.com/start) – Used to successfully connect and configure the PixyCam 2 with the Raspberry Pi Pico 2W
+
+

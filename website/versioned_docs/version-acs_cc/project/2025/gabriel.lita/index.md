@@ -48,6 +48,68 @@ Data flow:
 
 ---
 
+## Log
+
+### Week 5 – 11 May
+
+- Identified and ordered all required components for the project:
+  - Raspberry Pi Pico 2W
+  - DFPlayer Mini
+  - PAM8403 mini amplifier
+  - LCD 1602 with I2C interface
+  - microSD card, buttons, speaker, jumper wires, breadboard, etc.
+
+- Completed the first version of the technical documentation:
+  - Described the main idea and involved components
+  - Analyzed the minimum functionality requirements
+
+- Gained a clear understanding of the overall direction:
+  - How to communicate with DFPlayer over UART
+  - How `embassy` works and how embedded Rust firmware is structured
+  - Defined implementation stages
+  - Clarified my learning plan (test-driven and incremental)
+
+---
+
+### Week 12 – 18 May
+
+- Assembled and tested the hardware setup successfully:
+  - All components were connected and verified:
+    - Raspberry Pi Pico 2W
+    - DFPlayer Mini
+    - PAM8403 audio amplifier
+    - LCD 1602 with I2C interface
+    - 4 physical push-buttons for playback control
+
+- Added a voltage divider between the Pico’s TX and the DFPlayer’s RX for input protection:
+  - R1 = 1kΩ (between TX and divider node)
+  - R2 = 2kΩ (between node and GND)
+  - The divider reduces the 3.3V TX signal to approximately 2.2V, which is safe for DFPlayer logic input.
+
+- Encountered difficulties using a 3.5mm audio jack module, due to:
+  - Impedance mismatch with the PAM8403 BTL amplifier output
+  - Potential short circuits when miswiring stereo channels
+  - Lack of a proper line-out signal from the DFPlayer Mini
+  - Risk of damaging headphones when using a bridged output amplifier
+
+- As a result, I chose to use a physical speaker (8Ω, 2W) connected directly to the L+ / L− output of the PAM8403, which worked well and provided decent volume.
+
+- Wrote a small test program in Rust using `embassy-rp`:
+- Successfully configured UART to send basic commands to the DFPlayer (e.g., reset, set volume, play)
+
+### Week 19 – 25 May
+
+---
+
+## Hardware Overview
+- The **Pico** controls the music player by sending commands over UART to the **DFPlayer Mini**.
+- **DFPlayer Mini** reads the audio files from the **microSD card**.
+- The audio output is amplified by the **PAM8403 amplifier** and played through a **small speaker**.
+- The **LCD 1602** displays song and status info via the I2C interface.
+- **Buttons** provide direct user interaction for playback controls.
+
+---
+
 ## Components
 
 | Component | Purpose | Details |
@@ -60,16 +122,7 @@ Data flow:
 | **LCD 1602 with I2C Interface** | Display | Shows track info and playback status |
 | **Push Buttons** | User control | Play, Pause, Next, Previous actions |
 
----
 
-## Hardware Overview
-- The **Pico** controls the music player by sending commands over UART to the **DFPlayer Mini**.
-- **DFPlayer Mini** reads the audio files from the **microSD card**.
-- The audio output is amplified by the **PAM8403 amplifier** and played through a **small speaker**.
-- The **LCD 1602** displays song and status info via the I2C interface.
-- **Buttons** provide direct user interaction for playback controls.
-
----
 
 ## Optional Features (Future Extensions)
 
@@ -86,21 +139,38 @@ If the basic functionality is successfully implemented, the project could be ext
 
 **Note**: These features are optional and depend on the success of the core implementation.
 
+
+---
+
+## Schematics Diagram
+![SchematicsDiagram](schematic_final_background.svg)
+
 ---
 
 ## Bill of Materials (Hardware)
 
-| Product Code | Device | Usage | Price |
-|--------------|--------|-------|-------|
-| 0104110000013743 | [DFPlayer Mini MP3 Module](https://www.optimusdigital.ro/ro/module-audio/456-dfplayer-mini-mp3-player-module.html) | Audio playback from microSD | 13,99 lei |
-| 0104110000003584 | [LCD 1602 + I2C Interface](https://www.optimusdigital.ro/ro/display-uri/934-display-lcd-1602-i2c-albastru.html) | Display song info | 16,34 lei |
-| 0104110000035356 | [TPA3118 Mono Audio Amplifier (60W)](https://www.optimusdigital.ro/ro/module-audio/2832-modul-amplificator-audio-mono-tpa3118-60w.html) | High power audio (optional) | 19,99 lei |
-| 0104110000003737 | [PAM8403 Mini Stereo Amplifier (3W)](https://www.optimusdigital.ro/ro/module-audio/400-mini-amplificator-audio-2x3w-pam8403.html) | Basic speaker amplification | 2,99 lei |
-| 0104110000006547 | [3.5mm Audio Jack Module](https://www.optimusdigital.ro/ro/conectori-si-adaptoare/1454-modul-jack-audio-35-mm.html) | Headphone output (optional) | 4,99 lei |
-| 0104110000019561 | [Bluetooth Audio Receiver Module](https://www.optimusdigital.ro/ro/module-wireless/2830-modul-audio-bluetooth-50-stereo.html) | Wireless playback (optional) | 23,99 lei |
-| 5056561803975 | [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/raspberry-pi-placi/13327-raspberry-pi-pico-2w.html) | Main controller | ~39,66 lei |
+ Product | Link | Usage | Price |
+|---------|------|-------|-------|
+| **DFPlayer Mini MP3 Module** | [ardushop.ro](https://ardushop.ro/ro/module/1473-modul-mp3-player-dfplayer-mini-6427854021755.html?gad_source=1&gad_campaignid=22058879462&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkZucdhL9homJ-m9Vp2Qe_KUgbMVn1pVEx4ssKH51FkBzaGvWMUyFEMaAtP_EALw_wcB) | Audio playback from microSD | 13,99 lei |
+| **LCD 1602 + I2C Interface** | [ardushop.ro](https://ardushop.ro/ro/display-uri-si-led-uri/2347-lcd-display-1602-albastru-adaptor-i2c-6427854000989.html?gad_source=1&gad_campaignid=22058879462&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkZ9HQXsykanitSMpscvzEnyh6hwy48rkQ_eWctd8TLma1CJ2Rbza4kaAhH8EALw_wcB) | Display song info | 16,50 lei |
+| **PAM8403 Mini Stereo Amplifier (3W)** | [ardushop.ro](https://ardushop.ro/ro/module/1807-mini-amplificator-audio-stereo-pam8403-5v-6427854027412.html?gad_source=1&gad_campaignid=22058879462&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkb4EuAz_MGJY3uOCt4lsqedZREh1SPh0x-PbVIYgYpy_CK44yuSQ2kaAg1hEALw_wcB) | Speaker amplification | 5,90 lei |
+| **Speaker (8Ω, 0.5W)** × 2 | [ardushop.ro](https://ardushop.ro/ro/componente-discrete/586-difuzor-36mm-05w-8ohm-6427854007025.html) | Audio output | 3,50 lei × 2 = 7,00 lei |
+| **Breadboard Power Supply (5V / 3.3V)** | [ardushop.ro](https://ardushop.ro/ro/alimentare/2296-modul-sursa-de-alimentare-5v-33v-breadboard-6427854032867.html?gad_source=1&gad_campaignid=22058879462&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkYjSflkK524r4uzd_rEDRH-_IzUcyaG1aLfAy1zw2w20dE5XgoGpjQaAqAjEALw_wcB) | Main power module | 7,50 lei |
+| **Raspberry Pi Pico 2W** | [optimusdigital.ro](https://www.optimusdigital.ro/ro/raspberry-pi-placi/13327-raspberry-pi-pico-2w.html) | Main controller | ~39,66 lei |
 
 ---
+
+### Miscellaneous (Breadboard, Wires, Buttons)
+
+| Product | Description | Estimated Price |
+|---------|-------------|-----------------|
+| Breadboard + jumper wires + 4 push-buttons | For wiring and input control | ~50 lei |
+
+---
+
+**Note:**  
+Some links may become invalid over time if the supplier updates or removes product pages. If a link no longer works, please search the product name on the same website or look for equivalent alternatives from other electronics retailers.
+
 
 | Setup Type | Components |
 |------------|------------|
@@ -122,27 +192,14 @@ Rust will be used for firmware development, utilizing asynchronous programming w
 | [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD card filesystem | Handles file reading from microSD |
 | **DFPlayer Mini UART driver** (to be implemented) | Serial commands | Sends control commands to DFPlayer Mini module |
 
----
-
-## Functional Diagram
-![FunctionalDiagram](schematic2.webp)
-
----
-
-## Log
-
-(*To be completed as the project progresses*)
-
----
 
 ## Photos
 
-(*To be added after prototype assembly*)
+![Hardware Photo](poza_hard.webp)
 
 ---
 
 ## Links
 
-(*To be added once resources and documentation are finalized*)
+(Links will be added)
 
----

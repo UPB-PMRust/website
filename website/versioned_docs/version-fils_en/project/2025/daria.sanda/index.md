@@ -22,23 +22,33 @@ I chose this project because I spent a lot of time sitting at a desk in school a
 
 - **MPU9250 Sensor**: It is used to detect the user's posture with the accelerometer and gyroscope that are connected to the Raspberry Pi Pico 2W via I2C
 - **Raspberry Pi Pico 2W**:Acts as the central processing unit, interpreting signals from the MPU9250 sensor and controlling the other components
+- **Raspberry Pi Pico 2W**: Used as debugger
 - **Vibration Motor and LED**: Used to alert the user and both are connected to the GPIO pins via a transistor for the motor and a resistor for the LED
 - **Transistor**: Used to switch the motor on and off
 - **Diode:**: Potects the circuit from back-voltage that could be generated when turning off the motor 
 - **Resistors**: Used to limit the current where needed, such as for the LED and the base of the transistor
-- Possible, not sure yet **Push Button**: Used for user input, such as to reset
+- **Push Button**: Used for user input, such as to reset
 
 ## Log
 
 ### Week 5 - 11 May
+I gathered and assembled all the necessary components for the device, carefully arranging and securing the cables with tape as they were not long enough to reach their intended positions.
+I then sewed the sensor and the motor onto a harness, allowing the device to be integrated into a wearable form.
 
 ### Week 12 - 18 May
+I did the schematic in KiCad and I tried simple codes to see if the connections were correct and if all components were working properly.
 
 ### Week 19 - 25 May
 
 ## Hardware
+![Hardware1](./hardware1.webp)
+![Hardware2](./hardware2.webp)
+![Complete](./ham.webp)
+
+The Raspberry Pi Pico 2W in the middle of the breadboard is the microcontroller and the other one acts as a debugger. The LED is connected through the resistor to `GPIO 13`, the push button is connected to `GPIO 16`. The motor is connected to the collector of the transistor and to VCC, and it is also connected in parallel with the diode. The base of the transistor is connected through a resistor to `GPIO 10`. The MPU9250 Sensor is connected through `I2C` to the microcontroller using `GPIO 14` as SDA and `GPIO 15` as SCL. 
 
 ### Schematics
+![Kicad schematic ](./PostureMonitor.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
