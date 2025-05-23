@@ -47,23 +47,24 @@ These tasks communicate asynchronously, allowing for responsive input handling, 
 
 ## Log
 
-### Will be added when I'll have my todo list sorted by date
+### Will be added when I'll have my todo list sorted by date (update: I got it sorted but I need to see which day corresponds to which week)
 
 ## Hardware
 
-The core of the system is a Raspberry Pi Pico 2 W microcontroller. Inputs include a potentiometer simulating the accelerator pedal, various sensors (temperature, pressure, humidity), and potentially RFID for user identification. Engine RPM is simulated using a small DC motor coupled with a digital Hall effect sensor and magnet(s), driven by a motor driver module. Outputs consist of an I2C display (LCD or OLED) for showing data, LEDs (individual and bar graph) indicating injector firing, ignition events, status, and potentially other metrics, along with current limiting resistors for the LEDs. Prototyping components like breadboards, jumper wires, and a USB cable are also used. A dedicated power supply is required for the motor.
+The core of the system is a Raspberry Pi Pico 2 microcontroller. Inputs include a potentiometer simulating the accelerator pedal, various sensors (temperature, pressure, humidity), and potentially RFID for user identification. Engine RPM is simulated using a small DC motor coupled with a digital Hall effect sensor and magnet(s), driven by a motor driver module. Outputs consist of an I2C display (LCD or OLED) for showing data, LEDs (individual and bar graph) indicating injector firing, ignition events, status, and potentially other metrics, along with current limiting resistors for the LEDs. Prototyping components like breadboards, jumper wires, and a USB cable are also used. A dedicated power supply is required for the motor.
 
 ### Schematics
 
 ![Diagram v2](v2.webp)
+*This is the KiCad schematic for the updated circuit, an updated digram will follow after the last milestone!*
+![Schematic](sch.svg)
 
-I know there should be a better schematic here but it is not ready now, sorry (blurry because of the size restrictions)
 
 ### Bill of Materials
 
 | Device                                    | Usage                                                      | Price |
 |-------------------------------------------|------------------------------------------------------------|-------|
-| [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller                                          | -     |
+| [Raspberry Pi Pico 2 ](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller                                          | -     |
 | Small DC Motor                            | Simulates engine rotation for RPM generation               | -     |
 | Digital Hall Effect Sensor                | Detects motor rotation via magnet(s) for RPM               | -     |
 | Magnet(s)                                 | Used with Hall Effect Sensor for RPM detection             | -     |
@@ -99,3 +100,4 @@ I know there should be a better schematic here but it is not ready now, sorry (b
 1.  [Embassy Framework](https://embassy.dev/)
 2.  [Raspberry Pi Pico Documentation](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
 3.  [Awesome Embedded Rust](https://github.com/rust-embedded/awesome-embedded-rust)
+4.  [More links are in my notepad](https://placeholderlink)
