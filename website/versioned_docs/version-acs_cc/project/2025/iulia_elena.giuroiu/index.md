@@ -4,6 +4,7 @@ A smart access control system using username and PIN authentication
 :::info 
 
 **Author**: Iulia-Elena Giuroiu  \
+**Group**: 333CC \
 **GitHub Project Link**: [source code](https://github.com/UPB-PMRust-Students/proiect-IuliaGIE)
 
 :::
@@ -32,17 +33,39 @@ The system is organized modularly, with each logic component responsible for a d
 
 ```mermaid
 flowchart TB
-    PICO["Raspberry Pi Pico"]
+    PICO["Raspberry Pi Pico W"]
 
-    PICO --> OLED["OLED / LCD Screen"]
-    PICO --> KEYPAD["Matrix Keypad 4x4"]
-    PICO --> BUZZER["Active Buzzer"]
-    PICO --> LED["LEDs (Red and Green)"]
-    PICO --> MOTOR["Servo Motor SG90"]
-    PICO --> PIR["PIR Motion Sensor"]
+    OLED["LCD 1602 (I2C)"]
+    KEYPAD["Keypad 4x4"]
+    BUZZER["Buzzer (BZ1)"]
+    LED_RED["Red LED"]
+    LED_GREEN["Green LED"]
+    MOTOR["Servo Motor SG90"]
+    PIR["PIR Motion Sensor"]
+    BUTTON["Push Button (SW1)"]
 
-    KEYPAD --> PICO
-    PIR --> PICO
+    PICO --> OLED
+    PICO --> KEYPAD
+    PICO --> BUZZER
+    PICO --> LED_RED
+    PICO --> LED_GREEN
+    PICO --> MOTOR
+    PICO --> PIR
+    PICO --> BUTTON
+
+    subgraph OUTPUTS
+        LED_RED
+        LED_GREEN
+        MOTOR
+        BUZZER
+    end
+
+    subgraph INPUTS
+        PIR
+        KEYPAD
+        BUTTON
+    end
+
 ```
 
 ## Log
@@ -51,7 +74,40 @@ flowchart TB
 
 ### Week 5 - 11 May
 
+During this week, I focused on defining the concept and direction of the project. I analyzed the required functionality and started outlining the system specifications. I identified the components needed (PIR sensor, keypad, LEDs, servo motor, buzzer, LCD, push button) and mapped them to the available GPIOs on the Raspberry Pi Pico 2W.
+
+I also considered how the different modules will interact—such as how authentication should trigger access control, and how motion detection without prior authentication should trigger an alert. I began drafting the hardware schematic in KiCad and planned the software architecture using Embassy’s async multitasking. Additionally, I evaluated what parts I already had available and what still needed to be sourced.
+
 ### Week 12 - 18 May
+
+This week I connected each hardware component to the Raspberry Pi Pico 2W individually and tested its functionality. Using small, dedicated Rust programs, I verified that every module operated correctly in isolation. This included:
+
+reading input from the matrix keypad (keypad.rs),
+
+detecting motion with the PIR sensor (senzorpir.rs),
+
+controlling the servo motor via PWM (servomotor.rs),
+
+toggling LEDs and activating the buzzer (buzzer.rs),
+
+displaying messages on the LCD1602 via I2C (ecran.rs),
+
+and reading input from the push button (button.rs).
+
+These tests ensured that the electrical connections were correct and that each peripheral worked reliably before integrating them into the main system.
+
+### Build Gallery
+
+Here are several photos taken during development and testing:
+
+| System Overview | LCD & Servo Testing |
+|------------------|----------------------|
+| ![Final Build](images/hello-world-full.webp) | ![LCD Servo](images/traieste-lcd-servo.webp) |
+
+| LED Indicator Test | Keypad + PIR + Buzzer Test |
+|--------------------|-----------------------------|
+| ![LEDs](images/leds-test.webp) | ![Keypad PIR](images/keypad-pir-buzzer.webp) |
+
 
 ### Week 19 - 25 May
 
@@ -75,7 +131,7 @@ The system uses two Raspberry Pi Pico 2W boards. The main board handles authenti
 
 ### Schematics
 
-![Electrical Schematic](schematic.webp)
+![Electrical Schematic](schematic.svg)
 
 ### Bill of Materials
 
@@ -107,13 +163,13 @@ The firmware is written in Rust using an asynchronous multitasking model powered
 * **Authentication Task**: Reads input from the keypad, validates username and PIN
 * **Access Task**: Controls the door via the servo motor and manages door state logic
 * **Alert Task**: Listens for motion events from the PIR sensor and activates the buzzer and red LED if motion is detected without authentication
-* **Display Task**: Shows real-time messages and system prompts via the LCD1602 using I²C
+* **Display Task**: Shows real-time messages and system prompts via the LCD1602 using I2C
 
 ### Peripheral Handling
 
 * **GPIO**: Used for keypad input, LED control, and buzzer signal
 * **PWM**: Drives the buzzer and smoothly dims LEDs
-* **I²C**: Communication with the LCD display
+* **I2C**: Communication with the LCD display
 * **Task synchronization**: Performed using Embassy's async/await runtime, avoiding blocking calls and ensuring responsive behavior
 
 ## Links

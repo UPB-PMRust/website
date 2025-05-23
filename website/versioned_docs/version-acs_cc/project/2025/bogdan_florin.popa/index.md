@@ -84,7 +84,7 @@ remote control cars. This project also helps me have a better understanding of c
 
 
 ### Schematics
-![diagram](KiCad.webp)
+![diagram](KiCad.svg)
 
 ### Bill of Materials
 
