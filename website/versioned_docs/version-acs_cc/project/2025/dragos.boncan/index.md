@@ -490,8 +490,7 @@ display equal RGB values. In the code, I also need to have appropriate constants
 |  num_traits::float::FloatCore  | Provides floating point core traits and math operations |     I used it to help calculate euclidian distance between the color identified by my TCS230 and the banknote    |
 |      ufmt::{uwrite, uWrite}     | A minimal formatting crate for no_std and embedded use |   Used for formatting output to custom writes. I used to display "lei" after the total sum of money.  |
 |            core::f32            |     Core floating-point types from Rust core library    |         Used for float32 operations in a no_std context, I used it several times to normalize my RGB values and to compute different calculations for total sum displayed        |
-|            libm::sqrt           |     Math library providing sqrt and other math funcs    | Used to compute square root. I needed to 
-calculate the euclidian distance, so I need sqrt function. |
+|            libm::sqrt           |     Math library providing sqrt and other math funcs    | Used to compute square root. I needed to calculate the euclidian distance, so I need sqrt function. |
 
 
 
