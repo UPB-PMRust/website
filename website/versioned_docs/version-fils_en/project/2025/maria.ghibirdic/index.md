@@ -93,7 +93,7 @@ This is the diagram that illustrates the components and their connections.
 ### Week 5 - 11 May
 I started to search for the necessary components, looking for inspiration online and creating the overall plan of the project. Also, I ran small tests to observe the functionality of the pieces that I am using, for a better understanding.
 ### Week 12 - 18 May
-
+Observing the overall development of my project, I decided to add a few functionalities to my project, aiming for a more veritable result.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -107,7 +107,7 @@ I started to search for the necessary components, looking for inspiration online
 
 2. **Display and User Input**  
    **ST7735 TFT LCD**  
-   - 1.3", 240×240 resolution  
+   - 1.8", 128×160 resolution  
    - SPI interface  
    - Displays time, mood, sensor data, and basic UI 
     
@@ -152,7 +152,11 @@ I started to search for the necessary components, looking for inspiration online
 
 The Kicad scheme of the project: 
 
-![](smartwatch_KiCad.webp)
+![](smartwatch.svg)
+
+A picture of the project:
+
+![](smartwath-circuit.webp)
 
 ### Bill of Materials
 
@@ -168,15 +172,15 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://ardushop.ro/ro/raspberry-pi/513-raspberry-pi-pico-6427854006004.html?gad_source=1&gbraid=0AAAAADlKU-42jinprSiunx6NMKr_hBv10&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QZ_2VEqphC-aUeK5cMd5FMvk5FfX926bzEJo8KvP8IVU-Dl3aCxC0aAg7gEALw_wcB) | The main microcontroller with Wi-Fi support | [~35 RON](https://www.aliexpress.com/item/1005004647347543.html) |
-| [1.3" ST7735 TFT LCD Display](https://www.aliexpress.com/item/1005006690968351.html?src=google&pdp_npi=4%40dis!RON!22.37!14.68!!!!!%40!12000038178811402!ppc!!!&src=google&albch=shopping&acnt=298-731-3000&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&gclsrc=aw.ds&&albagn=888888&&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en1005006690968351&ds_e_product_merchant_id=5088463358&ds_e_product_country=RO&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=21564641029&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gbraid=0AAAAAqc5ie1sj-Oz_cMiZ9pBkpaFnXOUA&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-SwN-gQZs7LwAXMplkVf63yIY57MbXObE7YdOteOHCN4CntfH9FRTYaAgyuEALw_wcB) | UI display for time, sensor data, and mood | [~12 RON](https://www.aliexpress.com/item/1005005097403947.html) |
-| [Rotary Encoder Module](https://www.optimusdigital.ro/en/touch-sensors/7150-rotary-encoder-module.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-S5Z8B9L9ZCnC3jZE_tYiWeB5Ks5VepGYU4Bpz7yCnCQeyV1NY9a60aAgs6EALw_wcB) | Scroll navigation | [~10 RON](https://www.aliexpress.com/item/1005003316879017.html) |
-| [MAX30102 Heart Rate Sensor](https://www.aliexpress.com/item/1005005340463101.html) | Measures heart rate and SpO₂ | [~15 RON](https://www.aliexpress.com/item/1005005340463101.html) |
-| [BMP280 Barometric Pressure Sensor Module ](https://www.optimusdigital.ro/en/pressure-sensors/1666-modul-senzor-de-presiune-barometric-bmp280.html?srsltid=AfmBOoqVoFU4Puo7DRsgnPe2BaMWG83vkZyJ3IDF1Il7P0NAquWecVQB) | Measures ambient temperature | [~8 RON](https://www.aliexpress.com/item/32792430517.html) |
-| [MPU-6500 Accelerometer + Gyroscope](https://sigmanortec.ro/Modul-Accelerometru-Giroscop-I2C-MPU-6500-6-axe-p136248782?SubmitCurrency=1&id_currency=2&gad_source=1&gbraid=0AAAAAC3W72NKFDYwdfyTTpSdW2LkNtz2F&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-RXaCz5PXyfl9knIBP0TchD5fPlfYEBgT2k2_cGC2WfCO-EHHJICrUaAok3EALw_wcB) | Motion detection and step counting | [~12 RON](https://www.aliexpress.com/item/1005001900978490.html) |
-| [9V Alkaline Battery](https://www.aliexpress.com/item/1005005806074904.html) | Power supply for the smartwatch | [~10 RON](https://www.aliexpress.com/item/1005005806074904.html) |
-| [Breadboard + Jumper Wires](https://www.optimusdigital.ro/en/kits/12026-plusivo-electronics-starter-kit-0721248990075.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QkeGMf9xWm5LnsMxHSpBMUKRBmqI9g3MxwQbAexsVZ7TNXNQZNYt4aAvOqEALw_wcB) | Used for prototyping and wiring | [Alredy owned](https://www.aliexpress.com/item/1005004657371379.html) |
-| [Tactile Push Buttons (x2)](https://www.optimusdigital.ro/en/kits/12026-plusivo-electronics-starter-kit-0721248990075.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QkeGMf9xWm5LnsMxHSpBMUKRBmqI9g3MxwQbAexsVZ7TNXNQZNYt4aAvOqEALw_wcB) | Simple back/exit and interaction input | [Already owned](https://www.aliexpress.com/item/1005002750564980.html) |
+| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The main microcontroller with Wi-Fi support | [~40 RON](https://www.robofun.ro/placa-dezvoltare-raspberry-pi-pico-w.html?gad_source=1&gad_campaignid=20383925641&gbraid=0AAAAApSyPJXI7UOchHceztSvGJjtM_smx&gclid=CjwKCAjw56DBBhAkEiwAaFsG-tU-t1Z2feuKfwp-yczybaGUcyLanPK5ohNsF_ykXOK5Y7FA3po8KRoCfdYQAvD_BwE) |
+| [1.8" ST7735 TFT LCD Display](https://www.aliexpress.com/item/1005006690968351.html?src=google&pdp_npi=4%40dis!RON!22.37!14.68!!!!!%40!12000038178811402!ppc!!!&src=google&albch=shopping&acnt=298-731-3000&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&gclsrc=aw.ds&&albagn=888888&&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en1005006690968351&ds_e_product_merchant_id=5088463358&ds_e_product_country=RO&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=21564641029&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gbraid=0AAAAAqc5ie1sj-Oz_cMiZ9pBkpaFnXOUA&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-SwN-gQZs7LwAXMplkVf63yIY57MbXObE7YdOteOHCN4CntfH9FRTYaAgyuEALw_wcB) | UI display for time, sensor data, and mood | [~12 RON](https://www.aliexpress.com/item/1005006690968351.html?src=google&pdp_npi=4%40dis!RON!23.33!14.59!!!!!%40!12000038178811402!ppc!!!&src=google&albch=shopping&acnt=298-731-3000&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=UneMJZVf&gclsrc=aw.ds&&albagn=888888&&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en1005006690968351&ds_e_product_merchant_id=5088463358&ds_e_product_country=RO&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=21564641029&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gad_campaignid=21564641737&gbraid=0AAAAAqc5ie25jRQd3XIsb4gUj11l-puOR&gclid=CjwKCAjw56DBBhAkEiwAaFsG-s3rip-wEFLBGqL_El6OM73Ff2IaIRLflckQArZMqFFypXI20ZSTOxoC4z8QAvD_BwE) |
+| [Rotary Encoder Module](https://components101.com/modules/KY-04-rotary-encoder-pinout-features-datasheet-working-application-alternative) | Scroll navigation | [~5 RON](https://www.optimusdigital.ro/en/touch-sensors/7150-rotary-encoder-module.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-S5Z8B9L9ZCnC3jZE_tYiWeB5Ks5VepGYU4Bpz7yCnCQeyV1NY9a60aAgs6EALw_wcB) |
+| [MAX30102 Heart Rate Sensor](https://www.analog.com/en/products/max30102.html) | Measures heart rate and SpO₂ | [~14 RON](https://www.bitmi.ro/modul-senzor-pulsoximetru-max30102-10803.html?gad_source=1&gad_campaignid=22005721655&gbraid=0AAAAADLag-nK6fI72bFVQ9az-2qcXpzeK&gclid=CjwKCAjw56DBBhAkEiwAaFsG-hRnguBxeCHsNg6RkDcOa34o3b1mOLfE1P9Svy3UEG2Din-cZxoG3RoCl8oQAvD_BwE) |
+| [BMP280 Barometric Pressure Sensor Module ](https://www.optimusdigital.ro/en/pressure-sensors/1666-modul-senzor-de-presiune-barometric-bmp280.html?srsltid=AfmBOoqVoFU4Puo7DRsgnPe2BaMWG83vkZyJ3IDF1Il7P0NAquWecVQB) | Measures ambient temperature | [~8 RON](https://www.optimusdigital.ro/en/pressure-sensors/1666-modul-senzor-de-presiune-barometric-bmp280.html?srsltid=AfmBOoqVoFU4Puo7DRsgnPe2BaMWG83vkZyJ3IDF1Il7P0NAquWecVQB) |
+| [MPU-6500 Accelerometer + Gyroscope](https://datasheet.octopart.com/MPU-6500-InvenSense-datasheet-138896167.pdf) | Motion detection and step counting | [~12 RON](https://sigmanortec.ro/Modul-Accelerometru-Giroscop-I2C-MPU-6500-6-axe-p136248782?SubmitCurrency=1&id_currency=2&gad_source=1&gbraid=0AAAAAC3W72NKFDYwdfyTTpSdW2LkNtz2F&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-RXaCz5PXyfl9knIBP0TchD5fPlfYEBgT2k2_cGC2WfCO-EHHJICrUaAok3EALw_wcB) |
+| [9V Alkaline Battery](https://www.emag.ro/baterie-alkaline-varta-industrial-pro-9v-varta-industrial-9v-elem-6lr61/pd/D9CX4KBBM/?cmpid=146119&utm_source=google&utm_medium=cpc&utm_content=82270117088&utm_campaign=(RO:Whoop!)_3P-Y_%3e_Aparate_foto_and_accesorii_order_test&gad_source=1&gad_campaignid=2078923567&gbraid=0AAAAACvmxQg4bmsiLjnXY4-FTI8tGLYaS&gclid=CjwKCAjw56DBBhAkEiwAaFsG-uYGzUlzSSPeAQ5vf2hyJcZI4xjosMAeSrVj5iEuBQs1KUXej_izTBoC0MQQAvD_BwE) | Power supply for the smartwatch | [~10 RON](https://www.emag.ro/baterie-alkaline-varta-industrial-pro-9v-varta-industrial-9v-elem-6lr61/pd/D9CX4KBBM/?cmpid=146119&utm_source=google&utm_medium=cpc&utm_content=82270117088&utm_campaign=(RO:Whoop!)_3P-Y_%3e_Aparate_foto_and_accesorii_order_test&gad_source=1&gad_campaignid=2078923567&gbraid=0AAAAACvmxQg4bmsiLjnXY4-FTI8tGLYaS&gclid=CjwKCAjw56DBBhAkEiwAaFsG-uYGzUlzSSPeAQ5vf2hyJcZI4xjosMAeSrVj5iEuBQs1KUXej_izTBoC0MQQAvD_BwE) |
+| [Breadboard + Jumper Wires](https://www.optimusdigital.ro/en/kits/12026-plusivo-electronics-starter-kit-0721248990075.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QkeGMf9xWm5LnsMxHSpBMUKRBmqI9g3MxwQbAexsVZ7TNXNQZNYt4aAvOqEALw_wcB) | Used for prototyping and wiring | [Already owned](https://www.optimusdigital.ro/en/kits/12026-plusivo-electronics-starter-kit-0721248990075.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QkeGMf9xWm5LnsMxHSpBMUKRBmqI9g3MxwQbAexsVZ7TNXNQZNYt4aAvOqEALw_wcB) |
+| [Tactile Push Buttons (x2)](https://www.optimusdigital.ro/en/kits/12026-plusivo-electronics-starter-kit-0721248990075.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QkeGMf9xWm5LnsMxHSpBMUKRBmqI9g3MxwQbAexsVZ7TNXNQZNYt4aAvOqEALw_wcB) | Simple back/exit and interaction input | [Already owned](https://www.optimusdigital.ro/en/kits/12026-plusivo-electronics-starter-kit-0721248990075.html?gad_source=1&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QkeGMf9xWm5LnsMxHSpBMUKRBmqI9g3MxwQbAexsVZ7TNXNQZNYt4aAvOqEALw_wcB) |
 
 
 
@@ -188,10 +192,12 @@ The smartwatch firmware is developed in **Rust**, utilizing the **Embassy async 
 | [embassy](https://github.com/embassy-rs/embassy) | Asynchronous embedded runtime for Rust | Handles multitasking and timing |
 | [embedded-time](https://crates.io/crates/embedded-time) | Comprehensive library for handling time-related operations in embedded systems | Provides time and date utilities for embedded sysems |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded displays | Used for drawing time, icons, and graphs on the display |
-| [st7789](https://crates.io/crates/st7789) | Driver for ST7789 SPI TFT displays | Interfaces with the smartwatch’s LCD screen |
+| [mipidsi](https://crates.io/crates/mipidsi) | Display driver for ST7735 LCD | Interfaces with the smartwatch’s LCD screen |
 | [max3010x](https://crates.io/crates/max3010x) | Driver for MAX30102 pulse oximeter sensor | Reads heart rate and SpO₂ data |
 | [heapless](https://crates.io/crates/heapless) | Fixed-capacity data structures for no_std environments | Manages queues, buffers, and logging without dynamic allocation |
 | [defmt](https://crates.io/crates/defmt) | Logging framework for embedded systems | Provides efficient logging for debugging |
+| [micromath](https://crates.io/crates/micromath) | Lightweight math utilities for `no_std` environments | Used to compute square roots and power functions for acceleration calculations during step detection |
+
 
 ## Links
 
