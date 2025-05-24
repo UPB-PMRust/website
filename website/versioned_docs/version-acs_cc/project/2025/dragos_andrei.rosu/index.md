@@ -56,6 +56,12 @@ Sistemul este compus din următoarele **module arhitecturale**:
 
 ### Week 5 - 11 May
 
+Am reusit sa fac legaturile cu placuta de raspberry pi si am legat componentele la breadboard, respectiv la placuta. Am reusit sa fac sa functioneze si codul pentru LCD sa afiseze ceva pe el.
+
+Din pacate nu o sa mai folosesc componentele care monitorizau parcarea, daca locurile erau ocupate/libere, intrucat mi-au fost incurcate piesele la comanda, si o sa raman doar cu citire de card, deschidere bariera, afisaj LCD, aprindere bec cand se deschide bariera si cu senzorul ultrasonic, iar monitorizarea de locuri de parcare o sa se faca prin intermediul de scanare card la intrare cu trecerea prin senzor la iesire.
+
+![diagram](Schema.jpg)
+
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
