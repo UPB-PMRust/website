@@ -491,6 +491,7 @@ display equal RGB values. In the code, I also need to have appropriate constants
 |      ufmt::{uwrite, uWrite}     | A minimal formatting crate for no_std and embedded use |   Used for formatting output to custom writes. I used to display "lei" after the total sum of money.  |
 |            core::f32            |     Core floating-point types from Rust core library    |         Used for float32 operations in a no_std context, I used it several times to normalize my RGB values and to compute different calculations for total sum displayed        |
 |            libm::sqrt           |     Math library providing sqrt and other math funcs    | Used to compute square root. I needed to calculate the euclidian distance, so I need sqrt function. |
+| core::sync::atomic::{AtomicU32, Ordering} | Provides atomic integer types and memory ordering primitives. | Used for thread-safe atomic operations. I used it to be able to have 2 global variables: GLOBAL_FLOAT_BITS and GLOBAL_MACHINE_STATE|
 
 
 
