@@ -37,8 +37,9 @@ Connections:
 
 ## Log
 - **Week 5 - 11 May**: Set up the Raspberry Pi Pico and assembled the main hardware components.
-- **Week 12 - 18 May**: Completed the full hardware assembly and tested each component with example code.
-- **Week 19 - 25 May**: Finished the software code, adding more reactive modes for the LEDs.
+- **Week 12 - 18 May**: Completed the full hardware assembly and tested each component individually using example code. Encountered an issue with the LED strip: several LEDs were not functioning correctly, so I tried cutting off the faulty sections and re-soldering, but this did not fully resolve the problem. Ultimately, I replaced the LED strip with a WS2812 LED ring, which worked reliably in the final setup.
+- **Week 19 - 25 May**: Finished the software code, adding more reactive modes for the LEDs.  
+The audio processing proved to be one of the most challenging aspects of the project, especially tuning the beat and frequency detection algorithms. It required significant trial and error to achieve reliable real-time responsiveness.
 
 ## Hardware
 - Raspberry Pi Pico W (x2 - one for development/debug)
