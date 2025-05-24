@@ -93,6 +93,8 @@ This week, I successfully connected and integrated all the main components of my
 
 ### Week 19 - 25 May
 
+This week, I managed to finish both hardware and software parts of my project. I connected my pump, relay and level-shifter to my project and also used a battery support for them. Furthermore, I showed my project to my laboratory professor and saw that it worked.
+
 ## Hardware
 
 This project uses a Raspberry Pi Pico W as the main controller to automate plant watering. A soil humidity sensor monitors the moisture level in the soil, while a water level sensor checks if there is enough water in the reservoir. An RGB LED visually indicates the soil's condition—dry or wet—and an LCD module displays a warning when the reservoir is empty. When the soil is dry and water is available, a small water pump motor is activated to water the plant through connected tubing. All components are connected using a breadboard, jumper wires, and appropriate resistors, and the system is powered by a battery for portability.
