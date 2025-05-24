@@ -51,6 +51,14 @@ Add LCD Display and BMP180 temperature sensor. Finish writing code.
     - alert when plant is thirsty
 - RGB LED
     - feedback of watering level
+- voltage converter source
+    - convert from 3V given out by GPIO to 12V required by buzzer
+- soil humidity sensor
+    - read soil humidity
+- temperature and pressure sensor
+    - read air temperature and pressure
+- 16x2 LCD display
+    - display data given by sensors
 
 <<<<<<< HEAD
 <<<<<<< HEAD
