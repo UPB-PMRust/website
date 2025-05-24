@@ -53,7 +53,48 @@ Below is the architecture diagram:
 
 ### Week 5 - 11 May
 
+This week, I began approaching the core of the project by collecting relevant information that could help me find a reliable way to automate the fishing process. To complement online research—which often provided ambiguous or incomplete insights—I consulted a local experienced fisherman to validate my understanding of the practical aspects involved.
+
+From our discussions, I learned that different types of fishing lines are used depending on the context, and that even though the hook typically attaches to the fish quite easily, the fisherman must actively ensure the hook pierces through the fish’s lip before starting the reeling process. One of the most challenging aspects in automating this behavior is replicating the fisherman’s instinct: reeling too early or simultaneously with the fish's resistance might cause the line to twist or, in the worst case, snap entirely.
+
+In parallel with this research, I also analyzed related projects and documentation, which helped refine and validate my proposed system architecture.
+
+One of the most difficult tasks was figuring out how to reliably detect the moment a fish bites the bait. Initially, I considered using force-sensitive resistors (FSRs) placed near the rod's string. However, I discovered that FSRs primarily detect vertical pressure, not horizontal tension. I explored mounting the sensor at the rod tip, but that idea proved problematic due to humidity or water drops that could eventually damage the sensor or surrounding components.
+
+Another idea was to mount the sensor near the reel (mulinetă), with two metal bars from a luggage frame enclosing the string. The FSR would be placed so that, when the fish pulls, the tension in the string would press against the sensor. Unfortunately, this again involved horizontal force rather than vertical pressure, so reliability remained an issue.
+
+Looking for inspiration, I came across a Microsoft research project where they tackled a similar problem. Their solution involved a complex chamber and conductor system that isolated vertical force components—too sophisticated to reproduce in just three weeks.
+
+After discussing the challenge with a neighbor who repairs cars, I learned about safety sensors in car windows—specifically limiters that stop the window when an obstruction is detected (like a hand). Inspired by this, I considered adapting a similar mechanism for the rod: when the string lifts due to a fish pull, it could be detected by a sensor positioned just beneath the default rest point.
+
+While this research consumed a significant amount of time, I also began acquiring the actual components for the build, intending to refine the detection mechanism while the parts arrived. After iterating on several concepts, I reached an overall perspective on the system structure and clarified how the main modules—sensors, motor, and controllers could interact.
+
+These efforts marked a key milestone in the planning phase and prepared me to confidently move into prototyping next week.
+
 ### Week 12 - 18 May
+For the current weekend came the transition from documentation to implementation, as I moved from conceptual design to breadboard prototyping.
+
+I began by designing a full schematic in KiCAD before assembling components on the breadboard. This schematic helped me determine the types of connectors and spacing requirements, streamlining the hardware integration phase. I successfully wired both Raspberry Pi Pico W boards, ensuring connections for sensors, actuators, and the motor driver.
+
+A major challenge was the delayed arrival of essential components, which put pressure on the woarkload I had to acchieve by the end of the week. However, with support from my lab assistant, we managed to agree on the fish biting detection component so that it was more efficient to focus on the core mechanism rather than immediately pursuing a polished case or enclosure.
+
+Another take/idea (which is also what I've agreed on using for the hardware part), we explored was integrating an optical detection system using the ITR9608-F sensor and a rotating disk (pseudo-mulinet). Initially, I considered placing the sensor at the tip of the disk so that the fish's pull would block the IR beam (initially it is placed in the exposed slit made on the disk). But this proved unreliable—waves could falsely trigger detection. We concluded that the sensor should be positioned at a deeper angle (at least >25 grade inside the reel structure from the slit) so that only an intentional pull from a fish allows the slit on the rotating disk to align and pass the IR beam.
+
+Much of the weekend was dedicated to constructing this precision mechanism. The rotating disk was made from two thin plastic pieces with an embedded sink gasket acting as a soft coupling. I crafted a polystyrene enclosure to elevate the motor—ensuring the reeling action wouldn't collide with the breadboard or other components. This positioning also kept the sensor safe while maintaining compactness.
+
+For the bobber module, I mounted the ADXL343 accelerometer along with its corresponding Pico onto a carved polystyrene block for protection and waterproofing simulation.
+
+Major technical milestones this week include:
+
+Integrated the ITR9608-F optical sensor in a pull-up configuration, correctly routing VCC and GND. I validated its behavior using a slit disk to simulate a fish bite.
+
+Wired the ADXL343 accelerometer to the secondary Pico via I2C (GPIO0/GPIO1). This module will later detect nearby fish movement via motion sensing.
+
+Powered the L298N motor driver and conected it to the dc motor, making sure that in1 and in2 are used in order for the reel to pull.
+
+Resolved GND referencing issues by connecting a unified ground rail across all modules, ensuring signal consistency.
+
+Updated and committed the KiCAD schematic to the GitHub repository, and added some refrence picture of the progress regarding the project this week.
 
 ### Week 19 - 25 May
 
@@ -61,17 +102,41 @@ Below is the architecture diagram:
 
 The following hardware components were used to build the automated fishing rod system:
 
-- `Raspberry Pi Pico WH (RP2350)` — Acts as the main microcontroller, managing inputs and triggering actions.
-- `MPU6050 Accelerometer` — Embedded inside the fishing bobber to detect nearby fish motion through water vibrations.
-- `Force-Sensitive Resistor (FSR, e.g. FSR402)` — Placed along the fishing line to detect sudden tension spikes indicating a bite.
+- `Raspberry Pi Pico 2 WH (RP2350)` — Acts as the main microcontroller, Reading fish bite detection via the ITR9608-F optical sensor which verifies if the corresponding infrared beam emited by the sensor
+                                      can pass trough some small gaps of the wheel which spins acording to the fish strength to pull the string (normally the sensor light cannot pass trough the circle
+                                      after a certain treshold the light passes trough the gaps).
+- `Raspberry Pi Pico 2 WH (RP2350)` — Acts as the secondary microcontroller, to monitor fish activity in the proximity of the bobber.
+- `ADXL345 Accelerometer` — Embedded inside the fishing bobber to detect nearby fish motion through water vibrations.
+- `ITR9608 Senzor Fotoelectric Infrarosu` — An IR reflective optical sensor used to detect interruptions (like a rotating slit disk).
 - `Red LED` — Provides a visual alert when motion is detected near the hook.
-- `Buzzer` — Gives an audible signal when a fish bite is detected via the FSR.
-- `3 Push Buttons` — Used by the fisherman to select the rod type (for customizing pulling behavior).
-- `Servo Motor` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
+- `Buzzer` — Gives an audible signal when a fish bite is detected via the ITR.
+- `L298N H-Bridge driver` - Driver used by the motor in order to process rotation direction and speed.
+- `DC Motor` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
+- `Rezistor` - Used either to set high logical level, protect diodes by limiting the current and manage the current that reaches certain components (Buzzer).
 
+Up next here are presented some pictures with the hardware.
+
+Top View of the Main PICO used to reel in and signal the fisherman about different states of the fishing process:
+![Main_PICO_TOP_VIEW.webp](Main_PICO_TOP_VIEW.webp)
+
+
+Side View of the optical sensor which is supposed to measure if the ray can pass through the disk in order to detect the fish who took the bait:
+![Optical_sensor_next_to_reel.webp](Optical_sensor_next_to_reel.webp)
+
+
+Side View of the second pico which is supposed to give the proximity data of the fish to the main MCU:  
+![Second PICO SIDE VIEW](Second_PICO_SIDE_VIEW.webp)
+
+Top view of the second pico:  
+![Second PICO TOP VIEW](Second_PICO_TOP_VIEW.webp)
+
+ 
 ### Schematics
 
-Place your KiCAD schematics here. (Work in progress)
+Here is presented the KiCAD Schematic:
+
+![KiCAD Rod Schematic](Schema_all_components_fishing_Rod_fitted.svg)
+
 
 ### Bill of Materials
 
@@ -117,5 +182,6 @@ Place your KiCAD schematics here. (Work in progress)
 5. [Gas Powered Fishing Pole](https://www.youtube.com/watch?v=KPQcy0dylrM&t)
 6. [Device attached to the rod used for bite detection](https://maxoffsky.com/code-blog/dynatac-a-smart-fishing-accessory/)
 7. [Arduino Forum for adaptive fishing rod](https://forum.arduino.cc/t/adaptive-fishing-rod/1347714)
+8. [Flexible Sensor to detect the string of a rod beeing displaced](https://patents.google.com/patent/US20050193616A1/en)
 ...
 
