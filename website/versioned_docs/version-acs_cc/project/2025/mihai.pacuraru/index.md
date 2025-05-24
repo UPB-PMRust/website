@@ -12,7 +12,7 @@ When your plant is thirsty it can't tell you that, but I can help with it.
 
 The "Plant Watering Alarm" is a smart monitoring system that detects when your plants need water and alerts you before they become dehydrated. The system uses a soil moisture sensor inserted into the plant's soil to continuously measure moisture levels. When the soil becomes too dry (falling below a configurable threshold), the system triggers an audio and visual alarm to notify you that your plant needs attention.
 
-The core components include a Raspberry Pi Pico 2 W microcontroller, soil moisture sensors, a buzzer for audible alerts and a RGB LED that shows the watering level:
+The core components include a Raspberry Pi Pico 2 microcontroller, soil moisture and air temperature sensors, a buzzer for audible alerts, a LCD Display for informations feedback and a RGB LED that shows the watering level:
 - green (normal)
 - yellow (prepare for watering)
 - red (urgent watering)
@@ -39,6 +39,8 @@ Write documentation.
 Assemble hardware components and write demo source code.
 
 ### Week 19 - 25 May
+
+Add LCD Display and BMP180 temperature sensor. Finish writing code.
 
 ## Hardware
 
@@ -99,10 +101,12 @@ The format is
 | [Transistor](https://www.emag.ro/tranzistor-2n2222am-npn-se2312151536/pd/DKHH5TYBM/) | The transistor for buzzer | 3 RON |
 | [RGB LED](https://sigmanortec.ro/led-rgb-10mm-catod-comun?SubmitCurrency=1&id_currency=2) | The LED for feedback | 2 RON |
 | [Rezistors](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/10928-plusivo-kit-250-buc-rezistoare.html?search_query=rezistor&results=110) | The resistors kit for LED | 15 RON |
-| [Soil Humidity Sensor](https://sigmanortec.ro/Senzor-umiditate-sol-higrometru-p125814620?SubmitCurrency=1&id_currency=2&gQT=1) | The sensor | 4 RON |
+| [Soil Humidity Sensor](https://sigmanortec.ro/Senzor-umiditate-sol-higrometru-p125814620?SubmitCurrency=1&id_currency=2&gQT=1) | The sensor for soil humidity | 4 RON |
+| [Temperature and Pressure Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-de-presiune/149-modul-senzor-de-temperatura-si-presiune-bmp180.html?search_query=bmp&results=21) | The sensor for air temperature and pressure | 7 RON |
+| [LCD Display](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/62-lcd-1602-cu-interfata-i2c-si-backlight-galben-verde.html?search_query=lcd+i2c&results=17) | The LCD display | 15 RON |
 | [Breadboard](https://www.emag.ro/breadboard-400-puncte-ai059-s69/pd/DRJ66JBBM/?ref=sponsored_products_search_r_1_1&recid=recads_1_3f8bcd3d0d1fce50ce875c811f44c8b37341887cf1698acd0193b6f39e905ded_1746374198&aid=d0eeaed2-9c23-11ef-9ec5-023c6ef0a87b_eyJicGQiOjAuMTN9-64d0f1bc2be845562de29773259d5d2f4c3408ca51e59b1cb3a0201b8d7c9467&oid=50658364&scenario_ID=1#reviews-section) | The Breadboard | 17 RON |
 | [Wires](https://www.emag.ro/10-x-fire-dupont-tata-tata-20cm-cl55/pd/DV8M9WBBM/?ref=history-shopping_422378681_12161_1) | The Wires | 10 RON |
-| Total | 126 |
+| Total | 148 |
 
 ## Software
 
@@ -111,7 +115,9 @@ The format is
 | [embassy-rp](https://github.com/almindor/st7789) | Async embedded peripherals | Peripherals access |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | Async embedded tasks | Tasks manager |
 | [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Async embedded time | Delay time manager |
-| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework | Manage logs |
+| [lcd_lcm1602_i2c](https://docs.rs/lcd-lcm1602-i2c/latest/lcd_lcm1602_i2c/index.html) | LCD 16x2 i2c driver | Control LCD Display |
+| [bmp180_embedded_hal](https://docs.rs/bmp180-embedded-hal/latest/bmp180_embedded_hal/) | BMP180 driver | Control BMP180 sensor |
+| [core](https://doc.rust-lang.org/stable/std/index.html) | Rust stdlib | Format string for printing |
 
 ## Links
 
