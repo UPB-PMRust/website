@@ -43,9 +43,13 @@ I also designed the support on which I'll be putting all the components. To save
 
 ## Hardware
 
+This is how the parts looked like before being assembled on the support.
+
 ![hardware](hardware.webp "Hardware")
 
-Since the pico is, for now, drawing power from the debugger, I'm currently using another breadboard to supply power to the other components. The plan is that, by the end, everything will be connected to the batteries using the smaller breadboard.
+And this is how the final product looks like.
+
+![final](pm_assembled.webp "Assembled")
 
 * Raspberry pi pico 2w: the microcontroller
 * The accelerometer: used for detecting changes in the movement of the robot
