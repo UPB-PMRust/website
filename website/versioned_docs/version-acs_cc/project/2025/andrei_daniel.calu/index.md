@@ -45,7 +45,7 @@ Planned the project hardware setup and decided which components to buy (Raspberr
 Tested early connections and realized some missing components (resistor, diode, power adapter) — placed a second order to complete the setup. Developed the core logic for measuring water level with the ultrasonic sensor. Displayed readings on the LCD via I2C. Added the buzzer and programmed alerts for high water levels. Tested pump activation with a transistor switch. Improved electrical stability with a flyback diode and capacitor.
 
 ### Week 19 - 25 May
-
+Solved a major stability issue where powering the pump would cause the Raspberry Pi Pico to reset and freeze the ultrasonic sensor at incorrect values. Rewired the pump on a separate breadboard and improved power separation, which resolved the interference. Finalized the project software, including improved distance reading stability through software filtering. Also completed the README documentation for the GitHub repository, covering hardware design, software logic, and usage instructions.
 
 ## Hardware
 
