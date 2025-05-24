@@ -4,10 +4,12 @@ Plant soil moisture and surrounding's humidity and temperature monitoring system
 
 ---
 
-## Info
+:::info
 
-**Author:** Aleksandar Petreski    
-**GitHub Project Link:** [GitHub Repository](https://github.com/aleksandarce/micro_rust_code)
+**Author:** Aleksandar Petreski   \
+**GitHub Project Link:** [GitHub Repository](https://github.com/aleksandarce/micro_rust_code) 
+
+:::
 
 ---
 
