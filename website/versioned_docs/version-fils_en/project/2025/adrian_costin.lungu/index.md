@@ -43,9 +43,9 @@ Implemented the UDP socket on the RP Pico, drawing received data on the screen.
 ### Week 28 April - 4 May
 Created a menu interface with working inputs and a working 2-player snake game.
 ### Week 5 - 11 May
-
+Implemented Space Invaders and Sokoban with 2 players.
 ### Week 12 - 18 May
-
+Added pause menus for all the games.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -58,6 +58,10 @@ Due to the inputs being handled through Wi-Fi, the hardware is very simple, cons
 
 ##### Wiring diagram
 ![wiring-diagram](./wiring_diagram.webp)
+
+
+##### Kicad diagram
+![kicad-diagram](./pico-console.svg)
 
 
 ### Bill of Materials
