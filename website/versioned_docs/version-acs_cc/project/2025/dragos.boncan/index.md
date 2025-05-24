@@ -546,24 +546,24 @@ Initially, my display didn’t seem to turn on. The reason was that the contrast
 ### Software optimizations
 
 #### 1. Hardware and software debounce for the reset button
-In the reset_task, I implemented detection of the transition from HIGH to LOW along with 
-short delays (50 ms) for debounce, plus confirmation of the button state after the delay 
-to avoid false positives.
+In the reset_task, I detect the transition from HIGH to LOW and introduce a short delay (50 ms) to debounce the signal. After the delay, I confirm the button state to avoid false positives caused by mechanical bouncing. This ensures reliable reset triggering without unintended multiple activations.
 
 #### 2. Reducing flicker on the LCD
-In the lcd_task, before clearing the LCD, I check if the length of the displayed text has decreased, thus avoiding unnecessary reinitializations and flickering.
+In the lcd_task, before clearing the LCD screen, I check if the length of the displayed text has decreased compared to before. This prevents unnecessary clearing and reinitializing of the display, which reduces flickering and improves the visual experience.
 
 #### 3. Rate limiting in repetitive loops
-In almost all tasks, I use Timer::after(Duration::from_millis(X)) to avoid aggressive continuous polling, which prevents CPU overload and reduces power consumption.
+In almost all tasks, I use ```Timer::after(Duration::from_millis(20))``` to insert delays between iterations. This prevents aggressive continuous polling, which can overload the CPU and increase power consumption. By limiting the polling rate, I reduce CPU usage and optimize energy efficiency.
 
 #### 4. Conditional checks for global updates
-Global variables holding state and float values are updated only when necessary, and their access is atomic, using AtomicU32 with Ordering::SeqCst to avoid race conditions.
+Global variables that hold system state and floating-point values are updated only when a change is necessary. Access to these variables is atomic, using ```AtomicU32``` with ```Ordering::SeqCst``` to avoid race conditions. This approach ensures thread-safe, consistent data without unnecessary writes that could degrade performance or cause bugs.
 
 #### 5. On/off button
-I added an on/off button to reduce power consumption by limiting the active operating time.
+I added an on/off button to allow the system to completely power down when not in use. This reduces power consumption by limiting the active operating time, which is critical for battery-powered or energy-sensitive applications.
 
 #### 6. Controlled banknote motor with a clear state machine
-I implemented an explicit state machine for the motor with well-defined transitions, ensuring controlled operation of the motor.
+The banknote motor is controlled by an explicit state machine with well-defined states and transitions. This structured approach ensures that the motor runs only when needed and in a predictable manner, preventing errors such as motor stalls or unwanted operation, thus improving system reliability and efficiency.
+
+
 
 
 
