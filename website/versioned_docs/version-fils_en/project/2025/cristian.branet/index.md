@@ -76,6 +76,8 @@ Having finished all the individual functionalities of the boards, I moved on to 
 
 ### Week 19 - 25 May
 
+Finished all software related stuff and tested the project to make sure it works properly. I have also created some kind of cardboard parking and assembled the components for better presentation.
+
 ## Hardware
 
 1. **Infrared Sensor VS1838B**  
