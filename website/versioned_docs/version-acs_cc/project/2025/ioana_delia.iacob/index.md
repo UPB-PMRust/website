@@ -56,8 +56,9 @@ And this is how the final product looks like.
 * The infrared sensor: used for wall detection
 * The servomotor: mimics the movements of a tail
 * DC motors: movement
-* Dual motor driver: helps control the DC motors
-* Step down module LM2596S: converts the 6V supplied by the batteries to the 5V needed by the pico
+* Dual motor driver L298N: used for controlling the motors and for converting the 9V from the battery to the 5V needed by the components
+* 3D printed custom model: made specifically for this project, used to support all the components
+ 
 ### Schematics
 
 ![schematic](pm_project_schematic_small.svg "schematic")
@@ -81,12 +82,12 @@ The format is
 | Breadboard kit | Electrical connections | [22 Lei](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=Kit+Breadboard+HQ830+cu+Fire+%C8%99i+Sursa)|
 | Infrared sensor | Obstacle avoidance | [3.49 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html?search_query=+Modul+Senzor+Infrarosu+de+Obstacole+&results=6)|
 | [Motor 130-13200](https://5ororwxhiiqojij.leadongcdn.com/LS-FA-130-aidlpBqmKinSRqqniirlki.pdf) | DC motors | [4.99 Lei](https://www.optimusdigital.ro/ro/motoare-motoare-fara-reductor/361-motor-130-13200.html?search_query=motor+dc&results=612) x 2|
-| [Dual Motor driver](https://lcsc.com/datasheet/lcsc_datasheet_2211080930_Shenzhen-Fuman-Elec-TC1508A_C5142992.pdf) | Motor control | [3.73 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=Modul+Driver+de+Motoare+Dual+in+Miniatura&results=1)|
+| [Dual Motor driver](https://www.st.com/resource/en/datasheet/l298.pdf) | Motor control | [10.99 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html)|
 | Ball support | Ease of movement | [3.95 Lei](https://www.optimusdigital.ro/ro/mecanica-suporturi-cu-bila/74-ball-caster.html?search_query=Suport+cu+Bila+&results=118)|
 | [Accelerometer](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf) | Movement sensor | [12.99 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=Modul+Accelerometru+cu+3+axe+ADXL345&results=2)|
 | [Micro Servomotor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Tail movement mechanism | [11.99](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
-| [Step Down module LM2596S](https://www.ti.com/lit/ds/symlink/lm2591hv.pdf) | Converting voltage | [12.99](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html)|
-| Battery support | Power supply | [9.43 Lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/2806-suport-baterii-4-x-r6.html)|
+| 9V Battery | Power supply | [17.99 Lei](https://www.auchan.ro/baterie-energizer-alkaline-9v-6lr61/p) |
+| Battery support | Power supply | [1.29 Lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/20-conector-pentru-baterie-de-9-v.html?search_query=suport+baterie&results=56) |
 
 
 
