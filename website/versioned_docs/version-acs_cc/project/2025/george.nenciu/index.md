@@ -31,11 +31,13 @@ Most time spend testing each component to be working and fixing small typos. I s
 Created basic logic after finishing with the hardware part. Everything is working very well and testing was taken more serious. Added logic for the SPI LCD module and for the buttons. Holding a button will execute it's command only one time. To do it more, the player has to press multiple times
 
 ### Week 19 May - 25 May
+Implemented a mechanic that prevents executing the same command when holding a button. It will happen only one time, after it will stop until a new button is pressed (or the same). The game is was created using
+a struct and an impl. There are tiles with numbers until 2^14 and it can go beyond it without any problem. The grid can be changed between 4x4, 5x5 and 6x6.
 
 ## Hardware
 
 This project is using the following components:
-- 2x Raspberry Pi Pico 2W for controlling the display and the results intented while pressing the buttons;
+- 2x Raspberry Pi Pico 2W for controlling the display and the results intended while pressing the buttons;
 - 1x 1.8" SPI LCD Module (128 x 160) to display the game;
 - 5x push buttons (4 for movements, 1 to change / reset a game).
 
@@ -43,16 +45,10 @@ This project is using the following components:
 ![Schematics](./beyond_2048.svg)
 
 ## Photos
-<table>
-  <tr>
-    <td><img src="./1.webp" width="600"/></td>
-    <td><img src="./2.webp" width="600"/></td>
-  </tr>
-  <tr>
-    <td><img src="./3.webp" width="600"/></td>
-    <td><img src="./4.webp" width="600"/></td>
-  </tr>
-</table>
+![Photo 1](./1.webp)
+![Photo 2](./2.webp)
+![Photo 3](./3.webp)
+![Photo 4](./4.webp)
 
 
 ## Bill of materials
@@ -72,7 +68,7 @@ This project is using the following components:
 This is not final. This is most likely what I'll use after I get the last order of components which are missing.
 |                    Crate                   	|                               Description                              	|                                  Usage                                 	|
 |:------------------------------------------:	|:----------------------------------------------------------------------:	|:----------------------------------------------------------------------:	|
-| [rp2040-hal](https://crates.io/crates/rp2040-hal)                                 	| Hardware Abstraction Layer for the RP2040 microcontroller              	| Direct access to GPIOs, UART, SPI, I2C, timers, PWM, etc., on the Pico 	|
+| [rp2035-hal](https://crates.io/crates/rp2035-hal)                                 	| Hardware Abstraction Layer for the RP2035 microcontroller              	| Direct access to GPIOs, UART, SPI, I2C, timers, PWM, etc., on the Pico 	|
 | [embedded-hal](https://crates.io/crates/embedded-hal)                               	| Standard traits for embedded peripherals (e.g., digital I/O, SPI, I2C) 	| Foundation for cross-platform driver development and HALs              	|
 | [panic-halt](https://crates.io/crates/panic-halt) (or) [defmt](https://crates.io/crates/defmt)                      	| panic-halt: minimal panic handler; defmt: logging and debug output     	| Handling panics or enabling real-time logging/debugging                	|
 | [embedded-graphics](https://crates.io/crates/embedded-graphics)                          	| 2D graphics primitives for displays (no-std)                           	| Drawing shapes, text, images on the LCD                                	|
@@ -89,4 +85,3 @@ I got inspiered from the links mentioned below:
 3. [Lab 05 - Serial Peripheral Interface](https://pmrust.pages.upb.ro/docs/acs_cc/lab/05)
 4. [2048](https://play2048.co/)
 5. [More than just 2048](http://rayxiao92.github.io/)
-6. [Tetris](https://tetris.com/play-tetris)
