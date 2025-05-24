@@ -11,7 +11,7 @@ A small device that reads your heart rate and plays matching sound feedback.
 
 
 ## Description  
-PulseBeats is a portable embedded device built with a Raspberry Pi Pico W that monitors the user’s heart rate using the MAX30102 sensor. It provides real-time visual and audio feedback through an LCD display and a passive speaker. The goal is to offer a simple way to reflect biometric signals in an engaging way.
+PulseBeats is a portable embedded device built with a Raspberry Pi Pico W that monitors the user’s heart rate using the KY-039 sensor. It provides real-time visual and audio feedback through an LCD display and a passive speaker. The goal is to offer a simple way to reflect biometric signals in an engaging way.
 
 
 
