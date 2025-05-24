@@ -64,9 +64,11 @@ The Main Components of the Project's Architecture:
 
 ### Week 5-11 May
 
-*to be updated this week*
+This week, I started receiving the components for my project. I also began working on the documentation. Although I’m still a bit confused about some aspects of the project, I challenged myself to learn more about the topic so that by next week, I can have the hardware part completed. I am still missing some components, but until I receive all of them, I want to make sure I fully understand how to connect and use each one.
 
 ### Week 12-18 May
+
+This week, I gained more confidence in my skills and began assembling some of the components. I encountered a problem with the water pump, but with the help of the lab teacher, I was able to modify it to work the way I wanted. After resolving that issue, I completed the assembly of all the parts for my project. Once everything was connected, I started creating the KiCad schematic and uploaded it to my documentation.
 
 ### Week 19-25 May 
 
@@ -80,7 +82,7 @@ The other sensors provide data on light levels, humidity, and temperature, and a
 
 ### Schematics
 
-*to be updated next week when the project will be fully built*
+![this is the architecture schematic](Plant-Guardian.svg)
 
 # Bill of Materials
 
