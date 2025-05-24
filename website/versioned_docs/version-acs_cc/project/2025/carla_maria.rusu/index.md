@@ -181,7 +181,19 @@ Tried to do something in Kicad (not for dark mode)
 
 ### Photos
 
+#### Wiring at the hardware deadline
 ![photo_of_hardware](photo_hardware_deadline.webp)
+
+#### Re-wiring after sd card fix 
+![new_wiring](new_wiring.webp)
+
+#### Menu UI
+
+![menu_ui](menu_ui.webp)
+
+#### Playback UI
+
+![playback_ui](playback_ui.webp)
 
 ### Bill of Materials
 
