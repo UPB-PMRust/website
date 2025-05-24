@@ -68,7 +68,7 @@ Main components of the system:
 
 
 - **Optional UI (Buttons, Rotation Angle Sensor)**  
-  - **Buttons** are used for starting/stopping measurement or sound.  
+  - **Buttons** are used for starting/stopping sound.  
   - **Rotation Angle Sensor** (Potentiometer-based) provides analog input for adjusting volume.
 
 
@@ -98,7 +98,7 @@ Ordered additional components needed for the project. Set up a development envir
 Completed the hardware assembly phase of the project. Connected all components according to the planned schematic and performed individual testing of each module to ensure proper functionality.
    
 ### Week 19 – 25 May
-   
+I developed code for each individual component separately and then integrated everything into a complete, functional program that meets all the required specifications. During the process, I addressed issues caused by unstable power supply to ensure reliable operation. Additionally, I made efforts to arrange the components in a more organized and aesthetically pleasing manner.
 
 ## Hardware  
 
@@ -152,7 +152,13 @@ Completed the hardware assembly phase of the project. Connected all components a
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer for embedded systems | Used to interface with embedded peripherals generically |
 | [max3010x](https://github.com/almindor/max3010x) | Driver for MAX30100/MAX30102 pulse oximeter sensors | Used to read heart rate and SpO₂ data |
 | [dfplayer-async](https://crates.io/crates/dfplayer-async) | Library for controlling the DFPlayer Mini MP3 module | Used for audio playback via serial communication |
-| [hd44780-driver](https://github.com/eldruin/hd44780-driver) | LCD driver for HD44780-compatible displays over I2C | Used to show text on LCD1602 screens |
+| [lcd1602-diver](https://crates.io/crates/lcd1602-diver)       | Simple LCD1602 I2C driver                      | Provides display control for messages on the LCD       |
+| [defmt](https://github.com/knurling-rs/defmt)                 | Lightweight logging for embedded systems       | Logs runtime information via RTT                       |
+| [defmt-rtt](https://github.com/knurling-rs/defmt)             | Real-Time Transfer (RTT) backend for `defmt`   | Transfers logs from the device to the host             |
+| [panic-probe](https://github.com/knurling-rs/panic-probe)     | Panic handler for embedded Rust with `defmt`   | Handles and logs panics efficiently                    |
+| [embassy-time](https://docs.rs/embassy-time)                  | Time and delays for async Embassy tasks        | Handles timers, delays, and time measurements          |
+| [embassy-sync](https://docs.rs/embassy-sync)                  | Lightweight async synchronization primitives   | Provides channels and mutexes for task comms           |
+| [static\_cell](https://docs.rs/static_cell)                   | Safe static memory allocations                 | Used to initialize peripherals with `'static` lifetime |
 
 ---
 
