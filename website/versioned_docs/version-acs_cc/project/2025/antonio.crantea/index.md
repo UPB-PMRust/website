@@ -67,9 +67,11 @@ The project uses the following hardware components:
 - Breadboard and jumper cables – Facilitates connection and testing of circuits during the prototyping phase.
 - Case – Provides protection and portability of the assembly.
 
+![Hardware](Hardware.webp)
+
 ### Schematics
 
-Soon...
+![KiCad](KiCad.svg)
 
 ### Bill of Materials
 
