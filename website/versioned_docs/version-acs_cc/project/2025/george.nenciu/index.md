@@ -34,7 +34,6 @@ Created basic logic after finishing with the hardware part. Everything is workin
 Implemented a mechanic that prevents executing the same command when holding a button. It will happen only one time, after it will stop until a new button is pressed (or the same). The game is was created using
 a struct and an impl. There are tiles with numbers until 2^14 and it can go beyond it without any problem. The grid can be changed between 4x4, 5x5 and 6x6.
 
-
 ## Hardware
 
 This project is using the following components:
@@ -50,6 +49,7 @@ This project is using the following components:
 ![Photo 2](./2.webp)
 ![Photo 3](./3.webp)
 ![Photo 4](./4.webp)
+
 
 ## Bill of materials
 | Name                            	| Quantity 	| Usage                                                                   	| Price     	|

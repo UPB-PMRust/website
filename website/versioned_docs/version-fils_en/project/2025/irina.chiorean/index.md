@@ -43,11 +43,22 @@ In all honesty, I chose this idea for my project because my sister had planned t
 
 As of right now, I have a prototype that has LEDs and buttons instead of the motors and switches. Next, I need to 3D model the game area of my project before replacing the LEDs with the motors and other components.
 
+### Week 12 - 18 May
+
+I replaced the leds and coded the game with the servo-motors and switches. 
+
 ## Hardware
 
+![Photo](./whack_a_mole_leds.webp)
+
+This was the prototype for the game in which i had leds that would represent the moles going up and buttuns instead of switches.
+
+![Photo](./whack_a_mole_motors.webp)
+
+This is how the game looks right now without the 3D printed parts of the game.
+
 **Raspberry Pi Pico W**
-    -Central microcontroller 
-    
+    -Central microcontroller \
     -runs the program
     
 **Source (5V-10A  LRS-50-5 MEAN WELL)**
@@ -63,7 +74,7 @@ As of right now, I have a prototype that has LEDs and buttons instead of the mot
 ### Schematics
 
 
-![Schematic](./Whack_a_Mole_KiCad_Schematic.webp)
+![Schematic](./Whack_a_Mole_KiCad_Schematic.svg)
 
 
 ### Bill of Materials
