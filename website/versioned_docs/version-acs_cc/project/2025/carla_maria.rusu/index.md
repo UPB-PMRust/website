@@ -66,19 +66,16 @@ graph TD
 ### Week 5 - 11 May
 
 - Assembled the hardware setup on the breadboard:
-
   - Connected the Raspberry Pi Pico 2W.
   - Mounted the UDA1334A DAC, SD card module (SPI), LCD display, push buttons, and rotary encoder.
   - Carefully routed all jumper wires to avoid conflicts, ensuring SPI and I2S lines were correctly mapped.
 
 - Wrote individual test functions for each hardware component:
-
   - Verified SPI communication with the LCD and SD card.
   - Tested I2S output to the DAC using dummy sine wave data.
   - Checked button press detection and rotary encoder rotation.
 
 - Started experiencing SD card reliability issues:
-
   - Sometimes initialization would fail or return incomplete filesystem data.
   - Logging output revealed intermittent card detection failures.
  
@@ -87,21 +84,79 @@ graph TD
 ### Week 12 - 18 May
 
 - Implemented dedicated SD card diagnostics:
-
   - Created test routines to check for card health. And eventually reseting.
   - Integrated logging to display volume and partition status, with detailed error handling.
 
 - Combined individual modules into a single integrated player prototype:
-
   - Managed concurrent use of SPI bus for both SD card and LCD.
   - Synchronized SD card read with audio playback over I2S.
 
 - Encountered new reliability issues when combining all components:
-
   - SD card will fail mid-playback or block access after a few operations or just not be initialized with the right size
   - Not sure about the main culprit 
 
+---
+#### SD Card fix 
+- Implemented major improvements to SD card reliability:
+  - Opened an [issue](https://github.com/UPB-PMRust/questions/issues/32) to try and get help    
+  - Moved SD card to a dedicated SPI1 bus to reduce interference from LCD
+  - Created specialized functions for card health checking and reinitialization
+  - Implemented progressive speed testing from 400kHz to find optimal performance
+  - Added proper error recovery mechanisms with multiple retry attempts
+---
+
+- Completely restructured the codebase to improve maintainability and organization:
+  - Split monolithic code into meaningful modules (player.rs, wav.rs, sd_card.rs)
+  - Moved static components to lib.rs for better access across the application
+  - Created proper abstractions between audio, storage, and display layers
+
+- Designed robust filesystem access patterns:
+  - Created borrowable bus system for dynamic SD configuration
+  - Implemented controlled mutex access to shared SPI resources
+  - Added proper error handling for volume and directory operations
+  - Created sequential initialization with proper cleanup between operations
+
+- Developed user experience enhancements:
+  - Added volume control through rotary encoder with visual feedback
+  - Created rate limiting (40ms) to prevent overwhelming the system
+  - Implemented scrollable file list to handle multiple audio files
+  - Added dynamic UI updates showing file information and playback status
+
+- Enhanced audio playback controls and feedback:
+  - Added pause/resume functionality with debouncing
+  - Created proper audio buffer management with silence insertion
+  - Implemented state tracking with visual indicators
+  - Added file verification with sample rate and duration display
+
 ### Week 19 - 25 May
+
+- Implemented comprehensive navigation between audio files:
+  - Added skip forward/backward functionality with dedicated buttons
+  - Created PlaybackResult enum to enable seamless track-to-track navigation
+  - Implemented proper file index management with wrap-around behavior
+  - Added transition animations and feedback between tracks
+
+- Enhanced the user interface with improved file name display:
+  - Created a dual-filename system to handle FAT 8.3 limitations
+  - Developed custom mapping from short filenames to human-readable display names
+  - Added title and artist extraction from filenames
+  - Improved layout to show more information about current track
+
+- Fixed critical timing and display issues:
+  - Solved UI flickering by reducing update frequency and implementing partial updates
+  - Fixed timer reset issues when resuming from pause
+  - Added proper time counting with accurate pause duration tracking
+  - Implemented throttling for encoder events to prevent SD card interference
+
+- Created comprehensive documentation:
+  - Added detailed KiCad schematics for hardware layout
+  - Created Mermaid diagrams showing data flow and component relationships
+
+- Performed extensive optimization and cleanup:
+  - Found optimal 16 MHz setting for better rotary encoder responsiveness
+  - Defined strict volume levels (MUTE through MAX) to limit SD interference
+  - Created exit button handling for proper application navigation
+  - Removed dead code
 
 ---
 
@@ -126,7 +181,19 @@ Tried to do something in Kicad (not for dark mode)
 
 ### Photos
 
+#### Wiring at the hardware deadline
 ![photo_of_hardware](photo_hardware_deadline.webp)
+
+#### Re-wiring after sd card fix 
+![new_wiring](new_wiring.webp)
+
+#### Menu UI
+
+![menu_ui](menu_ui.webp)
+
+#### Playback UI
+
+![playback_ui](playback_ui.webp)
 
 ### Bill of Materials
 
