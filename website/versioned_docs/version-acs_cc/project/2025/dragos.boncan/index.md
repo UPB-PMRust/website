@@ -194,7 +194,7 @@ to make it functional.
 -On the NO (normally open) contact, the relay is activated, the green LEDs are off, and the red LEDs are on.
 -I used 4 LEDs of each color to clearly indicate the current state of the system (green for standby mode and red for reading or banknote removal mode).
 
-### Week 22 May - 29 May:
+### Week 22 May - 28 May:
 -I used GPIO 2 to control the motor in the reverse direction.
 -If the banknote is not within the predefined value range, it will be considered invalid and will be rejected.
 -The magnetic lock is connected to GPIO 3.
@@ -444,13 +444,35 @@ I have 2 circuits:
 ## Software
 
 
-
 The code I wrote controls a system on the Raspberry Pi Pico 2 for detecting
 banknotes. It uses presence sensors to detect when a banknote is inserted, and a
 TCS230 color sensor to read its RGB values. The motor is started or stopped
 based on the banknote’s position, and the RGB frequencies are normalized to
 identify the note’s color. The code handles concurrent tasks and delays using
 libraries like embassy_executor and embassy_time.
+
+
+### Current Status of the Software Implementation
+
+My project is almost finished; I still need to implement the calibration of the 
+color sensor (TCS 230) using a sheet of paper. On a white sheet, it should consistently 
+display equal RGB values. In the code, I also need to have appropriate constants for the colors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 |     Library      |                      Description                       |                            Usage                            |
@@ -464,6 +486,13 @@ libraries like embassy_executor and embassy_time.
 | [embassy_rp::i2c](https://docs.embassy.dev/embassy-rp/git/rp2040/i2c/struct.I2c.html) | I2C is a two-wire communication protocol that enables data exchange between multiple devices using a shared bus.| Define the asynchronous I2C interface to enable communication between the board and the LCD 1602.  |
 | [embassy_rp::peripherals::I2C0](https://docs.embassy.dev/embassy-rp/git/rp235xa/struct.Peripherals.html#structfield.I2C0)|It provides access to the I2C0 peripheral on Raspberry Pi RP2040, enabling communication with I2C devices such as sensors and displays | Initializes I2C instance asynchronous: let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config)|
 |  [embedded_hal_async::i2c::I2c as AsyncI2c](https://github.com/rust-embedded/embedded-hal/blob/master/embedded-hal-async/src/i2c.rs)| Defines the asynchronous interface for I2C communication in embedded systems.| I used it for asynchronous functions using I2C(lcd_init, lcd_command, lcd_data, lcd_write_str)|
+|         heapless::String        |  A fixed-capacity string type for no\_std environments  |    Used for efficient string handling without heap allocation   |
+|  num\_traits::float::FloatCore  | Provides floating point core traits and math operations |     Used for floating point operations in embedded contexts     |
+|      ufmt::{uwrite, uWrite}     | A minimal formatting crate for no\_std and embedded use |   Used for formatting output to custom writers without std lib  |
+| embassy\_sync::channel::Channel |        Provides async synchronization primitives        |     Used to implement asynchronous message passing channels     |
+|            core::f32            |     Core floating-point types from Rust core library    |         Used for float32 operations in a no\_std context        |
+|            libm::sqrt           |     Math library providing sqrt and other math funcs    | Used to compute square root in embedded environment without std |
+
 
 
 
