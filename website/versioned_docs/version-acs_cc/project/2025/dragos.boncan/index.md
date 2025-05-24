@@ -486,12 +486,12 @@ display equal RGB values. In the code, I also need to have appropriate constants
 | [embassy_rp::i2c](https://docs.embassy.dev/embassy-rp/git/rp2040/i2c/struct.I2c.html) | I2C is a two-wire communication protocol that enables data exchange between multiple devices using a shared bus.| Define the asynchronous I2C interface to enable communication between the board and the LCD 1602.  |
 | [embassy_rp::peripherals::I2C0](https://docs.embassy.dev/embassy-rp/git/rp235xa/struct.Peripherals.html#structfield.I2C0)|It provides access to the I2C0 peripheral on Raspberry Pi RP2040, enabling communication with I2C devices such as sensors and displays | Initializes I2C instance asynchronous: let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config)|
 |  [embedded_hal_async::i2c::I2c as AsyncI2c](https://github.com/rust-embedded/embedded-hal/blob/master/embedded-hal-async/src/i2c.rs)| Defines the asynchronous interface for I2C communication in embedded systems.| I used it for asynchronous functions using I2C(lcd_init, lcd_command, lcd_data, lcd_write_str)|
-|         heapless::String        |  A fixed-capacity string type for no\_std environments  |    Used for efficient string handling without heap allocation   |
-|  num\_traits::float::FloatCore  | Provides floating point core traits and math operations |     Used for floating point operations in embedded contexts     |
-|      ufmt::{uwrite, uWrite}     | A minimal formatting crate for no\_std and embedded use |   Used for formatting output to custom writers without std lib  |
-| embassy\_sync::channel::Channel |        Provides async synchronization primitives        |     Used to implement asynchronous message passing channels     |
-|            core::f32            |     Core floating-point types from Rust core library    |         Used for float32 operations in a no\_std context        |
-|            libm::sqrt           |     Math library providing sqrt and other math funcs    | Used to compute square root in embedded environment without std |
+|         heapless::String        |  A fixed-capacity string type for no_std environments  |    Used for efficient string handling without heap allocation(I need to write some strings on my lcd 1602)  |
+|  num_traits::float::FloatCore  | Provides floating point core traits and math operations |     I used it to help calculate euclidian distance between the color identified by my TCS230 and the banknote    |
+|      ufmt::{uwrite, uWrite}     | A minimal formatting crate for no_std and embedded use |   Used for formatting output to custom writes. I used to display "lei" after the total sum of money.  |
+|            core::f32            |     Core floating-point types from Rust core library    |         Used for float32 operations in a no_std context, I used it several times to normalize my RGB values and to compute different calculations for total sum displayed        |
+|            libm::sqrt           |     Math library providing sqrt and other math funcs    | Used to compute square root. I needed to 
+calculate the euclidian distance, so I need sqrt function. |
 
 
 
