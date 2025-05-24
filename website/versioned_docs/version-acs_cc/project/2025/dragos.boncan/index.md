@@ -497,36 +497,36 @@ Throughout the semester, I applied the following functionalities from the labs i
 #### 1. Lab 2 – GPIO
 -I used GPIO functionality for almost all the pins (except pins 16 and 17, which are used for I2C communication with the LCD display).
 
-'''
+```
 let led0 = Output::new(p.PIN_4, Level::High); // my printer motor  
 let led1 = Output::new(p.PIN_5, Level::High); // my internal lightbulb
-'''
+```
 
 #### 2. Lab 3 – PWM and ADC
 I only used PWM, specifically on pin 10 of the Raspberry Pi Pico. This pin receives a PWM signal from the TCS230 sensor, which represents the measured RGB values.
 I use the function:
-'''
+```
 async fn read_frequency(out: &Input<'_>, duration_ms: u64) -> u32
-'''
+```
 
 #### 3. Lab 4 – Asynchronous Development
 I use asynchronous functions throughout the project to ensure the Pico is non-blocking. Without asynchronous functions, I wouldn’t be able to insert a coin and a banknote simultaneously.
 I spawn the following tasks using the spawner:
 
-'''
+```
 spawner.spawn(bancnote_task(led0, led1, s2, s3, out, presence_sensor1, presence_sensor2, leds)).unwrap();
 spawner.spawn(monede_task(moneda_sensor1, moneda_sensor5, moneda_sensor10, moneda_sensor50)).unwrap();
 spawner.spawn(reset_task(buton_reset, door_lock)).unwrap();
 spawner.spawn(lcd_task(i2c, lcd_addr)).unwrap();
 spawner.spawn(buzzer_usa_deschisa(door_sensor, buzzer)).unwrap();
-'''
+```
 
 #### 4. Lab 6 – Inter-Integrated Circuit (I2C)
 I used pins 16 and 17 as SDA and SCL for the LCD1602 display:
 
-'''
+```
 let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config);
-'''
+```
 
 
 
