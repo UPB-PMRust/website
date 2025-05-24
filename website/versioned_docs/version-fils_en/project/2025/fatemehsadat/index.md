@@ -63,17 +63,26 @@ This is the diagram that illustrates the components and their connections.
 - Established development environment with necessary Rust crates and Embassy framework
 
 ### Week 12 - 18 May
+- Completed hardware assembly by adding vibration motors to the system
+- Successfully programmed the vibration motors to provide directional haptic feedback
+- Attempted WiFi implementation but encountered technical challenges
+- Created KiCAD schematics for the complete circuit design
+- Conceptualized a hat-based wearable form factor as a potential solution to wire length constraints and component size
+- Planned next steps: finalize WiFi functionality before transitioning to battery power with breadboard power supply
+
 
 ### Week 19 - 25 May
   
 
 ## Hardware
 
-The Accessible Navigation Assistant uses a Raspberry Pi Pico W as its core microcontroller, which connects to ultrasonic sensors for obstacle detection and vibration motors for haptic feedback. The system is designed to be compact, lightweight, and wearable, with a focus on power efficiency for prolonged use.
+![Hardware](hardware.webp)
+
+The Accessible Navigation Assistant uses a Raspberry Pi Pico W as its core microcontroller, which connects to ultrasonic sensors for obstacle detection and vibration motors for haptic feedback.
 
 ### Schematics
 
-[Place your KiCAD schematics here]
+![KiCAD schemstics](KiCAD-schemstics.svg)
   
 ### Bill of Materials
 
