@@ -187,8 +187,23 @@ to make it functional.
 -I added a door sensor to detect whether it is open or closed (not yet connected to the board).
 
 ### Week 15 May – 21 May:
+-I connected the door sensor to pin 26 (configured as an input pin).
+-I used an active buzzer, which operates between 3–24V. I powered it with 12V, connected to the fourth channel of the relay. The buzzer receives the control signal from pin 27 of the Pico (configured as an output pin).
+-I also connected pin 28 to the LEDs.
+-On the NC (normally closed) contact, the relay is deactivated, the green LEDs are on, and the red LEDs are off.
+-On the NO (normally open) contact, the relay is activated, the green LEDs are off, and the red LEDs are on.
+-I used 4 LEDs of each color to clearly indicate the current state of the system (green for standby mode and red for reading or banknote removal mode).
 
--To be continued
+### Week 22 May - 29 May:
+-I used GPIO 2 to control the motor in the reverse direction.
+-If the banknote is not within the predefined value range, it will be considered invalid and will be rejected.
+-The magnetic lock is connected to GPIO 3.
+-When the reset button is pressed, the door opens and the buzzer starts beeping.
+-The buzzer stops only when the door is closed.
+-I made several software updates for banknote detection.
+
+
+
 
 ## Hardware
 
