@@ -40,7 +40,11 @@ I successfully connected all the components to the microcontroller and wrote cod
 
 I also designed the support on which I'll be putting all the components. To save space, I decided to put the breadboard on top of the battery pack. I also added plenty of holes that will be used for wire management. To make sure everything fits correctly I created placeholder boxes with the exact dimensions of the components.
 ### Week 19 - 25 May
+I reorganized the code to work in tasks, separating the servo and DC motors movement in two different tasks. Now the DC motors move randomly while the servo moves with a set delay. In main, the infrared and accelerometer sensors are checked and when they detect either an obstacle or a change in orientation respectively, they send a signal to both the servo and motors tasks to stop movement.
 
+I also switched from using [this](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=driver&results=364) motor driver to the [L298N model](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html), which removed the need for a dedicated step down module. I also started to use a 9V battery instead of the 4 AA ones, because they weren't delivering enough current for my circuit.
+
+One of the lab assistants also 3D printed my support, which allowed me to assemble all the electrical parts on it.
 ## Hardware
 
 This is how the parts looked like before being assembled on the support.
@@ -97,7 +101,7 @@ The format is
 |---------|-------------|-------|
 | [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | HAL for the Raspberry Pi PICO 2W microcontroller | Used to program the Pico |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor designed for embedded usage | Used for task execution |
-
+| [rand](https://crates.io/crates/rand) | Random number generators and other randomness functionality | Used the small_rng feature for generating random numbers in a non std environment |
 
 ## Links
 
