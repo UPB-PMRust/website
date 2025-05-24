@@ -65,11 +65,20 @@ Connections Overview:
 
 I have focused on the research phase—reading documentation, watching tutorials to understand component wiring, and setting up the debugger on one Raspberry Pi Pico.
 
+### Week 28 April - 4 May
+
+This week I started working on my documentation. I have been researching how different sensors operate and how to integrate and connect them, and I’ve been thinking about how to combine everything into a fully automated system.
+
 ### Week 5 - 11 May
+
+First week of starting coding and the harddest, I spent a lot of time to solve the mystery of the HC-SR04 
 
 ### Week 12 - 18 May
 
+This was my first—and hardest—week of coding, but the real mystery was on the hardware side. I wasn’t sure how to create a proper voltage divider for the HC-SR04’s Echo line. Some tutorials suggested using a MOSFET level-shifter, but in the end I went with a simple resistor voltage divider because the Echo signal from the sensor is already low enough for the Raspberry Pi Pico’s 3.3 V GPIO. After sorting that out, I connected the HC-SR04 to the Pico, read the distance to obstacles, and synchronized an LED—red when something is detected, white when nothing is in range.
+
 ### Week 19 - 25 May
+This past week I integrated a display for message output and connected two servo motors that activate when an object is detected—simulating a train’s arrival and lowering the crossing barriers. Detection by the first HC-SR04 sensor turns off the white LED, switches on the red LED, and triggers a buzzer for an audible warning. Once the train passes the second HC-SR04 sensor, the barriers rise again, the white LED turns back on, the red LED switches off, and the buzzer falls silent.
 
 ## Hardware
 
