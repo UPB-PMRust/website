@@ -529,6 +529,43 @@ let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config);
 ```
 
 
+### Calibration of the sensors
+
+#### Calibration of the presence sensors:
+Each presence sensor was tested individually in a controlled environment. I started by identifying the optimal detection threshold, meaning the distance and conditions at which the sensor detects the presence of an object. I adjusted the physical positioning of each sensor to avoid interference and false triggers.
+
+Each presence sensor has a screw at the back. This screw controls how far the sensor can detect presence. I used a small flathead screwdriver. At the maximum setting, my sensors could detect objects at distances that were too large for my needs (10-12 centimeters). I adjusted them close to the minimum, so they would detect banknotes or slips only at about 1.2–1.5 centimeters.
+
+#### Calibration of the color sensor:
+My TCS230 color sensor is not very accurate because it doesn’t consistently give the same value for the same position. I tried as much as possible to calibrate it (in software) on a white sheet of paper, so that it would output roughly equal values for the RGB components.
+
+#### Calibration of the display:
+Initially, my display didn’t seem to turn on. The reason was that the contrast was set to minimum. Using a flathead screwdriver again, I increased the contrast until the text became clearly visible on the screen.
+
+
+### Software optimizations
+
+#### 1. Hardware and software debounce for the reset button
+In the reset_task, I implemented detection of the transition from HIGH to LOW along with 
+short delays (50 ms) for debounce, plus confirmation of the button state after the delay 
+to avoid false positives.
+
+#### 2. Reducing flicker on the LCD
+In the lcd_task, before clearing the LCD, I check if the length of the displayed text has decreased, thus avoiding unnecessary reinitializations and flickering.
+
+#### 3. Rate limiting in repetitive loops
+In almost all tasks, I use Timer::after(Duration::from_millis(X)) to avoid aggressive continuous polling, which prevents CPU overload and reduces power consumption.
+
+#### 4. Conditional checks for global updates
+Global variables holding state and float values are updated only when necessary, and their access is atomic, using AtomicU32 with Ordering::SeqCst to avoid race conditions.
+
+#### 5. On/off button
+I added an on/off button to reduce power consumption by limiting the active operating time.
+
+#### 6. Controlled banknote motor with a clear state machine
+I implemented an explicit state machine for the motor with well-defined transitions, ensuring controlled operation of the motor.
+
+
 
 
 
