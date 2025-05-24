@@ -61,7 +61,6 @@ And this is how the final product looks like.
 * The servomotor: mimics the movements of a tail
 * DC motors: movement
 * Dual motor driver L298N: used for controlling the motors and for converting the 9V from the battery to the 5V needed by the components
-* 3D printed custom model: made specifically for this project, used to support all the components
  
 ### Schematics
 
