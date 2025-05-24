@@ -75,6 +75,8 @@ Having acquired all the necessary hardware, I continued working on creating IR r
 Having finished all the individual functionalities of the boards, I moved on to integrating them together and making sure they communicate properly via WIFI. I also defined the format for data that is transmitted and what every board expects to receive. Will continue testing and deciding on the components' arrangements on the breadboard and on the cardboard parking lot replica.
 
 ### Week 19 - 25 May
+Finished all software related stuff and tested the project to make sure it works properly. I have also created some kind of cardboard parking and assembled the components for better presentation.
+
 
 ## Hardware
 
@@ -152,8 +154,6 @@ Display board
 | [Infrared Obstacle Sensor](https://www.handsontec.com/dataspecs/sensor/IR%20Obstacle%20Detector.pdf) | Detects a parked car | [3.5 RON](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html)|
 | [LEDs](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/) | Used to signal certain events | [0.30 RON](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/)|
 | [Resistances](https://ardushop.ro/ro/componente-discrete/465-801-rezistor-1-4w-1-buc-alege-valoarea.html#) | Fundamental in every circuit | [0.10 RON](https://ardushop.ro/ro/componente-discrete/465-801-rezistor-1-4w-1-buc-alege-valoarea.html#)|
-
-## Software
 
 ## Software
 
