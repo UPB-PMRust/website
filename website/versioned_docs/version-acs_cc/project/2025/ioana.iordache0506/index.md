@@ -108,7 +108,17 @@ graph TD
   I also started building a frame to integrate the hardware - basically a small “house.” I thought about how it could look and began working on the door and window mechanism. However, I consider these more related to the physical design than to the hardware itself, since the functionalities and connections are already in place. I’ll keep improving the appearance and details until the PM fair.😊🏠
 
 - **Week 19 – 25 May**  
-  TBD
+  Completed the final version of the smart home system with several significant improvements <3
+
+  Added a PIR motion sensor to detect movement near the house, with customizable responses. This proved to be challenging at first, as the sensor required proper calibration and debounce logic to avoid false triggers. After some experimentation, I implemented a reliable detection system that works consistently.
+
+  Integrated an audio alert system using a passive buzzer with PWM control. Rather than simple on/off functionality, I created distinct audio patterns for different events. The buzzer presented some challenges initially, requiring PWM frequency tuning to produce clear, audible tones.
+
+  To solve the persistent LCD display corruption issues that occurred when servos activated, I added 470μF decoupling capacitors across the power rails and implemented a display recovery sequence. This significantly improved system stability by preventing voltage drops from affecting the LCD controller.
+
+  Implemented a comprehensive security mode system (Away/Home/Silent) that can be toggled with the keypad's * key. Each mode has different alert behaviors for both the buzzer and LED indicators, allowing users to customize the system based on their needs.
+
+  Finalized the physical housing design, adding proper mounting points for all components and creating a functional door and window mechanism.
 
 
 ## Hardware  
