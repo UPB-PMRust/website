@@ -75,7 +75,7 @@ Began putting all the pieces into place and designed the structure of the funnel
 
 ### Week 19 - 25 May
 
-Finished the code by calibrating the color sensor. Since the sensor was not accurately detecting the green color, I decided to change it into yellow since I had some extra yellow candies left. I also added some extra messages on the LCD so the user knows when to drop the candy. Here is a [video](https://drive.google.com/file/d/10OZsfYCC7r9oA9sq6YKw8RO7cOUaYR02/view?usp=sharing) of the final product in action.
+Finished the code by calibrating the color sensor. Since the sensor was not accurately detecting the green color, I decided to change it into yellow since I had some extra yellow candies left. I also added some extra messages on the LCD so the user knows when to drop the candy. Here is a [video](https://drive.google.com/file/d/1kdtDkNmV4OftlH76OdGOdWxUx6d_tafh/view?usp=sharing) of the final product in action.
 
 ![diagram](Final_project.webp)
  
