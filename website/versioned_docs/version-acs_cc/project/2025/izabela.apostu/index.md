@@ -1,12 +1,11 @@
 # Sound lights
 
-An lighting system based on an addressable LED strip controlled by sound and IR remote, designed for dynamic ambient effects synchronized with music.
+A lighting system based on an addressable LED strip controlled by sound and IR remote, designed for dynamic ambient effects synchronized with music.
 
 :::info 
 
 **Author**: Izabela-Elena Apostu \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-iza03
-
 :::
 
 ## Description
@@ -37,20 +36,19 @@ The system is powered via a 5V external supply. The IR receiver and sound sensor
 ## Log
 
 
-### Week 5 – 11 May
+### Week 5 – 11 May  
+This week I focused on project documentation and researching the necessary components (microphone, LED strip, IR receiver). I also started planning the overall system architecture.
 
-TO DO
+### Week 12 – 18 May  
+I assembled the components on the breadboard and connected them to the Raspberry Pi Pico W according to the planned schematic. I performed initial tests to verify the functionality of each module (sound sensor, IR receiver, LED control) and updated the electrical schematic as needed. At the same time, I refined the design approach for integrating all components into the final system.
 
-### Week 12 – 18 May
-
-TO DO
 
 ### Week 19 – 25 May
 
 TO DO
 ## Hardware
-
-
+![Hardware1](hardware1.webp)
+![Hardware2](hardware2.webp)
 1. **Raspberry Pi Pico W**
    - Main microcontroller running the logic of the system. It processes input from the sound sensor and the IR receiver, and controls the LED strip accordingly.
 
@@ -71,7 +69,7 @@ TO DO
 
 ## Schematics
 
-![Schematics](schematic.webp)
+![Schematics](schematic_final.svg)
 
 
 ## Bill of Materials
@@ -80,7 +78,7 @@ TO DO
 
 | Device | Usage | Price |
 |--------|-------|-------|
-| [Raspberry Pi Pico W](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) | The microcontroller | [40 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
+| [Raspberry Pi Pico W](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) | The microcontroller | [40 RON x2](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
 | [MAX4466 Sound Sensor](https://www.emag.ro/microfon-cu-amplificare-cu-max4466-ajustabil-ai1082/pd/DFLMTFMBM/) | Captures environmental sound | [15 RON](https://www.emag.ro/microfon-cu-amplificare-cu-max4466-ajustabil-ai1082/pd/DFLMTFMBM/) |
 | [WS2812B LED Strip](https://ardushop.ro/ro/electronica/900-1193-leduri-rgb-la-banda-neopixels-ws2812b-pretul-este-pentru-un-led.html) | RGB lighting effects | [2 RON/LED x20](https://ardushop.ro/ro/electronica/900-1193-leduri-rgb-la-banda-neopixels-ws2812b-pretul-este-pentru-un-led.html) |
 | [IR Kit](https://ardushop.ro/ro/comunicatie/2358-kit-ir-telecomanda-receptor-cablu-6427854032461.html) | Remote control for LED modes | [10 RON](https://ardushop.ro/ro/comunicatie/2358-kit-ir-telecomanda-receptor-cablu-6427854032461.html) |
@@ -101,3 +99,4 @@ TO DO
 | pio              | Programmable I/O interface crate          | Drives precise WS2812B timings using PIO hardware |
 
 ## Links
+1. https://www.youtube.com/watch?v=7YLF-N0596I&ab_channel=NazmusNasir

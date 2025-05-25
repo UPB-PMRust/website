@@ -18,7 +18,7 @@ I’ve always enjoyed music and wanted to combine that interest with what I’ve
 
 ## Architecture 
 
-![Schematic diagram](AMPdiagramaFINAL.webp)
+![Schematic diagram](AMPdiagrama3.webp)
 
 **Controller**:  
   Raspberry Pi Pico 2W — handles all logic, reads button inputs, and generates audio output via PWM.
@@ -48,15 +48,27 @@ After my project was approved, I finalized the component list, ordered everythin
 
 ### Week 12 - 18 May
 
+This week, I finalized the hardware setup on the breadboard, successfully connecting all components including the buttons, potentiometer, filter, and MH-M28 Bluetooth module. I also began writing the software for handling input, audio output, and mode toggling, and made solid progress toward implementing the core functionality. However, I ran into an issue with the Bluetooth module — it doesn't seem to pair with my portable speaker. I am not entirely sure yet whether the problem is with the module, the speaker, or the way I am using it, but I will investigate further and try different approaches to get it working. If necessary, I will explore replacing the module with one better suited for Bluetooth audio transmission.
+
 ### Week 19 - 25 May
 
 ## Hardware
 
-The hardware includes a Raspberry Pi Pico 2W as the central controller, connected to seven push buttons for triggering musical notes and two additional buttons: one for enabling loop functionality and one for toggling a distortion effect. A potentiometer adjusts the volume of the PWM audio signal, which is then sent to an MH-M28 Bluetooth module for wireless audio output. Three LEDs indicate the current system status (normal, loop, or distortion). All components are powered via USB and a separate 5V source for the Bluetooth module. The entire system is built on a breadboard for prototyping.
+The hardware setup centers around a Raspberry Pi Pico 2W, which serves as the main controller. It is connected to eight push buttons used to trigger musical notes and two additional buttons — one to activate a loop mode that records and replays note sequences, and another to toggle a distortion effect. A single LED provides visual feedback indicating whether the system is currently in distortion mode.
+
+To control output volume, a potentiometer is wired between the PWM output and the signal line, which is passed through a low-pass filter to convert it into an analog audio signal. The audio signal from the Pico is smoothed using a passive RC low-pass filter, composed of a 1 kΩ resistor and a 100 nF ceramic capacitor, which attenuates high-frequency components and converts the PWM signal into a usable analog waveform.
+
+This filtered audio signal is then sent into the MH-M28 Bluetooth module via its L channel input. The MH-M28 transmits audio wirelessly to a paired Bluetooth speaker. It is powered by an external 5V source, while the Raspberry Pi Pico and the rest of the components are powered via USB. A common ground line is shared across all parts of the system to maintain electrical reference integrity.
+
+The full circuit is prototyped on a breadboard, allowing for flexible testing and easy hardware iteration during development.
+
+![Hardware 1](Hardware3.webp)
+
+![Hardware 2](Hardware4.webp)
 
 ### Schematics
 
-![Schematic diagram](KiCADscheme.webp)
+![Schematic diagram](KicadSchemeGood.svg)
 
 ### Bill of Materials
 
@@ -77,13 +89,12 @@ The format is
 | [MH-M28 Bluetooth Module](https://sigmanortec.ro/en/bluetooth-42-ble-audio-module-stereo-mh-m28) | Audio output | [13,29 RON](https://www.optimusdigital.ro/ro/wireless-bluetooth/8124-modul-pentru-transmisie-audio-fara-fir-ble-stereo-mh-m28.html?search_query=mh-m28&results=14) |
 | [Rotary Potentiometer 10kΩ](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_potentiometer.html#potentiometer) | Volume control | [1,99 RON](https://www.optimusdigital.ro/ro/componente-electronice-potentiometre/1886-potentiometru-stereo-10k.html?search_query=potentiometru&results=172) |
 | [Tactile Button 6x6x6 ×9](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_button.html#button) | User input | [0,36 RON ×9](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=butoane+6x6x6&results=1) |
-| [White LED 5mm](https://www.electronics-tutorials.ws/diode/diode_8.html) | Mode indicator | [0,49 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/930-led-alb-de-3-mm-cu-lentile-transparente.html?search_query=led+alb&results=175) |
 | [Red LED 5mm](https://www.electronics-tutorials.ws/diode/diode_8.html) | Mode indicator | [0,39 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/29-led-set-3-culori-x-10-pcs-fiecare.html?search_query=led+rosu&results=166) |
-| [Green LED 5mm](https://www.electronics-tutorials.ws/diode/diode_8.html) | Mode indicator | [0,29 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/931-led-verde-de-3-mm-cu-lentile-transparente.html?search_query=led+verde&results=90) |
 | [Resistor 220Ω ×3](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_resistor.html) | LED limiter | [0,10 RON ×3](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/1097-rezistor-025w-220.html?search_query=rezistor+220&results=22) |
 | [Male-to-Male Jumper Wires](https://www.circuitbasics.com/how-to-use-breadboard-jumper-wires/) | Connections | [7,98 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/890-set-fire-tata-tata-40p-30-cm.html?search_query=tata+tata&results=693) |
 | [Male-to-Female Jumper Wires](https://www.circuitbasics.com/how-to-use-breadboard-jumper-wires/) | Connections | [3,99 RON](https://www.optimusdigital.ro/ro/toate-produsele/876-set-fire-mama-tata-10p-15-cm.html?search_query=jumper&results=70) |
 | [5V Breadboard Power Supply Module](https://howtomechatronics.com/tutorials/electronics/breadboard-power-supply-module/) | Power supply | [4,69 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) |
+| [Ceramic Capacitor 100nF](https://www.circuitbasics.com/what-is-a-capacitor/) | Low-pass filter | [0,69 RON](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/3927-condensator-100-nf50v.html?search_query=condensator+100nF&results=7) |
 
 
 ## Software
