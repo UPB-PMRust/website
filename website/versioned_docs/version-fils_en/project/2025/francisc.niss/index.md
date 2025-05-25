@@ -25,7 +25,7 @@ The Max9814 Microphone Module captures the sound of a vibrating guitar string an
 
 The Voltage Regulator provides a stable 5V power supply to the entire system, including the Pico, motor driver, and microphone.
 
-The Dual Motor Driver receives control signals from the Pico and adjusts the direction of the connected motor accordingly.
+The L298N receives control signals from the Pico and adjusts the direction of the connected motor accordingly.
 
 The DC Motor is connected to a 3D printed tuning peg gripper and rotates to tune the guitar string automatically.
 
@@ -38,7 +38,7 @@ I finished purchasing all the components necessary for the project and now I am 
 ### Week 12 - 18 May
 I completed assembling the circuit and ensuring that each component is properly wired and powered. With the hardware setup in place. I also finished making the blueprint for the 3D component that I will be attaching to the motor.
 ### Week 19 - 25 May
-
+I’ve completed the hardware and motor torque testing to ensure the system can turn a guitar peg reliably. With testing finalized, I’ve now started coding and have implemented the key functions I planned.
 ## Hardware
 
 Raspberry Pi Pico 2W – acts as the central controller, running the logic to read audio input, process frequency, and control the motor.
@@ -57,7 +57,7 @@ Generic Electronics Kit – includes breadboard, jumper wires, resistors, and co
 
 3D Printed Tuning Peg Handle – a custom attachment mounted to the motor shaft to grip and turn the tuning peg of the guitar.
 
-The system is powered by a 2S LiPo battery which supplies approximately 7.4V. This is stepped down using the LM2596S module to a regulated 5V that powers the Raspberry Pi Pico 2W, motor driver, microphone, and the motor itself via the L9110S.
+The system is powered by a 2S LiPo battery which supplies approximately 7.4V. This is stepped down using the LM2596S module to a regulated 5V that powers the Raspberry Pi Pico 2W, motor driver, microphone, and the motor itself via the L298N.
 
 ![Hardware](hardware.webp)
 
@@ -74,7 +74,7 @@ The system is powered by a 2S LiPo battery which supplies approximately 7.4V. Th
 | [MAX9814 Microphone Module](https://www.analog.com/media/en/technical-documentation/data-sheets/max9814.pdf) | The microphone | [24,90 RON](https://ardushop.ro/ro/module/717-modul-amplificator-microfon-cu-agc-max9814-6427854009111.html) |
 | [GA12-N20 DC Motor](https://www.handsontec.com/dataspecs/GA12-N20.pdf)| The motor | [26,18 RON](https://www.emag.ro/micro-motor-cu-reductie-dc-6v-30rpm-ga12-n20-ai1083/pd/DVWFTFMBM/) |
 | [LM2596S DC-DC Step Down Module](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | Voltage regulator | [12,99 RON](https://www.optimusdigital.ro/en/adjustable-step-down-power-supplies/1108-lm2596hv-dc-dc-step-down-module.html) |
-| Dual Motor Driver Module| The motor driver module | [38,99 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/8161-driver-de-motoare-dual-65-27-v-2-x-7-a.html) |
+| [Dual Motor Driver Module L298N](https://www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf) | The motor driver module | [10,99 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html) |
 | 2S LiPo 8V Battery | The battery | [95 RON](https://www.emag.ro/acumulator-lipo-gens-ace-g-tech-soaring-7-4-v-2200-ma-30c-xt60-2s2200p30/pd/DD3GY7YBM/) |
 | General Electronics Kit | Breadboard,wires,capacitors,resistors,etc. | [60,38 RON](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/) |
 
@@ -87,6 +87,12 @@ The system is powered by a 2S LiPo battery which supplies approximately 7.4V. Th
 | [`microfft`](https://docs.rs/microfft/latest/microfft/) | Fast Fourier Transform library for microcontrollers | Converts time-domain audio samples into frequency domain |
 | [`defmt`](https://docs.rs/defmt/latest/defmt/) | Logging crate optimized for embedded systems | Debugging values during development |
 | [`cortex-m`](https://docs.rs/cortex-m/latest/cortex_m/) | Low-level Cortex-M functionality | Optional: interrupt and timing control |
+| [`embassy-rp`](https://docs.rs/embassy-rp/latest/embassy_rp/) | Async HAL for Raspberry Pi Pico | Async GPIO, ADC, PWM, and peripheral control |
+| [`embassy-executor`](https://docs.rs/embassy-executor/latest/embassy_executor/) | Async runtime for embedded systems | Runs `#[embassy_executor::main]` async function |
+| [`embassy-time`](https://docs.rs/embassy-time/latest/embassy_time/) | Async timer/delay library for Embassy | Used for non-blocking delays like `Timer::after()` |
+| [`panic-probe`](https://docs.rs/panic-probe/latest/panic_probe/) | Minimal panic handler for embedded Rust | Captures and prints panics via RTT |
+| [`micromath`](https://docs.rs/micromath/latest/micromath/) | Lightweight math functions for `no_std` environments | Used for computing Hann window and FFT magnitude |
+
 
 ## Links
 
@@ -95,3 +101,8 @@ The system is powered by a 2S LiPo battery which supplies approximately 7.4V. Th
 3. [microfft Crate for Frequency Analysis](https://docs.rs/microfft/latest/microfft/)
 4. [Max9814 Microphone Datasheet (Analog)](https://www.analog.com/media/en/technical-documentation/data-sheets/max9814.pdf)
 5. [Raspberry Pi Pico 2W Docs](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
+6. [Guitar Strings Frequency](https://fretsuccess.com/what-are-the-guitar-string-frequencies)
+
+
+
+
