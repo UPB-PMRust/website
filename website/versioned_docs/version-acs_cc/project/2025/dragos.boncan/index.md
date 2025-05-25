@@ -535,8 +535,7 @@ The project is built using the Rust programming language along with the Embassy 
 ##### Bancnote_task
 
 This contains the logic behind activating/deactivating the motor. It uses a state machine that handles the different states involved in processing a banknote.
-```
-#[derive(PartialEq)]
+```#[derive(PartialEq)]
 enum StareMotor {
     Idle,
     Start,
