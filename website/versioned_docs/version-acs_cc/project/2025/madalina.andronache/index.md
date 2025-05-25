@@ -185,7 +185,6 @@ The software operates in a continuous loop, monitoring keypad input. When a key 
 | [heapless](https://crates.io/crates/heapless) | Fixed-size data structures for no_std | Used for buffer storage (messages, Morse code) |
 | [rand](https://crates.io/crates/rand) + `small_rng` | Random number generation | Used for quiz feature (random letter) |
 
-
 ## Links
 
 1. [4x4 Matrix Keypad Integration with Raspberry Pi Pico](https://www.instructables.com/Raspberry-Pi-Pico-4x4-Matrix-Keypad-and-1602-LCD-I/)
