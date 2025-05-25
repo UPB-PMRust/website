@@ -529,10 +529,9 @@ let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config);
 ```
 
 ### Project Structure
-The project is built using the Rust programming language along with the Embassy library for asynchronous programming.
+The project is built using the Rust programming language along with the Embassy library for asynchronous programming. Here are my main tasks explained
 
-#### Main Tasks:
-##### Bancnote_task
+### Bancnote_task
 
 This contains the logic behind activating/deactivating the motor. It uses a state machine that handles the different states involved in processing a banknote.
 ```
