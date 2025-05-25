@@ -72,8 +72,12 @@ Assemble hardware components and write demo source code.
 ![](demo.jpeg)
 
 ### Schematic
+<<<<<<< HEAD
 ![](schematic.png)
 >>>>>>> f35bcf2 (Add hardware schematic and demos)
+=======
+![](schematic.svg)
+>>>>>>> fbb88fd (Update schematic)
 
 ### Bill of Materials
 
