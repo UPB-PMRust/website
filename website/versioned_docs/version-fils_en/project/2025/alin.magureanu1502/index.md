@@ -33,7 +33,7 @@ This week I started looking into how to use the Fast Fourier Transform (FFT) to 
 ### Week 12-18 May 
 I implemented the other components : the push button to select between strings, and the two led's to display the tuning status. I still have issues with computing the correct frequency of each string, as there is a lot of background noise detected. The display is working aswell, displaying if we should tune upwards, downwards or if it's in tune.
 ### Week 19-25 May 
-
+I succesfully completed the software part of the project. The tuner is now capable to detect accurately the frequency of each guitar string. I also improved the user interface part, providing clear feedback on the display.
 
 ## Hardware
 1. **Raspberry Pi Pico 2**  
@@ -48,16 +48,19 @@ Visual tuning indicators. When the correct frequency is detected, it means the g
 Audio feedback. Sounds a confirmation tone when a string is tuned correctly, providing audible confirmation alongside the green LED. The tone of the buzzer coresponds the sounds of the respective string.
 6. **OLED Display**  
 Display status. Shows messages such as the current string tuned or whether we need to tune up or down.  
+7. **Step Down Power Supply**    
+Using a battery and the LM2596s, we will power the whole circuit such that it is portable and we can use it anytime
 
 
-![Hardware_Photo1](./hardware_off.webp)
 
-![Hardware_Photo2](./hardware_tuned.webp)
+![Hardware_Photo1](./hardware1.webp)
 
-![Hardware_Photo3](./hardware_not_tuned.webp)
+![Hardware_Photo2](./hardware2.webp)
+
+![Hardware_Photo3](./hardware3.webp)
 ### Schematics
 
-![KiCad_Schematic](./kicad2.svg)
+![KiCad_Schematic](./Proiect_AMP.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
@@ -65,6 +68,8 @@ Display status. Shows messages such as the current string tuned or whether we ne
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The microcontroller | [40 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2w&results=36) |
 | [Raspberry Pi Pico WH](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The Debugger | [39 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12395-raspberry-pi-pico-wh.html?srsltid=AfmBOopdlNbPIeP-BRNzfXWN6kYsqQZ9dnm39K7uuF7WCxecjr7_kDWq) |
 | [MAX9814](https://www.analog.com/media/en/technical-documentation/data-sheets/max9814.pdf) | Microphone Module| [60 RON](https://www.optimusdigital.ro/en/others/1194-electret-microphone-amplifier-max9814-with-auto-gain-control.html?search_query=max9814&results=2) |
+| 9V Battery | Power the circuit | [20 RON](https://www.auchan.ro/baterie-duracell-basic-9-v/p) |
+| LM2596s Step Down | Power the circuit | [13 RON](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html?srsltid=AfmBOorHLepWtNtWwOSHrw3hHI_0m_YPESz5orE_K7NM5NYrv3PAGsWu) |
 | Push Button | Select Button | [0.36 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=button&results=491) |
 | [OLED Display](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | The Display | [30 RON](https://www.emag.ro/afisaj-oled-ssd1306-oled-i2c-compatibil-arduino-si-raspberry-pi-27x27x4-mm-albastru-c9/pd/D3C7C1YBM/?utm_medium=ios&utm_source=mobile%20app&utm_campaign=share%20product) |
 | LED | Blink LED | [0.4 RON](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html?search_query=led&results=2049) |
@@ -73,15 +78,17 @@ Display status. Shows messages such as the current string tuned or whether we ne
 
 | Library | Description | Usage |
 |---------|-------------|-------|
+| [defmt](https://docs.rs/defmt/latest/defmt/), [defmtrtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | Efficient Logging | Used for detailed logging and debugging |
 | [ssd1306](https://docs.rs/ssd1306/latest/ssd1306/) | Display Library | Used for I2C OLED Display |
 | [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Pico Peripherals | Used for accessing the peripherals|
 | [num-complex](https://docs.rs/num-complex/latest/num_complex/) | Complex Numbers Library | Used to compute complex part of fourier |
 | [microfft](https://docs.rs/microfft/latest/microfft/) | Fourier Transform Library | Used to compute frequency with fourier  |
 | [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Time management library  |Used for time-based operations such as delays |
 | [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/) | Async/Await executor  |Used for asynchronous programming and timers |
-| [libm](https://docs.rs/libm/latest/libm/) | Math library | Used for calculations |
-| [embedded_graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Text library | Used for text and shapes |
+| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Text library | Used for text and shapes |
 | [heapless](https://docs.rs/heapless/latest/heapless/) | Memory allocation | Used for String |
 
 
+
 ## Links
+1. [Clap Switch](https://www.instructables.com/Clap-Sensor-With-PICO-2-and-MAX9814/)
