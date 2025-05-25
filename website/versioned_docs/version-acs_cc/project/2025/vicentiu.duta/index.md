@@ -111,8 +111,7 @@ Initial hardware setup and testing. Configured the basic circuit elements on bre
 ### Week 12 - 18 May
 Completed the assembly of the main circuit and began integration testing. During initial load tests, discovered that the 28BYJ-48 stepper motor lacked sufficient torque for reliable elevator operation. Made the decision to upgrade to a NEMA 17 (17HS4401) motor with DRV8825 driver for improved power and precision. 
 ### Week 19 - 25 May
-TODO
-
+Finalized complete software integration. Successfully implemented the main application combining RFID authentication, NEMA 17 stepper motor control, servo door mechanism, and ST7735 display interface. The system now operates fully autonomously - detecting authorized cards, moving smoothly between floors with visual feedback, controlling door operations, and automatically returning to ground floor.
 ## Hardware
 
 The system consists of a Raspberry Pi Pico 2 microcontroller serving as the central control unit, interfacing with several key components:
