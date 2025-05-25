@@ -28,8 +28,10 @@ Taking out the trash is a task often postponed, especially in shared living spac
 
 ### Week 5 - 11 May
 - This week, I focused on shaping the overall concept of the project. I worked on the documentation, clarified the main functionalities, and outlined how the system should behave. I also made a first draft of the list of components I would need, researching their roles and how they would connect together.
+- This week, I focused on shaping the overall concept of the project. I worked on the documentation, clarified the main functionalities, and outlined how the system should behave. I also made a first draft of the list of components I would need, researching their roles and how they would connect together.
 
 ### Week 12 - 18 May
+- I began working on the hardware side of the project. I started assembling the components, connecting the sensors and microcontroller, and testing how they work together on the breadboard. During this stage, I also finalized and completed the Bill of Materials based on the actual needs of the system.
 - I began working on the hardware side of the project. I started assembling the components, connecting the sensors and microcontroller, and testing how they work together on the breadboard. During this stage, I also finalized and completed the Bill of Materials based on the actual needs of the system.
 
 ### Week 19 - 25 May
