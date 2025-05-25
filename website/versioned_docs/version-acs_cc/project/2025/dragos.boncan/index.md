@@ -849,7 +849,7 @@ The banknote motor is controlled by an explicit state machine with well-defined 
 
 Here is a short demo showing how my money counting machine with bill storage works.
 
-[![Demo for money counting machine](https://img.youtube.com/vi/pk5nQ_Uff8Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=pk5nQ_Uff8Q)
+[![Demo for money counting machine](https://img.youtube.com/vi/pk5nQ_Uff8Q/hqdefault.jpg)](https://www.youtube.com/watch?v=pk5nQ_Uff8Q)
 
 
 
