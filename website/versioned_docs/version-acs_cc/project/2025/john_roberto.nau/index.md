@@ -27,12 +27,18 @@ A schematic diagram is provided to illustrate the connections and layout of the 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Recieved the components, did the research and documentation.
 
 ### Week 12 - 18 May
+Created the KiCad schematic, assembled the hardware circuit, checked if they work.
+Tested pin connections on the Raspberry Pi Pico 2w.
+Started working on wiring and power supply for the full system.
 
 ### Week 19 - 25 May
 
 ## Hardware
+
+![Hardware photo](./photo_hardware.webp)
 
 - Raspberry Pi Pico 2W: the main microcontroller
 - 4x4 Matrix Keypad: used to securely enter the PIN code to unlock the safe
@@ -49,7 +55,7 @@ A schematic diagram is provided to illustrate the connections and layout of the 
 
 A KiCad schematic is provided:
 
-![KiCad schematic](./kicad_resized.webp)
+![KiCad schematic](./sch1.svg)
 
 ### Bill of Materials
 
@@ -66,15 +72,15 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The microcontroller | [2 X 35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-| [Matrix Keypad 4x4] | Pin input | [6.99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/470-tastatura-matriceala-4x4-cu-conector-pin-de-tip-mama.html?search_query=tastatura+matriceala+4x4&results=2) |
-| [LCD 1602 with I2C] | Display | [14.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/62-lcd-1602-cu-interfata-i2c-si-backlight-galben-verde.html?search_query=lcd+1602+i2c&results=4) |
-| [Passive Buzzer Module] | Audio feedback | [2.99 RON](https://www.bitmi.ro/electronica/modul-buzzer-pasiv-ky-006-10678.html) |
+| [Matrix Keypad 4x4](https://cdn.sparkfun.com/assets/f/f/a/5/0/DS-16038.pdf) | Pin input | [6.99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/470-tastatura-matriceala-4x4-cu-conector-pin-de-tip-mama.html?search_query=tastatura+matriceala+4x4&results=2) |
+| [LCD 1602 with I2C](https://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) | Display | [14.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/62-lcd-1602-cu-interfata-i2c-si-backlight-galben-verde.html?search_query=lcd+1602+i2c&results=4) |
+| [Passive Buzzer Module](https://www.handsontec.com/dataspecs/module/passive%20buzzer.pdf) | Audio feedback | [2.99 RON](https://www.bitmi.ro/electronica/modul-buzzer-pasiv-ky-006-10678.html) |
 | [Micro Servo Motor SG90](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Lock mechanism | [13.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=micro+servo+motor&results=39) |
-| [MicroSD SPI Reader Module] | Logging access attempts | [3.99 RON](https://www.bitmi.ro/electronica/modul-citire-card-microsd-compatibil-arduino-10384.html) |
+| [MicroSD SPI Reader Module](http://datalogger.pbworks.com/w/file/fetch/89507207/Datalogger%20-%20SD%20Memory%20Reader%20Datasheet.pdf) | Logging access attempts | [3.99 RON](https://www.bitmi.ro/electronica/modul-citire-card-microsd-compatibil-arduino-10384.html) |
 | [Breadboard HQ830 + Wires] | Prototyping and wiring | [22 RON](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=kit+breadboard&results=35) |
 | [Female-to-male jumper wires] | Wiring keypad, LCD, etc. | [7.99 RON](https://www.optimusdigital.ro/ro/toate-produsele/877-set-fire-mama-tata-40p-15-cm.html?search_query=fire+mama+tata&results=35) |
 | [Male-to-male jumper wires] | General conections | [4.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire+tata+tata&results=73) |
-| [Battery Holder (4x R6 AA)] | Power supply | [4.86 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/12375-suport-baterii-4-x-aa.html?search_query=suport+baterii&results=59) |
+| [Battery Holder (4x R6 AA)](https://www.farnell.com/datasheets/2629287.pdf) | Power supply | [4.86 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/12375-suport-baterii-4-x-aa.html?search_query=suport+baterii&results=59) |
 | [4 X Red Pin Headers (2.54 mm, 40p)] | Connecting components on breadboard | [4 X 0.99 RON](https://www.optimusdigital.ro/en/pin-headers/464-colored-40p-254-mm-pitch-male-pin-header-red.html) |
 
 
@@ -86,12 +92,16 @@ The format is
 | [embassy-rs](https://github.com/embassy-rs/embassy) | HAL support for Raspberry | Access to GPIO, PWM, I2C, SP |
 | [defmt](https://defmt.ferrous-systems.com/) | Lightweight logging framework | For printing debug via probe-rs |
 | [probe-rs](https://probe.rs/) | Debugging and flashing | Used for debugging on Raspberry |
-| [heapless](https://probe.rs/) | Fixed-capacity buffers | For handling user input |
+| [lcd1602-driver](https://crates.io/crates/lcd1602-driver) | Driver for prints on LCD 1602 via I2C | Printing messages |
+| [embedded-hal](https://docs.rs/embedded-hal/) | Hardware abstractisation | SPI, I2C, GPIO, delays |
+| [embedded-hal-async](https://docs.rs/embedded-hal-async/) | Async traits for embeded drivers| GPIO async, SPI async |
+| [byte-slice-cast](https://docs.rs/byte-slice-cast/) | Conversions| SD / memory |
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. 
+1. https://crates.io/
+2. https://www.farnell.com/datasheets/2629287.pdf
 
 ...
