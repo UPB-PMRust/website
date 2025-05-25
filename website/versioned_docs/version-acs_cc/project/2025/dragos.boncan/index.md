@@ -577,6 +577,24 @@ In the ```Rejected``` state, the motor reverses direction for one second to push
 
 In the ```Eject``` state, the motor rotates forward for 1.5 seconds to move the banknote into an internal tray. The amount of money is updated accordingly, and the LCD1602 display shows the updated value.
 
+### Task for coins
+I used a task called ```monede_task```. This task is pretty straightforward. I use 4 presence sensors, configured on pins 19, 20, 21, and 22. Each sensor is dedicated to a specific coin type (1, 5, 10, and 50 bani).I use a coin separator, which serves to accurately detect the value of the coins.
+``` 
+async fn monede_task(
+    sensor1: Input<'static>,
+    sensor2: Input<'static>,
+    sensor3: Input<'static>,
+    sensor4: Input<'static>,
+)
+```
+On detection:
+-Reads global floating-point value from GLOBAL_FLOAT_BITS
+-Calls ```update_float_value(...)```, that updates my global variable GLOBAL_FLOAT_BITS. This variable globally keeps my total sum. Everytime the global variable is updated, I display it on my lcd1602.
+-Logs the event using info!
+-The loop runs every 20ms using: ```Timer::after(Duration::from_millis(20)).await;```. This provides a basic debounce/polling interval to reduce false triggers.
+
+
+
 
 
 
