@@ -851,6 +851,8 @@ Here is a short demo showing how my money counting machine with bill storage wor
 
 [![Demo for money counting machine](https://img.youtube.com/vi/pk5nQ_Uff8Q/hqdefault.jpg)](https://www.youtube.com/watch?v=pk5nQ_Uff8Q)
 
+[Watch the demo video on YouTube](https://www.youtube.com/watch?v=pk5nQ_Uff8Q)
+
 
 
 
