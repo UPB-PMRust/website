@@ -408,12 +408,12 @@ flowchart TD
 | [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for handling async tasks like motor control, button input, and joystick |
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2350 support for Embassy | Provides access to GPIO, SPI, and timers for Raspberry Pi Pico 2 |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Async traits for embedded drivers | Used to write generic and portable async code for GPIO and other devices |
-| [`embassy-sync`](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Synchronization primitives | For task coordination |
-| [`display-interface-spi`](https://github.com/almindor/display-interface) | SPI abstraction layer for embedded displays | Bridges SPI device and display protocol used by the screen |
+| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Synchronization primitives | For task coordination |
+| [display-interface-spi](https://github.com/almindor/display-interface) | SPI abstraction layer for embedded displays | Bridges SPI device and display protocol used by the screen |
 | [mipidsi](https://github.com/almindor/mipidsi) | Display driver for ST7735s via SPI | Used for LED display, to show mode, pattern, or pause state |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Draw UI and shapes on screen | Used to create a user interface on the display |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded Rust | Debugging tool for monitoring runtime behavior over RTT |
-| [`panic-probe`](https://github.com/knurling-rs/defmt) | Panic handler for embedded debug | Shows where panics happen in embedded targets |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler for embedded debug | Shows where panics happen in embedded targets |
 | [heapless](https://github.com/japaric/heapless) | Fixed-size data structures | Used to buffer the X/Y coordinate queue for the ball to follow |
 
 ### Software Architecture
