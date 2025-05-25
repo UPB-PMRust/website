@@ -42,26 +42,69 @@ As someone passionate about composing music and making beats, I've always been c
     - Done MIDI communication between device and controller
 
 ### Week 19 - 25 May
-- TBD
+- Finished software:
+    - Tweaked different values (voltage levels for key press, velocity computing etc.)
+    - Refined logic for each component
+    - Organized code
+- Finished final product:
+    - 3D printed missing parts (keys, button caps and cover)
+    - Glued everything together
 
 ## Hardware
 
-The DIY MIDI controller is built around the Raspberry Pi Pico 2W.
+The DIY MIDI controller is built around the Raspberry Pi Pico 2W, with custom-designed circuitry implemented on homemade PCB boards. All components are connected using solid-core wires stripped from a UTP (Ethernet) cable, ensuring reliable point-to-point wiring across the board.
 
-Each of the 12 keys uses 2 tactile switches (one per elevation), totaling 24 inputs. To reduce GPIO usage, I used a 16-channel analog multiplexer (12 channels used). Switches connect to the multiplexer inputs; its selector pins go to the Pico’s GPIOs, and the SIG pin connects to an ADC.
+![Circuit](Hardware.webp)
 
-Each switch uses a voltage divider to produce distinct ADC levels for button states:
+The controller features 12 keys, each equipped with two tactile switches mounted at different elevations. This physical arrangement enables velocity sensitivity by measuring the time interval between the activation of the first and second switches. In total, 24 switches are scanned.
+
+To efficiently read these switches using minimal GPIOs, a 16-channel analog multiplexer is used (12 channels active). Each switch is wired into a voltage divider, producing distinct analog voltage levels depending on press state:
 - more than 2650: no press (send Note OFF)
 - between 2000–2500: one pressed (start timer)
 - less than 1000: both pressed (stop timer, compute velocity, send Note ON)
 
-![Circuit](Hardware.webp)
+The multiplexer’s selector lines are controlled via four GPIOs, while the SIG pin is connected to an ADC input on the Pico. Each key is scanned sequentially in a loop, with debouncing and averaging applied.
 
-The controller also includes a potentiometer for filter control and a button to control octave switching and filter selection through a carousel-like menu. This menu is displayed on an integrated screen, allowing users to navigate settings with short and long presses.
+A potentiometer is connected directly to another ADC pin, providing continuous control input which is mapped to a MIDI filter parameter (e.g., cutoff frequency). Its value is read periodically and translated into MIDI Control Change (CC) messages.
+
+For user interaction, the controller includes:
+- An SSD1306 OLED display, driven via I2C, used to render a menu interface for settings such as octave selection and filter CC channel.
+- Four momentary buttons connected to GPIOs:
+    - Menu: enter/exit menu mode
+    - Select: short/long presses toggle modes or confirm selections
+    - Up/Down: navigate between options
+
+The menu uses a carousel-style interface, offering intuitive cycling through options with feedback on the screen.
 
 ### Schematics
 
 ![Schematic](Schema_proiect.svg)
+
+## Software
+
+The firmware for the MIDI controller is written in Rust, using the embassy async runtime for embedded systems. It targets the Raspberry Pi Pico 2W (RP2040) microcontroller and uses the following major components:
+1. Note Detection with Velocity \
+Reads from the buttons under each key via analog multiplexer. Measures time between two switch presses for each key to estimate velocity and sends MIDI note-on events accordingly.
+2. Filter Control via Potentiometer \
+Continuously samples the potentiometer and sends MIDI CC messages on a user-configurable channel (70–79) if the value has changed significantly.
+3. User Menu System via Button Interface & OLED Display \
+Uses four buttons (Menu, Select, Up, Down) and an I2C SSD1306 OLED screen to:
+    - Select between Octave and Filter modes.
+    - Modify current octave (C0–C9).
+    - Modify the active MIDI filter channel.
+4. USB MIDI Output \
+Implements a class-compliant USB MIDI device that sends:
+    - Note on/off messages.
+    - Control Change messages for the filter.
+
+| Library                                                  | Description                                      | Usage                                                                                |
+| -------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| [embassy-rp](https://embassy.dev/)                       | Rust + async embedded                            | Framework for embedded applications using async features on the Raspberry Pi Pico 2W |
+| [ssd1306](https://crates.io/crates/lcd1602-rs)        | Driver for SSD1306 display             | Display menu for filter and octave selection                                         |
+| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)          | 2D graphics library                 | Drawing primitives and text rendering for embedded displays                       |
+| [static-cell](https://crates.io/crates/static_cell)            | Allows defining static, lazily initialized values safely | Store USB Config information |
+| [embassy-usb](https://docs.rs/embassy-usb/latest/embassy_usb/)                  | USB device stack for async embedded Rust | Configure USB connection to device |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework for embedded development (formatted debug output)| Debugging Software and Hardware |
 
 ### Bill of Materials
 
@@ -78,19 +121,8 @@ The controller also includes a potentiometer for filter control and a button to 
 | [20p Female Pin Header 2.54 mm](https://www.optimusdigital.ro/ro/headeri/35094-header-femei-20p.html) | Wiring headers for connections | [12.27 RON](https://www.optimusdigital.ro/ro/headeri/35094-header-femei-20p.html) |
 | [4p Female Pin Header 2.54 mm](https://www.optimusdigital.ro/ro/headeri/35018-header-femei-4p.html) | Wiring headers for connections | [0.98 RON](https://www.optimusdigital.ro/ro/headeri/35018-header-femei-4p.html) |
 | [SSD1306 0.96" OLED DISPLAY](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/?utm_campaign=share%20product&utm_medium=ios&utm_source=mobile%20app) | For showing filter and octave menu | [27.37](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/?utm_campaign=share%20product&utm_medium=ios&utm_source=mobile%20app) |
-| 3D Printer materials | Case and keys | TBD |
-| Total | - | 175.93 RON + materials |
-
-## Software
-
-| Library                                                  | Description                                      | Usage                                                                                |
-| -------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| [embassy-rp](https://embassy.dev/)                       | Rust + async embedded                            | Framework for embedded applications using async features on the Raspberry Pi Pico 2W |
-| [ssd1306](https://crates.io/crates/lcd1602-rs)        | Driver for SSD1306 display             | Display menu for filter and octave selection                                         |
-| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)          | 2D graphics library                 | Drawing primitives and text rendering for embedded displays                       |
-| [static-cell](https://crates.io/crates/static_cell)            | Allows defining static, lazily initialized values safely | Store USB Config information |
-| [embassy-usb](https://docs.rs/embassy-usb/latest/embassy_usb/)                  | USB device stack for async embedded Rust | Configure USB connection to device |
-| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework for embedded development (formatted debug output)| Debugging Software and Hardware |
+| 3D Printer materials | Case and keys | 50 RON |
+| Total | - | 225.93 RON |
 
 ## Links
 
