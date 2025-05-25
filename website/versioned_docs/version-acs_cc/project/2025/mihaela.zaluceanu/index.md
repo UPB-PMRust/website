@@ -60,7 +60,7 @@ Additionally, I integrated a BMP180 sensor to measure the actual room temperatur
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/JmNvgwWPilE)](https://youtu.be/JmNvgwWPilE)
 
-![](p1.jpg)              |  ![](p2.jpg)
+![](p1.webp)              |  ![](p2.webp)
 :-------------------------:|:-------------------------:
 
 ### Schematics
