@@ -630,6 +630,88 @@ Every ~100 ms:
 
 -If the new string is shorter than the previous one, the screen is cleared (lcd_command(..., 0x01)) to avoid problems with display (overwriting not full or display flickering).
 
+#### LCD commands
+
+```pub async fn lcd_command(...)```
+
+-Purpose: Sends a command byte to the LCD.
+
+-Used for: LCD initialization, cursor setting, clearing display.
+
+-Internally uses: lcd_write_byte(...) with rs = false.
+
+#### Data sender to LCD
+```pub async fn lcd_data(...)```
+
+-Purpose: Sends a character/data byte to be shown on the LCD.
+
+-Used for: Writing visible text.
+
+-Internally uses for ```lcd_write_byte(...)``` with rs = true.
+
+#### LCD Initialization
+
+```pub async fn lcd_init(...)```
+
+-Purpose: Initializes the LCD1602 in 4-bit mode with I2C.
+
+Steps:
+
+-Wait 50 ms (LCD power-up delay).
+
+-Send ```0x30``` three times to set 8-bit mode (compatibility sequence).
+
+-Send ```0x20``` to switch to 4-bit mode.
+
+-Send function/configuration commands:
+
+-```0x28``` – 2 lines, 5x8 dots, 4-bit.
+
+-```0x0C``` – Display ON, cursor OFF, blink OFF.
+
+-```0x06``` – Cursor increment, no display shift.
+
+-```0x01``` – Clear display.
+
+#### LCD write strings (better than bytes)
+```pub async fn lcd_write_str(...)```
+
+-Purpose: Writes a whole string to the LCD.
+
+-Iterates over each byte (character) and sends it using lcd_data(...).
+
+#### Data transmission via I2C 
+``` pub async fn lcd_write_byte(...)```
+
+-Purpose: Sends a byte to the LCD via I2C in two nibbles (high + low).
+
+##### Steps:
+
+-Extract high and low nibbles from byte.
+
+##### For each nibble:
+
+-Add backlight + RS + EN bits.
+
+-Toggle EN bit HIGH → LOW to latch the nibble.
+
+-Wait briefly between operations.
+
+##### Important flags:
+
+-rs (Register Select): Command or Data mode.
+
+-backlight: Controls whether backlight bit (0x08) is sent.
+
+#### LCD cursor 
+```pub async fn lcd_set_cursor(...)```
+
+-Purpose: Positions the cursor at a specific col and row on the LCD, because I have 2 lines on my LCD, each one of them with 16 characters
+
+-Line offsets: Line 0 starts at 0x00, line 1 at 0x40.
+
+-Sends a ```0x80``` | addr command to set DDRAM address.
+
 #### Float to String Conversion
 The ```float_to_string(val: f32)``` function:
 
