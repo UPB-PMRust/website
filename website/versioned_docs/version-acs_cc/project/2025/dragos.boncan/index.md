@@ -610,6 +610,49 @@ The loop runs every 100ms using
 This provides a basic polling interval to reduce CPU usage and power consumption, while still allowing timely detection of button presses.
 
 
+### LCD1602 Display Task (lcd_task)
+This task continuously displays the current state of the machine and the total amount of money detected, using an LCD1602 screen connected via I2C.
+
+####🔌 Hardware Configuration
+LCD1602 I2C connected to the I2C bus (e.g., I2C0). Backlight is enabled by default (0x08). RS and EN are manually controlled to send commands and data. At startup, lcd_init initializes the screen in 4-bit mode.
+
+Every ~100 ms:
+
+-Reads the saved amount (GLOBAL_FLOAT_BITS)
+
+-Reads the machine’s state (GLOBAL_MACHINE_STATE)
+
+-Converts the amount into a String<16> with two decimal places (e.g., 12.50)
+
+-Displays the state on line 1: ```IDLE```, ```START```, ```READ```, ```EJECT```, ```REJECTED``` 
+
+-Displays the amount followed by “ lei” on line 2
+
+-If the new string is shorter than the previous one, the screen is cleared (lcd_command(..., 0x01)) to avoid problems with display (overwriting not full or display flickering).
+
+#### Float to String Conversion
+The ```float_to_string(val: f32)``` function:
+
+-Converts the float to a string with 2-digit precision
+
+-Adds a leading 0 if the fractional part is < 10 (e.g., 5.05)
+
+-Correctly rounds the fractional part, including edge cases like 0.9999 → 1.00
+
+#### Displayed States
+| Internal Code | LCD Message         |
+|---------------|---------------------|
+| 0.0           | State: IDLE    |
+| 1.0           | State: START      |
+| 2.0           | State: READ       |
+| 3.0           | State: EJECT     |
+| 4.0           | State: REJECTED      |
+| otherwise     | State: UNKNOWN     |
+
+#### Update Interval
+The task runs every 100 ms using
+```Timer::after(Duration::from_millis(100)).await;```.
+This reduces CPU usage and ensures a smooth screen refresh without overloading the system.
 
 
 
