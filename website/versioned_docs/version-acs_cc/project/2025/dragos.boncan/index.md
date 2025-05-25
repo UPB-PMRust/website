@@ -529,7 +529,41 @@ let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config);
 ```
 
 ### Project Structure
-The project is built using the Rust programming language along with the Embassy library for asynchronous programming. Here are my main tasks explained
+The project is built using the Rust programming language along with the Embassy library for asynchronous programming. Here are my main tasks explained:
+
+### Main task
+-The main function is where I initialize all the hardware peripherals and spawn the async tasks that handle logic like LCD display, coin/bill detection, buzzer alerts, and door lock control.
+
+-Before anything runs, I set up shared global states and the hardware configuration:
+```
+let bits = 0.0f32.to_bits();
+GLOBAL_FLOAT_BITS.store(bits, Ordering::SeqCst);
+GLOBAL_MACHINE_STATE.store(bits, Ordering::SeqCst);
+```
+-I used 2 global variables to store the total sum and the current state of the machine.
+
+
+#### Initialized pins in Main
+| **Pin**      | **Purpose**                       |
+|--------------|-----------------------------------|
+| PIN_2        | Motor back (bill return)          |
+| PIN_3        | Door lock control                 |
+| PIN_4        | Bill acceptor motor               |
+| PIN_5        | Status LED (light)                |
+| PIN_6-7      | TCS230 s0 and s1                  |
+| PIN_8-9      | Multiplexer controls (s2 and s3)  |
+| PIN_10       | Color sensor output               |
+| PIN_13       | Reset button                      |
+| PIN_14-15    | IR presence sensors               |
+| PIN_16-17    | I2C bus (SDA & SCL)               |
+| PIN_19-22    | Coin sensors (1, 5, 10, 50 bani)  |
+| PIN_26       | Door sensor                       |
+| PIN_27       | Buzzer (active LOW)               |
+| PIN_28       | LED strip for feedback light      |
+
+-I connect an LCD1602 display via I2C (address 0x27) and initialize it using: ```lcd_init(&mut i2c, lcd_addr).await;```
+
+-I then deploy the 5 tasks that are presented in detail below.
 
 ### Bancnote_task
 
