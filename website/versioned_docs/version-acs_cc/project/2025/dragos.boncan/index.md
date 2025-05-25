@@ -632,7 +632,7 @@ Every ~100 ms:
 
 #### LCD commands
 
-```pub async fn lcd_command(...)```
+```pub async fn lcd_command<I: AsyncI2c>(i2c: &mut I, addr: u8, cmd: u8) ```
 
 -Purpose: Sends a command byte to the LCD.
 
@@ -641,7 +641,7 @@ Every ~100 ms:
 -Internally uses: lcd_write_byte(...) with rs = false.
 
 #### Data sender to LCD
-```pub async fn lcd_data(...)```
+```pub async fn lcd_data<I: AsyncI2c>(i2c: &mut I, addr: u8, data: u8)```
 
 -Purpose: Sends a character/data byte to be shown on the LCD.
 
@@ -651,7 +651,7 @@ Every ~100 ms:
 
 #### LCD Initialization
 
-```pub async fn lcd_init(...)```
+```pub async fn lcd_init<I: AsyncI2c>(i2c: &mut I, addr: u8)```
 
 -Purpose: Initializes the LCD1602 in 4-bit mode with I2C.
 
@@ -674,14 +674,22 @@ Steps:
 -```0x01``` – Clear display.
 
 #### LCD write strings (better than bytes)
-```pub async fn lcd_write_str(...)```
+```pub async fn lcd_write_str<I: AsyncI2c>(i2c: &mut I, addr: u8, s: &str)```
 
 -Purpose: Writes a whole string to the LCD.
 
 -Iterates over each byte (character) and sends it using lcd_data(...).
 
 #### Data transmission via I2C 
-``` pub async fn lcd_write_byte(...)```
+```
+pub async fn lcd_write_byte<I: AsyncI2c>(
+    i2c: &mut I,
+    addr: u8,
+    byte: u8,
+    rs: bool,
+    backlight: bool,
+)
+```
 
 -Purpose: Sends a byte to the LCD via I2C in two nibbles (high + low).
 
@@ -704,7 +712,7 @@ Steps:
 -backlight: Controls whether backlight bit (0x08) is sent.
 
 #### LCD cursor 
-```pub async fn lcd_set_cursor(...)```
+```pub async fn lcd_set_cursor<I: AsyncI2c>(i2c: &mut I, addr: u8, col: u8, row: u8)```
 
 -Purpose: Positions the cursor at a specific col and row on the LCD, because I have 2 lines on my LCD, each one of them with 16 characters
 
