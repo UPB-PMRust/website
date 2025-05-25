@@ -140,6 +140,13 @@ as well as designing the initial system architecture. The key tasks accomplished
 
 
 ### Week 12 - 18 May
+In this phase, I concentrated on the hardware design and initial software setup. The key tasks accomplished during this phase are:
+- Designed the PCB layout
+- Tested the rgb led and buzzer modules
+- Tested the relay module with the solenoid lock
+- Tested the OLED display with the Raspberry
+- Tested the RC522 RFID module with the Raspberry Pi Pico
+
 
 ### Week 19 - 25 May
 
@@ -192,7 +199,12 @@ as well as designing the initial system architecture. The key tasks accomplished
 - **Function**: Authentication testing
 
 ### Schematics
-![Schematic](./images/schematics_pacs.webp)
+![Schematic](./images/schematics_pacs.svg)
+
+### PCB Design
+![PCB Design](./images/pcb.svg)
+
+### 
 
 ### Bill of Materials
 
@@ -212,6 +224,8 @@ as well as designing the initial system architecture. The key tasks accomplished
 | [PCB Board](https://www.optimusdigital.ro/en/protoboards/13044-15-x-20-cm-universal-pcb-prototype-board-single-sided-254mm-hole-pitch.html) | Board for mounting components              | [15 RON](https://www.optimusdigital.ro/en/protoboards/13044-15-x-20-cm-universal-pcb-prototype-board-single-sided-254mm-hole-pitch.html)       |
 | [RFID and NFC Cards](https://tinyurl.com/3hc92af7)                                                                                          | Cards used for unlocking system(15 cards ) | [11 RON](https://tinyurl.com/3hc92af7)                                                                                                         |
 
+### hardware connections
+![PCB Design](./images/device_photo.webp) 
 
 ## Software 
 
