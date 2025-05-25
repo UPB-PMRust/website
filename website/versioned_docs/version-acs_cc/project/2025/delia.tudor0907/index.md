@@ -22,7 +22,7 @@ Taking out the trash is a task often postponed, especially in shared living spac
 
 ## Architecture
 
- ![Architecture Diagram](./arhitectura1.webp) <!-- replace with the correct path if needed -->
+ ![Architecture Diagram](./arhitectura1.webp)
 
 ## Log
 
@@ -33,7 +33,7 @@ Taking out the trash is a task often postponed, especially in shared living spac
 - I began working on the hardware side of the project. I started assembling the components, connecting the sensors and microcontroller, and testing how they work together on the breadboard. During this stage, I also finalized and completed the Bill of Materials based on the actual needs of the system.
 
 ### Week 19 - 25 May
-- 
+- This week, I focused on implementing the software functionalities. I tested each hardware component individually to ensure proper operation. Once confirmed, I integrated them into an asynchronous system, allowing them to work together smoothly. Additionally, I strategically assembled and mounted each component on the physical trash can to ensure optimal placement and functionality.
 
 ## Hardware
 
@@ -51,8 +51,13 @@ Taking out the trash is a task often postponed, especially in shared living spac
 ![poza2](./poza2.webp)
 ![poza3](./poza3.webp)
 
+## Demo
+
+[Watch the demo video on YouTube](https://youtube.com/shorts/kfv9Rz3EVaA?feature=share)
+
+
 ## Schematics
-![schematics Diagram](./schematic.svg) <!-- replace with the correct path if needed -->
+![schematics Diagram](./schematic.svg)
 
 ## Bill of Materials
 
@@ -62,25 +67,25 @@ Taking out the trash is a task often postponed, especially in shared living spac
 | [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) | 2 | Measures distance to detect if the trash bin is full | 9.00 x 2 |
 | [Infrared Obstacle Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) | 1 | Detects hand movement near the trash can | 3.50 |
 | [SG90 Micro Servo Motor](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) | 1 | Opens the bin lid automatically | 11.99 |
-| [Active Buzzer 5V](https://www.optimusdigital.ro/en/buzzers/633-buzzer-activ-de-5-v.html) | 1 | Alerts when the bin is full and whose turn it is | 1.40 |
+| [Passive Buzzer](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html) | 1 | Alerts when the bin is full and whose turn it is | 0.99 |
 | [Breadboard Kit with Wires & Power Supply](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html) | 1 | For prototyping and connecting components | 22.00 |
 | [Female Pin Headers](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4166-header-de-pini-mama-20p-254-mm.html) | 4 strips | Connect to male pins on the board and sensors | 2.00 x 4 |
 | [Battery Holder (2x18650)](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html) | 1 | Provides portable power to the system | 3.99 |
 | [DC-DC Step-Down Module LM2596HV](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html) | 1 | Regulates voltage from battery to appropriate level for components | 12.99 |
 
 
-<!-- **Estimated Total:** ~168.00 RON -->
 
 ## Software
 
-| Library           | Description                            | Usage                                                                 |
-|-------------------|----------------------------------------|-----------------------------------------------------------------------|
-| embassy-executor  | Asynchronous executor for Rust embedded systems | Used for task scheduling and asynchronous programming        |
-| embassy-time      | Time management library                | Used for time-based operations such as delays                         |
-| embassy-rp        | Peripheral access library              | Used for initializing and interacting with peripherals                |
-| gpio              | GPIO control library                   | Used to control the pins connected to the sensors, buzzer, and servo |
-| panic-halt        | Panic handler for embedded Rust        | Used to stop the program safely in case of an unrecoverable error     |
-| HC-SR04           | HC-SR04 manipulation                   | Used for controlling the ultrasonic sensor                            |
+| Library           | Description                                                | Usage                                                                 |
+|------------------|------------------------------------------------------------|-----------------------------------------------------------------------|
+| `embassy-executor` | Asynchronous executor for embedded systems                | Used to define and run concurrent tasks (e.g., servo control, buzzer) |
+| `embassy-time`     | Time and delay utilities for embedded async Rust          | Used for delays, timers, and periodic sampling                        |
+| `embassy-rp`       | Raspberry Pi Pico HAL with Embassy support                | Used to initialize and interact with PWM, GPIO, and other peripherals |
+| `fixed`            | Fixed-point arithmetic library                            | Used to configure PWM divider values precisely                        |
+| `defmt-rtt`        | Logging over RTT                                          | Used for lightweight logging/debugging during development             |
+| `panic-probe`      | Panic handler with debug info                             | Used to report errors if something goes wrong at runtime              |
+                          |
 
 ## Links
 
