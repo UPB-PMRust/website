@@ -72,7 +72,6 @@ Added wifi connection to enable opening and closing the door from a basic websit
 Added a button that can be pressed once inside that lets you reset the current registered fingerprint and register a diffrent one. \
 Tested and fixed small bugs, moved the project out of the cardboard box and into a better looking setup. 
 
-
 ## Hardware
 **Raspberry Pi Pico 2 W:**
     - Central microcontroller that manages all inputs, outputs, and logic.

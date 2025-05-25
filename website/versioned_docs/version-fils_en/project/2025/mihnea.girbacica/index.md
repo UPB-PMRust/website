@@ -4,7 +4,7 @@ A compact and robust 2D video game for the NUCLEO-F411RE, written in Rust.
 
 :::info
 
-**Author**: Mihnea Girbacica \
+**Author**: Mihnea Girbacica\
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-Mihnea8848
 
 :::
@@ -49,7 +49,32 @@ Photos:
 
 ### Week 12 - 18 May
 
-*This week is still to come, to be added.*
+This week's goal was to start making the game's logic, mainly the player movement and loading up levels. I experimented different ways to load images onto the screen, but I ended up using .raw image files for their versatility and, most importantly, their relatively low storage footprint.
+
+Code Changelog:
+
+- Added game_module.rs, that includes very crude game logic (player movement, background loading)
+- Improved the game_module.rs to move the background when the player moves to undisplayed areas.
+- Optimized the code so that it works better (**!**)
+- Created and added all of the required assets (The player in all of its states, the background for level1)
+- Made the player stripe change based on what input is provided on the D-Pad
+- Made the player stripe change it's location (move) based on the input
+- Considering adding another microcontroller to the project (**!**)
+
+
+Hardware Changelog:
+*No hardware changes were made this week.*
+
+:::warning Significant Changes
+
+In this stage of development, I discovered that the NUCLEO-F411RE is severely limited in terms of RAM and FLASH storage. I am considering adding another microcontroller, *most likely the ESP32 WROOM32*, to drive the display. This will substantially increase the performance of the game.
+
+:::
+
+Photos:
+
+![RustScape: Initial Player Movement tests](./rustscape-photo-3.webp)
+![RustScape: Initial level1 tests](./rustscape-photo-4.webp)
 
 ### Week 19 - 25 May
 
@@ -106,6 +131,7 @@ The format is
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
-1.  [Embedded Rust Book](https://docs.rust-embedded.org/book/intro.html)
-2.  [embassy](https://github.com/embassy-rs/embassy)
-3.  [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+
+1. [Embedded Rust Book](https://docs.rust-embedded.org/book/intro.html)
+2. [embassy](https://github.com/embassy-rs/embassy)
+3. [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
