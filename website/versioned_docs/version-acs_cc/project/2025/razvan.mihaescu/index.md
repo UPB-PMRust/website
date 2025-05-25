@@ -48,7 +48,7 @@ The device will also have a **buzzer** that will be used to alert the user if th
 
 For very high risk, like fire, high measurements of CO or very high temperature, the device will send a notification to the user using **a server** through the Wi-Fi network to alert him even if he is not at home.
 
-![diagram](diagrama-bloc.svg)
+![diagram](diagrama-bloc1.svg)
 
 ## Log
 
