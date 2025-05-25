@@ -613,8 +613,8 @@ This provides a basic polling interval to reduce CPU usage and power consumption
 ### LCD1602 Display Task (lcd_task)
 This task continuously displays the current state of the machine and the total amount of money detected, using an LCD1602 screen connected via I2C.
 
-####🔌 Hardware Configuration
-LCD1602 I2C connected to the I2C bus (e.g., I2C0). Backlight is enabled by default (0x08). RS and EN are manually controlled to send commands and data. At startup, lcd_init initializes the screen in 4-bit mode.
+#### Hardware Configuration
+LCD1602 I2C connected to the I2C bus (I2C0). Backlight is enabled by default (0x08). RS and EN are manually controlled to send commands and data. At startup, lcd_init initializes the screen in 4-bit mode.
 
 Every ~100 ms:
 
