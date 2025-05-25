@@ -89,7 +89,7 @@ Display, DAC, Buttons, and Output components.
 
 Below I have provided an overview of the project on a breadboard:
 
-![Overview](overview.webp)
+![Overview](project_overview.webp)
 
 User input close-up:
 
