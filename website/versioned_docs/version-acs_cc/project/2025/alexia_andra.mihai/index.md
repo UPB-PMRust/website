@@ -119,10 +119,9 @@ Additionally, I made efforts to arrange the components in a more organized and a
 
 ![PulseBeats Circuit Schematic](pulsebeats-schematic.svg)
 
-![poza1](poza1.webp)
-![poza2](poza2.webp)
-![poza3](poza3.webp)
-![poza4](poza4.webp)
+![poza7](poza7.webp)
+![poza8](poza8.webp)
+![poza9](poza9.webp)
 
 ## Bill of Materials  
 
