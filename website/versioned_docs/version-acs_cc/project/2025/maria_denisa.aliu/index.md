@@ -21,7 +21,7 @@ I wanted to create a relaxing and visually engaging project that combines artist
 - **Controller Core**: Raspberry Pi Pico 2 runs the main control loop and manages motor drivers, input handling and display output.
 - **Motion Controller**: Two stepper motors control the X and Y position of the magnet beneath the table, based on trajectory data.
 - **User Input Manager**: A joystick is used to switch between modes and control the ball in manual mode. Additional buttons allow the user to pause the drawing or clear (stop automatic and switch to manual so the user can clear the sand), etc.
-- **Drawing Engine**: In automatic mode, a pattern generator creates coordinate sequences (e.g., circles, spirals) sent to the motion controller.
+- **Drawing Engine**: In automatic mode, a pattern generator creates coordinate sequences (e.g., heart, star) sent to the motion controller.
 
 These components communicate in an event-driven and partially asynchronous manner using Embassy's async runtime on the microcontroller.
 
