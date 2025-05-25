@@ -41,6 +41,7 @@ Started the project by setting up the Raspberry Pi Pico 2W and the LCD display. 
 I finished the whole harware setup, including drawing power from the 9V batteries. I also managed to send button presses from the controller to the console over WiFi. The console receives the input and displays the pressed button on the screen.
 
 ### Week 19 - 25 May
+I finished coding the project and assembled the hardware over the 3D printed cases. The console now runs a simple Maze Game with enemies that move left-right or up-down.
 
 ## Hardware
 
@@ -79,16 +80,16 @@ The project uses the following hardware components:
 | 2x 9V Battery | 9V Battery | 20 RON |
 | 4 Tactile Buttons | Tactile Buttons | 5 RON |
 | Breadboard, Required wiring and connectors | Breadboard, Required wiring and connectors | 30 RON
-| 3D Printed Plastic Cases | 3D Printed Plastic Cases | TBA |
-| Total | | 252.6 RON |
+| 3D Printed Plastic Cases | 3D Printed Plastic Cases | 110 RON |
+| Total | | 362.6 RON |
 
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [ili9341](https://crates.io/crates/ili9341) | Display driver for ILI9341 | Used for the SPI LCD display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for rendering simple 2D graphics on the display |
 | [cyw43](https://docs.rs/cyw43/latest/cyw43/) | WiFi driver for Raspberry Pi Pico 2W | Used to manage WiFi connections between the Controller and Console |
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | MIPI DSI driver for Raspberry Pi Pico 2W | Used to interface with the LCD display |
 
 ## Links
