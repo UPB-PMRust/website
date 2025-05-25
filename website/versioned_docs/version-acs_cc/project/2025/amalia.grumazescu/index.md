@@ -40,6 +40,9 @@ Final version of the project
 
 
 # Hardware
+![poza1](amalia_poza1.webp)
+![poza2](amalia_poza2.webp)
+![poza3](amalia_poza3.webp)
 
 Raspberry Pi Pico 2W - main controller of the components
 LCD Display -  displays the game
@@ -48,7 +51,7 @@ Breadboard - to simplify the connections
 
 ### Schematics
 
-![schematic](schema_amalia.webp)
+![schematic](schema_amalia.svg)
 
 ### Bill of materials
 
@@ -65,7 +68,7 @@ Breadboard - to simplify the connections
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver | Used of the LCD display |
+| [st7735](https://github.com/Matiasus/ST7735) | Display driver | Used of the LCD display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drwaing for the display |
 
 # Links
