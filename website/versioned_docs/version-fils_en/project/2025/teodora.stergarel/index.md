@@ -36,8 +36,8 @@ This week, the hardware components arrived, and I got the headers to the two Ras
 
 ## Hardware
 
-![1:](/1.png)
-![2:](/2.png)
+![1:](/1.webp)
+![2:](/2.webp)
 
 The project is built around the **Raspberry Pi Pico W** microcontroller and integrates the following components:
 
@@ -53,7 +53,7 @@ The project is built around the **Raspberry Pi Pico W** microcontroller and inte
 
 Below is the schematics of the device:
 
-![Project Schematics:](/architecture.png)
+![Project Schematics:](/architecture.webp)
 
 KiCad Schematics:
 
