@@ -656,7 +656,7 @@ Every ~100 ms:
 
 -Reads the machine’s state (GLOBAL_MACHINE_STATE)
 
--Converts the amount into a String<16> with two decimal places (e.g., 12.50)
+-Converts the amount into a String<16> with two decimal places (12.50)
 
 -Displays the state on line 1: ```IDLE```, ```START```, ```READ```, ```EJECT```, ```REJECTED``` 
 
