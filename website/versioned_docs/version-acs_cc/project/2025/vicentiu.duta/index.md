@@ -167,6 +167,7 @@ These components are integrated through different communication protocols:
 | [defmt](https://defmt.ferrous-systems.com/) | Debug formatting | Logging and diagnostics |
 | [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | RTT transport | Debug output channel |
 | [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Panic handler | Error reporting to debug probe |
+| [tinybmp](https://docs.rs/tinybmp/latest/tinybmp/) | BMP image decoder | Loading floor icons and status images for display |
 <!--## Links -->
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
