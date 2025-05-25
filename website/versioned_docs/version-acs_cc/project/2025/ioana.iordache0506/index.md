@@ -108,7 +108,7 @@ graph TD
   I also started building a frame to integrate the hardware - basically a small “house.” I thought about how it could look and began working on the door and window mechanism. However, I consider these more related to the physical design than to the hardware itself, since the functionalities and connections are already in place. I’ll keep improving the appearance and details until the PM fair.😊🏠
 
 - **Week 19 – 25 May**  
-  Completed the final version of the smart home system with several significant improvements <3
+  Completed the final version of the smart home system with several significant improvements.
 
   Added a PIR motion sensor to detect movement near the house, with customizable responses. This proved to be challenging at first, as the sensor required proper calibration and debounce logic to avoid false triggers. After some experimentation, I implemented a reliable detection system that works consistently.
 
