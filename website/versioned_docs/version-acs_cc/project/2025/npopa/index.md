@@ -89,7 +89,7 @@ Display, DAC, Buttons, and Output components.
 
 Below I have provided an overview of the project on a breadboard:
 
-![Overview](project_overview.webp)
+![Overview](overview.webp)
 
 User input close-up:
 
@@ -136,4 +136,3 @@ adding samples. The display is placed on the right, along with play/write button
 - [Making some noise with Raspberry Pi Pico](https://community.element14.com/challenges-projects/design-challenges/pi-fest/b/blog/posts/pi-fest---making-some-noise-with-raspberry-pi-pico-blog1)
 - [Pico Sequencer](https://www.hackster.io/Arnov_Sharma_makes/pico-sequencer-173a5f)
 - [RP2040 Drum Machine](https://hackaday.io/project/171112-twrtdm) 
-
