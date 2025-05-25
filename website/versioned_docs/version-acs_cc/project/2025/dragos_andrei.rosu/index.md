@@ -64,15 +64,33 @@ Din pacate nu o sa mai folosesc componentele care monitorizau parcarea, daca loc
 
 ### Week 12 - 18 May
 
+Am reusit sa fac rost de un senzor de line tracker pe care il folosesc in elaborarea proiectului meu ca un senzor de detectare obstacole. Am reusit sa implementez o parte de componente ca cod in proiectul meu. 
+
 ### Week 19 - 25 May
+
+Am implementat aproximativ tot ce mi-am propus in proiect, in prealabil am tot ce functionalitati ce mi-am propus, dar nu cu toate componentele pe care mi le-am propus. 
+
+Poza cu deschiderea barierei de la intrare:
+
+![diagram](Deschidere_bariera_intrare.webp)
+
+Ocupare loc parcare:
+
+![diagram](Ocupare_loc_parcare.webp)
+
+Deschiderea barierei de la iesire cu senzor de distanta:
+
+![diagram](Deschidere_bariera_iesire.webp)
+
+
 
 ## Hardware
 
-Detail in a few words the hardware used.
+Proiectul consta intr-o parcare inteligenta cu intrare pe baza unui cititor de card RFID. Cand o masina ajunge, soferul pune cardul pe cititor, daca este autorizat bariera se deschide, buzzerul scoate un sunet scurt si din lumina rosie se face albastru ca si cum poate sa intre. Daca nu este autorizat, buzzerul scoate un sunet lung si culoarea rosie functioneaza in continuare. Cand masina se afla in fata senzorului line tracker, acesta porneste si se ocupa locul din parcare astefl incat se actualizeaza si pe LCD. Cand pleaca, trebuie sa treaca prin fata senzorului HCSR astfel incat sa fie sub o anumite distanta ca sa se ridice bariera de la final ca sa iasa din parcare.
 
 ### Schematics
 
-![diagram](SchemaKiCad.webp)
+![diagram](ProiectPM.svg)
 
 ### Bill of Materials
 
