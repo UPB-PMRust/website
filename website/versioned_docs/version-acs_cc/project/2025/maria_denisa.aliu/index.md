@@ -140,7 +140,7 @@ Each hardware component has been validated independently and in partial integrat
 
 
 
-### Some reference images  
+## Some reference images  
 
 <details>
 <summary> Top Project view</summary>
@@ -178,8 +178,8 @@ Each hardware component has been validated independently and in partial integrat
 
 </details>
 
-#### OLD PROTOTYPING IMAGES
-<details>
+#### Old prototype images:
+
 <summary> Expand images</summary>
 <details>
 <summary> Screen Display (TFT)</summary>
@@ -201,7 +201,6 @@ Each hardware component has been validated independently and in partial integrat
 ![Rod/Structure Mechanism](poza_sistem_tije.webp)
 
 </details>
-</details>
 
 
 
@@ -209,17 +208,14 @@ Each hardware component has been validated independently and in partial integrat
 
 <!-- [![Video](thumbnail_Yt.webp)](https://youtu.be/zvSr5EOP77k)
 [*Play video here*](https://www.youtube.com/watch?v=zvSr5EOP77k) -->
-<details><summary> Old Video Demonstration</summary>
-[![Video](https://img.youtube.com/vi/zvSr5EOP77k/0.jpg)](https://youtu.be/zvSr5EOP77k)
-
-[*Play video here*](https://www.youtube.com/watch?v=zvSr5EOP77k)
-</details>
 
 [![Video](https://img.youtube.com/vi/LOFhDqq5P-w/0.jpg)](https://youtu.be/LOFhDqq5P-w)
 
-[*Play video here*](https://www.youtube.com/watch?v=LOFhDqq5P-w)
+[*Play NEW video here*](https://www.youtube.com/watch?v=LOFhDqq5P-w)
 
-<br><br>
+[*Play old video here*](https://www.youtube.com/watch?v=zvSr5EOP77k)
+
+---
 
 <details>
 <summary> Detailed Hardware Description</summary>
@@ -258,7 +254,7 @@ Acts as the central controller running asynchronous Rust (via Embassy). Manages 
 
 </details>
 
-
+---
 
 
 ### Schematics
@@ -410,14 +406,15 @@ flowchart TD
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for handling async tasks like motor control, button input, and joystick |
-| [embassy-rp](https://github.com/embassy-rs/embassy) | RP2350 support for Embassy | Provides access to GPIO, SPI, and timers for Raspberry Pi Pico 2 |
-| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async traits for embedded drivers | Used to write generic and portable async code for GPIO and other devices |
+| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2350 support for Embassy | Provides access to GPIO, SPI, and timers for Raspberry Pi Pico 2 |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Async traits for embedded drivers | Used to write generic and portable async code for GPIO and other devices |
+| [`embassy-sync`](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Synchronization primitives | For task coordination |
+| [`display-interface-spi`](https://github.com/almindor/display-interface) | SPI abstraction layer for embedded displays | Bridges SPI device and display protocol used by the screen |
 | [mipidsi](https://github.com/almindor/mipidsi) | Display driver for ST7735s via SPI | Used for LED display, to show mode, pattern, or pause state |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Draw UI and shapes on screen | Used to create a user interface on the display |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded Rust | Debugging tool for monitoring runtime behavior over RTT |
-| [micromath](https://docs.rs/micromath/latest/micromath) | Lightweight math utilities | Used to generate circular, spiral, or custom paths for drawing |
+| [`panic-probe`](https://github.com/knurling-rs/defmt) | Panic handler for embedded debug | Shows where panics happen in embedded targets |
 | [heapless](https://github.com/japaric/heapless) | Fixed-size data structures | Used to buffer the X/Y coordinate queue for the ball to follow |
-| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Async-safe synchronization primitives | Used for signaling between tasks and mutex sharing (e.g., SPI bus) |
 
 ### Software Architecture
 
