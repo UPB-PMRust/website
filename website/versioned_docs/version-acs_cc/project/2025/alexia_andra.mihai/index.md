@@ -123,6 +123,7 @@ Additionally, I made efforts to arrange the components in a more organized and a
 ![poza8](poza8.webp)
 ![poza9](poza9.webp)
 
+
 ## Bill of Materials  
 
 

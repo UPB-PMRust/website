@@ -75,11 +75,11 @@ What I plan to do :
 
 The Smart Station uses a Raspberry Pi Pico W, OLED , light sensor, RGB LED, and RTC module for a responsive music control system.
 
-![Sample of how all will be connected](hardware_ph.webp)
+![Sample of how everything is connected](hardware_ph.webp)
 
 ### Schematics
 
-![KiCAD schematics](ElectricScheme.webp)
+![KiCAD schematics](ElectricScheme.svg)
 
 ### Bill of Materials
 
