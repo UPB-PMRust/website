@@ -588,9 +588,13 @@ async fn monede_task(
 )
 ```
 On detection:
+
 -Reads global floating-point value from GLOBAL_FLOAT_BITS
+
 -Calls ```update_float_value(...)```, that updates my global variable GLOBAL_FLOAT_BITS. This variable globally keeps my total sum. Everytime the global variable is updated, I display it on my lcd1602.
+
 -Logs the event using info!
+
 -The loop runs every 20ms using: ```Timer::after(Duration::from_millis(20)).await;```. This provides a basic debounce/polling interval to reduce false triggers.
 
 
