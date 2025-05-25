@@ -56,6 +56,10 @@ I started writing the main logic of the program. I tested each component individ
 
 I assembled most of the pieces and further developed the logic for the laser–LDR calibration period. I also began developing the Wi-Fi setup and email-sending feature.
 
+### Week 19 - 25 May
+
+The email functionality was more of a challenge than i anticipated , so i resumed myself to using a tcp connection on port 80 to send logs on a http html page. Also tried to add an I2C screen in my project, but it interfeered with something in the program and with the port 80 connection, so i unfortunately dropped the idea.Finished the Documentation and assembled the mockup gate. 
+
 ## Hardware
 
 We use off-the-shelf components mounted on a breadboard and powered by a 5 V supply. The main utilities are the button, the passive buzzer which will be configured to emit a custom tune, the laser which will just be controlled by the button and the photoresistor which checks the laser output.
@@ -64,6 +68,7 @@ We use off-the-shelf components mounted on a breadboard and powered by a 5 V sup
 
 ![Pic2](Pic2.webp)
 
+![Pic3](Pic3.webp)
 ### Schematics
 
 ![KiCAD-Schematic](Proiect_PM.svg)
@@ -93,9 +98,17 @@ We use off-the-shelf components mounted on a breadboard and powered by a 5 V sup
 | [cyw43-pio](https://crates.io/crates/cyw43-pio)                   | PIO-based SPI front-end for CYW43 Wi-Fi module      | `PioSpi`, `RM2_CLOCK_DIVIDER` for bit-banged SPI over PIO                                                                                                                                                                                                                                   |
 | [static-cell](https://crates.io/crates/static-cell)               | Zero-overhead static allocation utility             | `StaticCell` for safe, statically allocated variables                                                                                                                                                                                                                                        |
 | [embassy-net](https://crates.io/crates/embassy-net)               | Embedded-ready network stack                        | `Config as NetConfig`, `Stack`, `StackResources` for IP-stack setup and resource allocation                                                                                                                                                                                                  |
+| [`embedded-io-async`](https://crates.io/crates/embedded-io-async)       | Async traits for I/O like `Read` and `Write`            | Used with sockets for non-blocking I/O                                                                                                                                                                                                                                             |
+| [`heapless`](https://crates.io/crates/heapless)                         | Stack-allocated data structures                         | `String`, `Vec` used for HTTP responses and logging without heap                                                                                                                                                                                                                            |
+| [`core`](https://doc.rust-lang.org/core/)                               | `#![no_std]` system-level Rust API                      | Used implicitly; provides types like `Option`, `Result`, `Write`, etc.                                                                                                                                                                                                                     |
 
+
+### Functional Diagram for the Software 
+
+![Software Functional Diagram](FD_pm.svg)
 ## Links
 
 -  https://how2electronics.com/laser-light-security-system-with-raspberry-pi-pico-ldr/
 (found this after i got the idea)
 - https://www.instructables.com/Controlling-a-5V-Laser-Diode-With-Raspberry-Pi-Pic/
+- https://www.youtube.com/playlist?list=PLBPIU89lTi7iZhY1zaUzq7SFhfuu7OzEy (Playlist for Demo)
