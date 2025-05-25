@@ -745,6 +745,28 @@ The task runs every 100 ms using
 This reduces CPU usage and ensures a smooth screen refresh without overloading the system.
 
 
+### Open Door + Buzzer Task
+In this task, I control a buzzer that emits warning beeps when the door is open. I use a presence sensor to detect the state of the door and turn the buzzer on or off accordingly. This is very useful in systems that need to alert when a door has been left open. It announces everyone else in the room that the money in the bank are not safe. The sensor outputs HIGH when the door is open. The buzzer is active LOW: it turns on when I set its pin to LOW and off when it's HIGH.
+
+#### What I Do in the Task
+```
+async fn buzzer_usa_deschisa(mut door_sensor: Input<'static>, mut buzzer: Output<'static>) { ... }
+```
+#### How this task works
+-At startup, I wait 500ms to allow the sensor to stabilize.
+
+-When I detect that the door has just opened, I wait another second before activating the buzzer. I don’t want to trigger it from a simple vibration or brief movement.
+
+-While the door stays open, I activate the buzzer like this:
+
+-It beeps for 200ms, then stays silent for 1500ms.
+
+-I repeat this cycle until the door is closed.
+
+-When the door is closed, the buzzer is turned off.
+
+I check the sensor only every 300ms to avoid unnecessary resource usage.
+
 
 
 
