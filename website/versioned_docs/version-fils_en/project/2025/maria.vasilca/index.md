@@ -36,6 +36,8 @@ This week, I finished assembling all the hardware for my robot. I mounted all th
 
 ### Week 19 - 25 May
 
+This week, I completed the sensor reading code using a multiplexer and addressed a faulty channel by remapping it in software. I also finished the motor control code. After I tested both codes, I merged the sensor and motor code into a single program. With that, the core functionality of my robot is now working. 
+
 ## Hardware
 
 <!--Detail in a few words the hardware used.-->
