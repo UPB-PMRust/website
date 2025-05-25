@@ -152,4 +152,3 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 - [TCS230 Article](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
-- [Similar project](https://ocw.cs.pub.ro/courses/pm/prj2024/vstoica/elena_silvia.ionita)
