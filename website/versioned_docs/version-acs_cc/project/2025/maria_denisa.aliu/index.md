@@ -48,6 +48,19 @@ These components communicate in an event-driven and partially asynchronous manne
 
 ### Week 19 - 25 May
 
+- Finalized and tested **automatic drawing engine**, including shape scaling and centered positioning.
+- Improved **Bresenham-style traversal** logic to handle curves and diagonal motion more smoothly.
+- Integrated **dynamic microstepping switching** (1/4 step in Auto, full step in Manual) for better motion quality.
+- Completed **`input_task`**, handling all button/joystick logic (pause, clear, mode toggle, pattern switch).
+- Completed **`screen_task`** with real-time display updates of mode and selected pattern.
+- Refactored code into modular, async Embassy tasks for screen, input, motor control, and main loop coordination.
+- Added **inter-task communication** using `AtomicU8`, `AtomicBool`, and Embassy sync primitives.
+- Finalized **functional flowcharts**, `main()` control structure, and Mermaid diagrams.
+- Conducted full system integration test: joystick control, pattern drawing, pause/resume, and display all function correctly.
+- Switched from breadboard to perfboard; verified all connections work as expected.
+- Documented full hardware/software architecture in `index.md` and prepared video for demonstration.
+
+
 ## Hardware
 
 ### Raspberry Pi Pico 2W
@@ -77,7 +90,7 @@ These components communicate in an event-driven and partially asynchronous manne
 
     - *Pause Button*: Freezes the drawing to let users admire the current shape.
 
-    - *Clear Button*: Stops and changes mode to manual to flatten the sand for a new design.
+    - *Clear Button*: Stops and changes mode to manual for user to flatten the sand for a new design.
 
     - Buttons for selecting the drawing pattern in automatic mode.
 
@@ -106,6 +119,7 @@ LED indicators were considered as a fallback option, but the final system includ
 | **Stepper Motor X**      | Moves magnet horizontally        | A4988 (DIR + STEP)   | DIR: GP16, STEP: GP17                       |
 | **Stepper Motor Y**      | Moves magnet vertically          | A4988 (DIR + STEP)   | DIR: GP14, STEP: GP15                       |
 | **TFT Display (ST7735S)**| Displays status and position     | SPI                  | SPI0 (GP2, GP3, GP4), CS: GP5, DC: GP7, RST: GP6 |
+| **A4988 (MS2)**          |  Enables microstepping (1/4) mode in auto | GPIO Output         | GP12 (connected to MS2)                     |
 
 </details>
 
@@ -127,6 +141,46 @@ Each hardware component has been validated independently and in partial integrat
 
 
 ### Some reference images  
+
+<details>
+<summary> Top Project view</summary>
+
+![Photo](new_media/Upper_view.webp)
+
+</details>
+
+<details>
+<summary> Whole Project view</summary>
+
+![Photo](new_media/Whole_thing.webp)
+
+</details>
+
+<details>
+<summary> UI perfboard + Screen Display (TFT)</summary>
+
+![Photo](new_media/Screen_on.webp)
+
+</details>
+
+<details>
+<summary> Pico Perfboard</summary>
+
+![Photo](new_media/Perfboard_pico.webp)
+
+</details>
+
+<details>
+<summary> Motor system view</summary>
+
+![Photo](new_media/Side_motor_view.webp)
+![Photo](new_media/Motors_underneath.webp)
+
+</details>
+
+#### OLD PROTOTYPING IMAGES
+<details>
+<summary> Expand images</summary>
 <details>
 <summary> Screen Display (TFT)</summary>
 
@@ -147,7 +201,7 @@ Each hardware component has been validated independently and in partial integrat
 ![Rod/Structure Mechanism](poza_sistem_tije.webp)
 
 </details>
-
+</details>
 
 
 
@@ -155,9 +209,17 @@ Each hardware component has been validated independently and in partial integrat
 
 <!-- [![Video](thumbnail_Yt.webp)](https://youtu.be/zvSr5EOP77k)
 [*Play video here*](https://www.youtube.com/watch?v=zvSr5EOP77k) -->
+<details><summary> Old Video Demonstration</summary>
 [![Video](https://img.youtube.com/vi/zvSr5EOP77k/0.jpg)](https://youtu.be/zvSr5EOP77k)
 
 [*Play video here*](https://www.youtube.com/watch?v=zvSr5EOP77k)
+</details>
+
+[![Video](https://img.youtube.com/vi/LOFhDqq5P-w/0.jpg)](https://youtu.be/LOFhDqq5P-w)
+
+[*Play video here*](https://www.youtube.com/watch?v=LOFhDqq5P-w)
+
+<br><br>
 
 <details>
 <summary> Detailed Hardware Description</summary>
@@ -221,8 +283,130 @@ Acts as the central controller running asynchronous Rust (via Embassy). Manages 
 | Consumables | leds, capacitors, resistors, switches, screws, etc | 50 RON |
 | Custom wooden pieces | The table and the structure for the motors | 18 RON |
 
+<details>
+<summary> BOM for switching to perfboard</summary>
+
+> These will only replace breadboard and jumper wires, not the main components like motors, drivers, etc. Those are already included in the main BOM above.
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| 2 x [10x10 cm Perfboard](https://www.optimusdigital.ro/ro/prototipare-altele/12526-placa-pcb-pentru-prototipare-10x10cm-pas-de-254-mm.html?search_query=0104110000084163&results=1) | For soldering components instead of breadboard | 2 x [5 RON](https://www.optimusdigital.ro/ro/prototipare-altele/12526-placa-pcb-pentru-prototipare-10x10cm-pas-de-254-mm.html?search_query=0104110000084163&results=1) |
+| 2 x [20-pin ribbon female connectors](https://www.conexelectronic.ro/conectori-cablu-panglica/9912-CONECTOR-PANGLICA-20-P-MAMA.html?_gl=1*16phw4a*_up*MQ..*_ga*MjYyOTM4NTE0LjE3NDgxNzkxNjc.*_ga_VNJZ3KSYZX*czE3NDgxNzkxNjUkbzEkZzEkdDE3NDgxNzkxNzYkajAkbDAkaDE0NTY5Njk4NTMkZFZYSXgwaVdpVHJsWnlTeTVVSGg0UjhndF93YWlpZ0tvOXc.&gclid=CjwKCAjwiezABhBZEiwAEbTPGNja1P9NXb6hhnXBvbCxcVRYztCrVjTWLNT3DhmHi_6UC3oYxPMpFxoCI_AQAvD_BwE) | For connecting/wiring between UI perfboard and main perfboard | 2 x [2.5 RON](https://www.conexelectronic.ro/conectori-cablu-panglica/9912-CONECTOR-PANGLICA-20-P-MAMA.html?_gl=1*16phw4a*_up*MQ..*_ga*MjYyOTM4NTE0LjE3NDgxNzkxNjc.*_ga_VNJZ3KSYZX*czE3NDgxNzkxNjUkbzEkZzEkdDE3NDgxNzkxNzYkajAkbDAkaDE0NTY5Njk4NTMkZFZYSXgwaVdpVHJsWnlTeTVVSGg0UjhndF93YWlpZ0tvOXc.&gclid=CjwKCAjwiezABhBZEiwAEbTPGNja1P9NXb6hhnXBvbCxcVRYztCrVjTWLNT3DhmHi_6UC3oYxPMpFxoCI_AQAvD_BwE) |
+| 2 x [10 pin ribbon cable](https://www.optimusdigital.ro/ro/cabluri-alte-cabluri/648-cablu-panglica-gri-10p.html?search_query=cablu+panglica&results=14) | For connecting the perfboards together | 2 x [7 RON](https://www.optimusdigital.ro/ro/cabluri-alte-cabluri/648-cablu-panglica-gri-10p.html?search_query=cablu+panglica&results=14) |
+| 2 x [20-pin connector](https://www.conexelectronic.ro/conectori-cablu-panglica/13421-CONECTOR-20-PINI.html) | For connecting the perfboards together | 2 x [3 RON](https://www.conexelectronic.ro/conectori-cablu-panglica/13421-CONECTOR-20-PINI.html) |
+| [liniar connectors](https://www.conexelectronic.ro/conectori-cablu-panglica/4852-CONECTOR-LINIAR-1X40.html) | For connecting motor cables to perfboard | [2 RON](https://www.conexelectronic.ro/conectori-cablu-panglica/4852-CONECTOR-LINIAR-1X40.html) |
+| 4 x [2x20-pin mother pin header](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4212-header-de-pini-mama-2x20p-254-mm.html?search_query=0104210000035179&results=1) | For connecting perfboard to Raspberry Pi Pico 2W | 2 x [2 RON](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4212-header-de-pini-mama-2x20p-254-mm.html?search_query=0104210000035179&results=1) |
+| [male conector 2 pins](https://www.conexelectronic.ro/conectori-cablu-panglica/13834-CONECTOR-TATA-2-PINI-90-GRD.html?_gl=1*1vzgiv9*_up*MQ..*_ga*MTc5OTMxMDQzMi4xNzQ4MTc5NjU4*_ga_VNJZ3KSYZX*czE3NDgxNzk2NTckbzEkZzEkdDE3NDgxNzk2NzUkajAkbDAkaDE5NDk0OTAyNzAkZDQ4bE4wVlAydjFQRDJNekRqUFB6MGFwMGhSVWtrLUlDOXc.) | For connecting cable for 12V power supply to perfboard | [1.5 RON](https://www.conexelectronic.ro/conectori-cablu-panglica/13834-CONECTOR-TATA-2-PINI-90-GRD.html?_gl=1*1vzgiv9*_up*MQ..*_ga*MTc5OTMxMDQzMi4xNzQ4MTc5NjU4*_ga_VNJZ3KSYZX*czE3NDgxNzk2NTckbzEkZzEkdDE3NDgxNzk2NzUkajAkbDAkaDE5NDk0OTAyNzAkZDQ4bE4wVlAydjFQRDJNekRqUFB6MGFwMGhSVWtrLUlDOXc.) |
+| [mother 2 pin connector](https://www.conexelectronic.ro/bloc-terminal/1681-SISTEM-CLEME-2-POLI-MAMA-PAS-5-08MM.html) | For connecting the 12V power supply to perfboard | [5 RON](https://www.conexelectronic.ro/bloc-terminal/1681-SISTEM-CLEME-2-POLI-MAMA-PAS-5-08MM.html) |
+| 4 x [mother pins](https://www.conexelectronic.ro/conectori-cablu-panglica/4628-PIN-HEADER-1X20-PINI-2-54-MM-MAMA.html?_gl=1*15m97h4*_up*MQ..*_ga*MTQ0MDYzNDE3OS4xNzQ4MTc5ODMy*_ga_VNJZ3KSYZX*czE3NDgxNzk4MzEkbzEkZzEkdDE3NDgxNzk4NTMkajAkbDAkaDI0NDYwMzE5JGQtU3haVmh4SmZOekpueVJqc2dMTll5ZFUxTUpWYUF5NmJ3) | That I cut from to connect drivers, joystick and screen to perfboard | 4 x [5 RON](https://www.conexelectronic.ro/conectori-cablu-panglica/4628-PIN-HEADER-1X20-PINI-2-54-MM-MAMA.html?_gl=1*15m97h4*_up*MQ..*_ga*MTQ0MDYzNDE3OS4xNzQ4MTc5ODMy*_ga_VNJZ3KSYZX*czE3NDgxNzk4MzEkbzEkZzEkdDE3NDgxNzk4NTMkajAkbDAkaDI0NDYwMzE5JGQtU3haVmh4SmZOekpueVJqc2dMTll5ZFUxTUpWYUF5NmJ3) |
+| [wire](https://www.conexelectronic.ro/cabluri-diverse/13037-FIR-WRAP-VERDE-10-M.html?_gl=1*1imwteu*_up*MQ..*_ga*MjAwMDg2MzIxNC4xNzQ4MTgxMjQ0*_ga_VNJZ3KSYZX*czE3NDgxODEyNDMkbzEkZzEkdDE3NDgxODEyODAkajAkbDAkaDE0NzQxMzQ1OSRkdmc4UUNqQmphZjM5Z0FPdy1GbEdKV29lWVlmaW5qWmtSQQ..) | For connecting components on perfboard | [15 RON](https://www.conexelectronic.ro/cabluri-diverse/13037-FIR-WRAP-VERDE-10-M.html?_gl=1*1imwteu*_up*MQ..*_ga*MjAwMDg2MzIxNC4xNzQ4MTgxMjQ0*_ga_VNJZ3KSYZX*czE3NDgxODEyNDMkbzEkZzEkdDE3NDgxODEyODAkajAkbDAkaDE0NzQxMzQ1OSRkdmc4UUNqQmphZjM5Z0FPdy1GbEdKV29lWVlmaW5qWmtSQQ..)|
+
+</details>
+
+
 ## Software
 
+### Functional Diagram
+
+```mermaid
+graph TD
+    subgraph User Inputs
+        Joystick --> InputTask
+        Buttons --> InputTask
+    end
+
+    InputTask --> ModeController
+    InputTask --> PatternController
+
+    ModeController -->|Manual| ManualMotor
+    ModeController -->|Auto| AutoDrawer
+    ModeController --> ScreenTask
+
+    PatternController --> AutoDrawer
+    PatternController --> ScreenTask
+
+    AutoDrawer --> MicrostepControl
+    ManualMotor --> MicrostepControl
+
+    MicrostepControl --> MotorDriverX[X Axis Motor Driver]
+    MicrostepControl --> MotorDriverY[Y Axis Motor Driver]
+
+    ScreenTask --> Display[TFT Display]
+
+```
+
+### General sequence flow:
+
+```mermaid
+sequenceDiagram
+    participant InputTask
+    participant ModeController
+    participant PatternController
+    participant ManualMotor
+    participant AutoDrawer
+    participant MicrostepControl
+    participant ScreenTask
+
+    InputTask->>ModeController: Change mode
+    InputTask->>PatternController: Change pattern
+    PatternController-->>AutoDrawer: Update pattern
+    ModeController-->>ScreenTask: Update mode on display
+    ModeController->>ManualMotor: Read Joystick, move X/Y
+    ManualMotor-->>MicrostepControl: Disable microstepping
+    ManualMotor->>ManualMotor: Joystick movement
+    InputTask->>ModeController: Pause/Resume/Change mode
+    ModeController-->>ManualMotor: Pause manual control/ Interrupt, change to Auto
+    ManualMotor->>ModeController: request Auto when interrupted
+    ScreenTask->>ScreenTask: Update display with current mode and pattern
+    PatternController-->>ScreenTask: Update pattern on display
+    ModeController->>MicrostepControl: Enable 1/4 step (if Auto)
+    ModeController->>AutoDrawer: Start drawing pattern
+    AutoDrawer-->>MicrostepControl: Enable microstepping
+    AutoDrawer->>AutoDrawer: Run automatic pattern
+    InputTask->>ModeController: Pause/Resume/Change mode
+    ModeController-->>AutoDrawer: Pause automatic control/ Interrupt, change to Manual
+    AutoDrawer->>ModeController: request Manual when done / interrupted
+    AutoDrawer-->>MicrostepControl: Disable microstepping
+```
+
+### Flowchart of the Main Loop
+```mermaid
+flowchart TD
+    Start([Start])
+    Init["Init Hardware (GPIO, SPI, ADC, LCD, Drivers)"]
+    ScreenTask["Start screen_task()"]
+    InputTask["Start input_task()"]
+    MainLoop["Enter main loop"]
+    
+    CheckMode{"Mode?"}
+    Manual["Manual Mode"]
+    Auto["Automatic Mode"]
+    Paused["Paused Mode"]
+
+    ManualMove["Read Joystick → Move Motors"]
+    AutoDraw["Draw Pattern using Bresenham"]
+    AutoSetMicrostep["Enable 1/4 Microstepping"]
+    AutoRestore["Disable Microstepping"]
+    WaitPaused["Paused → Wait & Timer Delay"]
+
+    EndLoop[[Loop]]
+
+    Start --> Init --> ScreenTask
+    Init --> InputTask --> MainLoop
+    MainLoop --> CheckMode
+
+    CheckMode -->|Manual| Manual
+    Manual --> ManualMove --> EndLoop
+
+    CheckMode -->|Automatic| Auto
+    Auto --> AutoSetMicrostep --> AutoDraw --> AutoRestore --> EndLoop
+
+    CheckMode -->|Paused| Paused
+    Paused --> WaitPaused --> EndLoop
+
+```
+
+### Libraries Used (Software Dependencies / BOM)
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for handling async tasks like motor control, button input, and joystick |
@@ -232,10 +416,77 @@ Acts as the central controller running asynchronous Rust (via Embassy). Manages 
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Draw UI and shapes on screen | Used to create a user interface on the display |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded Rust | Debugging tool for monitoring runtime behavior over RTT |
 | [micromath](https://docs.rs/micromath/latest/micromath) | Lightweight math utilities | Used to generate circular, spiral, or custom paths for drawing |
-| [tiny-skia](https://github.com/RazrFalcon/tiny-skia) | 2D drawing and rasterization library | Optional, used offline (on PC) to convert images or vector art to point paths for the table |
 | [heapless](https://github.com/japaric/heapless) | Fixed-size data structures | Used to buffer the X/Y coordinate queue for the ball to follow |
 | [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Async-safe synchronization primitives | Used for signaling between tasks and mutex sharing (e.g., SPI bus) |
 
+### Software Architecture
+
+The firmware is written in **Rust** using the asynchronous `Embassy` framework, and is structured as a multitasking system. Each component is isolated in a task-like function, coordinated through atomic variables and Embassy signals:
+
+#### Core Modules
+
+- **Main Task** (in `main()` loop): Continuously checks the system’s current `Mode` (Manual, Auto, or Paused) and dispatches motor control accordingly.
+
+  - In **Auto**, it enables `1/4 microstepping` by setting the MS2 pin high.
+  - In **Manual**, it disables microstepping (full-step mode) for responsiveness.
+
+- **Input Task** (`input_task()`): Listens to the physical **buttons** and **joystick button**. It updates global atomic state:
+
+  - Toggles between modes
+  - Requests clears/resets
+  - Switches pattern
+  - Triggers pause/resume
+
+- **Screen Task** (`screen_task()`): Renders the current state to the TFT screen, including:
+
+  - Current mode ("Manual", "Auto", or "Paused")
+  - The currently selected pattern
+  - A scaled vector preview of the shape
+  - Joystick input is not shown live, but the selected shape changes are reflected
+
+- **Manual Motion Handler** (`move_motor()`):
+
+  - Interprets joystick analog input via ADC into X/Y motion.
+  - Uses deadzones and directional mapping (`map_axis`) to convert input into stepper actions.
+
+- **Automatic Drawing Engine** (`run_automatic_pattern()`):
+
+  - Uses a **scaled & centered** pattern (heart/star/etc.) defined as a list of points.
+  - Traverses points with a **Bresenham-style line algorithm** for efficient motor movement.
+  - Automatically pauses if instructed or stops on pattern switch or clear request.
+  - Supports reconnecting the pattern at the end for closed shapes.
+
+#### Diagonal Stepping & Microstepping
+
+During early tests, the system encountered **uneven motor performance** when drawing lines at arbitrary angles (i.e. not 45 deg). The Bresenham-like traversal caused **one axis to step less frequently**, making motion jagged and noisy due to the **coarse full-step resolution** and the lack of frequency compensation for the slower-moving motor.
+
+To solve this:
+
+- A GPIO pin was connected to the **MS2** input of the A4988 driver.
+- In **automatic mode**, the firmware activates **1/4 microstepping** by setting this pin **high**.
+- In **manual mode**, it switches back to **full stepping** for speed and responsiveness.
+
+This allows:
+
+- **Smooth, quiet motion** on curves and diagonals
+- **Better curve fidelity** on the sand
+- **Reduced motor resonance and mechanical wear**
+
+This dynamic stepping mode is handled directly in the `main()` loop with:
+
+```rust
+ms2.set_high(); // auto mode: enable 1/4 microstep
+...
+ms2.set_low();  // manual mode: full step for snappy response
+```
+
+#### Inter-Task Coordination
+
+- `AtomicU8` and `AtomicBool` types are used to store:
+
+  - Current mode
+  - Selected pattern
+  - Pause and clear flags
 
 
 ## Links
@@ -244,4 +495,4 @@ Acts as the central controller running asynchronous Rust (via Embassy). Manages 
 2. [Embassy (Async Embedded Framework)](https://embassy.dev/) – Used for multitasking, motor control, and async I/O
 3. [Rust Embedded Book](https://docs.rust-embedded.org/book/) – Useful for understanding how embedded Rust works
 4. [Stepper Motor Basics](https://www.youtube.com/watch?v=09Mpkjcr0bo) – Overview of how stepper motors work
-5. [tiny-skia](https://github.com/RazrFalcon/tiny-skia) – (Optional) For offline conversion of images to paths
+5. [Bresenham’s Line Algorithm](https://digitalbunker.dev/bresenhams-line-algorithm/) – Explains the integer-based line-drawing algorithm used to traverse patterns smoothly using stepper motors.
