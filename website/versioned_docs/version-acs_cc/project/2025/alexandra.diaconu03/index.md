@@ -96,8 +96,8 @@ The **buzzer** emits sound cues for actions and is connected to a GPIO pin
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Embassy driver support for RP2040 | Provides GPIO and SPI peripheral access (gpio::Output, spi::Spi) |
 | [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Hardware abstraction traits for embedded devices | Provides SpiDevice trait for shared SPI interface |
 | [display-interface-spi](https://github.com/therealprof/display-interface) | Wrapper to convert SPI interfaces to display interfaces | Adapts SPI bus to a display driver interface |
-| [mipidsi]([https://github.com](https://github.com/almindor/mipidsi)) | Driver for MIPI DSI compatible displays like ST7735 | Drives the ST7735 LCD over SPI (Builder, Orientation, etc.) |
-| [embedded-graphics]([https://github.com](https://github.com/embedded-graphics/embedded-graphics)) | 2D graphics library for embedded devices | Renders text and shapes on the LCD (Text, Rectangle, Rgb565, etc.) |
+| [mipidsi](https://github.com/almindor/mipidsi) | Driver for MIPI DSI compatible displays like ST7735 | Drives the ST7735 LCD over SPI (Builder, Orientation, etc.) |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded devices | Renders text and shapes on the LCD (Text, Rectangle, Rgb565, etc.) |
 | [rand](https://github.com/rust-random/rand) | Random number generator and utilities | Generates pseudo-random numbers via SmallRng |
 
 ## Links
