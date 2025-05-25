@@ -137,9 +137,9 @@ I modified the code for displaying UV indexes as follows:
 - UV index above 11 - EXTREME - purple
 I finished by making the DIY for the house and stacking the wires to the house and I tested that everything is working correctly.
 
-[iot_house1](iot_house1.webp)
-[iot_house2](iot_house2.webp)
-[iot_house3](iot_house3.webp)
+![iot_house1](iot_house1.webp)
+![iot_house2](iot_house2.webp)
+![iot_house3](iot_house3.webp)
 
 ## Hardware
 
