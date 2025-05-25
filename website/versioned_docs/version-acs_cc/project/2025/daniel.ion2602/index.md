@@ -85,13 +85,26 @@ flowchart TD
 * Set up defmt debugging to verify Pico functionality and test communication with peripherals
 
 ### Week 12 - 18 May
-* Selected an appropriate chassis, then mounted and organized every module on it
+* Selected an appropriate chassis suited for the test whiteboard (40x30 cm)
+* Mounted and organized all modules onto the chassis
 * Assembled complete hardware stack and performed an initial test of all the components
-* Implemented and validated test functions for all critical peripherals (MPU-6050, I²C bus, OLED Display), 
-confirming data flow
+* Implemented and validated test functions for all critical peripherals (MPU-6050,
+I²C bus, OLED Display), confirming data flow
 
 ### Week 19 - 25 May
-**To be updated**
+* Completed power system wiring, ensuring proper current handling for the electromagnet
+and motors
+* Encountered and resolved hardware issues:
+    * Replaced one damaged motor with a different gear-ratio version - couldn't find
+    another version in stock
+    * Enhanced adhesion by adding two permanent magnets to assist the electromagnet
+* Implemented firmware:
+    * Developed the Rust software stack including UDP command parsing
+    * Integrated drive logic
+* Identified torque imbalance due to mismatched software - planned software
+compensation
+* Performed preliminary functionality tests for robot movement, magnet adhesion
+and sensor checks
 
 ## Hardware
 
@@ -135,6 +148,7 @@ Other components:
 * WAGO Connectors split the battery rail into separate current branches
 * 4xAA Battery Holder powers the robot
 * Sponge
+* Permanent magnets
 * Wires, Breadboards, Jumpers, Diodes, Wheels, Chassis etc.
 
 ### Schematics
@@ -144,6 +158,9 @@ Other components:
 ### Photos
 ![Photo_HighAngle](images/photo_high.webp)
 ![Photo_LowAngle](images/photo_down.webp)
+![Photo_FullyWired]
+
+### Video
 
 ### Bill of Materials
 
@@ -161,6 +178,7 @@ The format is
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf) | Main microcontroller with Wi-Fi; controls all peripherals | [39.66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
 | [GA12-N20 100:1 Gearmotor](https://temperosystems.com.au/wp-content/uploads/2021/03/N20-Micro-Speed-Gear-Motor.pdf) | Drives wheels with high torque for sponge movement | [24.99 RON × 2](https://www.optimusdigital.ro/en/micro-gearmotors/680-micro-motor-cu-reductor-ga12-n20-110.html) |
+| [GA12-N20 Gearmotor](https://temperosystems.com.au/wp-content/uploads/2021/03/N20-Micro-Speed-Gear-Motor.pdf) | Used to replace one of the damaged motors | [22.09 RON](https://sigmanortec.ro/Motor-DC-mini-angrenaje-metal-N20-500RPM-p211611036) |
 | [TB6612FNG Motor Driver](https://cdn.sparkfun.com/datasheets/Robotics/TB6612FNG.pdf) | Dual H-bridge to control 2 DC motors via PWM | [24.99 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/134-tb6612fng-dual-motor-driver-1-a.html) |
 | [D4184 MOSFET Module](https://protosupplies.com/product/d4184-mosfet-control-module/) | Switches the electromagnet on/off using PWM | [5.00 RON](https://www.optimusdigital.ro/en/relay-modules/12509-d4184-mosfet-control-module-replacement-relay.html) |
 | [GY-521 (MPU-6050)](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf) | Measures tilt to adjust magnet force dynamically | [24.16 RON](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326) |
@@ -170,7 +188,7 @@ The format is
 | WAGO 5-pin Connector (221-415) | Splits battery power and ground safely | [2.98 RON × 2](https://sigmanortec.ro/en/wago-5-pin-connector) |
 | 4×AA Battery Holder | Powers the robot with 4 AA batteries | [6.24 RON](https://sigmanortec.ro/Suport-4-baterii-AA-cu-capac-si-intrerupator-p172447738) |
 | Miscellaneous (breadboards, wires, diodes, etc.) | Circuit prototyping, motor connection, edge detection, and mechanical assembly | ~70 RON |
-| Total | - | 281.62 RON |
+| Total | - | 303.71 RON |
 
 ## Software
 
