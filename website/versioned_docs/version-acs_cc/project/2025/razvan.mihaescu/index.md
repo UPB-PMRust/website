@@ -121,8 +121,25 @@ These tests were before I displayed the time and date on the screen, so I will d
 ![test3](test3.webp)
 
 ### Week 19 - 25 May
-First I tried to smooth the refresh of the screen so the text would not disapear all at once, so I made the text refresh per sections. Then I set up the TCP sever with my computer and started to send alerts when a fire is detected, the CO level is too high or the fan is turned on.
+
+First I tried to smooth the refresh of the screen so the text would not disapear all at once, so I made the text refresh per sections. 
+Then I set up the TCP sever with my computer and started to send alerts when a fire is detected, the CO level is too high or the fan is turned on.
 I implemented the logic to turn on the lights in the house when the sound is detected and I made the controller sent the values of the sensors to the server every 5 seconds. In the python script which runs the server, I saved the sensor values in a csv database.
+
+![server](sensor_logs_recieved.webp)
+
+I set the datetime for the RTC module to the current time and date and I verified that the time is passing correctly every second.
+I modified the code for displaying UV indexes as follows:
+- UV index between 0 and 3 - LOW - green
+- UV index between 3 and 6 - MODERATE - yellow
+- UV index between 6 and 8 - HIGH - orange
+- UV index between 8 and 11 - VERY HIGH - red
+- UV index above 11 - EXTREME - purple
+I finished by making the DIY for the house and stacking the wires to the house and I tested that everything is working correctly.
+
+[iot_house1](iot_house1.webp)
+[iot_house2](iot_house2.webp)
+[iot_house3](iot_house3.webp)
 
 ## Hardware
 
@@ -230,6 +247,9 @@ The format is
 | [mipidisi](https://crates.io/crates/mipidsi/0.5.0) | LCD driver | Used for controlling the LCD display |
 | [bmp280](https://crates.io/crates/bmp280) | BMP280 driver | Used for controlling the BMP280 sensor |
 | [ds3231](https://crates.io/crates/ds3231) | DS3231 driver | Used for controlling the DS3231 sensor |
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Timekeeping, delays and timeouts | Used to make time constraints and awaits |
+| [micromath](https://crates.io/crates/micromath) | Embedded-friendly math library featuring fast floating point approximations | Used for mathematical operations |
+| [chrono](https://crates.io/crates/chrono) | Date and time library | Used for handling date and time operations |
 
 
 
