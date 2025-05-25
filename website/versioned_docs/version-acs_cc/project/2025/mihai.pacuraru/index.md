@@ -50,6 +50,7 @@ Assemble hardware components and write demo source code.
 - RGB LED
     - feedback of watering level
 
+<<<<<<< HEAD
 <!-- [![](https://markdown-videos-api.jorgenkh.no/youtube/EuqZ8Y21hg4)](https://youtu.be/EuqZ8Y21hg4) -->
 
 <iframe width="auto" height="512" src="https://www.youtube.com/embed/EuqZ8Y21hg4?si=xL99fmc-H0W0BoAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -58,6 +59,10 @@ Assemble hardware components and write demo source code.
 
 ### Schematic
 ![](schematic.svg)
+=======
+### Schematic
+![Plant Watering Alarm System Schematic](schematic.jpg)
+>>>>>>> 670e828 (Add schematic)
 
 ### Bill of Materials
 
