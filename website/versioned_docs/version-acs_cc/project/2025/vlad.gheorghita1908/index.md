@@ -122,7 +122,7 @@ Implements a class-compliant USB MIDI device that sends:
 | [4p Female Pin Header 2.54 mm](https://www.optimusdigital.ro/ro/headeri/35018-header-femei-4p.html) | Wiring headers for connections | [0.98 RON](https://www.optimusdigital.ro/ro/headeri/35018-header-femei-4p.html) |
 | [SSD1306 0.96" OLED DISPLAY](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/?utm_campaign=share%20product&utm_medium=ios&utm_source=mobile%20app) | For showing filter and octave menu | [27.37](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/?utm_campaign=share%20product&utm_medium=ios&utm_source=mobile%20app) |
 | 3D Printer materials | Case and keys | 50 RON |
-| Total | - | 225.93 RON |
+| Total | - | 225.93 RON  |
 
 ## Links
 
