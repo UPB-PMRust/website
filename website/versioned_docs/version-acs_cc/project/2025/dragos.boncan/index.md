@@ -548,7 +548,7 @@ The ```Idle``` state is the default state. In this state, the two presence senso
 
 The ```Start``` state is where the motor becomes active. The transition from idle to start occurs if the first sensor detects a banknote. If no banknote is inserted within 4 seconds, the motor stops and the system returns to the ```Idle``` state. If a banknote is inserted, the system automatically transitions to the ```Read```  state.
 
-The ```Read`` state involves reading and identifying the color on the banknote. It uses the following function:
+The ```Read``` state involves reading and identifying the color on the banknote. It uses the following function:
 ```set_filter(&mut s2, &mut s3, "red").await;```
 This sets the color filter using the s2 and s3 pins of the TCS230 color sensor:
 
