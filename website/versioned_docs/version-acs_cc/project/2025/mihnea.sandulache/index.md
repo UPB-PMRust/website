@@ -74,6 +74,10 @@ Began putting all the pieces into place and designed the structure of the funnel
 ![diagram](Real_wiring2.webp)
 
 ### Week 19 - 25 May
+
+Finished the code by calibrating the color sensor. Since the sensor was not accurately detecting the green color, I decided to change it into yellow since I had some extra yellow candies left. I also added some extra messages on the LCD so the user knows when to drop the candy. Here is a [video](https://drive.google.com/file/d/10OZsfYCC7r9oA9sq6YKw8RO7cOUaYR02/view?usp=sharing) of the final product in action.
+
+![diagram](Final_project.webp)
  
 
 ## Hardware
@@ -148,3 +152,4 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 - [TCS230 Article](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
+- [Similar project](https://ocw.cs.pub.ro/courses/pm/prj2024/vstoica/elena_silvia.ionita)
