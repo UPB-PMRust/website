@@ -98,13 +98,15 @@ Ordered additional components needed for the project. Set up a development envir
 Completed the hardware assembly phase of the project. Connected all components according to the planned schematic and performed individual testing of each module to ensure proper functionality.
    
 ### Week 19 – 25 May
-I developed code for each individual component separately and then integrated everything into a complete, functional program that meets all the required specifications. During the process, I addressed issues caused by unstable power supply to ensure reliable operation. Additionally, I made efforts to arrange the components in a more organized and aesthetically pleasing manner.
+I developed code for each individual component separately and then integrated everything into a complete, functional program that meets all the required specifications. During the process, I addressed issues caused by unstable power supply to ensure reliable operation. 
+I also replaced the MAX30100 sensor with KY-039 because I discovered that no compatible crate worked properly.
+Additionally, I made efforts to arrange the components in a more organized and aesthetically pleasing manner.
 
 ## Hardware  
 
 
 - **Raspberry Pi Pico W** – The main microcontroller that reads sensor data, controls output devices, and handles logic.
-- **MAX30100 Pulse Sensor** – Detects heart rate using infrared light and communicates via I2C.
+- **MAX30100 Pulse Sensor (unused)** – Detects heart rate using infrared light and communicates via I2C.
 - **KY-039 Pulse Sensor** – Alternative analog finger pulse sensor that detects heartbeats using infrared light reflection.
 - **1602 LCD Display (I2C)** – Displays heart rate, system messages, or prompts in real time.
 - **DFPlayer Mini** – MP3 audio playback module used to play sound files stored on a microSD card.
@@ -150,7 +152,6 @@ I developed code for each individual component separately and then integrated ev
 |---------|-------------|-------|
 | [embassy-rs](https://github.com/embassy-rs/embassy) | Async multitasking framework for embedded systems | Used to manage asynchronous tasks |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer for embedded systems | Used to interface with embedded peripherals generically |
-| [max3010x](https://github.com/almindor/max3010x) | Driver for MAX30100/MAX30102 pulse oximeter sensors | Used to read heart rate and SpO₂ data |
 | [dfplayer-async](https://crates.io/crates/dfplayer-async) | Library for controlling the DFPlayer Mini MP3 module | Used for audio playback via serial communication |
 | [lcd1602-diver](https://crates.io/crates/lcd1602-diver)       | Simple LCD1602 I2C driver                      | Provides display control for messages on the LCD       |
 | [defmt](https://github.com/knurling-rs/defmt)                 | Lightweight logging for embedded systems       | Logs runtime information via RTT                       |
