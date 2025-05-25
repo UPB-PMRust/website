@@ -31,12 +31,12 @@ This not only saves time and money but also enhances convenience and security by
 ![Architecture](./images/architecture.webp)
 
 ### Components and Connections
-#### Raspberry Pi Pico  and RC522 RFID Module
+#### Raspberry Pi Pico  and RC522 RFID Module (SPI Communication)
 | RFID (RC522) | Raspberry Pi Pico 2W  | Notes           |
 |--------------|-----------------------|-----------------|
 | VCC          | 3.3V                  |                 |
 | GND          | GND                   |                 |
-| RST          | GP6                   | Reset           |
+| RST          | GP6                   | Reset(Optional) |
 | SDA (SS)     | GP5                   | SPI Chip Select |
 | MOSI         | GP3                   | SPI Data Out    |
 | MISO         | GP4                   | SPI Data In     |
@@ -59,7 +59,7 @@ Raspberry Pi Pico is the main controller that manages the entire system.
 The relay module is used to control the solenoid lock. The Raspberry Pi Pico sends a signal to the relay to activate the lock.
 :::
 
-#### Display Module  and Raspberry Pi Pico
+#### Display Module  and Raspberry Pi Pico (I2C Communication)
 | OLED (I2C)    | Raspberry Pi Pico 2W | Notes                          |
 |---------------|----------------------|--------------------------------|
 | VCC           | 3.3V                 |                                |
@@ -70,7 +70,7 @@ The relay module is used to control the solenoid lock. The Raspberry Pi Pico sen
 :::note
 The display module is used for user interaction and feedback. It communicates with the Raspberry Pi Pico via I2C.
 :::
-#### Buzzer Module and Raspberry Pi Pico
+#### Buzzer Module and Raspberry Pi Pico 
 | Buzzer        | Raspberry Pi Pico 2W | Notes               |
 |---------------|----------------------|---------------------|
 | +             | GP8                  |                     |
@@ -86,12 +86,12 @@ The buzzer module provides audio feedback for various events in the system, such
 :::note
 The push button is used to switch between user and admin modes. The Raspberry Pi Pico uses internal pull-up resistors for the button inputs.
 :::
-#### LED connection and Raspberry Pi Pico with resistor
-| LED           | Raspberry Pi Pico 2W  | Purpose        |
-|---------------|-----------------------|----------------|
-| Green         | GP9 → 220Ω → GND      | Access granted |
-| Red           | GP10 → 220Ω → GND     | Access denied  |
-| Blue          | GP11 → 220Ω → GND     | Cloning mode   |
+#### LED connection and Raspberry Pi Pico with resistor (PWM Control)
+| LED           | Raspberry Pi Pico 2W  | Purpose                  |
+|---------------|-----------------------|--------------------------|
+| Green         | GP9 → 220Ω → GND      | Access granted           |
+| Red           | GP10 → 220Ω → GND     | Access denied            |
+| Blue          | GP11 → 220Ω → GND     | Cloning mode(admin mode) |
 :::note
 The LEDs provide visual feedback for different system states. The resistors limit the current to the LEDs to prevent damage.
 :::
@@ -149,6 +149,16 @@ In this phase, I concentrated on the hardware design and initial software setup.
 
 
 ### Week 19 - 25 May
+This week, I focused on software development and the integration of hardware components into the PACS (Pico Access and Cloning System). 
+The main accomplishments include:
+- Designed the overall PACS software architecture.
+- Tested each hardware component individually using dedicated software (buzzer, LED, OLED, RFID).
+- Integrated all components into a unified embedded software application.
+- Developed the PACS mobile application in Flutter, with support for:
+  - Reading RFID cards,
+  - Emulating card behavior,
+  - Communicating with the PACS system over the internet (TCP).
+- Performed full system testing, ensuring reliable interaction between the mobile app and the embedded PACS system.
 
 ## Hardware
 ### Raspberry Pi Pico 2W
@@ -229,21 +239,27 @@ In this phase, I concentrated on the hardware design and initial software setup.
 
 ## Software 
 
+![PACS_SOFTWARE_ARCH](./images/pacs_soft_comu_arch.webp)
+
 | Library                                                                                             | Description                                        | Usage                                                |
 |-----------------------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------|
-| [embassy-rp](https://github.com/embassy-rs/embassy)                                                 | RP2350 Hardware Abstraction Layer                  | Mandatory for Pico W (GPIO, SPI, I2C, Wi-Fi control) |
-| [cyw43](https://github.com/embassy-rs/embassy) + [cyw43-pio](https://github.com/embassy-rs/embassy) | CYW43439 Wi-Fi driver for Pico W                   | Required for Wi-Fi connectivity                      |
-| [embassy-sync](https://github.com/embassy-rs/embassy)                                               | Async synchronization primitives (Mutex, Channels) | Thread-safe sharing of RFID data between tasks       |
-| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal)                                 | Async hardware traits (SPI/I2C)                    | Non-blocking RFID (RC522) communication              |
-| [heapless](https://github.com/japaric/heapless)                                                     | Stack-allocated collections (no_std)               | Stores UIDs (e.g., `Vec<Uid, 32>`) without heap      |
+| [embassy-rp](https://github.com/embassy-rs/embassy)                                                 | RP2350 Hardware Abstraction Layer                  | Mandatory for Pico W (GPIO, SPI, I2C, PWM)           |
+| [cyw43](https://github.com/embassy-rs/embassy)                                                      | CYW43439 Wi-Fi driver for Pico W                   | Required for Wi-Fi connectivity                      |
+| [embassy-net](https://github.com/embassy-rs/embassy)                                                | Async TCP/IP networking stack                      | Enables TCP socket communication                     |
+| [embassy-time](https://github.com/embassy-rs/embassy)                                               | Async timers and durations                         | Used for task scheduling and delays                  |
+| [embassy-executor](https://github.com/embassy-rs/embassy)                                           | Async runtime for embedded systems                 | Runs async tasks                                     |
+| [embassy-sync](https://github.com/embassy-rs/embassy)                                               | Async synchronization primitives (Mutex, Channels) | Thread-safe sharing between tasks                    |
+| [heapless](https://github.com/japaric/heapless)                                                     | Stack-allocated collections (no_std)               | Stores UIDs in `Vec` without dynamic allocation      |
 | [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt)   | Lightweight logging over RTT                       | Efficient debugging with minimal overhead            |
 | [panic-probe](https://github.com/knurling-rs/panic-probe)                                           | Crash logging with defmt integration               | Graceful panic handling during development           |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)                         | 2D drawing library for embedded displays           | Renders UI on OLED (text/icons for access status)    |
+| [mfrc522](https://github.com/matteosecli/mfrc522-rs)                                                | MFRC522 RFID reader driver                         | Communicates with RC522 over SPI                     |
+| [embedded-hal-bus](https://github.com/embassy-rs/embedded-hal-bus)                                  | Shared-bus wrapper for embedded-hal devices        | Provides `ExclusiveDevice` for safe SPI access       |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)                         | 2D drawing library for embedded displays           | Renders text and graphics on OLED                    |
 | [ssd1306](https://github.com/eldruin/ssd1306)                                                       | I2C/SPI driver for SSD1306 OLED displays           | Interfaces with the OLED screen                      |
-| [embedded-storage](https://github.com/embassy-rs/embedded-storage)                                  | Traits for non-volatile storage                    | Saves authorized UIDs to flash (persistent storage)  |
-
+| [embedded-io-async](https://github.com/embassy-rs/embedded-io)                                      | Async I/O traits                                   | Async write to network or displays                   |
+| [static-cell](https://github.com/embassy-rs/static-cell)                                            | Safe static memory initializer                     | Used for globally safe singleton allocations         |
 ## Links
 
-1. [link](https://pico.implrust.com/rfid/access-bits.html)
-2. [link](https://example3.com)
-   ...
+1. [pico.implrust.com](https://pico.implrust.com/rfid/access-bits.html)
+2. [pacs repo](https://github.com/denboba/pacs)
+3. [projects-2024](https://pmrust.pages.upb.ro/docs/fils_en/category/projects-2024)
