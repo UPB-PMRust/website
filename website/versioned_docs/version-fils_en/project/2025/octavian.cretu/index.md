@@ -67,6 +67,11 @@ Remade the kicad schematic. \
 Set up a cardboard box mock-up to simulate the Smart Lock in a real-world scenario. Integrated all components into the enclosure and tested system functionality, including fingerprint authentication, locking mechanism, and status display. \
 Rewrote some of the logic for the fingerprint sensor. 
 
+### Week 13 - 19 May - 25 May
+Added wifi connection to enable opening and closing the door from a basic website. \
+Added a button that can be pressed once inside that lets you reset the current registered fingerprint and register a diffrent one. \
+Tested and fixed small bugs, moved the project out of the cardboard box and into a better looking setup. 
+
 
 ## Hardware
 **Raspberry Pi Pico 2 W:**
@@ -140,9 +145,10 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-rp](https://docs.rs/embassy-rp/latest/embassy_rp/index.html) | Hardware Abstraction Layer | Interfaces with Raspberry Pi Pico 2 W hardware |
+| [embassy-net](https://crates.io/crates/embassy-net) | Network stack | Used to link to the website that allows opening and closing the door |
 | [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/) | Task executor | Handles asynchronous tasks |
 | [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Timing module | Provides timing functions for operations |
-| [lcd1602-driver](https://docs.rs/lcd1602-driver/0.3.0/lcd1602_driver/) | LCD1602 Interface | Communication with the display |
+| [i2c-character-display](https://crates.io/crates/i2c-character-display) | LCD1602 Interface | Communication with the display |
 | [pwm](https://docs.embassy.dev/embassy-rp/git/rp235xb/pwm/index.html)| PWM Module | For buzzer and servo |
 | [uart](https://docs.embassy.dev/embassy-rp/git/rp235xb/uart/index.html) |  UART Module | For fingerprint sensor |
 | [r503-driver](https://github.com/FransUrbo/rust-libs-r503) |  Fingerprint sensor driver | Forked and modified for use inside my own project |
