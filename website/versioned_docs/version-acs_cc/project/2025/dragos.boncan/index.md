@@ -535,14 +535,16 @@ The project is built using the Rust programming language along with the Embassy 
 ##### Bancnote_task
 
 This contains the logic behind activating/deactivating the motor. It uses a state machine that handles the different states involved in processing a banknote.
-```#[derive(PartialEq)]
+```
+#[derive(PartialEq)]
 enum StareMotor {
     Idle,
     Start,
     Read,
     Eject,
     Rejected,
-}```
+}
+```
 
 The ```Idle``` state is the default state. In this state, the two presence sensors are inactive, and the motor is turned off. The system can only transition to the ```Start```  state from here.
 
