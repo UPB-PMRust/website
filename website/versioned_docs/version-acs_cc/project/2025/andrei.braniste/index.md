@@ -25,7 +25,7 @@ I chose this project because I wanted to build a device that provides emotional 
 - Visual Output: Displays emotional faces (happy, sad, excited) on the OLED screen based on interaction.
 - Power Supply: A rechargeable Li-ion battery powers the device through a TP4056 charging and protection module, allowing full portability.
 
-![Architecture](Arhitectura_EmotiBuddy1.webp)
+![Architecture](Arhitectura_EmotiBuddy.webp)
 
 ## Log
 
@@ -48,20 +48,26 @@ On the hardware side, I began placing key components on the PCB. I’ve focused 
 
 ![Week2](Week2-v1.webp)
 
-
 ### Week 19 - 25 May
 
-## Hardware (not final!)
+The final prototype is complete, with the PCB fully designed and assembled. All hardware components, including the battery, microcontrollers, OLED display, and modules, have been successfully integrated on the board. The system is physically stable and functions as intended.
+However, the microphone functionality remains incomplete. I was able to record a 5-second audio sample and play it back on a PC, but the recording was unclear and heavily distorted. The speech could not be properly recognized. I suspect the issue may be from the absence of a 100kΩ resistor between the serial data line and the microcontroller, as recommended in the microphone’s documentation. It might also be related to bit-level processing issues in the software implementation. At this point, the exact cause is still uncertain.
+Despite this, the rest of the system is operating correctly, and the project successfully demonstrates the intended concept. While the microphone input is not ready for live use, the interaction between user text input, ChatGPT processing, audio output and the OLED-based emoji output works reliably, hence this assembles the project's goal — to provide emotionally intelligent interaction through a physical medium.
+
+![Week2](PCB-final.webp)
+
+
+## Hardware 
 
 ### Raspberry Pi Pico W
 
 - Purpose: Main controller
 - Function: Handles all logic, controls modules, reads inputs, and sends/receives API data via WiFi (OpenAI API). It coordinates voice input, playback, emotional state rendering, and user interactions.
 
-### MAX9814 Microphone (with optional INMP441 I2S mic)
+### INMP441 Microphone 
 
 - Purpose: Captures voice input
-- Function: Currently, the MAX9814 provides analog audio signals read via ADC. In the future, the INMP441 I2S digital microphone may be used if I2S functionality is implemented manually using PIO on the Pico.
+- Function: Captures audio, which is then recorded by the microcontroller. The recorded audio is sent to Whisper AI, which processes the input and returns the transcribed text. This text is used as the input for the main request to ChatGPT, effectively enabling spoken queries to be interpreted and responded to by the system.
 
 ### DTS33A TTS Module
 
@@ -71,7 +77,7 @@ On the hardware side, I began placing key components on the PCB. I’ve focused 
 ### 3W Speaker
 
 - Purpose: Outputs audio
-- Function: Connected to the DFPlayer Mini, it plays the responses from the AI output.
+- Function: Connected to the DTS33A TTS Module, it plays the responses from the AI output.
 
 ### I2C OLED Display (0.96")
 
@@ -90,7 +96,7 @@ On the hardware side, I began placing key components on the PCB. I’ve focused 
 
 ### Schematics
 
-![Scheme (not final!)](Scheme_EmotiBuddy.svg)
+![Scheme](Scheme_EmotiBuddy.svg)
 
 ### Bill of Materials
 
@@ -107,17 +113,17 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico W (RP2350)](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3AcTGZShwGGGHyKb6hmiamUi&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7bRaFkoivDwDjO8mJROErsIad_UwRPk2iXsDzBulHCu4bi6QBcqg-0aAu0XEALw_wcB) | Main controller with WiFi | ~40 RON |
-| [MAX9814 Microphone Module](https://ardushop.ro/ro/module/601-modul-microfon-senzor-sunet-6427854007254.html?gad_source=1&gad_campaignid=17003133061&gbraid=0AAAAADlKU-6dUy4bFkxt93_6LRYiF24yY&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7bi2AkmYQHCuLjP_W8XvRjMRwqjIHp8yg2ZJOOyiBG5y2f0xSR2J1EaAvOBEALw_wcB) | Voice input via analog signal | ~12 RON |
+| [INMP441 Microphone Module](https://ardushop.ro/ro/module/1944-modul-microfon-omnidirectional-i2s-inmp441-6427854029614.html) | Voice input via analog signal | ~12 RON |
 | [Speaker 3W 4Ω 40mm](https://sigmanortec.ro/Speaker-40mm-3W-p134573662?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=22174019478&gbraid=0AAAAAC3W72OQeyuMV4-b9r8HXwBJWWOfH&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7ahLy71FJfw-ll6iyHTz54D-rAtNsxlZ9egZMBTpF9MC77nPe0JzEkaAqPSEALw_wcB) | Audio output from DFPlayer | ~10 RON |
 | [OLED Display 0.96'' I2C](https://ardushop.ro/ro/display-uri-si-led-uri/1577-display-oled-096-i2c-albastru-jmd096d-1-6427854023469.html?gad_source=1&gad_campaignid=17003133061&gbraid=0AAAAADlKU-6dUy4bFkxt93_6LRYiF24yY&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7ZPsF_3bJQ6rUO03LQC0yYZ7RaE0vP9STmpNRlYhaSvvUHSLFqUq10aAp6OEALw_wcB) | Visual display for AI face and emotions | ~21 RON |
 | [TP4056 Charging Module](https://www.optimusdigital.ro/en/chargers/80-tp4056-1-cell-lipo-charger-micro-usb.html?srsltid=AfmBOood1RMJS56U4bPANxpaVkFXFt8HYHQ3OXuXBJ0Jsw0ji7xknsEr) | Battery charging and protection | ~6 RON |
 | [Samsung 18650 25R 2500mAh Battery](https://www.emag.ro/acumulator-18650-li-ion-samsung-inr-2500mah-3-7v-25r-20a-186502600/pd/D1TJ2VBBM/) | Power source | ~26 RON |
 | [Push Button](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=button&results=491) | Triggers interaction or startup | ~1–2 RON |
-| [DTS33A TTS Module](https://www.dfrobot.com/product-2337.html) | Text-to-Speech synthesis | ~30 RON |
+| [DTS33A TTS Module](https://www.aliexpress.com/item/1005006972349646.html?spm=a2g0o.order_list.order_list_main.5.6c061802UEPrXv#nav-specification) | Text-to-Speech synthesis | ~30 RON |
 | Breadboard + jumpers | Wiring and prototyping | ~40 RON |
 
 
-## Software (not final!)
+## Software 
 
 | Library | Description | Usage |
 |---------|-------------|-------|
@@ -128,8 +134,13 @@ The format is
 | [ufmt](https://github.com/jamesmunns/ufmt) | Minimal `core::fmt`-like formatting for `no_std` | Used for lightweight logging and debugging |
 | [heapless](https://github.com/japaric/heapless) | Fixed-size `no_std` data structures like `Vec` and `String` | Used for storing incoming/outgoing messages efficiently |
 | [defmt](https://github.com/knurling-rs/defmt) | Highly efficient logging framework for embedded Rust | Used to debug easily without panicking the board |
-| [probe-rs](https://github.com/probe-rs/probe-rs) | Flash, debug, and trace embedded devices | Used for uploading code and flashing the Pico W |
-| [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework | Optional: used if multitasking (like WiFi + display + sound) is needed |
+| [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework | Enables multitasking (WiFi, display, audio, etc.) on RP2040 |
+| [pio / pio-proc](https://github.com/knurling-rs/embassy) | Programmable I/O for RP2040 | Used to implement I2S protocol manually for the INMP441 microphone |
+| [serde / serde-json-core](https://github.com/serde-rs/serde) | Serialization and deserialization of data structures | Used to process and format API responses |
+| [cyw43](https://github.com/embassy-rs/embassy) | WiFi support for the Pico W's CYW43 chip | Enables internet communication for API requests |
+| [embassy-net](https://github.com/embassy-rs/embassy) | Async network stack (TCP/UDP/DHCP) | Handles networking used to communicate with Whisper/ChatGPT APIs |
+| [static_cell](https://github.com/embassy-rs/embassy) | Safe runtime-initialized global memory | Used for static async executors and peripherals |
+| [rand](https://github.com/rust-random/rand) | Random number generator | Used for any randomized behavior or delays |
 
 
 ## Links
@@ -137,5 +148,11 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Initial idea](https://www.youtube.com/shorts/vJadseagIUQ)
-2. [To be continued..](https://example3.com)
-...
+2. [The Embedded Rust Book](https://docs.rust-embedded.org/book/)
+3. [Embassy Async Embedded Framework](https://embassy.dev/)
+4. [RP2040 Datasheet & Documentation](https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html)
+5. [Cortex-M Quickstart Template](https://github.com/rust-embedded/cortex-m-quickstart)
+6. [Using PIO with RP2040 in Rust (YouTube)](https://www.youtube.com/watch?v=6VoIjyeknB4)
+7. [RP2040 I2S Audio with PIO (Blog)](https://blog.dzl.dk/2022/08/07/rp2040-i2s-audio-output-using-pio.html)
+8. [Whisper API Overview (OpenAI)](https://platform.openai.com/docs/guides/speech-to-text)
+9. [ChatGPT API Guide (OpenAI)](https://platform.openai.com/docs/guides/gpt)
