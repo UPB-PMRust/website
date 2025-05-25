@@ -55,6 +55,10 @@ I knew this involved a lot of optimization and wanted to take the challange.
 - Completion of the physical hardware assembly and setup was achieved.
 
 ### Week 20 - 26 May
+- The move generation system is now fully implemented and thoroughly tested, accurately identifying all best moves.
+- The project has been brought to its final, stable form after comprehensive bug fixes and refinements.
+- All project documentation and the repository's README have been updated to reflect the current state.
+
 
 ## Hardware
 
