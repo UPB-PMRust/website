@@ -595,13 +595,17 @@ On detection:
 
 -Logs the event using info!
 
--The loop runs every 20ms using: ```Timer::after(Duration::from_millis(20)).await;```. This provides a basic debounce/polling interval to reduce false triggers.
+-The loop runs every 20ms using ```Timer::after(Duration::from_millis(20)).await;```. This provides a basic debounce/polling interval to reduce false triggers.
 
 ### Reset_task
 
-A reset button is connected to pin 13, which is configured as an input pin. When the button is pressed, the available money amount is reset. The function ```update_float_value(0.00)``` is called, which updates the ```GLOBAL_FLOAT_BITS``` variable to 0. Additionally, the door lock connected to pin 3 is activated (a signal is sent through a relay on channel 3, which triggers the lock).
+A reset button is connected to pin 13, which is configured as an input pin. When the button is pressed, the available money amount is reset. The function ```update_float_value(0.00)``` is called, which updates the ```GLOBAL_FLOAT_BITS``` variable to 0. Additionally, the door lock connected to pin 3 is activated (a signal is sent through a relay on channel 3, which triggers the lock). My inputs for this task are the reset button and the door lock.
+``` 
+async fn reset_task(mut buton_reset: Input<'static>, mut door_lock: Output<'static>) 
+```
 
-The loop runs every 100ms using:
+
+The loop runs every 100ms using
 ```Timer::after(Duration::from_millis(100)).await;```
 This provides a basic polling interval to reduce CPU usage and power consumption, while still allowing timely detection of button presses.
 
