@@ -102,20 +102,20 @@ The software repository also contains the server and the frontend client. Data i
 
 Regarding the **software** libraries:
 
-| **Library**          | **Description**                                                         | **Usage**                                     |
-| -------------------- | ----------------------------------------------------------------------- | --------------------------------------------- |
-| `embassy-rp`         | HAL for Raspberry Pi                                                    | ADC, Channel, I2C and GPIO functionalities.   |
-| `embassy-sync`       | no-std, no-alloc synchronization primitives with async support          | Communication using `Signal`                  |
-| `embassy-time`       | Working with time in embassy                                            | Setting timers                                |
-| `embedded-hal-async` | async Hardware Abstraction Layer for embedded                           | I2C communication                             |
-| `itoa`               | integer primitive to string conversion                                  | serializing data to be sent over TCP          |
-| `static_cell`        | Statically allocated, initialized at runtime cell                       | For `RESOURCES` during Wi-Fi configuration    |
-| `embassy-net`        | Async TCP/IP network stack for embedded systems                         | Wi-Fi                                         |
-| `embassy-futures`    | no-std, no-alloc utilities for working with futures                     | `yield_now` for button and LED                |
-| `embassy-executor`   | async/await executor designed for embedded usage                        | Spawning to be executed almost simultaneously |
-| `cyw43`              | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W | Wi-Fi                                         |
-| `defmt`              | Logging framework for embedded systems                                  | Used for logging and debugging                |
-| `defmt-rtt`          | Real-Time Trace (RTT) support for `defmt`.                              | Enables logging output over RTT               |
+| **Library**                                                         | **Description**                                                         | **Usage**                                     |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------- | --------------------------------------------- |
+| [embassy-rp](https://github.com/embassy-rs/embassy)                 | HAL for Raspberry Pi                                                    | ADC, Channel, I2C and GPIO functionalities.   |
+| [embassy-sync](https://github.com/embassy-rs/embassy)               | no-std, no-alloc synchronization primitives with async support          | Communication using `Signal`                  |
+| [embassy-time](https://github.com/embassy-rs/embassy)               | Working with time in embassy                                            | Setting timers                                |
+| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | async Hardware Abstraction Layer for embedded                           | I2C communication                             |
+| [itoa](https://github.com/dtolnay/itoa)                             | integer primitive to string conversion                                  | serializing data to be sent over TCP          |
+| [static_cell](https://github.com/embassy-rs/static-cell)            | Statically allocated, initialized at runtime cell                       | For `RESOURCES` during Wi-Fi configuration    |
+| [embassy-net](https://github.com/embassy-rs/embassy)                | Async TCP/IP network stack for embedded systems                         | Wi-Fi                                         |
+| [embassy-futures](https://github.com/embassy-rs/embassy)            | no-std, no-alloc utilities for working with futures                     | `yield_now` for button and LED                |
+| [embassy-executor](https://github.com/embassy-rs/embassy)           | async/await executor designed for embedded usage                        | Spawning to be executed almost simultaneously |
+| [cyw43](https://github.com/embassy-rs/embassy)                      | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W | Wi-Fi                                         |
+| [defmt](https://github.com/knurling-rs/defmt)                       | Logging framework for embedded systems                                  | Used for logging and debugging                |
+| [defmt-rtt](https://github.com/knurling-rs/defmt)                   | Real-Time Trace (RTT) support for `defmt`.                              | Enables logging output over RTT               |
 
 ## Links
 
