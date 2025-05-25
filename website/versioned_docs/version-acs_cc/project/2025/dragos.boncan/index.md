@@ -545,9 +545,15 @@ enum StareMotor {
 }
 ```
 
+#### Idle State
+
 The ```Idle``` state is the default state. In this state, the two presence sensors are inactive, and the motor is turned off. The system can only transition to the ```Start```  state from here.
 
+#### Start State
+
 The ```Start``` state is where the motor becomes active. The transition from idle to start occurs if the first sensor detects a banknote. If no banknote is inserted within 4 seconds, the motor stops and the system returns to the ```Idle``` state. If a banknote is inserted, the system automatically transitions to the ```Read```  state.
+
+#### Read State
 
 The ```Read``` state involves reading and identifying the color on the banknote. It uses the following function:
 ```set_filter(&mut s2, &mut s3, "red").await;```
@@ -563,7 +569,11 @@ This sets the color filter using the s2 and s3 pins of the TCS230 color sensor:
 Based on the detected color, the Euclidean distance between the reference color and the measured one is calculated. The color values are normalized by dividing them by the "clear" parameter. The closest match determines the identified banknote.
 If the distance is greater than 15, the banknote is considered unrecognized, and the system transitions to the ```Rejected``` state. If the banknote is identified, it transitions to the ```Eject``` state.
 
+#### Rejected State
+
 In the ```Rejected``` state, the motor reverses direction for one second to push the banknote out. Afterward, the system waits for 3 seconds in the same state to allow the user to retrieve the banknote. The system returns to the Idle state once the banknote is removed.
+
+#### Eject State
 
 In the ```Eject``` state, the motor rotates forward for 1.5 seconds to move the banknote into an internal tray. The amount of money is updated accordingly, and the LCD1602 display shows the updated value.
 
