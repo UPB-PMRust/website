@@ -140,6 +140,8 @@ graph TD
 
 ![LCD Hardware](lcd_hw.webp)
 
+![Outside](outside.webp)
+
 > **Note**: Solar power is planned as an optional future extension, not core requirements.
 
 
