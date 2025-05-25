@@ -765,7 +765,7 @@ async fn buzzer_usa_deschisa(mut door_sensor: Input<'static>, mut buzzer: Output
 
 -When the door is closed, the buzzer is turned off.
 
-I check the sensor only every 300ms to avoid unnecessary resource usage.
+-I check the sensor only every 300ms to avoid unnecessary resource usage.
 
 
 
