@@ -60,6 +60,8 @@ Add LCD Display and BMP180 temperature sensor. Finish writing code.
 - 16x2 LCD display
     - display data given by sensors
 
+<!-- [![](https://markdown-videos-api.jorgenkh.no/youtube/EuqZ8Y21hg4)](https://youtu.be/EuqZ8Y21hg4) -->
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jeCahVfEJn8?si=uWEYXxEnHdD4ovef" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ![](demo.webp)
