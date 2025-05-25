@@ -57,9 +57,9 @@ The entire system is powered through a USB cable connected to the Pico.
 -made some progress on the software
 
 ### Week 18 - 25 May
-- completed the software implementation
+-completed the software implementation
 
-- rearranged the wires so the project looks more organized
+-rearranged the wires so the project looks more organized
  
 
 ## Hardware
