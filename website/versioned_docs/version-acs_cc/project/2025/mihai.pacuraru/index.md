@@ -51,6 +51,7 @@ Assemble hardware components and write demo source code.
     - feedback of watering level
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- [![](https://markdown-videos-api.jorgenkh.no/youtube/EuqZ8Y21hg4)](https://youtu.be/EuqZ8Y21hg4) -->
 
 <iframe width="auto" height="512" src="https://www.youtube.com/embed/EuqZ8Y21hg4?si=xL99fmc-H0W0BoAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -63,6 +64,16 @@ Assemble hardware components and write demo source code.
 ### Schematic
 ![Plant Watering Alarm System Schematic](schematic.jpg)
 >>>>>>> 670e828 (Add schematic)
+=======
+<!-- [![](https://markdown-videos-api.jorgenkh.no/youtube/EuqZ8Y21hg4)](https://youtu.be/EuqZ8Y21hg4) -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EuqZ8Y21hg4?si=xL99fmc-H0W0BoAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+![](demo.jpeg)
+
+### Schematic
+![](schematic.png)
+>>>>>>> f35bcf2 (Add hardware schematic and demos)
 
 ### Bill of Materials
 
