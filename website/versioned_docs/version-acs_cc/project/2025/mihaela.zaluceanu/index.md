@@ -26,11 +26,18 @@ This project is modular and can be integrated into larger robotics or IoT projec
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+<<<<<<< HEAD
 Starting writing project's documentation.
 
 ### Week 12 - 18 May
 I assembled the hardware components and wrote a demo code to ensure everything was working correctly.
 I also started working on the GUI code for the radar interface.
+=======
+Writing project's documentation.
+
+### Week 12 - 18 May
+I assembled the hardware components and wrote a demo code to make sure everything was assembled correctly.
+>>>>>>> 45bb541 (Photo and video added)
 
 ### Week 19 - 25 May
 I implemented the main logic of the project (reading sensor data and sending it to the GUI).
@@ -49,6 +56,11 @@ Additionally, I integrated a BMP180 sensor to measure the actual room temperatur
 [![](https://markdown-videos-api.jorgenkh.no/youtube/XF7xbb9hKgY)](https://youtu.be/XF7xbb9hKgY)
 
 ![](p1.webp)              |  ![](p2.webp)
+:-------------------------:|:-------------------------:
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/JmNvgwWPilE)](https://youtu.be/JmNvgwWPilE)
+
+![](p1.jpg)              |  ![](p2.jpg)
 :-------------------------:|:-------------------------:
 
 ### Schematics
