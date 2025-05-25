@@ -90,13 +90,15 @@ The **buzzer** emits sound cues for actions and is connected to a GPIO pin
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2040 Peripherals | Used for accessing the peripherals |
-| [cortex-m-rt](https://github.com/rust-embedded/cortex-m-rt) | Runtime support for Cortex-M devices | Initializes the microcontroller and defines the entry point |
-| [rp2040-hal](https://github.com/rp-rs/rp-hal) | Hardware Abstraction Layer for RP2040 | Enables low-level control over GPIO, SPI, PWM, etc. |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits for embedded devices | Provides standard interfaces for hardware components like digital input/output |
-| [embedded-input](https://github.com/almindor/embedded-input) | Input abstraction for embedded devices | Simplifies button handling and debounce logic |
-| [st7735-lcd](https://github.com/almindor/st7735-lcd) | Driver for ST7735 displays over SPI | Sends display commands and data to the LCD |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded devices | Renders text, shapes, and tiles on the LCD screen |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Async executor for embedded systems | Spawns and runs async tasks (Spawner) |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Time and delay utilities for async embedded apps | Used for Delay, Timer, and Duration utilities |
+| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Async synchronization primitives | Provides Mutex and Channel for safe inter-task communication |
+| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Embassy driver support for RP2040 | Provides GPIO and SPI peripheral access (gpio::Output, spi::Spi) |
+| [embassy-embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits for embedded devices | Provides SpiDevice trait for shared SPI interface |
+| [display-interface-spi](https://github.com/rust-embedded/embedded-hal) | Wrapper to convert SPI interfaces to display interfaces | Adapts SPI bus to a display driver interface |
+| [mipidsi](https://github.com/almindor/embedded-input) | Driver for MIPI DSI compatible displays like ST7735 | Drives the ST7735 LCD over SPI (Builder, Orientation, etc.) |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded devices | Renders text and shapes on the LCD (Text, Rectangle, Rgb565, etc.) |
+| [rand](https://github.com/embedded-graphics/embedded-graphics) | Random number generator and utilities | Generates pseudo-random numbers via SmallRng |
 
 ## Links
 
