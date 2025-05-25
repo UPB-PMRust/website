@@ -56,9 +56,9 @@ After, I worked on an example system for the metronome. Since I don't yet have m
 
 ### Photos
 
- ![PAM8403 Amplifier connected to a speaker (left), 9v Battery connected to a Power Supply (right)](hardware1.1.webp)
- ![Intermediate board, contains the SD Card Reader and potentiometer (left), will contain other wires to connect from function buttons to GPIOs as well as a Digital-to-Analog converter](hardware2.1.webp)
- ![Main breadboard with picos (top), currently 1/2 breadboards for the buttons to control the piano keys (bottom)](hardware3.1.webp)
+ ![PAM8403 Amplifier connected to a speaker (left), 9v Battery connected to a Power Supply (right)](hardware1.webp)
+ ![Intermediate board, contains the SD Card Reader and potentiometer (left), will contain other wires to connect from function buttons to GPIOs as well as a Digital-to-Analog converter](hardware2.webp)
+ ![Main breadboard with picos (top), currently 1/2 breadboards for the buttons to control the piano keys (bottom)](hardware3.webp)
 
 ### Schematics
 
