@@ -1,5 +1,6 @@
 # SpongeBot SteelPants
 Magnetic robot that erases whiteboard marker strokes and can be driven remotely over Wi-Fi
+Magnetic robot that erases whiteboard marker strokes and can be driven remotely over Wi-Fi
 
 :::info 
 
@@ -11,6 +12,9 @@ Magnetic robot that erases whiteboard marker strokes and can be driven remotely 
 ## Description
 
 SpongeBot SteelPants is a two-wheel robot designed to automate the process of cleaning
+whiteboards. It clings to the board with a PWM-controlled electromagnet and either:
+* automatic sweep mode - systematically scans the entire board in a lawn-mower pattern
+* remote mode - receives real-time drive commands from a phone/PC over Wi-Fi.
 whiteboards. It clings to the board with a PWM-controlled electromagnet and either:
 * automatic sweep mode - systematically scans the entire board in a lawn-mower pattern
 * remote mode - receives real-time drive commands from a phone/PC over Wi-Fi.
@@ -73,12 +77,65 @@ flowchart TD
     NAV --> STATUS
     STATUS --> OLED
 ```
+```mermaid
+flowchart TD
+
+    PICO["Raspberry Pi Pico 2 W"]
+
+    subgraph Input Devices
+        IR["4× IR Sensors"]
+        IMU["GY-521 (MPU6050)"]
+        WIFI["Wi-Fi Link"]
+    end
+
+    subgraph Processing
+        EDGE["Edge Detection Logic"]
+        NAV["Navigation & Path Planning"]
+        CTRL["Motor Control Logic"]
+        ADHESION["Adhesion Control Logic"]
+        COMM["Wi‑Fi Command Handler"]
+        STATUS["Status Display Logic"]
+    end
+
+    subgraph Output Devices
+        MOTOR["TB6612FNG Motor Driver"]
+        M1["GA12-N20 Motor A"]
+        M2["GA12-N20 Motor B"]
+        MAGNET["Electromagnet (via MOSFET)"]
+        OLED["0.96'' OLED Display"]
+    end
+
+    PICO --> IR
+    PICO --> IMU
+    PICO --> WIFI
+
+    IR --> EDGE
+    IMU --> NAV
+    WIFI --> NAV
+
+    EDGE --> NAV
+
+    NAV --> CTRL
+    CTRL --> MOTOR
+    MOTOR --> M1
+    MOTOR --> M2
+
+    NAV --> ADHESION
+    ADHESION --> MAGNET
+
+    NAV --> STATUS
+    STATUS --> OLED
+```
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+* Finished hardware design and completed component selection
+* Purchased and received all required components
+* Soldered key parts and researched power requirements, safe wiring and GPIO assignments
+* Set up defmt debugging to verify Pico functionality and test communication with peripherals
 * Finished hardware design and completed component selection
 * Purchased and received all required components
 * Soldered key parts and researched power requirements, safe wiring and GPIO assignments
@@ -132,13 +189,16 @@ module
 across a whiteboard
 
 6. **IR Obstacle Sensors (x4)**
+6. **IR Obstacle Sensors (x4)**
 * IR LEDs mounted at the corners to prevent the robot from falling off the edge of the
 whiteboard.
 
 7. **Electromagnet 5 V/25 N**
+7. **Electromagnet 5 V/25 N**
 * Strong enough to cling the small robot to the whiteboard
 * PWM-driven grip allows for adjustable adhesion
 
+8. **0.96 OLED Display**
 8. **0.96 OLED Display**
 * Indicates the mode which the robot is currently using (cleaning by using the camera
 module or just simply going around)
