@@ -75,7 +75,6 @@ The format is
 | [LM7805](https://www.ti.com/lit/ds/symlink/lm7800.pdf) | The stabilizer | [7.33 RON](https://www.emag.ro/circuit-integrat-stabilizator-de-tensiune-to220-3-cdil-lm7805-t157585/pd/DH365KYBM/?ref=history-shopping_422378681_7083_1) |
 | Wires | Wires | [20.53 RON](https://www.emag.ro/10-x-fire-dupont-tata-tata-20cm-cl55/pd/DV8M9WBBM/?ref=history-shopping_422378681_12161_1) |
 | [USB to Micro-USB Cable](https://www.mouser.com/pdfdocs/HiroseZX62Datasheet24200011.pdf) | USB | [8.79 RON](https://www.emag.ro/cablu-alimentare-si-date-ugreen-fast-charging-usb-la-micro-usb-nickel-plating-pvc-1m-negru-6957303861361/pd/DC7CCBYBM/?ref=history-shopping_422378681_64468_1) |
-<<<<<<< HEAD
 | [HC-SR04 Sensor](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | The Ultrasonic Sensor | [12.54 RON](https://www.emag.ro/senzor-ultrasonic-hc-sr04-3/pd/D3NL48YBM/) |
 | [SG90 Servo-Motor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | The Servomotor | [19.64 RON](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-23-mm-9-g-3874783591829/pd/DXVZ3MYBM/) |
 | HC-SR04 Sensor Holder Support Bracket | Sensor Holder Support Bracket | [3.94 RON](https://www.optimusdigital.ro/ro/mecanica-accesorii-de-prindere/12246-suport-pentru-senzor-ultrasonic-hc-sr04.html?search_query=modul&results=1815) |
@@ -83,13 +82,6 @@ The format is
 | [Passive Buzzer](https://components101.com/misc/buzzer-pinout-working-datasheet) | The Buzzer | [0.99 RON](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html?search_query=buzzer&results=86) |
 
 **Total**  220.72
-=======
-| [HC-SR04 Sensor](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | The sensor | [12.54 RON](https://www.emag.ro/senzor-ultrasonic-hc-sr04-3/pd/D3NL48YBM/) |
-| [SG90 Servo-Motor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | The servomotor | [19.64 RON](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-23-mm-9-g-3874783591829/pd/DXVZ3MYBM/) |
-| HC-SR04 Sensor Holder Support Bracket | Sensor Holder Support Bracket | [3.94 RON](https://www.optimusdigital.ro/ro/mecanica-accesorii-de-prindere/12246-suport-pentru-senzor-ultrasonic-hc-sr04.html?search_query=modul&results=1815) |
-
-**Total**  212.75
->>>>>>> main
 
 
 ## Software
