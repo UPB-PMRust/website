@@ -168,6 +168,7 @@ The format is
 | [ads1x1x](https://crates.io/crates/ads1x1x)                 | Driver crate for ADS1115/ADS1015 ADCs                                       | Used to read analog values from photoresistors |
 | [hd44780-driver](https://crates.io/crates/hd44780-driver)   | Driver for HD44780-based displays (like LCD2004 via I²C)                   | Used to display data on LCD screen              |
 | [embedded-hal-async](https://crates.io/crates/embedded-hal-async) | Async traits for embedded-hal peripherals                              | Required by embassy for async I²C, ADC, etc.    |
+ project/daria_catalina.banu
 | [uln2003](https://crates.io/crates/uln2003)                     | to control steppers crate                                                | need to control steppers |
 | [i2c-character-display](https://crates.io/crates/i2c-character-display)                     | to display on lcd2004                   | display      |
 
