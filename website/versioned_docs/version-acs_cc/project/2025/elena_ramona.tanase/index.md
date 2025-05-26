@@ -78,7 +78,7 @@ At the exit, the IR sensor triggers the exit barrier servo to lift and allows th
 
 ### Week 6 - 12 May
 
-- nothing yet
+I have purchased all the necessary components for the project, along with additional materials such as boxes, glue, and other items needed to complete the physical assembly. After gathering everything, I followed the schematic to assemble the components in the correct order and positions. Once the assembly was completed, I tested each part of the system to ensure it was functioning properly.
 
 ### Week 7 - 19 May
 
@@ -108,7 +108,15 @@ The entrance and exit of the parking lot include:
 
 ## Schematics
 
-![Schematic](schematic.webp)
+![parc1](parcare1.webp)
+
+![parc2](parcare2.webp)
+
+![parc3](parcare3.webp)
+
+![parc4](parcare4.webp)
+
+![schematic](schematic.svg)
 
 ---
 
