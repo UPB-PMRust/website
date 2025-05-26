@@ -29,6 +29,8 @@ Started doing the hardware and finished the documentation.
 Done the hardware.
 
 ### Week 19 - 25 May
+Started and finished the code, including taking button input, drawing on the SPI display and the general game logic.
+Modeled and 3D printed the case.
 
 ## Hardware
 
