@@ -73,6 +73,7 @@ flowchart TD
 ### Week 12 - 18 May
   During this week I acquired all the remaining parts, decided to switch from 4x1.5V batteries to a single 9V battery in case my DC motor needed more voltage to spin faster. I put all my hardware in the safe for the first time and came up with a rough idea for the launching mechanism for the "projectiles". 
 ### Week 19 - 25 May
+  Started writing the code for the safe. First made the LEDs blink and the buzzer sound, then I made the servomotor twist. After a brief pause, I continued with the PN532. I initially forgot to connect the RESET pin and did not know why I had to disconnect the PN532 every time i wanted to run the code. After that I struggled a little with an issue that would make the module not read keycards after about 1 minute.
 
 ## Hardware
   For my safe, I used a Raspberry Pi Pico 2W as my MCU. With the help of a PN532 module I am able to scan any access keys with NFC/RFID. My locking mechanism is a SG90 servomotor. I have also installed two LEDs, one blue and one red, and an active buzzer, meant to resemble an alarm. The "projectiles" are fired with the help of a DC motor that is spinning a wheel. Below is a photo with the hardware outside the box:
@@ -131,6 +132,7 @@ The format is
 
 ## Links
 [1. PWM](https://pmrust.pages.upb.ro/docs/acs_cc/lab/03)
+
 [2. I2C](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
