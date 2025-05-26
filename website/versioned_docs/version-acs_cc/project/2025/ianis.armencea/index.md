@@ -28,12 +28,15 @@ if the project turns out well i will be using the device myself to tune my guita
 
 ## Log
 ### Week 5 - 11 May
-**Purchased the components**
+Purchased the components
 
 ### Week 12-18 May
-**Assembled the project**
+Assembled the project
 
 ### Week 19-25 May
+Research on FFT
+
+Working on software
 
 ## Hardware
 
@@ -69,7 +72,12 @@ if the project turns out well i will be using the device myself to tune my guita
 | Library | Description | Usage |
 | ------- | ----------- | ----- |
 | embassy | Framework for embedded programming | Writing embedded Rust applications for microcontrollers |
-| spectrum_analyzer | An easy to use and fast no_std library (with alloc) to get the frequency spectrum of a digital signal (e.g. audio) using FFT. | Converting audio signal to frequency |
+| microfft | Library for computing fast fourier transforms on embedded systems | Converting audio signal to frequency |
 | ssd1306 | Display driver | Display text on screen |
-
+| num_complex | Represents complex numbers | Used for fft calculations |
+| embedded_graphics | Library for display | Used to draw text on display |
 ## Links
+
+[Fast Fourier Transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform)
+
+[PWM & ADC](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/lab/03)
