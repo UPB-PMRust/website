@@ -101,7 +101,7 @@ Here are some pictures of my project:
 | [panic-probe](https://crates.io/crates/panic-probe) | Panic handler with debug output | Sends panic messages via defmt for diagnosing issues |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Cortex-M runtime support | Handles microcontroller startup and vector table |
 
-### Software Design:
+### Software Design
 
 **main.rs**:
 * Main async task initializes all peripherals: Ultrasonic sensor pins (PIN_10, PIN_11), LCD via I2C (PIN_2, PIN_3), Output pins for buzzer and pump
