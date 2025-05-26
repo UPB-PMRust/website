@@ -103,4 +103,4 @@ Current component lineup:
 
 | Date       | Activity |
 |------------|----------|
-| 25 May 2025 | Uploaded source code, README, schematic (.sch), and SVG scheme to the project repository.|
+| 25 May 2025 | Uploaded source code, README, schematic (.sch), and SVG scheme to the project repository which can be found above.|
