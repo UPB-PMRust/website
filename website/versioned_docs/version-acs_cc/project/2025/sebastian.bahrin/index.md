@@ -124,39 +124,37 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 - **VSYS (pin 39)**: Connected to the output of the AMS1117 5V module
 - **GND (multiple)**: Connected to the common GND of all components
 
-#### I2C pins:
+#### I2C pins (I2C0):
 - **GP16 (pin 21)**: I2C0 SDA function - Data for MPU-6500 and PCF8591
-  *   It is one of the dedicated I2C0 pins and allows communication with multiple I2C devices on the same bus
+  * Shared I2C bus for multiple sensors - both MPU-6500 and PCF8591 connect to this pin
 - **GP17 (pin 22)**: I2C0 SCL function - Clock for MPU-6500 and PCF8591
-  *   It is the SDA pin pair for I2C0
+  * Clock signal shared between both I2C devices
 
-#### SPI pins for MicroSD:
-- **GP5 (pin 7)**: SPI0 CS function - Chip Select for the MicroSD module
-  *   Individual control of the MicroSD module
-- **GP6 (pin 9)**: SPI0 SCK function - Clock for the MicroSD module
-  *   It is the dedicated pin for SPI0 clock
-- **GP7 (pin 10)**: SPI0 MOSI function - Master Out Slave In for the MicroSD module
-  *   Data transmission to the MicroSD card
-- **GP4 (pin 6)**: SPI0 MISO function - Master In Slave Out for the MicroSD module
-  *   Data reception from the MicroSD card
+#### SPI pins for MicroSD (SPI1):
+- **GP13 (pin 17)**: SPI1 CS function - Chip Select for the MicroSD module
+  * Individual control signal for the MicroSD module
+- **GP14 (pin 19)**: SPI1 SCK function - Clock for the MicroSD module
+  * SPI clock signal for data synchronization
+- **GP15 (pin 20)**: SPI1 MOSI function - Master Out Slave In for the MicroSD module
+  * Data transmission from Pico to MicroSD card
+- **GP12 (pin 16)**: SPI1 MISO function - Master In Slave Out for the MicroSD module
+  * Data reception from MicroSD card to Pico
 
 #### UART pins for GPS:
-- **GP0 (pin 1)**: UART0 TX function - Data transmission to the GPS module
-  *   It is part of the UART0 pair, dedicated to serial communications
-- **GP1 (pin 2)**: UART0 RX function - Data reception from the GPS module
-  *   It is the TX pair for UART0
+- **GP10 (pin 14)**: UART TX function - Data transmission to the GPS module
+  * Connects to RX pin of GPS NEO-8M module
+- **GP11 (pin 15)**: UART RX function - Data reception from the GPS module
+  * Connects to TX pin of GPS NEO-8M module
 
 #### GPIO pins for digital sensors:
 - **GP2 (pin 4)**: Digital input for the Hall KY-003 sensor
-  *   Pin configured as a digital input with internal pull-up for detecting state changes
+  * Pin configured as digital input with internal pull-up for detecting magnetic field changes
 - **GP3 (pin 5)**: Digital input for the vibration sensor
-  *   Pin configured as a digital input for detecting vibrations
+  * Pin configured as digital input for detecting vibration events
 
 ### PCF8591 Module (AD/DA Converter)
 - **AIN0**: Connected to the light sensor (photoresistor)
-  *   Reading analog values from the photoresistor for light detection
-
-
+  * Reading analog values from the photoresistor for light detection
 
 ## **Schematics**
 ![Schema Electrica](./Schematic.webp) 
@@ -184,16 +182,16 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 
 | **Library** | **Description** | **Usage** |
 |-------------|-----------------|-----------|
-| [embassy](https://embassy.dev/) | Asynchronous embedded framework for Rust | Core framework for running async tasks on the Raspberry Pi Pico 2W |
-| [embassy-rp](https://embassy.dev/) | Embassy HAL for RP2040 | Hardware abstraction layer for the Raspberry Pi Pico 2W |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer (HAL) traits | Provides unified interfaces for hardware drivers |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the OLED display |
-| [ssd1306](https://github.com/jamwaffles/ssd1306) | Rust driver for SSD1306 OLED displays | Controls the 0.96" OLED display |
-| [mpu6050](https://github.com/juliangaal/mpu6050) | Rust driver for MPU6050 | Interfacing with the IMU sensor |
-| [shared-bus](https://github.com/Rahix/shared-bus) | Bus sharing for embedded Rust | Sharing I2C/SPI buses between multiple devices |
-| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD/MMC card access | Managing log files on the microSD card |
-| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded devices | Debugging and development logging |
-| [chrono](https://github.com/chronotope/chrono) | Date and time library | Creating timestamps for event logging |
+| [embassy](https://embassy.dev/) | Asynchronous embedded framework for Rust | Core framework for async task execution, timers, and signaling |
+| [embassy-rp](https://embassy.dev/) | Embassy HAL for RP2040 | Provides access to RP2040 peripherals like I2C, UART, and GPIO |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer (HAL) traits | Standard I2C interface traits used for driver abstraction |
+| [embedded-hal-async](https://github.com/embassy-rs/embedded-hal-async) | Async HAL traits for embedded I/O | Enables asynchronous I2C communication |
+| [embedded-io-async](https://github.com/embassy-rs/embedded-io) | Async traits for embedded I/O | Provides async UART read capabilities |
+| [heapless](https://github.com/japaric/heapless) | `no_std` data structures | Fixed-capacity `String` and `Vec` used for GPS/NMEA data parsing |
+| [micromath](https://github.com/NeoBirth/micromath) | Math utilities for `no_std` environments | Used for calculating vector magnitudes (e.g., from IMU data) |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded systems | Efficient logging for debugging and diagnostics |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD/MMC card access | For reading/writing log files to microSD card |
+
 
 ## **Log**
 
@@ -201,13 +199,17 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 Focused on documentation and planning for the SafeDelivery project. Researched all hardware components (Raspberry Pi Pico 2W, sensors, modules) to understand their specifications, pin requirements, and power needs. Created detailed connection diagrams, calculated power budget for battery life, and developed a comprehensive project plan.
 
 ### **Week 12 - 18 May**
-Identified necessary Rust libraries and outlined the software architecture to ensure all components would work together effectively. Began hardware assembly and software implementation. Set up the development environment with Embassy framework for Rust. Connected and tested components individually on a breadboard: configured I2C for the MPU6500 IMU sensor, set up SPI for the microSD module, implemented interrupt detection for the Hall magnetic sensor, and started integrating the light sensor via PCF8591. Developed initial code for each sensor and verified basic functionality
+Identified necessary Rust libraries and outlined the software architecture to ensure all components would work together effectively. Began hardware assembly and software implementation. Set up the development environment with Embassy framework for Rust. Connected and tested components individually on a breadboard: configured I2C for the MPU6500 IMU sensor, set up SPI for the microSD module, and started integrating the light sensor via PCF8591. Developed initial code for each sensor and verified basic functionality
 
 ### **Week 19 - 25 May**
-TBA
+Successfully implemented code for all mentioned hardware components in the SafeDelivery system. The sensor integration phase went well - all sensors (MPU6500 IMU, Hall magnetic sensor, vibration sensor, and light sensor via PCF8591) are working perfectly with stable readings and reliable interrupt handling.
 
-## **Links**`
+I encountered a significant challenge with the GPS NEO-8M module early on, as extensive research revealed no reliable Rust libraries compatible with the Embassy framework for NMEA sentence parsing on embedded systems. This forced me to write the entire GPS handling code from scratch. My work included building a complete NMEA parser for both GPRMC (position, speed, course) and GPGGA (satellites, altitude, fix quality) sentences, implementing coordinate conversion from DMM (Degrees Decimal Minutes) to decimal degrees, and adding comprehensive validation for GPS fix status and data integrity. Additionally, I implemented the Haversine formula for calculating distances between coordinates, added speed monitoring and geofence violation detection, created a Romanian city detection system based on coordinate ranges, and developed advanced custom formatters for coordinates in both decimal and DMS formats.
 
-1. [I2C](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
-2. [WIFI](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07)
+Additionally, encountered significant issues with the MicroSD card module that consumed an enormous amount of debugging time too. The embedded-sdmmc library had compatibility problems with the SPI1 interface on the Raspberry Pi Pico 2W, causing frequent write failures and data corruption. Spent considerable time troubleshooting SPI timing issues, card initialization problems, and file system mounting errors.
 
+## **Links**
+
+1. [More about GPS](https://learn.sparkfun.com/tutorials/gps-basics/the-basics-of-gps)
+2. [This saved me](https://esp32.implrust.com/sdcard/index.html)
+3. [How many packages get lost a day?](https://packlane.com/how-many-packages-get-lost-everyday)
