@@ -192,6 +192,129 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded systems | Efficient logging for debugging and diagnostics |
 | [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD/MMC card access | For reading/writing log files to microSD card |
 
+## Library Selection Justification
+
+### Core Framework: Embassy
+**Choice**: Embassy async embedded framework
+**Justification**: Embassy provides efficient asynchronous task execution essential for concurrent sensor monitoring and GPS data processing. This allows the system to handle multiple sensor inputs simultaneously without blocking operations, crucial for real-time security monitoring.
+
+### Hardware Abstraction: embedded-hal & embedded-hal-async
+**Choice**: Standard embedded Rust HAL traits
+**Justification**: These provide consistent, async-capable interfaces for I2C, UART, and GPIO operations, ensuring portable and efficient hardware communication across different sensor types.
+
+### Data Structures: heapless
+**Choice**: No-std collections library
+**Justification**: Essential for embedded systems without heap allocation. Provides fixed-capacity String and Vec types needed for GPS NMEA sentence parsing while maintaining memory safety in a constrained environment.
+
+### Mathematical Operations: micromath
+**Choice**: No-std math library
+**Justification**: Provides essential mathematical functions (sqrt, trigonometric) required for calculating acceleration magnitudes, distance calculations using the Haversine formula, and coordinate conversions.
+
+### Storage System: embedded-sdmmc
+**Choice**: SD/MMC card access library
+**Justification**: Enables reliable data logging to microSD cards with FAT32 filesystem support, crucial for creating tamper-evident audit trails of package security events.
+
+### Logging: defmt
+**Choice**: Efficient embedded logging framework
+**Justification**: Provides low-overhead, structured logging essential for debugging and system monitoring without impacting real-time performance.
+
+
+## Component Interaction Flow
+
+1. **Initialization Phase**: All sensors initialized and tested, SD card validated
+2. **GPS Task**: Continuously parses NMEA sentences, updates shared GPS data structure
+3. **Main Loop**: Reads all sensors every 500ms, performs security analysis, logs violations
+4. **Alert System**: Simultaneous monitoring enables multiple threat detection
+5. **Data Persistence**: All security events logged to SD card with timestamps
+
+### Validation Methods:
+- **Sensor Calibration**: Each sensor tested with known reference values
+- **GPS Accuracy**: Validated against Google Maps coordinates (±2.5m accuracy achieved)
+- **SD Card Integrity**: File write/read verification with automatic error recovery
+- **Security Thresholds**: Empirically tested with real-world package handling scenarios
+
+## Sensor Calibration Process
+
+### MPU-6500 IMU Calibration:
+**Method**: Empirical testing with controlled package orientations
+- **Normal Position**: X-axis dominant (±1000mg threshold)
+- **Tilt Detection**: Horizontal component > vertical component
+- **Fall Detection**: Total acceleration < 300mg (0.3g)
+- **Sudden Movement**: Total acceleration > 2500mg (2.5g)
+
+**Validation**: Package dropped from various heights (no box was hurted during the process), rotated in different orientations, and subjected to sudden movements to verify threshold accuracy.
+
+### Light Sensor (PCF8591) Calibration:
+**Method**: Ambient light testing in various conditions
+- **Package Sealed**: Light level > 95% (raw value > 242)
+- **Package Opened**: Light level < 95% triggers alert
+- **Environmental Compensation**: Tested in different lighting conditions
+
+**Validation**: Package opening simulation in various ambient lighting conditions to ensure reliable detection.
+
+### GPS Calibration:
+**Method**: Real-world coordinate validation
+- **Position Accuracy**: Compared against Google Maps coordinates
+- **Speed Accuracy**: Validated against vehicle speedometer readings
+- **Coordinate Conversion**: DMM to decimal degrees verified with online calculators
+
+**Validation**: GPS coordinates checked against known Romanian locations with ±2.5m accuracy achieved.
+
+### Vibration Sensor (SW-420) Calibration:
+**Method**: Vibration pattern analysis
+- **Sensitivity**: 5 consecutive vibrations trigger alert
+- **Debounce Time**: 20ms to avoid false positives
+- **Threshold Testing**: Various handling intensities tested
+
+**Validation**: Package subjected to normal handling vs. violent shaking to establish reliable thresholds.
+
+## Laboratory Functionality Integration
+
+### Lab 01 - Debug
+Essential for development and troubleshooting of the complex multi-sensor system.
+
+defmt logging framework: Used extensively throughout the project for real-time debugging and status monitoring
+probe-rs integration: Enables efficient debugging of the embedded application during development
+Panic handling: Critical for system reliability - uses panic-probe to handle unexpected failures gracefully
+Cross-compilation setup: Necessary for building ARM-compatible firmware for the RP2350 microcontroller
+
+Digital input configuration: Used for Hall sensor (KY-003) and vibration sensor (SW-420) with proper pull-up resistors
+GPIO state monitoring: Essential for detecting magnetic field presence and vibration events
+Embassy framework integration: Provides asynchronous GPIO operations for non-blocking sensor reading
+
+
+### Lab 04 - Asynchronous Development
+Critical for managing multiple concurrent sensor monitoring tasks without blocking.
+
+Embassy executor: Enables concurrent execution of GPS parsing, sensor monitoring, and data logging tasks
+Async/await pattern: Used throughout for non-blocking I/O operations
+Task spawning: GPS data processing runs in separate tasks to avoid blocking main monitoring loop
+Signal communication: Used for inter-task communication between GPS parser and main monitoring logic
+
+### Lab 05 - Serial Peripheral Interface (SPI)
+Essential for high-speed communication with motion sensor and SD card storage.
+
+SD card logging: Critical for persistent storage of security events and audit trails
+Multiple device management: Demonstrates bus sharing and device selection principles
+Data integrity: SPI's reliable communication ensures accurate sensor readings
+
+### Lab 06 - Inter-Integrated Circuit (I2C)
+Primary communication protocol for multiple sensors in the security system.
+
+MPU-6500 motion sensor: Provides accelerometer and gyroscope data for detecting falls, impacts, and orientation changes
+PCF8591 light sensor: Detects package opening by monitoring ambient light levels
+Multi-device I2C bus: Demonstrates proper device addressing and bus management
+Sensor calibration: Uses factory calibration data for accurate motion measurements
+
+## Memory Optimizations
+
+For computational optimizations, I shifted to integer arithmetic for acceleration and gyroscope magnitude calculations, avoiding expensive floating-point operations common on Cortex-M0+ processors. I also incorporated lookup tables for Romanian city detection instead of complex geographic algorithms and utilized efficient coordinate conversion to prevent repeated floating-point divisions.
+
+I/O optimizations involved setting a 500ms sensor reading interval to balance responsiveness with power efficiency. I also implemented batched SD card writes to reduce filesystem overhead and used async I2C operations to prevent blocking during sensor communication, thereby reducing power consumption and improving system responsiveness.
+
+In terms of task scheduling optimizations, I ensured GPS data didn't interfere with real-time security monitoring by creating a separate GPS parsing task to prevent UART buffer overflow. This involved non-blocking GPS data retrieval in the main loop and priority-based alert handling, prioritizing magnetic tampering over package opening, and then movement.
+
+For string processing optimizations, I developed a custom format_f32_to_6_decimals() function to avoid standard library formatting. I also used direct byte manipulation for NMEA sentence parsing and fixed-size string buffers to prevent dynamic allocation, which are typically memory and CPU intensive.
 
 ## **Log**
 
@@ -207,6 +330,10 @@ Successfully implemented code for all mentioned hardware components in the SafeD
 I encountered a significant challenge with the GPS NEO-8M module early on, as extensive research revealed no reliable Rust libraries compatible with the Embassy framework for NMEA sentence parsing on embedded systems. This forced me to write the entire GPS handling code from scratch. My work included building a complete NMEA parser for both GPRMC (position, speed, course) and GPGGA (satellites, altitude, fix quality) sentences, implementing coordinate conversion from DMM (Degrees Decimal Minutes) to decimal degrees, and adding comprehensive validation for GPS fix status and data integrity. Additionally, I implemented the Haversine formula for calculating distances between coordinates, added speed monitoring and geofence violation detection, created a Romanian city detection system based on coordinate ranges, and developed advanced custom formatters for coordinates in both decimal and DMS formats.
 
 Additionally, encountered significant issues with the MicroSD card module that consumed an enormous amount of debugging time too. The embedded-sdmmc library had compatibility problems with the SPI1 interface on the Raspberry Pi Pico 2W, causing frequent write failures and data corruption. Spent considerable time troubleshooting SPI timing issues, card initialization problems, and file system mounting errors.
+
+
+
+
 
 ## **Links**
 
