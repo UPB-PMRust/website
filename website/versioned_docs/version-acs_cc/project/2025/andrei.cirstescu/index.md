@@ -27,7 +27,7 @@ pen-and-paper game turned digital like Tic-Tac-Toe.
 
 ## Architecture 
 
-![Block Diagram](architecture.svg)
+![Block Diagram](architecture.webp)
 
 - ### Raspberry Pi Pico 2 W
   * Central Microcontroller, manages button inputs and interfaces with the Display.
@@ -37,14 +37,34 @@ pen-and-paper game turned digital like Tic-Tac-Toe.
   * Interfaces with the Microcontroller through SPI.
 - ### 4x4 Button Matrix
   * Handles inputs for X and O placements, game variant selection and restart.
+- ### Passive Buzzer
+  * Used to play different notes.
+- ### LEDs
+  * Two LEDs, green and red.
+  * Lights up according to winner.
+
+## Device pictures
+
+![Render1](device_picture1.webp)
+
+
+![Render2](device_picture2.webp)
+
+
+![Render3](device_picture3.webp)
+
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+  * Bought components.
+  * Tested button matrix and screen.
 
 ### Week 12 - 18 May
+  * Decided to add LEDs and a buzzer.
+  * Finished hardware assembly.
 
 ### Week 19 - 25 May
 
@@ -53,12 +73,18 @@ pen-and-paper game turned digital like Tic-Tac-Toe.
   - ### Raspberry Pi Pico 2 W
     * Connected through GPIOs to the Display and Button Batrix.
   - ### 2.2" TFT SPI LCD Display(ILI9341)
-    * SCK, MOSI, MISO and CS pins connected to Pico GPIOs on SPI0.
+    * SCK, MOSI, MISO, RESET, DC and CS pins connected to Pico GPIOs on SPI1.
+    * LED and VCC are connected to 3V3.
     * Connections on GP2, GP3, GP4, GP5
   - ### 4x4 Button Matrix
     * Connected to 4 input and 4 output pins on the Pico.
-    * GP6, GP7, GP8, GP9 for inputs.
-    * GP10, GP11, GP12, GP13 for outputs.
+    * GP20, GP21, GP22, GP26 for inputs.
+    * GP16, GP17, GP18, GP19 for outputs.
+  - ### Passive Buzzer
+    * Connected to GP5 on the Pico.
+  - ### LEDs
+    * Red LED connected to GP9.
+    * Red LED connected to GP8.
 
 ### Schematics
 
@@ -81,6 +107,9 @@ The format is
 | [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [39.66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
 | [4x4 Button Matrix](https://ardushop.ro/ro/butoane--switch-uri/295-modul-tastatura-matriciala-4x4-6427854003126.html) | Button Matrix | [4.19 RON](https://ardushop.ro/ro/butoane--switch-uri/295-modul-tastatura-matriciala-4x4-6427854003126.html) |
 | [2.2" TFT SPI Display](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | LCD Display | [59.99 RON](https://www.optimusdigital.ro/en/lcds/1260-lcd-spi-22-240x320-px.html) |
+| [Passive Buzzer](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html) | Passive Buzzer | [0.99 RON](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html) |
+| [Red LED](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html) | Red LED | [0.39 RON](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html) |
+| [Green LED](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html) | Green LED | [0.39 RON](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html) |
 
 ## Software
 
@@ -88,6 +117,7 @@ The format is
 |---------|-------------|-------|
 | [embassy-rp](https://github.com/embassy-rs/embassy) | Framework for embedded devices | Used for general functions |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | HAL for peripherals | Used for connecting with the buttons/display |
+| [mipidsi](https://crates.io/crates/mipidsi) | Generic library for TFT displays | Used for interfacing with the display |
 | [ili9341](https://github.com/yuri91/ili9341-rs) | Display driver ILI9341 | Used for the display for the Pico Explorer Base |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing on the display |
 

@@ -113,6 +113,7 @@ Laser tag and arcade shooting games are widely popular and engaging. This projec
 
 ## Software
 
+
 | Library                                                                  | Description                                     | Usage                                                                                          |
 | ------------------------------------------------------------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Async runtime and drivers for RP2040            | Used to interface with RP2040 peripherals asynchronously                                       |

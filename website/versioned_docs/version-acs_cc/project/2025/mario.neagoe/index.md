@@ -38,7 +38,7 @@ A schematic diagram is provided to illustrate the connections and layout of the 
 
  **LCD Display**
   - **Interface**: SPI
-  - **Connections**:
+  - **Connections**: 5 pins, SCK and SDA connected to GP14 and GP15.
   - **Role**: Displays distance and 'ammunition' left.
 
  **Servomotors**
@@ -49,7 +49,7 @@ A schematic diagram is provided to illustrate the connections and layout of the 
   - **Interface**: GPIO
   - **Role**: Allow user input for firing the turret.
 
- **Buttons and Joystick**
+ **Buttons**
   - **Interface**: GPIO
   - **Connections**:
     - Connected to various GPIO pins for different controls (e.g., move controls, laser).
@@ -68,10 +68,10 @@ A schematic diagram is provided to illustrate the connections and layout of the 
 <!-- write every week your progress here -->
 
 ### Week 6 - 12 May
-
+Obtained the necessary components for the project and completed the Kicad schematic. Necessary soldering is done.
 
 ### Week 7 - 19 May
-
+Assembled the components together and tested them, making sure that everything works as intended.
 
 ### Week 20 - 26 May
 
@@ -83,19 +83,26 @@ The Raspberry Pi Pico 2W serves as the central controller for the laser turret s
 
 The LCD Display connects via SPI and is responsible for displaying key information such as the measured distance to target and remaining ammunition, providing the user with real-time operational feedback.
 
-The servomotors, controlled through PWM, allow precise two-axis movement of the turret, enabling accurate manual or semi-automated aiming.
+The servomotors, controlled through PWM, allow precise two-axis movement of the turret, enabling accurate manual aiming.
 
 The laser, activated via a GPIO pin, represents the firing mechanism and responds directly to user input through buttons.
 
-A set of buttons and a joystick, connected to general GPIO pins, form the primary input system. These controls allow the user to move the turret, fire the laser, and trigger reload actions.
+A set of buttons, connected to general GPIO pins, form the primary input system. These controls allow the user to move the turret, fire the laser, and trigger reload actions.
 
-LEDs and a buzzer, driven using PWM, offer immersive visual and audio feedback during operation. They signal events such as firing, reload status, and ammo count.
+A buzzer, driven using PWM, offers immersive audio feedback during operation. It signal events such as firing.
 
 The ultrasonic distance sensor, connected via GPIO, enables the turret to measure the distance to a potential target. This data is used for display purposes and in a real scenario it could be extended for safety or targeting logic in future iterations.
 
 
 
 ### Schematics
+![Kicad Schematic](kicad.svg)
+
+## Photos
+![Picture 1](project1.webp)
+![Picture 2](project2.webp)
+![Picture 3](project3.webp)
+![Picture 4](project4.webp)
 
 
 ### Bill of Materials
@@ -103,11 +110,13 @@ The ultrasonic distance sensor, connected via GPIO, enables the turret to measur
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#raspberry-pi-pico-2-w) | The microcontroller         | [40 RON x 2](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pi+pico+2w&results=33) |
-| [Kit Pan/Tilt + Servomotors](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#raspberry-pi-pico-2-w) | System for moving on 2 axis         | [50 RON](https://learn.sparkfun.com/tutorials/setting-up-the-pi-zero-wireless-pan-tilt-camera?_ga=2.138993136.2135399251.1535353993-424151284.1534403760#hardware-assembly) |
+| [Kit Pan/Tilt + Servomotors](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#raspberry-pi-pico-2-w) | System for moving on 2 axis         | [60 RON](https://learn.sparkfun.com/tutorials/setting-up-the-pi-zero-wireless-pan-tilt-camera?_ga=2.138993136.2135399251.1535353993-424151284.1534403760#hardware-assembly) |
 | Ultrasonic Distance Sensor HC-SR04+ | Distance to target       | [15 RON](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?search_query=ultrasonic&results=47) |
 | [Modul LCD 1.44'' (128x128 px)](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html?search_query=+%09Modul+LCD+de+1.44%27%27+%28128x128+px%29+Rosu+&results=1) | Data display       | [28 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html?search_query=+%09Modul+LCD+de+1.44%27%27+%28128x128+px%29+Rosu+&results=1) |
 | [KY-008 Laser Module](https://arduinomodules.info/ky-008-laser-transmitter-module/) | Laser for the turret        | [4 RON](https://www.robofun.ro/laser/ky-008-650nm-laser-sensor-module-6mm.html) |
-| Electronic components: LEDs, buttons, wires resistors, buzzer | Electronic Components | 25 RON |
+| [DC-DC Converter LM2596](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/805-modul-dc-dc-lm2596-cu-afisaj-de-tensiune.html?search_query=lM2596&results=12)| Convert from 9V to 5V | 16 RON |
+| Electronic components: LEDs, buttons, wires resistors, buzzer, battery, miscellanious | Electronic Components | 90 RON |
+
 
 
 ## Software
