@@ -75,6 +75,8 @@ Started building the final "product" to make the project good-looking for the PM
 
 ![Hardware_1](Hardware_1.webp)
 
+![Hardware_final](Hardware_final.webp)
+
 ### Schematics
 
 ![KiCad](KiCad.svg)
