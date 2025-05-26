@@ -240,7 +240,15 @@ The main accomplishments include:
 ## Software 
 
 ![PACS_SOFTWARE_ARCH](./images/pacs_soft_comu_arch.webp)
-
+:::note
+Concepts from the laboratory that are used in the project are:
+- **PWM**: For RGB LED control
+- **GPIO**: For general-purpose input/output, including buttons, buzzers, and other peripherals
+- **I2C**: For OLED display communication
+- **SPI**: For RC522 RFID module communication
+- **Async**: For network communication and task scheduling
+- **Wi-Fi**: For wireless communication and remote access
+  :::
 | Library                                                                                             | Description                                        | Usage                                                |
 |-----------------------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------|
 | [embassy-rp](https://github.com/embassy-rs/embassy)                                                 | RP2350 Hardware Abstraction Layer                  | Mandatory for Pico W (GPIO, SPI, I2C, PWM)           |
