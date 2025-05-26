@@ -69,6 +69,7 @@ flowchart LR
     subgraph DRIVER_CONN[DRV8825 Connections]
         STEP[STEP - PIN_18]
         DIR[DIR - PIN_19]
+
     end
     
     STEP & DIR -.-> DRIVER
@@ -92,6 +93,7 @@ flowchart LR
     
     SCTL & SVcc & SGND -.-> SERVO
     
+
     RFID_CONN -.-> PICO
     DRIVER_CONN -.-> PICO
     DISP_CONN -.-> PICO
@@ -112,6 +114,7 @@ Initial hardware setup and testing. Configured the basic circuit elements on bre
 Completed the assembly of the main circuit and began integration testing. During initial load tests, discovered that the 28BYJ-48 stepper motor lacked sufficient torque for reliable elevator operation. Made the decision to upgrade to a NEMA 17 (17HS4401) motor with DRV8825 driver for improved power and precision. 
 ### Week 19 - 25 May
 Finalized complete software integration. Successfully implemented the main application combining RFID authentication, NEMA 17 stepper motor control, servo door mechanism, and ST7735 display interface. The system now operates fully autonomously - detecting authorized cards, moving smoothly between floors with visual feedback, controlling door operations, and automatically returning to ground floor.
+
 ## Hardware
 
 The system consists of a Raspberry Pi Pico 2 microcontroller serving as the central control unit, interfacing with several key components:
@@ -150,6 +153,7 @@ These components are integrated through different communication protocols:
 
 ## Software
 ### Architecture Overview
+
 
 The software implementation uses the Embassy framework for Rust embedded systems, providing an asynchronous, event-driven architecture. The main application runs in a single task that coordinates all system components through sequential state management.
 

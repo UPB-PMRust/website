@@ -47,17 +47,17 @@ All components (LEDs, buttons, buzzer, and LCD) are connected to the Raspberry P
 Project planning, hardware selection, initial tests with LEDs and buttons.
 
 ### Week 12- 18 May
-
+Finished the KiCad schematic and wired the full prototype.It’s working, but the wiring is a bit messy right now — I’m planning to clean it up next.
 
 ### Week 19 - 25 May
 
 
 ## Hardware
-
-
+ ![Side view](./poza_parte.webp)
+ ![Top view](./poza_sus.webp)
 ### Schematics
 
-
+ ![KiCad Schematics](./kicad.svg)
 
 ### Bill of Materials
 
