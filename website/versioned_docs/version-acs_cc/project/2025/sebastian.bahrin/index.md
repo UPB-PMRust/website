@@ -7,6 +7,7 @@ A smart package security system to monitor and verify package integrity during t
 **Author**: Sebastian Stefan Bahrin  
 
 **GitHub Project Link**: [\[link_to_github\]](https://github.com/UPB-PMRust-Students/proiect-SebiBahrin)
+**Youtube Project Demonstration**: [\[link_to_youtube\]](https://youtube.com/playlist?list=PLd5iMKv4MkYztaQBolhx833o1cFwwk0Dg&si=SrzNUDQCWMnlIYsO)
 
 :::
 
