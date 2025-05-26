@@ -32,9 +32,10 @@ The main architectural components are:
 
  - **Display** - shows all the parameters and messages for the start of the process etc.
 
+ - **Water Pump** - used to water the plant when necessary
 
 ### Architectural Diagram
- ![alt text](arhitectural_diagram.webp)
+![alt text](architectural_diagram.webp)
 
 ## Log
 
@@ -52,9 +53,12 @@ The main architectural components are:
 
 ### Week 19 - 25 May
 
-- will do
+- Completed the software implementation
+- Completed the final design
+- Finalized the documentation
 
-## Hardware
+## Hardware Design
+
 ### Sensors
 
 * **Soil Hygrometer Humidity**: A precision resistive humidity sensor that measures soil moisture.
@@ -69,7 +73,7 @@ The main architectural components are:
 
 ### Actuation
 
-* **Relay Module**: A 5V relay that provides safe switching of the higher-current water pump circuit.
+* **NPN Transistor**: A NPN Transistor that provides safe switching of the water pump circuit.
 
 * **Water Pump**: A submersible pump capable of delivering appropriate water volume for plant irrigation.
 
@@ -79,26 +83,9 @@ The main architectural components are:
 
 ### Schematics
 
-![alt text](schematic_pm-1.svg)
+![alt text](schematic_pm.svg)
 
-### Bill of Materials
-
-
-| Device | Usage | Price |
-|--------|--------|-------|
-| [2x Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-| [Humidity Sensor](https://www.instrumart.com/assets/smr110-Datasheet.pdf?srsltid=AfmBOoqE7vxvck4x35u5bXmu0vDns5q3-ZUyhLd3r_urhq6-RJ-M9RCO) | Soil Humidity Measurement | [15 RON](https://roboromania.ro/produs/senzor-umiditate-sol-soil-hygrometer-humidity-compatibil-arduino/) |
-| [Photoresistor](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf) | Light Measurement | [2 RON](https://www.optimusdigital.ro/ro/componente-electronice-altele/28-fotorezistor10-pcs-set.html?search_query=fotorezistor&results=23) |
-| [Float Sensor](https://www.farnell.com/datasheets/1685059.pdf) | Checks Water Level | [20 RON](https://www.optimusdigital.ro/ro/senzori-altele/8179-senzor-de-lichid-flotant.html?gad_source=1&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-SCGS8mPsI9e6o-apzGZdgeOpwNHHEVBhS-B3PsUJ8X4ahrL0ajDKUaAsZ4EALw_wcB) |
-| [RTC Clock with Battery](https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf) | Sleep Mode for MCU | [20 RON](https://www.optimusdigital.ro/en/others/1102-ds3231-real-time-clock-module.html?gad_source=1&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-R2oyRZxz1s20qk5-7LgGPuBuylV-HcBeum7cOOqiyAfOLIVIgSqWwaArXVEALw_wcB) |
-| [Relay Module](https://www.handsontec.com/dataspecs/2Ch-relay.pdf) | Controls the Water Pump | [5 RON](https://www.optimusdigital.ro/en/relay-modules/13084-relay-module-ordered-with-5v.html?gad_source=1&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-QWcGMaJVQedCQaanv6ubN5V1UFiwWweAEKJ6ZWeH2KZsUC3ov1st0aAv7IEALw_wcB) |
-| [Water Pump](https://5.imimg.com/data5/IQ/GJ/PF/SELLER-1833510/dc-mini-submersible-water-pump.pdf) | Waters the Plant | [24 RON](https://roboromania.ro/produs/mini-pompa-submersibila-520/) |
-| [LCD Screen ST7735](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf)  | Displays the measurements | [28 RON](https://www.amazon.de/-/en/gp/aw/d/B0CWN27HVB?psc=1&ref=ppx_pop_mob_b_asin_title) |
-| [Power Source - 5V](https://docs.rs-online.com/9c50/0900766b8160af8c.pdf)  | Poweres the circuit | [5 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) |
-| [Others (wires, breadboards, pins etc)]  | Used for connections | [10 RON](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=breadboard+kit&results=35) |
-
-
-### Hardware Photos
+### Project Photos
 
 ![alt text](photo1.webp)
 
@@ -108,20 +95,69 @@ The main architectural components are:
 
 ![alt text](photo4.webp)
 
+![alt text](photo5.webp)
 
-## Software
+![alt text](photo6.webp)
+
+![alt text](photo7.webp)
+
+
+## Software Design
+
+### Description
+
+1. Design Patterns:
+
+- Manager/Controller pattern (FloatSensorManager, RtcManager)
+- State machine with protective logic
+- Statistical sampling for accuracy
+
+2. Key Features:
+
+- Smart protection mechanisms with conditional blocking
+- Energy-efficient sleep/wake cycles
+- Real-time status monitoring with visual feedback
+- Robust sensor data processing with thresholds
+
+### Software Diagram
+
+![alt text](functional_diagram.webp)
+
+## Bill of Materials
+
+### Hardware 
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| [2x Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [Humidity Sensor](https://www.instrumart.com/assets/smr110-Datasheet.pdf?srsltid=AfmBOoqE7vxvck4x35u5bXmu0vDns5q3-ZUyhLd3r_urhq6-RJ-M9RCO) | Soil Humidity Measurement | [15 RON](https://roboromania.ro/produs/senzor-umiditate-sol-soil-hygrometer-humidity-compatibil-arduino/) |
+| [Photoresistor](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf) | Light Measurement | [2 RON](https://www.optimusdigital.ro/ro/componente-electronice-altele/28-fotorezistor10-pcs-set.html?search_query=fotorezistor&results=23) |
+| [Float Sensor](https://www.farnell.com/datasheets/1685059.pdf) | Checks Water Level | [20 RON](https://www.optimusdigital.ro/ro/senzori-altele/8179-senzor-de-lichid-flotant.html?gad_source=1&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-SCGS8mPsI9e6o-apzGZdgeOpwNHHEVBhS-B3PsUJ8X4ahrL0ajDKUaAsZ4EALw_wcB) |
+| [RTC Clock with Battery](https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf) | Sleep Mode for MCU | [20 RON](https://www.optimusdigital.ro/en/others/1102-ds3231-real-time-clock-module.html?gad_source=1&gclid=Cj0KCQjw_dbABhC5ARIsAAh2Z-R2oyRZxz1s20qk5-7LgGPuBuylV-HcBeum7cOOqiyAfOLIVIgSqWwaArXVEALw_wcB) |
+| [NPN Transistor](https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf) | Controls the Water Pump | [0.17 RON](https://www.optimusdigital.ro/en/transistors/935-transistor-npn-2n2222-to-92.html?srsltid=AfmBOopFj2498VnAskGUzgdCoOXlrpdMebIz5rDGn-4RxTpk9Mac-27f) |
+| [Water Pump](https://5.imimg.com/data5/IQ/GJ/PF/SELLER-1833510/dc-mini-submersible-water-pump.pdf) | Waters the Plant | [24 RON](https://roboromania.ro/produs/mini-pompa-submersibila-520/) |
+| [LCD Screen ST7735](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf)  | Displays the measurements | [28 RON](https://www.amazon.de/-/en/gp/aw/d/B0CWN27HVB?psc=1&ref=ppx_pop_mob_b_asin_title) |
+| [Power Source - 5V](https://docs.rs-online.com/9c50/0900766b8160af8c.pdf)  | Poweres the circuit | [5 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) |
+| [Others (wires, breadboards, pins etc)]  | Used for connections | [10 RON](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=breadboard+kit&results=35) |
+
+### Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async/await runtime for embedded systems | Provides the core async runtime for concurrent task execution |
-| [embassy-time](https://github.com/embassy-rs/embassy) | Time handling for embedded systems | Manages timers, delays, and time-related operations |
-| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Raspberry Pi Pico for Embassy | Hardware abstraction layer for RP2040 microcontroller with GPIO, I2C, SPI support |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time handling for embedded systems | Manages delays in sensor sampling, sleep cycle timing, and display transitions |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Raspberry Pi Pico for Embassy | Hardware abstraction layer for GPIO (float sensor, pump control), I2C (RTC communication), and SPI (display interface) |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer traits | Core traits for peripheral access |
-| [embassy-rp::adc](https://docs.embassy.dev/embassy-rp/git/rp2040/adc/index.html) | ADC module for Embassy RP | Reads analog values from photoresistor for light measurement |
-| [ds323x](https://lib.rs/crates/ds323x) | DS3231 RTC driver | Manages the real-time clock with alarm functionality for sleep mode |
-| [st7735-lcd](https://github.com/sajattack/st7735-lcd-rs) | ST7735 display driver | Controls the ST7735 LCD screen |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | graphics library | Drawing routines for text and graphics on the display |
-| [embassy-rp::gpio](https://docs.embassy.dev/embassy-rp/git/rp2040/gpio/index.html) | GPIO module for Embassy RP | Controls the float sensor, relay, buttons, and other digital I/O |
+| [embassy-rp::adc](https://docs.embassy.dev/embassy-rp/git/rp2040/adc/index.html) | ADC module for Embassy RP | Reads analog values from light sensor and soil moisture sensor |
+| [embassy-rp::gpio](https://docs.embassy.dev/embassy-rp/git/rp2040/gpio/index.html) | GPIO control for Embassy RP | Controls float sensor input, water pump output, display control pins, and RTC interrupt |
+| [embassy-rp::i2c](https://docs.embassy.dev/embassy-rp/git/rp2040/i2c/index.html) | I2C communication for Embassy RP | Communicates with DS3231 RTC module for wake timer functionality and alarm management |
+| [embassy-rp::spi](https://docs.embassy.dev/embassy-rp/git/rp2040/spi/index.html) | SPI communication for Embassy RP | Interfaces with ST7735s display at 32MHz for real-time status visualization |
+| [mipidsi](https://github.com/almindor/mipidsi) | Display driver for small TFT displays | Drives ST7735s display with custom orientation and color graphics rendering |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded devices | Renders text with multiple font styles and color-coded status information on display |
+| [display-interface-spi](https://github.com/therealprof/display-interface) | SPI display interface abstraction | Provides SPI interface abstraction for the display driver |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives for Embassy | Provides mutex for shared SPI bus access between display components |
+| [heapless](https://github.com/japaric/heapless) | Collections without heap allocation | Creates formatted strings for display output without dynamic allocation |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework | Provides structured logging for sensor readings, system status, and debugging information |
 
 ## Links
 
