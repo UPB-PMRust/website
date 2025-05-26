@@ -166,5 +166,6 @@ The format is
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
-
+[LoadCell](https://crates.io/crates/loadcell)
+[Pixel art site](https://www.pixilart.com/draw#)
 
