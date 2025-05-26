@@ -45,6 +45,7 @@ I assembled the components on the breadboard and connected them to the Raspberry
 
 ### Week 19 – 25 May
 
+
 In this week, I focused on developing the software in the main.rs file to integrate the microphone input, LED strip, and IR remote. I implemented the logic for reading IR codes, interpreting them to trigger specific LED effects, and reacting to audio intensity changes in real-time. I also handled the transition between effects using the IR remote and ensured that signal reading remained reliable. Testing and adjustments were made to improve responsiveness and stability.
 
 ## Hardware
@@ -70,7 +71,9 @@ In this week, I focused on developing the software in the main.rs file to integr
 
 ## Schematics
 
+
 ![Schematics](schematic.svg)
+
 
 
 ## Bill of Materials
@@ -103,5 +106,7 @@ In this week, I focused on developing the software in the main.rs file to integr
 
 
 ## Links
+
 1. https://www.youtube.com/watch?v=7YLF-N0596I&ab_channel=NazmusNasir
 2. Link demo: https://www.youtube.com/watch?v=eyQGVYR-vT4
+
