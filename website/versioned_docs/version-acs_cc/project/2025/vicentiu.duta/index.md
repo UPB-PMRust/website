@@ -149,7 +149,48 @@ These components are integrated through different communication protocols:
 | Consumables | Jumper wires, breadboard, pins, 3d printing, etc. | 150 RON |
 
 ## Software
+### Architecture Overview
 
+The software implementation uses the Embassy framework for Rust embedded systems, providing an asynchronous, event-driven architecture. The main application runs in a single task that coordinates all system components through sequential state management.
+
+### Detailed Design
+
+The application is structured around four core modules:
+
+#### 1. RFID Authentication Module
+- Continuously polls the MFRC522 reader via SPI protocol
+- Validates card UIDs against authorized database with floor permissions
+- Handles communication errors with retry mechanisms
+
+#### 2. Display Management System  
+- Controls ST7735 TFT display via high-speed SPI for visual feedback
+- Manages custom bitmap icons for system states and floor indicators
+- Provides real-time status updates during elevator operations
+
+#### 3. Motor Control System
+- **Stepper Motor**: Controls NEMA 17 motor through DRV8825 driver with precise step calculation
+- **Floor Tracking**: Monitors position and provides movement callbacks for display updates
+
+#### 4. Door Control System
+- Operates MG90S servo motor via PWM signals (50Hz frequency)
+- Manages automated door sequences with 3-second open periods
+- Ensures fail-safe closed state during initialization
+
+### Functional Diagram
+
+```mermaid
+flowchart TD
+    A[System Start] --> B[Wait for RFID Card]
+    B --> C{Card Authorized?}
+    C -->|No| D[Access Denied] --> B
+    C -->|Yes| E[Open Door]
+    E --> F[Move to Floor]
+    F --> G[Open Door at Destination]
+    G --> H[Return to Ground Floor]
+    H --> B
+```
+
+The system operates through a continuous cycle: authentication → door control → floor movement → return to ground, with comprehensive visual feedback and precise motor control throughout each phase.
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/) | Async execution framework | Task management and main entry point |
@@ -168,7 +209,4 @@ These components are integrated through different communication protocols:
 | [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | RTT transport | Debug output channel |
 | [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Panic handler | Error reporting to debug probe |
 | [tinybmp](https://docs.rs/tinybmp/latest/tinybmp/) | BMP image decoder | Loading floor icons and status images for display |
-<!--## Links -->
-
-<!-- Add a few links that inspired you and that you think you will use for your project -->
 
