@@ -106,6 +106,51 @@ This list details the recommended Rust crates for the "Music Lights" project usi
 | [`defmt-rtt`](https://crates.io/crates/defmt-rtt)                                                           | RTT backend for `defmt`.                                                 | Enables real-time logging via debug probe.                                                           |
 | `core::sync::atomic`                                                                                        | Atomic types from the `core` standard library.                           | For thread-safe atomic operations between tasks. (Ex: `AtomicBool`, `AtomicU8`)                      |
 
+### Detailed Design
+
+The "Music Lights" firmware, written in Rust for Raspberry Pi Pico, uses the Embassy asynchronous runtime. All core logic resides in `main.rs`.
+
+**1. Core Control Flow (Main Loop @ ~67 FPS):**
+A `Ticker` drives the main loop. Each iteration involves:
+   - **Button Input:** Debounced reads from two buttons (`PIN_14`, `PIN_15`) modify global state:
+     - Button 1: Toggles `MIC_MODE` (music/solid) and cycles `COLOR_INDEX` if switching to solid.
+     - Button 2: Cycles `VISUALIZATION_MODE` (if music) or `COLOR_INDEX` (if solid).
+   - **Audio Processing:** An ADC sample (`PIN_26`) is processed by `FastAudioProcessor` to yield an `AudioAnalysis` struct (amplitude, energy, beat).
+   - **Visualization:**
+     - If `MIC_MODE` is true, a `visualize_...` function (selected by `VISUALIZATION_MODE`) uses `AudioAnalysis` and a `step` counter to generate LED patterns.
+     - If `MIC_MODE` is false, `solid_color()` (based on `COLOR_INDEX`) determines the LED color.
+   - **LED Output:** The `RGB8` array is sent to the WS2812 ring via PIO/DMA (`PioWs2812`).
+   - A `step` counter for animations is incremented.
+
+**2. State Management:**
+Global state is managed via `core::sync::atomic` variables, updated by button logic:
+   - `MIC_MODE: AtomicBool`: Music reactive vs. solid color.
+   - `COLOR_INDEX: AtomicU8`: Current solid color.
+   - `VISUALIZATION_MODE: AtomicU8`: Current music visualization.
+
+**3. Audio Processing (`FastAudioProcessor`):**
+This module performs lightweight, real-time audio analysis without a full FFT:
+   - **`process_sample(sample: i16)`:**
+     - Calculates instantaneous amplitude, RMS energy (from a small sample buffer), and peak amplitude (with decay).
+     - Detects beats by comparing current RMS energy to a historical average, considering an energy threshold and a debounce timer.
+   - **Output (`AudioAnalysis` struct):** Provides normalized amplitude, peak, energy, and a beat flag.
+
+**4. Visualization Functions:**
+A suite of `visualize_...` functions translate `AudioAnalysis` into LED effects (e.g., `visualize_rainbow_wave`, `visualize_vu_meter`, `visualize_beat_pulse`). Utility functions like `wheel()` and `solid_color()` assist in color generation. `BeatVisualizerState` manages state for the beat pulse effect.
+
+**5. Hardware Abstraction (Embassy-RP):**
+Embassy HAL crates provide asynchronous, non-blocking access to RP2040 peripherals:
+   - PIO & DMA (`PioWs2812`) for WS2812 LED control.
+   - ADC (`Adc`, `Channel`) for microphone input.
+   - GPIO (`Input`) for buttons.
+   - Interrupts (`bind_interrupts!`) for PIO and ADC.
+   - Timing (`Ticker`, `Instant`, `Duration`).
+
+**6. Asynchronous Execution (Embassy-Executor):**
+The `#[embassy_executor::main]` task orchestrates all operations. The use of `async/await` and the `Ticker` ensures a responsive system with a consistent update rate for animations.
+
+## Functional Diagram
+![Functional Diagram](./software-sch.svg)
 
 ## Links
 - [Lab1](https://pmrust.pages.upb.ro/docs/acs_cc/lab/01)
