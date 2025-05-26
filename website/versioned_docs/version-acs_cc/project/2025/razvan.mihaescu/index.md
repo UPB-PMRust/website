@@ -248,6 +248,28 @@ The format is
 | [micromath](https://crates.io/crates/micromath) | Embedded-friendly math library featuring fast floating point approximations | Used for mathematical operations |
 | [chrono](https://crates.io/crates/chrono) | Date and time library | Used for handling date and time operations |
 
+### Software Design:
+
+* **Sensor Management**: Asynchronous sensor reading with calibration routines for gas sensors
+* **Display System**: Dynamic color-coded display with real-time updates showing all environmental parameters
+* **Network Communication**: WiFi-based TCP client sending both periodic sensor data and emergency alerts
+* **Safety Control Logic**: Automated responses including buzzer activation, fan control, and remote notifications
+* **Data Logging**: Sensor data transmitted to Python TCP server every 5 seconds for historical analysis
+
+### Key Software Components:
+
+| Module | Description | Functionality |
+|--------|-------------|---------------|
+| `main.rs` | Core application logic | Sensor coordination, display management, safety algorithms |
+| `bmp280.rs` | Temperature/pressure sensor driver | I2C communication, calibration, compensated readings |
+| `mq7.rs` | Carbon monoxide sensor driver | ADC reading, PPM calculation, baseline calibration |
+| `flame_sensor.rs` | Flame detection driver | Dual-mode sensing (analog intensity + digital detection) |
+| `sound_sensor.rs` | Audio detection driver | Digital noise level detection |
+| `uv_sensor.rs` | UV radiation sensor driver | UV index calculation with safety categorization |
+| `buzzer.rs` | Alert system driver | Tone generation for emergency warnings |
+| `fan.rs` | Climate control driver | PWM-based speed control for temperature regulation |
+| `server.py` | Data logging server | TCP server for receiving and storing sensor data |
+
 
 
 ## Links
