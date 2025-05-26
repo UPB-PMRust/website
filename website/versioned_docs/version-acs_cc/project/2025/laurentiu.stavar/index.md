@@ -55,7 +55,7 @@ Finished the setup. Implemented buttons and LEDs functionalities. Also made the 
 
 ### Week 12 – 18 May
 
-Implemented all the game logic(cards, deck, hands, state, etc). Started working with the I2C MUX and the 8 OLEDs for the cards display
+Implemented all the game logic(cards, deck, hands, state, etc). Started working with the I2C MUX and the 8 OLEDs for the cards display. The only thing left to do is showing the cards on the OLEDs(they are already working).
 
 ### Week 19 – 25 May
 
