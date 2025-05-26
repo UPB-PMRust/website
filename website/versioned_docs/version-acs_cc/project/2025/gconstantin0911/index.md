@@ -65,14 +65,19 @@ Purchased replacement sensors after some of the original ones stopped working, a
 
 ### Photos
 
+Before assembly
 ![alt text](ProjectPhoto.webp)
 
+Pico in the box
 ![alt text](Pi_Pico_Cables.webp)
 
+Front face
 ![alt text](Front_face_parking.webp)
 
+Side
 ![alt text](Side_face_parking.webp)
 
+LCD
 ![alt text](LCD_no_space_free.webp)
 
 ### Bill of materials
