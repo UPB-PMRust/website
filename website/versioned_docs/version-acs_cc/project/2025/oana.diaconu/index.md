@@ -61,7 +61,9 @@ This idea seemed like a suitable one for me, as a person that sometimes forgets 
 - started to develop the code for independent functioning
 - updated the schematic and the diagram
 ### Week 19 - 25 May
-
+- acquired diodes and condenser for stability and solved the pumps problems
+- implemented logic for the ultrasonic sensor measuring the water level left in the tank and the display
+- finished the source code so the two pots are managed individually through different tasks
 
 ## Hardware
 
@@ -76,6 +78,7 @@ This idea seemed like a suitable one for me, as a person that sometimes forgets 
 - Breadboard Power Supply: provides stable 3.3V/5V voltage and sufficient current to power some of the peripherals
 - Logic Level Shifter: provides correct connection between different voltages(3.3V and 5V)
 - Breadboard and jumper wires: used to connect all the components together
+- Diodes + condenser : used for stabilizing the power 
 
 ![](photo1.webp)
 ![](photo2.webp)
@@ -115,7 +118,9 @@ This idea seemed like a suitable one for me, as a person that sometimes forgets 
 |embassy-executor | Async tasks executor | Non-blocking execution of tasks |
 |embassy-time | Non-blocking waits | Delays |
 |defmt |Logging | Debugging|
-|panic-probe | Panic handler | Print panics
+|panic-probe | Panic handler | Print panics|
+|hd44780_driver | Output | Print on display|
+
 
 
 ## Links
@@ -129,3 +134,5 @@ This idea seemed like a suitable one for me, as a person that sometimes forgets 
 - [Ultrasonic sensor usage](https://www.youtube.com/watch?v=JvQKZXCYMUM)
 - [Power Supply](https://www.youtube.com/watch?v=1er6XQ-BMp4)
 - [Sensors reading](https://blog.theembeddedrustacean.com/embedded-rust-embassy-analog-sensing-with-adcs)
+- [Display printing](https://crates.io/crates/hd44780-driver)
+- [Ultrasonic sensor measurement](https://blog.theembeddedrustacean.com/esp32-embedded-rust-at-the-hal-timer-ultrasonic-distance-measurement)
