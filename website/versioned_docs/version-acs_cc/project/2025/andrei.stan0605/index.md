@@ -34,6 +34,22 @@ I chose this project because it addresses a real need for monitoring urban envir
 
 ## Log
 
+### Week 5 - 11 May
+- Started setup for Rust codebase  
+- Finished concept diagram  
+- Purchased part of the components  
+- Wrote some code for sensors  
+
+### Week 12 - 18 May
+- Purchased the rest of the components  
+- Designed and made the prototyping board  
+- Started writing the code  
+
+### Week 19 - 25 May
+- Finished the hardware for the project  
+- Wrote the code for the sensor components  
+- Wrote the code for Aggregator and Collector nodes  
+
 ## Hardware
 
 The three types of nodes will be based on Raspberry Pi Pico 2W boards. Sensor nodes will be equipped with a temperature and atmospheric pressure sensor, as well as a sound sensor. Additionally, these nodes will include distance sensors to detect when a bus is at the stop, allowing data transfer to begin. A Real-Time Clock (RTC) will also be used to record the exact time when the data is collected.
