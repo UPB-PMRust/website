@@ -38,11 +38,11 @@ Purchased all components: Raspberry Pi Pico W, ultrasonic sensor, OLED display, 
 
 ### Week 12 - 18 May
 
-Successfully set up the OLED display and displayed live distance data. Installed and configured the stepper motor with driver. Wrote and tested the final code that integrates all components. The project is now fully functional.
+Successfully set up the OLED display and displayed live distance data. Installed and configured the stepper motor with driver. Wrote, tested and uploaded the final code that integrates all components. The project is now fully functional.
 
 ### Week 19 - 25 May
 
-I did nothing this week.
+Updated README file and uploaded SCH and SVG files to the project repository.
 
 ## Hardware
 
