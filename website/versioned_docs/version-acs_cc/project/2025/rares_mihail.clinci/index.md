@@ -91,6 +91,7 @@ graph TD
 - created the general flow of the mechanism
 - created a README
 
+
 ## Hardware
 
 
@@ -108,6 +109,10 @@ Hardware used:
 - breadboard and wires
 
 ![Circuit](circuit.webp)
+![Circuit](img1.webp)
+![Circuit](img2.webp)
+![Circuit](img3.webp)
+![Circuit](img4.webp)
 
 ### Schematics
 
