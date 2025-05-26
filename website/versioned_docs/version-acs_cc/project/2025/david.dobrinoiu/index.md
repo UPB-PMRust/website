@@ -68,8 +68,16 @@ efficient, and can have a positive impact in everyday life.
 ### Week 12 - 18 May
 - Sensor readings integrated, pump logic implemented
 
-### Week 19 - 25 May
-- Final integration
+
+### Week 20 - 26 May
+
+Implemented soil moisture senor reading (ADC) and automatic pump activation based on threshold
+Manual watering button with immediate pump activation
+Ambient light measurement using both BH1750 (digital I2C) and analog photoresistor
+Temperature and humidity monitoring using HTU21 sensor (I2C)
+LED indicators based on air humidity and temperature thresholds
+Audible warning (buzzer) triggered by excessive light, with manual override button
+Verified stability of the main asynchronous loop (async fn main)
 
 ---
 
