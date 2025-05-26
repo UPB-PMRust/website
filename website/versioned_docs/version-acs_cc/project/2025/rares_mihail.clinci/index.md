@@ -81,6 +81,15 @@ graph TD
 - designed the hardware on the board
 
 ### Week 19 - 25 May
+- added screen module
+- added humidity module: connected the HR202 module and LED through code
+- set up the user input thorugh the buttons
+- added the food level module: though the distance sensor
+- tried several crates for HX711 module: hx711, hx711_spi, loadcell
+- set up the food dispensing module: through the servo
+- added the clock module: by setting up the spi RTC using interrupts
+- created the general flow of the mechanism
+- created a README
 
 ## Hardware
 
@@ -147,8 +156,7 @@ The format is
 | [display-interface-spi](https://github.com/almindor/display-interface) | SPI display abstraction | Connects the embedded-graphics to SPI-based displays |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Traits for embedded devices | Base for SPI, I2C, ADC, GPIO, etc. |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging crate for embedded | For debugging and structured logs |
-| [pcf8563](https://github.com/nebelgrau77/pcf8563-rs) | RTC library | Interacting with the real time clock |
-| [hx711](https://github.com/jonas-hagen/hx711) | Load Cell Library | Reading the data from the load cell |
+| [loadcell](http://github.com/DaneSlattery/hx711) | Load Cell Library | Reading the data from the load cell |
 
 ## Links
 
