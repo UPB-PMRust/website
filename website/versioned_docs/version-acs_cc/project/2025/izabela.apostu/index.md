@@ -45,7 +45,8 @@ I assembled the components on the breadboard and connected them to the Raspberry
 
 ### Week 19 – 25 May
 
-TO DO
+In this week, I focused on developing the software in the main.rs file to integrate the microphone input, LED strip, and IR remote. I implemented the logic for reading IR codes, interpreting them to trigger specific LED effects, and reacting to audio intensity changes in real-time. I also handled the transition between effects using the IR remote and ensured that signal reading remained reliable. Testing and adjustments were made to improve responsiveness and stability.
+
 ## Hardware
 ![Hardware1](hardware1.webp)
 ![Hardware2](hardware2.webp)
@@ -87,16 +88,20 @@ TO DO
 
 ## Software
 
+| Library           | Description                                      | Usage                                                                 |
+|------------------|--------------------------------------------------|-----------------------------------------------------------------------|
+| `embassy-rp`      | Async runtime for Raspberry Pi Pico              | Initializes peripherals and runs async code on the RP2040             |
+| `embassy-executor`| Task scheduling for embedded systems             | Enables concurrent async tasks (IR decoding, LED effects)       |
+| `smart-leds`      | Driver for WS2812B addressable LEDs              | Controls individual RGB LEDs based on brightness/intensity            |
+| `defmt`           | Lightweight logging framework for embedded       | Sends debug messages efficiently during execution                     |
+| `defmt-rtt`       | RTT backend for `defmt`                          | Displays IR codes and system messages in real-time via USB            |
+| `pio`             | Programmable I/O support                         | Sends precise signals to the LED strip using RP2040 PIO hardware      |
+| `embassy-time`    | Asynchronous timing utilities                    | Used for precise delays (`Timer::after`, `Instant`) in LED animations |
+| `micromath`       | Math functions for float calculations            | Used for sine wave animations (wave, rainbow)                   |
+| `static_cell`     | Safe static memory allocation                    | Stores the global current effect state (`MODE_REF`)                   |
+| `embassy-sync`    | Lock-free mutex support                          | Ensures safe shared access to LED state from multiple tasks           |
 
-
-| Library           | Description                               | Usage                                             |
-|------------------|-------------------------------------------|---------------------------------------------------|
-| embassy-rp       | Embedded async runtime for Raspberry Pi   | Provides asynchronous execution on Pico W         |
-| embassy-executor | Task scheduling for embedded systems      | Allows concurrent non-blocking task management    |
-| smart-leds       | LED driver crate for WS2812B              | Used to control the RGB LED strip                 |
-| defmt             | Lightweight logging framework             | Debugging and runtime logging                     |
-| defmt-rtt         | RTT-based transport for `defmt` logs      | Enables real-time terminal output via USB         |
-| pio              | Programmable I/O interface crate          | Drives precise WS2812B timings using PIO hardware |
 
 ## Links
 1. https://www.youtube.com/watch?v=7YLF-N0596I&ab_channel=NazmusNasir
+2. Link demo: https://www.youtube.com/watch?v=eyQGVYR-vT4
