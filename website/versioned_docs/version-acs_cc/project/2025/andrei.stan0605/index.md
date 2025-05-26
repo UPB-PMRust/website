@@ -73,7 +73,7 @@ Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, whic
 | [cyw43](https://github.com/embassy-rs/embassy/tree/main/cyw43) | Wi-Fi chip driver | Used for communication with the integrated Wi-Fi chip |
 | [embedded-hal](https://github.com/golemparts/rppal) | Hardware Abstraction Layer | Used for I2C and GPIO control |
 | [embassy](https://github.com/embassy-rs/embassy) | Async framework  | Used for async task scheduling, timers, and peripheral drivers |
-
+| [itoa](https://github.com/dtolnay/itoa) | Conversion of integers to stings  | Used for conversion of integer primitives to decimal strings |
 
 ## Links
 
