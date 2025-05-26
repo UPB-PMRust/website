@@ -31,8 +31,12 @@ Voi folosi un servo-motor, breadboard, Ultrasonic Sensor HC -SR04, Display LCD I
 - Am creat schema electrica in KiCad.
 
 ### Week 12 - 18 May
+- Am testat fiecare piesa.
+- Am dezvoltat partea hardware.
 
 ### Week 19 - 25 May
+- Am inceput partea de dezvoltare software.
+- Am gasit solutii pentru problemele de alimentare.
 
 ## Hardware
 
@@ -71,14 +75,21 @@ The format is
 ## Software
 
 | Library | Description | Usage |
-|---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+|---------|-----------|-----------|
+| [embassy_rp](https://github.com/embassy-rs/embassy) | Librărie pentru gestionarea perifericelor RP2040 | Inițializarea și utilizarea perifericelor Raspberry Pi Pico |
+| [embassy_executor](https://github.com/embassy-rs/embassy) | Executor pentru gestionarea task-urilor asincrone | Gestionarea task-urilor asincrone în aplicația ta |
+| [embassy_time](https://github.com/embassy-rs/embassy) | Librărie pentru gestionarea timpului | Folosită pentru temporizări și întârzieri în diverse funcții |
+| [hd44780_driver](https://github.com/DisplayCore/hd44780-driver) | Driver pentru afișaj LCD HD44780 | Inițializarea și manipularea ecranului LCD I2C |
+| [fixed](https://github.com/japaric/fixed) | Tipuri de numere fixe | Utilizată pentru calcule precise cu numere fixe în configurațiile PWM |
+| [heapless](https://github.com/droogmic/heapless) | Containere de date cu dimensiuni statice | Folosit pentru manipularea stringurilor pentru afișaj LCD |
+| [defmt](https://github.com/knurling-rs/defmt) | Sistem de logging și debugging | Folosit pentru output-ul de mesaje de debug și info |
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://github.com/darius-afk/PM-Proiect)
-2. [link](https://example3.com)
+1. [link](https://arduinointro.com/articles/projects/using-the-hc-sr04-ultrasonic-sensor-to-detect-objects)
+2. [link](https://forum.arduino.cc/t/ultrasonic-sensor-hc-sr04-tracking-and-following-object/1296914)
+3. [link](https://forum.arduino.cc/t/how-to-sound-the-buzzer-when-ultrasonic-sensor-detect-the-object-please-help/577631)
 ...
