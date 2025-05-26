@@ -7,10 +7,7 @@ A smart package security system to monitor and verify package integrity during t
 **Author**: Sebastian Stefan Bahrin  
 
 **GitHub Project Link**: [\[link_to_github\]](https://github.com/UPB-PMRust-Students/proiect-SebiBahrin)
-<<<<<<< HEAD
 **Youtube Project Demonstration**: [\[link_to_youtube\]](https://youtube.com/playlist?list=PLd5iMKv4MkYztaQBolhx833o1cFwwk0Dg&si=SrzNUDQCWMnlIYsO)
-=======
->>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add
 
 :::
 
@@ -41,11 +38,8 @@ Beyond individual consumers, this technology has significant implications for in
 
 ### Connection Diagram:
 ## System Diagram
-<<<<<<< HEAD
-![Diagrama](./diagrama.webp) 
-=======
+
 ![Diagrama](./Diagrama.svg) 
->>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add
 
 ## **Hardware**
 
