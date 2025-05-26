@@ -3,7 +3,7 @@ A smart basketball hoop powered by a Raspberry Pi Pico 2W and Rust.
 
 :::info
 
-**Author**: Radu Andrei-Laurențiu \
+**Author**: Radu Andrei-Laurențiu
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-andreilaurentiuradu
 
 :::
@@ -12,9 +12,9 @@ A smart basketball hoop powered by a Raspberry Pi Pico 2W and Rust.
 A smart basketball hoop built on a **Raspberry Pi Pico 2W**, using the **Rust** programming language and Embassy async framework.
 
 ### Features:
-+ Ball trajectory detection using 3 ultrasonic sensors
++ Ball trajectory detection using 4 ultrasonic sensors
 + Real-time shot quality feedback with RGB LEDs
-+ Score counter on a 7-digit display
++ Score counter on a 4-digit display
 
 ## Motivation
 As a sports enthusiast and basketball fan, I wanted to create a project that helps players improve their shooting accuracy. This smart system provides instant, data-driven feedback to optimize performance during training.
@@ -45,15 +45,12 @@ Based on the shoot, the RGB LEDs will show one of the color:
 ## Log
 
 ### Week 5 – 11 May
-
-TO DO
+Ordering some components and building the hoop
 
 ### Week 12 – 18 May
-
-TO DO
+Kicad schematics
 
 ### Week 19 – 25 May
-
 TO DO
 
 ## Hardware
@@ -61,11 +58,21 @@ TO DO
 The **Raspberry Pi Pico 2W** serves as the core controller, interfacing with the sensors and peripherals.
 
 - **IOE-SR05 Ultrasonic sensors** : measure the distance between the ball and the rim to analyze the trajectory.
+- **HC-SR04 Ultrasonic sensors** : check if the ball is shooted directly into the net, touched the rim or was a fa
 - **RGB LEDs** : light up based on shot accuracy (e.g., green for perfect, red for miss).
-- **7-digits display** : increments the score when a basket is made.
+- **4-digits display** : increments the score when a basket is made.
 - **Wireless module(built-in)**: sends data to a PC or mobile device for further analysis.
 
 ## Schematics
+**OVERALL**
+![diagram](smart_hoop.svg)
+
+## Photos
+**FRONT**
+![diagram](front.webp)
+**BACK**
+![diagram](back.webp)
+
 
 ## Bill of Materials
 
@@ -75,12 +82,11 @@ The **Raspberry Pi Pico 2W** serves as the core controller, interfacing with the
 | [Small basketball hoop](https://www.decathlon.ro/p/mini-cos-de-baschet-sk100-negru-auriu/_/R-p-346317?mc=8901657) | Skeleton | 65 RON
 | [Jumpers](https://www.bitmi.ro/componente-electronice/40-fire-dupont-tata-mama-30cm-10504.html) | Connectivity | 8 RON |
 | [IOE-SR05 Ultrasonic Distance Sensor with Serial Interface (3 - 5.5 V)](https://www.optimusdigital.ro/ro/senzori-senzori-de-distanta/8152-senzor-de-distana-ultrasonic-ioe-sr05-cu-interfaa-seriala-3-55-v.html?search_query=ultrasonic&results=47) | Getting data | 20 RON x 3
-| [74HC595 2 Digits 7 Segment LED Display](https://www.optimusdigital.ro/en/led-displays/5605-74hc595-2-digits-7-segment-led-display.html?srsltid=AfmBOooWyQfFC3hv-Gp_PNDsWUwUZ5Xn56lRWl8V-sAAV3vUrpmnz7F7) ×9 | Visual display | 9 RON |
+| [Display LED 4 digit TM1637](https://www.bitmi.ro/modul-display-led-4-biti-tm1637-0-36-anod-comun-10673.html?gad_source=1&gad_campaignid=22005142538&gbraid=0AAAAADLag-lb0hv37FVqo9ngxLMEQloLJ&gclid=Cj0KCQjw0LDBBhCnARIsAMpYlAryXOHGNFbXlJQ9n_QizxTG0eCuTQ0Ioq2tGBjabu4RY6cxirZU8-QaAr8UEALw_wcB) | Visual display | 6 RON |
 | [RGB LEDS](https://www.optimusdigital.ro/en/leds/5618-144-pcs-rgb-led-neopixels-ws2812b.html?gad_source=1&gad_campaignid=21360696715&gbraid=0AAAAADv-p3B2c0vBEDSIvQOgdRjvNBiy7&gclid=Cj0KCQjwoNzABhDbARIsALfY8VPsUSj4vp2kUib3_-QPmvutuwetDTkopSimuhPmvOD4ns7v9FyjVNIaAqXsEALw_wcB ) | Feedback for Player | 50 RON |
+| [HC-SR04 Ultrasonic Distance Sensor](https://ardushop.ro/ro/electronica/2289-modul-senzor-ultrasonic-detector-distanta-hc-sr04-6427854030726.html?gad_source=1&gad_campaignid=22058879462&gbraid=0AAAAADlKU-6Mwhj2CaAa-5jV0Ic3VkQvP&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkYevXzdwh0-sLh_WThlxYnUHZ5OZbnyspcSWvaxLTNA0JLXkTwlSVMaAsS2EALw_wcB) | Getting data | 10 RON
 
-
-
-TOTAL: ~210 RON
+TOTAL: ~217 RON
 
 ## Software
 
@@ -90,13 +96,10 @@ TOTAL: ~210 RON
 | [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging framework | Used for real-time debug output over RTT, ideal for embedded systems |
 | [rp-pico](https://github.com/rp-rs/rp-hal) | Board support crate | Hardware abstraction for the Raspberry Pi Pico 2 (RP2040 chip) |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer | Unifies access to GPIO, I2C, PWM, and other peripherals across MCUs |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Graphics library | Renders text and shapes on OLED displays |
 | [fugit](https://github.com/knurling-rs/fugit) | Time utilities | Manages time-based tasks like LED blinking and debouncing |
 | [embedded-nal](https://github.com/rust-embedded-community/embedded-nal) | Networking abstraction | Defines traits for network communication (TCP/UDP) over Wi-Fi modules |
-| [esp-idf-sys](https://github.com/esp-rs/esp-idf-sys) / [arduino-rs](https://github.com/Rahix/arduino-hal) | Platform support crates | Enables wireless networking and board support for ESP32 or Arduino |
 | [serde](https://github.com/serde-rs/serde) | Serialization/deserialization | Converts score and analytics data to/from formats like JSON |
-| [reqwest](https://github.com/seanmonstar/reqwest) / [rumqttc](https://github.com/bytebeamio/rumqtt) | Network clients | Sends data to servers using HTTP or MQTT |
-| [nalgebra](https://github.com/dimforge/nalgebra) | Math and linear algebra | Used for trajectory estimation and analytics (e.g. angle, velocity) |
+| [rumqttc](https://github.com/bytebeamio/rumqtt) | Network clients | Sends data to servers using HTTP or MQTT |
 
 
 
