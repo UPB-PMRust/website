@@ -113,6 +113,9 @@ The device is organized into four main blocks, interconnected by the Raspberry P
 | **Servo.h**            | Servo motor control                           | Precise-angle token dispensing                |
 | **TinyUSB / LWIP**     | USB / TCP-IP stack (optional Wi-Fi)            | OTA updates or remote monitoring              |
 
+# Mini demo with partial functionality
+[Demo Video](https://youtube.com/shorts/QZaFL6a15M0?si=qJom5lArtQCwAinu)
+
 ## Links
 
 1. [ST7735 SPI Display – Adafruit](https://www.adafruit.com/product/358)  

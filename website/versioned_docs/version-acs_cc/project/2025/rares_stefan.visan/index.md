@@ -68,7 +68,7 @@ It reads input from three HC-SR04P ultrasonic sensors to detect hand proximity, 
 
 The 4 x MAX7219 8x8 LED Matrix modules are separately connected to the microcontroller. All four matrices share the same DIN and CLK lines (SPI bus). Each matrix has its own Chip Select (CS) line, allowing the Raspberry Pi Pico to control them independently via SPI. 
 
-All the hardware components are mounted on a cardboard base, with the LED matrices arranged to form a 16x16 grid. The sensors are positioned on the sides of the matrices to detect hand movements, and the buttons are easily accessible for player interaction. All wires are are hidden under the cardboard to create a clean and user-friendly interface.
+
 
 Two tactile push buttons are used to confirm actions and reset the game. 
 
@@ -78,7 +78,7 @@ A passive buzzer generates sound effects, enhancing user feedback and engagement
 
 ![Hardware1](hardware1.webp)
 ![Hardware2](hardware2.webp)
-![Hardware4](hardware4.webp)
+
 
 ### Schematics
 
@@ -99,45 +99,6 @@ A passive buzzer generates sound effects, enhancing user feedback and engagement
 
 ## Software
 
-| Library                                                         | Description                                     | Usage                                                                      |
-| --------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------- |
-| [`embassy`](https://github.com/embassy-rs/embassy)              | Async framework for embedded Rust               | Manages async tasks for input polling, game logic, and display updates     |
-| [`embassy-rp`](https://github.com/embassy-rs/embassy)           | Embassy RP2040 HAL                              | Provides GPIO, SPI, PWM, and peripheral drivers for the Raspberry Pi Pico  |
-| [`embedded-hal`](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer for embedded systems | Abstracts SPI, GPIO, and digital input for cross-platform embedded support |
-| [`defmt`](https://github.com/knurling-rs/defmt)                 | Logging for embedded systems                    | Used for info/debug output (via RTT) in embedded context                   |
-| [`defmt-rtt`](https://github.com/knurling-rs/defmt)             | RTT (Real-Time Transfer) backend for defmt      | Transports debug logs to the host                                          |
-| [`panic-probe`](https://github.com/probe-rs/probe-rs)           | Panic handler for embedded systems              | Handles runtime panics for debugging                                       |
-| [`embassy-time`](https://github.com/embassy-rs/embassy)         | Embassy async timing primitives                 | Used for delays, timers, and async time operations                         |
-
-- **Initialization** (`main`):
-  - Configure SPI (1 MHz, Mode 0) for MAX7219
-  - Initialize CS pins, buttons, sensors, buzzer
-  - Set MAX7219 registers: shutdown, display-test, scan-limit, intensity
-  - Initialize push buttons and sensors
-  - Initialize buzzer with PWM
-- **Welcome Screen**: `select_mode` renders a scrolling message across the full 16×16 grid.
-- **Input Handling**:
-  - **Buttons**: Debounced reads on navigation/place pins
-  - **Sensors**: Take 7 distance samples, vote on the most consistent row (minimum 4), and resolve conflicts with majority logic
-- **Game Logic**:
-  - Convert selected row/column into a cell index
-  - Update the display via `draw_board_fb` function
-  - After each move, evaluate win/draw conditions
-- **Feedback**:
-  - Buzzer beep on a successful placement
-  - Victory animation on game end
-
-The program begins by initializing the SPI bus and configuring four chip-select pins for four MAX7219 LED matrix displays. It also sets up buttons (navigation and placement), three distance sensors (trigger/echo pins), and a buzzer via PWM.
-
-All four displays are initialized and cleared.
-The user is prompted to select a game mode (basic button control or sensor-based control). This is done by scrolling text across the displays and checking which button is pressed (`select_mode` function).
-
-The main loop starts a Tic-Tac-Toe game using the selected mode (buttons or sensors). After each game, it updates the score, shows a winner/score screen, and waits before restarting the loop.
-
-During the sensor-based input mode, each sensor corresponds to a column of the 3x3 grid. The software continuously measures the distance detected by each sensor. When a finger or object is brought close to a sensor, it registers the selection for its assigned row and column. By combining the readings from all three sensors, the software determines the specific cell that the player intends to choose.
-
-#### Software Diagram
-![Software Diagram](software_diagram.svg)
 
 
 ## Links
