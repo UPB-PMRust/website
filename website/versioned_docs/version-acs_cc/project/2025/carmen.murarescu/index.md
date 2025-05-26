@@ -35,6 +35,7 @@ The main architectural components are:
  - **Water Pump** - used to water the plant when necessary
 
 ### Architectural Diagram
+
 ![alt text](architectural_diagram.webp)
 
 ## Log
@@ -139,6 +140,7 @@ The main architectural components are:
 | [LCD Screen ST7735](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf)  | Displays the measurements | [28 RON](https://www.amazon.de/-/en/gp/aw/d/B0CWN27HVB?psc=1&ref=ppx_pop_mob_b_asin_title) |
 | [Power Source - 5V](https://docs.rs-online.com/9c50/0900766b8160af8c.pdf)  | Poweres the circuit | [5 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) |
 | [Others (wires, breadboards, pins etc)]  | Used for connections | [10 RON](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=breadboard+kit&results=35) |
+
 
 ### Software
 
