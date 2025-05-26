@@ -129,6 +129,52 @@ Laser tag and arcade shooting games are widely popular and engaging. This projec
 | [core::fmt](https://doc.rust-lang.org/core/fmt/index.html)               | Rust core formatting module                     | Used to format text for display (e.g. score lines)                                             |
 | [heapless](https://crates.io/crates/heapless)                            | Data structures without dynamic allocation      | Used to store and format lines of text for the LCD.                                            |
 
+### Software Description
+
+**Initialization (main)**
+
+-   Configure GPIO for the HD44780 LCD display and PWM for servomotors.
+-   Configure ADC to read analog buttons (voltage levels).
+-   Configure I2C for external EEPROM (24C256) communication (SDA/SCL).
+-   Set up LDR (light-dependent resistors) on GPIO pins to detect hits.
+-   Initialize status LED and LCD (reset, clear, display mode).
+
+**Main Menu**
+
+-   Options: Start Game or Leaderboard.
+-   Navigation and selection using analog buttons.
+
+**Game Logic**
+
+-   Timer-controlled game duration (20 seconds).
+-   Monitor LDR sensors: detect hits, move servos, turn on LED.
+-   When no hit: reset servos, turn off LED.
+-   Update LCD with current score and remaining time.
+-   Show final score when time expires.
+
+**Score Saving**
+
+-   Prompt for player initials (A-Z) using analog buttons.
+-   Compare with Top 5 scores in EEPROM.
+-   Save and sort new high scores in EEPROM.
+
+**Leaderboard**
+
+-   Read and display Top 5 scores from EEPROM.
+-   Pagination with navigation buttons.
+-   Option to return to the main menu.
+
+**Feedback**
+
+-   LED lights up on successful hit.
+-   Servos move to simulate target being hit.
+-   LCD shows real-time score and remaining time.
+-   Messages for final score.
+
+### Software Diagram
+
+![SoftSchematic](DiagramaSoft.svg)
+
 ## Links
 
 1. [Inspiration](https://projecthub.arduino.cc/ksulamanidze/hit-the-target-shooting-game-5c1638)
