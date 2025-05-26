@@ -26,7 +26,7 @@ I chose this project because I had taken a lot of creative freedom when designin
 Started doing the hardware and finished the documentation.
 
 ### Week 12 - 18 May
-Done the hardware.
+Done the hardware, began designing the case.
 
 ### Week 19 - 25 May
 Started and finished the code, including taking button input, drawing on the SPI display and the general game logic.
