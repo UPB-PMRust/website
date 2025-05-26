@@ -108,7 +108,7 @@ LED indicators were considered as a fallback option, but the final system includ
 <details>
 <summary> Table Interfaces & Pinout</summary>
 
-## Table Interfaces & Pinout
+### Table Interfaces & Pinout
 
 | Component                | Role                             | Interface            | Microcontroller Pins                        |
 |--------------------------|----------------------------------|----------------------|---------------------------------------------|
@@ -127,7 +127,7 @@ LED indicators were considered as a fallback option, but the final system includ
 <details>
 <summary> Functional Validation</summary>
 
-## Functional Validation
+### Functional Validation
 
 - Display was initialized and renders text and vector shapes (heart, star).
 - Joystick movement is mapped and read through ADC.
@@ -140,7 +140,7 @@ Each hardware component has been validated independently and in partial integrat
 
 
 
-## Some reference images  
+### Some reference images  
 
 <details>
 <summary> Top Project view</summary>
@@ -180,7 +180,6 @@ Each hardware component has been validated independently and in partial integrat
 
 #### Old prototype images:
 
-<summary> Expand images</summary>
 <details>
 <summary> Screen Display (TFT)</summary>
 
@@ -220,37 +219,37 @@ Each hardware component has been validated independently and in partial integrat
 <details>
 <summary> Detailed Hardware Description</summary>
 
-### 1. **Microcontroller – Raspberry Pi Pico 2W**
+1. **Microcontroller – Raspberry Pi Pico 2W**
 Acts as the central controller running asynchronous Rust (via Embassy). Manages all sensors, motors, buttons, and display.
 
-### 2. **Stepper Motors + A4988 Drivers**
-- Two **NEMA 17HS4401** motors  
-- Controlled using **A4988** driver boards  
-- Connected via 12V power supply (Laptop charger)  
-- GPIOs used for `STEP` and `DIR` signals  
-- Maximum motion range capped via software 
+2. **Stepper Motors + A4988 Drivers**
+    - Two **NEMA 17HS4401** motors  
+    - Controlled using **A4988** driver boards  
+    - Connected via 12V power supply (Laptop charger)  
+    - GPIOs used for `STEP` and `DIR` signals  
+    - Maximum motion range capped via software 
 
-#### Power Supply
+    Power Supply
 
-- **Purpose**: Provides power to the stepper motors and drivers
-- **Function**: A standard **12V laptop charger** is connected to a **female barrel jack socket** mounted on the base. This jack distributes power to both A4988 motor drivers.
+    - **Purpose**: Provides power to the stepper motors and drivers
+    - **Function**: A standard **12V laptop charger** is connected to a **female barrel jack socket** mounted on the base. This jack distributes power to both A4988 motor drivers.
 
-### 3. **Joystick**
-- 2-axis analog stick with integrated click  
-- Connected to ADC (GP26, GP27)  
-- `K` click is connected to GP18  
-- Used for manual movement and toggling mode  
+3. **Joystick**
+    - 2-axis analog stick with integrated click  
+    - Connected to ADC (GP26, GP27)  
+    - `K` click is connected to GP18  
+    - Used for manual movement and toggling mode  
 
-### 4. **Push Buttons**
-- **Pause** (GP19): pauses or resumes drawing  
-- **Clear** (GP20): stops current pattern and switches to manual  
-- Pull-up configured on both lines  
+4. **Push Buttons**
+    - **Pause** (GP19): pauses or resumes drawing  
+    - **Clear** (GP20): stops current pattern and switches to manual  
+    - Pull-up configured on both lines  
 
-### 5. **TFT LCD (1.8” ST7735S)**
-- Connected via SPI0  
-- Pins: CLK (GP2), MOSI (GP3), MISO (GP4), CS (GP5), DC (GP7), RST (GP6)  
-- Used to display current mode, pattern, and X/Y ball position  
-- Powered at 3.3V and initialized via `mipidsi` + `embedded-graphics`
+5. **TFT LCD (1.8” ST7735S)**
+    - Connected via SPI0  
+    - Pins: CLK (GP2), MOSI (GP3), MISO (GP4), CS (GP5), DC (GP7), RST (GP6)  
+    - Used to display current mode, pattern, and X/Y ball position  
+    - Powered at 3.3V and initialized via `mipidsi` + `embedded-graphics`
 
 </details>
 
@@ -408,7 +407,6 @@ flowchart TD
 | [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for handling async tasks like motor control, button input, and joystick |
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2350 support for Embassy | Provides access to GPIO, SPI, and timers for Raspberry Pi Pico 2 |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Async traits for embedded drivers | Used to write generic and portable async code for GPIO and other devices |
-| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Synchronization primitives | For task coordination |
 | [display-interface-spi](https://github.com/almindor/display-interface) | SPI abstraction layer for embedded displays | Bridges SPI device and display protocol used by the screen |
 | [mipidsi](https://github.com/almindor/mipidsi) | Display driver for ST7735s via SPI | Used for LED display, to show mode, pattern, or pause state |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Draw UI and shapes on screen | Used to create a user interface on the display |
@@ -446,7 +444,7 @@ The firmware is written in **Rust** using the asynchronous `Embassy` framework, 
   - Interprets joystick analog input via ADC into X/Y motion.
   - Uses deadzones and directional mapping (`map_axis`) to convert input into stepper actions.
 
-- **Automatic Drawing Engine** (`run_automatic_pattern()`):
+- **Automatic Drawing Handler** (`run_automatic_pattern()`):
 
   - Uses a **scaled & centered** pattern (heart/star/etc.) defined as a list of points.
   - Traverses points with a **Bresenham-style line algorithm** for efficient motor movement.
@@ -485,6 +483,34 @@ ms2.set_low();  // manual mode: full step for snappy response
   - Selected pattern
   - Pause and clear flags
 
+#### Calibration
+
+Joystick axes are read via ADC0 and ADC1. Calibration is done using `map_axis(val: u16)`, which defines movement only when:
+- Left/Down: `val < 500`
+- Neutral: `1700 < val < 2800`
+- Right/Up: `val > 3000`
+
+---
+
+#### Optimization Points
+
+- Microstepping (MS2 high) used in auto mode for smooth curves.
+- Minimal redraw of the screen (avoid flickering).
+- Early return in all tasks on mode/pattern change or pause.
+- Pattern coordinates are pre-scaled.
+- Shared state via atomics.
+
+#### Motivated Lab use
+- **ADC** for Joystick 
+    - Manual control of the ball position
+- **GPIO** for Buttons
+    - Control modes and clear functionality
+- **SPI** for TFT Display
+    - Show current mode, pattern, and position
+- **GPIO** for Stepper Drivers
+    - Control motor movement in manual and auto modes
+- **Async/Await** for non-blocking operations
+- **Atomic types** for shared state (mode, pattern, pause) between tasks
 
 ## Links
 
