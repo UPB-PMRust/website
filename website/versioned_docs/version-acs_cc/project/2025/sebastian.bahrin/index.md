@@ -7,7 +7,10 @@ A smart package security system to monitor and verify package integrity during t
 **Author**: Sebastian Stefan Bahrin  
 
 **GitHub Project Link**: [\[link_to_github\]](https://github.com/UPB-PMRust-Students/proiect-SebiBahrin)
+<<<<<<< HEAD
 **Youtube Project Demonstration**: [\[link_to_youtube\]](https://youtube.com/playlist?list=PLd5iMKv4MkYztaQBolhx833o1cFwwk0Dg&si=SrzNUDQCWMnlIYsO)
+=======
+>>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add
 
 :::
 
@@ -38,7 +41,11 @@ Beyond individual consumers, this technology has significant implications for in
 
 ### Connection Diagram:
 ## System Diagram
+<<<<<<< HEAD
 ![Diagrama](./diagrama.webp) 
+=======
+![Diagrama](./Diagrama.svg) 
+>>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add
 
 ## **Hardware**
 
@@ -125,6 +132,7 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 - **VSYS (pin 39)**: Connected to the output of the AMS1117 5V module
 - **GND (multiple)**: Connected to the common GND of all components
 
+<<<<<<< HEAD
 #### I2C pins (I2C0):
 - **GP16 (pin 21)**: I2C0 SDA function - Data for MPU-6500 and PCF8591
   * Shared I2C bus for multiple sensors - both MPU-6500 and PCF8591 connect to this pin
@@ -159,6 +167,44 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 
 ## **Schematics**
 ![Schema Electrica](./Schematic.webp) 
+=======
+#### I2C pins:
+- **GP16 (pin 21)**: I2C0 SDA function - Data for MPU-6500 and PCF8591
+  *   It is one of the dedicated I2C0 pins and allows communication with multiple I2C devices on the same bus
+- **GP17 (pin 22)**: I2C0 SCL function - Clock for MPU-6500 and PCF8591
+  *   It is the SDA pin pair for I2C0
+
+#### SPI pins for MicroSD:
+- **GP5 (pin 7)**: SPI0 CS function - Chip Select for the MicroSD module
+  *   Individual control of the MicroSD module
+- **GP6 (pin 9)**: SPI0 SCK function - Clock for the MicroSD module
+  *   It is the dedicated pin for SPI0 clock
+- **GP7 (pin 10)**: SPI0 MOSI function - Master Out Slave In for the MicroSD module
+  *   Data transmission to the MicroSD card
+- **GP4 (pin 6)**: SPI0 MISO function - Master In Slave Out for the MicroSD module
+  *   Data reception from the MicroSD card
+
+#### UART pins for GPS:
+- **GP0 (pin 1)**: UART0 TX function - Data transmission to the GPS module
+  *   It is part of the UART0 pair, dedicated to serial communications
+- **GP1 (pin 2)**: UART0 RX function - Data reception from the GPS module
+  *   It is the TX pair for UART0
+
+#### GPIO pins for digital sensors:
+- **GP2 (pin 4)**: Digital input for the Hall KY-003 sensor
+  *   Pin configured as a digital input with internal pull-up for detecting state changes
+- **GP3 (pin 5)**: Digital input for the vibration sensor
+  *   Pin configured as a digital input for detecting vibrations
+
+### PCF8591 Module (AD/DA Converter)
+- **AIN0**: Connected to the light sensor (photoresistor)
+  *   Reading analog values from the photoresistor for light detection
+
+
+
+## **Schematics**
+![Schema Electrica](./Schematic.svg) 
+>>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add
 
 ## **Project Photos**
 ![Photo 1](./Photo1.webp) 
@@ -183,6 +229,7 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 
 | **Library** | **Description** | **Usage** |
 |-------------|-----------------|-----------|
+<<<<<<< HEAD
 | [embassy](https://embassy.dev/) | Asynchronous embedded framework for Rust | Core framework for async task execution, timers, and signaling |
 | [embassy-rp](https://embassy.dev/) | Embassy HAL for RP2040 | Provides access to RP2040 peripherals like I2C, UART, and GPIO |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer (HAL) traits | Standard I2C interface traits used for driver abstraction |
@@ -316,6 +363,18 @@ I/O optimizations involved setting a 500ms sensor reading interval to balance re
 In terms of task scheduling optimizations, I ensured GPS data didn't interfere with real-time security monitoring by creating a separate GPS parsing task to prevent UART buffer overflow. This involved non-blocking GPS data retrieval in the main loop and priority-based alert handling, prioritizing magnetic tampering over package opening, and then movement.
 
 For string processing optimizations, I developed a custom format_f32_to_6_decimals() function to avoid standard library formatting. I also used direct byte manipulation for NMEA sentence parsing and fixed-size string buffers to prevent dynamic allocation, which are typically memory and CPU intensive.
+=======
+| [embassy](https://embassy.dev/) | Asynchronous embedded framework for Rust | Core framework for running async tasks on the Raspberry Pi Pico 2W |
+| [embassy-rp](https://embassy.dev/) | Embassy HAL for RP2040 | Hardware abstraction layer for the Raspberry Pi Pico 2W |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer (HAL) traits | Provides unified interfaces for hardware drivers |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the OLED display |
+| [ssd1306](https://github.com/jamwaffles/ssd1306) | Rust driver for SSD1306 OLED displays | Controls the 0.96" OLED display |
+| [mpu6050](https://github.com/juliangaal/mpu6050) | Rust driver for MPU6050 | Interfacing with the IMU sensor |
+| [shared-bus](https://github.com/Rahix/shared-bus) | Bus sharing for embedded Rust | Sharing I2C/SPI buses between multiple devices |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD/MMC card access | Managing log files on the microSD card |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded devices | Debugging and development logging |
+| [chrono](https://github.com/chronotope/chrono) | Date and time library | Creating timestamps for event logging |
+>>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add
 
 ## **Log**
 
@@ -323,6 +382,7 @@ For string processing optimizations, I developed a custom format_f32_to_6_decima
 Focused on documentation and planning for the SafeDelivery project. Researched all hardware components (Raspberry Pi Pico 2W, sensors, modules) to understand their specifications, pin requirements, and power needs. Created detailed connection diagrams, calculated power budget for battery life, and developed a comprehensive project plan.
 
 ### **Week 12 - 18 May**
+<<<<<<< HEAD
 Identified necessary Rust libraries and outlined the software architecture to ensure all components would work together effectively. Began hardware assembly and software implementation. Set up the development environment with Embassy framework for Rust. Connected and tested components individually on a breadboard: configured I2C for the MPU6500 IMU sensor, set up SPI for the microSD module, and started integrating the light sensor via PCF8591. Developed initial code for each sensor and verified basic functionality
 
 ### **Week 19 - 25 May**
@@ -341,3 +401,15 @@ Additionally, encountered significant issues with the MicroSD card module that c
 1. [More about GPS](https://learn.sparkfun.com/tutorials/gps-basics/the-basics-of-gps)
 2. [This saved me](https://esp32.implrust.com/sdcard/index.html)
 3. [How many packages get lost a day?](https://packlane.com/how-many-packages-get-lost-everyday)
+=======
+Identified necessary Rust libraries and outlined the software architecture to ensure all components would work together effectively. Began hardware assembly and software implementation. Set up the development environment with Embassy framework for Rust. Connected and tested components individually on a breadboard: configured I2C for the MPU6500 IMU sensor, set up SPI for the microSD module, implemented interrupt detection for the Hall magnetic sensor, and started integrating the light sensor via PCF8591. Developed initial code for each sensor and verified basic functionality
+
+### **Week 19 - 25 May**
+TBA
+
+## **Links**`
+
+1. [I2C](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
+2. [WIFI](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07)
+
+>>>>>>> db2f80924b60dc60ee645840fa18a77fdf258add

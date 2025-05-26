@@ -42,7 +42,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: ({docPath, versionDocsDirPath}):string => {
-            const PATH = "https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro/edit/main/website";
+            const PATH = "https://www.github.com/upb-pmrust/website/edit/main/website";
             if (docPath.startsWith ("lab/") || docPath.startsWith ("tutorial/")) {
               return PATH+"/"+docPath;
             } else {
@@ -151,8 +151,8 @@ const config: Config = {
           position: "right",
         },
         {
-          href: "https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro",
-          label: "GitLab",
+          href: "https://www.github.com/upb-pmrust/website",
+          label: "GitHub",
           position: "right",
         },
       ],
