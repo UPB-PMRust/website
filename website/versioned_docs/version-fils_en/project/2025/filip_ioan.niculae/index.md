@@ -133,18 +133,40 @@ The following diagram presents an overview of the physical interconnections in t
 <!-- write every week your progress here -->
 
 ### Week 6 - 12 May
+This week, I focused on getting all the hardware parts set up. I put together and wired up the NUCLEO board, all the sensors (BME280, HC-SR04, Soil Moisture, NTC), the relay module, and the water pumps, making sure the level translators and the 5V power supply were hooked up correctly. Once all the physical parts were connected and I double-checked everything, I drew up the circuit diagram for the system in KiCad to map out how all the components talk to each other.
 
 ### Week 7 - 19 May
+The primary focus shifted to software, starting with the Windows desktop GUI. I set up the ImGui and DirectX 11 environment and designed the basic UI layout for sensor data display and user controls. Concurrently, I began implementing the UART communication protocol on both the NUCLEO firmware and the desktop application to establish an initial data link. Basic sensor reading stubs were also added to the firmware.
 
 ### Week 8 - 26 May
 
 ---
 
 ## Hardware
+The Smart Irrigation System is built around several key hardware components, each playing a crucial role in its functionality:
+
+*   **NUCLEO-F411RE**: Serves as the brain of the system. It acts as the central controller, responsible for reading data from multiple sensors, implementing the irrigation logic (both automatic and manual modes) and managing UART communication with the Windows desktop application.
+*   **BME280 Sensor**: Functions as an environmental sensor, specifically measuring atmospheric temperature and pressure.
+*   **HC-SR04 Ultrasonic Sensor**: Used to monitor the water level in the tank. It measures the distance to the water surface, allowing the system to estimate the remaining water volume.
+*   **Soil Moisture Sensor** : Acts as the primary sensor for automated irrigation. It detects the humidity level in the soil, and its readings trigger the irrigation process in AUTO mode.
+*   **NTC Thermistor**: Provides temperature reading.
+*   **4-Channel Relay Module**: Works as an electromechanical switch. It is controlled by the NUCLEO board (via a level translator) to turn the Mini Submersible Water Pump on or off.
+*   **Mini Submersible Water Pump**: The actuator responsible for water delivery. It pumps water from the tank to the cultivated area when activated by the relay module.
+*   **Passive Buzzer**: Serves as an auditory alert system, signaling conditions such as critically dry soil, low water levels in the tank, or other system events.
+*   **Level Translator** : An essential interface component that safely converts the 3.3V logic signals from the NUCLEO's GPIO pins to the 5V required to operate the relay module.
+*   **5V Power Source**: Provides the necessary power for higher-voltage components like the relay module and the water pump, separate from the NUCLEO's USB power.
+*   **UTP CAT5E Cable and Double Surface-mount UTP CAT5e Outlet**: These are used to make good, organized cable connections.
+*   **Breadboard Power Supply**: Gives stable power distribution to components.
+
+![System schematic](./1.webp)
+![System schematic](./2.webp)
+![System schematic](./3.webp)
+![System schematic](./4.webp)
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![System schematic](./KiCad.svg)
+
 
 ### Bill of Materials
 
@@ -153,11 +175,14 @@ Place your KiCAD schematics here.
 | [NUCLEO F411RE](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F411RE?qs=Zt3UNFD9mQjdEJg18RwZ2g%3D%3D) | The microcontroller | [65 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F411RE?qs=Zt3UNFD9mQjdEJg18RwZ2g%3D%3D) |
 | [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/en/ultrasonic-sensors/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) | Distance Measurement | [15 RON](https://www.optimusdigital.ro/en/ultrasonic-sensors/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html) |
 | [BME280 Module](https://www.optimusdigital.ro/en/pressure-sensors/5649-bme280-barometric-pressure-sensor-module.html) | Barometric Pressure & Temperature | [20 RON](https://www.optimusdigital.ro/en/pressure-sensors/5649-bme280-barometric-pressure-sensor-module.html) |
-| [4 Channel Level Translator](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) | Voltage Level Translator | [5 RON](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) |
+| [4 Channel Level Translator X2](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) | Voltage Level Translator | [10 RON](https://www.optimusdigital.ro/en/level-shifters/181-4-channnel-bidirectional-level-translator.html) |
 | [4 Relay Module](https://www.optimusdigital.ro/en/relay-modules/478-blue-optoisolated-4-relay-module.html) | Controls devices | [14 RON](https://www.optimusdigital.ro/en/relay-modules/478-blue-optoisolated-4-relay-module.html) |
-| [Mini Submersible Water Pump](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) | Water Pump | [10 RON](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) |
+| [Mini Submersible Water Pump X2](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) | Water Pump | [20 RON](https://www.optimusdigital.ro/en/others/4149-mini-submersible-water-pump.html) |
 | [Ground Humidity Sensor Module](https://www.optimusdigital.ro/en/humidity-sensors/73-ground-humidity-sensor-module.html) | Detects soil humidity | [10 RON](https://www.optimusdigital.ro/en/humidity-sensors/73-ground-humidity-sensor-module.html) |
-
+| [UTP CAT5E Cable](https://www.leroymerlin.ro/produse/cabluri-si-accesorii-multimedia/883/cablu-utp-cat5e-la-metru/113470) | Connecting Devices | [3 RON](https://www.leroymerlin.ro/produse/cabluri-si-accesorii-multimedia/883/cablu-utp-cat5e-la-metru/113470) |
+| [Double Surface-mount UTP CAT5e Outlet](https://www.a2t.ro/retele-si-telefonie/priza-dubla-aplicata-utp-cat5e-regleta-krone-gembird.html) | Connecting Cables | [14 RON](https://www.a2t.ro/retele-si-telefonie/priza-dubla-aplicata-utp-cat5e-regleta-krone-gembird.html) |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) | Supplies Power | [5 RON](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) |
+| [Water Hose](https://cleste.ro/furtun-plastic-1m.html) | Drives Water | [3 RON](https://cleste.ro/furtun-plastic-1m.html) |
 ---
 
 ## Software
