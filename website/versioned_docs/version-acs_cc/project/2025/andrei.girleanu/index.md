@@ -40,14 +40,19 @@ I thought about what improvements I could make to the main idea of ​​the rob
 
 In these weeks, I bought all the hardware components and assembled the mini car. I also designed the case for the robot.
 
+### Week 18 May - 26 May
+
+I implemented the software for the car, where I used a servo motor with a rotating sensor for gathering informations about objects. I also created a python application using Tkinter library for graphic interface that has 3 buttons: one for moving forward, one for moving back and one for stopping. The python application uses TCP requests to communicate with the pico. I also programmed the DC Motors.
+
 ## Hardware
 
 ![Hardware picture](hardware.webp)
+![Robot picture](robot.webp)
 
 Raspberry Pi Pico 2W: Microcontroller with Wi-Fi integrated for the interraction of the application,
 acts as the central controller.\
-L298N Dual Motor Driver Module Red: Used for the rotation of the sensor placed above the robot.\
-Micro Servo Motor SG90 180°: Controls steering.\
+L298N Dual Motor Driver Module Red: Used for the DC Motors.\
+Micro Servo Motor SG90 180°: Controls the rotation of the sensor.\
 DC motor 3V-6V with 1:48 reducer: Drives the robot's wheels, providing high torque and controlled movement at low speeds.\
 Ultrasonic sensor HC-SR04: It detects the obstacles and sends information to the application.\
 Cables of all types, to connect the components: Male-to-Male, Male-to-Female, Female-to-Female.\
@@ -77,6 +82,9 @@ Ball Caster: Used as a "front wheel".
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy](https://github.com/embassy-rs/embassy) | Embassy | A Rust library designed for for constructing embedded applications |
+| [gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html) | GPIO | Used for controlling the pins |
+| [pwm](https://docs.embassy.dev/embassy-nrf/git/nrf52840/pwm/index.html) | Pulse Width Modulation | Used for controlling the rotation of the servomor |
+| [wi-fi](https://docs.embassy.dev/embassy-net/git/default/index.html) | Wi-Fi connection | Used for creating an access point for TCP connections for the controller |
 
 ## Links
 
