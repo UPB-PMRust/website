@@ -121,9 +121,11 @@ The format is
 | [Push Button](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=button&results=491) | Triggers interaction or startup | ~1–2 RON |
 | [DTS33A TTS Module](https://www.aliexpress.com/item/1005006972349646.html?spm=a2g0o.order_list.order_list_main.5.6c061802UEPrXv#nav-specification) | Text-to-Speech synthesis | ~30 RON |
 | Breadboard + jumpers | Wiring and prototyping | ~40 RON |
-
+| OpenAI API | Usage of ChatGPT | ~20 RON |
 
 ## Software 
+
+![Functional Diagram](Functional-Diagram.webp)
 
 | Library | Description | Usage |
 |---------|-------------|-------|
@@ -141,6 +143,7 @@ The format is
 | [embassy-net](https://github.com/embassy-rs/embassy) | Async network stack (TCP/UDP/DHCP) | Handles networking used to communicate with Whisper/ChatGPT APIs |
 | [static_cell](https://github.com/embassy-rs/embassy) | Safe runtime-initialized global memory | Used for static async executors and peripherals |
 | [rand](https://github.com/rust-random/rand) | Random number generator | Used for any randomized behavior or delays |
+
 
 
 ## Links
