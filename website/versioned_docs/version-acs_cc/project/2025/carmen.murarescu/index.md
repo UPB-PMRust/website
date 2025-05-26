@@ -83,7 +83,7 @@ The main architectural components are:
 
 ### Schematics
 
-![alt text](schematic_pm.svg)
+![alt text](schematic_kicad.svg)
 
 ### Project Photos
 
