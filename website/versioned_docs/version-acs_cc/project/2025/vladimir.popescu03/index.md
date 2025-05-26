@@ -98,9 +98,9 @@ Current component lineup:
 |------------|----------|
 | 12 May 2025 | Add photos and the schematics of the project.|
 
-
 ### Log — Week 4 (19-25 May 2025)
 
 | Date       | Activity |
 |------------|----------|
 | 25 May 2025 | Uploaded source code, README, schematic (.sch), and SVG scheme to the project repository which can be found above.|
+
