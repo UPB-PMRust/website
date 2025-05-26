@@ -102,7 +102,13 @@ I've made the modification, but after that i're realized that i was left without
 
 Therefore to combat this measure I've searched trough diffrent local suppliers, and managed to create a DIY 4,5V battery, using a local store flashilight which conveniently had a support
 for 3AAA batteries, all i had to do was melt one by mistake using a solder gun, and place 2 wires for Gnd and VCC. Also the string i initially choosed was way to thick to fit in the middle
-section of the mullinet, and as a solution I had to use some nylon from an actual fish string, which fitted perfectly. 
+section of the mullinet, and as a solution I had to use some nylon from an actual fish string, which fitted perfectly.
+
+After multiple failed attemtpts firstly the Cargo.toml file positioned poorly in embassy-lab backbone, then i found the file which should put the pico in debug state, and having problem with
+wire conections to the breadboard, i managed to read data from the senzor according to my detection logic, but after that it seems that the data read from the sernzor is failig, either because
+there should be pulled up rezistors set or because the wires fail to make proper contact with the bredboard, as i added multiple error checkers in order to find what the problem should be with the
+I2C pipeline. I dispay here part of succesful code i got (couldn t film it because i was not expecting it): ![Accelmoeter_resp](acceloermeter_data.svg)
+
 
 ## Hardware
 
@@ -178,7 +184,6 @@ Here is presented the KiCAD Schematic:
 | [embassy-usb](https://github.com/embassy-rs/embassy) | USB device stack | USB communication management |
 | [embassy-pwm](https://github.com/embassy-rs/embassy) | PWM driver support | Controls servos or dimmable LEDs |
 | [embassy-pio](https://github.com/embassy-rs/embassy) | Access to RP2040 PIO block | For advanced I/O operations like serial protocols |
-| [static_cell](https://github.com/embassy-rs/embassy) | Static memory allocation at runtime | Required for async resource management |
 | [adxl345](https://github.com/almindor/mpu6050) | ADXL345 accelerometer driver | Reads accelerometer data from the bobber |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging and debugging tool | Used for serial debug output in embedded Rust |
 
