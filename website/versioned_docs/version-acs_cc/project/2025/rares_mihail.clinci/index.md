@@ -117,7 +117,7 @@ Hardware used:
 ### Schematics
 
 <!-- TODO: Place your KiCAD schematics here. -->
-![Schematic](CatFeeder.svg)
+![Schematic](CatFeeder.webp)
 
 ### Bill of Materials
 
