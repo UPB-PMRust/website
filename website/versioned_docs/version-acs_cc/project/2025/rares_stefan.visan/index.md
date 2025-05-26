@@ -78,7 +78,7 @@ A passive buzzer generates sound effects, enhancing user feedback and engagement
 
 ![Hardware1](hardware1.webp)
 ![Hardware2](hardware2.webp)
-![Hardware4](hardware4.webp)
+![Hardware4](hardware3.webp)
 
 ### Schematics
 
