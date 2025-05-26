@@ -85,7 +85,12 @@ We use off-the-shelf components mounted on a breadboard and powered by a 5 V sup
 | 5 V /3.3 V Power Supply          | System power                          |          0(came with breadboard) |
 
 ## Software
+---
+This project is a laser-based intrusion detection system built on the Raspberry Pi Pico W using the async-capable [Embassy](https://embassy.dev) framework in Rust. When enabled, it creates a Wi-Fi access point (`Stefan_Pico`) that hosts a local HTTP server. Users can access this server via a browser to receive real-time alerts. The system uses a laser and a photoresistor (LDR) to detect beam interruptions. When the beam is broken, it triggers a 3-phase beep via PWM and sends a timestamped alert to the connected HTTP client. A button toggles the system on/off, and a calibration phase establishes a light threshold baseline at startup.
 
+Key features include USB logging, AP-mode networking, chunked HTTP responses, and embedded async task scheduling via `embassy-executor`. The implementation uses several crates such as `embassy-rp` for hardware abstraction, `embassy-net` for networking, and `cyw43` for Wi-Fi control. The system is lightweight, efficient, and designed for real-time response.
+
+---
 | Library                                                  | Description                                         | Usage                                                                                                                                                                                                                                                                                       |
 |-------------------------------------------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [cyw43](https://crates.io/crates/cyw43)                           | Wi-Fi driver for the CYW43 chipset                  | `NetDriver`, `PowerManagementMode` for network I/O and power modes                                                                                                                                                                                                                          |
