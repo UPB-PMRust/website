@@ -4,7 +4,7 @@
 :::info 
 
 **Author**: Shafiei Armin\
-**GitHub Project Link**: [link to github (in progress)](https://github.com/UPB-PMRust-Students/project-ArminSHaf)
+**GitHub Project Link**: [link to my github ](https://github.com/UPB-PMRust-Students/project-ArminSHaf)
 
 :::
 
@@ -34,18 +34,25 @@ Main components:
 In this week I started my documentation. I have been doing research and learned how the decible is calculated after getting the analog outputs from microphone, Unfortunately I must change my microphone because it was broken, so placed an order for new one..
 
 ### Week 5 - 11 May
+This week I worked with my project and fixed the basic function (turning on leds based on your voice and printing db numbers at the display.)
+I recieved my microphone and approximately calibrated it.( it is not like calibrated microphone  but still it wokrs.)
 
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
 
 ## Hardware
+In my project, I have used two Raspberry Pi Pico 2W ( one as a debugger and the other one as the central microcontroller ) , which reads analog audio signals from a MAX9814 microphone module connected to one of its ADC pins . The Pico processes the input to calculate sound intensity in decibels (dB). The results are displayed on a 128x64 SSD1306 OLED display connected via the I²C interface (SDA on GP6, SCL on GP7). To visually indicate sound levels, two LEDs are connected—typically a white LED to GPIO16 and a red LED to GPIO17—turning on based on defined dB thresholds. The entire setup is powered through a standard USB connection, supplying 5V to the board and its peripherals.
 
-Detail in a few words the hardware used.
+
+![alt text](ph1.webp)
+![alt text](ph2.webp)
+![alt text](ph3.webp)
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![alt text](schematic.svg)
+
 
 ### Bill of Materials
 
