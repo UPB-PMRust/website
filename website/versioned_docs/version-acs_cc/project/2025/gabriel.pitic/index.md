@@ -37,6 +37,15 @@ I changed the communication protocol, instead of using TCP to communicate, i sta
 
 ### Week 19 - 25 May
 
+I fully changed the architecture by creating a UDP client written in Python to handle player controls (from keyboard or joysticks).
+
+The new architecture hosts an HTTP server just for score keeping which sends HTTP packets that are parse by the pico and then update the
+live scoreboard, which is displayed on the ST7735.
+
+I bought another power supply for the servos since the one i had wasn't enough.
+
+I dropped the QR code idea since it required some `std`features.
+
 ## Hardware
 
 - Raspberry Pi Pico 2W - Used as the main microcontroller handling all the motors, as well as the wi-fi connections for the players.
@@ -52,10 +61,13 @@ I changed the communication protocol, instead of using TCP to communicate, i sta
 - Breadboard - Used for prototyping and testing the circuit connections before final assembly.
 
 ![Render](4Clash_Render.webp) 
-![Player](Player_1.webp)
-![Player](Player_2.webp)
-![Player](Player_3.webp)
-![Player](Player_4.webp)
+![Player](4Clash.webp)
+![Player](4Clash-1.webp)
+![Player](4Clash-2.webp)
+![Player](4Clash-3.webp)
+![Player](4Clash-4.webp)
+![Player](4Clash-5.webp)
+
 
 ### Schematics
 
@@ -81,23 +93,28 @@ The format is
 | 4 x [A4988 Stepper Motor Driver](https://www.optimusdigital.ro/ro/drivere-de-motoare-pas-cu-pas/866-driver-pentru-motoare-pas-cu-pas-a4988-rosu.html) | Used to control the stepper motors | 32 LEI |
 | [ST7735 Display](https://www.amazon.de/GERUI-Display-Module-Screen-ST7735/dp/B0CWN27HVB/ref=sr_1_14_sspa) | Used to display the QR code for the players to connect to the game | 29 LEI |
 | [Switched Power Supply](https://www.optimusdigital.ro/ro/surse-ac-dc-de-12-v/1947-sursa-de-tensiune-in-comutaie-12v-15a-180-w.html) | Used to power the entire system, including the motors and microcontroller | 60 LEI |
-| Consumables (3D printed parts, wood parts, bolts, nuts, wires, connectors etc.) | Used to create the physical structure of the game | 80 LEI |
+| [Switched Power Supply](https://www.optimusdigital.ro/ro/surse-ac-dc-de-5-v/1954-sursa-de-tensiune-in-comutaie-5v-10a-50-w.html) | Used to power the servos | 48 LEI |
+| Consumables (3D printed parts, wood parts, bolts, nuts, wires, connectors etc.) | Used to create the physical structure of the game | 120 LEI |
 
 ## Software
 
 | Library | Description | Usage |
-|---------|-------------|-------|
-| [st7735](https://docs.rs/st7735/latest/st7735/) | Display driver for ST7789 | Used for the display |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
-| [embassy-rp](https://crates.io/crates/embassy-rp) | Embassy HAL for RP2040 | Hardware abstraction layer for the Raspberry Pi Pico 2 |
-| [embassy-net](https://crates.io/crates/embassy-net) | Embassy networking library | Used for network communication |
-| [cyw43](https://crates.io/crates/cyw43/0.1.0) | Wi-Fi driver for Raspberry Pi Pico 2 | Used for Wi-Fi connectivity |
-| [qrcode](https://crates.io/crates/qrcode) | QR code generator | Used to generate the QR code for the players to connect to the game |
-
-## Links
-
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+|-------|-------------|------------------|
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async executor for Embassy | Task spawning and async runtime management |
+| [embassy-rp](https://crates.io/crates/embassy-rp) | Embassy HAL for RP2040/RP2350 | GPIO, PWM, SPI, UART hardware control |
+| [embassy-net](https://crates.io/crates/embassy-net) | Embassy networking stack | TCP/UDP server implementation |
+| [embassy-time](https://crates.io/crates/embassy-time) | Embassy time utilities | Timers, delays, and timing operations |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Embassy synchronization primitives | Inter-task communication channels and signals |
+| [embassy-embedded-hal](https://crates.io/crates/embassy-embedded-hal) | Embassy embedded-hal compatibility layer | Shared SPI bus implementation |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | Embassy async utilities | Select operations for concurrent tasks |
+| [cyw43](https://crates.io/crates/cyw43) | CYW43439 WiFi driver | WiFi connectivity for Raspberry Pi Pico 2 |
+| [mipidsi](https://crates.io/crates/mipidsi) | MIPI DSI display driver | ST7735s TFT display control |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library for embedded devices | Text rendering and display drawing |
+| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI display interface implementation | SPI communication protocol for display |
+| [static-cell](https://crates.io/crates/static-cell) | Static memory allocation utilities | Network stack resource allocation |
+| [heapless](https://crates.io/crates/heapless) | Collections without heap allocation | Strings and vectors for embedded use |
+| [fixed](https://crates.io/crates/fixed) | Fixed-point arithmetic | PWM frequency and timing calculations |
+| [defmt](https://crates.io/crates/defmt) | Efficient logging framework | Debug and info logging throughout system |
+| [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT transport for defmt logging | Log output via Real-Time Transfer |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler for probe-rs debugging | Panic handling and debugging support |
+| embassy-lab-utils | Embassy laboratory utilities | WiFi initialization and network setup helpers |
