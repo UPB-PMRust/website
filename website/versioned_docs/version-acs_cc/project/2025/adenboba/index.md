@@ -244,10 +244,10 @@ The main accomplishments include:
 Concepts from the laboratory that are used in the project are:
 - **PWM**: For RGB LED control
 - **GPIO**: For general-purpose input/output, including buttons, buzzers, and other peripherals
-- **I2C**: For OLED display communication
-- **SPI**: For RC522 RFID module communication
+- **I2C**: For OLED display communication using SSD1306 driver
+- **SPI**: For RC522 RFID module communication using mfrc522 driver
 - **Async**: For network communication and task scheduling
-- **Wi-Fi**: For wireless communication and remote access
+- **Wi-Fi**: For wireless communication and remote access using `cyw43` driver
   :::
 | Library                                                                                             | Description                                        | Usage                                                |
 |-----------------------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------|
