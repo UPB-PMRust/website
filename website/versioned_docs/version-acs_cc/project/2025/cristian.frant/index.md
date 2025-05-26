@@ -51,10 +51,17 @@ All components are controlled and synchronized by the Raspberry Pi Pico 2W, whic
 - Completed the full electronic schematic using KiCad.
 
 ### Week 5 - 11 May
+- Built a demo of the project with the hardware i had
+- Got more hardware parts and updated the demo
 
 ### Week 12 - 18 May
+- Started writing code and testing the componenets one by one
+- Tried linking the lcd with the keypad
+- Finished a small demo
 
 ### Week 19 - 25 May
+- Finished the final code
+- Linked all the parts with each other
 
 ## Hardware
 1602 LCD with I2C Interface and Blue Backlight
