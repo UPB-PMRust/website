@@ -42,6 +42,8 @@ Crearea paginii proiectului pe gitlab. Crearea paginii proiectului pe github. Î
 
 Schimbarea platformei de pe gitlab pe github. Am adăugat informații suplimentare pentru documentație în ceea ce privește hardware-ul. Am adăugat schema creată în Kicad și poze cu proiectul. De asemenea am completat componentele noi cumpărate la BOM.
 
+Am verificat funcționalitatea hardware prin folosirea unei scanări I2C pentru fiecare dispozitiv. Am încărcat pe github classroom la pagina de proiect o parte din fișierele folosite, precum și codul scris și am completat o parte din README.
+
 Am verificat functționalitatea hardware prin folosirea unei scanări I2C pentru fiecare dispozitiv. Am încărcat pe github classroom la pagina de proiect o parte din fișierele folosite, precum și codul scris și am completat o parte din README.
 
 ### Week 19 - 26 May
