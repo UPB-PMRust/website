@@ -70,7 +70,7 @@ In this week, I focused on developing the software in the main.rs file to integr
 
 ## Schematics
 
-![Schematics](schematic_final.svg)
+![Schematics](schematic.svg)
 
 
 ## Bill of Materials
