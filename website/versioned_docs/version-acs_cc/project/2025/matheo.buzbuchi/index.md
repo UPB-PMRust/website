@@ -11,18 +11,17 @@ An automated fishing rod system with motion detection and automatic reeling.
 
 ## Description
 
-The main purpose of this project is to implement an automated fishing rod controlled by a microcontroller. To achieve this, the system follows several key steps:
+The main purpose of this project is to implement an mechanism that acts as a automated fishing rod controlled by a microcontroller. To achieve this, the system follows several key steps:
 
 1. Fish presence detection near the bait:
-An accelerometer sensor is placed inside the bobber, acting like a motion detector or "proximity radar" to sense movement near the hook. When such motion is detected, a red LED on the fishing rod is activated to alert the fisherman that fish are in the critical area and to stay alert.
+An accelerometer sensor is placed inside the bobber alongside an mcu, acting like a motion detector or "proximity radar" to sense movement near the hook. When such motion is detected, a red LED on the fishing rod (the main mcu) is activated to alert the fisherman that fish are in the critical area and to stay alert.
 
 2. Bite detection and audible alert:
 This is the most complex part of the automation process, as it typically relies on the skill of the fisherman to detect when a fish has actually taken the bait without snapping the line.
-From experienced fishermen (30–40 years of practice), I’ve learned that a fish doesn’t always pierce its lip fully when it bites—so an automatic pulling mechanism shouldn’t start immediately.
-To address this, a force sensor is placed along the fishing line to measure tension changes. When a noticeable tension change is detected (indicating a bite), a buzzer is activated to alert the user.
+From experienced fishermen (30–40 years of practice), I’ve learned that a fish doesn’t always pierce its lip fully when it bites the bait—so an automatic pulling mechanism shouldn’t start immediately.
+To address this, initially i thought a force sensor placed along the fishing line to measure tension changes and when a noticeable tension change is detected (indicating a bite), a buzzer is activated to alert the user was enough. Luckily i found out that using an optical sensor placed alongside the mullinet, could achieve the same mechanism adressed before and it would detect when the split in the mullinet lets the laser pass-trough, it would activate the buzzer.
 
 3. Rod type configuration and auto-reeling:
-The system includes three buttons, each representing a different type of fishing rod or line configuration. The user selects the current setup, and the parameters (such as pulling force and timing) are adjusted accordingly in the code for accurate reeling.
 After the fish takes the bait and the fisherman ensures the hook is properly set, a 3-second delay begins. Once that delay passes, the servomotor is triggered and begins the automated reeling process, simulating the action of turning the reel handle.
 
 ## Motivation
@@ -39,8 +38,8 @@ The following diagram shows the logical architecture of the automated fishing ro
 
 The system is composed of the following architectural blocks:
 1. **Fish detection** — Bobber detects motion and triggers a red LED alert.
-2. **Bite detection** — Force Sensor (FSR) detects a tension spike and activates the buzzer.
-3. **Rod configuration & reeling** — User selects rod type via buttons; a 3-second delay logic then triggers the servo motor.
+2. **Bite detection** — an optical senzor (ITR) detects a tension spike and activates the buzzer.
+3. **Rod configuration & reeling** — a 3-second delay logic starts and then triggers the DC motor.
 4. **Reset** — Once the reeling completes, the system resets and awaits new fish motion input.
 
 Below is the architecture diagram:
@@ -97,6 +96,13 @@ Resolved GND referencing issues by connecting a unified ground rail across all m
 Updated and committed the KiCAD schematic to the GitHub repository, and added some refrence picture of the progress regarding the project this week.
 
 ### Week 19 - 25 May
+This week I've realized that the power source intially configured to be used for the pico which controls the accelerometer senzor was better suited to power the DC motor. Therefore
+I've made the modification, but after that i're realized that i was left without a proper way to power up the whole system as the accelerometer pico was left out of charge, I only had
+9V battery and possesed no regulator in oreder to make sure that possibly i could power up the engine using that, or even the pico.
+
+Therefore to combat this measure I've searched trough diffrent local suppliers, and managed to create a DIY 4,5V battery, using a local store flashilight which conveniently had a support
+for 3AAA batteries, all i had to do was melt one by mistake using a solder gun, and place 2 wires for Gnd and VCC. Also the string i initially choosed was way to thick to fit in the middle
+section of the mullinet, and as a solution I had to use some nylon from an actual fish string, which fitted perfectly. 
 
 ## Hardware
 
@@ -111,7 +117,7 @@ The following hardware components were used to build the automated fishing rod s
 - `Red LED` — Provides a visual alert when motion is detected near the hook.
 - `Buzzer` — Gives an audible signal when a fish bite is detected via the ITR.
 - `L298N H-Bridge driver` - Driver used by the motor in order to process rotation direction and speed.
-- `DC Motor` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
+- `Gear DC Motor with Encoder` — Handles the automatic reeling of the fishing line after bite confirmation and user reaction.
 - `Rezistor` - Used either to set high logical level, protect diodes by limiting the current and manage the current that reaches certain components (Buzzer).
 
 Up next here are presented some pictures with the hardware.
@@ -142,18 +148,21 @@ Here is presented the KiCAD Schematic:
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2WH](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [25 RON](https://shop.pimoroni.com/products/raspberry-pi-pico-2?variant=54906879213947) |
-| [MPU6050 Accelerometer](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6050/) | Detects water motion in the bobber | [15 RON](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/96-modul-senzor-triaxial-mpu-6050.html) |
-| [Force-Sensitive Resistor (FSR402)](https://www.interlinkelectronics.com/fsr-402) | Detects tension in the fishing line (bite) | [42 USD](https://www.amazon.de/-/en/Hilitand-Sensor-Resistor-Resistance-Pressure/dp/B07DB37NZM/ref=sr_1_2?dib=eyJ2IjoiMSJ9.r0nSeYQP_vZUrNxHDsyeVQU18dEKFzRuRTS_-cK6TlFo5YW6HCaRT534so0aeIUyO6bMUT5UkMIZhsnP7fjeMxhQB_RLdFrpzGOeelR8naNn1Lk1gQ3Zigw2WW7NQT9TIIlDJRSzqnIdlaHSRTAL2LYULfX4Pqbs4qjhjW52fe--V4f7kn9Ytlsamq1PgB3FE1JnOBI7E2VhPA6LfCy8OjsiivfvtEW36HtCtkQ4cys-TDI8p-8q0lZ1sMORJm2K4x55GUGn0g3a7Q5dbiMsO2unWyuLc3CA-5juhwQSkRg.Th201lA7X6yXwExxFrPurDG6Gi0_ugtGd2EmJkT-B34&dib_tag=se&keywords=fsr+402&qid=1746314137&sr=8-2) |
+| [Raspberry Pi Pico 2WH](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [40 RON](https://shop.pimoroni.com/products/raspberry-pi-pico-2?variant=54906879213947) |
+| [ADXL345 Accelerometer](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf) | Detects water motion in the bobber | [13 RON](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=ADXL&results=7) |
+| [Force-Sensitive Resistor (FSR402)](https://www.interlinkelectronics.com/fsr-402) | Detects tension in the fishing line (bite) | [82 RON](https://www.amazon.de/-/en/Hilitand-Sensor-Resistor-Resistance-Pressure/dp/B07DB37NZM/ref=sr_1_2?dib=eyJ2IjoiMSJ9.r0nSeYQP_vZUrNxHDsyeVQU18dEKFzRuRTS_-cK6TlFo5YW6HCaRT534so0aeIUyO6bMUT5UkMIZhsnP7fjeMxhQB_RLdFrpzGOeelR8naNn1Lk1gQ3Zigw2WW7NQT9TIIlDJRSzqnIdlaHSRTAL2LYULfX4Pqbs4qjhjW52fe--V4f7kn9Ytlsamq1PgB3FE1JnOBI7E2VhPA6LfCy8OjsiivfvtEW36HtCtkQ4cys-TDI8p-8q0lZ1sMORJm2K4x55GUGn0g3a7Q5dbiMsO2unWyuLc3CA-5juhwQSkRg.Th201lA7X6yXwExxFrPurDG6Gi0_ugtGd2EmJkT-B34&dib_tag=se&keywords=fsr+402&qid=1746314137&sr=8-2) |
 | [Red LED 5mm](https://www.sparkfun.com/products/9590) | Visual alert when fish are nearby | [40 RON](https://www.optimusdigital.ro/ro/kituri/11970-set-led-uri-asortate-plusivo-500-buc-led-uri-100-buc-rezistoare-i-pcb-bonus.html?search_query=led+rosu&results=166) |
 | [Piezo Buzzer Module](https://components101.com/misc/buzzer-pinout-working-datasheet) | Audible alert on fish bite | [1.40 RON](https://www.optimusdigital.ro/en/buzzers/634-5v-passive-buzzer.html?search_query=buzzer&results=87) |
+| [Infrared optic senzor (ITR9608)](https://media.digikey.com/pdf/data%20sheets/everlight%20pdfs/itr9608-f.pdf) | Detects when the fish took the bait (it has been landed by the laborant)| [FREE](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=ADXL&results=7) |
 | [Push Buttons (12x12mm)](https://www.ckswitches.com/products/switches/product-details/Tactile/PTC125SM15SMTR2LFS/) | Rod type selection by user | [1 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=butoane&results=190) |
-| [SG90 Servo Motor](https://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Automatically reels in the fishing line | [39 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/1161-servomotor-cu-rotaie-continua-ds04-nfc.html) |
+| [Pololu Metal DC Gearmotor](https://www.pololu.com/file/0J1829/pololu-25d-metal-gearmotors.pdf) | Automatically reels in the fishing line | [88 RON](https://www.tme.eu/ro/details/pololu-4828/motoare-dc/pololu/172-1-metal-gearmotor-25dx71l-lp-6v-48-c/) |
 | [Breadboard 830 Tie-Point](https://components101.com/misc/breadboard-connections-uses-guide) | Used for prototyping and connecting components without soldering | [35 RON](https://www.emag.ro/breadboard-4-in-1-700-puncte-diy-kit-ai2095/pd/DY0MN6YBM/) |
 | [Jumper Wire Set (Male-Male)](https://ro.mouser.com/datasheet/2/58/BPS-DAT-(KIT-ZWx4)-Datasheet-1282851.pdf) | Connects components on breadboard and to microcontroller | [16 RON](https://ro.mouser.com/ProductDetail/Soldered/100865?qs=%252BXxaIXUDbq1ke%2FsmXT%2FkCA%3D%3D) |
-| [USB Powerbank 5V](https://www.emag.ro/power-bank-5000-mah-powerneed-18-5wh-cu-panou-solar-1-w-usb-5-v-1a-5v-2a-negru-dj6dkqbbm-11257/pd/D6H81CBBM/?#specification-section) | Portable power supply via USB for Raspberry Pi Pico | ~ [70 RON](https://www.emag.ro/power-bank-5000-mah-powerneed-18-5wh-cu-panou-solar-1-w-usb-5-v-1a-5v-2a-negru-dj6dkqbbm-11257/pd/D6H81CBBM/) |
-
-
+| [Set baterii 1.5V](https://www.dedeman.ro/ro/baterie-varta-energy-4103-aaa/-lr3-1-5v-alcalina-24-buc/p/1043835) |  Power supply for Accelerometer Raspberry Pi Pico | ~ [42 RON](https://www.emag.ro/power-bank-5000-mah-powerneed-18-5wh-cu-panou-solar-1-w-usb-5-v-1a-5v-2a-negru-dj6dkqbbm-11257/pd/D6H81CBBM/) |
+| [Garnitura chiuveta](https://www.bricodepot.ro/incalzire-si-climatizare/alimentare-apa/garnituri-cauciuc-racord-flexibil-3-4-10-bucati.html) |  Holds the mullinet prototype in place | ~ [12 RON](https://www.bricodepot.ro/incalzire-si-climatizare/alimentare-apa/garnituri-cauciuc-racord-flexibil-3-4-10-bucati.html) |
+| [Battery Support Set](https://dinaelectronics.ro/produs/suport-bat-4xr6aa-carcasaintr/) |  Holds multiple Batteries in series to power the pico (4 x 1.5V) | ~ [9 RON](https://dinaelectronics.ro/produs/suport-bat-4xr6aa-carcasaintr/) |
+| [Fish String](https://www.decathlon.ro/p/fir-pescuit-4x4-500m/_/R-p-7439?mc=5626399) |  Lightweight Nylon String which should hold for smaller fish | ~ [20 RON](https://www.decathlon.ro/p/fir-pescuit-4x4-500m/_/R-p-7439?mc=5626399) |
+| [Flashlight](https://www.dedeman.ro/ro/lanterna-led-uv-hoff-alimentare-baterii-3-x-aaa-1w/p/1054347) |  Battery Support used for DIY Battery | ~ [10 RON](https://www.dedeman.ro/ro/lanterna-led-uv-hoff-alimentare-baterii-3-x-aaa-1w/p/1054347) |
 
 
 ## Software
@@ -170,7 +179,7 @@ Here is presented the KiCAD Schematic:
 | [embassy-pwm](https://github.com/embassy-rs/embassy) | PWM driver support | Controls servos or dimmable LEDs |
 | [embassy-pio](https://github.com/embassy-rs/embassy) | Access to RP2040 PIO block | For advanced I/O operations like serial protocols |
 | [static_cell](https://github.com/embassy-rs/embassy) | Static memory allocation at runtime | Required for async resource management |
-| [mpu6050](https://github.com/almindor/mpu6050) | MPU6050 accelerometer driver | Reads accelerometer data from the bobber |
+| [adxl345](https://github.com/almindor/mpu6050) | ADXL345 accelerometer driver | Reads accelerometer data from the bobber |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging and debugging tool | Used for serial debug output in embedded Rust |
 
 ## Links
