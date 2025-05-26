@@ -80,7 +80,7 @@ Enhanced documentation by including a list and explanation of the libraries util
 
 ![Top view](top-view_resized.webp)
 
-![Screen front](screen-front_resized.webp)
+![Screen front](screen.webp)
 
 ### Schematics
 ![schematic](2048.svg)
