@@ -72,4 +72,3 @@ The console is built around the Raspberry Pi Pico 2W, and is powered by a 9V bat
 
 
 ## Links
-
