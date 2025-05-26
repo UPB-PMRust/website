@@ -19,6 +19,7 @@ The motivation behind this project is to create an energy-efficient solution for
 ## Architecture 
 
 The Raspberry Pi Pico W acts as the central controller managing all components. The BMP280 sensor provides temperature and pressure data via I2C, which the Pico uses to control a DC motor-powered fan. An LCD also connected through I2C displays live sensor readings and system status.
+![Components Diagram](diagram.webp)
 
 ## Log
 
