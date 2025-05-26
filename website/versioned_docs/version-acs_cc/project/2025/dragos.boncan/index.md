@@ -89,9 +89,10 @@ the lock are activated via 3.3V-controlled relays.
 -GPIO pins 6, 7, 8, 9, and 10 are used for communication with the TCS230 color
 sensor.
 
+-GPIO pin 3 controls the electromagnetic lock (it opens when reset is pressed)
 -GPIO pin 4 controls the motor that drives the rollers through Relay 1.
 
--GPIO pin 5 controls the electromagnetic lock through Relay 2.
+-GPIO pin 5 controls the lightbulb inside the dark chamber, where banknote reading is made
 
 -GPIO pin 15 receives data from the first presence sensor (when a banknote is
 detected, the motor starts → GPIO 4 is set to high).
@@ -99,21 +100,20 @@ detected, the motor starts → GPIO 4 is set to high).
 -GPIO pin 14 receives data from the second presence sensor (stops the banknote
 inside the box for RGB reading).
 
--GPIO pins 18, 19, 20, and 21 are used for presence sensors for 1, 5, 10, and 50
+-GPIO pins 19, 20, 21, and 22 are used for presence sensors for 1, 5, 10, and 50
 bani coins, respectively (they increment the value when a coin passes).
-
--The 4-digit 7-segment display uses GPIO pins 22, 26, 27, and 28.
+-The LCD 1602 uses only 2 pins from the MCU, 16 for SDA and 17 for SCL (LCD 1602 uses I2C as communication protocol)
 
 -GPIO pin 11 is an input pin for the ON/OFF button, helping reduce power
 consumption.
 
--GPIO pin 12 is an input pin for the RESET button. When pressed, the rear door
+-GPIO pin 13 is an input pin for the RESET button. When pressed, the rear door
 unlocks, the displayed total resets to 0, and the user can collect the stored
 money.
 
 
 
-![image1.png](image1.svg)
+![block_scheme.png](block_scheme.svg)
 
 
 
@@ -133,7 +133,7 @@ and pin 10 as input).
 
 
 
-### Week 17 April –23 April:
+### Week 17 April – 23 April:
 
 -I wrote code to integrate presence sensors into the project (programmed GPIO
 pins 14 and 15).
@@ -156,8 +156,37 @@ consistently read the same color for banknotes, minimizing the effect of ambient
 light.
 
 
-
 ### Week 1 May – 7 May:
+
+-I connected the presence sensors to pins 19, 20, 21, and 22 for the 4 types of 
+coins (1 ban, 5 bani, 10 bani, and 50 bani).
+
+-I calibrated the presence sensors to detect objects at the correct distance 
+(initially, they were detecting at too great a distance).
+
+-I built the coin separator (mechanical part).
+
+-I tried to program a 7-segment display to work via the SPI protocol (I stayed 
+in the lab until 11 PM on May 9th).
+
+### Week 8 May – 14 May:
+
+-I purchased a new LCD display (lcd1602), which works via I2C.
+
+-I used [`embassy_rp::peripherals::I2C0`](https://docs.rs/embassy-rp/latest/embassy_rp/peripherals/struct.I2C0.html) 
+to make it functional.
+
+-The display has GND, VCC, SDA, and SCL connections.
+
+-I used pins 16 and 17 on the Pico for SDA and SCL.
+
+-It can now display all kinds of characters (letters, numbers, and punctuation).
+
+-I built a new banknote slot (the old one was too long and the banknotes didn’t align properly with the rollers).
+
+-I added a door sensor to detect whether it is open or closed (not yet connected to the board).
+
+### Week 15 May – 21 May:
 
 -To be continued
 
@@ -172,10 +201,200 @@ between components are made with female-to-male jumper wires, and the security
 of the collected banknotes is ensured by an electromagnetic lock.
 
 
+### [Motor](https://www.aliexpress.com/i/4001294507915.html)
+-A component used to spin the roles to take the banknote inside
+
+-it works at 9V, so I have a LM7809 between the 12V source and the motor
+
+-it can spin both ways
+
+-can eject banknote if it is not recognized by the color sensor
+
+### Relay
+-I used a [relay](https://ampul.eu/cs/rele-magneticke-kontakty/3941-modul-8-rele-s-optickym-oddelenim-33v) with 3.3V command and 8 channels, because PICO can give output only up to 3.3V. So, a 5V relay will not work.
+
+-I used the first 4 channels. First channel is from pin 4 (output) that controls the motor. Second one is for light bulb (pin 5), that activates only when I read the banknote. 
+
+-the third channel is for electromagnetic lock.
+
+-the fourth one is used for the motor (but this time backwards).
+
+### [TCS230 color sensor](https://www.optimusdigital.ro/en/optical-sensors/1854-blue-tcs230-color-sensor-module.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02Nn7UqWH3XvXoJSabxmtseDuVm4aQH_EgTjFWKfGaQxev41fdBL5hEBoCsW4QAvD_BwE)
+-used to see colors for banknotes
+
+-it uses 5 pins on my Pico (4 for input, one for output)
+
+-I made a dark chamber for this sensor, because it may get influenced by the outside light.
+
+-It has 8 pins(S0,S1,S2,S3 input in the sensor, out is input in the MCU on pin 10, gnd, vcc and output enable)
+
+### [Presence sensors with infrared](https://www.optimusdigital.ro/en/optical-sensors/4514-infrared-obstacle-sensor.html?search_query=infrared&results=156)
+-the best option to check if something moved.
+
+-I calibrated them using a screwdriver, each of them can detect objects up to 2 cm in front of them
+
+-Each sensor has 3 pins: VCC, GND and OUT. OUT goes in my MCU on the INPUT pins.
+
+### [1602 LCD](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02NhSRhh6ZWsS9qRrYm8ebIyKZ_fdj1R9oZmFWQkiGQcS6CHtxoeJvFxoCkyoQAvD_BwE)
+-It uses only 2 pins from my MCU (pin 16 SDA and pin 17 SCL)
+
+-It comunicates via I2C, at a frequency of 100KHz.
+
+-It prints any characters I need
+
+
+### Reserved Pins
+Pins 0, 1, and 2 are unavailable as they are used by the SC0889 debugger, which is Raspberry Pi compatible.
+Pin 2 is GND, and it is also connected to the debugger.
+
+### Outputs
+#### Pin 2 - Motor Control (Backward)
+-Controls the backward motion of a motor (HP model [RK-370CA-14420](https://datasheet4u.com/pdf-down/R/K/-/RK-370CAMABUCHI.pdf)). When the banknote can't be recognized by my sensor, the pin 4 becomes
+inactive and pin 2 becomes active. It spins back for 0.5 seconds in order to eject the banknote.
+#### Pin 3 – Electromagnetic Lock Control
+-Acts as a GPIO output.
+
+-LOW: Lock is engaged (closed).
+
+-HIGH: Lock is disengaged (open).
+
+#### Pin 4 – Motor Control (Forward)
+-Controls the forward motion of a motor (HP model [RK-370CA-14420](https://datasheet4u.com/pdf-down/R/K/-/RK-370CAMABUCHI.pdf)).
+When the presence sensor in the slot (connected to pin 15) detects a banknote, the motor is activated.
+The banknote is pulled in until a second presence sensor (connected to pin 14) detects it.
+Once detected, the motor stops, and the TCS230 color sensor begins reading the banknote.
+
+#### Pin 5 – 12V Light Control
+Powers a 12V light.
+
+The light turns on during the banknote reading process.
+
+#### Pin 27 – Buzzer Control
+-Controls a buzzer.
+
+-Activated when the door is open or under error conditions.
+
+#### Pin 28 – Status LEDs
+-Controls red LEDs when the machine is working or the door is open.
+Controls green LEDs when the machine is in standby mode.
+
+### [TCS230 Color Sensor](https://www.optimusdigital.ro/en/optical-sensors/1854-blue-tcs230-color-sensor-module.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02Nn7UqWH3XvXoJSabxmtseDuVm4aQH_EgTjFWKfGaQxev41fdBL5hEBoCsW4QAvD_BwE)
+-The TCS230 sensor uses a 100 kHz PWM signal to analyze the colors of the banknotes, allowing for a quick response during processing.
+
+-Outputs a PWM (Pulse-Witdh Modulation) signal (frequency modulation).
+
+-Pins 6 and 7 (Output): Control the output frequency.
+
+-Pins 8 and 9 (Output): Control color filter selection.
+
+-Pin 10 (Input): Receives RGB data.
+
+### Inputs
+#### Pin 11 – On/Off Button:
+-Used for low-power toggling of the device.
+
+#### Pin 13 – Reset Button:
+-When pressed, it sends a command via Pin 3 to open the lock.
+
+-The screen displays 0 for the sum introduced.
+
+-If the door sensor becomes inactive, the buzzer is triggered for 0.5 seconds with a 1-second pause.
+
+### [Presence Sensors](https://www.optimusdigital.ro/en/optical-sensors/4514-infrared-obstacle-sensor.html?search_query=infrared&results=156)
+-In this project, I use 7 presence sensors. There are 4 for coins, 2 for banknotes and one for door.
+
+-I calibrated these presence sensors using a screwdriver.
+
+-I have set the sensors to not detect beyond 2 cm, because they can interfere with the materials around them.
+
+##### Pin 14 (Input):
+-Connected to the second presence sensor (near TCS230).
+
+-Detects the arrival of the banknote and signals the MCU to stop the motor.
+
+
+#### Pin 15 (Input):
+-Connected to the first presence sensor (inside the banknote slot).
+
+-Activates the motor to start pulling the banknote.
+
+#### Pins 19, 20, 21, 22 (Input):
+-Connected to four presence sensors, each detecting a different coin type (1, 5, 10, 50).
+
+#### Pin 26 (Input):
+-Door sensor: If no presence is detected, the door is considered open, and the buzzer must be activated.
+
+### [LCD Display – 1602 (2 Rows × 16 Characters)](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?gad_source=1&gad_campaignid=20868596392&gbraid=0AAAAADv-p3C89WEw3rF-wI7dDqJt-i0N-&gclid=CjwKCAjw_pDBBhBMEiwAmY02NhSRhh6ZWsS9qRrYm8ebIyKZ_fdj1R9oZmFWQkiGQcS6CHtxoeJvFxoCkyoQAvD_BwE)
+-Pins 16 (SDA) and 17 (SCL)
+
+-Used for I2C communication with the LCD via a PCF8574 expander.
+
+-The 1602 LCD uses a transmission speed of 100 kHz for I2C communication, ensuring a quick update of the information on the display.
+
+#### Initialization:
+-The display is initialized using a custom lcd_init function.
+
+#### Data Transmission:
+-I used this datasheet to see exactly how lcd 1602 actually works: [datasheet LCD 1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf)
+
+-Each byte is split into high nibble and low nibble
+
+-Each nibble is sent in two steps: With EN signal activated (with_en) and With EN signal deactivated (without)
+
+-After transmitting a full byte, the system waits 2 ms before continuing.
+
+
+### Power consumption
+I have 2 circuits:
+
+-one at 5V, including Raspberry Pi Pico, TCS230 Color Sensor,all 7 presence sensors and the lcd 1602
+
+-one at 12V, featuring the engine, the lightbulb and some other leds.
+
+-P = U * I 
+|       Device        | Tension (V) | Current Intensity (mA) | Used Power (W) |
+|:-------------------:|:-----------:|:------------------------:|:--------------:|
+| TCS230 Color Sensor |     5V      |           2             |     0.01       |
+| IR Presence Sensors (×7) |   5V      |       7 × 20 = 140       |     0.70       |
+| LCD 1602 with I2C   |     5V      |           30            |     0.15       |
+| **Subtotal (5V)**   |     -       |          172            |     0.86       |
+|                     |             |                          |                |
+| Printer Motor (RK-370CA) |  12V     |          250            |     3.00       |
+| 12V Light (LED)     |    12V      |          200            |     2.40       |
+| Extra LEDs (×4)     |    12V      |       4 × 20 = 80        |     0.96       |
+| **Subtotal (12V)**  |     -       |          530            |     6.36       |
+|                     |             |                          |                |
+| **TOTAL**           |     -       |         ~702             |     ~7.22      |
+
+
+## Hardware images
+
+### Reset button
+
+![Poza Buton Reset](Poza_butonreset.webp)
+
+### Working LCD 1602
+
+![Poza Ecran](Poza_ecran.webp)
+
+### Hardware overall
+
+![Hardware 2](hardware.webp)
+
+### Breadboard with Raspberry Pi Pico 2
+
+![Hardware Overall](hardware_overall.webp)
+
+### Lock with presence sensor for the door
+
+![Incuietoare](incuietoare.webp)
+
+
+
 
 ## Schematics
 
-![Kicad_schematics.PNG](Kicad_schematics.svg)
+![KICAD_schematic.PNG](KICAD_schematic.svg)
 
 
 ## Bill of materials
@@ -197,7 +416,9 @@ of the collected banknotes is ensured by an electromagnetic lock.
 | [830 points Breadboard](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/)             | For prototyping the entire circuit                             |         20         |     1    |    20        |
 | [All purpose leds](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/)                  | Status indicators (e.g., power, validation, errors)            |         0.7        |     20   |             14        |
 | [Buzzer](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/)                            | For audio feedback (e.g., valid/invalid banknote or coin)      |         5          |      1   |             5         |
-| **Total cost**                    |                                                                |                   |          |       **407**     |
+| [LCD 1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf) | I used an LCD 1602 with I2C to display the total amount of money stored in the safe, as well as the current state of the device (waiting, reading, open, closed). | [15](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html) | 1 | 15 |
+| **Total cost** |  |  |  | **422** |
+
 
 
 
@@ -225,6 +446,9 @@ libraries like embassy_executor and embassy_time.
 | [panic_probe](https://docs.rs/panic-probe/latest/panic_probe/)      | Panic handler – displays debug information on panic in embedded mode. | Handles potential runtime panics during execution.      |
 | [embassy_rp::gpio](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | GPIO pin control on the Raspberry Pi Pico (RP2040)     | Defines and controls pins as output (using Output) or input (using Input). |
 | [embassy_rp::init](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Initializes RP2040-specific peripherals               | let p = init(...) — make objects for all pins and peripherals. |
+| [embassy_rp::i2c](https://docs.embassy.dev/embassy-rp/git/rp2040/i2c/struct.I2c.html) | I2C is a two-wire communication protocol that enables data exchange between multiple devices using a shared bus.| Define the asynchronous I2C interface to enable communication between the board and the LCD 1602.  |
+| [embassy_rp::peripherals::I2C0](https://docs.embassy.dev/embassy-rp/git/rp235xa/struct.Peripherals.html#structfield.I2C0)|It provides access to the I2C0 peripheral on Raspberry Pi RP2040, enabling communication with I2C devices such as sensors and displays | Initializes I2C instance asynchronous: let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config)|
+|  [embedded_hal_async::i2c::I2c as AsyncI2c](https://github.com/rust-embedded/embedded-hal/blob/master/embedded-hal-async/src/i2c.rs)| Defines the asynchronous interface for I2C communication in embedded systems.| I used it for asynchronous functions using I2C(lcd_init, lcd_command, lcd_data, lcd_write_str)|
 
 
 
@@ -234,8 +458,10 @@ libraries like embassy_executor and embassy_time.
 
 ## Links:
 
-https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/889/TCS230%20Datasheet.pdf
+[TCS230 datasheet](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/889/TCS230%20Datasheet.pdf)
 
-https://www.youtube.com/watch?v=7ILHtAPY29I
+[Mechanical sorting coins](https://www.youtube.com/watch?v=7ILHtAPY29I)
+
+[Datasheet for LCD1602](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf)
 
 
