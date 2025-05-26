@@ -41,14 +41,24 @@ The **buzzer** emits sound cues for actions and is connected to a GPIO pin
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 5–11 May
+Conducted individual testing of all hardware components to ensure functionality and reliability.
 
+### Week 12–18 May
+Finalized and verified all hardware connections.
 
-### Week  -  May
+Performed integrated testing of all components working together.
 
+Initiated development of the core game logic.
 
-### Week  -  May
- 
+Updated project documentation to reflect the final hardware schematic.
+
+### Week 19–25 May
+Achieved significant progress in implementing the game logic.
+
+Identified and resolved several logic-related issues.
+
+Enhanced documentation by including a list and explanation of the libraries utilized in the project.
 
 ## Hardware
 
