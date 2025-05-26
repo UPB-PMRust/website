@@ -26,24 +26,30 @@ transmitter circuit.
 
 I chose this project because I am fan of 20th century history and I like the old school method of sending messages, I wanted to recreate one of the most famous encryption machines, engima, to the best of my ability to replicate it
 
-## Architecture 
+## Architecture
 
-1. **Browser** (HTML/CSS/JS)  
-2. **Node.js** bridge (HTTP + WebSocket + TCP)  
-3. **Pico W** runs `embassy-rp` + `embassy-net`, TCP client  
-4. **SI4713** via I²C: tune FM & key its tone generator  
+![Architecture photo](./Raw_Arhitecture.webp)
+
+1. **Browser** (HTML/CSS/JS)
+2. **Node.js** bridge (HTTP + WebSocket + TCP)
+3. **Pico W** runs `embassy-rp` + `embassy-net`, TCP client
+4. **SI4713** via I²C: tune FM & key its tone generator
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+I have finished the hardware section, a few more issues are on the clarity of the signal but a better antenna has been installed.
 
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
 
 ## Hardware
+
+![Project_picture](./arhitecture.webp)
+![Project_picture2](./arhitecture2.webp)
 
 | Device                      | Interface    | Pico Pin(s)            |
 | --------------------------- | ------------ | ---------------------- |
@@ -56,7 +62,7 @@ I chose this project because I am fan of 20th century history and I like the old
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Schematic](./schematic.svg)
 
 ### Bill of Materials
 

@@ -69,6 +69,9 @@ Here is the actual setup:
 | Wires                 | connections                  | 2 x 7.99  RON |
 | Resistors 330ohm      | Used to limit the current    | 4 x 0.10  RON |
 | Bread Board           | Used to connect part together| 2 x 8.99  RON |
+| LCD 1602              | Shows results on screen      | 16.34     RON |
+| Wires                 | connections                  | 2 x 7.99  RON |
+| Resistors 330ohm      | Used to limit the current    | 4 x 0.10  RON |
 
 ## Software
 

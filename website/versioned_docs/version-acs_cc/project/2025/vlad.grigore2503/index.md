@@ -43,7 +43,11 @@ I usually like to check the outside weather when going out to find out what I sh
 
 ### Week 5 - 11 May
 
+Bought all the required components, made research and tested the Pico and basic WIFI functionality.
+
 ### Week 12 - 18 May
+
+Wired all the components and made sure they work as expected.
 
 ### Week 19 - 25 May
 
@@ -59,7 +63,11 @@ I usually like to check the outside weather when going out to find out what I sh
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![KiCad](./images/kicad.svg)
+
+### Photos
+
+![hardware](./images/hardware.webp)
 
 ### Bill of Materials
 
