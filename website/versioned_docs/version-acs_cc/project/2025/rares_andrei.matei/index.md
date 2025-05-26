@@ -124,6 +124,19 @@ each button, that loop infinitely while waiting the button to be pressed. In the
 what to display on the screen.
 I also programmed the GPS but it says that it doesn't have signal.
 
+For the fingerprint sensor I needed to do the crate myself, I found the official
+repository with the Cpp code and I tried to convert the minimum ammount I needed
+into Rust code. I did 2 functions, one to save a fingerprint and one to identify,
+but I didn't manage to understand the packets sent from the sensor to the pico,
+so unfortunately it doesn't work.
+
+I also needed to create a crate for the pulse sensor, as the one on crates.io is
+blocking and it doesn't work in my project. I didn't have much time with this one
+so I tried to do something else.
+
+Lastly I implemented a clock in this device by counting the seconds starting from
+the start of the code and adding the time saved when building the project.
+
 ## Hardware
 
 1. **Raspberry Pi Pico 2W**
@@ -170,8 +183,11 @@ This is the device's circuit. I need to make a small case to hide the wires and 
 | [embassy-rp](https://crates.io/crates/embassy-rp) | HAL implementation to not use registers directly | Gives access to GPIO, I2C, SPI ports |
 | [bme280_rs](https://crates.io/crates/bme280-rs) | Driver for the Bosch BME280 sensor to query temperature, pressure and humidity, also works with the BMP280 | Tracks temperature and atmospheric pressure |
 | [ublox](https://crates.io/crates/ublox) | Library for uBlox GPS devices | Tracks GPS coordinates |
-| [max3010x](https://docs.rs/max3010x/latest/max3010x/) | Driver for the MAX3010x sensor based on embedded-hal traits | Tracks wearer's pulse |
 | [mipidsi](https://crates.io/crates/mipidsi/0.9.0) | Generic display driver that supports the ST7735-LCD Screen model | Displays data on screen |
+
+## Demo
+[Demo with debugger](https://youtu.be/dhYRVteN-iY)
+[Demo with batteries](https://youtu.be/rQPiQWmaLSk)
 
 ## Links
 1. [PM Labs](https://pmrust.pages.upb.ro/docs/acs_cc/category/lab)
