@@ -32,9 +32,9 @@ The project aims to measure and mantain the water level in real time using a Ras
 
 **5 - Water Pump**: Refills the container automatically if the water level is too low.
 
-**6 - Power Supply** – USB (for logic) and 5V adapter with DC connector (for pump).
+**6 - Power Supply**: USB (for logic) and 5V adapter with DC connector (for pump).
 
-**7 - NPN Transistor (TIP31)** – Allows the Raspberry Pi Pico to safely switch the 5V pump using GPIO control.
+**7 - NPN Transistor (TIP31)**: Allows the Raspberry Pi Pico to safely switch the 5V pump using GPIO control.
 
 ## Log
 
@@ -100,6 +100,45 @@ Here are some pictures of my project:
 | [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT target for defmt logging | Outputs logs over RTT for debugging with probe-run |
 | [panic-probe](https://crates.io/crates/panic-probe) | Panic handler with debug output | Sends panic messages via defmt for diagnosing issues |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Cortex-M runtime support | Handles microcontroller startup and vector table |
+
+### Software Design:
+
+**main.rs**:
+* Main async task initializes all peripherals: Ultrasonic sensor pins (PIN_10, PIN_11), LCD via I2C (PIN_2, PIN_3), Output pins for buzzer and pump
+* Displays “Water Level:” on LCD
+* Takes 3 warm-up distance readings at startup
+* Enters main control loop every 500 ms
+
+**measure_distance()**:
+* Sends a 10µs pulse on TRIG
+* Waits for ECHO pin to go high and then low
+* Measures echo pulse duration using Instant::now()
+* Converts time to distance in cm
+* Applies a filter: Limits sudden change to ±1.5 cm and uses static LAST_VALID_DISTANCE to smooth output
+
+**get_stable_distance()**:
+* Takes 5 consecutive measurements
+* Filters outliers using a median value (bubble sort)
+* Returns a more reliable estimate
+
+**calc_water_percentage()**:
+* Subtracts a fixed sensor offset
+* Computes water height and converts to %
+* Clamps result to [0%, 100%]
+
+**format_percentage()**:
+* Converts the percentage value into a string aligned for the LCD
+
+**Main Loop Logic**:
+* Gets current water level as percentage
+* Displays it on second LCD line
+* Pump Control: Activates pump if < 35% and deactivates pump if >= 40% or after 30 seconds
+* Buzzer/Message Control: Shows "ALARM!" if water too high and shows "PUMPING" while pump is on
+* Waits 500 ms before next cycle
+
+**Software Diagram**:
+
+![software_diagram](software_diagram.svg)
 
 
 ## Links
