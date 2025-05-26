@@ -1,5 +1,5 @@
 # Sistem de Detectare Obiecte
-A one line project description
+Proiectul isi propune sa foloseasca un senzor care sa detecteze obiecte, caz in care sa emita zgomot cu ajutorul unui buzzer si sa afiseze datele pe ecran.
 
 :::info 
 
