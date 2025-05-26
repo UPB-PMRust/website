@@ -11,9 +11,8 @@ Magnetic robot that erases whiteboard marker strokes and can be driven remotely 
 ## Description
 
 SpongeBot SteelPants is a two-wheel robot designed to automate the process of cleaning
-whiteboards. It clings to the board with a PWM-controlled electromagnet and either:
-* automatic sweep mode - systematically scans the entire board in a lawn-mower pattern
-* remote mode - receives real-time drive commands from a phone/PC over Wi-Fi.
+whiteboards. It clings to the board with a PWM-controlled electromagnet and 
+receives real-time drive commands from a phone/PC over Wi-Fi.
 
 ## Motivation
 
@@ -101,10 +100,10 @@ and motors
 * Implemented firmware:
     * Developed the Rust software stack including UDP command parsing
     * Integrated drive logic
-* Identified torque imbalance due to mismatched software - planned software
-compensation
-* Performed preliminary functionality tests for robot movement, magnet adhesion
+    * Performed preliminary functionality tests for robot movement, magnet adhesion
 and sensor checks
+* Identified torque imbalance due to mismatched gear-ratio - planned software
+compensation
 
 ## Hardware
 
@@ -145,7 +144,6 @@ module or just simply going around)
 * Displays remaining battery charge
 
 Other components:
-* WAGO Connectors split the battery rail into separate current branches
 * 4xAA Battery Holder powers the robot
 * Sponge
 * Permanent magnets
@@ -158,9 +156,11 @@ Other components:
 ### Photos
 ![Photo_HighAngle](images/photo_high.webp)
 ![Photo_LowAngle](images/photo_down.webp)
-![Photo_FullyWired]
 
-### Video
+### Videos
+[![Video 1](https://img.youtube.com/vi/UJ2pL7mbKPA/hqdefault.jpg)](https://www.youtube.com/watch?v=UJ2pL7mbKPA)\
+[![Video 2](https://img.youtube.com/vi/G-_1dk8VT-g/hqdefault.jpg)](https://www.youtube.com/watch?v=G-_1dk8VT-g)\
+[![Video 3](https://img.youtube.com/vi/JV2QptHQlVE/hqdefault.jpg)](https://www.youtube.com/watch?v=JV2QptHQlVE)
 
 ### Bill of Materials
 
@@ -202,6 +202,15 @@ The format is
 | [ssd1306](https://docs.rs/ssd1306) | OLED driver for SSD1306 controller over I²C/SPI. | Displays robot mode or battery on 0.96″ screen. |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics primitives and text rendering. | Renders UI elements on the OLED screen. |
 | [cyw43](https://docs.embassy.dev/cyw43) | Async Wi-Fi driver for the Pico W’s CYW43439 chip. | Enables Wi-Fi for control or telemetry via Embassy. |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async task executor and the `#[embassy_executor::task]` / `#[embassy_executor::main]` macros. | Runs the cooperative scheduler behind every firmware task. |
+| [embassy-time](https://crates.io/crates/embassy-time) | Hardware-agnostic timers, delays and `Duration` helpers. | `Timer::after`, `Delay` for IMU init, periodic heart-beat sleeps. |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Lock-free channels, mutexes and signals for Embassy. | All SPSC channels (`EDGE_CHANNEL`, `IMU_CHANNEL`, …). |
+| [heapless](https://crates.io/crates/heapless) | Fixed-capacity `String`, `Vec`, deques — no dynamic allocation. | Builds OLED text lines and parses UDP commands without the `alloc` crate. |
+| [static-cell](https://crates.io/crates/static-cell) | Safe `static` initialisation of buffers and peripherals. | Holds `StackResources`, UDP metadata. |
+| [libm](https://crates.io/crates/libm) | `no_std` math routines (√, trig, …). | Computes tilt magnitude `sqrt(pitch² + roll²)`. |
+| [defmt](https://crates.io/crates/defmt) + [defmt-rtt](https://crates.io/crates/defmt-rtt) | Ultra-light logging with RTT transport. | `info!`, `warn!`, `error!` debug output visible via `probe-run`. |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler that prints the panic over **defmt** then halts. | Gives readable back-traces instead of silent lock-ups. |
+| embassy-lab-utils| Helper macros for quick Pico W Wi-Fi + network-stack setup. | `init_wifi!` and `init_network_stack` one-liners inside `main()`. |
 
 ## Links
 
