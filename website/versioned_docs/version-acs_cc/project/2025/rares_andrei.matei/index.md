@@ -119,6 +119,10 @@ works with bmp280 and it made the code easier. Then I continued with the lcd scr
 use the st7735-lcd-rs crate thinking it will be easy as it was named after the module, but I didn't manage to get it to work, so I rolled back 
 to use the mipidsi crate used in the lab and it worked fine.
 
+Next I programmed the buttons to cycle through the screens. I used a mutex to hold the index of the current page and created 2 tasks, one for
+each button, that loop infinitely while waiting the button to be pressed. In the main loop I take the value from the mutex and match it to select
+what to display on the screen.
+I also programmed the GPS but it says that it doesn't have signal.
 
 ## Hardware
 
