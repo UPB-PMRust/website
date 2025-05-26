@@ -90,7 +90,7 @@ VCC → 3.3V or 5V.
 
 GND → GND.
 
-OUT → GPIO pin on Pico.
+ECHO & TRIG → GPIOs pin on Pico.
 
 ### SG90 Servo Motors
 
