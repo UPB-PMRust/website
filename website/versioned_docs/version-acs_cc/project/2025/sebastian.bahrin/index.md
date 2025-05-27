@@ -159,12 +159,12 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
   * Reading analog values from the photoresistor for light detection
 
 ## **Schematics**
-![Schema Electrica](./Schematic.webp) 
+![Schema Electrica](./Schematic.svg) 
 
 ## **Project Photos**
-![Photo 1](./Photo1.webp) 
-![Photo 2](./Photo2.webp) 
-![Photo 3](./Photo3.webp) 
+![Photo 1](./Photo1.svg) 
+![Photo 2](./Photo2.svg) 
+![Photo 3](./Photo3.svg) 
 
 ## **Bill of Materials**
 
