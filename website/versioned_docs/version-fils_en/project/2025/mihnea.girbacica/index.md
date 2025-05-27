@@ -167,4 +167,11 @@ The format is
 3. [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
 
 I plan on using this project after **PMFair** as part of an educational programme for my company, **MEH Studios Incorporated**. More details can be found below:
+
 4. [MSINC Website](https://mehstudios.vercel.app) *(Note: This link might change in the future, search MEH Studios Incorporated on Google for permanent links.)*
+
+## YouTube Backup
+
+There exists a rather high possibility that the project won't work at **PMFair**, due to loose cables which are unaccessible, or due to the microcontroller malfunctioning. Therefore, I uploaded an unlisted YouTube video on my channel, showcasing the whole project in a late stage of development (roughly ~85% or ~90% done). This video is to be used as a backup:
+
+[![RustScape YouTube Demo](./youtube-rustscape-demo.webp)](http://www.youtube.com/watch?v=TIsyPn2RA-o "RustScape: The small handheld Undertale box")
