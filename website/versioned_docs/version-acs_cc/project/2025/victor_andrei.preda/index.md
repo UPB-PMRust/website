@@ -64,6 +64,11 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 4. **Update documentation**
 5. **Finished whole project**
 
+### Week 12 - 18 May
+1. **Done making the hardware**
+2. **Add images in documentation**
+3. **Update documentation**
+
 ## Hardware
 
 1. **Raspberry Pi Pico 2W** (x2)  
@@ -121,6 +126,7 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 | 40-pin Header (2.54mm)           | 2        | [0.99 RON](https://www.optimusdigital.ro/en/pin-headers/464-colored-40p-254-mm-pitch-male-pin-header-red.html)   |
 | Breadboard Jumper Wire Set        | 1        | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html?search_query=0104210000001532&results=1)   |
 | Large Breadboard (830 points)     | 4        | 9.98 RON   |
+| Large Breadboard (830 points)     | 2        | 9.98 RON   |
 | Male-to-Female Jumper Wires (40p) | 1        | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html?search_query=0104210000001792&results=1)   |
 | Round Tactile Buttons             | 12       | [1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html?search_query=0104210000009590&results=1)   |
 | Resistors 22kΩ            | 12       | [0.1 RON](https://www.optimusdigital.ro/en/resistors/848-025w-22k-resistor.html?search_query=Resistor+22k&results=7)   |
@@ -134,6 +140,8 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 | [**display-interface-spi**](https://github.com/almindor/display-interface)             | SPI display abstraction                      | Connects the embedded-graphics to SPI-based displays   |
 | [**embassy**](https://github.com/embassy-rs/embassy)                                        | Async embedded runtime                    | Drives async tasks and hardware interaction (e.g., Wi-Fi)|
 | [**embassy-rp**](https://github.com/embassy-rs/embassy)                                            | HAL for Raspberry Pi Pico (RP2040)        | Manages GPIO buttons and SPI LCD control       |
+| [**rp2040-hal**](https://github.com/rp-rs/rp-hal)                                            | Raspberry Pi Pico hardware support        | Manages GPIO buttons and SPI LCD control       |
+| [**embassy**](https://github.com/embassy-rs/embassy)                                        | Async embedded runtime                    | Drives async tasks and hardware interaction (e.g., Wi-Fi)|
 | [**cyw43**](https://github.com/embassy-rs/embassy/tree/main/embassy-net-driver/src/cyw43)   | Wi-Fi driver for Pico W (CYW43 chipset)   | Enables wireless multiplayer over Wi-Fi                  |
 | [**embedded-hal**](https://github.com/rust-embedded/embedded-hal)                           | Hardware abstraction layer                | Standardizes hardware interactions                       |
 | [**embedded-time**](https://github.com/FluenTech/embedded-time)                             | Timing utilities                          | Controls game loop and move timing                       |

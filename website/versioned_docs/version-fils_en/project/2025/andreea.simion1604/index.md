@@ -4,8 +4,8 @@ Don't Touch The Spikes game based on a raspberry pi pico 2W
 
 :::info 
 
-- *Author*: Andreea Simion \
-- *GitLab Project Link*: https://github.com/UPB-PMRust-Students/project-elizasimion-2004
+**Author**: Andreea Simion \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-elizasimion-2004
 
 :::
 
@@ -73,18 +73,20 @@ Light up when the player reaches certain scores
 ## Log
 
 - *Week 5 - 11 May*: Planned the architecture of the project, bought all the required components and created the documentation of the project.
-- *Week 12 - 18 May*: 
+- *Week 12 - 18 May*: This week, I received all the hardware components, created the KiCad schematic, and started wiring the components on the breadboard.
 - *Week 19 - 25 May*: 
 
 ## Hardware
 
-![hardware](hardware111.webp)
+The Raspberry Pi Pico 2W serves as the main microcontroller, running the game logic, handling input from various components, driving the display, and controlling game events such as scoring and game over. The game’s graphics are displayed on an ILI9341 LCD screen connected via SPI, utilizing the Embedded-graphics library. Player input is managed through a joystick connected via the ADC, allowing control of the bird's movement within the game area. A 4-digit 7-segment display connected through GPIO shows the player’s current score in real-time as they collect food. Sound effects for scoring or losing are produced by a buzzer controlled via PWM. All electronic components are connected using a breadboard and wires. Additionally, a push button connected through GPIO functions as a reset button, while LEDs, also connected via GPIO, light up when the player reaches certain scores.
+
+![hardware](hardware1.webp)
 
 ## Schematics
 
 KiCAD schematics
 
-![KiCAD scheme](scheme111.webp)
+![KiCAD scheme](kicad.svg)
 
 
 ## Bill of Materials

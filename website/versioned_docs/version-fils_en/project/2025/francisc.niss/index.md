@@ -25,7 +25,7 @@ The Max9814 Microphone Module captures the sound of a vibrating guitar string an
 
 The Voltage Regulator provides a stable 5V power supply to the entire system, including the Pico, motor driver, and microphone.
 
-The L9110S Motor Driver receives control signals from the Pico and adjusts the direction of the connected motor accordingly.
+The Dual Motor Driver receives control signals from the Pico and adjusts the direction of the connected motor accordingly.
 
 The DC Motor is connected to a 3D printed tuning peg gripper and rotates to tune the guitar string automatically.
 
@@ -34,9 +34,9 @@ The DC Motor is connected to a 3D printed tuning peg gripper and rotates to tune
 ## Log
 
 ### Week 5 - 11 May
-
+I finished purchasing all the components necessary for the project and now I am starting to connect and understand each component
 ### Week 12 - 18 May
-
+I completed assembling the circuit and ensuring that each component is properly wired and powered. With the hardware setup in place. I also finished making the blueprint for the 3D component that I will be attaching to the motor.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -47,7 +47,7 @@ Max9814 Electret Microphone Amplifier Module – captures the sound of the vibra
 
 GA12-N20 DC Motor (6V, 30RPM) – rotates the guitar tuning peg to adjust string tension.
 
-L9110S Motor Driver Module – allows the Pico to control the motor direction using two GPIO pins.
+Dual Motor Driver Module – allows the Pico to control the motor direction using two GPIO pins.
 
 LM2596S DC-DC Step-Down Converter – steps down the 8.4V from the battery to a stable 5V used by the entire system.
 
@@ -59,9 +59,11 @@ Generic Electronics Kit – includes breadboard, jumper wires, resistors, and co
 
 The system is powered by a 2S LiPo battery which supplies approximately 7.4V. This is stepped down using the LM2596S module to a regulated 5V that powers the Raspberry Pi Pico 2W, motor driver, microphone, and the motor itself via the L9110S.
 
+![Hardware](hardware.webp)
+
 ### Schematics
 
-![KiCad](kicad.webp)
+![KiCad](kicad.svg)
 
 ### Bill of Materials
 
@@ -71,8 +73,8 @@ The system is powered by a 2S LiPo battery which supplies approximately 7.4V. Th
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [39,66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
 | [MAX9814 Microphone Module](https://www.analog.com/media/en/technical-documentation/data-sheets/max9814.pdf) | The microphone | [24,90 RON](https://ardushop.ro/ro/module/717-modul-amplificator-microfon-cu-agc-max9814-6427854009111.html) |
 | [GA12-N20 DC Motor](https://www.handsontec.com/dataspecs/GA12-N20.pdf)| The motor | [26,18 RON](https://www.emag.ro/micro-motor-cu-reductie-dc-6v-30rpm-ga12-n20-ai1083/pd/DVWFTFMBM/) |
-| [L9110S Motor Driver Module](https://www.laskakit.cz/user/related_files/l9110_2_channel_motor_driver.pdf) | The motor driver module | [14,28 RON](https://www.emag.ro/modul-l9110s-groundstudio-bcrrqi-gs/pd/D1D6RZYBM/) |
 | [LM2596S DC-DC Step Down Module](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | Voltage regulator | [12,99 RON](https://www.optimusdigital.ro/en/adjustable-step-down-power-supplies/1108-lm2596hv-dc-dc-step-down-module.html) |
+| Dual Motor Driver Module| The motor driver module | [38,99 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/8161-driver-de-motoare-dual-65-27-v-2-x-7-a.html) |
 | 2S LiPo 8V Battery | The battery | [95 RON](https://www.emag.ro/acumulator-lipo-gens-ace-g-tech-soaring-7-4-v-2200-ma-30c-xt60-2s2200p30/pd/DD3GY7YBM/) |
 | General Electronics Kit | Breadboard,wires,capacitors,resistors,etc. | [60,38 RON](https://www.emag.ro/set-componente-electronice-breadboard-830-puncte-led-uri-compatibil-arduino-si-raspberry-pi-zz00044/pd/DRXG4XYBM/) |
 
