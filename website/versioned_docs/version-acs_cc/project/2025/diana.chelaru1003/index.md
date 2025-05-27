@@ -41,11 +41,20 @@ The entire system is powered through a USB cable connected to the Pico.
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 4 - 11 May
+-modified/updated the schematic
+
+-assembled some components on the breadboard
+
+-started working on the software
 
 
-### Week  -  May
+### Week 12 - 18 May
+-modified/updated the schematic again
 
+-assembled all components on the breadboard
+
+-made some progress on the software
 
 ### Week  -  May
  
@@ -80,8 +89,12 @@ The entire system is powered through a USB cable connected to the Pico.
 **Purpose**: Ensure physical and electrical connections between components.
 **Function**: Carry data signals and power between the Raspberry Pi Pico and all peripheral devices.
 
+![diagram](Poza1.webp)
+![diagram](Poza2.webp)
+![diagram](Poza3.webp)
+
 ### Schematics
-![diagram](Schematic.webp)
+![diagram](Schematic.svg)
 
 ### Bill of Materials
 
