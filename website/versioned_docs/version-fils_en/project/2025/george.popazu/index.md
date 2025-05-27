@@ -62,6 +62,7 @@ Power is supplied through the Pico's USB interface or external 3.3V source, with
 ### Schematics
 KiCad Scheme
 
+
 ![alt text](Fan-rotation.svg)
 
 ### Bill of Materials
