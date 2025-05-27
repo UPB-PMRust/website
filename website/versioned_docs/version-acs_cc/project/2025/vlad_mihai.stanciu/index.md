@@ -136,3 +136,4 @@ Completed the physical structure of the crane using cardboard, ensuring stabilit
 | [fixed](https://docs.rs/fixed)                                                                    | Fixed-point arithmetic| Used to accurately configure the PWM `divider`                       |
 | [embassy-time](https://github.com/embassy-rs/embassy)                                             | Async Timers          | Precise non-blocking delays for servo and stepper control            |
 
+
