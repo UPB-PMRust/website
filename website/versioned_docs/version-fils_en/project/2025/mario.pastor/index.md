@@ -10,7 +10,7 @@ A wearable device that tracks heart rate, blood oxygen saturation, and step coun
 
 ## Description
 
-This wearable health monitor continuously measures and displays the user's vital signs in real time. It uses a MAX30102 pulse oximeter sensor to calculate heart rate (BPM) and blood oxygen saturation (SpO₂), alongside an ADXL345 accelerometer to detect and count steps. The collected data is displayed on a compact SSD1306 screen, providing a clear and minimal interface. Additionally, the device hosts a server, allowing the latest readings to be retrieved via Wi-Fi.
+This wearable health monitor continuously measures and displays the user's vital signs in real time. It uses a MAX30102 pulse oximeter sensor to calculate heart rate (BPM) and blood oxygen saturation (SpO₂), alongside an ADXL345 accelerometer to detect and count steps. The collected data is displayed on a compact SSD1306 screen, providing a clear and minimal interface. Additionally, a web application fetches the latest sensor readings from the device, displaying the latest sensor reading and three charts which show the evolution of the measured parameters.
 
 ## Motivation
 
@@ -52,12 +52,23 @@ I consulted with my lab teacher regarding the 3D casing for the sensors, and we 
 ![oximeter-finger-clip](assets/week12_update.webp)
 
 ### Week 19 - 25 May
+I managed to drill a hole in the finger clip so that the wires of the sensor can pass through it and I sticked the accelerometer to the finger clip.
+For the software part, I implemented a separate task which handles the TCP connection and I tested sending the latest sensor reading.
+I started working on the web interface which will display the data and chose Python with Flask for it.
+
+### Week 26 - 30 May
+I finished the Python script which handles fetching the data from the device over TCP and I worked on the visual appearence of the website.
+I tested to see if the web interface works while wearing the device (and it does).
+
+![web-interface](assets/week14_update.webp)
 
 ## Hardware
 
-My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. As of now, this is how the hardware looks like, but in the following week I will design the 3D cases for the sensors in order to make the device wearable.
+My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. 
+As of now, this is how the hardware looks like, but in the following week I will design the 3D cases for the sensors in order to make the device wearable.
+This is how the hardware looks like. I 3D printed a finger case for the pulse oximeter and I used double-sided adhesive tape to stick the accelerometer to the case.
 
-![hardware](assets/hardware1.webp)
+![hardware](assets/hardware2.webp)
 
 ### Schematics
 
@@ -80,10 +91,17 @@ My project is built around the Raspberry Pi Pico 2W microcontroller, which colle
 | [embassy-executor](https://crates.io/crates/embassy-executor) | Asynchronous task executor | Used for task scheduling |
 | [embassy-rp](https://crates.io/crates/embassy-rp) | RP2040 HAL for Embassy | Access to RP2040 peripherals (GPIO, SPI, I2C) |
 | [embassy-time](https://crates.io/crates/embassy-time) | Timing utilities | Used for delays |
-| [embassy-sync](https://crates.io/crates/embassy-sync) | Async synchronization primitives | Used for Mutex |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Async synchronization primitives | Used for Mutex (both for the screen and for sharing sensor data between tasks) |
+| [embassy-net](https://crates.io/crates/embassy-net) | Async network stack for embedded devices | Used to handle and run the TCP server |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Rendering text on the screen |
-| [ssd1306](https://crates.io/crates/ssd1306) | OLED display driver | Used to control the display |
+| [static-cell](https://crates.io/crates/static-cell) | Safe static memory allocator | Used to initialize and store static data |
+| [cyw43](https://crates.io/crates/cyw43) | Wi-Fi driver | Runs the Wi-Fi stack and sets up the acces point |
+| [cyw43-pio](https://crates.io/crates/cyw43-pio) | CYW43 driver using Pio | Required for the Wi-Fi task |
 | [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI display abstraction | Facilitates SPI communication between SSD1306 and device |
+| [embassy-embedded-hal](https://crates.io/crates/embassy-embedded-hal) | Extensions for embedded-hal traits | Used for SPI shared-bus support |
+| [embedded-hal-async](https://crates.io/crates/embedded-hal-async) | Async embedded HAL traits | Used for I2C communication |
+| [embedded-io-async](https://crates.io/crates/embedded-io-async) | Async embedded I/O traits | Enables non-blocking writing on the TCP socket |
+| [ssd1306](https://crates.io/crates/ssd1306) | OLED display driver | Used to control the display |
 | [defmt](https://crates.io/crates/defmt) | Lightweight logging crate | Used for logging data |
 | [heapless](https://crates.io/crates/heapless) | Data structures | Used for creating strings |
 | [libm](https://crates.io/crates/libm) | Float math functions | Used for computing math functions |
