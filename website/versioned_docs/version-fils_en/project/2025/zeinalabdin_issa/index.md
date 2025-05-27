@@ -41,7 +41,11 @@ The architecture of the Smart Parking Lot system includes the following main com
 ### Week 12 - 18 May
 - I started making the hardware work and figuring out how to put all parts together to make them work perfectly with each other. and made the Kicad schematics for the project.
 ### Week 19 - 25 May
-- I started working on the software part of the project on VScode. and when i was done with it, i started working on the project appearance.
+- Initialized the software repository and structured the codebase.
+- Implemented asynchronous tasks using Embassy for sensor and servo control.
+- Integrated LCD display using the `hd44780-driver` over I2C.
+- Added logic for tracking parking duration and calculating billing.
+- Tested individual components: ultrasonic sensors, servos, LEDs, and LCD.
 ## Hardware
 The Raspberry Pi Pico controls the smart parking lot system using Ultrasonic sensors to detect cars, two servo motors to open and close the gates, and LEDs to indicate slot status. An I2C 1602 LCD displays messages such as time and availability. All components communicate through GPIO pins, with shared power and ground connections.
 
@@ -74,9 +78,20 @@ Here is the actual setup:
 
 ### Libraries
 
-| Library              | Description                   | Usage                                |
-|----------------------|-------------------------------|--------------------------------------|
-| st7789               | Display driver for ST7789     | Used for the display for the Pico Explorer Base |
-| embedded-graphics    | 2D graphics library           | Used for drawing to the display     |
+| Library              | Description                                     | Usage                                                              |
+|----------------------|-------------------------------------------------|--------------------------------------------------------------------|
+| [embassy](https://embassy.dev/)              | Async embedded framework for Rust               | Core async runtime for the project                                 |
+| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp)           | RP2040 support crate in Embassy                 | Access to GPIO, PWM, I2C, etc. on Raspberry Pi Pico                |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time)         | Timer and delay utilities for Embassy           | Used for non-blocking delays and time tracking                     |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor)     | Async task executor for Embassy                 | Manages async tasks and scheduling                                 |
+| [embassy-rp-pwm](https://github.com/embassy-rs/embassy/blob/main/embassy-rp/src/pwm.rs)       | PWM peripheral driver for RP2040                | Controls servo motors for entry/exit gates                         |
+| [embassy-rp-gpio](https://github.com/embassy-rs/embassy/blob/main/embassy-rp/src/gpio.rs)      | GPIO peripheral driver for RP2040               | Reads ultrasonic sensors and controls LEDs                         |
+| [embassy-rp-i2c](https://github.com/embassy-rs/embassy/blob/main/embassy-rp/src/i2c.rs)       | I2C peripheral driver for RP2040                | Communicates with the 1602 LCD display                             |
+| [hd44780-driver](https://crates.io/crates/hd44780-driver)       | Driver for HD44780 LCDs (I2C support)           | Displays parking information on the 1602 LCD                       |
+| [heapless](https://crates.io/crates/heapless)             | Fixed-size, no_std data structures              | Used for `String` formatting on the LCD                            |
+| [defmt](https://github.com/knurling-rs/defmt)                | Logging framework for embedded Rust             | Debugging and logging system events                                |
+| [panic-probe](https://crates.io/crates/panic-probe)          | Minimal panic handler for embedded Rust         | Handles panics and outputs debug info                              |
+| [fixed](https://crates.io/crates/fixed)                | Fixed-point arithmetic library                  | Used for accurate PWM timing and calculations                      |
+| [core](https://doc.rust-lang.org/core/)                 | Rust core library for no_std environments       | Provides essential types and traits                                |
 
 ## Links
