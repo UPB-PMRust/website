@@ -120,7 +120,7 @@ This idea seemed like a suitable one for me, as a person that sometimes forgets 
 |defmt |Logging | Debugging|
 |panic-probe | Panic handler | Print panics|
 |hd44780_driver | Output | Print on display|
-
+|panic-probe | Panic handler | Print panics
 
 
 ## Links
