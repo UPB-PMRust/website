@@ -78,7 +78,7 @@ Enhanced documentation by including a list and explanation of the libraries util
 - **Purpose**: Provide auditory feedback during gameplay.
 - **Function**: Emits sound cues for actions such as tile merges, successful moves, or game over.
 
-![Top view](top-view_resized.webp)
+![Top view](top view_resized.webp)
 
 ![Screen front](screen.webp)
 
