@@ -78,7 +78,7 @@ The implementation of a smart parking system, based on Raspberry Pi Pico 2 and p
 | VCC         | 5V (external source)                                        |
 | GND         | GND (Pico)                                                  |
 | TRIG        | GPIO18 (Pico)                                               |
-| ECHO        | GPIO19 through voltage divider                              |
+| ECHO        | GPIO22 through voltage divider                              |
 
 - HC-SR04 NR.5 connection diagram
 
@@ -93,7 +93,7 @@ The implementation of a smart parking system, based on Raspberry Pi Pico 2 and p
 
 | SG90 Servo Pin    | Connecting to Raspberry Pi Pico 2           |
 |-------------------|---------------------------------------------|
-| Orange (PWM)      | GPIO15 (or other PWM compatible GPIO)       |
+| Orange (PWM)      | GPIO12 (or other PWM compatible GPIO)       |
 | Red (VCC)         | 5V from an external source                  |
 | Brown(GND)        | GND common with Pico                        |
 
@@ -104,7 +104,7 @@ The implementation of a smart parking system, based on Raspberry Pi Pico 2 and p
 ### Week 21 April - 5 May
     Connecting the hardware components
 ### Week 12 - 18 May
-
+    Added the second pico2 for debug. Testing the project 
 ### Week 19 - 25 May
 
 ## Hardware
@@ -117,6 +117,9 @@ Here’s a concise description of the hardware components used in my project:
 - SG90 Servo + Barrier – the servo motor lifts or lowers a physical barrier to control access when a car is detected.
 - 7-Segment Display – shows the number of free parking spaces available in real time.
 - Voltage Source – provides 5V power to the sensors, servo, and display.
+
+  ![Poza 1](poza1.webp)
+  ![Poza 2](poza2.webp)
 
 ### Schematics
 
