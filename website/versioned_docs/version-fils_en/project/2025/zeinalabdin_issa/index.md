@@ -41,7 +41,7 @@ The architecture of the Smart Parking Lot system includes the following main com
 ### Week 12 - 18 May
 - I started making the hardware work and figuring out how to put all parts together to make them work perfectly with each other. and made the Kicad schematics for the project.
 ### Week 19 - 25 May
-
+- I started working on the software part of the project on VScode. and when i was done with it, i started working on the project appearance.
 ## Hardware
 The Raspberry Pi Pico controls the smart parking lot system using Ultrasonic sensors to detect cars, two servo motors to open and close the gates, and LEDs to indicate slot status. An I2C 1602 LCD displays messages such as time and availability. All components communicate through GPIO pins, with shared power and ground connections.
 
@@ -65,6 +65,10 @@ Here is the actual setup:
 | Ultrasonic Sensors    | Used for cars detection      | 2 x 6.45  RON |
 | ServoMotor            | Opens the gate for the cars  | 2 x 11.99 RON |
 | LEDs                  | Lights up on detection       | 4 x 0.39  RON |
+| LCD 1602              | Shows results on screen      | 1 x 16.34 RON |
+| Wires                 | connections                  | 2 x 7.99  RON |
+| Resistors 330ohm      | Used to limit the current    | 4 x 0.10  RON |
+| Bread Board           | Used to connect part together| 2 x 8.99  RON |
 | LCD 1602              | Shows results on screen      | 16.34     RON |
 | Wires                 | connections                  | 2 x 7.99  RON |
 | Resistors 330ohm      | Used to limit the current    | 4 x 0.10  RON |
