@@ -59,7 +59,7 @@ This week i have finished the first version of the 3D design and i already start
 ### Week 6 - 18 May
 After another couple of variants i have the final design and i am very proud of it, the turret is able to move on all of the axis and the shooting mechanism has been tested and it works even with multiple darts in the magazine!
 ### Week 19 - 25 May
-
+Finally i after a hefty amount of work, i got the wifi to work and connect to my phone's hotspot, the pico's comunicate with eachother through UDP and after a lot of fiddling with the code and documenting on better ways to smoothen the movement i made the turret work, now i finally have a final working version of this project which i am very proud of.
 ## Hardware
 
 The Raspberry Pi Picos 2W serve as the central microcontrollers for the Turret project. It provides the processing power and interfaces necessary to control various components of the turret. With its RP2350 processor and ample GPIO pins, the Pico 2W can handle tasks such as reading input from button and joystick, driving the servos for the movement, and handle the connection between the 2 picos using the 2.4GHz 802.11n wireless LAN.
