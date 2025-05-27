@@ -15,13 +15,17 @@ Modern elevators can waste time and energy by stopping at unnecessary floors or 
 I chose this project because it addresses a real-world need for smarter, more efficient building systems. Elevators are critical for accessibility and convenience, and optimizing their operation can have a significant impact on energy use and user experience. This project combines my interest in automation and control with the challenge of creating a practical solution that benefits everyday life.
 
 ## Architecture 
+
 ![alt text](scheme.svg) 
+=======
+
 
 ## Main Components
 
 ### 🟦 Input Module: Floor Request Buttons
 - **Function:** Simulate user requests for specific floors.
 - **Details:** Each button is wired to a GPIO input on the Raspberry Pi Pico 2W.
+
 
 ### 🟨 Input Module: MFRC522 RFID Module
 - **Function:** Simulate card-based access.
@@ -94,7 +98,6 @@ The **hardware components** used in this project are:
 
 10. 🟨 **MFRC522 RFID Module**  
     *Simulate card-based access.*
----
 
 These components combine to create an interactive, physical model of a smart elevator system—enabling the practical exploration of efficient control algorithms, real-time feedback, and responsive user interaction.
 
