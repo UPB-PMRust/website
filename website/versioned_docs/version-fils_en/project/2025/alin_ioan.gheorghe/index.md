@@ -4,6 +4,7 @@ A remote controlled car designed to drive around for entertainment using a physi
 :::info 
 
 **Author**: Gheorghe Alin-Ioan
+
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-blue-v27
 
 :::
@@ -74,6 +75,8 @@ Completed the hardware of the project making all connections and the cable manag
 
 ### Week 19 - 25 May
 
+Completed the code for the car wich gets inputs, and acts acordingly, from the controller via UDP acces point.
+
 ## Hardware
 
 I've used two Raspberry Pi Pico 2 W's, a L298N module connected to 2 Dc motors with wheels, 2 LEDs to indicate when you are breaking, a servo motor for steering, a joystick for controlling the steering and 2 buttons for going forward and backwards. The frames for both the car and the controlel, as well as the steering setup, are made out of acrylic.
@@ -112,12 +115,11 @@ I've used two Raspberry Pi Pico 2 W's, a L298N module connected to 2 Dc motors w
 | [embassy-net](https://github.com/embassy-rs/embassy) | Networking stack | Manages TCP/IP over Wi-Fi; used for remote control |
 | [embassy-lab-utils](https://github.com/embassy-rs/embassy-lab) | Pico W Wi-Fi helpers | Simplifies Wi-Fi and network stack setup |
 | [gpio](https://docs.rs/embassy-rp/latest/embassy_rp/gpio/) | GPIO module | Controls motor direction pins (L298N IN1–IN4) |
-| [pwm](https://docs.rs/embassy-rp/latest/embassy_rp/pwm/) | PWM module | Adjusts motor speed via ENA/ENB on L298N |
 | [adc](https://docs.rs/embassy-rp/latest/embassy_rp/adc/) | ADC module | Reads analog joystick values for direction/speed input |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework | For debug messages via RTT/serial |
 | [panic-probe](https://docs.rs/panic-probe) | Panic handler | Handles panics with minimal overhead |
 | [static_cell](https://docs.rs/static_cell) | Static memory allocation | Safely manages statically allocated Embassy resources |
-
+| [cyw43](https://docs.rs/cyw43/latest/cyw43) | WIFI | Handles the wifi chip on the board |
 
 ## Links
 
