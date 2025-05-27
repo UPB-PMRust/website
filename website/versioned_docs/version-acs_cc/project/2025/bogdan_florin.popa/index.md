@@ -46,13 +46,13 @@ remote control cars. This project also helps me have a better understanding of c
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 05 - 11 May
 Acquired the components.
 
-### Week  -  May
+### Week 12 - 18 May
 Hardware setup, wired the components, glued the pins to the picos, coded the car
 
-### Week  -  May
+### Week 19 - 25 May
 Coded the remote
 
 ## Hardware
