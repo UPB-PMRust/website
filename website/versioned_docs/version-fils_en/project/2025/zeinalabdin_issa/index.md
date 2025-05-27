@@ -46,6 +46,7 @@ The architecture of the Smart Parking Lot system includes the following main com
 - Integrated LCD display using the `hd44780-driver` over I2C.
 - Added logic for tracking parking duration and calculating billing.
 - Tested individual components: ultrasonic sensors, servos, LEDs, and LCD.
+- I started working on the software part of the project on VScode. and when i was done with it, i started working on the project appearance.
 ## Hardware
 The Raspberry Pi Pico controls the smart parking lot system using Ultrasonic sensors to detect cars, two servo motors to open and close the gates, and LEDs to indicate slot status. An I2C 1602 LCD displays messages such as time and availability. All components communicate through GPIO pins, with shared power and ground connections.
 
