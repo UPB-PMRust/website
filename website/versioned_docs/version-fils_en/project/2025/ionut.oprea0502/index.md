@@ -57,6 +57,7 @@ I knew this involved a lot of optimization and wanted to take the challange.
 ### Week 20 - 26 May
 - The move generation system is now fully implemented and thoroughly tested, accurately identifying all best moves.
 - The project has been brought to its final, stable form after comprehensive bug fixes and refinements.
+- Created the 3D encasing that makes the project look and behave like a game console.
 - All project documentation and the repository's README have been updated to reflect the current state.
 
 
