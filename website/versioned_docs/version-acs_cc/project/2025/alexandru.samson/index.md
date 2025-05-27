@@ -12,6 +12,7 @@ A multifunctional device which serves as a custom alarm clock, equipped with env
 
 A device that has the main functionality of a digital clock displayed on a screen with an alarm function, operated by physical buttons. The alarm is manually set by the user and would emit sound via the buzzer. The product is also equipped with a pressure and temperature sensor to observe the environmental conditions surrounding it. Aditionally, a photoresistor is used in order to automatically adjust the brightness of the display.
 
+
 ## Motivation
 
 This project is inspired by a real world problem of mine, and it probably affects a lot of the current population, especially teenagers and young adults. When going to bed, I always take my phone with me and end up scrolling mindlessly for 1-2 hours. This has a very negative impact on my sleep, which is way more important than most think. But the main reason why I have my phone next to me in bed is because I use it as an alarm in order to wake up. This is also bad because the phone can overheat under the pillow, causing potential damage, and there is also the concern of EMF radiation exposure when keeping your cell phone close to the head for extended periods of time. So, building this clock by hand I can get rid of all these problems, removing the need of my smartphone at night.
