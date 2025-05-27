@@ -90,6 +90,15 @@ The **2x18650 battery pack** supplies power to the water pump, regulated to 5V b
    - **2x 18650 battery pack** to power the pump.
    - **LM2596 Step-Down Converter** to regulate voltage to 5V.
 
+### Imagine 1
+![Hard 1](./hard1.webp)
+
+### Imagine 2
+![Hard 2](./hard2.webp)
+
+### Imagine 3
+![Hard 3](./hard3.webp)
+
 ---
 
 ### Hardware Overview
@@ -101,7 +110,7 @@ The **2x18650 battery pack** supplies power to the water pump, regulated to 5V b
 ---
 
 ### Schematics
-
+![Schematics](./SmartPlantWateringSystem.svg)
 
 ---
 
