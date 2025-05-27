@@ -18,8 +18,11 @@ At every party I attend, Romanian hits from the 2000s always come on—and I lov
 
 ## Architecture
 
+<<<<<<< HEAD
 The player reads WAV files from an SD card, decodes and streams audio via I²S implemented in PIO, displays track information on an SSD1306 OLED, and supports play/pause, volume control, next/previous, and shuffle buttons. A simple ultrasonic “coin” sensor starts playback when a coin is detected.
 
+=======
+>>>>>>> origin/main
 ![Schematic diagram](diagrama.webp)
 
   **Microcontroller Raspberry Pi Pico 2W** runs embedded Rust firmware, coordinating all peripherals.
