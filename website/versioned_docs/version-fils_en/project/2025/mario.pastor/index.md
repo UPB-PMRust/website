@@ -10,7 +10,7 @@ A wearable device that tracks heart rate, blood oxygen saturation, and step coun
 
 ## Description
 
-This wearable health monitor continuously measures and displays the user's vital signs in real time. It uses a MAX30102 pulse oximeter sensor to calculate heart rate (BPM) and blood oxygen saturation (SpO₂), alongside an ADXL345 accelerometer to detect and count steps. The collected data is displayed on a compact SSD1306 screen, providing a clear and minimal interface. Additionally, a web application fetches the latest sensor readings from the device, displaying the latest sensor reading and three charts which show the evolution of the measured parameters.
+This wearable health monitor continuously measures and displays the user's vital signs in real time. It uses a MAX30102 pulse oximeter sensor to calculate heart rate (BPM) and blood oxygen saturation (SpO₂), alongside an ADXL345 accelerometer to detect and count steps. The collected data is displayed on a compact SSD1306 screen, providing a clear and minimal interface. Additionally, a web application fetches the latest sensor readings from the device, displaying the latest sensor reading and three charts that show the evolution of the measured parameters.
 
 ## Motivation
 
@@ -37,7 +37,7 @@ I chose this project because I wanted to develop something that integrates both 
 After my project got approved, I looked for the necessary hardware and software parts. After deciding on the parts, I ordered them.
 
 ### Week 28 - 4 May
-I started to assemble the parts on the breadboards in order to test each component. I managed to read the data on all three axis of the accelerometer, to determine the heart rate and SpO₂ from the pulse oximeter and print the information in the terminal. Additionally, I tested the screen.
+I started to assemble the parts on the breadboards in order to test each component. I managed to read the data on all three axes of the accelerometer, to determine the heart rate and SpO₂ from the pulse oximeter, and to print the informations in the terminal. Additionally, I tested the screen.
 
 ![testing-components](assets/week10_update.webp)
 
@@ -52,12 +52,12 @@ I consulted with my lab teacher regarding the 3D casing for the sensors, and we 
 ![oximeter-finger-clip](assets/week12_update.webp)
 
 ### Week 19 - 25 May
-I managed to drill a hole in the finger clip so that the wires of the sensor can pass through it and I sticked the accelerometer to the finger clip.
-For the software part, I implemented a separate task which handles the TCP connection and I tested sending the latest sensor reading.
-I started working on the web interface which will display the data and chose Python with Flask for it.
+I managed to drill a hole in the finger clip so that the wires of the sensor can pass through it, and I stuck the accelerometer to the finger clip.
+For the software part, I implemented a separate task that handles the TCP connection, and I tested sending the latest sensor reading.
+I started working on the web interface, which will display the data and chose Python with Flask for it.
 
 ### Week 26 - 30 May
-I finished the Python script which handles fetching the data from the device over TCP and I worked on the visual appearence of the website.
+I finished the Python script, which handles fetching the data from the device over TCP, and I worked on the visual appearance of the website.
 I tested to see if the web interface works while wearing the device (and it does).
 
 ![web-interface](assets/week14_update.webp)
@@ -65,8 +65,7 @@ I tested to see if the web interface works while wearing the device (and it does
 ## Hardware
 
 My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. 
-As of now, this is how the hardware looks like, but in the following week I will design the 3D cases for the sensors in order to make the device wearable.
-This is how the hardware looks like. I 3D printed a finger case for the pulse oximeter and I used double-sided adhesive tape to stick the accelerometer to the case.
+This is how the hardware looks like. I 3D printed a finger case for the pulse oximeter, and I used double-sided adhesive tape to stick the accelerometer to the case.
 
 ![hardware](assets/hardware2.webp)
 
