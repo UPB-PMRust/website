@@ -54,7 +54,10 @@ For the hardware, I use a Raspberry Pi Pico WH for convenience-sake, a breadboar
 
 ![original plan](schematic.webp)
 
+
 ![kicad](kicad.svg)
+
+![i know this is awful, the potato is the power source](imsorry.webp)
 
 ### Bill of Materials
 
