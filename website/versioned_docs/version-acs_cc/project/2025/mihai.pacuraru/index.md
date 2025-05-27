@@ -32,7 +32,11 @@ I had a plant that i've forgot to water and died.
 
 ### Week 5 - 11 May
 
+Write documentation.
+
 ### Week 12 - 18 May
+
+Assemble hardware components and write demo source code.
 
 ### Week 19 - 25 May
 
@@ -45,6 +49,15 @@ I had a plant that i've forgot to water and died.
     - alert when plant is thirsty
 - RGB LED
     - feedback of watering level
+
+<!-- [![](https://markdown-videos-api.jorgenkh.no/youtube/EuqZ8Y21hg4)](https://youtu.be/EuqZ8Y21hg4) -->
+
+<iframe width="auto" height="512" src="https://www.youtube.com/embed/EuqZ8Y21hg4?si=xL99fmc-H0W0BoAg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+![](demo.webp)
+
+### Schematic
+![](schematic.svg)
 
 ### Bill of Materials
 
@@ -65,18 +78,20 @@ The format is
 | [Buzzer](https://www.emag.ro/buzzer-activ-12v-compatibil-arduino-raspberry-oky0151-oky0151-1/pd/D2KJNNMBM/?ref=embedding_similar_model_1_1&provider=rec&recid=rec_102_2799c2c87a26676847d5aa996bad6a8432c1cbf753de8447ade35beed1e6cfe5_1746002555&scenario_ID=102) | The buzzer | 2 RON |
 | [Transistor](https://www.emag.ro/tranzistor-2n2222am-npn-se2312151536/pd/DKHH5TYBM/) | The transistor for buzzer | 3 RON |
 | [RGB LED](https://sigmanortec.ro/led-rgb-10mm-catod-comun?SubmitCurrency=1&id_currency=2) | The LED for feedback | 2 RON |
-| [2X 220 Ohm Rezistor](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/1097-rezistor-025w-220.html) | The resistor for LED | 0.2 RON |
-| [330 Ohm Rezistor](https://componenteonline.ro/rezistenta-330-5w-royal-ohm-prw05wjp331b00-t148881?product_id=99683) | The resistor for LED | 1.55 RON |
-| [1K Ohm Rezistor](https://www.docom.ro/rezistor-1k-0-6w/) | The transistor for buzzer | 0.5 RON |
+| [Rezistors](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/10928-plusivo-kit-250-buc-rezistoare.html?search_query=rezistor&results=110) | The resistors kit for LED | 15 RON |
 | [Soil Humidity Sensor](https://sigmanortec.ro/Senzor-umiditate-sol-higrometru-p125814620?SubmitCurrency=1&id_currency=2&gQT=1) | The sensor | 4 RON |
-| [Breadboard](https://www.emag.ro/breadboard-400-puncte-ai059-s69/pd/DRJ66JBBM/?ref=sponsored_products_search_r_1_1&recid=recads_1_3f8bcd3d0d1fce50ce875c811f44c8b37341887cf1698acd0193b6f39e905ded_1746374198&aid=d0eeaed2-9c23-11ef-9ec5-023c6ef0a87b_eyJicGQiOjAuMTN9-64d0f1bc2be845562de29773259d5d2f4c3408ca51e59b1cb3a0201b8d7c9467&oid=50658364&scenario_ID=1#reviews-section) | The Breadboard | 7 RON |
-| [Wires](https://www.emag.ro/10-x-fire-dupont-tata-tata-20cm-cl55/pd/DV8M9WBBM/?ref=history-shopping_422378681_12161_1) | The Wires | 6 RON |
+| [Breadboard](https://www.emag.ro/breadboard-400-puncte-ai059-s69/pd/DRJ66JBBM/?ref=sponsored_products_search_r_1_1&recid=recads_1_3f8bcd3d0d1fce50ce875c811f44c8b37341887cf1698acd0193b6f39e905ded_1746374198&aid=d0eeaed2-9c23-11ef-9ec5-023c6ef0a87b_eyJicGQiOjAuMTN9-64d0f1bc2be845562de29773259d5d2f4c3408ca51e59b1cb3a0201b8d7c9467&oid=50658364&scenario_ID=1#reviews-section) | The Breadboard | 17 RON |
+| [Wires](https://www.emag.ro/10-x-fire-dupont-tata-tata-20cm-cl55/pd/DV8M9WBBM/?ref=history-shopping_422378681_12161_1) | The Wires | 10 RON |
+| Total | 126 |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/almindor/st7789) | Async embedded | Peripherals access |
+| [embassy-rp](https://github.com/almindor/st7789) | Async embedded peripherals | Peripherals access |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async embedded tasks | Tasks manager |
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Async embedded time | Delay time manager |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework | Manage logs |
 
 ## Links
 

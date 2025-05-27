@@ -36,32 +36,14 @@ The system architecture comprises the following components:
   - *LM75B Temperature Sensors (x4):* Monitor the temperature of each wheel.
   - *MPU6050 Accelerometer and Gyroscope:* Track the car's orientation and movement.
 - **Actuators:**
-  - *DC Motor (x1):* Provide propulsion for the car.
+  - *DC Motor:* Provide propulsion for the car.
  - *Stepper Motor:* Handles steering by adjusting the front wheel orientation in response to joystick input.
 - **Drivers:**
   - *L9110S Motor Drivers (x2):* Interface between the microcontroller and DC motors.
   - *ULN2003 Stepper Motor Driver:* Controls the stepper motor for DRS.
-- **Camera:** Captures live video feed for real-time monitoring.
 - **Web Server:** Hosts the interface displaying sensor data and live video.
 
 ![Diagram](Picture1.svg)
-
-
-## Hardware
-
-The hardware setup includes:
-
-- **Microcontroller:** Raspberry Pi Pico 2
-- **Sensors:**
-  - LM75B Temperature Sensors (x4)
-  - MPU6050 Accelerometer and Gyroscope
-- **Actuators:**
-  - DC Motor (x1)
-  - Stepper Motor
-- **Drivers:**
-  - L9110S Motor Drivers (x2)
-  - ULN2003 Stepper Motor Driver
-- **Power Supply:** 9V Batteries (x2)
 
 ## Log
 
@@ -78,6 +60,20 @@ Hardware assembly was finalized. The initial LM35 analog temperature sensors wer
 The embedded software was completed. WebSocket data streaming, sensor acquisition, and motor control were fully implemented. The onboard camera functionality was removed to focus on performance and simplify system integration.
 
 ## Hardware
+
+The hardware setup includes:
+
+- **Microcontroller:** Raspberry Pi Pico 2
+- **Sensors:**
+  - LM75B Temperature Sensors (x4)
+  - MPU6050 Accelerometer and Gyroscope
+- **Actuators:**
+  - DC Motor (x1)
+  - Stepper Motor
+- **Drivers:**
+  - L9110S Motor Driver
+  - ULN2003 Stepper Motor Driver
+- **Power Supply:** 9V Battery
 
 ## Schematic
 
@@ -115,5 +111,6 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 ## Links
 
 - [pygame Documentation](https://www.pygame.org/docs/) – Python joystick interface used to control the car
+
 
 

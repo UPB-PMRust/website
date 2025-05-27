@@ -39,12 +39,22 @@ The project has the following architecture:
 ## LOG
 
 *   **Week 5 - 11 May**
+    In the first week, I focused on purchasing all necessary hardware components for the Pet AutoFeeder project. I also started reading documentation and datasheets for each component.
 
 *   **Week 12 - 18 May**
+    During the second week, I assembled the hardware on a breadboard. This included connecting the Raspberry Pi Pico 2W to the servo motor, weight sensor, ultrasonic distance sensor, LEDs, buzzer, and pushbutton. I also verified the electrical connections and ensured proper power distribution.
 
 *   **Week 19 - 25 May**
 
 ## HARDWARE
+
+![alt text](Pet-AutoFeeder.svg)
+![alt text](poza1.webp)
+![alt text](poza2.webp)
+![alt text](poza3.webp)
+
+[VIDEO: Testing the Components]
+(https://imgur.com/a/vwqw6C9)
 
 The **Raspberry Pi Pico 2W** serves as the central controller for the Pet AutoFeeder, managing inputs and outputs.
 
@@ -58,6 +68,7 @@ The **Raspberry Pi Pico 2W** serves as the central controller for the Pet AutoFe
     *   **To Servo Motor:** Connects via a PWM-capable GPIO pin to send control signals for dispensing food.
     *   **To Weight Sensor (HX711 Amplifier):** Connects via two GPIO pins to read data from the HX711 module, which interfaces with the load cell.
     *   **To RTC Module (DS3231):** Connects via designated I2C pins to communicate with the Real-Time Clock for timekeeping.
+    *   **The HC-SR04+:** ultrasonic sensor connects via two GPIO pins (Trigger and Echo) and measures the food level in the reservoir to trigger alerts when it's low..
 
 
 ## Bill of Materials (BOM)
@@ -72,6 +83,7 @@ The **Raspberry Pi Pico 2W** serves as the central controller for the Pet AutoFe
 | [Breadboard](https://components101.com/sites/default/files/component_datasheet/Breadboard%20Datasheet.pdf)                  | Prototyping connections between components                  | [11 lei](https://sigmanortec.ro/Breadboard-830-puncte-MB-102-p125923983?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=22174019478&gbraid=0AAAAAC3W72PlTkN1EMBw47dmMmOIsklJO&gclid=Cj0KCQjwoNzABhDbARIsALfY8VNnPUUPZ65YHhzaDixdTYPyiScEAABvb-qijJwB6ayO8vK9H18t8bsaAlOdEALw_wcB)          |
 | [LED](https://www.farnell.com/datasheets/1498852.pdf)                  | Visual indicator                 | [< 1 lei](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/696-led-rou-de-3-mm-cu-lentile-difuze.html?search_query=0104210000006186&results=1)          |
 | [BUTTON](https://components101.com/switches/push-button)                  | User stop buzzer               | [< 1 lei](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=0104210000010862&results=1)          |
+| [Senzor de Distanță HC-SR04+](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)                  | measures the food level in the tank             |[ 15 lei](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?search_query=senzor+de+distanta&results=179)          |
 
 ## Software
 
