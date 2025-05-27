@@ -9,7 +9,7 @@ If a fan exceeds a certain number of RPMs, the Pico closes the door.
 
 ## Description
 This project is built using two Raspberry Pi Pico 2W, one servo-motor and one encoder. The first Pico monitors detects when the fan is rotating.
- When fan rotation is detected, the first Pico transmits a signal to a second Pico which controls a window mechanism to close it.
+ When fan rotation is detected, the first Pico tells a window mechanism to close it and transmits a signal to a second Pico(debugger).
 
 ## Motivation
 The motivation behind this project is to create an affordable and automated solution for protecting homes from incoming rain. By using a simple external fan as a wind-speed sensor and Raspberry Pi Pico microcontrollers, the system detects high wind speeds—often a precursor to rain—and automatically signals to close windows. This adds a layer of convenience and protection for homeowners, especially when they are away or unable to act quickly.
@@ -21,7 +21,7 @@ This is the diagram that illustrates the components and their connections.
 ![alt text](fan_rotation_schematic.webp)
 
 **Raspberry Pi Pico 2W**
-- **Role**: The brain of the system. Reads signals from the encoder. Processes sensor data to determine if the fan is moving and transmits a signal to a second Pico which controls a window mechanism to close it.
+- **Role**: The brain of the system. Reads signals from the encoder. Processes sensor data to determine if the fan is moving and controls a window mechanism to close it and transmits a signal to a second Pico which is a debugger.
 
 **Servo motor**
 - **Role**:  Is a precision-controlled motor that adjusts its position, speed, or torque based on feedback, commonly used in robotics and automation.
