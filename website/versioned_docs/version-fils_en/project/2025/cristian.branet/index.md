@@ -174,3 +174,4 @@ Display board
 1. [First time trying sensors on RP](https://murraytodd.medium.com/using-rust-embedded-to-capture-sensor-data-37db1f726d5c)
 2. [Learning about IR receiver](https://www.youtube.com/watch?v=ddceKBDMKsE)
 3. [Demo](https://www.youtube.com/watch?v=qNot_UbnDCE)
+4. [Demo Final](https://youtu.be/mkm-aITRSq8)
