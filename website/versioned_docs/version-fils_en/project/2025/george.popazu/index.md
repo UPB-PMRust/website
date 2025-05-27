@@ -3,7 +3,7 @@ If a fan exceeds a certain number of RPMs, the Pico closes the door.
 
 
 
-**Author**: Popazu George-Alexandru\
+**Author**: Popazu George-Alexandru
 **GitHub Project Link**:https://github.com/UPB-PMRust-Students/project-PopazuAlexandru
 
 
