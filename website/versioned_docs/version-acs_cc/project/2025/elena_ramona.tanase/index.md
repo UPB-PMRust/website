@@ -118,14 +118,6 @@ The entrance and exit of the parking lot include:
 
 ## Schematics
 
-![parc1](parcare1.webp)
-
-![parc2](parcare2.webp)
-
-![parc3](parcare3.webp)
-
-![parc4](parcare4.webp)
-
 ![schematic](schematic_final.svg)
 
 ---
