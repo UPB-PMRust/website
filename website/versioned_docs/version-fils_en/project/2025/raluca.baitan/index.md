@@ -5,7 +5,7 @@ An interactive smart lamp that dynamically adjusts lighting based on touch, moti
 :::info 
 
 **Author**: Băițan Raluca \
-**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/project-RalucaBaitan](https://github.com/UPB-PMRust-Students/project-RalucaBaitan)  
+**GitHub Project Link**: [https://github.com/raluca-baitan/Mood-Light-Lamp](https://github.com/raluca-baitan/Mood-Light-Lamp)  
 
 :::
 
@@ -79,6 +79,7 @@ Implemented the FSM logic in Rust using the `embassy` async framework. Integrate
 ![image5](./img5.webp)
 
 ### Week 19 – 25 May  
+Finished setting up the hardware and software. All sensors, buttons, and the LED ring are working properly. Currently working on building the lamp’s case.
 
 
 ## Hardware
