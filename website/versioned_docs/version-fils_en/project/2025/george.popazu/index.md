@@ -46,6 +46,7 @@ After finalizing the hardware, I proceeded with software implementation, achievi
 
 ### Week 19 - 25 May
 
+During this week, I completed the software development and finalized all remaining implementation details. I ensured the integration between the rotary encoder, servo motor, and Wi-Fi communication worked seamlessly. Final testing was performed to validate the system's behavior under expected operating conditions. With everything functioning as intended, I prepared the project for final documentation and presentation.
 
 ## Hardware
 The hardware setup consists of a two Raspberry Pi Pico microcontroller as the core units, interfacing with multiple peripherals.
