@@ -10,6 +10,7 @@ PiglowTune is a Rust-powered project that syncs LED light patterns with music in
 ## Description
 
 This project features a music-reactive LED system powered by a Raspberry Pi Pico W 2, which lights up 5 RGB LEDs in real time based on sound intensity. Using 2 shift registers (74HC595), the Pico controls each LED’s color and brightness through pulse and fade effects. A web app connected over Wi-Fi allows you to remotely select different LED effects, making it easy to switch between vibrant color modes and create an interactive light-and-sound experience.
+![poza_finala1](poza_finala_1%20(1).webp)
 
 ## Motivation
 
@@ -32,8 +33,8 @@ After purchasing all the necessary materials for my project, I began assembling 
 ![poza2](./poza2_hardware.webp)\
 This week, I began by individually testing all my RGB LEDs to ensure they were functioning properly. I then carefully connected them using two shift registers, which required a lot of patience and precision. After setting up the hardware, I created three distinct lighting effects: Rainbow, Pulse White, and Strobe Party—each selectable by the user. Finally, I made the effects respond to sound by connecting the LEDs to a sound sensor, allowing the lights to react dynamically to audio input.
 ### Week 19 - 25 May
-This week, I successfully configured the Wi-Fi on my Raspberry Pi Pico 2W, turning it into an access point. Additionally, I created a simple HTML page where the user can select their desired LED effect. While most of the project is complete, I still need to address the issue with handling HTTP requests from the HTML page, as they aren't functioning correctly yet. Overall, the project is progressing well, with the main functionality in place.
-
+![poza_finala](poza_finala_2%20(1).webp)
+This week, I successfully configured the Wi-Fi on my Raspberry Pi Pico 2W, turning it into an access point. Additionally, I created a simple HTML page where the user can select their desired LED effect. The project's software is finished and I also worked on the design of the project.
 
 ## Hardware
 
