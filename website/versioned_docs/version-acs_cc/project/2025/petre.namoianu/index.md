@@ -85,7 +85,6 @@ flowchart TD
 
 ![Kicad](kicad.svg)
 
-
 ### YouTube Demo
 [SafePi Demo](https://youtube.com/shorts/JDA9XmK4RdE?feature=share)
 

@@ -30,12 +30,22 @@ Pets are a significant part of our lives and important members of our families. 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+This week I connected all the components to the microcontroller. I started with the sensors and successfully read values from the infrared sensor using ADC, and from the accelerometer using I2C.
 
+Connecting the motors was a bit trickier though. For the DC motors, although controlling them through PWM works, the debugger crashes shortly after the program is ran. Besides them, I also tried connecting the servomotor, but it couldn't draw enough current from the pico. As such, I also bought a 4 AA batteries case and a LM2596S Step Down module.
 ### Week 12 - 18 May
+I successfully connected all the components to the microcontroller and wrote code for randomly starting and stopping the motors. For this, I used the feature small_rng from the rand crate to randomly generate numbers in a non std environment. The motors also stop when the infrared sensor detects an obstacle.
 
+![3d](3d.webp "3d")
+
+I also designed the support on which I'll be putting all the components. To save space, I decided to put the breadboard on top of the battery pack. I also added plenty of holes that will be used for wire management. To make sure everything fits correctly I created placeholder boxes with the exact dimensions of the components.
 ### Week 19 - 25 May
 
 ## Hardware
+
+![hardware](hardware.webp "Hardware")
+
+Since the pico is, for now, drawing power from the debugger, I'm currently using another breadboard to supply power to the other components. The plan is that, by the end, everything will be connected to the batteries using the smaller breadboard.
 
 * Raspberry pi pico 2w: the microcontroller
 * The accelerometer: used for detecting changes in the movement of the robot
@@ -43,10 +53,10 @@ Pets are a significant part of our lives and important members of our families. 
 * The servomotor: mimics the movements of a tail
 * DC motors: movement
 * Dual motor driver: helps control the DC motors
-
+* Step down module LM2596S: converts the 6V supplied by the batteries to the 5V needed by the pico
 ### Schematics
 
-![diagram](schematic.webp "schematic")
+![schematic](pm_project_schematic_small.svg "schematic")
 
 ### Bill of Materials
 
@@ -62,29 +72,27 @@ The format is
 
 | Device    | Usage     | Price |
 |-----------|-----------|-------|
-| Raspberry Pi Pico 2W | Microcontroller | [39.66 Lei](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
-| Raspberry Pi Pico RP2040 | Debugger | [30.00 Lei](https://www.emag.ro/microcontroller-raspberry-pi-rp2040-pico/pd/DKQQWNMBM/) |
+| [Raspberry Pi Pico 2W](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf) | Microcontroller | [39.66 Lei](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
+| [Raspberry Pi Pico RP2040](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf) | Debugger | [30.00 Lei](https://www.emag.ro/microcontroller-raspberry-pi-rp2040-pico/pd/DKQQWNMBM/) |
 | Breadboard kit | Electrical connections | [22 Lei](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=Kit+Breadboard+HQ830+cu+Fire+%C8%99i+Sursa)|
 | Infrared sensor | Obstacle avoidance | [3.49 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html?search_query=+Modul+Senzor+Infrarosu+de+Obstacole+&results=6)|
-| Micro Motor DC N60 | DC motors | [4.99 Lei](https://www.optimusdigital.ro/ro/motoare-micro-motoare-cu-reductor/2308-micro-motor-dc-n60-14500-rpm-la-3-v.html?search_query=Micro+Motor+DC+N60&results=1) x 2|
-| Dual Motor driver | Motor control | [3.73 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=Modul+Driver+de+Motoare+Dual+in+Miniatura&results=1)|
+| [Motor 130-13200](https://5ororwxhiiqojij.leadongcdn.com/LS-FA-130-aidlpBqmKinSRqqniirlki.pdf) | DC motors | [4.99 Lei](https://www.optimusdigital.ro/ro/motoare-motoare-fara-reductor/361-motor-130-13200.html?search_query=motor+dc&results=612) x 2|
+| [Dual Motor driver](https://lcsc.com/datasheet/lcsc_datasheet_2211080930_Shenzhen-Fuman-Elec-TC1508A_C5142992.pdf) | Motor control | [3.73 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=Modul+Driver+de+Motoare+Dual+in+Miniatura&results=1)|
 | Ball support | Ease of movement | [3.95 Lei](https://www.optimusdigital.ro/ro/mecanica-suporturi-cu-bila/74-ball-caster.html?search_query=Suport+cu+Bila+&results=118)|
-| Accelerometer | Movement sensor | [12.99 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=Modul+Accelerometru+cu+3+axe+ADXL345&results=2)|
-| Battery wire | Power supply | [1.49 Lei](https://www.optimusdigital.ro/ro/fire-fire-mufate/896-fir-pentru-baterie-de-9v.html)|
-| 9V Battery | Power supply | [4.87 Lei](https://www.emag.ro/baterie-zinc-carbon-gp-6f22-greencell-1604glf-b-1-buc-9v-gp1604glf-2ue1/pd/DGSJ13MBM/) |
-| Micro Servomotor | Tail movement mechanism | [11.99](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
+| [Accelerometer](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf) | Movement sensor | [12.99 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=Modul+Accelerometru+cu+3+axe+ADXL345&results=2)|
+| [Micro Servomotor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Tail movement mechanism | [11.99](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
+| [Step Down module LM2596S](https://www.ti.com/lit/ds/symlink/lm2591hv.pdf) | Converting voltage | [12.99](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html)|
+| Battery support | Power supply | [9.43 Lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/2806-suport-baterii-4-x-r6.html)|
 
 
-Total: 144.17
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | HAL for the Raspberry Pi PICO 2W microcontroller | Used to program the Pico |
-| [infrared](https://docs.rs/infrared/latest/infrared/) | Infrared sensor library | Used for the infrared sensors |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor designed for embedded usage | Used for task execution |
-| [syact](https://docs.rs/syact/latest/syact/) | Library for controlling more complex motors, such as servomotors | Used for controlling the servomotor |
+
 
 ## Links
 
