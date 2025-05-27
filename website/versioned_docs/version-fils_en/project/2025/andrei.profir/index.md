@@ -166,5 +166,5 @@ I use an unsafe block because the CHIPS and MULT variables are global and are up
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [The game that the project is based on]([https://example.com](https://www.playbalatro.com/))
+1. [The game that the project is based on](https://www.playbalatro.com/)
 
