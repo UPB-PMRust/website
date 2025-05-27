@@ -51,6 +51,7 @@ All components are controlled and synchronized by the Raspberry Pi Pico 2W, whic
 - Completed the full electronic schematic using KiCad.
 
 ### Week 5 - 11 May
+
 - Built a demo of the project with the hardware i had
 - Got more hardware parts and updated the demo
 
