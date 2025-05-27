@@ -34,7 +34,7 @@ This week, I finalized the list of hardware components needed for my project and
 All the hardware components have arrived. I have soldered header pins to all the components that required it, including the Raspberry Pi Pico I use for debugging. I completed the physical assembly on a breadboard, connecting the MPR121 capacitive touch sensor, LCD screen, buttons, and LED to the Raspberry Pi Pico.
 
 ### Week 19 - 25 May
-The full software functionality was completed this week. I integrated all features including note detection via the MPR121 touch sensor, real-time sound output through the buzzer, an LCD for displaying note instructions, and multiple playback modes.
+The full software functionality was completed this week. I integrated all features including note detection via the MPR121 touch sensor, real-time sound output through the buzzer, an LCD for displaying note instructions, and multiple playback modes. I used a sheet of paper to represent piano keys and I used coins for each key to serve as touch conductors. Each coin is connected using wires to the MPR121 sensor, making it possible to play notes just by touching the coins.
 
 ## Hardware
 
