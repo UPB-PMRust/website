@@ -1,4 +1,4 @@
-# Focalizare Unificata cu Tintire Autonomata Inteligenta  
+# Focalizare Unificata cu Tintire Auto Inteligenta  
 A turret that tracks and targets people using computer vision and a laser.
 
 :::info 
