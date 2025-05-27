@@ -43,3 +43,6 @@ jobs:
       - name: Test build website
         working-directory: website
         run: npm run build
+
+      - name: GitLab Pages Script
+        run: cp gitlab-deploy.yml website/build/.gitlab-ci.yml

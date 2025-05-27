@@ -1,0 +1,8 @@
+- name: "Updates"
+  description: "Use this template when submitting an update"
+  file: default.md
+
+
+- name: "Project"
+  description: "Use this template when submitting a project"
+  file: project.md

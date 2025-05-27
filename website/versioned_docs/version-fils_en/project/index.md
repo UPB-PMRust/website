@@ -79,7 +79,8 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
 5. Clone the newly created repository by running `git clone git@gitlab.cs.pub.ro:<gitlab_username>/pmrust.pages.upb.ro.git`, where `<gitlab_username>` is replaced by your gitlab username.
 
 6. Now you have your own clone. You need to create a new branch. For this, follow the steps:
-  - Run the command: `git fetch` followed by the `git pull` command
+  - Navigate to your cloned repository 
+  - Run the command: `git fetch` followed by the `git pull` command 
   - The branches have the following naming convention: `project/your_curs.upb.ro_username`. Example: `project/andrei_paul.zamfir`
   - To create a new branch:
     - `git checkout -b <branch_name>`
