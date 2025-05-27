@@ -106,6 +106,10 @@ Code Changelog:
 Hardware Changelog:
 *As stated before, I decided against adding another microprocessor, therefore, no hardware changes were made this week.*
 
+Photos:
+
+![RustScape: Level 1 Showcase](./showcase-level1.webp)
+
 ## Hardware
 
 RustScape is built using the NUCLEO-F411RE development board, which acts as the game's central processing unit. Visuals are rendered on a 1.8" SPI TFT display. Player input is managed via a shield integrating an analog joystick and buttons, enabling movement and actions. Audio feedback is delivered through two passive buzzers, generating sound effects and simple music. Jumper wires ensure flexible electrical connections. Power and code uploads are facilitated by a Mini-USB to USB-A cable. Finally, an 8-LED module is used to represent the player's health status. All components, including the NUCLEO-F411RE board, are housed within the original NUCLEO-F411RE box, serving as a budget-friendly enclosure for the handheld console.
