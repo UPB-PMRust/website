@@ -103,7 +103,23 @@ During this process, I encountered several issues with the OLED display — some
 Overall, this week was focused on finalizing the core of the hardware setup and initiating the software logic for sound analysis.
 
 ### Week 19 - 25 May
+This week, I focused extensively on the software development and hardware integration of the automatic guitar tuner system.
 
+    I received two new LCD displays, since the initially ordered LCD (intended to replace the OLED display) malfunctioned. After successfully wiring the replacement display, I implemented functionality to display the detected frequency in real time.
+
+    I added logic to compare the detected frequency with a user-selected target note (selectable via button) and show visual feedback:
+
+        Arrows (<, >, =) indicate whether the current frequency is too low, too high, or correctly tuned.
+
+        An RGB LED provides intuitive color-coded feedback: red for low, blue for high, and green when the frequency is within tolerance.
+
+    I mounted and configured the stepper motor (28BYJ-48 with ULN2003 driver) to rotate forward or backward based on the frequency deviation. This enables automated tuning by physically adjusting the guitar peg.
+
+    The motor is powered by an external 5V power supply connected through the breadboard to ensure stable operation without overloading the microcontroller.
+
+    Additionally, I designed and 3D-printed a custom motor adapter to fit securely onto the guitar tuning pegs, improving mechanical stability during operation.
+
+All logic for signal acquisition (via microphone and ADC), FFT-based frequency detection, note matching, LED feedback, LCD output, and motor control has been integrated into the main Rust firmware. The system is now capable of detecting pitch, displaying tuning information, and physically adjusting the string tension accordingly.
 ## Hardware
 
 
@@ -173,10 +189,10 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
 
 | Device                                    | Usage                                            | Price                                                                            | Total   |
 |-------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------|---------|
-| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | The microcontroller                             | [39,66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | 39,66 RON |
+| [2 x Raspberry Pi Pico 2W](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | The microcontroller                             | [80, 00 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | 39,66 RON |
 | [Modul microfon High Sensitivity Sound Detection](https://www.ardushop.ro/modul-microfon-high-sensitivity-sound-detection.html) | Captures sound from the guitar strings          | [5,41 RON](https://www.ardushop.ro/modul-microfon-high-sensitivity-sound-detection.html) | 5,41 RON |
 | [Modul Amplificator Microfon cu AGC MAX9814](https://www.optimusdigital.ro/en/microphone-amplifiers/10411-modul-amplificator-microfon-cu-agc-max9814.html) | Amplifies microphone signal                     | [24,90 RON](https://www.optimusdigital.ro/en/microphone-amplifiers/10411-modul-amplificator-microfon-cu-agc-max9814.html) | 24,90 RON |
-| [Modul OLED SPI de 0.96''](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | For displaying tuning information (optional)     | [23,79 RON](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | 23,79 RON |
+| [3 x Modul OLED SPI de 0.96''](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | For displaying tuning information (optional)     | [23,79 RON](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | 23,79 RON |
 | [Buzzer Piezo 20mm](https://www.optimusdigital.ro/en/buzzers/10411-buzzer-piezo-20mm.html) | Provides auditory feedback                      | [1,49 RON](https://www.optimusdigital.ro/en/buzzers/10411-buzzer-piezo-20mm.html) | 1,49 RON |
 | [Buton 6x6x6](https://www.optimusdigital.ro/en/switches/10421-push-button-66x6x6mm.html) | Used for user input (optional)                   | [0,36 RON](https://www.optimusdigital.ro/en/switches/10421-push-button-66x6x6mm.html) | 0,36 RON |
 | [Buton cu Capac Rotund Alb](https://www.optimusdigital.ro/en/switches/10421-push-button-rotund-alb.html) | Used for user input (optional)                   | [1,99 RON](https://www.optimusdigital.ro/en/switches/10421-push-button-rotund-alb.html) | 3,98 RON |
