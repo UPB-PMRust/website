@@ -66,8 +66,8 @@ Received the first hardware components. I ordered a Raspberry Pi Pico 2 and a st
 ### Week 12 - 18 May
 I realized that hardware debuggers were unavailable for purchase , so I ordered another Raspberry Pi Pico 2 and set it up to work as a debugger. Also placed orders for the sensors, a servo motor, and a traffic light module.
 Now that everything’s coming together, I have officially started working on the project
-
 ### Week 19 - 25 May
+I assembled the entire project and finished both the hardware and the software parts. Additionally, I created a simple website to gain some experience in web development. Unfortunately, I didn’t manage to build the physical model (mock-up) yet. I plan to work on it next week before the final presentation.
 
 ## Hardware
  I used two Raspberry Pi Pico boards, a 9V battery, two breadboards, a servo motor, traffic lights (LEDs), and two Hall effect sensor.
