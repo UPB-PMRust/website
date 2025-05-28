@@ -15,6 +15,9 @@ My turret is a custom-made 3D design printed with an FDM printer that uses one r
 - Lab 3: PWM and ADC
 - Lab 7: Wi-Fi capabilities
 
+### Video Description and Test
+
+https://youtu.be/P9SuyQPsW-I
 
 ## Motivation
 
