@@ -1,4 +1,4 @@
-# Project Name
+# Railway Simulator Safe System
 Railway Simulator
 :::info 
 
@@ -30,7 +30,7 @@ The goal of this project was to simulate a real-world railway crossing system us
 
 3) Control Module
     Function: Core logic running on the main Raspberry Pi Pico 2. It processes sensor data, calculates train speed and state, and controls all other modules.
-    Input: Proximity and speed data, joystick input.
+    Input: Proximity and speed data.
     Output:
         Sends display data to the OLED Display Module
         Sends actuation commands to the Barrier & Signal Module
@@ -38,7 +38,6 @@ The goal of this project was to simulate a real-world railway crossing system us
 
 4) Barrier & Signal Module
     Function: Controls the crossing barriers (via servo motors), LED warning lights, and acoustic buzzer.
-    Input: Commands from the Control Module or manually from the Joystick.
     
 5) OLED Display Module
     Function: Displays current system status:
@@ -46,18 +45,13 @@ The goal of this project was to simulate a real-world railway crossing system us
         Estimated speed
         Barrier state
     Input: Data from the Control Module via I2C/SPI.
-
-6) Joystick Input Module
-    Function: Allows manual control of the barriers for testing or override.
-    Input: Analog signals read by the Control Module.
     
-7) Debug Module
+6) Debug Module
     Function: Logs and monitors system states and sensor values.
     Platform: Second Raspberry Pi Pico 2 connected to the main controller.
 
 Connections Overview:
     Ultrasonic Sensors → Control Module: via GPIO (Trigger/Echo)
-    Joystick → Control Module: via ADC (analog pins)
     Control Module ↔ OLED Display: via I2C or SPI
     Control Module → Servos/LEDs/Buzzer: via GPIO/PWM
     Control Module ↔ Debug Module: via UART/I2C/SPI
@@ -71,7 +65,7 @@ This week I started working on my documentation. I have been researching how dif
 
 ### Week 5 - 11 May
 
-First week of starting coding and the harddest, I spent a lot of time to solve the mystery of the HC-SR04 
+First week of starting coding and the hardest, I spent a lot of time solving the mystery of the HC-SR04 
 
 ### Week 12 - 18 May
 
@@ -82,7 +76,7 @@ This past week I integrated a display for message output and connected two servo
 
 ## Hardware
 
-The project uses two Raspberry Pi Pico 2 boards (one as debugger), ultrasonic proximity sensors to detect the train, servo motors to control the barriers, LEDs and a buzzer for signals, an OLED display to show status and speed, and a joystick for manual control.
+The project uses two Raspberry Pi Pico 2 boards (one as debugger), ultrasonic proximity sensors to detect the train, servo motors to control the barriers, LEDs and a buzzer for signals, an OLED display to show status and speed.
 
 ### Schematics
 
