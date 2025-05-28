@@ -65,7 +65,7 @@ During this week I workde on finishing the hardware components, connecting all m
 ![](car-fron-hardware.webp)
 
 ### Week 19 - 25 May
-
+In the time of this week I worked hard on my software. I took every piece I worked on separately to test every sensor and merged it into one, a line following code, based on a match select3, covered by an if statement for the distance sensor. I integrated the pwm configurations for the motors, and then I started working on the PID(Proportional-Integral-Derivative). I found some examples on how to use it to automate the pwm for my motors, so the rpm is constant even while turning, and translated those examples into Rust. The hardest part was configuring the WI-Fi and making my car into an access point (AP) that the controller can connect to. I opened 2 pots for the sockets to have 2 different task to comunicate, one to see if the car or controller is driving, and one for the controller to give directions. It wasn't easy, especially since I lost half a day trying to work with an aparently broken Wi-Fi driver, but I managed to finish my code and also upload it on the Git repository.
 
 ## Hardware
 
