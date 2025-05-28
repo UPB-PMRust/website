@@ -76,30 +76,7 @@ This week was all about refining the software. I finished the main matrix contro
 
 
 
-## Hardware Design
 
-The core of the system is built around a Raspberry Pi Pico 2W, which interfaces with a 6×3 matrix of white LEDs. These LEDs are arranged in 6 columns and 3 rows and are controlled through IRLZ44N N-channel MOSFETs. Each column has a dedicated MOSFET that connects the cathodes of the LEDs in that column to ground, while the rows are powered individually using GPIO pins through 330Ω resistors. This allows matrix-style multiplexing, which significantly reduces the number of GPIOs required to control multiple LEDs individually.
-
-The full assembly is split across two breadboards:
-
-One holds the Pico microcontroller, all necessary resistors, and distributes row power rails
-
-The second contains all MOSFETs, the LEDs, and the column control wiring
-
-In addition to the LED control, the hardware integrates multiple sensors:
-
-Two TEMT6000 light sensors, used to detect ambient brightness from both sides
-
-One HC-SR04 ultrasonic distance sensor, used to measure object proximity
-
-(Planned) A joystick for manual steering simulation
-
-All sensors are powered by the Pico and are connected to its GPIOs as shown below.
-
-| **Pico GPIO Pin** | **Function**                            | **Connected To**                              |
-|-------------------|------------------------------------------|-----------------------------------------------|
-| GP17               | TRIG signal for ultrasonic sensor        | HC-SR04 pin 3 (TRIG)                           |
-| GP16               | ECHO signal input (via voltage divider)  | HC-SR04 pin 4 (ECHO)                           |
 | GP7               | MOSFET Gate for Column 1                 | Gate of MOSFET 1 (via 220Ω resistor)           |
 | GP8               | MOSFET Gate for Column 2                 | Gate of MOSFET 2 (via 220Ω resistor)           |
 | GP9               | MOSFET Gate for Column 3                 | Gate of MOSFET 3 (via 220Ω resistor)           |
@@ -109,30 +86,12 @@ All sensors are powered by the Pico and are connected to its GPIOs as shown belo
 | GP13              | LED Matrix Row 1 (Anode supply)          | Row 1 LEDs via 330Ω resistor                   |
 | GP14              | LED Matrix Row 2                         | Row 2 LEDs via 330Ω resistor                   |
 | GP15              | LED Matrix Row 3                         | Row 3 LEDs via 330Ω resistor                   |
-| GP26              | Light Sensor 1 (left side)               | Analog OUT (V pin) of TEMT6000 #1              |
-| GP17              | Light Sensor 2 (right side)              | Analog OUT (V pin) of TEMT6000 #2              |
 
 
-Sensor Wiring 
-TEMT6000 Ambient Light Sensors (x2)
+
 The project uses two TEMT6000 ambient light sensors, placed on opposite sides of the breadboard to detect directional brightness — simulating oncoming traffic from the left or right. These sensors output an analog voltage that varies with light intensity, allowing the Pico to react accordingly.
 
-Each sensor has three pins:
-S (Supply): Connected directly to the Pico’s 3.3V output pin
-G (Ground): Connected to the common GND rail shared across the circuit
-V (Analog output): Connected to an ADC-capable GPIO on the Pico 
 
-HC-SR04 Ultrasonic Distance Sensor
-The HC-SR04 module is used to detect obstacles in front of the LED array, simulating real-time responsiveness to nearby objects or vehicles. It has four pins:
-VCC: Connected to 5V (VSYS) from the Pico
-GND: Connected to the common ground rail
-TRIG: Connected to GP2, configured as an output
-ECHO: Connected to GP3, configured as an input, with a voltage divider
-
-The ECHO pin outputs 5V, which is unsafe for direct connection to the Pico’s 3.3V GPIOs. To protect the microcontroller, a simple resistive voltage divider is used:
-A 10kΩ resistor connects ECHO to GP3
-A 22kΩ resistor connects the midpoint between ECHO and GP3 to GND
-This reduces the 5V ECHO pulse to ~3.3V, making it safe for the RP2040 input.
 
 ### 📸 Photos of the Build
 
