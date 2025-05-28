@@ -121,6 +121,7 @@ I've used two Raspberry Pi Pico 2 W's, a L298N module connected to 2 Dc motors w
 | [static_cell](https://docs.rs/static_cell) | Static memory allocation | Safely manages statically allocated Embassy resources |
 | [cyw43](https://docs.rs/cyw43/latest/cyw43) | WIFI | Handles the wifi chip on the board |
 
+
 ## Links
 
 1. [Arduino Line Follower](https://www.youtube.com/watch?v=5jh-5HGvC-I&t=181s)
