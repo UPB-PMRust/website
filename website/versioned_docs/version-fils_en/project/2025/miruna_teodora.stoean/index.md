@@ -20,7 +20,6 @@ My motivation for this project comes from my passion for both music and visual a
 
 ![Diagram](diagram.webp)
 
-
 The sound sensor picks up music and sends audio intensity data to the Raspberry Pi Pico W 2, which also connects via Wi-Fi to a mobile web app for remote control. The Pico processes the analog sound input and controls 5 RGB LEDs (common cathode) using 2× 74HC595 shift registers, with each RGB channel driven through current-limiting resistors. The entire LED system is powered by an external 5V power supply. The LEDs respond to music with synchronized light effects, including pulsing and dynamic color changes.
 ## Log
 

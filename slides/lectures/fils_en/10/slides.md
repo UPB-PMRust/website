@@ -5,13 +5,13 @@ class: text-center
 highlighter: shiki
 lineNumbers: true
 info: |
-  ## Embedded Operating Systems
+  ## Secure Execution
 drawings:
   persist: false
 defaults:
   foo: true
 transition: slide-left
-title: MA - 10 - Embedded Operating Systems
+title: MA - 10 - Secure Execution
 mdc: true
 layout: cover
 themeConfig:
@@ -21,49 +21,35 @@ exportFilename: ma-10
 background:
 ---
 
-# Embedded Operating Systems
+# Secure Execution
 Lecture 10
 
 ---
-
-# Embedded Operating Systems
-usually called RTOS
-
-- The purpose of an operating system
-  - Abstractions
-  - System calls
-- Embedded Operating Systems
-  - Real Time
-- Tock OS
-
-<!-- os -->
-
----
-src: ../../resources/os/slides.md
 ---
 
-<!-- rtos -->
+# Secure Execution
+
+- ARM TrustZone
+  - Memory Attributes
+  - Bus Attributes
+- Trusted Firmware
+- OTP
 
 ---
-src: ../../resources/rtos/slides.md
+src: ./security_extension.md
 ---
 
-<!-- tock -->
-
 ---
-src: ../../resources/tock/slides.md
+src: ./trusted_firmware.md
 ---
-
-
 
 ---
 ---
+
 # Conclusion
-we talked about
 
-- The purpose of an operating system
-  - Abstractions
-  - System calls
-- Embedded Operating Systems
-  - Real Time
-- Tock OS
+- ARM TrustZone
+  - Memory Attributes
+  - Bus Attributes
+- Trusted Firmware
+- OTP
