@@ -1,5 +1,5 @@
 # Bluetooth-Controlled Car
-A Bluetooth-controlled robotic car powered by Raspberry Pi Pico 2W with obstacle avoidance.
+A remote-controlled robotic car using Raspberry Pi Pico 2W, with real-time feedback and obstacle detection.
 
 :::info 
 
@@ -10,14 +10,15 @@ A Bluetooth-controlled robotic car powered by Raspberry Pi Pico 2W with obstacle
 
 ## Description
 
-This project is a wireless-controlled car that interacts with two Ubuntu-based applications. It receives movement commands via Bluetooth from a terminal app and sends real-time feedback over Wi-Fi to a second app. The car is equipped with three ultrasonic sensors to detect obstacles, helping it avoid front collisions. Signal lights clearly indicate the car’s power status and turning direction, ensuring easy monitoring and intuitive operation.
+This project is a remotely controlled car that interacts with a multithreaded Ubuntu application. It receives movement commands over Bluetooth or WiFi, based on user preference, and sends real-time feedback. The car is equipped with three ultrasonic sensors to detect obstacles, helping it avoid front collisions. Signal lights clearly indicate the car’s power status and turning direction, ensuring easy monitoring and intuitive operation.
+
 ## Motivation
 
 This project was inspired by a strong interest in cars and remote-controlled systems. It provided an opportunity to better understand how various components, such as microcontrollers, motor drivers, sensors, and communication modules, interact in a real-world embedded system. Working on this allowed for both creative and technical exploration, combining hardware and software to build something functional, interactive, and fun.
 
 ## Architecture 
 
-![Architecture](bluetooth_car.svg)
+![Architecture](system_design.svg)
 
 #### System Architecture
 
@@ -31,11 +32,11 @@ The system is built around a central microcontroller, the **Raspberry Pi Pico 2W
 
 #### Flow of Control
 
-1. The Ubuntu terminal app sends commands wirelessly to the HC-05 module via **Bluetooth SPP**.
-2. The HC-05 relays these commands to the Pico over **UART**, where they are interpreted by the firmware.
+1. The Ubuntu terminal app sends commands wirelessly to the car over **Bluetooth SPP** or **WiFi** based on the user's selected mode.
+2. For Bluetooth, The **HC-05 module** relays these commands to the Pico over **UART**. For WiFi, commands are sent directly to the Pico's network stack.
 3. The Pico processes the commands and generates **PWM** and **GPIO** signals to the L298N, controlling motor speed and direction.
 4. The three **ultrasonic sensors** continuously measure distances to nearby objects. If a potential collision is detected, the Pico overrides the received commands to stop the motors.
-5. The Pico sends real-time feedback data over **Wi-Fi** to a second Ubuntu-based application for monitoring.
+5. The Pico sends **real-time feedback** (obstacle distances and gear change confirmations) back to the same terminal app.
 6. **LEDs** are toggled via GPIO to provide visual feedback on system states (e.g., power status, or turning left/right).
 
 ## Log
@@ -59,6 +60,9 @@ The system is built around a central microcontroller, the **Raspberry Pi Pico 2W
 ![Image2](car_image2.webp)
 
 ### Week 19 - 25 May
+- Completed the software development for both the Raspberry Pi Pico firmware and the Ubuntu terminal app.
+- Changed communication design to allow the user to select either Bluetooth or WiFi for both sending commands and receiving feedback, instead of using both simultaneously.
+- Found that using Bluetooth for commands and WiFi for feedback at the same time caused interference and connection issues.
 
 ## Hardware
 
