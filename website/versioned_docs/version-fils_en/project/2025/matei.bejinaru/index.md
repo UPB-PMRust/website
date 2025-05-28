@@ -103,7 +103,7 @@ The hardware setup is centered around the Raspberry Pi Pico 2W, with its built-i
 ### Schematics
 KiCad Scheme
 
-![KicadSchematic](KiCadSchematic.svg)
+![KicadSchematic](KiCadSchematic1.svg)
 
 
 ### Bill of Materials
