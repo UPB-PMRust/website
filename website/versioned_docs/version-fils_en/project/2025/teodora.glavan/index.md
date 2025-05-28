@@ -54,10 +54,12 @@ During this week, I ordered several components, including the ESP32 Dev Board,
 LU-ASR01 Voice Recognition Module, SG90 Micro Servo Motors, LCD Display and other essential peripherals.
 
 ### Week 5 - 11 May
-
-### Week 12 - 18 May
 During this week, I connected the components on the breadboard, ensuring proper wiring and layout. Additionally, I configured the power supply to provide a stable voltage source for the project.
+### Week 12 - 18 May
+During this week, I focused on writing and organizing the full Rust codebase for the Voice Enhanced Smart Monitoring System. I implemented all core modules, including voice recognition, LCD display control, output management (LED, buzzer, servos), and sensor handling.
 ### Week 19 - 25 May
+During this week, I reviewed and tested the hardware connections. Some wires were not placed correctly on the breadboard, so I reconnected them to match the schematic. I also revised and improved parts of the code I had previously written, fixing some issues and optimizing the logic to ensure the system runs more reliably.
+
 
 ## Hardware
 
