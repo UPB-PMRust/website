@@ -62,7 +62,15 @@ The project has the following architecture:
 
 ### Week 5 - 11 May
 
+- I completed the project documentation, which included outlining the objectives, listing the required components, and detailing the expected functionalities of the system.
+
+- In parallel, I created an initial schematic using KiCad that includes the necessary components. While this schematic was not yet final, it helped me visualize the overall connections and prepare for the hardware assembly. Additionally, I started setting up the hardware.
+
 ### Week 12 - 18 May
+
+- I finalized the hardware before the scheduled lab meeting. I successfully connected all the components. I carefully checked each connection to ensure that the wiring was correct and that every component was receiving the necessary power and signal. Additionaly, I finalized the schematic design in KiCad.
+
+- After completing the hardware setup, I moved on to the software side of the project. I began writing and testing the code that will control the safe's basic functionalities, such as displaying messages on the LCD screen, controlling the servo motor to open the safe's door and receiving input from the keypad.
 
 ### Week 19 - 25 May
 
@@ -84,9 +92,14 @@ The project has the following architecture:
 - **Servomotor**:
   Controls the physical locking mechanism of the safe. It rotates to open or lock the door based on access status.
 
+Here are some photos of the final hardware implementation:
+![alt text](Hardware_1.webp)
+![alt text](Hardware_2.webp)
+![alt text](Hardware_3.webp)
+
 ### Schematics
 
-![alt text](Schematic.webp)
+![alt text](Schema_kicad.svg)
 
 ### Bill of materials
 

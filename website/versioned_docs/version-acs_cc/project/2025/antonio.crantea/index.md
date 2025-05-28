@@ -43,15 +43,21 @@ The project architecture consists of several software and hardware components, w
 
 ### Week 5 - 11 May
 
-Soon...
+- I bought the necessary components.
+- I worked on the hardware schematic.
+- I started working on the hardware.
 
 ### Week 12 - 18 May
 
-Soon...
+- I make KiCad schema.
+- I bought some more components needed for the project.
+- I tried to make the connection between software and hardware.
 
 ### Week 19 - 25 May
 
-Soon...
+- I worked on the code for the project.
+- I tried to link the hardware to the software.
+- I tried to get the project started.
 
 ## Hardware
 
@@ -67,9 +73,11 @@ The project uses the following hardware components:
 - Breadboard and jumper cables – Facilitates connection and testing of circuits during the prototyping phase.
 - Case – Provides protection and portability of the assembly.
 
+![Hardware](Hardware.webp)
+
 ### Schematics
 
-Soon...
+![KiCad](KiCad.svg)
 
 ### Bill of Materials
 
@@ -112,6 +120,5 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [Air Quality Monitoring with Arduino](https://www.youtube.com/watch?v=lDyk67QEk0k)
 ...
