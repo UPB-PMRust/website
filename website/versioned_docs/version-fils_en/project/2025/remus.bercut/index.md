@@ -45,6 +45,12 @@ I have yet to solder everything in place, but I know for a fact everything is wo
 
 Song of the week is: [Kanye West - Runaway](https://www.youtube.com/watch?v=EMnQwBTJnMM)
 
+### Week 19-25 May
+
+Being the last week before PM Fair, I took advantage of the office hours to solve the problem with Wi-Fi. I took several hours and the help of multiple people. I learned quite a lot this week actually. I need to actually sew the boards onto the gloves. I hope to have everything sorted until then.
+
+Song of the week is: [Cymande - Dove](https://youtu.be/RLefc10kkMc?si=SrITiQghqj2KU5mO)
+
 ## Hardware
 
 Setup consists of 3 Raspeberry Pi Pico 2W boards, one for each hand and one acting as the main unit for playing the music. The music is played through a speaker connected to a DFPlayer module which receives signal from the main Pico board.
@@ -76,14 +82,15 @@ I used KiCAD to draw this schematic. Nothing to add to this really, it's quite c
 | [Resistor 1K Ohm](https://www.optimusdigital.ro/en/resistors/10928-250-pcs-plusivo-resistor-kit.html)| Resistor from Kit  | [15 RON](https://www.optimusdigital.ro/en/resistors/10928-250-pcs-plusivo-resistor-kit.html) |
 | Wires | Wires, Male-Male and Female-Female | [~10 RON](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) |
 | Speaker 8Ohm 1W | Speaker | [4,28 RON](https://ardushop.ro/ro/componente-discrete/1084-difuzor-1w-8ohm-50mm-6427854014900.html) |
-| Prototyping Board | Light-weight breadboard for the gloves | [4 RON](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/721-placa-de-test-universala-verde-70x90-mm.html)
+| Prototyping Board | Light-weight breadboard for the gloves | [4 RON](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/721-placa-de-test-universala-verde-70x90-mm.html) |
 
 ## Software
 | Library | Description | Usage |
 |---------|-------------|-------|
-[embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | For communication with the peripherals |  |
-[embassy-executor](https://docs.embassy.dev/embassy-executor/git/cortex-m/index.html) | Executor for tasks |  |
-[embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Used for timers, delay, duration etc |  |
-[embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Used for synchronization |  |
-[dfplayer_async](https://docs.rs/dfplayer-async/latest/dfplayer_async/) | Found on crates.io, made specifically for the DFPlayer module |  |  |
+|[embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Embassy embedded | Communication with the peripherals |
+|[embassy-executor](https://docs.embassy.dev/embassy-executor/git/cortex-m/index.html) | Executor for embedded applications | Asynchronous tasks |
+|[embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Timekeeping | Timers, delay, duration |
+|[embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Synchronization | Synchronizing tasks |
+|[dfplayer_async](https://docs.rs/dfplayer-async/latest/dfplayer_async/) | Found on crates.io, made specifically for the DFPlayer module | Communicating with the DFPlayer, playing music |
 ## Links
+[DFPlayer-Async Library](https://github.com/1-rafael-1/dfplayer-async/tree/main/examples) on Github, the only place with examples for this library I could find. Really, I had to stalk this guy online in order to find any examples.
