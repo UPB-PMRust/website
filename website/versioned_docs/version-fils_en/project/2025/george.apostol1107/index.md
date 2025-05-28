@@ -15,7 +15,7 @@ An interactive memory game where players must remember and replicate increasingl
 
 Also, in my childhood I played a game like this, and I actually find it interesting to now be able to build one of the games I used to play when I was little. 
 
-Additionally, a web interface accessible via WiFi will display real-time scores, enabling players to track progress or compare results on the same network.
+Additionally, a web interface accessible via WiFi will display real-time scores, enabling players to track progress or compare results on the same network. 
 
 ## Motivation
 
