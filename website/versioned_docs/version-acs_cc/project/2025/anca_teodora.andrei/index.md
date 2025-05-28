@@ -1,8 +1,8 @@
 
 
-# Snake Game on Raspberry Pi Pico 2W
+# Glow Worm
 
-A classic Snake game implemented on the Raspberry Pi Pico 2W using Rust and displayed on an LED matrix.
+A game implemented on the Raspberry Pi Pico 2W using Rust and displayed on an LED matrix, where a led-worm eats apples and earns points.
 
 :::info
 
@@ -13,37 +13,37 @@ A classic Snake game implemented on the Raspberry Pi Pico 2W using Rust and disp
 
 ## Description
 
-The project consists of implementing the classic Snake game on an embedded Raspberry Pi Pico 2W platform. The visual output is handled by a 16x16 LED matrix, which is assembled from four 8x8 modules arranged in a square grid. These modules are driven using a series of 74HC595 shift registers that allow efficient control of each individual LED through serial communication. User input is managed through four push buttons, each corresponding to a movement direction (up, down, left, right), and a buzzer is included to provide simple sound effects during gameplay. The game logic, input handling, and LED display updates are all implemented in the Rust programming language.
+The project consists of implementing the game on an embedded Raspberry Pi Pico 2W platform. The visual output is handled by a 16x8 LED matrix, which is assembled from two 8x8 modules arranged in a square grid. These modules are driven using a series of 74HC595 shift registers that allow efficient control of each individual LED through serial communication. User input is managed through four push buttons, each corresponding to a movement direction (up, down, left, right), and an oled display is included to provide the score during gameplay. The game logic, input handling, and LED display updates are all implemented in the Rust programming language. The game is about a worm formed from 3 leds that eats apples and earns points.
 
 ## Motivation
 
-I chose this project because it combines embedded programming in Rust with hands-on experience in hardware design and control. It offers a practical and engaging way to explore how low-level code interacts with physical components like LEDs, buttons, and buzzers. Developing a visual and interactive game such as Snake makes the learning process more intuitive and rewarding. Additionally, using the Raspberry Pi Pico 2W provides a modern and affordable platform for experimenting with GPIOs, timing mechanisms, and shift registers, all within a real-time embedded environment.
+I chose this project because it combines embedded programming in Rust with hands-on experience in hardware design and control. It offers a practical and engaging way to explore how low-level code interacts with physical components like LEDs, buttons, and buzzers. Developing a visual and interactive game makes the learning process more intuitive and rewarding. Additionally, using the Raspberry Pi Pico 2W provides a modern and affordable platform for experimenting with GPIOs, timing mechanisms, and shift registers, all within a real-time embedded environment.
 
 
 ## Architecture
 
-![System Architecture](Diagrama.webp)
+![System Architecture](diagrama.webp)
 
 ### Raspberry Pi Pico 2W  
-**Role**: Main microcontroller responsible for game logic, managing input from buttons, sending data to the LED matrix through shift registers, and generating sound feedback via the buzzer.  
+**Role**: Main microcontroller responsible for game logic, managing input from buttons, sending data to the LED matrix through shift registers, and generating visual feedback with the oled display.
 **Connections**:  
 - Shift Registers (data, latch, clock pins via GPIO)  
 - Buttons (4 directional input pins via GPIO)  
-- Buzzer (output pin via GPIO)  
+- Oled display(I2C interface)
 - Shared GND and power lines  
 
 ---
 
-### LED Matrix 16x16 (composed of 4x 8x8 modules)  
-**Role**: Visual output for displaying the Snake game.  
+### LED Matrix 16x8 (composed of 2x 8x8 modules)  
+**Role**: Visual output for displaying the game.  
 **Connections**:  
-- Driven by 8 x 74HC595 shift registers connected in daisy-chain  
+- Driven by 4 x 74HC595 shift registers connected in daisy-chain  
 - Common power and ground  
 - Controlled via serial data sent by the microcontroller  
 
 ---
 
-### Shift Registers (74HC595, x8)  
+### Shift Registers (74HC595, x4)  
 **Role**: Serial-to-parallel conversion; extends GPIOs to control multiple LEDs across the matrix.  
 **Connections**:  
 - Connected in series (Q7' to DS of next register)  
@@ -53,25 +53,28 @@ I chose this project because it combines embedded programming in Rust with hands
 ---
 
 ### Buttons (x4)  
-**Role**: User input for controlling the direction of the Snake (Up, Down, Left, Right).  
+**Role**: User input for controlling the direction of the Worm (Up, Down, Left, Right).  
 **Connections**:  
 - One pin each to a dedicated GPIO on the Pico  
 - Connected with 5.1kΩ pull-down resistors to ensure stable logic levels  
 
 ---
 
-### Buzzer  
-**Role**: Provides sound feedback for events such as collisions or scoring.  
+### OLED Display  
+**Role**: Displays game information such as score or status updates, enhancing user interaction.  
 **Connections**:  
-- Connected to a GPIO pin
-- Shared ground and power  
+- Connected via I2C interface (typically GPIO4 – SDA, GPIO5 – SCL)  
+- Shared ground and power lines
+
 
 
 ## Log
 
-### Week 5 - 11 May
+### Week 5 - 11 May  
+Completed the initial documentation and connected the main board and the debugging module.
 
-### Week 12 - 18 May
+### Week 12 - 18 May  
+Placed all hardware components onto the breadboard.
 
 ### Week 19 - 25 May
 
@@ -79,27 +82,29 @@ I chose this project because it combines embedded programming in Rust with hands
 ## Hardware
 
 
-The project uses the Raspberry Pi Pico 2W as the main microcontroller responsible for handling all game logic, input processing, and LED matrix control. Four 8x8 LED matrix modules are combined to form a 16x16 display, providing a visual interface for the Snake game. These matrices are driven using 74HC595 shift registers, which allow serial-to-parallel conversion and enable control of a large number of LEDs using limited GPIO pins. Four buttons are connected to GPIO pins to allow directional input from the user, enabling gameplay interaction. Additionally, a buzzer is used to provide basic audio feedback, signaling events such as game start, collisions, or scoring.
+The project uses the Raspberry Pi Pico 2W as the main microcontroller responsible for handling all game logic, input processing, and LED matrix control. Two 8x8 LED matrix modules are combined to form a 16x8 display, providing a visual interface for the Glow Worm game. These matrices are driven using 74HC595 shift registers, which allow serial-to-parallel conversion and enable control of a large number of LEDs using limited GPIO pins. Four buttons are connected to GPIO pins to allow directional input from the user, enabling gameplay interaction. Additionally, an oled display is used to provide basic visual feedback for scoring.
+
+![HardWare](hardware.webp)
 
 
 ## Schematics
 
-![KiCAD Schematic](SchemaKicad.webp)
+![KiCAD Schematic](kicad_schema.svg)
 
 
 
 ## Bill of Materials
 
-| Device                  | Usage                             | Price     |
+| Device                  | Usage                              | Price     |
 |-------------------------|------------------------------------|-----------|
 | Raspberry Pi Pico 2W    | The microcontroller                | 35 RON    |
-| LED Matrix 8x8 (x4)     | Game display                       | 60 RON    |
-| Shift Register 74HC595  | Parallel control for LEDs          | 24 RON    |
+| LED Matrix 8x8 (x2)     | Game display                       | 30 RON    |
+| Shift Register 74HC595  | Parallel control for LEDs          | 12 RON    |
 | Buttons (x4)            | Direction control                  | 4 RON     |
-| Buzzer                  | Sound feedback                     | 5 RON     |
+| Oled display            | Visual feedback                    | 17 RON    |
 | Resistors (220Ω, 5.1kΩ) | Current limiting, pull-down        | 10 RON    |
-| Breadboard (x2)         | Rapid prototyping                  | 40 RON    |
-| Connection wires        | GPIO wiring                        | 10 RON    |
+| Breadboard (x4)         | Rapid prototyping                  | 72 RON    |
+| Connection wires        | GPIO wiring                        | 15 RON    |
 
 ## Software
 
