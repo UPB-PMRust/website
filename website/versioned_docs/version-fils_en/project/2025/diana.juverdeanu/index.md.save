@@ -39,17 +39,18 @@ The Raspberry Pi Pico 2W acts as the central controller of the Pet Feeder, direc
 The Pico also runs a Wi-Fi access point and hosts a local web server, allowing the owner to manually trigger feeding from a browser interface. The SG90 servomotor is responsible for physically releasing food from a dedicated container and is powered by a stable 5V supply. The ultrasonic distance sensor ensures that food is only dispensed when the pet is actually nearby, preventing unnecessary activation.
 This architecture ensures seamless interaction between sensing, actuation, and user control, enabling both automatic and manual feeding through reliable, Wi-Fi-based communication, with the Pico 2W orchestrating all core functions and the LCD1602 providing local visual feedback.
 
-## Log 
+## Log
+
+<!-- write your progress here every week -->
 
 ### Week 5 - 11 May
 Bought hardware parts. Mounted the Raspberry Pi Pico 2W on breadboard. Wrote the code for the ultrasonic sensor (HC-SR04+). Tested PWM for SG90 servo motor. 
 ### Week 12 - 18 May
 Wrote the code for the servomotor (SG90) and for the button. Tested the LCD.
 ### Week 19 - 25 May
-Wrote the code for the LCD  to display text messages when the button is pressed and the sensor detects an object. I made a server with functionality commands.
+
 
 ## Hardware
-
 Pico 2W - brain of the Pet Feeder
 
 Servo Motor  SG90 - delivers food
@@ -84,7 +85,7 @@ This is the kicad schematic.
 | Library | Description | Usage |
 |---------|-------------|-------|
 | embassy-executor  | Asynchronous runtime for embedded Rust | Runs the `main()` function as an async task and enables multitasking  |
-| embassy-rp  | Hardware Abstraction Layer (HAL) for Raspberry Pi Pico (RP2040) |Configures PWM (servo), GPIO (button), I²C (LCD), and other peripherals |
+| embassy-rp  | Hardware Abstraction Layer (HAL) for Raspberry Pi Pico (RP2040)           |Configures PWM (servo), GPIO (button), I²C (LCD), and other peripherals |
 | embassy-time  | Async timing utilities (timers, delays) | Used for `Timer::after_secs()` and debounce delays |
 | hd44780-driver  | Driver for HD44780 LCD over I²C via PCF8574 expander | Initializes and writes messages to the 1602 LCD |
 | heapless  | Provides stack-allocated types like `String<32>` without heap allocation | Used to build display messages for the LCD without `std` |
@@ -93,17 +94,10 @@ This is the kicad schematic.
 | defmt-rtt  | Sends `defmt` logs over RTT (Real-Time Transfer) via USB  | Streams logs to the host for debugging over USB |
 | panic-probe  | Panic handler that outputs the panic reason through `defmt`  | Captures and logs panics during runtime for debugging   |
 | core::fmt::Write  | Enables formatted string output to heapless `String`| Used with `write!(...)` macro to write to a `String<32>`  |
-| embassy-net | Async TCP/IP networking for embedded systems using embassy | Sets up a TCP web server and serves HTTP responses |
-| embedded-io-async | Async traits for I/O operations (read, write, flush) | Used for writing HTTP responses with write_all() |
-| core::sync::atomic | Low-level atomic types for safe concurrency | Used for AtomicBool to signal a dispense request from the web handler |
-| static_cell | Provides a safe way to statically allocate memory for objects that live forever | Used for persistent socket buffers and stack resources (StaticCell) |
-| core::str | Core string operations (UTF-8 parsing) | Used for interpreting incoming TCP data as a string |
-| embassy_lab_utils | Custom utilities for Wi-Fi and network initialization (probably from your course or lab) | init_wifi!() and init_network_stack() for setting up the access point and network stack |
-| core::write | Required macro support to use write!() in no_std | Formats LCD text and HTTP headers |
 
 
 ## Links
 
 1. [inspiration 1](https://youtu.be/bvon9nxhqHk?si=2qOuvlQmeptNkpEQ)
 2. [inspiration 2](https://youtu.be/vKdQXICO-r0?si=8dzN55QKdWMFFRC1)
-3. [project video](https://youtube.com/shorts/ZMkhc2RD6To)
+
