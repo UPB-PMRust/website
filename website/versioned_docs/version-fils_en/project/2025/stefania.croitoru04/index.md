@@ -37,7 +37,11 @@ A laptop connects to the Raspberry Pi Pico 2W via Wi-Fi, it displays motion and 
 
 ### Week 6 - 12 May
 
+I assembled the components on a breadboard for testing, created the initial KiCad schematics, and tested each component’s code individually to ensure proper functionality.
+
 ### Week 7 - 19 May
+
+After testing each component on its own, I looked into the right crates and methods needed for my project. I focused on understanding how to control the sensors and other parts using Embassy, and then started putting together the main logic of the system.
 
 ### Week 20 - 26 May
 
@@ -55,13 +59,16 @@ Breadboard: Used for prototyping . \
 Micro USB Cable: Powers and programs the Pico. \
 LED: Changes color to visually signal system status. 
 
-This is what the wiring looks like:
-![This is what the wiring looks like](./hardwarewires.webp)
+
+![This is what the wiring looks like initially](./hardwarewires.webp)
+![This is what the wiring looks like at the end](./hardwarewiresupdate.webp) 
+![A the close look](./closelook.webp) 
+
 
 
 ### Schematics
 
-![Kicad schematic ](./KICAD.webp)
+![Kicad schematic ](./KICAD.svg)
 This is the kicad schematic.
 
 
@@ -76,7 +83,7 @@ This is the kicad schematic.
 | [Buzzer Module](https://components101.com/misc/buzzer-pinout-working-datasheet) | Used to emit audible alerts | [1 RON](https://www.optimusdigital.ro/en/electronic-components/12598-passive-buzzer-module.html) |
 | [220Ω Resistors (×3)](https://www.electronics-tutorials.ws/resistor/res_1.html) | Used to limit current for the RGB LED | [1.5 RON](https://www.optimusdigital.ro/en/resistors/856-025w-220k-resistor.html) |
 | [Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all) | Used to prototype the circuit without soldering | [10 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
-| [RGB LED](https://components101.com/leds/common-anode-rgb-led-pinout-working-datasheet) | Used to show visual alerts through color | [2 RON](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html?search_query=led&results=2049) |
+| [LED](https://www.electronics2000.co.uk/pin-out/led.php) | Used to show visual alerts through color | [2 RON](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html?search_query=led&results=2049) |
 | [Male-Male Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) | Used for general wiring connections | ~7 RON |
 | [Female-Female Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/212-female-female-10p-20-cm-wire.html) | Used to connect between modules and breadboard | ~7 RON |
 | [Female-Male Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html) | Used for flexible pin-to-board connections | ~7 RON |
