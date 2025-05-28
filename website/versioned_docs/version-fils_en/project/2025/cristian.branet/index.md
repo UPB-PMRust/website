@@ -76,6 +76,8 @@ Having finished all the individual functionalities of the boards, I moved on to 
 
 ### Week 19 - 25 May
 
+Finished all software related stuff and tested the project to make sure it works properly. I have also created some kind of cardboard parking and assembled the components for better presentation.
+
 ## Hardware
 
 1. **Infrared Sensor VS1838B**  
@@ -157,12 +159,19 @@ Display board
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [cyw43](https://github.com/embassy-rs/embassy/tree/main/cyw43) | Rust driver for the CYW43439 wifi+bluetooth chip | Used for WIFI communications between the boards |
-| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Access to the boards' peripherals | Used for various interactions between components and actions |
-| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework | Logged certain events and actions to the console for debugging |
-| [fixed](https://docs.rs/fixed/latest/fixed/) | Provides fixed-point numbers | Used when configuring PWM |
+| [cyw43](https://github.com/embassy-rs/embassy/tree/main/cyw43) | Rust driver for the CYW43439 WiFi+Bluetooth chip | Used for WiFi communications between the boards. |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Access to the Raspberry Pi Pico W peripherals | Used for GPIO, PWM, and other peripheral interactions. |
+| [embassy-net](https://docs.embassy.dev/embassy-net/git/embassy-net/index.html) | Networking stack for embedded systems | Used for TCP socket communication and network stack initialization. |
+| [embassy-time](https://docs.embassy.dev/embassy-time/git/embassy-time/index.html) | Time management for embedded systems | Used for delays and timers in tasks. |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework for embedded systems | Used for logging events and debugging information. |
+| [fixed](https://docs.rs/fixed/latest/fixed/) | Provides fixed-point arithmetic support | Used for configuring PWM with precise timing values. |
+| [heapless](https://docs.rs/heapless/latest/heapless/) | Provides heapless data structures | Used for creating fixed-size strings for sensor state messages. |
+| [static_cell](https://docs.rs/static_cell/latest/static_cell/) | Provides statically allocated memory | Used for allocating resources like the network stack. |
+| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Graphics library for embedded systems | Used for rendering text and graphics on the OLED display. |
+| [ssd1306](https://docs.rs/ssd1306/latest/ssd1306/) | Driver for SSD1306 OLED displays | Used for controlling the OLED display to show parking lot status. |
 ## Links
 
 1. [First time trying sensors on RP](https://murraytodd.medium.com/using-rust-embedded-to-capture-sensor-data-37db1f726d5c)
 2. [Learning about IR receiver](https://www.youtube.com/watch?v=ddceKBDMKsE)
 3. [Demo](https://www.youtube.com/watch?v=qNot_UbnDCE)
+4. [Demo Final](https://youtu.be/mkm-aITRSq8)

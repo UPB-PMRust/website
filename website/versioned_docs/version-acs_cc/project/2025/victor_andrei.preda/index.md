@@ -64,6 +64,21 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 4. **Update documentation**
 5. **Finished whole project**
 
+### Week 12 - 18 May
+1. **I refer to the components' datasheets to understand how they should be connected and what voltage levels they require. Additionally, after conducting some research online, I find how certain components should be properly connected.**
+2. **Hardware part done for both client and server**
+3. **Add images in documentation**
+4. **Update documentation**
+5. **I draw the game board and pieces, and implement the button logic using asynchronous execution (with select statements) to handle piece selection and movement.**
+6. **I develop the Wi-Fi functionality by configuring one Pico to act as an access point. Then, using my laptop connected to the same local network, I transmit packets to verify that the moves are being correctly executed.**
+
+### Week 19 - 25 May
+1. **I implement the client-side logic and update the packet structure to include two types: one for moves, one for game state. The game state packet is sent by the server to the client to provide the allocated play time and the winner’s total number of moves. It is also sent by the client to the server to indicate that the client has lost the game.**
+2. **I build the leaderboard and history tables in flash memory. Using four data blocks (defined by a Data struct), I write to flash at the end of each game in the same reserved location — the last 64 KB of flash memory. At the beginning of a game, I read from the predefined block offsets to load the saved data.**
+3. **Finished Software part**
+4. **Update documentation**
+5. **Finished whole project**
+
 ## Hardware
 
 1. **Raspberry Pi Pico 2W** (x2)  

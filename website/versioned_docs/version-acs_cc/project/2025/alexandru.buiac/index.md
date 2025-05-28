@@ -64,9 +64,15 @@ Ever since I was a child, I’ve had a deep passion for music—spending hours e
 ### Week 12 - 18 May
 
 - finished assembly of hardware
-- started writing some code
+- started writing base code for hardware functionality
 
 ### Week 19 - 25 May
+
+- finished the entire software, enabling all functionalities:
+  + basic note playing
+  + recording and saving song on SD card for persistance
+  + playback from SD card
+  + playback of predefined songs
 
 ## Hardware
 
@@ -174,6 +180,5 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [PM-Rust Labs - hardware and software tutorials](https://pmrust.pages.upb.ro/docs/acs_cc/category/lab)
+2. [embedded-sdmmc - guide for using the crate](https://github.com/rust-embedded-community/embedded-sdmmc-rs)

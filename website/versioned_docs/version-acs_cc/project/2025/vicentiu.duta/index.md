@@ -69,6 +69,7 @@ flowchart LR
     subgraph DRIVER_CONN[DRV8825 Connections]
         STEP[STEP - PIN_18]
         DIR[DIR - PIN_19]
+
     end
     
     STEP & DIR -.-> DRIVER
@@ -92,6 +93,7 @@ flowchart LR
     
     SCTL & SVcc & SGND -.-> SERVO
     
+
     RFID_CONN -.-> PICO
     DRIVER_CONN -.-> PICO
     DISP_CONN -.-> PICO
@@ -111,7 +113,7 @@ Initial hardware setup and testing. Configured the basic circuit elements on bre
 ### Week 12 - 18 May
 Completed the assembly of the main circuit and began integration testing. During initial load tests, discovered that the 28BYJ-48 stepper motor lacked sufficient torque for reliable elevator operation. Made the decision to upgrade to a NEMA 17 (17HS4401) motor with DRV8825 driver for improved power and precision. 
 ### Week 19 - 25 May
-TODO
+Finalized complete software integration. Successfully implemented the main application combining RFID authentication, NEMA 17 stepper motor control, servo door mechanism, and ST7735 display interface. The system now operates fully autonomously - detecting authorized cards, moving smoothly between floors with visual feedback, controlling door operations, and automatically returning to ground floor.
 
 ## Hardware
 
@@ -150,7 +152,49 @@ These components are integrated through different communication protocols:
 | Consumables | Jumper wires, breadboard, pins, 3d printing, etc. | 150 RON |
 
 ## Software
+### Architecture Overview
 
+
+The software implementation uses the Embassy framework for Rust embedded systems, providing an asynchronous, event-driven architecture. The main application runs in a single task that coordinates all system components through sequential state management.
+
+### Detailed Design
+
+The application is structured around four core modules:
+
+#### 1. RFID Authentication Module
+- Continuously polls the MFRC522 reader via SPI protocol
+- Validates card UIDs against authorized database with floor permissions
+- Handles communication errors with retry mechanisms
+
+#### 2. Display Management System  
+- Controls ST7735 TFT display via high-speed SPI for visual feedback
+- Manages custom bitmap icons for system states and floor indicators
+- Provides real-time status updates during elevator operations
+
+#### 3. Motor Control System
+- **Stepper Motor**: Controls NEMA 17 motor through DRV8825 driver with precise step calculation
+- **Floor Tracking**: Monitors position and provides movement callbacks for display updates
+
+#### 4. Door Control System
+- Operates MG90S servo motor via PWM signals (50Hz frequency)
+- Manages automated door sequences with 3-second open periods
+- Ensures fail-safe closed state during initialization
+
+### Functional Diagram
+
+```mermaid
+flowchart TD
+    A[System Start] --> B[Wait for RFID Card]
+    B --> C{Card Authorized?}
+    C -->|No| D[Access Denied] --> B
+    C -->|Yes| E[Open Door]
+    E --> F[Move to Floor]
+    F --> G[Open Door at Destination]
+    G --> H[Return to Ground Floor]
+    H --> B
+```
+
+The system operates through a continuous cycle: authentication → door control → floor movement → return to ground, with comprehensive visual feedback and precise motor control throughout each phase.
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/) | Async execution framework | Task management and main entry point |
@@ -168,7 +212,5 @@ These components are integrated through different communication protocols:
 | [defmt](https://defmt.ferrous-systems.com/) | Debug formatting | Logging and diagnostics |
 | [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | RTT transport | Debug output channel |
 | [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Panic handler | Error reporting to debug probe |
-<!--## Links -->
-
-<!-- Add a few links that inspired you and that you think you will use for your project -->
+| [tinybmp](https://docs.rs/tinybmp/latest/tinybmp/) | BMP image decoder | Loading floor icons and status images for display |
 
