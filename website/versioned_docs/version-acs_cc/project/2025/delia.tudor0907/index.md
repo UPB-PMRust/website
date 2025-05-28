@@ -59,7 +59,7 @@ Taking out the trash is a task often postponed, especially in shared living spac
 
 
 ## Schematics
-![schematics Diagram](./schematic.svg)
+![schematics Diagram](./pm_schematic.svg)
 
 ## Bill of Materials
 
