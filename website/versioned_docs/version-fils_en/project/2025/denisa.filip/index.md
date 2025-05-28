@@ -33,7 +33,11 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ## Architecture
 
+<<<<<<< HEAD
 ![architecture](arch.webp)
+=======
+![architecture](arch.svg)
+>>>>>>> bc224095c1fd4b1c4ed31a4c06a77695deb15dac
 
 
 
@@ -58,9 +62,15 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ### Week 10 - 4 May: I submitted the documentation and made the necessary changes.
 
+<<<<<<< HEAD
 ### Week 11 - 11 May: i build the hardware for the project and started the software. 
 
 ### Week 12 - 18 May: i uploaded the software milestone.
+=======
+### Week 11 - 11 May:
+
+### Week 12 - 18 May:
+>>>>>>> bc224095c1fd4b1c4ed31a4c06a77695deb15dac
 
 
 ## Hardware
@@ -73,10 +83,17 @@ RGB LEDs (2x): Provide visual feedback—colors change (e.g., green to red) base
 
 Buzzers (2x): Emit sound alerts that increase in frequency as the object gets closer, enhancing the warning system.
 
+<<<<<<< HEAD
 ![Hardware](h1.webp)
 ![Hardware](h2.webp)
 ![Hardware](h3.webp)
 ![Hardware](h4.webp)
+=======
+![Hardware](h1.svg)
+![Hardware](h2.svg)
+![Hardware](h3.svg)
+![Hardware](h4.svg)
+>>>>>>> bc224095c1fd4b1c4ed31a4c06a77695deb15dac
 
 
   
