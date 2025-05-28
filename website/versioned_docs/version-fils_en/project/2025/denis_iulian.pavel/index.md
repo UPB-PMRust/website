@@ -103,3 +103,5 @@ Raspberry Pi Pico 2W, Buttons, Screen (rgb_tft 128x160), Temperature Sensor, Acc
 | [panic-probe](https://crates.io/crates/panic-probe)                     | Panic handler that prints backtraces via `defmt`          | Catch and report panics on embedded targets               |
 | [byte-slice-cast](https://crates.io/crates/byte-slice-cast)             | Safe reinterpretation of byte slices                      | Cast between `&[u8]` and `&[T]` without unsafe code       |
 
+## Links
+[RogueRust Alpha Demo](https://youtu.be/30VituNNk2A)
