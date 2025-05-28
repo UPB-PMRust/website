@@ -82,6 +82,8 @@ Acts as the central controller for the pet environment monitoring system. It coo
         - **MOSI:** Connected to **PIN_11**(used for the 8-segment display)
         - **MISO:** Connected to **PIN_12**(used for the 8-segment display)
         - **CS:** Connected to **PIN_13**(used for the 8-segment display)
+
+
     - **PWM Slice 3:**
         - **PWM Output A:** Connected to **PIN_6**(used for the Servomotor)
     - **GPIO:**
