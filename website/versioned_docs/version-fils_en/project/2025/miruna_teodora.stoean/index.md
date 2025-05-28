@@ -35,7 +35,7 @@ This week, I began by individually testing all my RGB LEDs to ensure they were f
 ![poza_finala](poza_finala_2.webp)
 ![poza_finala1](poza_finala_1.webp)
 This week, I successfully configured the Wi-Fi on my Raspberry Pi Pico 2W, turning it into an access point. Additionally, I created a simple HTML page where the user can select their desired LED effect. The project's software is finished and I also worked on the design of the project.
-
+[Video of the Project working](https://youtu.be/UlZHCPw0-Iw)
 ## Hardware
 
 ![Poza](poza_proiect.webp)\
