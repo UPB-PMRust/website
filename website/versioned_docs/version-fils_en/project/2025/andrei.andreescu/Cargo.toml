@@ -1,0 +1,41 @@
+[package]
+name = "sentinel_guard"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Embassy async runtime and RP2040 support
+embassy-executor = { version = "0.3.3", features = ["defmt", "executor-thread"] }
+embassy-time = { version = "0.3.0", features = ["defmt"] }
+embassy-rp = { version = "0.1.0", features = ["time-driver", "unstable-pac"] }
+embassy-sync = "0.5.0"
+cortex-m-rt = "0.7"
+
+# Peripherals & communication
+embedded-hal = "1.0.0"
+embedded-hal-async = "1.0.0"
+embedded-hal-nb = "1.0.0"
+embedded-io = "0.6.1"
+embedded-io-async = "0.6.1"
+
+# Sensor-specific crates (if you use them)
+vl53l0x = "0.2"          # Laser distance
+apds9960 = "0.1"         # Gesture/light/proximity
+
+# Email (you'll need a working SMTP client or a bridge)
+lettre = { version = "0.10.0-rc.4", default-features = false, features = ["smtp-transport", "builder"] }
+
+# Debug & panic
+defmt = "0.3"
+defmt-rtt = "0.4"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+# Other utilities
+static_cell = { version = "1.3", features = ["nightly"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+debug = true
+codegen-units = 1
+panic = "abort"
