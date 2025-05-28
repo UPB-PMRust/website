@@ -44,7 +44,7 @@ Established connections between the rest of the components.
 
 ### Week 19 - 28 May
 
-Named the game RogueRust.
+Named the game RogueRust. LithTheFox from the boot screen is my alias.
 Chose new sensors, initialized accel sensor but it is unable to read properly
 Created main game loop, character sprites, creatures as well as gameplay base off this.
 ![Game Plan](gameplanning.webp)
