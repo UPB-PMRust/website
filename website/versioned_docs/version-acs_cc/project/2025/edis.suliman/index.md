@@ -2,6 +2,7 @@
 A Rust-based embedded implementation of the popular word-guessing game.
 
 
+:::info
 **Author**: Suliman Edis \
 **GitHub Project Link**:https://github.com/UPB-PMRust-Students/proiect-Edis9955
 :::
