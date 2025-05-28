@@ -28,9 +28,12 @@ Research for components
 Buying the components
 ### Week 19 - 25 April  
 Documentation 
+### Week 12 - 16 May
+Hardware
 
 ## Hardware
-
+![Hardware](poza1.webp)
+![Hardware](poza2.webp)
 Raspberry Pi Pico W (SC0918): Microcontroller board based on the RP2040 microcontroller chip.
 
 APDS-9960 Light Sensor: Digital RGB, ambient light, and gesture sensor with I2C interface.

@@ -68,7 +68,6 @@ I dropped the QR code idea since it required some `std`features.
 ![Player](4Clash-4.webp)
 ![Player](4Clash-5.webp)
 
-
 ### Schematics
 
 ![Schematic](4Clash_Schematic.svg)
