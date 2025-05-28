@@ -87,7 +87,7 @@ How the Components Connect:
 
 ## Log
 
-<!-- write your progress here every week -->
+
 
 ### Week 5 - 11 May
 
@@ -182,6 +182,8 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
   ![](Image2.webp)
    ![](image3.webp)
     ![](image4.webp)
+    ![](image5.webp)
+
 
 
 
@@ -218,7 +220,7 @@ A piezo buzzer provides audio feedback, and a push button will later allow user 
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
+
 
 1. [link](https://www.instructables.com/Raspberry-Pi-Guitar-Tuner/)
 2. [link](https://www.reddit.com/r/raspberry_pi/comments/pn7z7y/automatic_guitar_tuner_with_the_pico_sound_on/?rdt=52573)
