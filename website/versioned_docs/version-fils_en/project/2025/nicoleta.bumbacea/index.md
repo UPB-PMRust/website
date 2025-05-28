@@ -88,18 +88,17 @@ Power Supply  -Powers the Raspberry Pi Pico and all connected peripherals.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-|embassy|Async framework for embedded Rust|	Run async tasks like input, delays|
-|embassy-rp|Embassy HAL for Raspberry Pi Pico 2W|Control GPIO, PWM, I2C, SPI|
-|cortex-m|Low-level support for ARM Cortex-M chips|Set up interrupt handling, registers|
-|cortex-m-rt|Runtime and entry point for ARM Cortex-M|Required for running code on Pico|
-|defmt|Lightweight logging crate for embedded| Rust	Debug messages over USB/debug probe|
-|probe-rs|Flash and debug embedded devices|Upload firmware and debug over USB|
+|embassy-executor|Async runtime for embedded systems.|Runs tasks like keypad scanning and delays without blocking the main thread.|
+|embassy-rp| Hardware Abstraction Layer (HAL) for Raspberry Pi Pico (RP2040)|Controls GPIOs, I2C, timers, etc.|
+|embassy-time| Async-friendly timing utilities|Used for debounce delays, buzzers, and solenoid timing.|
+|defmt| Outputs structured logs during development.||
+|defmt-rtt|Sends defmt logs over Real-Time Transfer (RTT) to the development machine||
+|panic-probe|Captures and prints panic messages using defmt|Helpful for debugging runtime errors.|
+|heapless|Fixed-size collections without dynamic memory allocation|Used to store codes securely in no_std.|
 |ag-lcd	|Driver for HD44780-compatible LCDs. Displays messages on a 1602 LCD via I2C.|
 |port_expander|Supports PCF8574 and similar I2C I/O expanders.|Allows the LCD to be controlled over I2C with fewer GPIOs.|
 |static_cell|Helps create static references required for Embassy peripherals|Ensures safe and valid lifetimes for hardware resources.|
 |heapless|Fixed-size collections without dynamic memory allocation|Used to store codes securely in no_std|
-
-
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
