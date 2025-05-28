@@ -128,7 +128,7 @@ KiCad Scheme
 [embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Timekeeping and delay abstraction | Used for creating delays and timers without blocking |
 [embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Primitives for concurrency and synchronization | Enables mutexes, signals, and channels between async tasks |
 [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html) | Async embedded TCP/IP network stack | Used to serve a web interface over Wi-Fi (for unlocking remotely) |
-[cyw43](https://github.com/embassy-rs/embassy/tree/main/drivers/cyw43) |	Driver for the CYW43 Wi-Fi chip on the Pico W | Used to join a Wi-Fi network and host a small HTTP server
+[cyw43](https://github.com/embassy-rs/embassy/tree/main/drivers/cyw43) |	Driver for the CYW43 Wi-Fi chip on the Pico 2W | Used to join a Wi-Fi network and host a small HTTP server
 [cyw43-pio](https://crates.io/crates/cyw43-pio) |	PIO SPI interface for CYW43 Wi-Fi chip | Interface for CYW43 to work over the RP2040’s PIO SPI
 [embedded-graphics](https://crates.io/crates/embedded-graphics) |	Drawing library for displays | Used to render text and countdowns on the LCD
 [mipidsi](https://crates.io/crates/mipidsi) |	ST7735s LCD display driver |Initializes and manages the LCD screen
