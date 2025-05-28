@@ -67,6 +67,13 @@ I focused on gathering the necessary hardware components for the project. I purc
 I decided to add an RGB led that turns green when the answer is correct and red when it is not. I completed the hardware part and started implementing the Sudoku game. 
 
 ### Week 19 - 25 May
+I implemented a buzzer, a Reset and a Verify button at the bottom of the screen. The first one erases the the added numbers. When I select the verify button and something is wrong, the cell with mistake turns red and the buzzer starts.
+![](reset_-verify_final.webp)
+
+
+### Week 26 - 28 May
+I implemented 'Select Difficulty' buttons and for every difficulty(easy, medium and hard) there are different grids. I finished implementing the software.
+![](select-difficulty-final.webp)
 
 
 ## Hardware
