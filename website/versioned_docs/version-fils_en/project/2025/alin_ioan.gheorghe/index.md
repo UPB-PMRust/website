@@ -121,7 +121,7 @@ I've used two Raspberry Pi Pico 2 W's, a L298N module connected to 2 Dc motors w
 | [embassy-net](https://github.com/embassy-rs/embassy) | Networking stack | Manages TCP/IP over Wi-Fi; used for remote control |
 | [embassy-lab-utils](https://github.com/embassy-rs/embassy-lab) | Pico W Wi-Fi helpers | Simplifies Wi-Fi and network stack setup |
 | [gpio](https://docs.rs/embassy-rp/latest/embassy_rp/gpio/) | GPIO module | Controls motor direction pins (L298N IN1–IN4) |
-[pwm](https://docs.rs/embassy-rp/latest/embassy_rp/pwm/) | PWM module | Adjusts the arm position of the servo motor |
+| [pwm](https://docs.rs/embassy-rp/latest/embassy_rp/pwm/) | PWM module | Adjusts the arm position of the servo motor |
 | [adc](https://docs.rs/embassy-rp/latest/embassy_rp/adc/) | ADC module | Reads analog joystick values for direction/speed input |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework | For debug messages via RTT/serial |
 | [panic-probe](https://docs.rs/panic-probe) | Panic handler | Handles panics with minimal overhead |
