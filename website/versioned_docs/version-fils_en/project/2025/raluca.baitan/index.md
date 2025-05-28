@@ -5,7 +5,7 @@ An interactive smart lamp that dynamically adjusts lighting based on touch, moti
 :::info 
 
 **Author**: Băițan Raluca \
-**GitHub Project Link**: [https://github.com/raluca-baitan/Mood-Light-Lamp](https://github.com/raluca-baitan/Mood-Light-Lamp)  
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/project-raluca-baitan](https://github.com/UPB-PMRust-Students/project-raluca-baitan)  
 
 :::
 
