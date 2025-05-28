@@ -109,7 +109,8 @@ This week, I focused extensively on the software development and hardware integr
 
     I added logic to compare the detected frequency with a user-selected target note (selectable via button) and show visual feedback:
 
-        Arrows (<, >, =) indicate whether the current frequency is too low, too high, or correctly tuned.
+       Arrows (&lt;, &gt;, =) indicate whether the current frequency is too low, too high, or correctly tuned.
+
 
         An RGB LED provides intuitive color-coded feedback: red for low, blue for high, and green when the frequency is within tolerance.
 
