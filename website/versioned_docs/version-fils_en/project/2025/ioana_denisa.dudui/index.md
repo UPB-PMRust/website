@@ -196,3 +196,7 @@ The format is
 1. [Raspberry Pi Automatic Cat Feeder](https://www.youtube.com/watch?v=xJ6TVPJNrc8)
 2. [Automatic cat feeder-PART 1](https://www.youtube.com/watch?v=JkKmJ7eeQjQ)
 3. [Automatic cat feeder-PART 2](https://www.youtube.com/watch?v=tp6coaSNY9I)
+
+## Link to youtube video
+
+1. [Pet Sense](https://youtu.be/RF2EOjKjYcg?si=CcYMeDAzCQIW3tOk)
