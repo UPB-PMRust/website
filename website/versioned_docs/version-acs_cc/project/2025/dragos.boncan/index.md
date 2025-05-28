@@ -187,8 +187,23 @@ to make it functional.
 -I added a door sensor to detect whether it is open or closed (not yet connected to the board).
 
 ### Week 15 May – 21 May:
+-I connected the door sensor to pin 26 (configured as an input pin).
+-I used an active buzzer, which operates between 3–24V. I powered it with 12V, connected to the fourth channel of the relay. The buzzer receives the control signal from pin 27 of the Pico (configured as an output pin).
+-I also connected pin 28 to the LEDs.
+-On the NC (normally closed) contact, the relay is deactivated, the green LEDs are on, and the red LEDs are off.
+-On the NO (normally open) contact, the relay is activated, the green LEDs are off, and the red LEDs are on.
+-I used 4 LEDs of each color to clearly indicate the current state of the system (green for standby mode and red for reading or banknote removal mode).
 
--To be continued
+### Week 22 May - 28 May:
+-I used GPIO 2 to control the motor in the reverse direction.
+-If the banknote is not within the predefined value range, it will be considered invalid and will be rejected.
+-The magnetic lock is connected to GPIO 3.
+-When the reset button is pressed, the door opens and the buzzer starts beeping.
+-The buzzer stops only when the door is closed.
+-I made several software updates for banknote detection.
+
+
+
 
 ## Hardware
 
@@ -429,7 +444,6 @@ I have 2 circuits:
 ## Software
 
 
-
 The code I wrote controls a system on the Raspberry Pi Pico 2 for detecting
 banknotes. It uses presence sensors to detect when a banknote is inserted, and a
 TCS230 color sensor to read its RGB values. The motor is started or stopped
@@ -437,6 +451,16 @@ based on the banknote’s position, and the RGB frequencies are normalized to
 identify the note’s color. The code handles concurrent tasks and delays using
 libraries like embassy_executor and embassy_time.
 
+
+### Current Status of the Software Implementation
+
+My project is almost finished; I still need to implement the calibration of the 
+color sensor (TCS 230) using a sheet of paper. On a white sheet, it should consistently 
+display equal RGB values. In the code, I also need to have appropriate constants for the colors.
+
+
+
+### Libraries used
 
 |     Library      |                      Description                       |                            Usage                            |
 |:----------------:|:------------------------------------------------------:|:-----------------------------------------------------------:|
@@ -449,6 +473,385 @@ libraries like embassy_executor and embassy_time.
 | [embassy_rp::i2c](https://docs.embassy.dev/embassy-rp/git/rp2040/i2c/struct.I2c.html) | I2C is a two-wire communication protocol that enables data exchange between multiple devices using a shared bus.| Define the asynchronous I2C interface to enable communication between the board and the LCD 1602.  |
 | [embassy_rp::peripherals::I2C0](https://docs.embassy.dev/embassy-rp/git/rp235xa/struct.Peripherals.html#structfield.I2C0)|It provides access to the I2C0 peripheral on Raspberry Pi RP2040, enabling communication with I2C devices such as sensors and displays | Initializes I2C instance asynchronous: let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config)|
 |  [embedded_hal_async::i2c::I2c as AsyncI2c](https://github.com/rust-embedded/embedded-hal/blob/master/embedded-hal-async/src/i2c.rs)| Defines the asynchronous interface for I2C communication in embedded systems.| I used it for asynchronous functions using I2C(lcd_init, lcd_command, lcd_data, lcd_write_str)|
+|         [`heapless::String`](https://docs.rs/heapless/latest/heapless/struct.String.html)        |  A fixed-capacity string type for no_std environments  |    Used for efficient string handling without heap allocation(I need to write some strings on my lcd 1602)  |
+|  [`num_traits::float::FloatCore`](https://docs.rs/num-traits/latest/num_traits/float/trait.Float.html)  | Provides floating point core traits and math operations |     I used it to help calculate euclidian distance between the color identified by my TCS230 and the banknote    |
+|      [`ufmt::{uwrite, uWrite}`](https://docs.rs/ufmt/latest/ufmt/trait.uWrite.html)     | A minimal formatting crate for no_std and embedded use |   Used for formatting output to custom writes. I used to display "lei" after the total sum of money.  |
+|            [`core::f32`](https://doc.rust-lang.org/core/f32/index.html)            |     Core floating-point types from Rust core library    |         Used for float32 operations in a no_std context, I used it several times to normalize my RGB values and to compute different calculations for total sum displayed        |
+|            [`libm::sqrt`](https://docs.rs/libm/latest/libm/fn.sqrt.html)           |     Math library providing sqrt and other math funcs    | Used to compute square root. I needed to calculate the euclidian distance, so I need sqrt function. |
+| [`core::sync::atomic::{AtomicU32, Ordering}`](https://doc.rust-lang.org/core/sync/atomic/struct.AtomicU32.html) | Provides atomic integer types and memory ordering primitives. | Used for thread-safe atomic operations. I used it to be able to have 2 global variables: GLOBAL_FLOAT_BITS and GLOBAL_MACHINE_STATE|
+
+
+### Highlighting the Innovation Element of the Project 
+The detection and classification of banknotes using a TCS230 color sensor calibrated in a dark environment is the innovation brought by my project. I have a bidirectional mechanical handling system for real-time acceptance/rejection. Additionally, the 1602 LCD screen updates in real time.
+
+#### Why is it innovative?
+Most commercial complex devices use high-resolution cameras or specialized sensors (multi-point infrared, UV, magnetic) that are expensive for verifying banknote authenticity. I use a simple and affordable color sensor (TCS230), precisely calibrated inside a dark chamber, combined with a simple colorimetric recognition algorithm that enables fast and cost-effective identification of Romanian banknotes based on their specific colors.
+
+#### How is it different?
+Existing devices use much more complex and costly methods; my approach offers an excellent compromise between cost and efficiency, opening the way for low-cost devices dedicated to the local market with a minimalist hardware/software implementation.
+
+###  Use of Laboratory Functionalities within the Project
+
+Throughout the semester, I applied the following functionalities from the labs in my project:
+
+#### 1. Lab 2 – GPIO
+-I used GPIO functionality for almost all the pins (except pins 16 and 17, which are used for I2C communication with the LCD display).
+
+```
+let led0 = Output::new(p.PIN_4, Level::High); // my printer motor  
+let led1 = Output::new(p.PIN_5, Level::High); // my internal lightbulb
+```
+
+#### 2. Lab 3 – PWM and ADC
+I only used PWM, specifically on pin 10 of the Raspberry Pi Pico. This pin receives a PWM signal from the TCS230 sensor, which represents the measured RGB values.
+I use the function:
+```
+async fn read_frequency(out: &Input<'_>, duration_ms: u64) -> u32
+```
+
+#### 3. Lab 4 – Asynchronous Development
+I use asynchronous functions throughout the project to ensure the Pico is non-blocking. Without asynchronous functions, I wouldn’t be able to insert a coin and a banknote simultaneously.
+I spawn the following tasks using the spawner:
+
+```
+spawner.spawn(bancnote_task(led0, led1, s2, s3, out, presence_sensor1, presence_sensor2, leds)).unwrap();
+spawner.spawn(monede_task(moneda_sensor1, moneda_sensor5, moneda_sensor10, moneda_sensor50)).unwrap();
+spawner.spawn(reset_task(buton_reset, door_lock)).unwrap();
+spawner.spawn(lcd_task(i2c, lcd_addr)).unwrap();
+spawner.spawn(buzzer_usa_deschisa(door_sensor, buzzer)).unwrap();
+```
+
+#### 4. Lab 6 – Inter-Integrated Circuit (I2C)
+I used pins 16 and 17 as SDA and SCL for the LCD1602 display:
+
+```
+let mut i2c = I2c::new_async(p.I2C0, scl, sda, Irqs, config);
+```
+
+### Project Structure
+The project is built using the Rust programming language along with the Embassy library for asynchronous programming. Here are my main tasks explained:
+
+### Main task
+-The main function is where I initialize all the hardware peripherals and spawn the async tasks that handle logic like LCD display, coin/bill detection, buzzer alerts, and door lock control.
+
+-Before anything runs, I set up shared global states and the hardware configuration:
+```
+let bits = 0.0f32.to_bits();
+GLOBAL_FLOAT_BITS.store(bits, Ordering::SeqCst);
+GLOBAL_MACHINE_STATE.store(bits, Ordering::SeqCst);
+```
+-I used 2 global variables to store the total sum and the current state of the machine.
+
+
+#### Initialized pins in Main
+| **Pin**      | **Purpose**                       |
+|--------------|-----------------------------------|
+| PIN_2        | Motor back (bill return)          |
+| PIN_3        | Door lock control                 |
+| PIN_4        | Bill acceptor motor               |
+| PIN_5        | Status LED (light)                |
+| PIN_6-7      | TCS230 s0 and s1                  |
+| PIN_8-9      | Multiplexer controls (s2 and s3)  |
+| PIN_10       | Color sensor output               |
+| PIN_13       | Reset button                      |
+| PIN_14-15    | IR presence sensors               |
+| PIN_16-17    | I2C bus (SDA & SCL)               |
+| PIN_19-22    | Coin sensors (1, 5, 10, 50 bani)  |
+| PIN_26       | Door sensor                       |
+| PIN_27       | Buzzer (active LOW)               |
+| PIN_28       | LED strip for feedback light      |
+
+-I connect an LCD1602 display via I2C (address 0x27) and initialize it using: ```lcd_init(&mut i2c, lcd_addr).await;```
+
+-I then deploy the 5 tasks that are presented in detail below.
+
+### Bancnote_task
+
+This contains the logic behind activating/deactivating the motor. It uses a state machine that handles the different states involved in processing a banknote.
+```
+#[derive(PartialEq)]
+enum StareMotor {
+    Idle,
+    Start,
+    Read,
+    Eject,
+    Rejected,
+}
+```
+
+#### Idle State
+
+The ```Idle``` state is the default state. In this state, the two presence sensors are inactive, and the motor is turned off. The system can only transition to the ```Start```  state from here.
+
+#### Start State
+
+The ```Start``` state is where the motor becomes active. The transition from idle to start occurs if the first sensor detects a banknote. If no banknote is inserted within 4 seconds, the motor stops and the system returns to the ```Idle``` state. If a banknote is inserted, the system automatically transitions to the ```Read```  state.
+
+#### Read State
+
+The ```Read``` state involves reading and identifying the color on the banknote. It uses the following function:
+```set_filter(&mut s2, &mut s3, "red").await;```
+This sets the color filter using the s2 and s3 pins of the TCS230 color sensor:
+
+| Color Filter | S2   | S3   |
+|--------------|------|------|
+| Red          | Low  | Low  |
+| Green        | High | High |
+| Blue         | Low  | High |
+| Clear        | High | Low  |
+
+Based on the detected color, the Euclidean distance between the reference color and the measured one is calculated. The color values are normalized by dividing them by the "clear" parameter. The closest match determines the identified banknote.
+If the distance is greater than 15, the banknote is considered unrecognized, and the system transitions to the ```Rejected``` state. If the banknote is identified, it transitions to the ```Eject``` state.
+
+#### Rejected State
+
+In the ```Rejected``` state, the motor reverses direction for one second to push the banknote out. Afterward, the system waits for 3 seconds in the same state to allow the user to retrieve the banknote. The system returns to the Idle state once the banknote is removed.
+
+#### Eject State
+
+In the ```Eject``` state, the motor rotates forward for 1.5 seconds to move the banknote into an internal tray. The amount of money is updated accordingly, and the LCD1602 display shows the updated value.
+
+### Task for coins
+I used a task called ```monede_task```. This task is pretty straightforward. I use 4 presence sensors, configured on pins 19, 20, 21, and 22. Each sensor is dedicated to a specific coin type (1, 5, 10, and 50 bani).I use a coin separator, which serves to accurately detect the value of the coins.
+``` 
+async fn monede_task(
+    sensor1: Input<'static>,
+    sensor2: Input<'static>,
+    sensor3: Input<'static>,
+    sensor4: Input<'static>,
+)
+```
+On detection:
+
+-Reads global floating-point value from GLOBAL_FLOAT_BITS
+
+-Calls ```update_float_value(...)```, that updates my global variable GLOBAL_FLOAT_BITS. This variable globally keeps my total sum. Everytime the global variable is updated, I display it on my lcd1602.
+
+-Logs the event using info!
+
+-The loop runs every 20ms using ```Timer::after(Duration::from_millis(20)).await;```. This provides a basic debounce/polling interval to reduce false triggers.
+
+### Reset_task
+
+A reset button is connected to pin 13, which is configured as an input pin. When the button is pressed, the available money amount is reset. The function ```update_float_value(0.00)``` is called, which updates the ```GLOBAL_FLOAT_BITS``` variable to 0. Additionally, the door lock connected to pin 3 is activated (a signal is sent through a relay on channel 3, which triggers the lock). My inputs for this task are the reset button and the door lock.
+``` 
+async fn reset_task(mut buton_reset: Input<'static>, mut door_lock: Output<'static>) 
+```
+
+
+The loop runs every 100ms using
+```Timer::after(Duration::from_millis(100)).await;```
+This provides a basic polling interval to reduce CPU usage and power consumption, while still allowing timely detection of button presses.
+
+
+### LCD1602 Display Task (lcd_task)
+This task continuously displays the current state of the machine and the total amount of money detected, using an LCD1602 screen connected via I2C.
+
+#### Hardware Configuration
+LCD1602 I2C connected to the I2C bus (I2C0). Backlight is enabled by default (0x08). RS and EN are manually controlled to send commands and data. At startup, lcd_init initializes the screen in 4-bit mode.
+
+Every ~100 ms:
+
+-Reads the saved amount (GLOBAL_FLOAT_BITS)
+
+-Reads the machine’s state (GLOBAL_MACHINE_STATE)
+
+-Converts the amount into a ```String 16``` with two decimal places (12.50)
+
+-Displays the state on line 1: ```IDLE```, ```START```, ```READ```, ```EJECT```, ```REJECTED``` 
+
+-Displays the amount followed by “ lei” on line 2
+
+-If the new string is shorter than the previous one, the screen is cleared (lcd_command(..., 0x01)) to avoid problems with display (overwriting not full or display flickering).
+
+#### LCD commands
+
+```pub async fn lcd_command<I: AsyncI2c>(i2c: &mut I, addr: u8, cmd: u8) ```
+
+-Purpose: Sends a command byte to the LCD.
+
+-Used for: LCD initialization, cursor setting, clearing display.
+
+-Internally uses: lcd_write_byte(...) with rs = false.
+
+#### Data sender to LCD
+```pub async fn lcd_data<I: AsyncI2c>(i2c: &mut I, addr: u8, data: u8)```
+
+-Purpose: Sends a character/data byte to be shown on the LCD.
+
+-Used for: Writing visible text.
+
+-Internally uses for ```lcd_write_byte(...)``` with rs = true.
+
+#### LCD Initialization
+
+```pub async fn lcd_init<I: AsyncI2c>(i2c: &mut I, addr: u8)```
+
+-Purpose: Initializes the LCD1602 in 4-bit mode with I2C.
+
+Steps:
+
+-Wait 50 ms (LCD power-up delay).
+
+-Send ```0x30``` three times to set 8-bit mode (compatibility sequence).
+
+-Send ```0x20``` to switch to 4-bit mode.
+
+-Send function/configuration commands:
+
+-```0x28``` – 2 lines, 5x8 dots, 4-bit.
+
+-```0x0C``` – Display ON, cursor OFF, blink OFF.
+
+-```0x06``` – Cursor increment, no display shift.
+
+-```0x01``` – Clear display.
+
+#### LCD write strings (better than bytes)
+```pub async fn lcd_write_str<I: AsyncI2c>(i2c: &mut I, addr: u8, s: &str)```
+
+-Purpose: Writes a whole string to the LCD.
+
+-Iterates over each byte (character) and sends it using lcd_data(...).
+
+#### Data transmission via I2C 
+```
+pub async fn lcd_write_byte<I: AsyncI2c>(
+    i2c: &mut I,
+    addr: u8,
+    byte: u8,
+    rs: bool,
+    backlight: bool,
+)
+```
+
+-Purpose: Sends a byte to the LCD via I2C in two nibbles (high + low).
+
+##### Steps:
+
+-Extract high and low nibbles from byte.
+
+##### For each nibble:
+
+-Add backlight + RS + EN bits.
+
+-Toggle EN bit HIGH → LOW to latch the nibble.
+
+-Wait briefly between operations.
+
+##### Important flags:
+
+-rs (Register Select): Command or Data mode.
+
+-backlight: Controls whether backlight bit (0x08) is sent.
+
+#### LCD cursor 
+```pub async fn lcd_set_cursor<I: AsyncI2c>(i2c: &mut I, addr: u8, col: u8, row: u8)```
+
+-Purpose: Positions the cursor at a specific col and row on the LCD, because I have 2 lines on my LCD, each one of them with 16 characters
+
+-Line offsets: Line 0 starts at 0x00, line 1 at 0x40.
+
+-Sends a ```0x80``` | addr command to set DDRAM address.
+
+#### Float to String Conversion
+The ```float_to_string(val: f32)``` function:
+
+-Converts the float to a string with 2-digit precision
+
+-Adds a leading 0 if the fractional part is < 10 (e.g., 5.05)
+
+-Correctly rounds the fractional part, including edge cases like 0.9999 → 1.00
+
+#### Displayed States
+| Internal Code | LCD Message         |
+|---------------|---------------------|
+| 0.0           | State: IDLE    |
+| 1.0           | State: START      |
+| 2.0           | State: READ       |
+| 3.0           | State: EJECT     |
+| 4.0           | State: REJECTED      |
+| otherwise     | State: UNKNOWN     |
+
+#### Update Interval
+The task runs every 100 ms using
+```Timer::after(Duration::from_millis(100)).await;```.
+This reduces CPU usage and ensures a smooth screen refresh without overloading the system.
+
+
+### Open Door + Buzzer Task
+In this task, I control a buzzer that emits warning beeps when the door is open. I use a presence sensor to detect the state of the door and turn the buzzer on or off accordingly. This is very useful in systems that need to alert when a door has been left open. It announces everyone else in the room that the money in the bank are not safe. The sensor outputs HIGH when the door is open. The buzzer is active LOW: it turns on when I set its pin to LOW and off when it's HIGH.
+
+#### What I Do in the Task
+```
+async fn buzzer_usa_deschisa(mut door_sensor: Input<'static>, mut buzzer: Output<'static>) { ... }
+```
+#### How this task works
+-At startup, I wait 500ms to allow the sensor to stabilize.
+
+-When I detect that the door has just opened, I wait another second before activating the buzzer. I don’t want to trigger it from a simple vibration or brief movement.
+
+-While the door stays open, I activate the buzzer like this:
+
+-It beeps for 200ms, then stays silent for 1500ms.
+
+-I repeat this cycle until the door is closed.
+
+-When the door is closed, the buzzer is turned off.
+
+-I check the sensor only every 300ms to avoid unnecessary resource usage.
+
+
+
+
+### Calibration of the sensors
+
+#### Calibration of the presence sensors:
+Each presence sensor was tested individually in a controlled environment. I started by identifying the optimal detection threshold, meaning the distance and conditions at which the sensor detects the presence of an object. I adjusted the physical positioning of each sensor to avoid interference and false triggers.
+
+Each presence sensor has a screw at the back. This screw controls how far the sensor can detect presence. I used a small flathead screwdriver. At the maximum setting, my sensors could detect objects at distances that were too large for my needs (10-12 centimeters). I adjusted them close to the minimum, so they would detect banknotes or slips only at about 1.2–1.5 centimeters.
+
+#### Calibration of the color sensor:
+My TCS230 color sensor is not very accurate because it doesn’t consistently give the same value for the same position. I tried as much as possible to calibrate it (in software) on a white sheet of paper, so that it would output roughly equal values for the RGB components.
+
+#### Calibration of the display:
+Initially, my display didn’t seem to turn on. The reason was that the contrast was set to minimum. Using a flathead screwdriver again, I increased the contrast until the text became clearly visible on the screen.
+
+
+### Software optimizations
+
+#### 1. Hardware and software debounce for the reset button
+In the reset_task, I detect the transition from HIGH to LOW and introduce a short delay (50 ms) to debounce the signal. After the delay, I confirm the button state to avoid false positives caused by mechanical bouncing. This ensures reliable reset triggering without unintended multiple activations.
+
+#### 2. Reducing flicker on the LCD
+In the lcd_task, before clearing the LCD screen, I check if the length of the displayed text has decreased compared to before. This prevents unnecessary clearing and reinitializing of the display, which reduces flickering and improves the visual experience.
+
+#### 3. Rate limiting in repetitive loops
+In almost all tasks, I use ```Timer::after(Duration::from_millis(20))``` to insert delays between iterations. This prevents aggressive continuous polling, which can overload the CPU and increase power consumption. By limiting the polling rate, I reduce CPU usage and optimize energy efficiency.
+
+#### 4. Conditional checks for global updates
+Global variables that hold system state and floating-point values are updated only when a change is necessary. Access to these variables is atomic, using ```AtomicU32``` with ```Ordering::SeqCst``` to avoid race conditions. This approach ensures thread-safe, consistent data without unnecessary writes that could degrade performance or cause bugs.
+
+#### 5. On/off button
+I added an on/off button to allow the system to completely power down when not in use. This reduces power consumption by limiting the active operating time, which is critical for battery-powered or energy-sensitive applications.
+
+#### 6. Controlled banknote motor with a clear state machine
+The banknote motor is controlled by an explicit state machine with well-defined states and transitions. This structured approach ensures that the motor runs only when needed and in a predictable manner, preventing errors such as motor stalls or unwanted operation, thus improving system reliability and efficiency.
+
+
+
+
+
+
+
+
+### Functionality of my project
+
+Here is a short demo showing how my money counting machine with bill storage works.
+
+[![Demo for money counting machine](https://img.youtube.com/vi/pk5nQ_Uff8Q/hqdefault.jpg)](https://www.youtube.com/watch?v=pk5nQ_Uff8Q)
+
+[Watch the demo video on YouTube](https://www.youtube.com/watch?v=pk5nQ_Uff8Q)
 
 
 
