@@ -61,6 +61,8 @@ The system is powered by a 2S LiPo battery which supplies approximately 7.4V. Th
 
 ![Hardware](hardware.webp)
 
+![Hardware](hardware.webp)
+
 ### Schematics
 
 ![KiCad](kicad.svg)
