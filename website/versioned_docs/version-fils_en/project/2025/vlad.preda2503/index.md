@@ -47,6 +47,8 @@ Some solutions started showing themselves. First comes the issue of the main hul
 
 ### Week 26 - 30 May (PM Fair)
 
+I managed to implement the button matrix grid system. Even still, I'll probably have to scale back to only one octave, seeing as I've run into some limitations. Still, the 3D printed keys are almost here. I cleaned up what there was to clean up with the main file, and essentially combined all the prototype functions into it. Although the file is hefty, most of it is just a bunch of if statements, checking which button has been pressed. (Once for normal presses, and once more while recording a loop).
+
 ## Hardware
 
 - *Raspberry Pico 2W*: The brain of the project, it handles all the the input/output signals regarding keys and other features.
