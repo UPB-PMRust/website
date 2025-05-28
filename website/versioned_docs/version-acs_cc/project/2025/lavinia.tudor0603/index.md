@@ -23,7 +23,11 @@ This project is not just a technical challenge, but also a personal dream to con
 
 ## Architecture 
 
+<<<<<<< HEAD
 ![Description of Image](diagr.svg) \
+=======
+![Description of Image](diagr.svg)
+>>>>>>> 4120a8d (Diagrama este in svg acum)
 The system is based on a Raspberry Pi Pico 2W, connected to environmental sensors (BME280, BMP280, MQ-2 Gas Sensor) and LCD display via I2C + a stepper motor driver (ULN2003) via GPIO. The Pico collects indoor and outdoor data, displays it, and controls the window motor automatically based on the conditions.
 
 ## Log
