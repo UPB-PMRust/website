@@ -47,7 +47,7 @@ Final gameplay elements implemented (falling notes, scoring). Made some small Ki
 ### Schematics
 
 <!-- ![KiCad Schematic](ProjectKicadScheme.webp) -->
-![KiCad Schematic](rustProj.svg)
+![KiCad Schematic](finalRustProj.svg)
 
 
 ### Final Look
