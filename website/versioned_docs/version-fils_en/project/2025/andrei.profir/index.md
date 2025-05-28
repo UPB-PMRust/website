@@ -18,6 +18,8 @@ Wi-Fi connection is used to send the data to the pico from a python script that 
 
 Over the past few weeks, I have been playing a lot of Balatro. It's a video game where you make poker hands and get a score (I know it sounds lame but trust me it won game of the year for a reason). As I was playing it to procrastinate for this project, a brilliant idea came to mind, why don't I build this game in real life? This will be just a prototype, but it will work for a regular deck of cards and will be able to compute a score. To be completely honest, this project isn't really something "useful" in day-to-day life, but it is a very fun concept for me and I'm looking forward to building it, I'm sure people will find it cool.
 
+Also, a very important aspect of this project is that it was done without a debugger. This was because I didn't know about the debugger thing and I didn't want to spend more money and I wanted to see if I could do it without one, so that should be pretty impressive right? (I used the screens and leds for debugging).
+
 ## Architecture 
 
 The pico is connected to the 5 LEDs and the 2 LCDs (in the picture only 1 LCD is connected) and to the power source. The pico's TX and RX pins io0 and io1 are connected to the esp32-cam's TX and RX pins respectively. Everything is then connected to the power source.
@@ -76,6 +78,8 @@ The format is
 | [5x LEDs + 5x Resistors] | The LEDs | [2.85 RON] |
 | [Piezo Active Buzzer] | Hopefully for a "ding" sound | [4.02 RON] |
 | [Extra stuff like wires, adaptors, buttons and some smaller breadboards] | The extras | [18.71 RON] |
+
+!! No debugger used !!
 
 All products ordered from ArduShop: https://ardushop.ro/ro/
 
@@ -151,6 +155,8 @@ if playing_cards[4].is_scored == true
     }
 ```
 I use an unsafe block because the CHIPS and MULT variables are global and are updated in the determine hand function.
+
+Some debugging lines may be found throughout the code. You will notice there is no defmt or info. That is because I did my debugging with LEDs and Displays.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
