@@ -117,5 +117,6 @@ All connections are made using jumper wires, and resistors are used where necess
 | [rand](https://github.com/rust-random/rand)                        | Random number generator    | Generates LED sequences using simple RNG      |
 
 ## Links 
+YOUTUBE VIDEOU WITH THE PROJECT: https://youtu.be/1X4oeht5MeU?si=eudbOGlTsnwWPsCv
 examples: https://www.youtube.com/watch?v=QfDFu5Kz6N4 
 my inspiration: https://www.youtube.com/watch?v=lzvy8HanLNE
