@@ -28,26 +28,32 @@ The diagram of the project:
 **Raspberry Pi Pico 2W**
 - **Role**: Controls every component. In the case of the car it controls the motors and the LEDs. In the case of the controller it reads the input from the buttons and the joystick.
 - **Connections**: GPIO for LEDs, motors, buttons and ADC joystick.
+
 **DC motors**
 - **Interface**: GPIO
 - **Role**:  Allow the car to go forward and backwards
 - **Connections**: conected to the L298N Module, left Motor: + -> out1, - -> out2; right Motor: + -> out3, - -> out4
+
 **L298N**
 - **Interface**: GPIO
 - **Role**:  controls the motors
 - **Connections**: Vcc -> powerSource, Gnd -> Gnd, 5V -> Vsys, in1 -> GP2, in2 -> GP3, in3 -> GP4, in4 -> GP5,
+
 **Servo motor**
 - **Interface**: GPIO
 - **Role**:  controls the steering of the car
 - **Connections**: Gnd -> Gnd, 5V -> powerSource, Pwm - GP14
+
 **LEDs**
 - **Interface**: GPIO
 - **Role**: Indicate when the car is breaking.
 - **Connections**: GP12 and GP13, each having a 470Ohm resistor connected in series. 
+
 **Joystick**
 - **Interface**: ADC
 - **Role**:  Controlls the steering of the car
 - **Connections**: yAxis -> GP27, VCC -> powerSource, GND -> Gnd.
+
 **Buttons**
 - **Interface**: GPIO
 - **Role**:  Controlls the acceleration and breaking of the car
