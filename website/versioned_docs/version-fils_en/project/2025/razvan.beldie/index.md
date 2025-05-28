@@ -97,10 +97,11 @@ Each state dictates what is drawn on the screen and how user input is interprete
 
 
 ### Week 12 - 18 May
-
+- continued working on the software, mainly the game logic, and dealing with dependecies issues
 
 ### Week 19 - 25 May
-
+-finished the game logic
+-finished work on the hardware presentation
 ## Hardware
 
 
