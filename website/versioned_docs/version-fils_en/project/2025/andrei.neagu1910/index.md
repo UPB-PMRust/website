@@ -82,6 +82,8 @@ Connections Between Components:
 
 ## Project Demo
 
+<iframe width="360" height="640" src="https://www.youtube.com/shorts/_vIEXJIUSUo" title="DriveSight Project Demo" frameborder="0" allowfullscreen></iframe>
+
 ## Hardware
 
 - Raspberry Pi Pico 2W: Main controller handling sensors and motor control.
