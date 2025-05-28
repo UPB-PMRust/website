@@ -101,6 +101,12 @@ In addition, I had to go shopping for a suitable enclosure to house the final ve
 
 ### Week 19 - 25 May
 
+I finalized the design of the wooden enclosure that will house the entire hardware system. The enclosure was tailored to fit all components securely, ensuring proper access to the keypad, LCD screen, and power interface, while also providing structural stability for transport and demonstration.
+
+On the software side, I completed the final version of the code. In addition to the initially planned features, I added several enhancements for user interaction and reliability. These include improved input handling, refined LCD messaging, and more robust Morse signal timing.
+
+Finally, I prepared all materials and rehearsed the demonstration for the upcoming PM Fair, ensuring that both hardware and software are ready for public presentation.
+
 ## Hardware
 
 | Component | Purpose | Function |
@@ -122,6 +128,11 @@ In addition, I had to go shopping for a suitable enclosure to house the final ve
 ![Picture 1](pm1.webp)
 ![Picture 2](pm2.webp)
 
+### Final design
+
+![Final 2](final2.webp)
+![Final 1](final1.webp)
+
 ### Bill of Materials
 
 | Device | Usage | Price (RON) | Quantity |
@@ -139,6 +150,28 @@ In addition, I had to go shopping for a suitable enclosure to house the final ve
 
 ## Software
 
+![Keypad Diagram](keypad.webp)
+
+### Keypad Functionality
+
+| Button Label | Description |
+|--------------|-------------|
+| `HELLO`      | Displays and plays the full Morse code for the word **HELLO**. |
+| `S.O.S.`     | Displays and plays the full Morse code for **S.O.S** (`... --- ...`). |
+| `DEMO`       | Plays the Morse code of a randomly selected letter to be guessed by the user. |
+| `TEST ALL`   | Sends the entire message typed before this key was pressed, showing and playing each character's Morse code. |
+| `FUN FACTS`  | Displays a fun fact on the LCD from a predefined rotating list. |
+| `MODE`       | Switches between **Text mode** (multitap A–Z) and **Numeric mode** (0–9 input). |
+| `0–9`        | Inputs digits in Numeric mode, or letters via multitap logic in Text mode. |
+
+### Software Flow
+
+![Software Flow Diagram](software_flow.webp)
+
+The software operates in a continuous loop, monitoring keypad input. When a key is pressed, the program first checks whether it is a special key (such as HELLO, S.O.S., FUN FACTS, DEMO, or TEST ALL). If so, it executes the corresponding function: displaying or transmitting predefined Morse code sequences, showing a fun fact, playing a Morse quiz, or sending the entire message typed so far. If the key is not a special command, the program proceeds to check the current input mode—Text or Numeric. In Text mode, multitap logic is used to determine the intended character, while in Numeric mode digits are added directly. After a one-second pause without further taps, the current character is confirmed, added to a message buffer, and its Morse code is displayed and played. The system then returns to listening for the next key input.
+
+### Software Dependencies
+
 | Library | Description | Usage in your code |
 |:--------|:------------|:-------------------|
 | [embassy-rp](https://github.com/embassy-rs/embassy) | HAL for Raspberry Pi Pico W | Used for I2C interface, peripheral initialization |
@@ -149,6 +182,8 @@ In addition, I had to go shopping for a suitable enclosure to house the final ve
 | [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for `defmt` | Sends logs to the host |
 | [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler for embedded targets | Handles panics and sends diagnostic info |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Traits for I2C, GPIO and delays | Used indirectly via `embassy-rp` and `lcd1602_driver` |
+| [heapless](https://crates.io/crates/heapless) | Fixed-size data structures for no_std | Used for buffer storage (messages, Morse code) |
+| [rand](https://crates.io/crates/rand) + `small_rng` | Random number generation | Used for quiz feature (random letter) |
 
 ## Links
 
