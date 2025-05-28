@@ -26,7 +26,11 @@ I choose this idea because I am currently very passionate about games and I enjo
 
 ### Week 5 - 11 May
 
+I attached all the components and made a suitable kicad schmatic.
+
 ### Week 12 - 18 May
+
+I added a debugger and I tried testing the wiring to the display with a simple code of the spi connection.
 
 ### Week 19 - 25 May
 
@@ -43,9 +47,16 @@ This are the hardware parts that I would like to use:
 - simple PCB boards
 
 
+![Alt text](pic3.webp)
+
+![Alt text](pic4.webp)
+
+![Alt text](pic5.webp)
+
+
 ### Schematics
 
-![Alt text](pic2.webp)
+![Alt text](schematic.svg)
 
 ### Bill of Materials
 
