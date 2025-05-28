@@ -40,6 +40,7 @@ I recieved my microphone and approximately calibrated it.( it is not like calibr
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
+I finished the project, created a menu which user can intract and choose his desired senarios.
 
 ## Hardware
 In my project, I have used two Raspberry Pi Pico 2W ( one as a debugger and the other one as the central microcontroller ) , which reads analog audio signals from a MAX9814 microphone module connected to one of its ADC pins . The Pico processes the input to calculate sound intensity in decibels (dB). The results are displayed on a 128x64 SSD1306 OLED display connected via the I²C interface (SDA on GP6, SCL on GP7). To visually indicate sound levels, two LEDs are connected—typically a white LED to GPIO16 and a red LED to GPIO17—turning on based on defined dB thresholds. The entire setup is powered through a standard USB connection, supplying 5V to the board and its peripherals.
@@ -82,13 +83,12 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy/blob/main/embassy-rp/README.md) | HAL for Raspberry Pi Pico | Used for ADC reading from microphone |
+| [embassy-rp](https://github.com/embassy-rs/embassy/blob/main/embassy-rp/README.md) | HAL for Raspberry Pi Pico | Used for ADC reading from microphone + UART (menu)|
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async runtime | Runs the main async task loop for sampling |
 | [embassy-time](https://crates.io/crates/embassy-time) | Timing and delays | Delays between ADC readings and UI updates |
 | [libm](https://github.com/rust-lang/libm) | `no_std` math library | Used for `sqrt()` and `log10()` in RMS and dB calculations |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Drawing primitives | Renders text and UI elements to OLED screen |
 | [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging framework | Prints  decibel values for debugging and calibrating |
-
 
 ## Links
 
@@ -96,4 +96,7 @@ The format is
 
 1. [How to convert Adc to Decibel](https://forum.arduino.cc/t/analog-read-value-db/307667/2)
 
+2. [How to use (writing and reading) with UART](https://github.com/embassy-rs/embassy/blob/main/examples/rp/src/bin/uart_buffered_split.rs)
+
+3. [project demo](https://youtu.be/8Vy-gtQRefU?si=WVXzxaOHovg7rfWA)
 ...
