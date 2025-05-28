@@ -26,15 +26,24 @@ an embedded environment project.
 
 ![Diagram](images/Diagram.webp)
 
-<!-- ## Log -->
+## Log
 
 <!-- write your progress here every week -->
 
-<!-- ### Week 5 - 11 May
+### Week 5 - 11 May
+- Environment setup for picotool flashing
+- Implemented USB logging for print messages instead of using a debugger
+- Keypad initialization
+- Keypad polling for input reading
+- Joystick initialization
+- Joystick polling for determining the direction when it's moved
+- Multiplexed Input between the Keypad and the Joystick
 
 ### Week 12 - 18 May
+- Display initialisation
+- Display drawings support using embedded-graphics crate
 
-### Week 19 - 25 May -->
+<!-- ### Week 19 - 25 May -->
 
 ## Hardware
 
@@ -42,9 +51,10 @@ The project uses four main hardware components: a Raspberry Pi Pico 2 as the mic
 a 2.8-inch ST7789 SPI TFT LCD to display the Sudoku grid, a 3x4 matrix keypad for number input,
 and a dual-axis XY joystick for navigating between cells.
 
-<!-- ### Schematics
+### Schematic
 
-Place your KiCAD schematics here. -->
+<!-- Place your KiCAD schematics here. -->
+![Schematic](images/Schematic.svg)
 
 ### Bill of Materials
 
@@ -74,10 +84,12 @@ The format is
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Time handling mechanisms | Measure Game Runtime |
 | [mipidsi](https://github.com/almindor/mipidsi) | Crate for generic display drivers | Display driver for ST7789 |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing primitives to the display |
+| [micromath](https://github.com/tarcieri/micromath) | Embedded-friendly math library | Common arithmetic operations |
 
-<!-- ## Links -->
+## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-<!-- 1. [link](https://example.com)
-2. [link](https://example3.com) -->
+1. [Creating a Raspberry Pi Pico ST7789 based coloured text display](https://www.youtube.com/watch?v=T6y46CEDx2A)
+2. [Pico Sudoku Puzzle Generator](https://forums.raspberrypi.com/viewtopic.php?t=317042)
+3. [Driver for reading from standard 3X4 keypads](https://github.com/JohnSL/keypad2/blob/main/src/lib.rs)
