@@ -143,9 +143,9 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
   * Data reception from MicroSD card to Pico
 
 #### UART pins for GPS:
-- **GP10 (pin 14)**: UART TX function - Data transmission to the GPS module
+- **GP11 (pin 14)**: UART TX function - Data transmission to the GPS module
   * Connects to RX pin of GPS NEO-8M module
-- **GP11 (pin 15)**: UART RX function - Data reception from the GPS module
+- **GP10 (pin 15)**: UART RX function - Data reception from the GPS module
   * Connects to TX pin of GPS NEO-8M module
 
 #### GPIO pins for digital sensors:
@@ -162,9 +162,9 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 ![Schema Electrica](./Schematic.svg) 
 
 ## **Project Photos**
-![Photo 1](./Photo1.svg) 
-![Photo 2](./Photo2.svg) 
-![Photo 3](./Photo3.svg) 
+![Photo 1](./Photo1.webp) 
+![Photo 2](./Photo2.webp) 
+![Photo 3](./Photo3.webp) 
 
 ## **Bill of Materials**
 
