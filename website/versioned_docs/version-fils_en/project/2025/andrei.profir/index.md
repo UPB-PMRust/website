@@ -1,5 +1,5 @@
 # Poker Hand Identifier
-A device that identifies a Poker Hand and computes a score
+A device that identifies a Poker Hand and computes a score (Balatro in real life)
 
 :::info 
 
@@ -10,9 +10,7 @@ A device that identifies a Poker Hand and computes a score
 
 ## Description
 
-!! To add youtube video link later !!
-
-This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a camera will be mounted somehow in a higher position, so it sees a 5-card poker hand, and it uses a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have asmall Blue LED light up above them and a ding sound be made when their rank is added to the score. I also thought of the scenario where 2 or more hands are detected, so for example, a Full House will always contain a Two Pair, so the algorithm will only take into account the highest scoring hand.
+This device uses a camera to look at a Poker Hand and determine what type of hand it is (Flush, Two Pair, etc.). It also computes a score for the user, based on my criteria. How it works is that a phone camera will take a picture of the 5-card poker hand and it will transfer the image to a python script that runs a pattern-matching algorithm to determine the rank and suit of cards, then sends that information to the pico to be computed by the hand detecting logic and for the score to be calculated. Additionally, cards that are considered scoring (so for example, in a Flush, all of them, but in a Pair, only 2 of them) will have asmall Blue LED light up above them and a ding sound be made when their rank is added to the score. I also thought of the scenario where 2 or more hands are detected, so for example, a Full House will always contain a Two Pair, so the algorithm will only take into account the highest scoring hand.
 
 Wi-Fi connection is used to send the data to the pico from a python script that runs the image recognition. I would have loved for the project to be 100% in rust, but I don't think rust can do image recognition and template matching. The python script will be in the classroom github alongside everything rust-related.
 
@@ -27,8 +25,6 @@ The pico is connected to the 5 LEDs and the 2 LCDs (in the picture only 1 LCD is
 ![picture of the circuit](circuitpic.webp)
 this is what it looks like now
 
-![card holder built out of legos](legos.webp)
-Because my family and I are moving, I did some cleaning up and found old legos, which I decided I can repurpose for this project so I don't 3D print. Turns out the setup I build is the perfect size for playing cards so I was very lucky.
 
 ## Log
 
@@ -75,12 +71,11 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico WH] | The microcontroller | [56.23 RON] |
-| [Breadboard + Wires + Power Source kit] | The base of the project | [42.23 RON] |
-| [USB-TTL UART converter] | Needed for sending data | [6.64 RON] |
+| [Breadboard + Wires + Power Source kit] | The base of the project | [20.83 RON] |
 | [2x OLED Displays] | The displays | [41.98 RON] |
 | [5x LEDs + 5x Resistors] | The LEDs | [2.85 RON] |
 | [Piezo Active Buzzer] | Hopefully for a "ding" sound | [4.02 RON] |
-| [Extra stuff like wires, adaptors, buttons] | The extras | [18.71 RON] |
+| [Extra stuff like wires, adaptors, buttons and some smaller breadboards] | The extras | [18.71 RON] |
 
 All products ordered from ArduShop: https://ardushop.ro/ro/
 
@@ -167,4 +162,7 @@ I use an unsafe block because the CHIPS and MULT variables are global and are up
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [The game that the project is based on](https://www.playbalatro.com/)
+2. [Example of wifi use for pico W](https://github.com/embassy-rs/embassy/blob/main/examples/rp/src/bin/wifi_tcp_server.rs#L125)
+3. [Template I used to start](https://github.com/fatfingers23/raspberry-pico-w-embassy-template/tree/main)
+4. [Youtube Link in case something breaks](https://www.youtube.com/shorts/9FIxcekURE0)
 
