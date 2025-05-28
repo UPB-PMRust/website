@@ -32,10 +32,11 @@ Having had all components arrive and soldered the previous week, it was time to 
 Unfortunately, this week hasn't seen as much progress as the previous when it comes to the project itself. I did the move from Gitlab to Github for the documentation, set up my local source code repository and pushed my first code. I had the water pump cables extended with some jumper wires at the lab and insulated them with tape at home. Spent Saturday morning updating the log with everything for the hardware milestone. Sunday I worked on the LCD again and while I did solve one big issue (not finding the correct I2C device address) I still couldn't get it to display anything.
 
 ### Week 19 - 25 May
+This one was a rollercoaster of emotions. Started off on a high - successfully tested the water pump (I was a bit nervous since it used the relay and lengthened wires) and I finally got the LCD to work! Though only for one line at first. Saturday however, disaster struck - my relay was no longer working. And there was a fishy smell coming from my project. I soon realised when I had changed the relay wires to some longer ones a few days ago I had accidentally swapped IN and VCC. The relay still lit up.. so the culprit was my level shifter. My suspicions were confirmed at EG306: it was busted. But with the professor's advice I adapted the project to make do without it. Crisis averted! Got my LCD to display on both lines, too! The issue was not with the library but with the wiring and the way I was powering it. With all hardware challenges overcome, I could (at last) fully dedicate my time to writing the software. Things went pretty smoothly from there!
 
 ## Hardware
 
-The main challenge regarding hardware was having components that operate on 5V, incompatible with the pico's 3.3V output. Additional components had to be acquired to accomodate those.
+The main challenge regarding hardware was having components that operate on 5V, incompatible with the pico's 3.3V output.
 
 **Raspberry Pi Pico W**	- the brains: reads sensor data, controls the relay module (which switches the pump) and updates the LCD;
 
@@ -76,10 +77,13 @@ The main challenge regarding hardware was having components that operate on 5V, 
 
 ![Hardware wide shot](wide.webp)
 ![Breadboard close-up](breadboard.webp)
+![Breadboard close-up new](breadboard2.webp)
+^ *Breadboard wirings post level shifter incident*
 
 ### Schematics
 
 ![KiCAD Schematic](kicad_scheme.svg)
+*(updated schematic)*
 
 ### Bill of Materials
 
@@ -89,12 +93,12 @@ The main challenge regarding hardware was having components that operate on 5V, 
 | [Breadboard power supply](https://www.handsontec.com/dataspecs/mb102-ps.pdf) | The voltage source | [4.69 RON](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) |
 | [Capacitive Soil Moisture Sensor](https://www.datocms-assets.com/28969/1662716326-hw-101-hw-moisture-sensor-v1-0.pdf) | The soil moisture sensor | [4.77 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
 | [LM35D Analog Temperature Sensor (TO-92)](https://www.ti.com/lit/ds/symlink/lm35.pdf) | The temperature sensor | [4.99 RON](https://www.optimusdigital.ro/ro/senzori/1469-senzor-de-temperatura-analogic-lm35d-to-92.html?search_query=0104210000013399&results=1) |
-| Water Pump | The water dispenser | [13.49 RON](https://www.emag.ro/furtun-bipy-ker-apa-8-mm-1-m-vt8/pd/DN5CQCYBM/?utm_source=cns_confirmation&utm_medium=email&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&ref_id=1785626640) |
+| Water Pump | The water dispenser | [13.49 RON](https://www.emag.ro/pompa-centrifugala-submersibila-mini-pentru-fantani-acvarii-80l-h-5v-6w-negru-e420/pd/DMMKP3YBM/?X-Search-Id=6e9e26f9ed9fbf6f9d84&X-Product-Id=154502367&X-Search-Page=1&X-Search-Position=0&X-Section=search&X-MB=0&X-Search-Action=view) |
 | ø 8mm 1m Transparent Tube | Water transportation from the pump to the pot | [2.92 RON](https://www.emag.ro/furtun-bipy-ker-apa-8-mm-1-m-vt8/pd/DN5CQCYBM/?utm_source=cns_confirmation&utm_medium=email&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&ref_id=1785626640) |
 | [1 Channel 5V Relay Module](https://handsontec.com/dataspecs/relay/1Ch-relay.pdf)| Water pump activation | [4.99 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-module-cu-releu/13084-modul-releu-cu-un-canal-comandat-cu-5-v.html) |
 | [1602 Green LCD Display with I2C adapter](https://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) | Display for our parameters | [26.83 RON](https://ardushop.ro/ro/senzori/267-senzor-higrometru-capacitiv-6427854002815.html) |
-| [TXS0108E 8 Bit Bidirectional Logic Level Converter](https://www.ti.com/lit/ds/symlink/txs0108e.pdf) | Voltage converter to use 5V components with the PICO | [6.49 RON](https://www.optimusdigital.ro/ro/interfata-convertoare-de-niveluri/1380-convertor-de-niveluri-logice-bidirecional-pe-8-bii-txs0108e.html?search_query=0104110000012852&results=1) |
 | 3x 6 x 6 x 6 Push Buttons | Interaction with the display | [1.08 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton&results=213) |
+| ~~[TXS0108E 8 Bit Bidirectional Logic Level Converter](https://www.ti.com/lit/ds/symlink/txs0108e.pdf)~~ | Voltage converter to use 5V components with the PICO | [6.49 RON](https://www.optimusdigital.ro/ro/interfata-convertoare-de-niveluri/1380-convertor-de-niveluri-logice-bidirecional-pe-8-bii-txs0108e.html?search_query=0104110000012852&results=1) |
 
 ## Software
 
@@ -104,8 +108,11 @@ The main challenge regarding hardware was having components that operate on 5V, 
 |[gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html)|GPIO manipulation |Used for interacting with GPIO pins |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient logging for embedded systems | Enables detailed logging for system diagnostics and debugging during development |
 |[embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)| Peripheral access library |Used for initializing and interacting with peripherals 
-|[embassy-time](https://embassy.dev/book/dev/time_keeping.html)|Time management library  |Used for time-based operations such as delays |
-| [heapless](https://docs.rs/heapless/0.8.0/heapless/) | Data structure library | Used for String vectors |
+|[embassy-time](https://embassy.dev/book/dev/time_keeping.html)| Time management library |Used for time-based operations such as delays |
+| [port_expander](https://docs.rs/port-expander/latest/port_expander/) | Abstraction for I2C port-expander | Used for I2C LCD Display |
+| [ag-lcd](https://github.com/mjhouse/ag-lcd) | Display Library | Used for I2C LCD Display |
+| [heapless](https://docs.rs/heapless/0.8.0/heapless/) | Data structure library | Used for Strings to display on LCD |
+| [num_traits](https://docs.rs/num-traits/latest/num_traits/) | Numeric traits for generic mathematics | Used for float values |
 
 
 ## Links
