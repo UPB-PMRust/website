@@ -64,11 +64,6 @@ As a fan of old-school strategy games, I’ve always loved the elegance of check
 4. **Update documentation**
 5. **Finished whole project**
 
-### Week 12 - 18 May
-1. **Done making the hardware**
-2. **Add images in documentation**
-3. **Update documentation**
-
 ## Hardware
 
 1. **Raspberry Pi Pico 2W** (x2)  
