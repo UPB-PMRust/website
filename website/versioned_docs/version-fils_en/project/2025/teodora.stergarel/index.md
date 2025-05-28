@@ -2,7 +2,7 @@
 
 :::info 
 
-**Author**: Stergarel Teodora 
+**Author**: Stergarel Teodora \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-teodora-stergarel
 
 :::
