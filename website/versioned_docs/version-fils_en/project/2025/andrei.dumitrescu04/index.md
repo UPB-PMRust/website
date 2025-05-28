@@ -150,3 +150,4 @@ The format is
 3. [DHT22 data sheet and crate usage](https://github.com/rust-dd/embedded-dht-rs)
 4. [Embedded-graphics examples](https://github.com/embedded-graphics/examples)
 5. [Simple rust examples with pico](https://pico.implrust.com/index.html)
+6. [Demo of working project on youtube](https://youtube.com/shorts/2jhZCI8OYJE?si=Fdq_udtOpBgoNPQ3)
