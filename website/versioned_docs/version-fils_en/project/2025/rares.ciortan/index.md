@@ -26,24 +26,33 @@ I wanted to create something more interactive and fun than traditional embedded 
 
 ## Log
 ### Week 5-11 May
-wip
+In this week I mostly made the documentation, containing the description, motivation, architecture showing how it would work more or less, the start of the hardware section, bill of materials, list of software i might use, and some links to websites.
 ### Week 12-18 May
-wip
+This week I finished building the hardware, bought a few more items I needed and updated the documentation with the kicad schematic, a photo of the hardware built and added the hardware i bought to the bill of materials. I tested to see if the displays were connected properly and they were fine.
 ### Week 19-25 May
 wip
 
 ## Hardware
 The hardware consists of a raspberry pi pico 2W microcontroller as the core unit, around 3 displays used for displaying the cards, balance etc. , buttons for checking, folding, betting.
 
+### Schematics
+![Kicad](kicad_project.svg)
+![Hardware1](Poza_Bomba_1.webp)
+![Hardware2](Poza_Bomba_2.webp)
+
 ## Bill of materials
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|
 | [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2W&results=26) | The microcontroller | [40 RON] 
 [Wireless Super Starter Kit with ESP8266 (Programmable with Arduino IDE)](https://www.optimusdigital.ro/ro/kituri-optimus-digital/7356-kit-wireless-super-starter-cu-esp8266.html?search_query=Wireless+Super+Starter+Kit+with+ESP8266+%28Programmable+with+Arduino+IDE%29&results=1) | Kit  | [65 RON] 
-[3X Modul LCD SPI de 1.8"(128x160)](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/1311-modul-lcd-spi-de-18-128x160.html?search_query=lcd&results=217) | LCD Display | [29 RON] 
+[Modul LCD SPI de 1.8"(128x160)](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/1311-modul-lcd-spi-de-18-128x160.html?search_query=lcd&results=217) | LCD Display | [29 RON] 
+[Ecran OLED 0.96" cu interfata IIC/I2C](https://www.bitmi.ro/componente-electronice/ecran-oled-0-96-cu-interfata-iic-i2c-10488.html) | OLED Display | [19 RON]
+[LCD de 1.44'' pentru STC, STM32 și Arduino (5 V)](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/8589-lcd-de-144-pentru-stc-stm32-i-arduino-5-v.html?search_query=LCD+de+1.44%27%27+pentru+STC%2C+STM32+%C8%99i+Arduino+%285+V%29+&results=4) | LCD Display | [35 RON]
 [Breadboard] | Connectivity | in kit 
 [Buttons] X3| Game Inputs | in kit 
 [Jumpers] | Connectivity | in kit
+[Resistors(10K)] | Connectivity | in kit
+[breadboard HQ](https://www.optimusdigital.ro/ro/cautare?controller=search&orderby=position&orderway=desc&search_query=breadboard+400+points&submit_search=) | Connectivity | [5 RON]
 TOTAL: 200 RON
 
 ## Software
