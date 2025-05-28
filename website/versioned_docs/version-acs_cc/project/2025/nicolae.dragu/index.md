@@ -53,6 +53,11 @@ I assembled the components and tested them.
 
 ### Week 19 - 25 May
 
+I finished the project. I ended up using the led to indicate that a fruit had been eaten by the snake, and the buzzer to play the Nokia theme when I'm not in a game, meaning before the game when you wait for input to start the game.
+Here is a video of the final result:
+
+[![Demo](https://youtu.be/3r2ZJlaT-eM?si=ndewh0CsY7dM61zA)](https://youtu.be/3r2ZJlaT-eM?si=ndewh0CsY7dM61zA)
+
 ## Hardware
 
 1. 1x Raspberry Pi Pico 2W: acts as the primary processing unit.
