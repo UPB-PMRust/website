@@ -12,6 +12,8 @@ Smart Cactus Monitoring & Watering System
 
 CactusCare is a smart monitoring and watering system designed specifically for cactus plants. It uses a soil humidity sensor to detect moisture levels and decides when watering is needed. If the soil remains too dry for a set period, a small water pump activates to deliver just enough water, preventing overwatering. A water level sensor checks if the reservoir is empty, and an LCD display notifies the user only when a refill is needed. An RGB LED indicates the soil's wet or dry status. Additionally, the system connects to a remote mobile or web app over Wi-Fi, allowing users to monitor sensor readings and manually control watering from anywhere.
 
+[CactusCare Video](https://youtu.be/teBX2dqSrng)
+
 ## Motivation
 
 CactusCare was designed to make cactus care easier and smarter. It monitors soil moisture and waters the plant only when needed, preventing overwatering or neglect. With a water level sensor and simple LCD alerts, users are notified only when the reservoir is empty. This helps save water, keeps the cactus healthy, and reduces the need for constant attention.
@@ -92,6 +94,8 @@ I managed to get my hand on all of the necessary components that i have to use f
 This week, I successfully connected and integrated all the main components of my project. I wired the LCD display, RGB LED, soil moisture sensor, water level sensor, Raspberry Pi Pico 2W. After assembling the full setup, I tested it with a real plant and used an actual water container for the irrigation system. 
 
 ### Week 19 - 25 May
+
+This week, I managed to finish both hardware and software parts of my project. I connected my pump, relay and level-shifter to my project and also used a battery support for them. Furthermore, I showed my project to my laboratory professor and saw that it worked.
 
 ## Hardware
 
