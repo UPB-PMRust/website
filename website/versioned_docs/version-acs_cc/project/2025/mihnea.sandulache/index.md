@@ -18,13 +18,13 @@ corresponding with the respective colour.
 
 + The system utilizes a sensor to identify colour of the candy.
 
-+ A servomotor then rotates the candy above a pipe.
-
 + The pipe is rotated to a pre-calculated angle, based on the colour of the candy so it drops in a special glass.
+
++ A servomotor then rotates the bottom side of the earrings box and the candy drops into an improvised funnel through the pipe and into the correct glass.
 
 + The LCD screen showcases the colour of the candy.
 
-+ An LED is then turned on based on the colour.
++ LEDs are then turned on based on the colour.
 
 + Both servomotors rotated back to their initial state and another candy is ready to be dropped.
 
@@ -50,7 +50,7 @@ The **colour sensor** identifies the colour of the candy and sends the data to t
 
 The **pipe** is rotated to a pre-calculated angle based on the colour of the candy, ensuring it drops into the correct glass.
 
-The **two cardboard disks** are used to create a makeshift arm, which is rotated by the servomotor. This arm is responsible for holding the candy and dropping it into the correct glass.
+The **earrings box** is used to create a makeshift arm, which is rotated by the servomotor. This arm is responsible for holding the candy and dropping it into the correct glass.
 
 ![diagram](components.webp)
 
@@ -62,11 +62,22 @@ The **two cardboard disks** are used to create a makeshift arm, which is rotated
 
 ### Week 5 - 11 May
 
+I started the project by gathering all the necessary components and setting up the Raspberry Pi Pico 2W. I also began researching the TCS230 colour sensor and how to interface it with the Pico. After that, I began wiring all the components together, testing the connections, then hit a really rough blockage with the LCD display. I was unable to get it to work, so I decided to use a different one, the 1602 LCD with I2C interface. After searching the internet for hours trying to find a crate, I finally found one that worked.
+
+![diagram](Real_wiring.webp)
+
 
 ### Week 12 - 18 May
 
+Began putting all the pieces into place and designed the structure of the funnel and the way the candy will be dropped. The code is almost done, I just need to calibrate the angles of the servomotors and the color sensor to better recognise the colors. I am also attaching a drive link to a [video](https://drive.google.com/file/d/10OZsfYCC7r9oA9sq6YKw8RO7cOUaYR02/view?usp=sharing) of the candy sorter in action which is almost complete software-wise.
+
+![diagram](Real_wiring2.webp)
 
 ### Week 19 - 25 May
+
+Finished the code by calibrating the color sensor. Since the sensor was not accurately detecting the green color, I decided to change it into yellow since I had some extra yellow candies left. I also added some extra messages on the LCD so the user knows when to drop the candy. Here is a [video](https://drive.google.com/file/d/1kdtDkNmV4OftlH76OdGOdWxUx6d_tafh/view?usp=sharing) of the final product in action.
+
+![diagram](Final_project.webp)
  
 
 ## Hardware
@@ -103,7 +114,7 @@ The **two cardboard disks** are used to create a makeshift arm, which is rotated
 
 
 ### Schematics
-![diagram](KiCad.webp)
+![diagram](KiCad.svg)
 
 ### Bill of Materials
 
@@ -121,10 +132,8 @@ The format is
 |--------|--------|-------|
 | [Rapspberry Pi Pico 2W](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf) | The microcontroller | [39,66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=36) |
 | [TCS230](https://www.alldatasheet.com/view.jsp?Searchword=Tcs230%20datasheet&gad_source=1&gbraid=0AAAAADcdDU8NxuHbP0cnjgnaxxW8mVMPq&gclid=Cj0KCQjw2ZfABhDBARIsAHFTxGz_agIuGAL-wwwaZPnvfzuuriu4R4DTv64Wi2Bz9ikCXMJKSeYdvh4aAvbREALw_wcB) | Colour Sensor| [38,99 RON](https://www.optimusdigital.ro/en/optical-sensors/111-tcs230-color-sensor-module.html) |
-| [LCD Display](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf) | LCD Display| [14 RON](https://www.bitmi.ro/electronica/display-lcd1602-hd44780-albastru-iluminat-10486.html) |
+| [1602 LCD with I2C Interface](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf) | LCD Display| [16,34 RON](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?search_query=1602+LCD+with+I2C+Interface+and+Blue+Backlight&results=2) |
 | [Servomotor](https://datasheetspdf.com/datasheet/SG90.html) | Servomotor | [14 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotor&results=119) |
-
-
 
 
 ## Software
@@ -132,12 +141,18 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2350 Peripherals | Used for accessing the peripherals|
-| [esp-idf-servo](https://crates.io/crates/esp-idf-servo) | Servo control | Used for controlling the servomotor|
 | [embedded-hal](https://crates.io/crates/embedded-hal) | Embedded Hardware Abstraction Layer | Used for accessing the hardware|
-| [ag-lcd](https://github.com/mjhouse/ag-lcd) | LCD display | Used for controlling the LCD display|
+| [lcd1602-diver](https://crates.io/crates/lcd1602-diver) | LCD display | Used for controlling the LCD display|
 | [cortex-m](https://github.com/rust-embedded/cortex-m) | Provides low-level APIs for ARM Cortex-M processors | Interrupt handling and system control|
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Asynchronous executor for embedded systems | Used for managing tasks and scheduling|
+
+The general flow of the programme is the following: drop the candy under the TCS230 color sensor, wait for the candy to set still. The sensor reads the frequency of each color component (red, green, blue) and uses these values to do an euclidean distance between the current reading and 3 reference readings, which have been previously calculated averaging 5 readings for each candy color.
+
+The color with the smallest distance is the one considered the candy to be. A message is printed on the LCD screen and an LED is turned on to indicate the color of the candy. Meanwhile, the two servomotors rotate accordingly and let the candy drop. After 2 seconds, the servos return to their initial position, the screen is cleared and the LEDs are turned off and the process can be repeated.
+
+![diagram](Software_diagram.webp)
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
+- [TCS230 Article](https://randomnerdtutorials.com/arduino-color-sensor-tcs230-tcs3200/)
