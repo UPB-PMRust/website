@@ -48,33 +48,46 @@ I've always been passionate about cars, and I wanted to dive deeper into how som
 
 ## Log
 
+### Week 28 - 4 May
+Gathered all my parts for the car.
 ### Week 5 - 11 May
-
+Started working on the code for the car. Connected it to the laptop over internet and worked a little bit on the motor setup.
 ### Week 12 - 18 May
+I implemented the sensor in the code. Connected everything. Now i only need the chassis for the car .
+
+![1](./1r.webp)
+![2](./2r.webp)
 
 ### Week 19 - 25 May
-
+Finnished motor logic, now when the car gets close to an obstacle it will stop and emit sound.
 ## Hardware
 
 2x Raspberry Pi Pico 2W: acts as the primary processing unit, equipped with Wi-Fi capabilities.
 
-1x HC-SR04 Ultrasonic Sensor: utilized for measuring distances to detect nearby objects.
+2x HC-SR04 Ultrasonic Sensor: utilized for measuring distances to detect nearby objects.
 
 1x L298N Motor Driver Module: Provides the ability to control the two wheels.
 
-2x U Shape Photoelectric Sensor
+2x U Shape Photoelectric Sensor: Provides measurments for controlling the currents going into the motors.
 
 2x Wheels with motors
 
 1x Buzzer
 
-1x Battery Support
+1x Battery Support (4 x 1.5v)
+
+1x Baterry 9v
+
+![1s](./1s.webp)
+![2s](./2s.webp)
+
+**NOTE**: Not final - will be updated.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Kicad](./intelicar.svg)
 
-**Note**: The schematics are not yet available, but they will be created using KiCAD
+**NOTE**: Not final - will be updated.
 
 ### Bill of Materials
 
@@ -114,7 +127,7 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [Raspberry Pi Pico RC Vehicle](https://www.instructables.com/Raspberry-Pi-Pico-RC-Vehicle/)
+2. [Chassis](https://www.printables.com/model/836711-arduino-line-follower-robot-chassis/files)
 
 
