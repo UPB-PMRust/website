@@ -53,10 +53,13 @@ I purchased a new Raspberry Pi Pico to facilitate hardware debugging and acceler
 ![](IMG.webp)
 
 ### Week 19 - 25 May
-I recently purchased a new temperature sensor—the BMP280, commonly used in laboratories—and attempted to use it with a 16x2 LCD display. Unfortunately, there was no existing crate available, but the professor kindly assisted me in creating a custom library for it.
+I recently bought a new temperature sensor, the BMP280—the same model we use in the lab. I tried to use it with a 16x2 LCD display, but unfortunately, there wasn’t an existing crate for the display since it’s a clone of an Adafruit model designed for the full-sized Raspberry Pi. Thankfully, during one of the project help sessions, the professor assisted me by creating a custom library for it. The final issue has now come up: it seems that my current circuit configuration doesn’t provide enough power for both the DC motor driver and the display. Hopefully, I’ll be able to resolve it soon.
 ## Hardware
 
-Detail in a few words the hardware used.
+DC Motor: Powered through a motor driver and controlled using PWM signals.
+BMP280 Temperature Sensor: Communicates via the I2C protocol.
+MCP23017-Based LCD Display (Clone): Also operates over I2C.
+Raspberry Pi Pico Marble: Used as a debugging tool.
 
 ### Schematics
 
@@ -87,8 +90,10 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [BMP280](https://github.com/pietgeursen/bmp280-rs) | BMP280 crate | Used to transform raw data to temperature |
+| [Ryu](https://github.com/dtolnay/ryu) | RYU | Used to convert floats to strings |
+| [Embassy-rs](https://github.com/embassy-rs/embassy) | Embassy-rs | The framework for embedded application |
+
 
 ## Links
 
