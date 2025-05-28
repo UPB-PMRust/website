@@ -125,7 +125,7 @@ The format is
 
 ## Software 
 
-![Functional Diagram](Functional-Diagram.webp)
+![Functional Diagram](Functional-Diagram.svg)
 
 | Library | Description | Usage |
 |---------|-------------|-------|
