@@ -3,7 +3,7 @@
 :::info 
 
 **Author**: Stergarel Teodora 
-**GitHub Project Link**: https://github.com/teodora-stergarel/website
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-teodora-stergarel
 
 :::
 
@@ -33,7 +33,8 @@ In the first week, I focused on thoroughly researching the project idea. I explo
 ### Week 12 - 18 May
 This week, the hardware components arrived, and I got the headers to the two Raspberry Pi Pico 2W boards soldered - one designated as the main board and the other as a debugger. I encountered challenges in setting up the debug probe correctly but resolved them by following the probe-rs documentation and ensuring the correct GND/VCC wiring between boards. I proceeded to wire all the components onto the breadboard, carefully verifying connections for the microphone, button, display, and logic level shifter. I also designed and completed a detailed schematic in KiCad, which reflects the real wiring. Finally, I tested each component individually - confirming that the button and OLED display functioned - and determined that the OLED required a level shifter for stable operation.
 ### Week 19 - 25 May
-
+This week, I wrote the embedded Rust logic to read analog values from the DUFAFF microphone using the embassy_rp::adc driver on the main Pico board. I implemented a polling loop that samples the ADC and maps the amplitude to LED color states (green/yellow/red) based on tunable thresholds. For sudden peaks, I trigger an OLED message using the ssd1306 crate over I2C, displaying "loud noise detected". The logic is gated by a push button using an async task with embassy_time::Timer and embassy_sync::signal::Signal for coordination.
+I am currently working on the implementation of keyword detection ("hello", "attention", "sorry").
 ## Hardware
 
 ![1:](/1.webp)
