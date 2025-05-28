@@ -59,15 +59,16 @@ I started working on the web interface, which will display the data and chose Py
 ### Week 26 - 30 May
 I finished the Python script, which handles fetching the data from the device over TCP, and I worked on the visual appearance of the website.
 I tested to see if the web interface works while wearing the device (and it does).
+Additionally, [I recorded myself testing the device](https://www.youtube.com/shorts/hYQXQnslOnA).
 
 ![web-interface](assets/week14_update.webp)
 
 ## Hardware
 
-My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real-time the health metrics of the user. 
-This is how the hardware looks like. I 3D printed a finger case for the pulse oximeter, and I used double-sided adhesive tape to stick the accelerometer to the case.
+My project is built around the Raspberry Pi Pico 2W microcontroller, which collects and processes data from two sensors. An ADXL345 accelerometer is used to detect motion and count steps by measuring the changes in acceleration, while the MAX30102 pulse oximeter sensor measures heart rate and blood oxygen levels by detecting changes in light absorption due to blood flow. The SSD1306 OLED display shows in real time the health metrics of the user. 
+This is what the hardware looks like. I 3D printed a finger case for the pulse oximeter, and I used double-sided adhesive tape to stick the accelerometer to the case. I put the breadboard in a box, leaving only the screen on the side of it, and I made a hole for the sensor wires.
 
-![hardware](assets/hardware2.webp)
+![hardware](assets/hardware_final.webp)
 
 ### Schematics
 
@@ -110,3 +111,4 @@ This is how the hardware looks like. I 3D printed a finger case for the pulse ox
 
 1. [Measure Heart Rate and SpO2 with MAX30102](https://projecthub.arduino.cc/SurtrTech/measure-heart-rate-and-spo2-with-max30102-eb4f74)
 2. [MAX30102 Finger Clip 3D Model](https://www.thingiverse.com/thing:4395147)
+3. [Testing the device](https://www.youtube.com/shorts/hYQXQnslOnA)
