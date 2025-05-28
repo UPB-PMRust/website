@@ -30,9 +30,15 @@ It was a favorite game I used to play as a kid when the internet was down. I wan
 
 ### Week 5 – 11 May
 
+I have made the first steps in the project by choosing the hardware components and the software libraries that I will use. The ILI9341 LCD will be used to display the game grid and messages. I have also chosen to use a vibration motor for haptic feedback and a buzzer for audio feedback.
+
 ### Week 12 – 18 May
 
+I have soldered both Raspberry Pi Pico 2 W, the main controller, and the Raspberry Pi Pico 1 W used as the debugger. I connected the all the buttons, the lcd, the buzzer and the vibration motor to the microcontroller. I build the schematic of the project in kiCad. 
+
 ### Week 19 – 25 May
+
+I have implemented the game logic in Rust, including the difficulty selection menu, grid generation, tile revealing, and win/loss conditions. I also added the buzzer and vibration motor functionality for feedback on game events. The LCD displays the game grid and messages.
 
 ## Hardware
 
@@ -64,9 +70,17 @@ It was a favorite game I used to play as a kid when the internet was down. I wan
 - The **Buzzer** provides immediate audio cues for safe tile reveals, mine hits, and victories.  
 - The **Vibration Motor** delivers a tactile buzz when a mine is uncovered, reinforcing the loss event.
 
+Hardware video that showes that everything connected workes as expected: https://imgur.com/WwEwjHi .
+
+![Hardware Picture1](hard1.webp)
+
+![Hardware Picture2](hard2.webp)
+
+![Hardware Picture3](hard3.webp)
+
 ## Schematics
 
-![Minesweeper KiCad schematic](kiCad.webp)
+![Minesweeper KiCad schematic](kicad_project.svg)
 
 ## Bill of Materials
 
@@ -96,3 +110,47 @@ It was a favorite game I used to play as a kid when the internet was down. I wan
 | [ili9341](https://github.com/almindor/ili9341)      | ILI9341 TFT display driver                     | SPI communication with the LCD             |
 | [panic-halt](https://crates.io/crates/panic-halt)   | Minimal panic handler                          | Halts MCU on unrecoverable errors          |
 | [nb](https://crates.io/crates/nb)                   | Non-blocking I/O traits                        | Debouncing buttons, reading battery level  |
+
+#### Software Diagram
+
+![Software Diagram](software_diagram.svg)
+
+### SoftWare Design
+The software is structured around the main game loop, which handles input, updates the game state, and renders the display. Key components include:
+- **Game State Management**: Tracks the current difficulty, grid state, cursor position, and game status (ongoing, won, lost).
+- **Input Handling**: Reads button presses to move the cursor, select tiles, and navigate menus.
+- **Display Rendering**: Uses the `embedded-graphics` library to draw the game grid, menu options, and status messages on the ILI9341 LCD.
+
+### Software Functions
+The software is organized into several key functions and modules, each responsible for a specific aspect of the game:
+
+#### Display Functions
+
+`draw_title`   Renders the "Minesweeper" banner at the top of the screen.  
+`draw_menu` / `draw_menu_option`   Animated difficulty selection UI.  
+`draw_grid`   Draws the minefield, cursor, numbers, and covered tiles.  
+`draw_mine_icon`, `draw_flag_icon`   Vector graphics used for mines, flags, and menu art.  
+`highlight_cell`, `redraw_cell`, `reveal_cell`   Fine‑grained cell updates to keep frame‑rate high on the RP2040.
+
+#### Game Logic Functions
+
+`has_mine`   Returns true if the current cell contains a mine for the active difficulty.  
+`count_adjacent_mines`   Counts the eight neighbouring cells to compute the number overlay.  
+`flood_fill_reveal`   Recursive flood‑fill algorithm that reveals connected empty cells.  
+`check_win_condition`   Checks whether every safe cell is revealed (player victory).  
+`reveal_all_mines`   Exposes mines (or flags) when the game ends.  
+`play_victory_melody`   Plays an 8‑bit style jingle via PWM.
+
+#### Feedback & Sound Functions
+
+`play_victory_melody`   Plays a rising major arpeggio and sustained high C when the player wins.  
+
+Inline PWM bursts give crisp "clicks" on menu selections and tile reveals.
+
+### Photos and Videos
+
+![Final_project1](final_project1.webp)
+![Final_project2](final_project2.webp)
+![Final_project3](final_project3.webp)
+![Final_project4](final_project4.webp)
+![Final_project5](final_project5.webp)

@@ -3,8 +3,7 @@ A simple autonomous parking prototype using Raspberry Pi Pico 2W, Rust and Embas
 
 :::info 
 
-**Author**: Ghita Alexandru-Catalin
-
+**Author**: Ghita Alexandru-Catalin \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-GhitaAlexandruCatalin
 
 :::
@@ -38,18 +37,21 @@ When a space is detected, the car either starts parking automatically or waits f
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-
+Built the car and developed stable automatic parking algorithm with PWM motor control and sensor-based logic.
 ### Week 12 - 18 May
-
+Calibrated the parking stages duration (to make sure the car parks as good as possible), integrated Wi-Fi support and added web interface plan with special parking maneuver detection.
 ### Week 19 - 25 May
+Created the web page and the server on the Pico to control the maneuvres of the car (Start searching, Start parking, Auto parking)
 
 ## Hardware
 
 The car is built on a 2-wheel drive chassis from a robot kit. It uses two DC motors controlled by a TB6612FNG motor driver. Three ultrasonic sensors (2x HC-SR04 and 1x HC-SR04+) are used to detect obstacles and parking space. A Raspberry Pi Pico 2W runs the control program. Power is provided by 4x AA batteries in a holder with a switch.
+![HardwareLeft](./assets/hardware1.webp)
+![HardwareRight](./assets/hardware2.webp)
 
 ### Schematics
 
-![Schematic](./assets/KicadSchemev2.webp)
+![Schematic](./assets/kicadscheme.svg)
 
 This is the kicad schematic.
 
@@ -80,14 +82,27 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-|  |
-|  |
+| [`embassy`](https://crates.io/crates/embassy) | Asynchronous embedded framework | Base for writing async embedded code |
+| [`embassy-executor`](https://crates.io/crates/embassy-executor) | Async task executor | Runs async tasks like motor control and sensor reading |
+| [`embassy-rp`](https://crates.io/crates/embassy-rp) | Embassy HAL for RP2040 | Access to GPIO, PWM, timers and peripherals on Pico 2W |
+| [`embassy-time`](https://crates.io/crates/embassy-time) | Asynchronous time management | Provides delays and timers for task synchronization |
+| [`embassy-net`](https://crates.io/crates/embassy-net) | Embedded networking stack | Enables Wi-Fi and TCP/Web server on the Pico W |
+| [`smoltcp`](https://crates.io/crates/smoltcp) | Lightweight TCP/IP stack | Manages TCP connections for the web server |
+| [`static_cell`](https://crates.io/crates/static_cell) | Static memory allocator | Safe global resource allocation (e.g., networking stack) |
+| [`embedded-hal`](https://crates.io/crates/embedded-hal) | Hardware Abstraction Layer | Abstract interface for motors, sensors and peripherals |
+| [`embedded_io_async`](https://crates.io/crates/embedded-io-async) | Async traits for I/O operations | Used for async socket read/write operations |
+| [`core::sync::atomic`](https://doc.rust-lang.org/core/sync/atomic/index.html) | Atomic types for concurrency | Safe flag sharing between web server and parking logic |
+| [`defmt`](https://crates.io/crates/defmt), [`defmt-rtt`](https://crates.io/crates/defmt-rtt) | Efficient embedded logging | Low-overhead logging for debugging |
+| [`panic-probe`](https://crates.io/crates/panic-probe) | Panic handler for no_std | Lightweight handler for crash diagnostics |
+| [`heapless`](https://crates.io/crates/heapless) | Heap-free data structures | Useful for HTTP response buffers and internal strings |
+| [`embassy_lab_utils`](https://github.com/UPB-PMRust/embassy-lab-utils) | Wi-Fi and network stack initialization helpers | Provides `init_wifi!()` and `init_network_stack()` macros |
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [YouTube link with the working project](https://www.youtube.com/watch?v=kilFwHMVLwo)
+2. [Real life inspiration](https://newatlas.com/how-self-parking-works/46684/)
+3. [Arduino model](https://youtu.be/IpaVJD0ne1I?si=TsgtYaTl4377ByxE)
 
