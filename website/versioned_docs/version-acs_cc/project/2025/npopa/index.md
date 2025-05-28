@@ -24,7 +24,7 @@ This project is not only a technical challenge but also a personal mission to cr
 **Role:** Central microcontroller, manages audio processing, input/output control, and overall device logic.
 
 **Connections:**  
-Display, Micro SD Card Module, DAC, Buttons, and Output components.
+Display, DAC, Buttons, and Output components.
 
 ---
 
@@ -51,20 +51,6 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 
 ---
 
-### Micro SD Card Module
-
-**Interface:** SPI  
-
-**Connections:**  
-- SCK (Serial Clock) connected to Pico SPI pin  
-- MOSI (Master Out Slave In) connected to Pico SPI pin  
-- MISO (Master In Slave Out) connected to Pico SPI pin  
-- CS (Chip Select) connected to Pico GPIO pin
-
-**Role:** Stores audio samples, sequences, presets, and configuration data.
-
----
-
 ### DAC (MAX98357A)
 
 **Interface:** I2S  
@@ -76,7 +62,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 
 ---
 
-### Output (Speaker)
+### Output (3.5mm)
 
 **Role:** Outputs audio signal from the DAC to provide sound playback.
 
@@ -91,7 +77,8 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
   Finished setting up the hardware parts on a breadboard, as well as tampering with the screen.
   Made adjustments to the KiCad schematic in order to illustrate the complete hardware. 
 - **Week 19 - 25 May**:  
-  WIP...
+  Implemented WAV file support for samples, as well as the whole graphical interface. Made
+  some minor adjustments to the schematic + bug fixes.
 
 ## Hardware
 - Raspberry Pi Pico 2 (RP2350): Main microcontroller handling audio processing and system logic.
@@ -102,7 +89,7 @@ Display, Micro SD Card Module, DAC, Buttons, and Output components.
 
 Below I have provided an overview of the project on a breadboard:
 
-![Overview](overview.webp)
+![Overview](project_overview.webp)
 
 User input close-up:
 
@@ -133,15 +120,19 @@ adding samples. The display is placed on the right, along with play/write button
 
 | Library | Description | Usage |
 |:-------:|:-----------:|:-----:|
-| [embassy](https://embassy.dev/) | Asynchronous embedded framework for Rust | Core framework for running async tasks on the Raspberry Pi Pico 2 |
-| [embassy-rp](https://embassy.dev/) | Embassy HAL for RP2040 | Hardware abstraction layer for the Raspberry Pi Pico 2 |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer (HAL) traits | Provides unified interfaces for hardware drivers |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the ST7735R display |
-| [st7735-lcd](https://github.com/almindor/st7735-lcd) | Rust driver for ST7735 display | Controls the ST7735R display |
-| [embassy_rp::pio_programs::i2s] | PIO-backed I²S output driver | Enables I²S audio output using the Programmable I/O system |
+| [embassy](https://embassy.dev/) | Asynchronous embedded framework for Rust | Async executor and core runtime |
+| [embassy-rp](https://embassy.dev/) | Embassy HAL for RP2040 | Access to GPIO, SPI, PIO, DMA, etc. |
+| [embassy-time](https://embassy.dev/) | Timing primitives | `Delay`, `Timer`, `Duration` for delays and scheduling |
+| [embassy-sync](https://embassy.dev/) | Concurrency primitives | `Mutex` protecting the shared SPI bus |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Adapters between Embassy and *embedded-hal* | `SpiDevice` wrapper for display SPI sharing |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware-abstraction traits | Unified traits implemented by Embassy drivers |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2-D graphics library | Draws grid, numbers, and pad highlighting |
+| [mipidsi](https://github.com/almindor/mipidsi) | SPI display driver (ST7735 etc.) | Initialises and drives the ST7735S TFT |
+| [display-interface-spi](https://github.com/almindor/display-interface) | SPI transport for displays | `SPIInterface` bridging Embassy SPI to the display driver |
+| [defmt](https://github.com/knurling-rs/defmt) | Structured logging for embedded | `info!` logging throughout the program |
+| [`embassy_rp::pio_programs::i2s`](https://embassy.dev/) | PIO-backed I²S driver | Outputs 16-bit stereo audio via RP2040 PIO |
 
 ## Links
 - [Making some noise with Raspberry Pi Pico](https://community.element14.com/challenges-projects/design-challenges/pi-fest/b/blog/posts/pi-fest---making-some-noise-with-raspberry-pi-pico-blog1)
 - [Pico Sequencer](https://www.hackster.io/Arnov_Sharma_makes/pico-sequencer-173a5f)
 - [RP2040 Drum Machine](https://hackaday.io/project/171112-twrtdm) 
-
