@@ -47,10 +47,11 @@ The diagram above shows the overall system architecture of the guitar tuner.
 ### Push Buttons (x2)
 
 **Interface**: GPIO  
-**Role**: Used to scroll left/right through available tuning notes (E, A, D, G, B, e).  
+**Role**: Used to scroll left/right through available tuning notes (E, A, D, G, B, e), Mode selection.  
 **Connections**:
 - Each button connected to a GPIO pin
-- Configured with pull-up/pull-down resistors and interrupts
+- Configured with pull-up resistors and checked continuously in the main loop.
+
 
 ### LEDs (x6)
 
@@ -86,6 +87,9 @@ This week I finalized the basic design for the project and gathered all the nece
 I focused on testing the microphone input and checking if I could get stable frequency detection and feedback on the LCD. I also began setting up the logic for note selection using two buttons and confirmed that the correct LED lights up based on the selected note. As well finished the hardware setup.
 
 ### Week 19 - 25 May
+During the last week, A significant part of the time was spent debugging issues related to harmonic and string misclassification, and improving the logic for frequency analysis, matching, and stability. Eventually, I finalized the software side of the project. 
+When I began getting quite satisfying results, I started polishing and verifying the manual string detection mode, testing it for accuracy by comparing the output against the GuitarTuna mobile app. After confirming reliable results across all strings, I proceeded to implement Auto Mode, which automatically detects the closest played note without user input.  In addition, I developed a startup selection menu that allows the user to choose between Manual and Auto Mode and added runtime mode switching — holding both buttons for 2 seconds returns the tuner to the mode selection screen, without restarting the device.
+Alongside software, I also began working on the physical enclosure for the project — a box to house all the hardware components and make the system look more like a finished product.
 
 ## Hardware
 
