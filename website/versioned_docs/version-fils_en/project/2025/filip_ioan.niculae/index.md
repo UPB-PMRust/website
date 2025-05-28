@@ -231,5 +231,6 @@ The Smart Irrigation System is built around several key hardware components, eac
 2. [UART Communication with STM32](https://blog.theembeddedrustacean.com/stm32f4-embedded-rust-at-the-hal-uart-serial-communication)
 3. [Automatic Plant Watering](https://www.youtube.com/watch?v=ojhrVsBs0nM)
 4. [Nerdcave](https://nerdcave.xyz/)
-
+4. [Hardware Video](https://youtube.com/shorts/sSeyEuOE7hc)
+4. [Software Video](https://youtu.be/UaqmrkFk1Tg)
 
