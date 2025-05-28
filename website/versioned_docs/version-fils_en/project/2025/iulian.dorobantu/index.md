@@ -76,6 +76,7 @@ The project has been completed succesfully and is ready for the PMFair, for the 
 - **SPI LCD Display**: Acts as a digital dashboard for real-time data visualization.
 - **Breadboard & Jumper Wires**: For prototyping and interconnecting components.
 
+
 ### Project Photo, Week 12 - 18 May
 
 ![Project photo](project_photo.webp)
