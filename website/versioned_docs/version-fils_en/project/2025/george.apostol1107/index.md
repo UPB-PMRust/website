@@ -62,6 +62,13 @@ Additionally, I finalized the KiCad schematic for the entire circuit, which accu
 With the hardware mostly complete, I am ready to focus more on software integration and game logic development in the coming weeks.
 
 ### Week 19 - 25 May
+This week, I finalized the code implementation for the core game logic, ensuring that all interactions between the input devices, LED sequences, and the LCD display were functioning smoothly. After completing the main coding phase, I performed several small refinements to improve responsiveness and fix minor issues that appeared during testing.
+
+In addition to the software progress, I enhanced the game’s visual feedback by adding two status LEDs: a green LED that lights up when the player advances to the next round, and a red LED that turns on when the player loses. These provide immediate and intuitive feedback for the game’s progression.
+
+I also focused on completing the physical design of the project. I enclosed the wiring and hardware components neatly inside a protective case to enhance both aesthetics and durability. I added a few visual touches—such as coloring and organizing the layout—to give the project a cleaner, more polished look. With both the technical and design aspects now complete, the game is fully functional and ready for presentation or further testing.
+
+
 
 ## Hardware
 
@@ -96,12 +103,19 @@ All connections are made using jumper wires, and resistors are used where necess
 
 ## Software
 
-| Library                                                          | Description            | Usage                              |
-| ---------------------------------------------------------------- | ---------------------- | ---------------------------------- |
-| [rp2040-hal](https://github.com/rp-rs/rp2040-hal)                | HAL for RP2040         | Controls GPIO, timers, etc         |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal)    | Hardware abstraction   | Common interface to GPIO, I2C, etc |
-| [heapless](https://github.com/japaric/heapless)                  | No-std data structures | Used for storing sequences         |
-| [panic-halt](https://github.com/rust-embedded/panic-halt)        | Panic behavior         | Required in embedded context       |
-| [tiny-httpd or smol](https://github.com/smol-rs/smol) (optional) | Lightweight web server | Serve the score page over WiFi     |
+| Library                                                             | Description                | Usage                                         |
+| ------------------------------------------------------------------ | -------------------------- | --------------------------------------------- |
+| [embassy-rp](https://github.com/embassy-rs/embassy)                | HAL for RP2040             | GPIO, I2C, delays, keypad, LEDs, buzzer       |
+| [embassy-executor](https://github.com/embassy-rs/embassy)          | Async executor             | Runs the main asynchronous task               |
+| [embassy-time](https://github.com/embassy-rs/embassy)              | Time and delays            | Non-blocking delays and timers                |
+| [hd44780-driver](https://github.com/rahix/hd44780-driver)          | LCD 16x2 driver            | Displays messages and score via I2C LCD       |
+| [heapless](https://github.com/japaric/heapless)                    | No-std data structures     | Fixed-size vector for storing LED sequences   |
+| [defmt](https://github.com/knurling-rs/defmt)                      | Lightweight logging        | For debug output via RTT                      |
+| [panic-probe](https://github.com/knurling-rs/panic-probe)          | Panic handler              | Reports panics via probe-run                  |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal)      | Hardware abstraction layer | Common interface for GPIO, I2C, etc.          |
+| [static_cell](https://github.com/embassy-rs/embassy)               | Safe static allocation     | Required for long-lived peripheral objects    |
+| [rand](https://github.com/rust-random/rand)                        | Random number generator    | Generates LED sequences using simple RNG      |
 
-## Links
+## Links 
+examples: https://www.youtube.com/watch?v=QfDFu5Kz6N4 
+my inspiration: https://www.youtube.com/watch?v=lzvy8HanLNE
