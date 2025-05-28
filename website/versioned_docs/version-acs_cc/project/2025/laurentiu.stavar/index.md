@@ -59,7 +59,7 @@ Implemented all the game logic(cards, deck, hands, state, etc). Started working 
 
 ### Week 19 – 25 May
 
-TO DO
+Added 2D cards images display functionality. Finished the README. Updated the list of libraries that I used(I deleted some of them that I ended up not using). Also updated Cargo.toml file. Refactored the code. Deleted dead code and fixed some warnings.
 
 ## Hardware
 
@@ -110,12 +110,18 @@ TOTAL: ~300 RON
 
 | Library | Description | Usage |
 |--------|-------------|--------|
-| [embassy-rp](https://github.com/embassy-rs/embassy) | RP2040 HAL | Async device and timer management |
-| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | HAL Traits | I2C abstraction |
-| [ssd1306](https://docs.rs/ssd1306/latest/ssd1306/) | OLED Driver | Display game cards/state |
-| [heapless](https://github.com/rust-embedded/heapless) | Fixed capacity collections | Buffer text messages for OLEDs |
-| [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging Framework | Used for real-time debug output over RTT, ideal for embedded logging |
-| [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic Handler | Provides panic messages compatible with defmt |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | RP2350 HAL for Raspberry Pi Pico 2 | GPIO control, I2C communication, async device management |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async/await executor for embedded systems | Task scheduling and async runtime |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time management for Embassy | Delays, timers, and timeout handling |
+| [embassy-futures](https://github.com/embassy-rs/embassy) | Future utilities for embedded systems | Select operations for button handling |
+| [ssd1306](https://docs.rs/ssd1306/latest/ssd1306/) | SSD1306 OLED Display Driver | Control 9 OLED displays for cards and game state |
+| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | 2D Graphics Library | Text rendering and display formatting |
+| [heapless](https://github.com/rust-embedded/heapless) | Collections without allocation | Fixed-capacity vectors and strings for no_std |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer | Standard traits for I2C and GPIO operations |
+| [rand](https://docs.rs/rand/latest/rand/) | Random number generation | Card deck shuffling with small_rng feature |
+| [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Efficient logging framework | Real-time debug output over RTT |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler for embedded | Debug-friendly panic messages with defmt |
+| [cortex-m-rt](https://docs.rs/cortex-m-rt/latest/cortex_m_rt/) | Cortex-M runtime | Boot sequence and interrupt vector setup |
 
 ## Links
 1. [BlackJack rules](https://bicyclecards.com/how-to-play/blackjack/)
