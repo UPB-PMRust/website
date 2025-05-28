@@ -40,11 +40,11 @@ The Passive Infrared (PIR) motion sensor continously monitors the area near the 
 
 When motion is detected, it sends a digital signal to the Raspberry Pi Pico W, prompting it to initiate facial recogntion via the ESP32-CAM. This mechanism ensures that the camera is only activated when necessary, conserving power and computational resources while increasing system efficiency.
 
-### 4. ESP32-CAM
+### 4. SEN0359 Fingerprint Sensor
 
-The ESP32-CAM is a compact camera module with onboard image processing capabilities. Upon receiving a trigger signal from the Raspberry Pi Pico W, it captures an image of the individual near the enterance. 
+The SEN0359 fingerprint sensor is a compact biometric module designed for precise fingerprint capture and recognition. When triggered by the Raspberry Pi Pico W, it scans the fingerprint of the user attempting access.
 
-Facial recognition is performed locally on the device, comparing the captured face against stored profiles. If a match is found, a success response is sent back to the Pico W via UART. The ESP32-CAM plays a key role in enabling biometric access control, forming the core of the system's intelligent decision-making.
+Fingerprint matching is processed directly on the sensor module, comparing the scanned print against stored fingerprint templates. If a match is detected, the sensor sends a success signal back to the Pico W via UART. The SEN0359 serves as a crucial component in the biometric access system, providing reliable and secure user authentication.
 
 ### 5. SG90 Servo Motor
 
@@ -76,6 +76,8 @@ This week focused entirely creating a strong basis for the project, by ensuring 
 
 ### Week 19 - 25 May
 
+This week was dedicated to writing up and finishing the code necessary for this project. In addition, I have submitted the software milestone, as well as the entirety of my code. This week, I have also focused on making the project more appealing to the eye, by diy-ing a box in the shape of a door lock, in oreder to reinforce the purpose of my project and hide all the hardware.
+
 ## Hardware
 
 The purpose of the hardware milestone is to assemble and validate all essential electronic components required for the smart door lock system. This ensures that each hardware component is properly connected, tested for functionality, and integrated with the Raspberry Pi Pico before advancing to software integration and logic development.
@@ -83,8 +85,8 @@ The purpose of the hardware milestone is to assemble and validate all essential 
 ### Raspberry Pi Pico
 The Raspberry Pi Pico is a compact and cost-effective microcontroller board powered by the RP2040 chip. It features a dual-core ARM Cortex-M0+ processor running at up to 133 MHz, 264 KB of SRAM, and 2 MB of onboard Flash memory. It supports multiple I/O protocols including GPIO, SPI, I2C, UART, PWM, and ADC, making it versatile for embedded applications. In this project, the Pico acts as the central controller, coordinating input from sensors and controlling outputs like the servo motor.
 
-### ESP32-CAM
-The ESP32-CAM is a compact module that combines the powerful ESP32 microcontroller with a camera interface, onboard Wi-Fi, and an SD card slot. It's especially useful for adding facial recognition or motion-triggered image capture capabilities to your system, acting as an intelligent visual sensor for additional security or logging.
+### SEN0359
+The SEN0359 is a compact biometric sensor module that integrates a fingerprint scanner with onboard processing capabilities. It’s ideal for adding fingerprint recognition and secure user authentication to your system, functioning as an intelligent biometric sensor for enhanced security and access control.
 
 ### HC-SR505 PIR Motion Sensor
 The HC-SR505 is a mini passive infrared (PIR) motion sensor designated for small-scale embedded systems. It detects infrared radiation emitted by moving objects like humans and triggers a digital high signal when motion is detected. In this project, it is used to sense when someone approaches the door, triggering the rest of the system to evaluate further input from other sensors components.
@@ -110,7 +112,7 @@ The buzzer is a simple audio output device that emits a sound when powered. It c
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller that acts central controller for the smart lock system. It receives input from sensors (motion, vibration), processes logic, and controls actuators like the servo and buzzer. | [47 RON](https://ardushop.ro/ro/raspberry-pi/2453-raspberry-pi-pico-2-5056561803951.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMIzOvO_M2qjQMVWgcGAB17YBkyEAQYASABEgKKw_D_BwE) |
-| [ESP32-CAM](https://ardushop.ro/ro/comunicatie/1374-modul-esp32-cu-camera-6427854020031.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMI94yh0c6qjQMV2WVBAh1GTTwuEAQYASABEgIOA_D_BwE) | Planned for future enhancement to provide visual verification at the door | [65 RON](https://ardushop.ro/ro/comunicatie/1374-modul-esp32-cu-camera-6427854020031.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMI94yh0c6qjQMV2WVBAh1GTTwuEAQYASABEgIOA_D_BwE) |
+| [SEN0359](https://wiki.dfrobot.com/Gravity_Capacitive_Fingerprint_Sensor_SKU_SEN0359) | Planned for future enhancement to provide fingerprint verification at the door | [180 RON](https://www.tme.eu/ro/details/df-sen0359/alti-senzori/dfrobot/sen0359/?brutto=1&currency=RON&utm_source=google&utm_medium=cpc&utm_campaign=RUMUNIA%20%5BPLA%5D%20CSS&gad_source=1&gad_campaignid=10591401989&gclid=CjwKCAjw6NrBBhB6EiwAvnT_rqF_qjTxM8oFo2M8J72a8LjIrs0yp26pcHqmM3cyNSjPrr3ZejxgMxoCBzgQAvD_BwE) |
 | [HC-SR505 PIR Motion Sensor](https://static.rapidonline.com/pdf/78-4110_v1.pdf) | Detects motion near the door. When someone approaches, it triggers the Pico to prepare for possible unlock logic. | [10 RON](https://ardushop.ro/ro/module/508-modul-mini-senzor-pir-hc-sr505-6427854005922.html?gad_source=1&gad_campaignid=22058879462&gclid=EAIaIQobChMIo7rDwNCqjQMV7QYGAB3XIi1fEAQYBCABEgIyafD_BwE) |
 | [SW-420 Vibration Sensor](https://media.digikey.com/pdf/Data%20Sheets/Seeed%20Technology/Grove_Vibration_Sensor_SW-420_Web.pdf) | Detects strong vibrations or knocks on the door | [6 RON](https://www.bitmi.ro/senzor-vibratie-sw-420-11516.html?gad_source=1&gad_campaignid=22005142538&gclid=EAIaIQobChMI4Ie_4uuqjQMVgz4GAB3aFg6TEAQYASABEgKrUPD_BwE) |
 | [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Physically locks or unlocks a latch or bolt by rotating to a defined angle. | [10 RON](https://www.bitmi.ro/servomotor-sg90-180-grade-9g-10496.html?gad_source=1&gad_campaignid=22005721655&gclid=EAIaIQobChMIqISq6eyqjQMVvzsGAB1aXgsNEAQYASABEgIpwPD_BwE) | 
@@ -120,13 +122,16 @@ The buzzer is a simple audio output device that emits a sound when powered. It c
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async/await task executor for embedded systems. | Enables the #[embassy_executor::main] macro to define the asynchronous main() function and handle concurrency. |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | HAL (Hardware Abstraction Layer) for Raspberry Pi Pico (RP2040) based on Embassy. | gpio: For reading inputs (PIR sensor, vibration sensor, mode button) and controlling outputs (buzzer).pwm: For controlling the servo motor that locks/unlocks the door. i2c: For communicating with the fingerprint sensor via I2C. |
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Time management for embedded async applications. | Used for delays and timeouts (Timer::after(...)) to pace logic, like waiting for button holds or simulating sensor communication. |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework for embedded Rust. | Used to log debug messages (info!) that help trace events like mode switching, sensor triggers, and fingerprint status |
+| [defmt-rtt](https://crates.io/crates/defmt-rtt) | Sends defmt logs over RTT (Real-Time Transfer). | Allows debug logs to be viewed via RTT during development. |
+| [panic-probe] (https://crates.io/crates/panic-probe) | Panic handler that outputs messages using defmt and terminates cleanly. | Provides helpful panic messages during development in case something crashes. |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Defines common embedded hardware traits like I2C, PWM, etc. | Used as a trait bound in authenticate_fingerprint and enroll_fingerprint to work with I2C generically. |
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [GitHub Repo for Embassy](https://github.com/embassy-rs/embassy)
+2. [Crate Registry for Rust](https://crates.io/)
 ...
