@@ -5,7 +5,7 @@ A real-time Temperature sensor that writes to SD card and uses ATmega146A
 :::info
 
 **Author**: Yaris Rosioru \
-**GitHub Project Link**: [Project Link](https://github.com/UPB-PMRust-Students/project-yaris4261)
+**GitHub Project Link**: [Project Link](https://classroom.github.com/a/eG_xYHDU)
 
 :::
 
