@@ -193,3 +193,7 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Creating a Chess Engine in Python](https://youtube.com/playlist?list=PLBwF487qi8MGU81nDGaeNE1EnNEPYWKY_&si=s_FbRTKng44ahwd3)
+
+## Link for Youtube Demo
+
+[Youtube Demo](https://youtu.be/TjJ65DCy4iM?si=thU8RXHAMd1WEWPL)
