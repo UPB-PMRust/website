@@ -110,7 +110,7 @@ I've used two Raspberry Pi Pico 2 W's, a BME280 sensor to detect the humidity an
 
 ### Schematics
 
-![picture of schematic](Kicad.webp)
+![picture of schematic](desk_assistant.svg)
 
 ### Bill of Materials
 
