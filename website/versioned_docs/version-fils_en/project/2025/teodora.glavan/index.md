@@ -58,7 +58,7 @@ During this week, I connected the components on the breadboard, ensuring proper 
 ### Week 12 - 18 May
 During this week, I focused on writing and organizing the full Rust codebase for the Voice Enhanced Smart Monitoring System. I implemented all core modules, including voice recognition, LCD display control, output management (LED, buzzer, servos), and sensor handling.
 ### Week 19 - 25 May
-During this week, I reviewed and tested the hardware connections. Some wires were not placed correctly on the breadboard, so I reconnected them to match the schematic. I also revised and improved parts of the code I had previously written, fixing some issues and optimizing the logic to ensure the system runs more reliably.
+During this week, I reviewed and tested the hardware connections. Some wires were not placed correctly on the breadboard, so I reconnected them to match the schematic. I also revised and improved parts of the code I had previously written, fixing some issues and optimizing the logic to ensure the system runs more reliably
 
 
 ## Hardware
