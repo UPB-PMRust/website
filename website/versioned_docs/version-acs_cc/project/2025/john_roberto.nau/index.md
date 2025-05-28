@@ -20,7 +20,7 @@ I chose this project because I wanted to have a useful device to use in my daily
 
 A schematic diagram is provided to illustrate the connections and layout of the components.
 
-![Architecture diagram](./diagram.webp)
+![Architecture diagram](./diagram2.webp)
 
 ## Log
 
@@ -31,10 +31,19 @@ Recieved the components, did the research and documentation.
 
 ### Week 12 - 18 May
 Created the KiCad schematic, assembled the hardware circuit, checked if they work.
+
 Tested pin connections on the Raspberry Pi Pico 2w.
 Started working on wiring and power supply for the full system.
 
 ### Week 19 - 25 May
+Finalized the full code for the software milestone.
+
+Connected all the components and made them working together in my code.
+Fixed warnings (e.g. unused results from set_duty_cycle) and improved code readability and comments.
+
+Tested the full flow on real hardware: confirmed that the buzzer, servo, LCD, and SD card all work together properly.
+
+Created a flow diagram to document the software behavior.
 
 ## Hardware
 
@@ -55,7 +64,7 @@ Started working on wiring and power supply for the full system.
 
 A KiCad schematic is provided:
 
-![KiCad schematic](./sch1.svg)
+![KiCad schematic](./sch2.svg)
 
 ### Bill of Materials
 
@@ -89,13 +98,19 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rs](https://github.com/embassy-rs/embassy) | HAL support for Raspberry | Access to GPIO, PWM, I2C, SP |
-| [defmt](https://defmt.ferrous-systems.com/) | Lightweight logging framework | For printing debug via probe-rs |
-| [probe-rs](https://probe.rs/) | Debugging and flashing | Used for debugging on Raspberry |
-| [lcd1602-driver](https://crates.io/crates/lcd1602-driver) | Driver for prints on LCD 1602 via I2C | Printing messages |
-| [embedded-hal](https://docs.rs/embedded-hal/) | Hardware abstractisation | SPI, I2C, GPIO, delays |
-| [embedded-hal-async](https://docs.rs/embedded-hal-async/) | Async traits for embeded drivers| GPIO async, SPI async |
-| [byte-slice-cast](https://docs.rs/byte-slice-cast/) | Conversions| SD / memory |
+| [embassy](https://github.com/embassy-rs/embassy) | Asynchronous embedded framework | Core async runtime, time handling, peripheral access |
+| [embassy-rp](https://docs.rs/embassy-rp/) | Embassy support for Raspberry Pi Pico (RP2040) | Access to GPIO, SPI, I2C, PWM on the RP2040 |
+| [embassy-time](https://docs.rs/embassy-time/) | Time utilities for Embassy | `Timer`, `Duration`, `Delay` |
+| [embassy-sync](https://docs.rs/embassy-sync/) | Async synchronization primitives | `Channel`, `blocking_mutex` for async keypad input |
+| [defmt](https://defmt.ferrous-systems.com/) | Lightweight logging framework | Debug output via RTT |
+| [panic-probe](https://docs.rs/panic-probe/) | Panic handler for embedded systems | Handles panics through `defmt` |
+| [static_cell](https://docs.rs/static_cell/) | Safe static memory allocation | Used for static `Channel` instance |
+| [heapless](https://docs.rs/heapless/) | Fixed-size collections with no dynamic allocation | Used for `String` buffer and log messages |
+| [embedded-hal](https://docs.rs/embedded-hal/) | Hardware abstraction layer | Traits for I2C, SPI, PWM, GPIO |
+| [hd44780-driver](https://docs.rs/hd44780-driver/) | LCD display driver | Prints messages on I2C 1602 LCD |
+| [embedded-sdmmc](https://docs.rs/embedded-sdmmc/) | FAT32 file system support | Logging to SD card with `Controller` |
+| [fixed](https://docs.rs/fixed/) | Fixed-point arithmetic | Used for setting PWM frequency (divider) |
+
 
 ## Links
 
@@ -103,5 +118,7 @@ The format is
 
 1. https://crates.io/
 2. https://www.farnell.com/datasheets/2629287.pdf
+3. https://pmrust.pages.upb.ro/docs/acs_cc/lab/05
+4. https://pmrust.pages.upb.ro/docs/acs_cc/lab/02
 
 ...
