@@ -136,6 +136,8 @@ The format is
 
 ### Python
 
+| Library | Description | Usage |
+|---------|-------------|-------|
 | [time](https://docs.python.org/3/library/time.html) | This module provides various functions to manipulate time values. | Used to pause the program for 4 seconds between sending each G-code command.
 | [serial](https://pypi.org/project/pyserial/) | Allows communication with devices over a serial port (e.g., USB, UART) | Used to open a connection to the CNC machine via a specified serial port.  
 
