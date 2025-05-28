@@ -32,8 +32,8 @@ After purchasing all the necessary materials for my project, I began assembling 
 ![poza2](./poza2_hardware.webp)\
 This week, I began by individually testing all my RGB LEDs to ensure they were functioning properly. I then carefully connected them using two shift registers, which required a lot of patience and precision. After setting up the hardware, I created three distinct lighting effects: Rainbow, Pulse White, and Strobe Party—each selectable by the user. Finally, I made the effects respond to sound by connecting the LEDs to a sound sensor, allowing the lights to react dynamically to audio input.
 ### Week 19 - 25 May
-![poza_finala](poza_finala_2(1).webp)
-![poza_finala1](poza_finala_1(1).webp)
+![poza_finala](poza_finala_2.webp)
+![poza_finala1](poza_finala_1.webp)
 This week, I successfully configured the Wi-Fi on my Raspberry Pi Pico 2W, turning it into an access point. Additionally, I created a simple HTML page where the user can select their desired LED effect. The project's software is finished and I also worked on the design of the project.
 
 ## Hardware
