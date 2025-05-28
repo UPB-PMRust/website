@@ -38,6 +38,9 @@ This is the diagram that illustrates the components and their connections.
 
 ### Week 12 - 18 May
 
+- Wired all the necessary components
+- KiCad scheme done accordingly with the connected components
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -47,6 +50,10 @@ The hardware setup consists of a Raspberry Pi Pico 2W microcontroller as the cor
 Two Hall effect sensors are connected to GPIO pins and are responsible for detecting the physical state of the door and whether it is locked. A red LED, connected to a digital output pin, serves as a visual indicator during a potential security breach. Additionally, an active buzzer is driven through a GPIO pin to emit an audible alert when forced entry is detected or the door is left unlocked.
 
 A MOSFET is used to safely drive the buzzer or LED from the Pico's GPIO, ensuring adequate power delivery. All components are connected via jumper wires on a breadboard, allowing flexible prototyping without the need for soldering. Since all sensors and components operate at 3.3V, they are powered directly from the Pico's onboard voltage regulator, eliminating the need for external regulators.
+
+![Hardware log](image2.webp)
+
+
 
 ### Schematics
 
