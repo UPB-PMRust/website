@@ -43,11 +43,8 @@ On the software side, I wrote the initial code to allow the CNC to draw basic sh
 
 ### Week 19 -  25 May 
 
-After receiving the correct screws, I completed the physical assembly of the CNC plotter. With the hardware finalized and the software functional, I tested the full pipeline:Create a vector image, use JS-Cut to convert it into G-code, send the G-code to the Pico via a Python script over UART, the Pico reads and executes each command line-by-line to control the motors and draw the image on paper, this was the first complete end-to-end test, and it worked successfully!
-
-<!-- This week, I began work on the software side of the project. I wrote and tested code to control the stepper motors: first individually, then all three simultaneously. After that, I hardcoded some simple G-code movements to verify that the motors responded correctly for each axis. I also tested the USB-to-UART converter using a Python script to confirm that G-code could be sent correctly from the host to the Raspberry Pi Pico.
-In parallel, I finalized both the KiCad schematic and the overall system architecture diagram. -->
-
+This week, i completed the code. I wrote the logic for all the GCode commands that i might use for my CNC, tested it on more complex drawings to make sure it can now draw arcs and full circles also using bresenham's algorithm, as suggested by my professor. I also completed the code for the display interface. 
+To make it look better, i added a cardboard that will cover the wiring where there will also be a cutout for the display.
 
 ## Hardware
 
@@ -123,18 +120,24 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-executor](https://crates.io/crates/embassy-executor) | Async/await executor optimized for embedded systems | Runs asynchronous tasks without an OS |
+| [embassy-embedded-hal](https://crates.io/crates/embassy-embedded-hal) | Collection of utilities to use `embedded-hal` and `embedded-storage` traits with Embassy | Used for shared SPI communication |
 | [embassy-time](https://crates.io/crates/embassy-time) | Timekeeping, delays, and timeouts | Used for non-blocking delays and timeouts |
-| [embassy-rp](https://crates.io/crates/embassy-rp) | HAL for Raspberry Pi RP2040 using Embassy | Interfaces with RP2040 peripherals (GPIO, UART, etc.) |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | no-std, no-alloc synchronization primitives with async support. | Used to create a mutex for sharing the SPI bus |
+| [embassy-rp](https://crates.io/crates/embassy-rp) | Library for peripheral access | Interfaces with RP2350 peripherals (GPIO, UART, etc.) |
 | [defmt](https://crates.io/crates/defmt) | Lightweight and efficient logging framework for embedded systems | Provides low-overhead debug output |
 | [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT backend for defmt logging | Sends logs from device to host over RTT |
 | [heapless](https://crates.io/crates/heapless) | `static`-friendly data structures without heap allocation | Used for queues, buffers, and collections without `alloc` |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Minimal runtime for Cortex-M microcontrollers | Sets up vector table, stack, and entry point |
-| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library that is focused on memory constrained embedded devices. | Used to display the messages on the LCD |
-| [st7735-lcd-rs](https://github.com/Phoenixovich/st7735-lcd-rs) | Rust library for displays using the ST7735 driver with embedded_graphics | Driver for the LCD |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library that is focused on memory constrained embedded devices | Used to display the messages on the LCD |
+| [libm](https://crates.io/crates/libm) | A Rust implementations of the C math library | Used to calculate the coordinates of points along the circle's circumference |
+| [beresenham](https://crates.io/crates/bresenham) | Iterator-based integer-only implementation of Bresenham's line algorithm | Used to calculate points along arcs and circles |
+| [mipidsi](https://crates.io/crates/mipidsi) | MIPI Display Command Set compatible generic driver | Crate used to initalize the ST7735 display |
+| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI implementation for display interfaces | Used for implementing the interface of the ST7735 |
 
+### Python
 
-
-<!-- TODO: add stuff for python script also -->
+| [time](https://docs.python.org/3/library/time.html) | This module provides various functions to manipulate time values. | Used to pause the program for 4 seconds between sending each G-code command.
+| [serial](https://pypi.org/project/pyserial/) | Allows communication with devices over a serial port (e.g., USB, UART) | Used to open a connection to the CNC machine via a specified serial port.  
 
 ## Links
 
