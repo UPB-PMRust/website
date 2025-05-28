@@ -96,8 +96,7 @@ The format is
 | [`panic-probe`](https://crates.io/crates/panic-probe) | Panic handler for no_std | Lightweight handler for crash diagnostics |
 | [`heapless`](https://crates.io/crates/heapless) | Heap-free data structures | Useful for HTTP response buffers and internal strings |
 | [`embassy_lab_utils`](https://github.com/UPB-PMRust/embassy-lab-utils) | Wi-Fi and network stack initialization helpers | Provides `init_wifi!()` and `init_network_stack()` macros |
-| [`cyw43`](https://crates.io/crates/cyw43) | WiFi chip driver for CYW43 | Provides WiFi firmware and control for Raspberry Pi Pico W |
-| [`cyw43-pio`](https://crates.io/crates/cyw43-pio) | PIO-based WiFi driver support | Implements WiFi control using RP2040’s PIO peripherals |
+
 
 ## Links
 
