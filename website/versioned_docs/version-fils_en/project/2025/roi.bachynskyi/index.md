@@ -216,7 +216,7 @@ The software follows an async task-based architecture using the Embassy framewor
 
 **Task Architecture**
 
-The system implements six primary async tasks, each responsible for specific functionality:
+The system implements eight primary async tasks, each responsible for specific functionality:
 
 - **`main`** - System initialization and task spawning
 - **`wifi_task`** - Network communication and cloud data transmission  
