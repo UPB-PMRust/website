@@ -56,27 +56,31 @@ This is how the schematic looks like, drawn in Excallidraw at the moment of the 
 After my project was aproved, I printed my chasis, gathered all my components and started assembling the car, as well as look for all the necessary software and crates I would need for this project
 
 ![](Car-Back.webp)
+![](Car-Up.webp)
 
 ### Week 12 - 18 May
+During this week I workde on finishing the hardware components, connecting all my sensors to my pico, my motor driver and also my power suply, as well as build the controller. I rearanged the circuits and rebuilt my electrical schemes after testing each component and making sure it works, while also dealing with the problem of supling enough current to power all of the components, without overcharging them. Created some basic code to test the sensors and the motors, as well as the motor driver and the joystick and uploaded it to github. One more thing I did was to ask my lab assistant more details about something I was trying to implement, a PID task to automate the rpm of the motors. At the end of the week, after finishing the hardware, I started strong on the software and trying to make the Wi-Fi connection between the car and controller.
+
+![](Controller-hardware.webp)
+![](car-fron-hardware.webp)
 
 ### Week 19 - 25 May
-
+In the time of this week I worked hard on my software. I took every piece I worked on separately to test every sensor and merged it into one, a line following code, based on a match select3, covered by an if statement for the distance sensor. I integrated the pwm configurations for the motors, and then I started working on the PID(Proportional-Integral-Derivative). I found some examples on how to use it to automate the pwm for my motors, so the rpm is constant even while turning, and translated those examples into Rust. The hardest part was configuring the WI-Fi and making my car into an access point (AP) that the controller can connect to. I opened 2 pots for the sockets to have 2 different task to comunicate, one to see if the car or controller is driving, and one for the controller to give directions. It wasn't easy, especially since I lost half a day trying to work with an aparently broken Wi-Fi driver, but I managed to finish my code and also upload it on the Git repository.
 
 ## Hardware
 
 -All the parts of the car and controller have been specified above, so I will explain how all the parts come together as the hardware. The main idea is that the car should be able to follow a black line on a white road and keep to it till the HC-SR04 discovers an object blocking the way. At that point, the car, with the help of the Raspberry board, through the use of Wi-fi, will give controll to the other Raspberry board and, in the controller, by using the joystick, the driver can move the car back on the road and away from the obstacle. When this change occurs, as stated, the blue and red LEDs will interchange on each board. In order to give back control to the car, the user will have to press a button on the controller, such that the car can go back to following the black line. Aditionally, the driver can press another button to get control of the car even if there was no object dettected. Now, coming to the part of the motors, their movement and direction will be regulated by the L298N H-bridge and, together with the encoders, so will their rpm. A good example of why I use the encoders is the following: say we are in a ramp, if we want to climb it, we need more power to keep the rpm stable, if we want to go down, we need less power to keep the rpm stable, so we use the encoders to atomate this process.
 
-![](Car-Front.webp)
-![](Car-Up.webp)
+![](Car-above-hardware.webp)
 
 ### Schematics
 KiCad Scheme
 
 The Car:
-![](CarScheme.webp)
+![](kicad-circ.svg)
 
 The Controller:
-![](Controller.webp)
+![](Controller.svg)
 
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
