@@ -10,6 +10,7 @@ A parking system utilizing infrared sensors, Leds an servo-motors, with Raspberr
 
 :::
 
+
 ---
 
 ## Description
@@ -78,15 +79,16 @@ At the exit, the IR sensor triggers the exit barrier servo to lift and allows th
 
 ### Week 6 - 12 May
 
-I have purchased all the necessary components for the project, along with additional materials such as boxes, glue, and other items needed to complete the physical assembly. After gathering everything, I followed the schematic to assemble the components in the correct order and positions. Once the assembly was completed, I tested each part of the system to ensure it was functioning properly.
+I have purchased all the necessary components for the project, along with additional materials such as boxes, glue, and other items needed to complete the physical assembly. 
 
-### Week 7 - 19 May
+### Week 13 - 19 May
 
-- nothing yet
+After gathering everything, I followed the schematic to assemble the components in the correct order and positions. Once the assembly was completed, I tested each part of the system to ensure it was functioning properly.
 
 ### Week 20 - 26 May
 
-- nothing yet
+During the final week, I dedicated my time to writing the code for the project. I researched how to properly connect and control the different hardware components through software, ensuring each part communicated and functioned as intended. Throughout this process, I tested multiple code variations and approaches to handle sensor input, motor control, and timing logic. After several adjustments, I successfully developed a final version of the code that worked reliably with the assembled system.
+
 
 ---
 
@@ -106,28 +108,34 @@ The entrance and exit of the parking lot include:
 - 7-segment display: Shows the number of available parking spots
 - Traffic light (Red and Green LEDs): Indicates whether parking spaces are available or the lot is full
 
+![proiect1](parcare1.webp)
+
+![proiect2](parcare2.webp)
+
+![proiect3](parcare3.webp)
+
+![proiect4](parcare4.webp)
+
 ## Schematics
 
-![parc1](parcare1.webp)
-
-![parc2](parcare2.webp)
-
-![parc3](parcare3.webp)
-
-![parc4](parcare4.webp)
-
-![schematic](schematic.svg)
+![schematic](schematic_final.svg)
 
 ---
 
 ## Software
 
-| Library           | Description                                 | Usage                                               |
-|-------------------|---------------------------------------------|-----------------------------------------------------|
-| embassy-executor| Asynchronous executor for Rust embedded systems | Used for task scheduling and asynchronous programming |
-| embassy-time    | Time management library                     | Used for time-based operations such as delays       |
-| embassy-rp     | Peripheral access library                   | Used for initializing and interacting with peripherals |
-| gpio            | GPIO manipulation                           | Used for interacting with GPIO pins                 |
+| Library                   | Description                                      | Usage                                                                 |
+|---------------------------|--------------------------------------------------|-----------------------------------------------------------------------|
+| `embassy-executor`        | Asynchronous executor for Rust embedded systems | Provides async runtime; used to spawn and run async tasks             |
+| `embassy-time`            | Time management for async embedded              | Allows delay functionality without blocking                          |
+| `embassy_rp::peripherals` | Peripheral instances                            | Used to access named pins like `PIN_12`, `PWM_SLICE6`                 |
+| `embassy_rp::gpio`        | GPIO handling                                   | Used for LEDs, IR sensors (`Input`, `Output`, `Level`, `Pull`)       |
+| `embassy_rp::pwm`         | PWM support                                     | Used to control servos (`Pwm`, `PwmConfig`)                           |
+| `fixed::traits::ToFixed`  | Fixed-point conversion                          | Converts integers to fixed-point for PWM divider config               |
+| `core::sync::atomic`      | Thread-safe atomic operations                   | Used for global shared state: `FREE_SPOTS`, `SENSORx_OCCUPIED`       |
+| `defmt`, `defmt_rtt`      | Lightweight embedded logging                    | Prints debug info via RTT (e.g., `info!("Moving up")`)               |
+| `panic_probe`             | Minimal panic handler for `no_std`              | Logs panic info when something goes wrong                            |
+
 
 
 ## Bill of Materials
@@ -149,3 +157,4 @@ The entrance and exit of the parking lot include:
 ## Links
 
 [Link 1] (https://www.youtube.com/watch?v=8XOsXdNOa4g&ab_channel=svsembedded)
+[Youtube link] (https://www.youtube.com/shorts/_y4l1H88V68)

@@ -119,7 +119,13 @@ Finalized the KiCad schematic for the full system, accurately reflecting all phy
 ### Week 12 - 18 May
 - **Component Installation**:
 Started mounting components onto the cardboard structure. Fixed the LCD display, LEDs, sensors and RFID in their designated positions.
+- **Smart Lighting Feature**:
+Completed the implementation of the smart lighting logic. Each LED now adjusts its brightness automatically based on readings from its corresponding LDR sensor, and the system can switch between OFF, ON, and SMART modes using push buttons.
 ### Week 19 - 25 May
+- **Code Progress**:
+Focused on finalizing the integration of the LCD screen and the temperature sensors.
+- **Project Polishing**:
+Worked on improving the visual appearance of the cardboard house by adding decorations and details to make the model more presentable for demonstration.
 ## Hardware
 - Infrared Flame Sensor: Used to detect any nearby fire in the kitchen area, triggering an emergency alarm when activated.
 - Active Buzzer Module: Provides audio feedback; it is activated both when a fire is detected and when an unauthorized RFID tag is scanned at the entrance.
@@ -175,12 +181,20 @@ A [Raspberry Pi Debug Probe](https://www.optimusdigital.ro/ro/accesorii/12777-pl
 |---------|-------------|-------|
 | [embassy-executor](https://docs.embassy.dev/embassy-executor/git/std/index.html) | Asynchronous executor for embedded systems | Used to manage concurrent tasks in a non-blocking way |
 | [embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Time management library | Used for time-based operations such as delays |
-|[embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)| Raspberry Pi Pico-specific HAL for Embassy |Used for PWM, SPI, GPIO, I²C, and peripheral setup |
-|[embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Lightweight async synchronization tools | Used for communication between tasks via Signal |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Raspberry Pi Pico-specific HAL for Embassy | Used for PWM, SPI, GPIO, I²C, ADC, and peripheral setup |
+| [embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Lightweight async synchronization tools | Used for inter-task communication using `Signal`, `Mutex`, and critical sections |
+| [embassy-embedded-hal](https://docs.embassy.dev/embassy-embedded-hal/latest/embassy_embedded_hal/) | Embassy adaptation of `embedded-hal` traits | Used for shared bus access in screen and sensor drivers |
+| [embedded-hal-async](https://docs.rs/embedded-hal-async/latest/embedded_hal_async/) | Async I/O traits for I²C, SPI, UART | Used for BMP280 I²C temperature sensor integration |
+| [static-cell](https://docs.rs/static_cell/latest/static_cell/) | Safe static allocation support | Used to safely initialize peripherals with `'static` lifetime |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework for embedded Rust | Used for efficient runtime logging and debugging |
+| [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | Real-Time Transfer backend for `defmt` | Enables RTT-based log output over USB |
+| [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Minimal panic handler for embedded Rust | Provides debug output on panics |
 | [mfrc522](https://docs.rs/mfrc522/latest/mfrc522/) | RFID reader driver | Used to initialize and interact with the MFRC522 RFID module |
-| [mipidisi](https://docs.rs/mipidsi/latest/mipidsi/) | Display driver for MIPI-compliant screens like ST7735 | Used to initialize and control the SPI LCD screen |
-| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | Wrapper for SPI display interfaces |Used to link the display to the SPI bus and simplify communication|
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | Display driver for MIPI-compliant screens like ST7735 | Used to initialize and control the SPI LCD screen |
+| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | Wrapper for SPI display interfaces | Used to link the display to the SPI bus and simplify communication |
 | [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Graphics library for embedded displays | Used for rendering shapes, text, and layouts on the LCD screen |
+| [heapless](https://docs.rs/heapless/latest/heapless/) | Fixed-capacity data structures for `no_std` | Used for `String` display buffers without dynamic allocation |
+| [fixed](https://docs.rs/fixed/latest/fixed/) | Fixed-point math support for embedded systems | Used for converting floats for servo and display formatting |
 
 ## Links
-
+[Projects 2024](https://pmrust.pages.upb.ro/docs/fils_en/category/projects-2024)

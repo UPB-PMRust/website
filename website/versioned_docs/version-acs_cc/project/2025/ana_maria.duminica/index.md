@@ -41,14 +41,23 @@ I double-checked the wiring for each device to make sure the pin mappings matche
 ### Week 12 - 18 May
 In this week, I assembled the full hardware setup by wiring all the sensors and modules together. This included connecting the MPR121 keypad via the I2C interface, the ultrasonic sensor with its TRIG and ECHO pins, and the WS2812B LED ring using a data pin from the Pico. 
 
-I also connected the DFPlayer Mini audio module using UART communication pins (TX and RX). While the module powers on and the microSD card is detected, I am still working on getting audio playback to work. I suspect the issue may be related to voltage levels or incorrect communication timing, so I will continue troubleshooting. I also plan to add a 1kΩ resistor or level shifter between the TX (Pico) and RX (DFPlayer) for protection.
+I also connected the DFPlayer Mini audio module using UART communication pins (TX and RX). While the module powers on and the microSD card is detected, I am still working on getting audio playback to work. I suspect the issue may be related to voltage levels or incorrect communication timing, so I will continue troubleshooting. I also plan to add a 1k ohms resistor or level shifter between the TX (Pico) and RX (DFPlayer) for protection.
 
 ![Hardware Setup](./hardware_2.webp)
 
 ![Hardware Setup](./hardware_1.webp)
 
 ### Week 19 - 25 May
+This week marked the completion of the project. I successfully resolved the communication with the DFPlayer Mini, which now works reliably with all types of input. The code was finalized to correctly map each sensor to a corresponding sound—whether it's a piano note, drum beat, or guitar strum—and the DFPlayer responds without delay or error.
 
+All audio tracks were loaded onto the microSD card, and each sensor interaction was tested to ensure accurate and synchronized audio-visual feedback. The four modes—Piano, Guitar, Drums, and AutoPlay—are now fully functional and polished.
+
+I also completed the physical assembly of the musical box. I built a cardboard enclosure to organize and protect the internal components, with clean cutouts for all sensors and visible LEDs. The layout was optimized for accessibility and aesthetics, and all wiring was secured inside the box to ensure stability during use.
+![Hardware final](./final1.webp)
+
+![Hardware final](./final2.webp)
+
+![Hardware final](./final3.webp)
 
 ## Hardware
 **Raspberry Pi Pico 2W**
@@ -106,6 +115,17 @@ This configuration allowed for fast prototyping and iterative testing of each mo
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal)         | Hardware Abstraction Layer traits                | Interface for I²C, PWM, and other peripheral drivers |
 | [smart-leds](https://github.com/smart-leds-rs/smart-leds)             | WS2812 RGB LED control                           | Controls the RGB LED ring                            |
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor                              | Runs `async` tasks concurrently on the microcontroller |
+
+### Software Design
+The software is developed in Rust using the Embassy async embedded framework, providing non-blocking execution across tasks. Each input method (touch sensors, ultrasonic sensor, push button) is processed independently using asynchronous tasks and delays. Based on the input type, the system triggers audio playback through the DFPlayer Mini (via UART) and visual feedback via WS2812B LEDs (controlled using PIO).
+
+The architecture ensures responsive handling of all user interactions:
+Touch inputs are polled via GPIO or I2C and immediately mapped to audio tracks and LED colors.
+Ultrasonic sensor is used for gesture-based control with debounced logic using distance stability over time.
+Push button toggles a separate AutoPlay mode, triggering continuous playback and an animated rainbow LED pattern.
+All logic is designed to run on a single Raspberry Pi Pico using Embassy’s async executor and Rust’s no_std environment.
+
+![diagram_software](./software_diagram.drawio.svg)
 
 ## Links
 [Raspberry Pi Pico Documentation](https://www.raspberrypi.com/documentation/microcontrollers/)  
