@@ -62,6 +62,7 @@ Using a battery and the LM2596s, we will power the whole circuit such that it is
 
 ![KiCad_Schematic](./Proiect_AMP.svg)
 
+
 ### Bill of Materials
 | Device | Usage | Price |
 |--------|--------|-------|
@@ -93,3 +94,4 @@ Using a battery and the LM2596s, we will power the whole circuit such that it is
 ## Links
 1. [Clap Switch](https://www.instructables.com/Clap-Sensor-With-PICO-2-and-MAX9814/)
 2. [Fundamentals and Harmonics](https://www.physicsclassroom.com/class/sound/lesson-4/fundamental-frequency-and-harmonics)
+

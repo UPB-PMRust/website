@@ -4,7 +4,7 @@ DIY USB MIDI Controller
 :::info
 
 **Author**: Gheorghita Vlad-Gabriel \
-**GitHub Project Link**: [link](https://github.com/UPB-PMRust-Students/proiect-GheorghitaVlad)
+**GitHub Project Link**: [link](https://github.com/UPB-PMRust-Students/proiect-GheorghitaVlad-G)
 
 :::
 
@@ -18,29 +18,93 @@ As someone passionate about composing music and making beats, I've always been c
 
 ## Architecture 
 
-![Block Diagram](MIDI_Controller.webp)
+![Block Diagram](MIDI_Controller.svg)
 
 ## Log
 
 ### Week 5 - 11 May
+- Studied all the components to make them work
+- Done draft documentation
+- First order of hardware
+- Done key logic and hardware prototype on breadboard
+- Made measurements for 3D printed case, caps and keys
 
 ### Week 12 - 18 May
+- Finished hardware:
+    - Soldered wires and components on Final PCB
+    - Connected components on pre-planned pins (check schematic)
+    - Done final schematic
+    - 3D printed main case
+- Start implementing software:
+    - Done logic for multiplexing of keys
+    - Done logic for filter knob (potentiometer)
+    - Done logic for display
+    - Done MIDI communication between device and controller
 
 ### Week 19 - 25 May
+- Finished software:
+    - Tweaked different values (voltage levels for key press, velocity computing etc.)
+    - Refined logic for each component
+    - Organized code
+- Finished final product:
+    - 3D printed missing parts (keys, button caps and cover)
+    - Glued everything together
 
 ## Hardware
 
-The DIY MIDI controller is built around the Raspberry Pi Pico 2W.
+The DIY MIDI controller is built around the Raspberry Pi Pico 2W, with custom-designed circuitry implemented on homemade PCB boards. All components are connected using solid-core wires stripped from a UTP (Ethernet) cable, ensuring reliable point-to-point wiring across the board.
 
-Each of the 12 keys has 2 separate tactile switches (one for each of the elevated buttons), resulting in a total of 24 pins required to interface the buttons with the microcontroller. The elevation for each key is achieved using a female header, creating staggered button heights, so that one button is pressed before the other. The timing difference between the button presses is used to determine the velocity of the note.
+![Circuit](Hardware.webp)
 
-The Raspberry Pi Pico 2W processes the signals and builds MIDI packets, which are then sent via USB to the DAW.
+The controller features 12 keys, each equipped with two tactile switches mounted at different elevations. This physical arrangement enables velocity sensitivity by measuring the time interval between the activation of the first and second switches. In total, 24 switches are scanned.
 
-The controller also includes a potentiometer for filter control and a button to control octave switching and filter selection through a carousel-like menu. This menu is displayed on an integrated screen, allowing users to navigate settings with short and long presses.
+To efficiently read these switches using minimal GPIOs, a 16-channel analog multiplexer is used (12 channels active). Each switch is wired into a voltage divider, producing distinct analog voltage levels depending on press state:
+- more than 2650: no press (send Note OFF)
+- between 2000–2500: one pressed (start timer)
+- less than 1000: both pressed (stop timer, compute velocity, send Note ON)
+
+The multiplexer’s selector lines are controlled via four GPIOs, while the SIG pin is connected to an ADC input on the Pico. Each key is scanned sequentially in a loop, with debouncing and averaging applied.
+
+A potentiometer is connected directly to another ADC pin, providing continuous control input which is mapped to a MIDI filter parameter (e.g., cutoff frequency). Its value is read periodically and translated into MIDI Control Change (CC) messages.
+
+For user interaction, the controller includes:
+- An SSD1306 OLED display, driven via I2C, used to render a menu interface for settings such as octave selection and filter CC channel.
+- Four momentary buttons connected to GPIOs:
+    - Menu: enter/exit menu mode
+    - Select: short/long presses toggle modes or confirm selections
+    - Up/Down: navigate between options
+
+The menu uses a carousel-style interface, offering intuitive cycling through options with feedback on the screen.
 
 ### Schematics
 
-![Schematic](schema.webp)
+![Schematic](Schema_proiect.svg)
+
+## Software
+
+The firmware for the MIDI controller is written in Rust, using the embassy async runtime for embedded systems. It targets the Raspberry Pi Pico 2W (RP2040) microcontroller and uses the following major components:
+1. Note Detection with Velocity \
+Reads from the buttons under each key via analog multiplexer. Measures time between two switch presses for each key to estimate velocity and sends MIDI note-on events accordingly.
+2. Filter Control via Potentiometer \
+Continuously samples the potentiometer and sends MIDI CC messages on a user-configurable channel (70–79) if the value has changed significantly.
+3. User Menu System via Button Interface & OLED Display \
+Uses four buttons (Menu, Select, Up, Down) and an I2C SSD1306 OLED screen to:
+    - Select between Octave and Filter modes.
+    - Modify current octave (C0–C9).
+    - Modify the active MIDI filter channel.
+4. USB MIDI Output \
+Implements a class-compliant USB MIDI device that sends:
+    - Note on/off messages.
+    - Control Change messages for the filter.
+
+| Library                                                  | Description                                      | Usage                                                                                |
+| -------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| [embassy-rp](https://embassy.dev/)                       | Rust + async embedded                            | Framework for embedded applications using async features on the Raspberry Pi Pico 2W |
+| [ssd1306](https://crates.io/crates/lcd1602-rs)        | Driver for SSD1306 display             | Display menu for filter and octave selection                                         |
+| [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)          | 2D graphics library                 | Drawing primitives and text rendering for embedded displays                       |
+| [static-cell](https://crates.io/crates/static_cell)            | Allows defining static, lazily initialized values safely | Store USB Config information |
+| [embassy-usb](https://docs.rs/embassy-usb/latest/embassy_usb/)                  | USB device stack for async embedded Rust | Configure USB connection to device |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework for embedded development (formatted debug output)| Debugging Software and Hardware |
 
 ### Bill of Materials
 
@@ -49,37 +113,27 @@ The controller also includes a potentiometer for filter control and a button to 
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | Main and debug microcontroller | [79.32 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
 | Breadboard Kit HQ 830p | Prototyping and testing | [22.00 RON](https://www.optimusdigital.ro) |
 | [6 x 6 x 6 Push Button](https://www.optimusdigital.ro/ro/butoane-tactile/1708-butone-tactile.html) | Dual-switch per key for velocity detection | [10.80 RON](https://www.optimusdigital.ro/ro/butoane-tactile/1708-butone-tactile.html) |
+| [CD74HC4067 16 Channel Analog Multiplexer](https://www.optimusdigital.ro/en/power-multiplexers/1378-modul-multiplexor-analogic-cu-16-canale-cd74hc4067.html?search_query=CD74HC4067&results=1) | Multiplexing of keys | [5.77 RON](https://www.optimusdigital.ro/en/power-multiplexers/1378-modul-multiplexor-analogic-cu-16-canale-cd74hc4067.html?search_query=CD74HC4067&results=1) |
 | [100k Mono Potentiometer](https://www.optimusdigital.ro/ro/potentiometre/10862-potentiometru-mono-100k.html) | Optional control knob for filter adjustments | [1.49 RON](https://www.optimusdigital.ro/ro/potentiometre/10862-potentiometru-mono-100k.html) |
 | [Universal PCB Prototype Board 8x12cm](https://www.optimusdigital.ro/ro/placi-prototip/84118-placa-prototip-universala-8x12cm.html) | Soldering base for final PCB | [7.98 RON](https://www.optimusdigital.ro/ro/placi-prototip/84118-placa-prototip-universala-8x12cm.html) |
-| [Colored 40p 2.54 mm Pitch Male Pin Header](https://www.optimusdigital.ro/ro/headeri/2966-header-barbati-40p.html) | Wiring headers for connections | [1.98 RON](https://www.optimusdigital.ro/ro/headeri/2966-header-barbati-40p.html) |
+| [Universal PCB Prototype Board 6x8cm](https://www.optimusdigital.ro/en/others/12538-6x8cm-universal-pcb-prototype-board-single-sided-254mm-hole-pitch.html?search_query=6x8cm+Universal+PCB+Prototype+Board+Single-Sided+2.54mm+Hole+Pitch&results=1) | Soldering base for final PCB | [4.98 RON](https://www.optimusdigital.ro/en/others/12538-6x8cm-universal-pcb-prototype-board-single-sided-254mm-hole-pitch.html?search_query=6x8cm+Universal+PCB+Prototype+Board+Single-Sided+2.54mm+Hole+Pitch&results=1) |
+| [Colored 40p 2.54 mm Pitch Male Pin Header](https://www.optimusdigital.ro/ro/headeri/2966-header-barbati-40p.html) | Wiring headers for connections | [2.97 RON](https://www.optimusdigital.ro/ro/headeri/2966-header-barbati-40p.html) |
 | [20p Female Pin Header 2.54 mm](https://www.optimusdigital.ro/ro/headeri/35094-header-femei-20p.html) | Wiring headers for connections | [12.27 RON](https://www.optimusdigital.ro/ro/headeri/35094-header-femei-20p.html) |
 | [4p Female Pin Header 2.54 mm](https://www.optimusdigital.ro/ro/headeri/35018-header-femei-4p.html) | Wiring headers for connections | [0.98 RON](https://www.optimusdigital.ro/ro/headeri/35018-header-femei-4p.html) |
-| [Screen] | For showing filter and octave menu | [TBD] |
-| Total | - | 136,82 RON + screen price |
-
-## Software
-
-| Library                                                  | Description                                      | Usage                                                                                |
-| -------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| [embassy-rp](https://embassy.dev/)                       | Rust + async embedded                            | Framework for embedded applications using async features on the Raspberry Pi Pico 2W |
-| [lcd1602-rs](https://crates.io/crates/lcd1602-rs)        | Driver for 1602 LCD via embedded-hal             | Display menu for filter and octave selection                                         |
-| [micromath](https://crates.io/crates/micromath)          | Embedded-friendly math library                   | Handle fast floating-point math for MIDI velocity calculations                       |
-| [arrayvec](https://crates.io/crates/arrayvec)            | A vector with fixed capacity, backed by an array | Store MIDI data or signal samples efficiently in memory                              |
-| [fixed](https://crates.io/crates/fixed)                  | Fixed-point numbers                              | Optimize arithmetic for embedded systems                                             |
-| [biquad](https://crates.io/crates/biquad)                | Library for second-order IIR filters             | Apply signal processing for audio filters                                            |
-| [usbd-midi](https://docs.rs/usbd-midi/latest/usbd_midi/) | USB MIDI device class for `usb-device`           | Handle MIDI communication over USB between the Pico and DAW                          |
-| [midi-parser](https://crates.io/crates/midi-parser)      | MIDI message parser                              | Parse incoming MIDI messages if needed for MIDI control                              |
+| [SSD1306 0.96" OLED DISPLAY](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/?utm_campaign=share%20product&utm_medium=ios&utm_source=mobile%20app) | For showing filter and octave menu | [27.37](https://www.emag.ro/ecran-oled-0-96-ai409-s322-323-324/pd/D69S02MBM/?utm_campaign=share%20product&utm_medium=ios&utm_source=mobile%20app) |
+| 3D Printer materials | Case and keys | 50 RON |
+| Total | - | 225.93 RON  |
 
 ## Links
 
 1. [USB MIDI Specification](https://www.usb.org/sites/default/files/midi10.pdf)
 2. [embassy-rp: Rust + async for embedded](https://embassy.dev/)
-3. [lcd1602-rs: LCD1602 Driver for Pico](https://crates.io/crates/lcd1602-rs)
-4. [micromath: Embedded-friendly math library](https://crates.io/crates/micromath)
-5. [arrayvec: A vector with fixed capacity](https://crates.io/crates/arrayvec)
-6. [fixed: Fixed-point numbers library](https://crates.io/crates/fixed)
-7. [biquad: Digital second-order IIR filters](https://crates.io/crates/biquad)
+3. [ssd1306](https://docs.rs/ssd1306/latest/ssd1306/) 
+4. [ADC lab](https://pmrust.pages.upb.ro/docs/acs_cc/lab/03)
+5. [Async lab](https://pmrust.pages.upb.ro/docs/acs_cc/lab/04)
+6. [I2C lab](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
+7. [embassy-usb](https://docs.rs/embassy-usb/0.4.0/embassy_usb/)
 8. [MIDI Protocol Reference](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
-9. [usbd-midi](https://docs.rs/usbd-midi/latest/usbd_midi/)
+9. [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf/)
 10. [Example project 1](https://www.youtube.com/watch?v=wY1SRehZ9hM)
 11. [Example project 2](https://www.youtube.com/watch?v=tmxgmR8Rzr4)
