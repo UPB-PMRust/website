@@ -67,7 +67,20 @@ All key systems are now integrated: RFID, keypad, LCD, buzzer, LEDs, servo, and 
 
 ![Week2Progress](Week2.webp)
 ### Week 19 - 25 May
+This week I focused on refining the project, improved reliability, interaction logic, UI, took out most of the components from the breadboards and put them into a cardboard box, displaying them nicely. The project is finished.
 
+1. Manual Locking Feature:
+  - Updated the PIN entry logic: now the system remains unlocked after a correct PIN, until the user presses * to lock it again.
+  - "*" is now excluded from the PIN itself and reserved exclusively as a locking command.
+  - Added a new button in the web interface (Lock) and now the web interface works like the pin, the unlock button keeps the servo unlocked until the user presses Lock
+
+2. Redesigned the HTML to look cleaner, added the Lock button.
+
+3. Added new LCD messages for the manual lock feature.
+
+4. Got a cardboard box and carved holes of the same dimensions as the hardware components, wired them inside the box to the pico. Screwed the door latch and connected the servo to it, carved a small door to prove the functionality of the project.
+
+![Week3Progress](Week3.webp)
 
 ## Hardware
 The hardware setup is centered around the Raspberry Pi Pico 2W, with its built-in Wi-Fi capabilities. A variety of peripherals are used to create an interactive, multi-authentication smart lock system.
