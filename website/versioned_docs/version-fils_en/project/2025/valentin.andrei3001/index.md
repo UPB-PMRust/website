@@ -1,4 +1,4 @@
-# Solar Panel
+# Project Name
 A rotative solar panel that moves toward the sun.
 
 :::info 
@@ -53,6 +53,8 @@ I assembled the hardware parts, I did the KiCAD scheme, I managed progress with 
 
 ### Week 19 - 25 May
 
+I started coding. I couldn't make the picotool work so i bought another pico to use as a debugger. I coded the functions of the program.
+
 ## Hardware
 
 Raspberry Pi Pico 2W is the main part of the hardware.
@@ -74,7 +76,7 @@ Sensor for temperature - NTC 100k
 
 ### Schematics 
 ![Scheme](./scheme.webp)
-![Scheme-electric](./solar.svg)
+![Scheme-electric](./scheme-electric.webp)
 
 Place your KiCAD schematics here.
 
@@ -107,12 +109,14 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | General crate for the project | Since most of my project uses analog components most of them use it; the photoresistors, servo motor, heating element, thermistor |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Usage for timings | Adjust the servo, reading sensors |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async | Temperature monitoring + solar tracking |
+| [defmt, defmt-rtt, panic-probe](https://github.com/embassy-rs/embassy) | Support | Real time tracking of sensor values |
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Solar powered pi pico](https://www.youtube.com/watch?v=molEMt655YQ)
-
