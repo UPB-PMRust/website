@@ -28,7 +28,11 @@ The main controller reads physiological data from the pulse sensor and controls 
 
 ### Week 5 - 11 May
 
+I connected the main Raspberry Pi Pico 2W with the second one that I use as a debbuger. I also connected the pulse sensor and implemented the basic pulse reading functionality and after that I displayed the measured BPM on the screen.
+
 ### Week 12 - 18 May
+
+I displayed on the screen the menu for the mode(either exercising or relaxing). I connected the LEd module and added LED feedback to guide breathing during abnormal BPM, implemented PWM for light transitions and added the button to select the mode.
 
 ### Week 19 - 25 May
 
@@ -48,7 +52,8 @@ Button: allows the user to switch between modes
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![schemafinalkicad](schemafinalkicad.svg)
+![Poza](Poza.webp)
 
 ### Bill of Materials
 
@@ -67,7 +72,7 @@ The format is
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [39.66 RON x 2](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?) |
 | [XD-58C pulse sensor](https://pulsesensor.com) | The pulse sensor | [15.17 RON](https://www.optimusdigital.ro/ro/senzori-altele/1273-senzor-de-puls-xd-58c.html?)|
 | [1.44'' LCD Module](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.optimusdigital.ro/en/index.php%3Fcontroller%3Dattachment%26id_attachment%3D196%26srsltid%3DAfmBOoruUzWlsxzAAf_-B4iAEJVfx2yxuVbGb-puhPoLH_3ZoySWRy6B&ved=2ahUKEwibuP6e7oaNAxXUiv0HHQ0hO54QFnoECB4QAQ&usg=AOvVaw0UxpN128YQYtVhZADYz4ql) | Display | [28 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html?)|
-| [Button](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?)) | Press the button to select modes | [2 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?)|
+| [Button](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?) | Press the button to select modes | [2 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?)|
 | [RGB LED module](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/737-modul-cu-led-rgb.html?) | LED light | [5 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/737-modul-cu-led-rgb.html?)|
 
 

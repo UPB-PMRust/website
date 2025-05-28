@@ -30,23 +30,25 @@ Week 31 March - 4 April:
 -> choose the project idea, hardware components and potential rust libraries to be used
 Week 28 April - 2 May:
 -> populate documentation page, create repositories on both GitHub and GitLab
-TODO - next steps: hardware milestone, software milestone, PM Fair
+Week 12 May - 18 May:
+-> hardware milestone
+![alt text](image_proiect.webp)
 
 ## Hardware
 As hardware components, I chosed the best quality per price components, keeping simple and concise project. I selected a rapsberry pi pico, a joystick, an oled display, a breadboard and wires for connectivity between components.
 
 ## Schematics
-TODO
+![alt text](image_schematic.svg)
 
-## Bill of Materials(not final yet)
+## Bill of Materials
 | Component | Usage | Price (RON) |
 |-----------|---------|-------------|
-| Raspberry Pi Pico H | Microcontroller | 39.66 |
+| 2 * Raspberry Pi Pico 2 W | Microcontroller | 79.32 |
 | JoyStick Shield V1.A | Input/Controller | 19.99 |
 | OLED display | Visual Output | 23.79 |
-| 400p BreadBoard | Platform | 4.56 |
+| 2 * 400p BreadBoard | Platform | 9.12 |
 | Wires | Wire Connection | 7.99 |
-| **Total** | - | **95.99** |
+| **Total** | - | **140.21** |
 
 ## Software 
 As software used, embassy-rs, embedded-graphics, the 1, 2, 3 labs from PM course.
