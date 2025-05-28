@@ -53,7 +53,7 @@ I purchased a new Raspberry Pi Pico to facilitate hardware debugging and acceler
 ![](IMG.webp)
 
 ### Week 19 - 25 May
-
+I recently purchased a new temperature sensor—the BMP280, commonly used in laboratories—and attempted to use it with a 16x2 LCD display. Unfortunately, there was no existing crate available, but the professor kindly assisted me in creating a custom library for it.
 ## Hardware
 
 Detail in a few words the hardware used.
