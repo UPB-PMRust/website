@@ -10,7 +10,7 @@ A turn based rpg implemeting sensors for various functions on a pico 2w.
 
 ## Description
 
-My project will be a game coded completely in rust designed to run on a Pico 2W with 4 buttons (A, B, Special and Menu), a joystick for navigation, a tft screen, with sensors for special attacks (such as a light sensor or proximity sensor)
+My project will be a game coded completely in rust designed to run on a Pico 2W with 8 buttons (Left, Right, Up, Down, A, B, C and D), Temp Sensor, Accel Sensor.
 
 ## Motivation
 
@@ -20,12 +20,11 @@ I chose this project because I decided to implement a multiple features and util
 
 Raspberry Pi Pico 2W to:
 - RGB_TFT LCD Screen 128x160
-- A, B, Special, Start buttons
+- A, B, C, D buttons
 - Left, Right and Up, Down buttons
 - Buzzer
 - Temperature Sensor
-- Vibration Sensor
-- Touch Sensor
+- Acceleration Sensor
 
 ## Log
 
