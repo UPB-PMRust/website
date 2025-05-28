@@ -1,4 +1,4 @@
-# Project Name
+# Solar Panel
 A rotative solar panel that moves toward the sun.
 
 :::info 
@@ -76,7 +76,7 @@ Sensor for temperature - NTC 100k
 
 ### Schematics 
 ![Scheme](./scheme.webp)
-![Scheme-electric](./scheme-electric.webp)
+![Scheme-electric](./solar.svg)
 
 Place your KiCAD schematics here.
 
