@@ -84,7 +84,7 @@ This is the kicad schematic.
 | Library | Description | Usage |
 |---------|-------------|-------|
 | embassy-executor  | Asynchronous runtime for embedded Rust | Runs the `main()` function as an async task and enables multitasking  |
-| embassy-rp  | Hardware Abstraction Layer (HAL) for Raspberry Pi Pico (RP2040) |Configures PWM (servo), GPIO (button), I²C (LCD), and other peripherals |
+| embassy-rp  | Hardware Abstraction Layer (HAL) for Raspberry Pi Pico 2W |Configures PWM (servo), GPIO (button), I²C (LCD), and other peripherals |
 | embassy-time  | Async timing utilities (timers, delays) | Used for `Timer::after_secs()` and debounce delays |
 | hd44780-driver  | Driver for HD44780 LCD over I²C via PCF8574 expander | Initializes and writes messages to the 1602 LCD |
 | heapless  | Provides stack-allocated types like `String<32>` without heap allocation | Used to build display messages for the LCD without `std` |
@@ -98,7 +98,7 @@ This is the kicad schematic.
 | core::sync::atomic | Low-level atomic types for safe concurrency | Used for AtomicBool to signal a dispense request from the web handler |
 | static_cell | Provides a safe way to statically allocate memory for objects that live forever | Used for persistent socket buffers and stack resources (StaticCell) |
 | core::str | Core string operations (UTF-8 parsing) | Used for interpreting incoming TCP data as a string |
-| embassy_lab_utils | Custom utilities for Wi-Fi and network initialization (probably from your course or lab) | init_wifi!() and init_network_stack() for setting up the access point and network stack |
+| embassy_lab_utils | Custom utilities for Wi-Fi and network initialization | init_wifi!() and init_network_stack() for setting up the access point and network stack |
 | core::write | Required macro support to use write!() in no_std | Formats LCD text and HTTP headers |
 
 
