@@ -26,7 +26,11 @@ I wanted to build a device that measures and processes data that would also be u
 
 ### Week 5 - 11 May
 
+I bought the parts for the project and I soldered the pins for the microcontroller
+
 ### Week 12 - 18 May
+
+I soldered the pins for the sensor and for the LCD screen, built the KiCad schematics and assembled the parts on the breadboard
 
 ### Week 19 - 25 May
 
@@ -35,16 +39,18 @@ I wanted to build a device that measures and processes data that would also be u
 - **Raspberry Pi Pico 2W**: microcontroller
 - **MAX30100**: pulse oximetry and heart rate monitor sensor
 - **PCD8544**: LCD display module
-- **Li-Poly Battery 400mAh**: battery for powering the device
+- **Li-Poly Battery 1Ah**: battery for powering the device
 - **TP4056**: LiPo charger
 - **Buzzers**: for emitting sound warnings
 - **LEDs**: for emitting visual warnings
-- **Button**: for turning the device on and off
 - **Breadboard 830 pct.**: base on which the project is assembled
+
+![Local Image](./hardware1.webp)
+![Local Image](./hardware2.webp)
 
 ### Schematics
 
-_WIP_
+![Local Image](./kicad.svg)
 
 ### Bill of Materials
 
