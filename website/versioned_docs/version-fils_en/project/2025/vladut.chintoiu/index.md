@@ -10,9 +10,9 @@ ScanfM (Scan from Motion): A compact 3D scanning system using motion-based image
 
 ## Description
 
-ScanfM is a hardware-software system designed to bridge the gap between the physical and digital worlds through 3D reconstruction. Using Structure from Motion (SfM), the project utilises an STM32F767ZI microcontroller, an ESP32, and an ESP32-CAM module to capture and transmit a series of precisely angled photographs of a physical object.
+ScanfM is a hardware-software system designed to bridge the gap between the physical and digital worlds through 3D reconstruction. Using Structure from Motion (SfM), the project utilises an STM32F767ZI microcontroller and an ESP32-CAM module to capture and transmit a series of precisely angled photographs of a physical object.
 
-The object is placed on a rotating platform controlled by a servomotor, while a fixed ESP32-CAM module captures images at defined intervals. These images are triggered and ordered by the STM32 board and transmitted wirelessly for processing on a PC, where the 3D model is reconstructed using SfM algorithms. ScanfM enables 3D scanning with a clean separation between data acquisition (on-device) and processing (on-host).
+The object is placed on a rotating platform controlled by a servomotor, while a fixed ESP32-CAM module captures images at defined intervals. These images are triggered and ordered by the STM32 board and transmitted for processing on a PC, where the 3D model is reconstructed using SfM algorithms. ScanfM enables 3D scanning with a clean separation between data acquisition (on-device) and processing (on-host).
 
 ## Motivation
 
