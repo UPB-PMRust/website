@@ -3,7 +3,7 @@ Classic implementation of the minesweeper game where the goal is to reveal all t
 
 :::info 
 
-**Author:** Dobrin David-Andrei
+**Author:** Dobrin David-Andrei \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/proiect-ddavid03dda
 
 :::
