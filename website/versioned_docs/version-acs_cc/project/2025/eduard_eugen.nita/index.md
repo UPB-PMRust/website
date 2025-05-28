@@ -20,7 +20,6 @@ I always wondered what is the best method to sort waste as the public bins are s
 ## Architecture
 
 ![Diagram](images/diagram.svg)
-![Schematic](images/schematic_kicad.svg)
 ![Servos](images/servos.webp)
 ![LCD](images/lcd.webp)
 ![Distance_Sensor](images/distance_sensor.webp)
@@ -44,6 +43,10 @@ Compatiblity problems and new order for camera.
 Testing the assembled components.
 
 ### Week 19 - 25 May
+
+Completed the full wiring and integrated the new camera module. (ESP32-CAM)
+Started the software development, including basic GPIO control and I²C communication with the LCD display.
+Created the cardboard concept of the bin and placed the components inside to test the fit.
 
 ## Hardware
 
@@ -87,7 +90,7 @@ VCC → 3.3V or 5V.
 
 GND → GND.
 
-OUT → GPIO pin on Pico.
+ECHO & TRIG → GPIOs pin on Pico.
 
 ### SG90 Servo Motors
 
@@ -100,7 +103,7 @@ to analyze the data.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Schematic](images/schematic_kicad.svg)
 
 ### Bill of Materials
 
@@ -133,6 +136,7 @@ The format is
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal)  | Hardware abstraction           | Standard interface for controlling peripherals |
 | [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | LCD driver for HD44780 via I²C | Used to display material name on LCD           |
 | [defmt](https://github.com/knurling-rs/defmt)                  | Lightweight debug logging      | Debug output over USB serial                   |
+| [hc-sr04](https://github.com/nordmoen/hc-sr04)                 | Ultrasonic distance sensor     | Measures distance to the object                |
 
 ### AI Classifier (Python, runs on Laptop/PC)
 
