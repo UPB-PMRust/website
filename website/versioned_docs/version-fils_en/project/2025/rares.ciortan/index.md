@@ -54,7 +54,6 @@ The hardware consists of a raspberry pi pico 2W microcontroller as the core unit
 [Jumpers] | Connectivity | in kit
 [Resistors(10K)] | Connectivity | in kit
 [breadboard HQ](https://www.optimusdigital.ro/ro/cautare?controller=search&orderby=position&orderway=desc&search_query=breadboard+400+points&submit_search=) | Connectivity | [5 RON]
-
 TOTAL: 200 RON
 
 ## Software
