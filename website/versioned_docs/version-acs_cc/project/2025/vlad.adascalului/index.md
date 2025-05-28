@@ -89,7 +89,6 @@ The user controls the snake using four tactile push-buttons corresponding to mov
 
 ![Schematic KiCad](kicad_project.svg)
 
-![Schematic KiCad](kicad_project.svg)
 
 ### Bill of Materials
 
