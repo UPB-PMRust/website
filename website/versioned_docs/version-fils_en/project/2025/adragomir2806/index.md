@@ -20,6 +20,7 @@ I’ve always enjoyed music and wanted to combine that interest with what I’ve
 
 ![Schematic diagram](FINALdiagram.webp)
 
+
 **Controller**:  
   Raspberry Pi Pico 2W — handles all logic, reads button inputs, and generates audio output via PWM.
 
@@ -72,6 +73,7 @@ The full circuit is prototyped on a breadboard, allowing for flexible testing an
 
 ![Schematic diagram](FINALkicad.svg)
 
+
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
@@ -98,6 +100,7 @@ The format is
 | [5V Breadboard Power Supply Module](https://howtomechatronics.com/tutorials/electronics/breadboard-power-supply-module/) | Power supply | [4,69 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) |
 | [Ceramic Capacitor 100nF](https://www.circuitbasics.com/what-is-a-capacitor/) | Low-pass filter | [0,69 RON](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/3927-condensator-100-nf50v.html?search_query=condensator+100nF&results=7) |
 | [Capacitor 100uF](https://www.circuitbasics.com/what-is-a-capacitor/) | Power smoothing | [0,99 RON](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/1218-condensator-electrolitic-de-100-uf-la-50-v.html?search_query=condensator&results=160) |
+
 
 
 ## Software
