@@ -4,6 +4,7 @@ An assistant that helps you focus and keep a good posture when working at a desk
 :::info 
 
 **Author**: Voicea David-Alexandru
+
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-VoiceaDavid
 
 :::
