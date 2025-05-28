@@ -185,4 +185,5 @@ The format is
 
 1. [Connect BMP280 to Raspberry Pi Pico/Pico W - Measure Temperature and Atmospheric Pressure](https://www.youtube.com/watch?v=XSfjpErsxfs)
 2. [Raspberry Pi Pico Temperature Controlled](https://www.youtube.com/watch?v=8kfROSQYDWI)
+3. [ClimaControl Youtube Video](https://youtube.com/shorts/8xx2ET8vLQo?feature=share)
 ...
