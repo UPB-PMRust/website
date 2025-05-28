@@ -54,7 +54,6 @@ For the hardware, I use a Raspberry Pi Pico WH for convenience-sake, a breadboar
 
 ![original plan](schematic.webp)
 
-![schematic](kicad.svg)
 
 ### Bill of Materials
 
