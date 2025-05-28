@@ -38,11 +38,32 @@ These components are interconnected to form a closed-loop control system that co
 
 ### Week 5 - 11 May
 
+- Assembled the main part of the project: the moving arm. Created a base so that it is easy to take it off if needed.
+
+![Photo shoud show here](base.webp)
+- Connected the wires and the electrical components.
+- Tested each component using suggested test code.
+- Something went wrong and the motor stoped working. Opened and tested the ESC individually to diagnose the issue. A transistor had burned due to a small piece of solder (manufacturing flaw :/). The ESC could not be repaired.
+
+![Photo shoud show here](esc.webp)
+- Ordered a new 40A ESC to replace the faulty 30A one. Delivery took longer than expected...
+- To safely test the motor, I began using a servo tester. The setup includes only the power source, the ESC, a 1000µF 25V capacitor to filter the current, and the servo tester.
+
+
 ### Week 12 - 18 May
+- Studied PID control theory through documentation and online tutorials.
+- Uploaded rust on ESP32.
+- Attempted to implement a basic PID controller in Rust.
+- Connected the new 40A ESC (yay).
+- Continued testing the system in parts for safety reasons. Due to the high RPM of the motor and the sharp propeller, I am avoiding full assembly until basic control is achieved.
+- Considering 3D printing a support structure for the gyro and maybe the distance sensor as well.
+
+![Photo shoud show here](front.webp)
+
+![Photo shoud show here](sideView-1.webp)
 
 ### Week 19 - 25 May
 
-## Hardware
 
 ## Hardware
 
@@ -72,6 +93,7 @@ The project uses the following hardware components:
 | [GY-521 (MPU6050)](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326) | Gyroscope and accelerometer module | 24.16 RON |
 | [VL53L0X Time-of-Flight Sensor](https://sigmanortec.ro/Modul-VL53L0X-timp-de-zbor-p126182383) | Measures distance to user's hand | 16.76 RON |
 | [ESC 30A](https://sigmanortec.ro/Controller-Motor-ESC-30A-p139673260) | Controls brushless motor | 47.15 RON |
+| [ESC 40A](https://www.electronicmarket.ro/ro/product/controller-motor-40a-esc-2-4s) | Controls brushless motor | 46.10 RON |
 | [Brushless Propeller Set 6045 CW/CCW](https://sigmanortec.ro/Elice-drona-6045-p139673087) | Attached to motor for thrust | 9.84 RON |
 | [Brushless Motor (BLDC)](https://www.emag.ro/motor-brushless-rqiurpn-a2212-kv2200-3-17mm-pentru-drone-diy-22-brushlessmotors/pd/DNJRFSYBM/) | Keeps the hand in needed position. | 45 RON |
 | [5V Fan (Raspberry Pi, 3030)](https://sigmanortec.ro/ventilator-5v-raspberry-pi-02a-3030) | Used as a cooler | 8.04 RON |
@@ -80,8 +102,10 @@ The project uses the following hardware components:
 | [4mm Banana Connector (Male, Red) x3](https://sigmanortec.ro/Conector-Banana-4mm-Rosu-p209905097) | Power cable end | 2.94 RON |
 | [4mm Banana Connector (Male, Black) x3](https://sigmanortec.ro/Conector-Banana-4mm-Negru-p128736095) | Ground cable end | 2.94 RON |
 | [Hinge](physical shop) | Makes the arm mobile. | 8 RON |
+| [Capacitor](physical shop) | Current filter. | 2 RON |
+| [Servo Programmer](https://www.optimusdigital.ro/ro/altele/1162-tester-pentru-servomotoare.html?gad_source=1&gad_campaignid=19615979487&gclid=Cj0KCQjww-HABhCGARIsALLO6XzU0eiPdqvZNTl-pr_RmSFb-neRpErQ2fZkC3viI5TatsqdWgOR0YMaAjd7EALw_wcB) | Testing the motor. | 10 RON |
 
-**Total estimated cost: ~215 RON**
+**Total estimated cost: ~270 RON**
 
 
 ## Software

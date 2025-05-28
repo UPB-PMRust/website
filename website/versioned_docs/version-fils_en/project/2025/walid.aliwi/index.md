@@ -114,7 +114,6 @@ The format is
 | [1.8 inch TFT LCD ST7735](https://cdn-learn.adafruit.com/downloads/pdf/1-8-tft-display.pdf) | LCD Display | [4.42 RON](https://www.aliexpress.com/item/1005006690968351.html?srcSns=sns_WhatsApp&spreadType=socialShare&bizType=ProductDetail&social_params=61107930956&aff_fcid=60f6be70f43f47fd97276124a372c9d8-1747465522772-00738-_EyRvIm2&tt=MG&aff_fsk=_EyRvIm2&aff_platform=default&sk=_EyRvIm2&aff_trace_key=60f6be70f43f47fd97276124a372c9d8-1747465522772-00738-_EyRvIm2&shareId=61107930956&businessType=ProductDetail&platform=AE&terminal_id=7b80dd8a4d4f42518da6116a2d93f65f&afSmartRedirect=y#nav-specification) |
 
 
-
 ## Software
 
 | Library | Description | Usage |
@@ -139,7 +138,7 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [time](https://docs.python.org/3/library/time.html) | This module provides various functions to manipulate time values. | Used to pause the program for 4 seconds between sending each G-code command.
-| [serial](https://pypi.org/project/pyserial/) | Allows communication with devices over a serial port (e.g., USB, UART) | Used to open a connection to the CNC machine via a specified serial port.  
+| [serial](https://pypi.org/project/pyserial/) | Allows communication with devices over a serial port (e.g., USB, UART) | Used to open a connection to the CNC machine via a specified serial port. 
 
 ## Links
 
