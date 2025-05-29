@@ -62,9 +62,21 @@ The project has the following architecture:
 
 ### Week 5 - 11 May
 
+- I completed the project documentation, which included outlining the objectives, listing the required components, and detailing the expected functionalities of the system.
+
+- In parallel, I created an initial schematic using KiCad that includes the necessary components. While this schematic was not yet final, it helped me visualize the overall connections and prepare for the hardware assembly. Additionally, I started setting up the hardware.
+
 ### Week 12 - 18 May
 
+- I finalized the hardware before the scheduled lab meeting. I successfully connected all the components. I carefully checked each connection to ensure that the wiring was correct and that every component was receiving the necessary power and signal. Additionaly, I finalized the schematic design in KiCad.
+
+- After completing the hardware setup, I moved on to the software side of the project. I began writing and testing the code that will control the safe's basic functionalities, such as displaying messages on the LCD screen, controlling the servo motor to open the safe's door and receiving input from the keypad.
+
 ### Week 19 - 25 May
+
+- I completed the implementation of the software functionalities. This included adding RFID card detection and implementing more advanced features such as allowing authorized users to change the PIN code and locking the safe after three incorrect PIN attempts, with the option to unlock it using an authorized RFID card.
+
+- Additionally, I finalized the complete version of the project by assembling all the components into a box to simulate the actual behavior of an electronic safe.
 
 ## Hardware
 
@@ -84,9 +96,17 @@ The project has the following architecture:
 - **Servomotor**:
   Controls the physical locking mechanism of the safe. It rotates to open or lock the door based on access status.
 
+Here are some photos of the final hardware implementation:
+![alt text](Hardware_1.webp)
+![alt text](Hardware_2.webp)
+![alt text](Hardware_3.webp)
+
+This is the final version of the project:
+![alt text](Hardware_4.webp)
+
 ### Schematics
 
-![alt text](Schematic.webp)
+![alt text](Schema_kicad.svg)
 
 ### Bill of materials
 
@@ -114,5 +134,11 @@ The project has the following architecture:
 | [pwm](https://docs.embassy.dev/embassy-nrf/git/nrf52840/pwm/index.html)          | Pulse-width modulation                          | Used for controlling the servo motor and buzzer        |
 | [embassy-executor](https://docs.embassy.dev/embassy-executor/git/std/index.html) | Asynchronous executor for Rust embedded systems | Used for task scheduling and asynchronous programming  |
 | [gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html)   | GPIO manipulation                               | Used for interacting with GPIO pins                    |
+| [ag-lcd](https://github.com/mjhouse/ag-lcd)                                      | Display library                                 | Used for writing to I2C LCD Display                    |
+| [mfrc522](https://crates.io/crates/mfrc522)                                      | RFID communication with MFRC522 module          | Used for detecting and reading RFID cards              |
 
 ## Links
+
+1. [Secure door lock](https://www.youtube.com/watch?v=kGyQS3B1IwU&t=19s)
+2. [Door lock security system](https://www.youtube.com/watch?v=EBEzOQV4kYM)
+3. [RFID door lock system](https://www.youtube.com/watch?v=GOO84CGBPz8)

@@ -1,0 +1,1517 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   aria-roledescription="flowchart-v2"
+   role="graphics-document document"
+   viewBox="0 -4.76837158203125e-7 814.2858276367188 1483.287109375"
+   style="max-width: 1024px; max-height: 768px;"
+   class="flowchart"
+   width="100%"
+   id="export-svg"
+   version="1.1"
+   sodipodi:docname="Editor _ Mermaid Chart-2025-05-26-182129.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <sodipodi:namedview
+     id="namedview81"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <xhtml:style>@import url(&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css&quot;); p {margin: 0;}</xhtml:style>
+  <style
+     id="style1">#export-svg{font-family:arial,sans-serif;font-size:14px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#export-svg .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#export-svg .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#export-svg .error-icon{fill:#ffffff;}#export-svg .error-text{fill:#000000;stroke:#000000;}#export-svg .edge-thickness-normal{stroke-width:1px;}#export-svg .edge-thickness-thick{stroke-width:3.5px;}#export-svg .edge-pattern-solid{stroke-dasharray:0;}#export-svg .edge-thickness-invisible{stroke-width:0;fill:none;}#export-svg .edge-pattern-dashed{stroke-dasharray:3;}#export-svg .edge-pattern-dotted{stroke-dasharray:2;}#export-svg .marker{fill:#000000;stroke:#000000;}#export-svg .marker.cross{stroke:#000000;}#export-svg svg{font-family:arial,sans-serif;font-size:14px;}#export-svg p{margin:0;}#export-svg .label{font-family:arial,sans-serif;color:#333;}#export-svg .cluster-label text{fill:#000000;}#export-svg .cluster-label span{color:#000000;}#export-svg .cluster-label span p{background-color:transparent;}#export-svg .label text,#export-svg span{fill:#333;color:#333;}#export-svg .node rect,#export-svg .node circle,#export-svg .node ellipse,#export-svg .node polygon,#export-svg .node path{fill:#ffffff;stroke:#000000;stroke-width:1px;}#export-svg .rough-node .label text,#export-svg .node .label text,#export-svg .image-shape .label,#export-svg .icon-shape .label{text-anchor:middle;}#export-svg .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#export-svg .rough-node .label,#export-svg .node .label,#export-svg .image-shape .label,#export-svg .icon-shape .label{text-align:center;}#export-svg .node.clickable{cursor:pointer;}#export-svg .root .anchor path{fill:#000000!important;stroke-width:0;stroke:#000000;}#export-svg .arrowheadPath{fill:#000000;}#export-svg .edgePath .path{stroke:#000000;stroke-width:1px;}#export-svg .flowchart-link{stroke:#000000;fill:none;}#export-svg .edgeLabel{background-color:#E9E9F1;text-align:center;}#export-svg .edgeLabel p{background-color:#E9E9F1;}#export-svg .edgeLabel rect{opacity:0.5;background-color:#E9E9F1;fill:#E9E9F1;}#export-svg .labelBkg{background-color:rgba(233, 233, 241, 0.5);}#export-svg .cluster rect{fill:#ffffff;stroke:hsl(0, 0%, 90%);stroke-width:1px;}#export-svg .cluster text{fill:#000000;}#export-svg .cluster span{color:#000000;}#export-svg div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:arial,sans-serif;font-size:12px;background:#ffffff;border:1px solid hsl(0, 0%, 90%);border-radius:2px;pointer-events:none;z-index:100;}#export-svg .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#export-svg rect.text{fill:none;stroke-width:0;}#export-svg .icon-shape,#export-svg .image-shape{background-color:#E9E9F1;text-align:center;}#export-svg .icon-shape p,#export-svg .image-shape p{background-color:#E9E9F1;padding:2px;}#export-svg .icon-shape rect,#export-svg .image-shape rect{opacity:0.5;background-color:#E9E9F1;fill:#E9E9F1;}#export-svg .node .neo-node{stroke:#000000;}#export-svg [data-look=&quot;neo&quot;].node rect,#export-svg [data-look=&quot;neo&quot;].cluster rect,#export-svg [data-look=&quot;neo&quot;].node polygon{stroke:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].node path{stroke:url(#export-svg-gradient);stroke-width:1;}#export-svg [data-look=&quot;neo&quot;].node .outer-path{filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].node .neo-line path{stroke:#000000;filter:none;}#export-svg [data-look=&quot;neo&quot;].node circle{stroke:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].node circle .state-start{fill:#000000;}#export-svg [data-look=&quot;neo&quot;].statediagram-cluster rect{fill:#ffffff;stroke:url(#export-svg-gradient);stroke-width:1;}#export-svg [data-look=&quot;neo&quot;].icon-shape .icon{fill:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg [data-look=&quot;neo&quot;].icon-shape .icon-neo path{stroke:url(#export-svg-gradient);filter:drop-shadow( 0px 1px 2px rgba(0, 0, 0, 0.25));}#export-svg :root{--mermaid-font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;}</style>
+  <g
+     id="g79">
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="10.5"
+       markerUnits="userSpaceOnUse"
+       refY="7"
+       refX="7.75"
+       viewBox="0 0 11.5 14"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-pointEnd">
+      <path
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 0 0 L 11.5 7 L 0 14 z"
+         id="path1" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="11.5"
+       markerUnits="userSpaceOnUse"
+       refY="7"
+       refX="4"
+       viewBox="0 0 11.5 14"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-pointStart">
+      <polygon
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         points="0,7 11.5,14 11.5,0"
+         id="polygon1" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="10.5"
+       markerUnits="userSpaceOnUse"
+       refY="7"
+       refX="11.5"
+       viewBox="0 0 11.5 14"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-pointEnd-margin">
+      <path
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 0 0 L 11.5 7 L 0 14 z"
+         id="path2" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="11.5"
+       markerUnits="userSpaceOnUse"
+       refY="7"
+       refX="1"
+       viewBox="0 0 11.5 14"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-pointStart-margin">
+      <polygon
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         points="0,7 11.5,14 11.5,0"
+         id="polygon2" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="14"
+       markerUnits="userSpaceOnUse"
+       refX="10.75"
+       refY="5"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-circleEnd">
+      <circle
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         r="5"
+         cy="5"
+         cx="5"
+         id="circle2" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="14"
+       markerUnits="userSpaceOnUse"
+       refY="5"
+       refX="0"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-circleStart">
+      <circle
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         r="5"
+         cy="5"
+         cx="5"
+         id="circle3" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="14"
+       markerUnits="userSpaceOnUse"
+       refX="12.25"
+       refY="5"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-circleEnd-margin">
+      <circle
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         r="5"
+         cy="5"
+         cx="5"
+         id="circle4" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="14"
+       markerWidth="14"
+       markerUnits="userSpaceOnUse"
+       refY="5"
+       refX="-2"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="export-svg_flowchart-v2-circleStart-margin">
+      <circle
+         style="stroke-width: 0; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         r="5"
+         cy="5"
+         cx="5"
+         id="circle5" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="12"
+       markerWidth="12"
+       markerUnits="userSpaceOnUse"
+       refY="7.5"
+       refX="17.7"
+       viewBox="0 0 15 15"
+       class="marker cross flowchart-v2"
+       id="export-svg_flowchart-v2-crossEnd">
+      <path
+         style="stroke-width: 2.5;"
+         class="arrowMarkerPath"
+         d="M 1,1 L 14,14 M 1,14 L 14,1"
+         id="path5" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="12"
+       markerWidth="12"
+       markerUnits="userSpaceOnUse"
+       refY="7.5"
+       refX="-3.5"
+       viewBox="0 0 15 15"
+       class="marker cross flowchart-v2"
+       id="export-svg_flowchart-v2-crossStart">
+      <path
+         style="stroke-width: 2.5; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 1,1 L 14,14 M 1,14 L 14,1"
+         id="path6" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="12"
+       markerWidth="12"
+       markerUnits="userSpaceOnUse"
+       refY="7.5"
+       refX="17.7"
+       viewBox="0 0 15 15"
+       class="marker cross flowchart-v2"
+       id="export-svg_flowchart-v2-crossEnd-margin">
+      <path
+         style="stroke-width: 2.5;"
+         class="arrowMarkerPath"
+         d="M 1,1 L 14,14 M 1,14 L 14,1"
+         id="path7" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="12"
+       markerWidth="12"
+       markerUnits="userSpaceOnUse"
+       refY="7.5"
+       refX="-3.5"
+       viewBox="0 0 15 15"
+       class="marker cross flowchart-v2"
+       id="export-svg_flowchart-v2-crossStart-margin">
+      <path
+         style="stroke-width: 2.5; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 1,1 L 14,14 M 1,14 L 14,1"
+         id="path8" />
+    </marker>
+    <g
+       class="root"
+       id="g78">
+      <g
+         class="clusters"
+         id="g12">
+        <g
+           data-look="neo"
+           data-et="cluster"
+           data-id="OUTPUTS"
+           id="OUTPUTS"
+           class="cluster">
+          <rect
+             height="95.0007438659668"
+             width="656.4475212097168"
+             y="1380.2864379882812"
+             x="112.17502784729004"
+             style="fill:#fce4ec !important"
+             id="rect8" />
+          <g
+             transform="translate(406.98175048828125, 1380.2864379882812)"
+             class="cluster-label"
+             id="g8">
+            <foreignObject
+               height="21.000743865966797"
+               width="66.83407592773438">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>OUTPUTS</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           data-look="neo"
+           data-et="cluster"
+           data-id="ACTIONS"
+           id="ACTIONS"
+           class="cluster">
+          <rect
+             height="95.0007438659668"
+             width="571.0156021118164"
+             y="1235.2856941223145"
+             x="235.27026557922363"
+             style="fill:#ffebee !important"
+             id="rect9" />
+          <g
+             transform="translate(489.6861763000488, 1235.2856941223145)"
+             class="cluster-label"
+             id="g9">
+            <foreignObject
+               height="21.000743865966797"
+               width="62.183780670166016">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>ACTIONS</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           data-look="neo"
+           data-et="cluster"
+           data-id="LOGIC"
+           id="LOGIC"
+           class="cluster">
+          <rect
+             height="841.2834739685059"
+             width="595.9491968154907"
+             y="323.0014762878418"
+             x="196.78179740905762"
+             style="fill:#e8f5e8 !important"
+             id="rect10" />
+          <g
+             transform="translate(437.11131143569946, 323.0014762878418)"
+             class="cluster-label"
+             id="g10">
+            <foreignObject
+               height="21.000743865966797"
+               width="115.29016876220703">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>CONTROL LOGIC</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           data-look="neo"
+           data-et="cluster"
+           data-id="MAIN"
+           id="MAIN"
+           class="cluster">
+          <rect
+             height="95.0007438659668"
+             width="459.73082733154297"
+             y="178.000732421875"
+             x="133.53458786010742"
+             style="fill:#f3e5f5 !important"
+             id="rect11" />
+          <g
+             transform="translate(324.5328140258789, 178.000732421875)"
+             class="cluster-label"
+             id="g11">
+            <foreignObject
+               height="21.000743865966797"
+               width="77.734375">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>MAIN LOOP</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+      </g>
+      <g
+         class="edgePaths"
+         id="g13">
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6MzE2LjA4MDM0NTE1MzgwODYsInkiOjIzMy4wNTg5MDI5MjQzNTEwM30seyJ4Ijo1NzMuMjY1NDE1MTkxNjUwNCwieSI6MjczLjAwMTQ3NjI4Nzg0MTh9LHsieCI6NTczLjI2NTQxNTE5MTY1MDQsInkiOjI5OC4wMDE0NzYyODc4NDE4fSx7IngiOjU3My4yNjU0MTUxOTE2NTA0LCJ5IjozMjMuMDAxNDc2Mjg3ODQxOH0seyJ4Ijo1NzMuNzY1NDE1MTkxNjUwMiwieSI6MzQ4LjUwMTQ3NjI4Nzg0MjF9XQ=="
+           data-id="L_LOOP_CHECK1_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 320.37628173828125 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_LOOP_CHECK1_0"
+           d="M316.0803451538086,233.05890292435103L565.6711181960495,271.8220308214067Q573.2654151916504,273.0014762878418 573.2654151916504,280.6868154778638L573.2654151916504,298.0014762878418L573.2654151916504,312.24902554298484Q573.2654151916504,323.0014762878418 573.4762070417814,333.7518606445285L573.6869988919124,344.50224500121516" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NTQxLjgzNjA5NDcyNzcwNDksInkiOjQ2My42NjI5MzAzNjAwMjkxfSx7IngiOjQ5Ny42NTc5MDM2NzEyNjQ2NSwieSI6NTIwLjA5MjI1MDgyMzk3NDZ9LHsieCI6NDk4LjE1NzkwMzY3MTI2NDc2LCJ5Ijo1NDUuNTkyMjUwODIzOTc0Nn1d"
+           data-id="L_CHECK1_CHECK2_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 83.34585571289062 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK1_CHECK2_0"
+           d="M541.8360947277049,463.6629303600291L504.28622716994084,511.62581564631756Q497.65790367126465,520.0922508239746 497.8686955213958,530.8426351806611L498.07948737152697,541.5930195373477" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NDYzLjU1MzkxODg1NDQ4NjU0LCJ5Ijo2ODcuNjM2MzIyMDM3NDY5OH0seyJ4Ijo0MjQuNjU5NzY5MDU4MjI3NTQsInkiOjc0Ni43NDAzMDY4NTQyNDh9LHsieCI6NDI1LjE1OTc2OTA1ODIyNzU0LCJ5Ijo3NzIuMjQwMzA2ODU0MjQ3OX1d"
+           data-id="L_CHECK2_CHECK3_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 82.61749267578125 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK2_CHECK3_0"
+           d="M463.55391885448654,687.6363220374698L430.5705486343431,737.7582201354979Q424.65976905822754,746.740306854248 424.87056090835864,757.4906912109345L425.08135275848974,768.241075567621" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6Mzk4LjE4NDg3NTE1OTI5NTMsInkiOjg5Ni4yODEwMzc5NTUzMTU5fSx7IngiOjM2Mi45NjA3MzkxMzU3NDIyLCJ5Ijo5NTguMjU2MzAzNzg3MjMxNH0seyJ4IjozMzAuNTQ3MDE2NzA1NzczMiwieSI6MTAxOS43NTc3NTc3NDg4NjM4fV0="
+           data-id="L_CHECK3_CHECK4_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 127.80064392089844 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK3_CHECK4_0"
+           d="M398.1848751592953,896.2810379553159L379.14836474837506,929.7749125088302Q362.9607391357422,958.2563037872314 347.68637395075814,987.2377226676781L332.41200876577403,1016.2191415481246" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NjE3LjA3OTQxNTQwNjgyMTksInkiOjQ1Mi4yNzgyNTA2MDg4MDN9LHsieCI6NzE0LjQ1NjI1NDk1OTEwNjQsInkiOjUyMC4wOTIyNTA4MjM5NzQ2fSx7IngiOjcxNC40NTYyNTQ5NTkxMDY0LCJ5Ijo2MzMuNDE2Mjc4ODM5MTExM30seyJ4Ijo3MTQuNDU2MjU0OTU5MTA2NCwieSI6NzQ2Ljc0MDMwNjg1NDI0OH0seyJ4Ijo3MTQuNDU2MjU0OTU5MTA2NCwieSI6ODQ3LjI0ODExOTM1NDI0OH0seyJ4Ijo3MTQuNDU2MjU0OTU5MTA2NCwieSI6OTU4LjI1NjMwMzc4NzIzMTR9LHsieCI6NzE0LjQ1NjI1NDk1OTEwNjQsInkiOjEwNjYuNTIwODEyOTg4MjgxMn0seyJ4Ijo3MTQuNDU2MjU0OTU5MTA2NCwieSI6MTE2NC4yODQ5NTAyNTYzNDc3fSx7IngiOjcxNC40NTYyNTQ5NTkxMDY0LCJ5IjoxMTk5Ljc4NTMyMjE4OTMzMX0seyJ4Ijo3MTQuNDU2MjU0OTU5MTA2NCwieSI6MTIzNS4yODU2OTQxMjIzMTQ1fSx7IngiOjcxNC40NTYyNTQ5NTkxMDY0LCJ5IjoxMjYwLjI4NTY5NDEyMjMxNDV9XQ=="
+           data-id="L_CHECK1_UNLOCK_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 844.2407836914062 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK1_UNLOCK_0"
+           d="M617.0794154068219,452.278250608803L705.5920507364801,513.9191489876006Q714.4562549591064,520.0922508239746 714.4562549591064,530.8941628205922L714.4562549591064,633.4162788391113L714.4562549591064,746.740306854248L714.4562549591064,847.248119354248L714.4562549591064,958.2563037872314L714.4562549591064,1066.5208129882812L714.4562549591064,1164.2849502563477L714.4562549591064,1199.785322189331L714.4562549591064,1235.2856941223145L714.4562549591064,1256.2856941223145" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NTMwLjUzNTQ2NDAwNDM5MzIsInkiOjY4OS44NjI3NDY1MjExMTk2fSx7IngiOjU2My4yNDEyMzE5MTgzMzUsInkiOjc0Ni43NDAzMDY4NTQyNDh9LHsieCI6NTYzLjI0MTIzMTkxODMzNSwieSI6ODQ3LjI0ODExOTM1NDI0OH0seyJ4Ijo1NjMuMjQxMjMxOTE4MzM1LCJ5Ijo5NTguMjU2MzAzNzg3MjMxNH0seyJ4Ijo1NjMuMjQxMjMxOTE4MzM1LCJ5IjoxMDY2LjUyMDgxMjk4ODI4MTJ9LHsieCI6NTYzLjI0MTIzMTkxODMzNSwieSI6MTE2NC4yODQ5NTAyNTYzNDc3fSx7IngiOjU2My4yNDEyMzE5MTgzMzUsInkiOjExOTkuNzg1MzIyMTg5MzMxfSx7IngiOjU2My4yNDEyMzE5MTgzMzUsInkiOjEyMzUuMjg1Njk0MTIyMzE0NX0seyJ4Ijo1NjMuMjQxMjMxOTE4MzM1LCJ5IjoxMjYwLjI4NTY5NDEyMjMxNDV9XQ=="
+           data-id="L_CHECK2_FEED_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 565.2841186523438 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK2_FEED_0"
+           d="M530.5354640043932,689.8627465211196L553.5797139416904,729.9382683553459Q563.241231918335,746.740306854248 563.241231918335,766.1220876633382L563.241231918335,847.248119354248L563.241231918335,958.2563037872314L563.241231918335,1066.5208129882812L563.241231918335,1164.2849502563477L563.241231918335,1199.785322189331L563.241231918335,1235.2856941223145L563.241231918335,1256.2856941223145" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NDMwLjQ0Njc0Njk3MTk2NzM0LCJ5Ijo5MTcuOTY4OTUzOTQwNTA4M30seyJ4Ijo0MzMuMDE3NjU2MzI2MjkzOTUsInkiOjk1OC4yNTYzMDM3ODcyMzE0fSx7IngiOjQzMy4wMTc2NTYzMjYyOTM5NSwieSI6MTA2Ni41MjA4MTI5ODgyODEyfSx7IngiOjQzMy4wMTc2NTYzMjYyOTM5NSwieSI6MTE2NC4yODQ5NTAyNTYzNDc3fSx7IngiOjQzMy4wMTc2NTYzMjYyOTM5NSwieSI6MTE5OS43ODUzMjIxODkzMzF9LHsieCI6NDMzLjAxNzY1NjMyNjI5Mzk1LCJ5IjoxMjM1LjI4NTY5NDEyMjMxNDV9LHsieCI6NDMzLjAxNzY1NjMyNjI5Mzk1LCJ5IjoxMjYwLjI4NTY5NDEyMjMxNDV9XQ=="
+           data-id="L_CHECK3_PAUSE_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 329.385009765625 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK3_PAUSE_0"
+           d="M430.44674697196734,917.9689539405083L431.7322016491306,938.1126288638699Q433.01765632629395,958.2563037872314 433.01765632629395,978.4409522395852L433.01765632629395,1066.5208129882812L433.01765632629395,1164.2849502563477L433.01765632629395,1199.785322189331L433.01765632629395,1235.2856941223145L433.01765632629395,1256.2856941223145" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6MzA1LjA0NTkzNDY3NzEyNDIsInkiOjExMzkuNzg0OTUwMjU2MzQ3N30seyJ4IjozMDQuNTQ1OTM0Njc3MTI0LCJ5IjoxMTY0LjI4NDk1MDI1NjM0Nzd9LHsieCI6MzA0LjU0NTkzNDY3NzEyNCwieSI6MTE5OS43ODUzMjIxODkzMzF9LHsieCI6MzA0LjU0NTkzNDY3NzEyNCwieSI6MTIzNS4yODU2OTQxMjIzMTQ1fSx7IngiOjMwNC41NDU5MzQ2NzcxMjQsInkiOjEyNjAuMjg1Njk0MTIyMzE0NX1d"
+           data-id="L_CHECK4_ALERT_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 107.50498962402344 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK4_ALERT_0"
+           d="M305.0459346771242,1139.7849502563477L304.79593467712414,1152.0349502563477Q304.545934677124,1164.2849502563477 304.545934677124,1176.5375010111904L304.545934677124,1199.785322189331L304.545934677124,1235.2856941223145L304.545934677124,1256.2856941223145" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NzE0LjQ1NjI1NDk1OTEwNjQsInkiOjEzMDUuMjg2NDM3OTg4MjgxMn0seyJ4Ijo3MTQuNDU2MjU0OTU5MTA2NCwieSI6MTMzMC4yODY0Mzc5ODgyODEyfSx7IngiOjcxNC40NTYyNTQ5NTkxMDY0LCJ5IjoxMzU1LjI4NjQzNzk4ODI4MTJ9LHsieCI6NzE0LjQ1NjI1NDk1OTEwNjQsInkiOjEzODAuMjg2NDM3OTg4MjgxMn0seyJ4Ijo2NzkuNjc4MDc4ODcyMDUxNywieSI6MTQwNS4yODY0Mzc5ODgyODEyfV0="
+           data-id="L_UNLOCK_SERVO_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 103.24089050292969 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_UNLOCK_SERVO_0"
+           d="M714.4562549591064,1305.2864379882812L714.4562549591064,1330.2864379882812L714.4562549591064,1355.2864379882812L714.4562549591064,1369.3273599051865Q714.4562549591064,1380.2864379882812 705.5577014441474,1386.6830885002896L682.9259993440066,1402.951697615594" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NTYzLjI0MTIzMTkxODMzNSwieSI6MTMwNS4yODY0Mzc5ODgyODEyfSx7IngiOjU2My4yNDEyMzE5MTgzMzUsInkiOjEzMzAuMjg2NDM3OTg4MjgxMn0seyJ4Ijo1NjMuMjQxMjMxOTE4MzM1LCJ5IjoxMzU1LjI4NjQzNzk4ODI4MTJ9LHsieCI6NTYzLjI0MTIzMTkxODMzNSwieSI6MTM4MC4yODY0Mzc5ODgyODEyfSx7IngiOjYxNC4xMDE1MzM4ODk3NzA1LCJ5IjoxNDA4LjY2MzIwMDgyOTIxMzh9XQ=="
+           data-id="L_FEED_SERVO_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 118.45555114746094 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_FEED_SERVO_0"
+           d="M563.241231918335,1305.2864379882812L563.241231918335,1330.2864379882812L563.241231918335,1355.2864379882812L563.241231918335,1370.4117406102143Q563.241231918335,1380.2864379882812 571.8645440121376,1385.097689056484L610.6084396657567,1406.714279911844" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6NDMzLjAxNzY1NjMyNjI5Mzk1LCJ5IjoxMzA1LjI4NjQzNzk4ODI4MTJ9LHsieCI6NDMzLjAxNzY1NjMyNjI5Mzk1LCJ5IjoxMzMwLjI4NjQzNzk4ODI4MTJ9LHsieCI6NDMzLjAxNzY1NjMyNjI5Mzk1LCJ5IjoxMzU1LjI4NjQzNzk4ODI4MTJ9LHsieCI6NDMzLjAxNzY1NjMyNjI5Mzk1LCJ5IjoxMzgwLjI4NjQzNzk4ODI4MTJ9LHsieCI6NDAwLjMxNjA0MTYxNzczOTUzLCJ5IjoxNDA1LjI4NjQzNzk4ODI4MTJ9XQ=="
+           data-id="L_PAUSE_BUZZER_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 101.62272644042969 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_PAUSE_BUZZER_0"
+           d="M433.01765632629395,1305.2864379882812L433.01765632629395,1330.2864379882812L433.01765632629395,1355.2864379882812L433.01765632629395,1369.0020704126694Q433.01765632629395,1380.2864379882812 424.05288917773413,1387.139897082317L403.49380664125215,1402.8570739860495" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6MzA0LjU0NTkzNDY3NzEyNCwieSI6MTMwNS4yODY0Mzc5ODgyODEyfSx7IngiOjMwNC41NDU5MzQ2NzcxMjQsInkiOjEzMzAuMjg2NDM3OTg4MjgxMn0seyJ4IjozMDQuNTQ1OTM0Njc3MTI0LCJ5IjoxMzU1LjI4NjQzNzk4ODI4MTJ9LHsieCI6MzA0LjU0NTkzNDY3NzEyNCwieSI6MTM4MC4yODY0Mzc5ODgyODEyfSx7IngiOjMzOS40NjA0ODYxMjc0NTA1LCJ5IjoxNDA1LjI4NjQzNzk4ODI4MTJ9XQ=="
+           data-id="L_ALERT_BUZZER_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 103.34858703613281 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_ALERT_BUZZER_0"
+           d="M304.545934677124,1305.2864379882812L304.545934677124,1330.2864379882812L304.545934677124,1355.2864379882812L304.545934677124,1369.3471301151828Q304.545934677124,1380.2864379882812 313.4402557644033,1386.6550727822391L336.20824341138183,1402.9577221799916" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6MjI0LjQ4Mzk4MTMwNjE0MTksInkiOjI0OC4wMDE0NzYyODc4NDE4fSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MjczLjAwMTQ3NjI4Nzg0MTh9LHsieCI6MTc2Ljc4MTc5NzQwOTA1NzYyLCJ5IjoyOTguMDAxNDc2Mjg3ODQxOH0seyJ4IjoxNzYuNzgxNzk3NDA5MDU3NjIsInkiOjMyMy4wMDE0NzYyODc4NDE4fSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6NDIxLjU0Njg2MzU1NTkwODJ9LHsieCI6MTc2Ljc4MTc5NzQwOTA1NzYyLCJ5Ijo1MjAuMDkyMjUwODIzOTc0Nn0seyJ4IjoxNzYuNzgxNzk3NDA5MDU3NjIsInkiOjYzMy40MTYyNzg4MzkxMTEzfSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6NzQ2Ljc0MDMwNjg1NDI0OH0seyJ4IjoxNzYuNzgxNzk3NDA5MDU3NjIsInkiOjg0Ny4yNDgxMTkzNTQyNDh9LHsieCI6MTc2Ljc4MTc5NzQwOTA1NzYyLCJ5Ijo5NTguMjU2MzAzNzg3MjMxNH0seyJ4IjoxNzYuNzgxNzk3NDA5MDU3NjIsInkiOjEwNjYuNTIwODEyOTg4MjgxMn0seyJ4IjoxNzYuNzgxNzk3NDA5MDU3NjIsInkiOjExNjQuMjg0OTUwMjU2MzQ3N30seyJ4IjoxNzYuNzgxNzk3NDA5MDU3NjIsInkiOjExOTkuNzg1MzIyMTg5MzMxfSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MTIzNS4yODU2OTQxMjIzMTQ1fSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MTI4Mi43ODYwNjYwNTUyOTc5fSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MTMzMC4yODY0Mzc5ODgyODEyfSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MTM1NS4yODY0Mzc5ODgyODEyfSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MTM4MC4yODY0Mzc5ODgyODEyfSx7IngiOjE3Ni43ODE3OTc0MDkwNTc2MiwieSI6MTQwNS4yODY0Mzc5ODgyODEyfV0="
+           data-id="L_LOOP_LED_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 1171.31103515625 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_LOOP_LED_0"
+           d="M224.4839813061419,248.0014762878418L185.3380771561778,268.5172582457601Q176.78179740905762,273.0014762878418 176.78179740905762,282.6616074753521L176.78179740905762,298.0014762878418L176.78179740905762,323.0014762878418L176.78179740905762,421.5468635559082L176.78179740905762,520.0922508239746L176.78179740905762,633.4162788391113L176.78179740905762,746.740306854248L176.78179740905762,847.248119354248L176.78179740905762,958.2563037872314L176.78179740905762,1066.5208129882812L176.78179740905762,1164.2849502563477L176.78179740905762,1199.785322189331L176.78179740905762,1235.2856941223145L176.78179740905762,1282.7860660552979L176.78179740905762,1330.2864379882812L176.78179740905762,1355.2864379882812L176.78179740905762,1380.2864379882812L176.78179740905762,1401.2864379882812" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6Mjg2LjQ2NDEyMzU2Mjc2ODcsInkiOjEwMTIuODM4NDg2ODM0NTcwM30seyJ4IjoyNjcuNDE2NjU2NDk0MTQwNiwieSI6OTU4LjI1NjMwMzc4NzIzMTR9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjg0Ny4yNDgxMTkzNTQyNDh9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjc0Ni43NDAzMDY4NTQyNDh9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjYzMy40MTYyNzg4MzkxMTEzfSx7IngiOjI2Ny40MTY2NTY0OTQxNDA2LCJ5Ijo1MjAuMDkyMjUwODIzOTc0Nn0seyJ4IjoyNjcuNDE2NjU2NDk0MTQwNiwieSI6NDIxLjU0Njg2MzU1NTkwODJ9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjMyMy4wMDE0NzYyODc4NDE4fSx7IngiOjI2Ny40MTY2NTY0OTQxNDA2LCJ5IjoyOTguMDAxNDc2Mjg3ODQxOH0seyJ4IjoyNjcuNDE2NjU2NDk0MTQwNiwieSI6MjczLjAwMTQ3NjI4Nzg0MTh9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjI0OC4wMDE0NzYyODc4NDE4fV0="
+           data-id="L_CHECK4_LOOP_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 754.5240478515625 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_CHECK4_LOOP_0"
+           d="M286.4641235627687,1012.8384868345703L276.94039002845466,985.5473953109008Q267.4166564941406,958.2563037872314 267.4166564941406,929.3511973700961L267.4166564941406,847.248119354248L267.4166564941406,746.740306854248L267.4166564941406,633.4162788391113L267.4166564941406,520.0922508239746L267.4166564941406,421.5468635559082L267.4166564941406,323.0014762878418L267.4166564941406,298.0014762878418L267.4166564941406,273.0014762878418L267.4166564941406,252.0014762878418" />
+        <path
+           marker-end="url(#export-svg_flowchart-v2-pointEnd-margin)"
+           data-points="W3sieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjEyOC4wMDA3MzI0MjE4NzV9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjE1My4wMDA3MzI0MjE4NzV9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjE3OC4wMDA3MzI0MjE4NzV9LHsieCI6MjY3LjQxNjY1NjQ5NDE0MDYsInkiOjIwMy4wMDA3MzI0MjE4NzV9XQ=="
+           data-id="L_INPUTS_LOOP_0"
+           data-et="edge"
+           data-edge="true"
+           style="stroke-dasharray: 0 0 62 9; stroke-dashoffset: 0;;"
+           class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+           id="L_INPUTS_LOOP_0"
+           d="M267.4166564941406,128.000732421875L267.4166564941406,153.000732421875L267.4166564941406,178.000732421875L267.4166564941406,199.000732421875" />
+      </g>
+      <g
+         class="edgeLabels"
+         id="g44">
+        <g
+           class="edgeLabel"
+           id="g15">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_LOOP_CHECK1_0"
+             class="label"
+             id="g14">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g17">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_CHECK1_CHECK2_0"
+             class="label"
+             id="g16">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g19">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_CHECK2_CHECK3_0"
+             class="label"
+             id="g18">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g21">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_CHECK3_CHECK4_0"
+             class="label"
+             id="g20">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(714.4562549591064, 847.248119354248)"
+           class="edgeLabel"
+           id="g23">
+          <g
+             transform="translate(-8.947172164916992, -10.500371932983398)"
+             data-id="L_CHECK1_UNLOCK_0"
+             class="label"
+             id="g22">
+            <foreignObject
+               height="21.000743865966797"
+               width="17.894344329833984">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel">
+                  <xhtml:p>Da</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(563.241231918335, 958.2563037872314)"
+           class="edgeLabel"
+           id="g25">
+          <g
+             transform="translate(-8.947172164916992, -10.500371932983398)"
+             data-id="L_CHECK2_FEED_0"
+             class="label"
+             id="g24">
+            <foreignObject
+               height="21.000743865966797"
+               width="17.894344329833984">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel">
+                  <xhtml:p>Da</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(433.01765632629395, 1066.5208129882812)"
+           class="edgeLabel"
+           id="g27">
+          <g
+             transform="translate(-8.947172164916992, -10.500371932983398)"
+             data-id="L_CHECK3_PAUSE_0"
+             class="label"
+             id="g26">
+            <foreignObject
+               height="21.000743865966797"
+               width="17.894344329833984">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel">
+                  <xhtml:p>Da</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(304.545934677124, 1199.785322189331)"
+           class="edgeLabel"
+           id="g29">
+          <g
+             transform="translate(-8.947172164916992, -10.500371932983398)"
+             data-id="L_CHECK4_ALERT_0"
+             class="label"
+             id="g28">
+            <foreignObject
+               height="21.000743865966797"
+               width="17.894344329833984">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel">
+                  <xhtml:p>Da</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g31">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_UNLOCK_SERVO_0"
+             class="label"
+             id="g30">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g33">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_FEED_SERVO_0"
+             class="label"
+             id="g32">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g35">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_PAUSE_BUZZER_0"
+             class="label"
+             id="g34">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g37">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_ALERT_BUZZER_0"
+             class="label"
+             id="g36">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g39">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_LOOP_LED_0"
+             class="label"
+             id="g38">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g41">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_CHECK4_LOOP_0"
+             class="label"
+             id="g40">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           class="edgeLabel"
+           id="g43">
+          <g
+             transform="translate(0, 0)"
+             data-id="L_INPUTS_LOOP_0"
+             class="label"
+             id="g42">
+            <foreignObject
+               height="0"
+               width="0">
+              <xhtml:div
+                 class="labelBkg"
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="edgeLabel" />
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+      </g>
+      <g
+         class="nodes"
+         id="g77">
+        <g
+           transform="translate(0, 0)"
+           class="root"
+           id="g57">
+          <g
+             class="clusters"
+             id="g46">
+            <g
+               data-look="neo"
+               data-et="cluster"
+               data-id="INPUTS"
+               id="INPUTS"
+               class="cluster">
+              <rect
+                 height="120.0007438659668"
+                 width="518.8333015441895"
+                 y="8"
+                 x="8"
+                 style="fill:#e3f2fd !important"
+                 id="rect44" />
+              <g
+                 transform="translate(241.76561164855957, 8)"
+                 class="cluster-label"
+                 id="g45">
+                <foreignObject
+                   height="21.000743865966797"
+                   width="51.30207824707031">
+                  <xhtml:div
+                     style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <xhtml:span
+                       class="nodeLabel">
+                      <xhtml:p>INPUTS</xhtml:p>
+                    </xhtml:span>
+                  </xhtml:div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+          <g
+             class="edgePaths"
+             id="g47" />
+          <g
+             class="edgeLabels"
+             id="g48" />
+          <g
+             class="nodes"
+             id="g56">
+            <g
+               transform="translate(77.28496932983398, 68.0003719329834)"
+               data-look="neo"
+               data-et="node"
+               data-node="true"
+               data-id="BTN"
+               id="flowchart-BTN-0"
+               class="node default">
+              <rect
+                 stroke="url(#gradient)"
+                 height="45.0007438659668"
+                 width="68.56993865966797"
+                 y="-22.5003719329834"
+                 x="-34.284969329833984"
+                 data-id="BTN"
+                 style=""
+                 class="basic label-container"
+                 id="rect48" />
+              <g
+                 transform="translate(-18.284969329833984, -10.500371932983398)"
+                 style=""
+                 class="label"
+                 id="g49">
+                <rect
+                   id="rect49" />
+                <foreignObject
+                   height="21.000743865966797"
+                   width="36.56993865966797">
+                  <xhtml:div
+                     style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <xhtml:span
+                       class="nodeLabel">
+                      <xhtml:p>Buton</xhtml:p>
+                    </xhtml:span>
+                  </xhtml:div>
+                </foreignObject>
+              </g>
+            </g>
+            <g
+               transform="translate(191.81844902038574, 68.0003719329834)"
+               data-look="neo"
+               data-et="node"
+               data-node="true"
+               data-id="RTC"
+               id="flowchart-RTC-1"
+               class="node default">
+              <rect
+                 stroke="url(#gradient)"
+                 height="45.0007438659668"
+                 width="60.49702072143555"
+                 y="-22.5003719329834"
+                 x="-30.248510360717773"
+                 data-id="RTC"
+                 style=""
+                 class="basic label-container"
+                 id="rect50" />
+              <g
+                 transform="translate(-14.248510360717773, -10.500371932983398)"
+                 style=""
+                 class="label"
+                 id="g51">
+                <rect
+                   id="rect51" />
+                <foreignObject
+                   height="21.000743865966797"
+                   width="28.497020721435547">
+                  <xhtml:div
+                     style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <xhtml:span
+                       class="nodeLabel">
+                      <xhtml:p>RTC</xhtml:p>
+                    </xhtml:span>
+                  </xhtml:div>
+                </foreignObject>
+              </g>
+            </g>
+            <g
+               transform="translate(315.289794921875, 68.0003719329834)"
+               data-look="neo"
+               data-et="node"
+               data-node="true"
+               data-id="WEIGHT"
+               id="flowchart-WEIGHT-2"
+               class="node default">
+              <rect
+                 stroke="url(#gradient)"
+                 height="45.0007438659668"
+                 width="86.4456787109375"
+                 y="-22.5003719329834"
+                 x="-43.22283935546875"
+                 data-id="WEIGHT"
+                 style=""
+                 class="basic label-container"
+                 id="rect52" />
+              <g
+                 transform="translate(-27.22283935546875, -10.500371932983398)"
+                 style=""
+                 class="label"
+                 id="g53">
+                <rect
+                   id="rect53" />
+                <foreignObject
+                   height="21.000743865966797"
+                   width="54.4456787109375">
+                  <xhtml:div
+                     style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <xhtml:span
+                       class="nodeLabel">
+                      <xhtml:p>Greutate</xhtml:p>
+                    </xhtml:span>
+                  </xhtml:div>
+                </foreignObject>
+              </g>
+            </g>
+            <g
+               transform="translate(450.17296600341797, 68.0003719329834)"
+               data-look="neo"
+               data-et="node"
+               data-node="true"
+               data-id="DIST"
+               id="flowchart-DIST-3"
+               class="node default">
+              <rect
+                 stroke="url(#gradient)"
+                 height="45.0007438659668"
+                 width="83.3206787109375"
+                 y="-22.5003719329834"
+                 x="-41.66033935546875"
+                 data-id="DIST"
+                 style=""
+                 class="basic label-container"
+                 id="rect54" />
+              <g
+                 transform="translate(-25.66033935546875, -10.500371932983398)"
+                 style=""
+                 class="label"
+                 id="g55">
+                <rect
+                   id="rect55" />
+                <foreignObject
+                   height="21.000743865966797"
+                   width="51.3206787109375">
+                  <xhtml:div
+                     style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                    <xhtml:span
+                       class="nodeLabel">
+                      <xhtml:p>Distanță</xhtml:p>
+                    </xhtml:span>
+                  </xhtml:div>
+                </foreignObject>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g
+           transform="translate(267.4166564941406, 225.5011043548584)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="LOOP"
+           id="flowchart-LOOP-4"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="97.32737731933594"
+             y="-22.5003719329834"
+             x="-48.66368865966797"
+             data-id="LOOP"
+             style=""
+             class="basic label-container"
+             id="rect57" />
+          <g
+             transform="translate(-32.66368865966797, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g58">
+            <rect
+               id="rect58" />
+            <foreignObject
+               height="21.000743865966797"
+               width="65.32737731933594">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Main Loop</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(573.2654151916504, 421.5468635559082)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="CHECK1"
+           id="flowchart-CHECK1-5"
+           class="node default">
+          <polygon
+             transform="translate(-73.5453872680664,73.5453872680664)"
+             class="label-container"
+             points="73.5453872680664,0 147.0907745361328,-73.5453872680664 73.5453872680664,-147.0907745361328 0,-73.5453872680664"
+             id="polygon58" />
+          <g
+             transform="translate(-43.545387268066406, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g59">
+            <rect
+               id="rect59" />
+            <foreignObject
+               height="21.000743865966797"
+               width="87.09077453613281">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Servo Blocat?</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(497.65790367126465, 633.4162788391113)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="CHECK2"
+           id="flowchart-CHECK2-6"
+           class="node default">
+          <polygon
+             transform="translate(-88.32402801513672,88.32402801513672)"
+             class="label-container"
+             points="88.32402801513672,0 176.64805603027344,-88.32402801513672 88.32402801513672,-176.64805603027344 0,-88.32402801513672"
+             id="polygon59" />
+          <g
+             transform="translate(-58.32402801513672, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g60">
+            <rect
+               id="rect60" />
+            <foreignObject
+               height="21.000743865966797"
+               width="116.64805603027344">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Greutate Scăzută?</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(424.65976905822754, 847.248119354248)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="CHECK3"
+           id="flowchart-CHECK3-7"
+           class="node default">
+          <polygon
+             transform="translate(-75.5078125,75.5078125)"
+             class="label-container"
+             points="75.5078125,0 151.015625,-75.5078125 75.5078125,-151.015625 0,-75.5078125"
+             id="polygon60" />
+          <g
+             transform="translate(-45.5078125, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g61">
+            <rect
+               id="rect61" />
+            <foreignObject
+               height="21.000743865966797"
+               width="91.015625">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Buton Apăsat?</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(304.545934677124, 1066.5208129882812)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="CHECK4"
+           id="flowchart-CHECK4-8"
+           class="node default">
+          <polygon
+             transform="translate(-72.7641372680664,72.7641372680664)"
+             class="label-container"
+             points="72.7641372680664,0 145.5282745361328,-72.7641372680664 72.7641372680664,-145.5282745361328 0,-72.7641372680664"
+             id="polygon61" />
+          <g
+             transform="translate(-42.764137268066406, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g62">
+            <rect
+               id="rect62" />
+            <foreignObject
+               height="21.000743865966797"
+               width="85.52827453613281">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Nivel Scăzut?</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(714.4562549591064, 1282.7860660552979)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="UNLOCK"
+           id="flowchart-UNLOCK-9"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="113.65922546386719"
+             y="-22.5003719329834"
+             x="-56.829612731933594"
+             data-id="UNLOCK"
+             style=""
+             class="basic label-container"
+             id="rect63" />
+          <g
+             transform="translate(-40.829612731933594, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g64">
+            <rect
+               id="rect64" />
+            <foreignObject
+               height="21.000743865966797"
+               width="81.65922546386719">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Deblochează</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(563.241231918335, 1282.7860660552979)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="FEED"
+           id="flowchart-FEED-10"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="88.77082824707031"
+             y="-22.5003719329834"
+             x="-44.385414123535156"
+             data-id="FEED"
+             style=""
+             class="basic label-container"
+             id="rect65" />
+          <g
+             transform="translate(-28.385414123535156, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g66">
+            <rect
+               id="rect66" />
+            <foreignObject
+               height="21.000743865966797"
+               width="56.77082824707031">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Hrănește</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(433.01765632629395, 1282.7860660552979)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="PAUSE"
+           id="flowchart-PAUSE-11"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="71.67633438110352"
+             y="-22.5003719329834"
+             x="-35.83816719055176"
+             data-id="PAUSE"
+             style=""
+             class="basic label-container"
+             id="rect67" />
+          <g
+             transform="translate(-19.838167190551758, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g68">
+            <rect
+               id="rect68" />
+            <foreignObject
+               height="21.000743865966797"
+               width="39.676334381103516">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Pauză</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(304.545934677124, 1282.7860660552979)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="ALERT"
+           id="flowchart-ALERT-12"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="68.55133819580078"
+             y="-22.5003719329834"
+             x="-34.27566909790039"
+             data-id="ALERT"
+             style=""
+             class="basic label-container"
+             id="rect69" />
+          <g
+             transform="translate(-18.27566909790039, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g70">
+            <rect
+               id="rect70" />
+            <foreignObject
+               height="21.000743865966797"
+               width="36.55133819580078">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Alertă</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(176.78179740905762, 1427.7868099212646)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="LED"
+           id="flowchart-LED-13"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="59.213539123535156"
+             y="-22.5003719329834"
+             x="-29.606769561767578"
+             data-id="LED"
+             style=""
+             class="basic label-container"
+             id="rect71" />
+          <g
+             transform="translate(-13.606769561767578, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g72">
+            <rect
+               id="rect72" />
+            <foreignObject
+               height="21.000743865966797"
+               width="27.213539123535156">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>LED</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(370.8841018676758, 1427.7868099212646)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="BUZZER"
+           id="flowchart-BUZZER-14"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="75.5453872680664"
+             y="-22.5003719329834"
+             x="-37.7726936340332"
+             data-id="BUZZER"
+             style=""
+             class="basic label-container"
+             id="rect73" />
+          <g
+             transform="translate(-21.772693634033203, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g74">
+            <rect
+               id="rect74" />
+            <foreignObject
+               height="21.000743865966797"
+               width="43.545387268066406">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Buzzer</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+        <g
+           transform="translate(648.3772029876709, 1427.7868099212646)"
+           data-look="neo"
+           data-et="node"
+           data-node="true"
+           data-id="SERVO"
+           id="flowchart-SERVO-15"
+           class="node default">
+          <rect
+             stroke="url(#gradient)"
+             height="45.0007438659668"
+             width="68.55133819580078"
+             y="-22.5003719329834"
+             x="-34.27566909790039"
+             data-id="SERVO"
+             style=""
+             class="basic label-container"
+             id="rect75" />
+          <g
+             transform="translate(-18.27566909790039, -10.500371932983398)"
+             style=""
+             class="label"
+             id="g76">
+            <rect
+               id="rect76" />
+            <foreignObject
+               height="21.000743865966797"
+               width="36.55133819580078">
+              <xhtml:div
+                 style="display: table-cell; white-space: normal; line-height: 1.5; max-width: 200px; text-align: center;">
+                <xhtml:span
+                   class="nodeLabel">
+                  <xhtml:p>Servo</xhtml:p>
+                </xhtml:span>
+              </xhtml:div>
+            </foreignObject>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <defs
+     id="defs79">
+    <filter
+       width="130%"
+       height="130%"
+       id="drop-shadow">
+      <feDropShadow
+         flood-color="#000000"
+         flood-opacity="0.06"
+         stdDeviation="0"
+         dy="4"
+         dx="4" />
+    </filter>
+  </defs>
+  <defs
+     id="defs80">
+    <filter
+       width="150%"
+       height="150%"
+       id="drop-shadow-small">
+      <feDropShadow
+         flood-color="#000000"
+         flood-opacity="0.06"
+         stdDeviation="0"
+         dy="2"
+         dx="2" />
+    </filter>
+  </defs>
+  <linearGradient
+     y2="0%"
+     x2="100%"
+     y1="0%"
+     x1="0%"
+     gradientUnits="objectBoundingBox"
+     id="export-svg-gradient">
+    <stop
+       stop-opacity="1"
+       stop-color="#0042eb"
+       offset="0%"
+       id="stop80" />
+    <stop
+       stop-opacity="1"
+       stop-color="#eb0042"
+       offset="100%"
+       id="stop81" />
+  </linearGradient>
+</svg>

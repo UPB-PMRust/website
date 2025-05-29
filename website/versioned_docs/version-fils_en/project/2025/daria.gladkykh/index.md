@@ -59,27 +59,34 @@ I now plan to incorporate binary clocks (using LEDs), a buzzer for periodic remi
 The equalizer has been tested with one audio track and is currently displaying frequency bands accurately. I aim to expand this to support around five compositions, broadening the use case of my Smart Station prototype and enhancing the user experience.
 
 ### Week 19 - 25 May
-What I plan to do :
+What I have done:
+- Changed the display configuration with .command(Command::MemoryAccessControl, &[0x64]) to fix the mirroring issue.
 
-- Finalize playback interaction logic using joystick and buttons.
+- Finalized playback interaction logic using joystick and buttons.
 
-- Add buzzer functionality with RTC-based scheduling (e.g., every 45 minutes as a reminder).
+- Added buzzer functionality with RTC-based scheduling (e.g., every 60 minutes as a reminder).
 
-- Implement binary clock using LEDs.
+- Implemented binary clock using LEDs.
 
-- Optimize OLED equalizer display and test with multiple tracks.
+- Optimized OLED equalizer display and added the digital and numerical translation for the binary clocks from board.
 
-- Integrate and test joystick/button controls for volume and track navigation.
+- Integrated and tested joystick/button controls for volume and track navigation.
+
+- Completed the website's simple logic and stored all MP3 files there.
+
+- Unified all separate tasks into a single main.rs file, managing asynchronous work in Rust.
+
+- Created the final look of the Smart Station prototype, ready for real-life testing.
 
 ## Hardware
 
 The Smart Station uses a Raspberry Pi Pico W, OLED , light sensor, RGB LED, and RTC module for a responsive music control system.
 
-![Sample of how all will be connected](hardware_ph.webp)
+![Sample of how everything is connected](hardware_ph.webp)
 
 ### Schematics
 
-![KiCAD schematics](ElectricScheme.webp)
+![KiCAD schematics](ElectricScheme.svg)
 
 ### Bill of Materials
 
@@ -106,6 +113,43 @@ The Smart Station uses a Raspberry Pi Pico W, OLED , light sensor, RGB LED, and 
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Draws UI elements on OLED |
 | [rppal](https://github.com/golemparts/rppal) | Raspberry Pi Peripheral Access | GPIO and sensor communication |
 | [cortex-m-rt](https://github.com/rust-embedded/cortex-m-rt) | ARM Cortex-M runtime | Interrupt handling and scheduling |
+| [embassy-lab-utils](https://github.com/embassy-rs/embassy) | Custom utility library | Project-specific utilities |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Embedded HAL for Embassy | Async interfaces for peripherals |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives | Async task coordination |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for Embassy | Task scheduling and execution |
+| [embassy-futures](https://github.com/embassy-rs/embassy) | Future utilities for Embassy | Async operation support |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time management for Embassy | Precise timing for async tasks |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | RP2350-specific HAL | Low-level RP2350 peripheral access |
+| [embassy-usb](https://github.com/embassy-rs/embassy) | USB device support | USB communication for playback |
+| [embassy-net](https://github.com/embassy-rs/embassy) | Network stack | Network connectivity for WiFi |
+| [embassy-net-wiznet](https://github.com/embassy-rs/embassy) | Wiznet network driver | Ethernet support for networking |
+| [embassy-usb-logger](https://github.com/embassy-rs/embassy) | USB logging utility | Debugging over USB |
+| [log](https://crates.io/crates/log) | Logging facade | General logging support |
+| [cyw43](https://github.com/embassy-rs/embassy) | WiFi chip driver | WiFi functionality for Pico W |
+| [cyw43-pio](https://github.com/embassy-rs/embassy) | PIO-based WiFi driver | Low-level WiFi communication |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient logging for embedded | Lightweight debug logging |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT backend for defmt | Real-time debug output |
+| [fixed](https://crates.io/crates/fixed) | Fixed-point arithmetic | Precise calculations |
+| [fixed-macro](https://crates.io/crates/fixed-macro) | Macros for fixed-point | Simplified fixed-point operations |
+| [serde](https://serde.rs/) | Serialization/deserialization | Data handling for configuration |
+| [serde-json-core](https://crates.io/crates/serde-json-core) | JSON serialization | Compact JSON processing |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler for probe-run | Error handling for debugging |
+| [display-interface](https://crates.io/crates/display-interface) | Display interface abstraction | Generic display communication |
+| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI display interface | SPI-based display communication |
+| [mipidsi](https://crates.io/crates/mipidsi) | Generic TFT display driver | TFT display support |
+| [heapless](https://crates.io/crates/heapless) | Heapless allocator | Static memory allocation |
+| [embedded-hal-1](https://crates.io/crates/embedded-hal-1) | Blocking embedded HAL | Blocking peripheral interfaces |
+| [embedded-hal-async](https://crates.io/crates/embedded-hal-async) | Async embedded HAL | Async peripheral interfaces |
+| [embedded-hal-bus](https://crates.io/crates/embedded-hal-bus) | Bus sharing utilities | SPI/I2C bus sharing |
+| [embedded-io-async](https://crates.io/crates/embedded-io-async) | Async IO traits | Async IO operations |
+| [static_cell](https://crates.io/crates/static_cell) | Static cell for runtime init | Safe static initialization |
+| [embedded-storage](https://crates.io/crates/embedded-storage) | Non-volatile storage traits | Storage access |
+| [rand](https://crates.io/crates/rand) | Random number generators | Random number generation |
+| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | FAT filesystem for SD cards | SD card file access |
+| [byte-slice-cast](https://crates.io/crates/byte-slice-cast) | Safe byte slice casting | Type conversions |
+| [itoa](https://crates.io/crates/itoa) | Integer to string conversion | String formatting |
+| [micromath](https://crates.io/crates/micromath) | Lightweight math utilities | Math operations |
+| [ili9341](https://crates.io/crates/ili9341) | ILI9341 display driver | TFT display rendering |
 
 ## Links
 
@@ -113,4 +157,10 @@ The Smart Station uses a Raspberry Pi Pico W, OLED , light sensor, RGB LED, and 
 2. [Raspberry Pi Pico W Documentation](https://www.raspberrypi.com/documentation/microcontrollers/) - Official Pico W reference.
 3. [Embedded Graphics Documentation](https://docs.rs/embedded-graphics/) - Resource for UI rendering.
 4. [Probe-rs](https://probe.rs/) - Tooling for flashing and debugging Rust firmware.
-
+5. [Embassy-rs](https://github.com/embassy-rs/embassy) - Async runtime and drivers for embedded Rust.
+6. [Defmt](https://github.com/knurling-rs/defmt) - Efficient logging framework for embedded systems.
+7. [ILI9341-rs](https://crates.io/crates/ili9341) - Custom ILI9341 display driver.
+8. [Serde](https://serde.rs/) - Serialization/deserialization framework.
+9. [Rand](https://crates.io/crates/rand) - Random number generation library.
+10. [Embedded HAL](https://github.com/rust-embedded/embedded-hal) - Hardware abstraction layer for embedded systems.
+11. [Embedded Storage](https://github.com/rust-embedded/embedded-storage) - Non-volatile storage traits.
