@@ -45,6 +45,8 @@ After testing each component on its own, I looked into the right crates and meth
 
 ### Week 20 - 26 May
 
+I implemented the alarm logic and I also configured the Wi-Fi connection with dynamic IP assignment using Embassy's networking stack, and implemented a dynamic web interface that refreshes periodically to display the real-time status of the alarm system.
+
 ## Hardware
 
 2× Raspberry Pi Pico 2W: One runs the system; the other is used for debugging. \
@@ -87,7 +89,6 @@ This is the kicad schematic.
 | [Male-Male Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/885-wires-male-male-10p-10cm.html) | Used for general wiring connections | ~7 RON |
 | [Female-Female Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/212-female-female-10p-20-cm-wire.html) | Used to connect between modules and breadboard | ~7 RON |
 | [Female-Male Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html) | Used for flexible pin-to-board connections | ~7 RON |
-
 
 
 ## Software
