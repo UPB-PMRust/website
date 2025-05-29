@@ -5,6 +5,7 @@ A human memory and reflexes tester
 :::info
 
 **Author**: Stoica Vlad-Alexandru
+
 **Github Project Link**: https://github.com/UPB-PMRust-Students/project-Playsu
 
 :::
@@ -41,11 +42,31 @@ By the end of the week, I had a fully assembled hardware prototype ready for the
 
 ### Week 19 - 25 May
 
+1. Issues Fixed
+
+-LCD not working: Wrong interface type - switched from SPI to 8-bit parallel
+
+-Slow rendering: Optimized data transfer with burst mode
+
+-Pin corrections: Remapped all LCD connections to proper GPIO pins
+
+2. Implementation
+
+-Custom LCD driver for ILI9341 display
+
+-EEPROM integration for high score storage
+
+-Button debouncing for accurate timing
+
+-Visual feedback with color-coded results
+
 ## Hardware
 
-The project uses two Raspberry Pi Pico 2W microcontrollers - one as the main controller and one as a debugger. The display is a 2.4" TFT LCD Shield with ILI9325 controller that provides both visual output and touch input capabilities. For persistent storage, an AT24C256 EEPROM module stores game highscores. The system is powered by a breadboard power supply connected to a 12V adapter, which was chosen to provide sufficient power for the LCD's higher current requirements. All components are connected using jumper wires on a breadboard.
+The project uses two Raspberry Pi Pico 2W boards - one runs the reaction test game and one works as a debugger. The display is a 2.4" LCD Shield with ILI9341 controller that shows the game screen. A button on GPIO12 is used for player input. For saving high scores, an AT24C256 EEPROM module stores the best reaction times. The system is powered by a 9V adapter through a breadboard power supply, providing 5V for the LCD. All parts are connected using jumper wires on a breadboard.
 
-The main Pico 2W is connected to the LCD through an 8-bit parallel interface (D0-D7) plus control signals (RS, WR, RD, CS, RST), while the EEPROM communicates with the Pico via I2C (SDA, SCL). The second Pico 2W is configured as a debugger using the SWD interface, allowing for real-time debugging and program uploading.
+The main Pico 2W connects to the LCD using 8 data pins (D0-D7 on GPIO0-6 and GPIO15) plus control pins (RS, WR, RD, CS, RST on GPIO27, 8, 26, 9, 7). The EEPROM connects to the Pico using I2C (SDA on GPIO16, SCL on GPIO17). The second Pico 2W connects as a debugger using SWD pins, allowing code upload and debugging.
+
+![Hardware Photo](Hardware.jpeg)
 
 ### Schematics
 
@@ -65,6 +86,26 @@ The main Pico 2W is connected to the LCD through an 8-bit parallel interface (D0
 
 ## Software
 
+# Software Libraries
 
+| Library | Description | Usage |
+|---------|-------------|-------|
+| `embassy-rp` | Hardware Abstraction Layer for RP2350 | GPIO control, I2C communication, system initialization |
+| `embassy-executor` | Async/await runtime for embedded systems | Task scheduling and async execution |
+| `embassy-time` | Time and delay utilities | Timing measurements, delays, debouncing |
+| `embedded-hal-async` | Async hardware abstraction traits | I2C trait for EEPROM communication |
+| `defmt` | Efficient logging framework for embedded | Debug logging and diagnostics |
+| `heapless` | Stack-allocated data structures | String formatting without heap allocation |
+| `panic-probe` | Panic handler for embedded debugging | Error handling and debugging |
+| `core::fmt` | Core formatting utilities | String formatting for display output |
+
+## Custom Implementations
+
+| Module | Description | Usage |
+|--------|-------------|-------|
+| `LcdDisplay` | Custom 8-bit parallel LCD driver | Display control for ILI9341-compatible LCD shield |
+| `Eeprom` | AT24C256 EEPROM driver | High score storage and retrieval |
+| `irqs` | Interrupt bindings | USB and I2C interrupt handling |
 
 ## Links
+[Project Video](https://www.youtube.com/shorts/plnarpQn-Io)
