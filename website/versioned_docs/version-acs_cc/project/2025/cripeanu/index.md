@@ -80,6 +80,7 @@ The **microSD card module** stores the image, while WiFi can send it to a remote
 
 ### Week 3  -  May 20-27
 - Implemented the software for the hardware setup. 
+
  
 
 ## Hardware
@@ -195,10 +196,10 @@ The **microSD card module** stores the image, while WiFi can send it to a remote
 - **Libraries used**: `embassy-rp::gpio`, `embassy-time`  
 - **Responsibilities**:  
   - On `measuring && current_speed > ref_speed && !alerted`:  
-    - Generate 100 PWM cycles on the buzzer 
-    - Blink the red LED for 500 ms  
-    - Clear the current‐speed line on the LCD  
-    - Stop measuring and set `alerted = true`  
+   - Generate 100 PWM cycles on the buzzer 
+   - Blink the red LED for 500 ms  
+   - Clear the current‐speed line on the LCD  
+   - Stop measuring and set `alerted = true`  
  
 
 

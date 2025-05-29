@@ -46,14 +46,14 @@ remote control cars. This project also helps me have a better understanding of c
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 05 - 11 May
+Acquired the components.
 
+### Week 12 - 18 May
+Hardware setup, wired the components, glued the pins to the picos, coded the car
 
-### Week  -  May
-
-
-### Week  -  May
- 
+### Week 19 - 25 May
+Coded the remote
 
 ## Hardware
 
@@ -84,7 +84,9 @@ remote control cars. This project also helps me have a better understanding of c
 
 
 ### Schematics
-![diagram](KiCad.webp)
+![diagram](KiCad.svg)
+
+![diagram](Diagram.webp)
 
 ### Bill of Materials
 
@@ -101,7 +103,7 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Rapspberry Pi Pico 2W](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf) | The microcontroller | [40 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=36) |
-| [L298](https://www.alldatasheet.com/view.jsp?Searchword=L298%20datasheet&gad_source=1&gbraid=0AAAAADcdDU_HO4Gk0-2KnySAdVBFEwmua&gclid=CjwKCAjwq7fABhB2EiwAwk-YbGDTXwqx2sFUnXVPdDU_VyVZLNT1fFd8y33XUJzGRXN-yek7PtIURRoCflIQAvD_BwE) | Colour Sensor| [11 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=L298&results=5) |
+| [L298](https://www.alldatasheet.com/view.jsp?Searchword=L298%20datasheet&gad_source=1&gbraid=0AAAAADcdDU_HO4Gk0-2KnySAdVBFEwmua&gclid=CjwKCAjwq7fABhB2EiwAwk-YbGDTXwqx2sFUnXVPdDU_VyVZLNT1fFd8y33XUJzGRXN-yek7PtIURRoCflIQAvD_BwE) | Motor Driver| [11 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=L298&results=5) |
 | [Motor](https://www.gearmotordc.com/product/round-dc-gear-motor/?gad_source=1&gad_campaignid=428039411&gbraid=0AAAAADb67YXehbIFUfjyDMWnUp_Lo_RVt&gclid=Cj0KCQjwt8zABhDKARIsAHXuD7ZUQqd_un7E1r3YSvcZfi8haMUL-EHpOOBMN6E4rvNkqO2hZcvjA1gaAmhPEALw_wcB) | Motor DC | [15 RON](https://www.optimusdigital.ro/ro/motoare-altele/139-motor-cu-reductor-si-roata.html?search_query=motor+cu+roata&results=34) |
 | [MPU-6500](https://invensense.tdk.com/download-pdf/mpu-6500-datasheet/) | Gyroscope/accelerometer | [20 RON](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/1672-modul-accelerometru-i-giroscop-mpu6500-gy.html?search_query=MPU+6500&results=3) |
 

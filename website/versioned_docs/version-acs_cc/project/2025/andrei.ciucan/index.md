@@ -18,11 +18,14 @@ The system integrates three LEDs for dynamic visual feedback:
   - Connected to the **photoresistor (LDR)**.
   - **Behavior**: As the environment gets darker, the red LED **brightens** proportionally; as ambient light increases, the red LED **dims** progressively.
 - **Yellow LED**:  
-  - **Triggered** when a button located at an **even position** (2, 4, 6, 8) is pressed.
+  - **Triggered** when a button located at an **even position** (0, 2, 4, 6) is pressed.
   - **Purpose**: Highlights even-positioned key presses.
 - **Green LED**:  
   - **Triggered** when a button located at an **odd position** (1, 3, 5, 7) is pressed.
   - **Purpose**: Highlights odd-positioned key presses.
+
+When the system powers up, the piano plays a short, 3-second **startup melody**.  
+It's a small audio cue that confirms everything initialized correctly.
 
 The piano offers **three operating modes**, selected through two dedicated buttons:
 
@@ -30,15 +33,15 @@ The piano offers **three operating modes**, selected through two dedicated butto
 |--------------|-----------|-------------|
 | **Button A pressed** | **Note Guess Mode** | A random note is played and the player must identify it by pressing the corresponding key. Each correct guess is stored and the sequence of correct notes is replayed as a melody after the first mistake. |
 | **Button B pressed** | **Effects Mode** | Applies real-time audio effects (such as vibrato, tremolo, or frequency shifts) to the notes for a more dynamic sound experience. |
-| **Both Button A and Button B pressed** | **Pressure-Controlled Pitch Mode (optional)** | An advanced mode where note pitch varies according to air pressure measurements from the **BMP280** sensor, allowing players to modify sounds by moving the device up or down. This mode is optional and intended to enrich the overall interaction. |
+| **Button A pressed, then Button B pressed** | **Pressure-Controlled Pitch Mode (optional)** | An advanced mode where note pitch varies according to air pressure measurements from the **BMP280** sensor, allowing players to modify sounds by moving the device up or down. This mode is optional and intended to enrich the overall interaction. |
+| **Button B pressed, then Button A pressed** | **Idle Mode** | If the system is already in a mode and the buttons are pressed in this order, the piano exits to the Idle state. |
 
->If, during testing, the BMP280 pressure readings do not provide a clear-enough delta when I move the piano up or down, the pitch‑modulation logic will seamlessly fall back to temperature‑based mapping from the same sensor.
+>If, during testing, the BMP280 pressure readings do not provide a clear-enough delta when I move the piano up or down, the pitch-modulation logic will seamlessly fall back to temperature-based mapping from the same sensor.
 
-> **Optional**: In a future update, Wi-Fi connectivity may be added to:
-> - Display the current ambient **temperature** remotely
-> - Transmit or record the sequence of **played notes** through a network connection
-
-
+> **Optional**: Although Wi-Fi connectivity was initially planned, I was not able to implement it due to electrical interference caused by the hardware configuration.
+> As an alternative, I developed a workaround based on two scripts:
+> - A Python script that runs the firmware via cargo run and parses RTT serial output to extract live values like pressure, mode, and notes.
+> - A browser interface using Flask and Chart.js to display a real-time pressure graph and the current active mode of the system.
 
 
 ## Motivation
@@ -79,14 +82,30 @@ The project has the following architecture:
 I started working on the project documentation and set up the GitLab repository to manage the documentation separately. I created the first version of the system block diagram using diagrams.net, drafted the initial list of hardware and software components and began designing the hardware schematic in KiCad, covering the main modules. I also outlined the structure for the final `index.md` file.
 
 ### Week 5 - 11 May
+Connected the two Raspberry Pi Pico 2W boards via UART (one for debugging, one as the main controller).  
+Ran the `defmt` debugger on the first Pico to monitor real-time behavior.  
+Fixed various hardware/software issues (wrong GPIO pins, button debounce).  
+Connected and tested initial components: buttons, buzzer, and LEDs using basic Rust code.
 
 ### Week 12 - 18 May
 
+I finished wiring all the hardware components on the breadboard, including LEDs, buttons, the buzzer, LDR and BMP280 sensor. I tested both a 3.3V and a 5V passive buzzer and the 5V version worked much better when powered through a transistor. All buttons and LEDs responded correctly in simple test programs and I was able to read analog values from the LDR and pressure data from the BMP280. I also added a 100 μF capacitor across the buzzer to reduce possible electrical noise. Despite that, the Wi-Fi stopped working whenever the hardware was connected, suggesting interference.
+
 ### Week 19 - 25 May
+
+This week I wrapped up the main software features and made sure everything works reliably across all modes.  
+I also added a small touch: when the piano powers on, it now plays a short **boot melody** for about 3 seconds. It's a simple way to let the user know that the system started up properly.
+
+In addition, I put together a quick **Python + Flask interface** that listens to output from the Pico and shows live data in the browser.  
+Right now, it displays:
+- the **currently active mode** of the piano
+- and a real-time graph of the **air pressure** using Chart.js.
+
 
 ## Hardware
 
 I am using two Raspberry Pi Pico 2W boards in this setup. The main Pico handles all piano functionalities (PWM audio output, button reading, LED brightness control via ADC and BMP280 communication over I²C), while the second Pico acts as a debug interface through UART.
+To reduce high-frequency electrical noise caused by the buzzer's PWM signal, a 100 μF electrolytic capacitor was added across its power lines. This was intended to stabilize the supply and reduce interference, especially during Wi-Fi-related testing.
 
 | Hardware Device | Purpose | Usage |
 |-----------------|---------|-------|
@@ -100,19 +119,27 @@ I am using two Raspberry Pi Pico 2W boards in this setup. The main Pico handles 
 | Light Dependent Resistor (LDR) | Ambient light sensor | Measures light intensity |
 | Fixed Resistor for LDR (10kΩ) | Voltage divider | Forms a divider circuit with the LDR for ADC reading |
 | BMP280 Sensor | Pressure and temperature measurement | Connected over I²C |
-| Current-Limiting Resistors (220Ω–470Ω) | LED protection | Limits current through each LED to safe values |
+| Current-Limiting Resistors (220Ω-470Ω) | LED protection | Limits current through each LED to safe values |
 | Breadboard (830 pts) | Project assembly | Used to build and connect all components without soldering |
 | Prototype PCB 10x15cm (Optional) | Permanent wiring | Can be used to solder the final circuit for improved robustness |
 | USB Power Supply | Power source | Supplies 5V via USB directly to the debugger Pico 2W |
-
+| 100 μF Electrolytic Capacitor | Noise filtering | Added across the buzzer's power rail to reduce electrical noise and stabilize the power line during operation |
 
 ### Schematics
 
-![KiCad](photo_KiCad.webp)
+![KiCad](photo_KiCad.svg)
 
 ### Photos
 
-![Prototype](demo3.webp)
+![Demo1](demo1.webp)
+![Demo2](demo2.webp)
+![Demo3](demo3.webp)
+![Demo4](demo4.webp)
+![Demo5](demo5.webp)
+![Site1](site1.webp)
+![Site2](site2.webp)
+![Site3](site3.webp)
+![Site4](site4.webp)
 
 
 ## Software
@@ -155,15 +182,16 @@ Resistor 10kΩ 0.25W | Voltage divider with LDR | [0.1 RON](https://www.optimusd
 Red LED 5mm | Shows brightness level (PWM-controlled) | [0.4 RON](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html?search_query=Red+led&results=1378)
 Green LED 5mm | Lights up for odd keys pressed | [0.4 RON](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html?search_query=green+led&results=237)
 Yellow LED 5mm | Lights up for even keys pressed | [0.4 RON](https://www.optimusdigital.ro/en/leds/698-led-galben-de-3-mm-cu-lentile-difuze.html?search_query=yellow+led&results=198)
-Resistor 220Ω 0.25W | Current limiting resistors for LEDs | [0.2 RON (each) ×3](https://www.optimusdigital.ro/en/resistors/1097-025w-220-resistor.html?search_query=220%CE%A9&results=7)
-Tactile Push-Button 6x6mm | Piano keys (8x) + Mode selection (2x) | [0.4 RON × 10](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=6+x+6+x+6+Push+Button&results=85)
+Resistor 220Ω 0.25W | Current limiting resistors for LEDs | [0.2 RON (each) x3](https://www.optimusdigital.ro/en/resistors/1097-025w-220-resistor.html?search_query=220%CE%A9&results=7)
+Tactile Push-Button 6x6mm | Piano keys (8x) + Mode selection (2x) | [0.4 RON x 10](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=6+x+6+x+6+Push+Button&results=85)
 Breadboard Jumper Wires Set | Connections | [8.5 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html?search_query=Breadboard+Jumper+Wires+Set&results=22)
 Colored 40p 2.54 mm Pitch Male Pin Header | Soldered on Pico 2W for connection | [1 RON x 5](https://www.optimusdigital.ro/en/pin-headers/465-colored-40p-254-mm-pitch-male-pin-header-yellow.html?search_query=Colored+40p+2.54+mm+Pitch+Male+Pin+Header+-+Yellow&results=1)
 Breadboard 830 pts | Assembly platform for the entire project| [10 RON x 2](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html)
 20p Female Pin Header 2.54 mm(Optional) | Socket for Pico W on PCB | [4.3 RON x 4](https://www.optimusdigital.ro/en/pin-headers/4166-20p-female-pin-header-254-mm.html?search_query=20p+Female+Pin+Header+2.54+mm&results=6)
 Prototype PCB 10x15cm(Optional) | For soldering permanent project | [7.4 RON](https://www.optimusdigital.ro/en/others/12552-10x15cm-universal-pcb-prototype-board-single-sided-254mm-hole-pitch.html?search_query=prototype+pcb&results=25)
+Electrolytic Capacitor 100 uF, 50 V | Noise filtering | [1 RON](https://www.optimusdigital.ro/en/capacitors/1218-electrolytic-condensator-from-100-uf-to-50-v.html?search_query=Electrolytic+Capacitor+100+uF&results=149)
 
-#### Total: 161 RON
+#### Total: 162 RON
 
 ### Software
 
@@ -178,13 +206,12 @@ Library | Description | Usage
 
 ## Links
 
-1. [RP2350 (Raspberry Pi Pico 2) – Datasheet & Pinout](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
+1. [RP2350 (Raspberry Pi Pico 2) - Datasheet & Pinout](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
 2. [Using PWM on RP2350](https://pico.implrust.com/led/pwm-rp2350.html)
-3. [Embedded‑HAL async (embassy) – Quick Start](https://embassy.dev/book/#/faq)
-4. [Driving a 5 V Passive Buzzer with an NPN Transistor](https://forums.raspberrypi.com/viewtopic.php?t=207312)
+3. [Embedded-HAL async (embassy) - Quick Start](https://embassy.dev/book/#/faq)
+4. [Driving a 5-V Passive Buzzer with an NPN Transistor](https://forums.raspberrypi.com/viewtopic.php?t=207312)
 5. [LDR Voltage Divider Explained](https://www.petervis.com/electronics%20guides/calculators/LDR/LDR.html)
-6. [BMP280 Pressure & Temperature Sensor – Application Notes](https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001.pdf)
-7. [LED Current‑Limiting Resistor Calculator](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-led-series-resistor)
+6. [BMP280 Pressure & Temperature Sensor - Application Notes](https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001.pdf)
+7. [LED Current-Limiting Resistor Calculator](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-led-series-resistor)
 8. [Breadboard Wiring Best Practices](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all)
 9. [Prototype PCB Soldering Tips (Perfboard)](https://www.youtube.com/watch?v=l9Kbr8cPqOE)
-

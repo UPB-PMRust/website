@@ -40,11 +40,16 @@ Connections:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
- Connecting the hardware components
+Make documentation
 
 ### Week 12 - 18 May
+Connecting the hardware components.
+
+Updating the documentation
+
 
 ### Week 19 - 25 May
+Finish software
 
 ## Hardware
 
@@ -54,6 +59,10 @@ The project uses the following hardware:
 - Two MG996R servo motors for motion effects
 - RGB LED connector for visual lighting
 - Power smoothing components: 470Ω resistor and 1000µF capacitor
+
+![poza1](./poza1.webp)
+![poza2](./poza2.webp)
+
 
 
 ### Schematics
@@ -74,24 +83,29 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico&results=33) | Main microcontroller | ~39 RON |
+| [Raspberry Pi Pico W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico&results=33) | Main microcontroller | ~39 RON x2|
 | [KY-037 Sound Sensor](https://www.bitmi.ro/modul-senzor-sunet-cu-sensibilitate-ridicata-ky-037-10634.html) | Detects sound intensity | ~5 RON |
 | [MG996R Servo Motor](https://sigmanortec.ro/servomotor-mg996r-180-13kg) | Rotation / motion effect | ~30 RON x2 |
 | [WS2812B RGB LED Strip](https://ardushop.ro/ro/electronica/900-1193-leduri-rgb-la-banda-neopixels-ws2812b-pretul-este-pentru-un-led.html) | Visual LED effects | ~2.5 RON/LED |
 | [Rezistor 330Ω](https://www.emag.ro/rezistor-tht-330-0-25-w-5-toleranta-galben-z000431/pd/D8DQLHYBM/) | Data line protection for LED | ~2.62 RON |
 | [Condensator 1000μF / 6.3V](https://www.emag.ro/condensator-electrolitic-1000uf-6-3v-pentru-pc-135250/pd/DZ614KMBM/) | Voltage stabilization for LED | ~3.5 RON |
 | [Fire jumper (M-M)](https://www.optimusdigital.ro/ro/fire-fire-mufate/881-set-fire-mama-mama-40p-15-cm.html) | Wiring connections | ~7 RON |
+| [Fire jumper (M-T)](https://www.optimusdigital.ro/ro/fire-fire-mufate/653-fire-colorate-mama-tata-40p-10-cm.html) | Wiring connections | ~6 RON |
+| [Fire jumper (T-T)](https://www.optimusdigital.ro/ro/fire-fire-mufate/889-set-fire-tata-tata-10p-20-cm.html) | Wiring connections | ~4.5 RON |
 | Breadboard | Rapid prototyping | ~10 RON |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [rp-hal](https://github.com/rp-rs/rp-hal) | Hardware Abstraction Layer for Pico | Base control of GPIOs, ADC, and PWM |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Interfaces with servos and LEDs |
-| [ws2812-pio](https://github.com/rp-rs/ws2812-pio) | LED driver using PIO | Control WS2812 LEDs |
-| [rustfft](https://github.com/ejmahler/RustFFT) | Fast Fourier Transform in Rust | For future implementation of beat detection |
-| [defmt + probe-rs](https://github.com/knurling-rs/defmt) | Debugging tools | Debugging embedded Rust code easily |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Async HAL for RP2040 | Drives GPIO, ADC, PWM, and PIO peripherals |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Runs `async` tasks for servo and LED logic |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timers and delays | Used for beat delays, fade timing |
+| [smart-leds](https://github.com/smart-leds-rs/smart-leds) | WS2812 LED color abstraction | Used for RGB LED strip control |
+| [rp-hal](https://github.com/rp-rs/rp-hal) | RP2040 Hardware Abstraction Layer | Base GPIO/ADC/PWM fallback |
+| [ws2812-pio](https://github.com/rp-rs/ws2812-pio) | PIO-based WS2812 driver | Drives LED animations precisely |
+| [defmt + probe-rs](https://github.com/knurling-rs/defmt) | Debugging tools | Efficient logging over RTT |
+
 
 ## Links
 
