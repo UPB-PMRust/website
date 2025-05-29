@@ -102,7 +102,6 @@ This is the kicad schematic.
 | [embassy-hal](https://docs.embassy.dev/embassy-embedded-hal/git/default/index.html)| Hardware Abstraction Layer for Raspberry Pi Pico W | Interfaces with low-level hardware in a safe and portable way |
 | [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html)| Embedded networking stack | Handles Wi-Fi networking and IP configuration |
 | [embassy-gpio](https://docs.rs/embassy-gpio/latest/embassy_gpio/) | GPIO management | Controls GPIO pins for devices and inputs |
-| [embassy-usb](https://docs.rs/embassy-usb/latest/embassy_usb/) | USB management | Manages USB operation |
 
 
 
