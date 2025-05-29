@@ -49,15 +49,20 @@ The **Raspberry Pi Pico - RP2040** acts as the central unit, managing peripheral
 
 ### Week 5 – 11 May
 
-TO DO
+Completed hardware setup, including pin configuration and purchasing missing cables. Initialized the software repository.
 
 ### Week 12 – 18 May
 
-TO DO
+Completed final hardware steps: connected all peripherals to the Raspberry Pi Pico and verified connectivity. Created the KiCad schematics for the hardware setup. On the software side, set up all modules and peripherals, wrote initial test code for each to verify functionality, and pushed the code to GitHub.
+
+#### Photos
+![diagram](projectPMhardware1.webp)
+![diagram](projectPMhardware2.webp)
+![diagram](projectPMhardware3.webp)
 
 ### Week 19 – 25 May
 
-TO DO
+This week marked the completion of the software development phase for the Light Pattern Memory Game. The focus was on finalizing core functionality, integrating all modules, and conducting extensive debugging and testing to ensure the game runs reliably.
 
 ## Hardware
 
@@ -83,7 +88,7 @@ TO DO
 - Powers the Raspberry Pi Pico and peripherals safely and consistently.
 
 ### Schematics
-TO DO
+![diagram](kicad_proj.svg)
 
 ## Bill of Materials
 
@@ -100,13 +105,29 @@ TOTAL: ~200 RON
 
 ## Software
 
+This project implements an enhanced memory game on an RP2040 microcontroller using the Embassy async runtime. The game combines a WS2812 LED matrix, an ST7789 color display, and a TTP229 capacitive keypad to create an interactive experience where players memorize and reproduce sequences of illuminated squares. The code handles all hardware initialization, including SPI setup for the LEDs and display, and runs asynchronous tasks for keypad input detection, buzzer sound feedback, and game state management. Players progress through increasing difficulty levels, with lives and scoring tracked and shown on the screen, alongside visual and audio feedback for success and errors.
+
+The game logic is designed as a state machine cycling through menu, sequence display, player input, and game-over or victory states. Each stage leverages carefully timed LED animations and screen drawings to guide the player. Debounced keypad input triggers buzzer sounds and updates the game flow asynchronously, providing a smooth user interface. The project showcases advanced embedded Rust techniques with asynchronous concurrency, precise peripheral control, and a modular structure suitable for educational and hobbyist embedded gaming applications.
+
+Some of the functions used are:
+- show_menu: Clears the display and draws the game title, instructions, and high score text.
+- draw_game_grid: Draws the 4x4 grid on the screen, coloring specific squares based on the game sequence.
+- display_score: Shows the player’s current score at the top-left corner of the screen.
+- display_lives: Displays remaining lives as heart icons at the top-right corner.
+- display_message: Clears the center area and shows a custom message like “Game Over” or “Success.”
+- clear_sequence_highlight: Removes highlights from squares previously lit to reset the grid display.
+- highlight_square: Lights up a single square in the grid with a specified color to indicate the sequence step.
+
+### Schematics
+![diagram](diagrama_software.webp)
+
 | Library | Description | Usage |
 |--------|-------------|--------|
 | [embassy-rp](https://github.com/embassy-rs/embassy) | RP2040 HAL | Async device and timer management |
 | [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | HAL Traits | I2C abstraction |
 | [ttp229](https://docs.rs/ttp229/latest/ttp229/) | Capacitive Sensor Driver | Used for the game input |
 | [st7735](https://docs.rs/st7735/0.1.0/st7735/) | OLED Driver | Display game mode and rules |
-| [ws2812_spi](https://docs.rs/st7735/0.1.0/st7735/) | LED Matrix Driver | Display game mode and rules |
+| [ws2812_spi](https://docs.rs/ws2812-spi/latest/ws2812_spi/) | LED Matrix Driver | Display game mode and rules |
 | [heapless](https://github.com/rust-embedded/heapless) | Fixed capacity collections | Buffer text messages for OLEDs |
 | [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging Framework | Used for real-time debug output over RTT, ideal for embedded logging |
 | [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic Handler | Provides panic messages compatible with defmt |

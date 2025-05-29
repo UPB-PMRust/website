@@ -38,10 +38,11 @@ Image Handler: Receives image data over UART or forwards it to a connected devic
 
 
 ### Week 5 - 11 May
-
+This week, I completed the hardware setup for my smart door lock system. All components — including the keypad, LEDs, buzzer, solenoid, and ESP32-CAM module — have been connected and tested for basic functionality.
 ### Week 12 - 18 May
-
+I transitioned into the software development stage. I initialized the Rust project using the Embassy framework and began writing basic control logic to interact with the hardware, starting with GPIO testing for LEDs and preparing the structure for handling keypad input. This lays the groundwork for implementing core features like code verification and door control in the coming week.
 ### Week 19 - 25 May
+This week, significant progress was made on the project. The software component for the access control system has been completed, including the integration of the keypad, LEDs, buzzer, solenoid control, and logic for password validation. An LCD module was also added to enhance user interaction by displaying messages such as code prompts, making the system more intuitive and user-friendly. While the core system is now functional, challenges remain with the camera integration. 
 
 ## Hardware
 
@@ -61,11 +62,13 @@ Solenoid Lock - Mechanically controls the locking/unlocking of the door.
 
 Camera Module - Captures an image when an incorrect code is entered.
 
-Power Supply (USB or 5V external) -Powers the Raspberry Pi Pico and all connected peripherals.
+Power Supply  -Powers the Raspberry Pi Pico and all connected peripherals.
+
+![Hardware imagine](imghardware.webp)
 
 ### Schematics
 
-![Kicad_Schematic](kicadschematic.webp)
+![Kicad_Schematic](kicad_schematic.svg)
 
 
 ### Bill of Materials
@@ -79,18 +82,23 @@ Power Supply (USB or 5V external) -Powers the Raspberry Pi Pico and all connecte
 |Solenoid - 5v|Locks/unlocks the door|[37 RON](https://www.robofun.ro/mecanice/solenoid-5v-small.html)|
 |Relay module|Controls the solenoid safely from Pico|[5 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-module-cu-releu/13084-modul-releu-cu-un-canal-comandat-cu-5-v.html?search_query=relay&results=24)|
 |Breadboard kit|For circuit prototyping (includes breadboard, wires, LEDs, resistors,etc.)|[70 RON](https://www.emag.ro/set-componente-electronice-led-uri-breadboard-830-puncte-componente-pentru-incepatori-compatibil-arduino-si-raspberry-pi-ouylaf-308-10149-409/pd/DH8RVLYBM/)|
+|Suport carcasa baterie 9V + mufa|powers the components|[3.18 RON](https://ardushop.ro/ro/carcase-i-suporturi/1060-suport-carcasa-baterie-9v-mufa-6427854014559.html)|
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-|embassy|Async framework for embedded Rust|	Run async tasks like input, delays|
-|embassy-rp|Embassy HAL for Raspberry Pi Pico 2W|Control GPIO, PWM, I2C, SPI|
-|cortex-m|Low-level support for ARM Cortex-M chips|Set up interrupt handling, registers|
-|cortex-m-rt|Runtime and entry point for ARM Cortex-M|Required for running code on Pico|
-|defmt|Lightweight logging crate for embedded| Rust	Debug messages over USB/debug probe|
-|probe-rs|Flash and debug embedded devices|Upload firmware and debug over USB|
-
+|embassy-executor|Async runtime for embedded systems.|Runs tasks like keypad scanning and delays without blocking the main thread.|
+|embassy-rp| Hardware Abstraction Layer (HAL) for Raspberry Pi Pico (RP2040)|Controls GPIOs, I2C, timers, etc.|
+|embassy-time| Async-friendly timing utilities|Used for debounce delays, buzzers, and solenoid timing.|
+|defmt| Outputs structured logs during development.||
+|defmt-rtt|Sends defmt logs over Real-Time Transfer (RTT) to the development machine||
+|panic-probe|Captures and prints panic messages using defmt|Helpful for debugging runtime errors.|
+|heapless|Fixed-size collections without dynamic memory allocation|Used to store codes securely in no_std.|
+|ag-lcd	|Driver for HD44780-compatible LCDs. Displays messages on a 1602 LCD via I2C.|
+|port_expander|Supports PCF8574 and similar I2C I/O expanders.|Allows the LCD to be controlled over I2C with fewer GPIOs.|
+|static_cell|Helps create static references required for Embassy peripherals|Ensures safe and valid lifetimes for hardware resources.|
+|heapless|Fixed-size collections without dynamic memory allocation|Used to store codes securely in no_std|
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->

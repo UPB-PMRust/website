@@ -1,5 +1,5 @@
 # SpongeBot SteelPants
-Magnetic robot that erases whiteboard marker strokes using camera detection
+Magnetic robot that erases whiteboard marker strokes and can be driven remotely over Wi-Fi
 
 :::info 
 
@@ -11,12 +11,8 @@ Magnetic robot that erases whiteboard marker strokes using camera detection
 ## Description
 
 SpongeBot SteelPants is a two-wheel robot designed to automate the process of cleaning
-whiteboards. Clinging magnetically to surfaces via a PWM-controlled electromagnet, the
-robot uses a low-res OV7670 camera to detect marker strokes. Once a trace is identified,
-the robot navigates over it and wipes it clean using an attached sponge. \
-The system is built around a Raspberry Pi Pico 2W which handles image processing,
-sensor input and motor control. The components have been chosen to keep the bot as
-lightweight as possible.
+whiteboards. It clings to the board with a PWM-controlled electromagnet and 
+receives real-time drive commands from a phone/PC over Wi-Fi.
 
 ## Motivation
 
@@ -27,21 +23,87 @@ I decided to build a small robot that could take over that chore - and the good 
 this robot won't take anyone's job!
 
 ## Architecture 
-![Architecture](images/spongebot_arch.webp)
+```mermaid
+flowchart TD
 
+    PICO["Raspberry Pi Pico 2 W"]
+
+    subgraph Input Devices
+        IR["4× IR Sensors"]
+        IMU["GY-521 (MPU6050)"]
+        WIFI["Wi-Fi Link"]
+    end
+
+    subgraph Processing
+        EDGE["Edge Detection Logic"]
+        NAV["Navigation & Path Planning"]
+        CTRL["Motor Control Logic"]
+        ADHESION["Adhesion Control Logic"]
+        COMM["Wi‑Fi Command Handler"]
+        STATUS["Status Display Logic"]
+    end
+
+    subgraph Output Devices
+        MOTOR["TB6612FNG Motor Driver"]
+        M1["GA12-N20 Motor A"]
+        M2["GA12-N20 Motor B"]
+        MAGNET["Electromagnet (via MOSFET)"]
+        OLED["0.96'' OLED Display"]
+    end
+
+    PICO --> IR
+    PICO --> IMU
+    PICO --> WIFI
+
+    IR --> EDGE
+    IMU --> NAV
+    WIFI --> NAV
+
+    EDGE --> NAV
+
+    NAV --> CTRL
+    CTRL --> MOTOR
+    MOTOR --> M1
+    MOTOR --> M2
+
+    NAV --> ADHESION
+    ADHESION --> MAGNET
+
+    NAV --> STATUS
+    STATUS --> OLED
+```
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-**To be updated**
+* Finished hardware design and completed component selection
+* Purchased and received all required components
+* Soldered key parts and researched power requirements, safe wiring and GPIO assignments
+* Set up defmt debugging to verify Pico functionality and test communication with peripherals
 
 ### Week 12 - 18 May
-**To be updated**
+* Selected an appropriate chassis suited for the test whiteboard (40x30 cm)
+* Mounted and organized all modules onto the chassis
+* Assembled complete hardware stack and performed an initial test of all the components
+* Implemented and validated test functions for all critical peripherals (MPU-6050,
+I²C bus, OLED Display), confirming data flow
 
 ### Week 19 - 25 May
-**To be updated**
+* Completed power system wiring, ensuring proper current handling for the electromagnet
+and motors
+* Encountered and resolved hardware issues:
+    * Replaced one damaged motor with a different gear-ratio version - couldn't find
+    another version in stock
+    * Enhanced adhesion by adding two permanent magnets to assist the electromagnet
+* Implemented firmware:
+    * Developed the Rust software stack including UDP command parsing
+    * Integrated drive logic
+    * Performed preliminary functionality tests for robot movement, magnet adhesion
+and sensor checks
+* Identified torque imbalance due to mismatched gear-ratio - planned software
+compensation
 
 ## Hardware
 
@@ -68,32 +130,37 @@ module
 * Small and light, these motors provide the torque needed to pull a sponge and a magnet
 across a whiteboard
 
-6. **OV7670 Camera Module**
-* Provides low-res frames, good enough to determine by applying a grayscale where the
-marker strokes are
-
-7. **IR Obstacle Sensors (x4)**
+6. **IR Obstacle Sensors (x4)**
 * IR LEDs mounted at the corners to prevent the robot from falling off the edge of the
 whiteboard.
 
-8. **Electromagnet 5 V/25 N**
+7. **Electromagnet 5 V/25 N**
 * Strong enough to cling the small robot to the whiteboard
 * PWM-driven grip allows for adjustable adhesion
 
-9. **0.96 OLED Display**
+8. **0.96 OLED Display**
 * Indicates the mode which the robot is currently using (cleaning by using the camera
 module or just simply going around)
 * Displays remaining battery charge
 
 Other components:
-* WAGO Connectors split the battery rail into separate current branches
 * 4xAA Battery Holder powers the robot
 * Sponge
+* Permanent magnets
 * Wires, Breadboards, Jumpers, Diodes, Wheels, Chassis etc.
 
 ### Schematics
 
-**Schematics will be added soon**
+![Schematics](images/spongebot_kicad.svg)
+
+### Photos
+![Photo_HighAngle](images/photo_high.webp)
+![Photo_LowAngle](images/photo_down.webp)
+
+### Videos
+[![Video 1](https://img.youtube.com/vi/UJ2pL7mbKPA/hqdefault.jpg)](https://www.youtube.com/watch?v=UJ2pL7mbKPA)\
+[![Video 2](https://img.youtube.com/vi/G-_1dk8VT-g/hqdefault.jpg)](https://www.youtube.com/watch?v=G-_1dk8VT-g)\
+[![Video 3](https://img.youtube.com/vi/JV2QptHQlVE/hqdefault.jpg)](https://www.youtube.com/watch?v=JV2QptHQlVE)
 
 ### Bill of Materials
 
@@ -111,17 +178,17 @@ The format is
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf) | Main microcontroller with Wi-Fi; controls all peripherals | [39.66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
 | [GA12-N20 100:1 Gearmotor](https://temperosystems.com.au/wp-content/uploads/2021/03/N20-Micro-Speed-Gear-Motor.pdf) | Drives wheels with high torque for sponge movement | [24.99 RON × 2](https://www.optimusdigital.ro/en/micro-gearmotors/680-micro-motor-cu-reductor-ga12-n20-110.html) |
+| [GA12-N20 Gearmotor](https://temperosystems.com.au/wp-content/uploads/2021/03/N20-Micro-Speed-Gear-Motor.pdf) | Used to replace one of the damaged motors | [22.09 RON](https://sigmanortec.ro/Motor-DC-mini-angrenaje-metal-N20-500RPM-p211611036) |
 | [TB6612FNG Motor Driver](https://cdn.sparkfun.com/datasheets/Robotics/TB6612FNG.pdf) | Dual H-bridge to control 2 DC motors via PWM | [24.99 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/134-tb6612fng-dual-motor-driver-1-a.html) |
 | [D4184 MOSFET Module](https://protosupplies.com/product/d4184-mosfet-control-module/) | Switches the electromagnet on/off using PWM | [5.00 RON](https://www.optimusdigital.ro/en/relay-modules/12509-d4184-mosfet-control-module-replacement-relay.html) |
 | [GY-521 (MPU-6050)](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf) | Measures tilt to adjust magnet force dynamically | [24.16 RON](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326) |
-| [OV7670 Camera Module](https://web.mit.edu/6.111/www/f2016/tools/OV7670_2006.pdf) | Captures low-res frames to detect marker strokes | [12.66 RON](https://sigmanortec.ro/Modul-camera-OV7670-p135315688) |
 | [IR Obstacle Sensor](https://protosupplies.com/product/ir-obstacle-avoidance-sensor-module/) | Detects whiteboard edges to prevent falling | [3.07 RON × 4](https://sigmanortec.ro/Senzor-obstacol-IR-p125423458) |
 | [0.96″ OLED Display (SSD1306)](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Shows battery level and operating mode | [16.35 RON](https://sigmanortec.ro/Display-OLED-0-96-I2C-IIC-Albastru-p135055705) |
 | [Electromagnet 5V / 25N](https://www.adafruit.com/product/3872#technical-details) | Holds robot against whiteboard via magnetic force | ~[27.00 RON](https://ampul.eu/ro/electromagnei-adezivi/2169-1602-electromagnet-25kg-25n-20x15mm#/432-tensiune-5_v_dc) |
 | WAGO 5-pin Connector (221-415) | Splits battery power and ground safely | [2.98 RON × 2](https://sigmanortec.ro/en/wago-5-pin-connector) |
 | 4×AA Battery Holder | Powers the robot with 4 AA batteries | [6.24 RON](https://sigmanortec.ro/Suport-4-baterii-AA-cu-capac-si-intrerupator-p172447738) |
 | Miscellaneous (breadboards, wires, diodes, etc.) | Circuit prototyping, motor connection, edge detection, and mechanical assembly | ~70 RON |
-| Total | - | 294.28 RON |
+| Total | - | 303.71 RON |
 
 ## Software
 
@@ -135,6 +202,15 @@ The format is
 | [ssd1306](https://docs.rs/ssd1306) | OLED driver for SSD1306 controller over I²C/SPI. | Displays robot mode or battery on 0.96″ screen. |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics primitives and text rendering. | Renders UI elements on the OLED screen. |
 | [cyw43](https://docs.embassy.dev/cyw43) | Async Wi-Fi driver for the Pico W’s CYW43439 chip. | Enables Wi-Fi for control or telemetry via Embassy. |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async task executor and the `#[embassy_executor::task]` / `#[embassy_executor::main]` macros. | Runs the cooperative scheduler behind every firmware task. |
+| [embassy-time](https://crates.io/crates/embassy-time) | Hardware-agnostic timers, delays and `Duration` helpers. | `Timer::after`, `Delay` for IMU init, periodic heart-beat sleeps. |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Lock-free channels, mutexes and signals for Embassy. | All SPSC channels (`EDGE_CHANNEL`, `IMU_CHANNEL`, …). |
+| [heapless](https://crates.io/crates/heapless) | Fixed-capacity `String`, `Vec`, deques — no dynamic allocation. | Builds OLED text lines and parses UDP commands without the `alloc` crate. |
+| [static-cell](https://crates.io/crates/static-cell) | Safe `static` initialisation of buffers and peripherals. | Holds `StackResources`, UDP metadata. |
+| [libm](https://crates.io/crates/libm) | `no_std` math routines (√, trig, …). | Computes tilt magnitude `sqrt(pitch² + roll²)`. |
+| [defmt](https://crates.io/crates/defmt) + [defmt-rtt](https://crates.io/crates/defmt-rtt) | Ultra-light logging with RTT transport. | `info!`, `warn!`, `error!` debug output visible via `probe-run`. |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler that prints the panic over **defmt** then halts. | Gives readable back-traces instead of silent lock-ups. |
+| embassy-lab-utils| Helper macros for quick Pico W Wi-Fi + network-stack setup. | `init_wifi!` and `init_network_stack` one-liners inside `main()`. |
 
 ## Links
 
