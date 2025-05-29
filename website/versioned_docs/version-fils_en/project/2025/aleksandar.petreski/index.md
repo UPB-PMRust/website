@@ -59,7 +59,7 @@ The architecture consists of the following main components:
 
 ## Schematics
 
-![Scheme](scheme_res.svg)
+![Scheme](schematics_res.svg)
 
 ---
 
