@@ -10,7 +10,7 @@ A heart rate based breathing guiding system to help regulate the heart beat thro
 
 ## Description
 
-This project uses a heart rate sensor to monitor the user's pulse. The user can select a mode (for example: exercising) and then the heart beat is shown on a display. If the rate is too high, an LED pulses in a rhythm that guides the user to breath in and out slowly. The heart rate history is displayed on a web interface via Wi-Fi.
+This project uses a heart rate sensor to monitor the user's pulse. The user can select a mode (for example: exercising) and then the heart beat is shown on a display. If the rate is too high, an LED pulses in a rhythm that guides the user to breath in and out slowly.
 
 ## Motivation
 
@@ -20,7 +20,7 @@ I chose this project because of the increasing importance of stress management a
 
 ![Diagram](Diagram.webp)
 
-The main controller reads physiological data from the pulse sensor and controls an LED for visual breathing guidance. A button connected to the microcontroller allows user interaction and the display, also connected to the microcontroller, shows the data. The device also hosts a web interface over Wi-Fi, while a  second microcontroller handles debugging. 
+The main controller reads physiological data from the pulse sensor and controls an LED for visual breathing guidance. A button connected to the microcontroller allows user interaction and the display, also connected to the microcontroller, shows the data. The second microcontroller handles debugging. 
 
 ## Log
 
@@ -36,9 +36,11 @@ I displayed on the screen the menu for the mode(either exercising or relaxing). 
 
 ### Week 19 - 25 May
 
+I worked at the way the project looks like and I have improved the pulse reading functionality with the logic given by an AI chat. 
+
 ## Hardware
 
-Raspberry Pi Pico 2W: main controller for handling sensor data, controlling the LED and hosting the Wi-Fi web interface
+Raspberry Pi Pico 2W: main controller for handling sensor data, controlling the LED
 
 Raspberry Pi Pico 2W: used for debugging
 
@@ -80,8 +82,15 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing text to the display |
+| [embassy_embedded_hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Adapters between Embassy and the standard embedded-hal traits | With shared_bus::blocking::spi::SpiDevice safely shares SPI between display and other peripherals. |
+| [embassy_executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | The async runtime provided by Embassy for embedded systems | Runs async tasks such as #[embassy_executor::main] and the breathing LED task |
+| [embassy_time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Provides async-friendly time utilities like timers, delays, and durations | Used for Timer::after, Duration, Instant |
+| [defmt](https://defmt.ferrous-systems.com/) | Compact and efficient logging system for embedded devices | Used for logging/debugging with info!|
+| [panic_probe](https://crates.io/crates/panic-probe) | Handles panics | Reports detailed panic messages during runtime|
+| [embassy_rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | The embassy hal | Used to access and control the Raspberry Pi Pico W hardware, including GPIOs, ADC, SPI, PWM, and system initialization via init|
+| [embassy_sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) |  Provides synchronization primitives for async and sync use | Used to run async code on embedded systems |
+| [mipidsi](https://github.com/almindor/mipidsi) | Display driver for ST7735 TFT displays | Used to control SPI-based LCD displays like ST7735s | 
 
 
 ## Links

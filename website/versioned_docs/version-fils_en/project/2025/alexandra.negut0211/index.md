@@ -59,6 +59,8 @@ I built the hardware part of the project. I have made again the KiCad Schematics
 
 ### Week 19 - 25 May
 
+I started software. I encountered some problems with HX711 software.
+
 ## Hardware
 
 ![alt text](hardwarethird.webp)
@@ -72,7 +74,7 @@ I built the hardware part of the project. I have made again the KiCad Schematics
 
 ### Schematics
 
-![alt text](<project.pet.feeder.svg>)
+![alt text](project.pet.feeder.svg)
 
 ### Bill of Materials
 

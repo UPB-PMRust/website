@@ -49,6 +49,7 @@ Updating the documentation
 
 
 ### Week 19 - 25 May
+Finish software
 
 ## Hardware
 
@@ -97,11 +98,14 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [rp-hal](https://github.com/rp-rs/rp-hal) | Hardware Abstraction Layer for Pico | Base control of GPIOs, ADC, and PWM |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Interfaces with servos and LEDs |
-| [ws2812-pio](https://github.com/rp-rs/ws2812-pio) | LED driver using PIO | Control WS2812 LEDs |
-| [rustfft](https://github.com/ejmahler/RustFFT) | Fast Fourier Transform in Rust | For future implementation of beat detection |
-| [defmt + probe-rs](https://github.com/knurling-rs/defmt) | Debugging tools | Debugging embedded Rust code easily |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Async HAL for RP2040 | Drives GPIO, ADC, PWM, and PIO peripherals |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Runs `async` tasks for servo and LED logic |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timers and delays | Used for beat delays, fade timing |
+| [smart-leds](https://github.com/smart-leds-rs/smart-leds) | WS2812 LED color abstraction | Used for RGB LED strip control |
+| [rp-hal](https://github.com/rp-rs/rp-hal) | RP2040 Hardware Abstraction Layer | Base GPIO/ADC/PWM fallback |
+| [ws2812-pio](https://github.com/rp-rs/ws2812-pio) | PIO-based WS2812 driver | Drives LED animations precisely |
+| [defmt + probe-rs](https://github.com/knurling-rs/defmt) | Debugging tools | Efficient logging over RTT |
+
 
 ## Links
 
