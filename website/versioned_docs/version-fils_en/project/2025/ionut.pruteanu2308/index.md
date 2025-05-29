@@ -118,7 +118,11 @@ I added the RFID module, which is used for reading the card UID. Based on this U
 
 ### Week 12 - 18 May
 
-I completed the actual slot game, replacing the colors with actual symbols and i defined the winning combinations rules. I also connected the second display which shows the winning combinations and their value.
+I completed the actual slot game, replacing the colors with actual symbols and i defined the winning combinations rules. I also connected the second display which shows the winning combinations and their value. I also assembled the project in its final version.
+
+### Week 19 - 25 May
+
+Made small fixes. Now, if the slot machine loses power, the balance is saved to memory.
 
 ## Hardware
 
@@ -194,3 +198,4 @@ The format is
 ## Links
 
 1. [Personal Repo](https://github.com/Gabyyi/Arcade-Game)
+2. [Youtube video](https://youtube.com/shorts/I9WVkNJYwrI)
