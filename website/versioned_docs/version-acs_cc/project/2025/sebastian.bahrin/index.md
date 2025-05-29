@@ -162,7 +162,6 @@ With a 20,000mAh (5V) external battery, the system could theoretically operate f
 ![Schema Electrica](./Schematic.svg) 
 
 ## **Project Photos**
-![Photo 1](./Photo1.webp) 
 ![Photo 2](./Photo2.webp) 
 ![Photo 3](./Photo3.webp) 
 
