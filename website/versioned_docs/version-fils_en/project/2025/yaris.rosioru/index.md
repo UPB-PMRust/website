@@ -6,6 +6,7 @@ A real-time audio recording system that captures sound using an AEnalta-4 microp
 
 **Author**: Yaris Rosioru \
 **GitHub Project Link**: [Project Link](https://github.com/UPB-PMRust-Students/project-yaris4261)
+**YouTube Link**: [Link](https://youtube.com/shorts/3aFFburXq44?si=CWvEMchek7tYu5JI)
 
 :::
 
