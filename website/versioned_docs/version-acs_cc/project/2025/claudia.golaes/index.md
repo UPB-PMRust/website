@@ -71,8 +71,8 @@ After finishing 90% of the hardware part, not the design of the outer faces of t
 
 ### Week 19 - 25 May
 Hardware part is 99.9% ready, the software part is 101% ready, I just need a case for the 7-segment 2 digit display. Also, I asked some friends to review the game, and I implemented some of their feedback like way too much waiting for the instructions part and lack of details in the instructions.
-![Lastweek](Lastweek.svg)
-![Lastweek2](Lastweek2.svg)
+![Lastweek](Lastweek.webp)
+![Lastweek2](Lastweek2.webp)
 
 ## Hardware
 
@@ -87,28 +87,6 @@ Hardware part is 99.9% ready, the software part is 101% ready, I just need a cas
 + **8xAA Battery with DC Connector** - Provides portable power to the entire system, enabling the cube to function without external power sources.
 + **Breadboards and Female-Male Wires** 
 + **Pin Headers** 
-
-## Software
-This embedded Rust application implements a finite state machine with 10 distinct states (PUZZLE_NUMBER 0-9) for an escape room controller.The code uses unsafe global variables like PUZZLE_NUMBER and COUNTDOWN_SECONDS to keep track of game state - not the prettiest Rust code, but it gets the job done. The hardware part (buttons, sensors, display) each get their own module with async functions that talk to the actual pins using standard embedded Rust traits. When things go wrong (like sensors failing or timers expiring), the system just rolls back to an earlier puzzle state instead of crashing, so players can keep trying without losing all their progress.
-
-### State Flow
-This module is responsible for delivering visual feedback and guiding the player through the game:
-**Linear Progression**: The game follows a sequential flow from State 0 → State 9, where each puzzle must be completed to advance.
-**Failure Recovery**: The system implements rollback mechanisms - when timers expire or wrong inputs occur, the state machine transitions back to previous states rather than terminating.
-
-### Key States
-+ **State 0**: Entry point - waits for START button
-+ **States 1,3,5,7**: Instruction screens between puzzles
-+ **States 2,4,6,8**: Active puzzle states with countdown timers
-+ **State 9**: Terminal success state
-
-### Technical Features
-+ **Async timer management** using Embassy runtime
-+ **Hardware abstraction** through dedicated modules (buttons, gyroscope, Hall sensors)
-+ **Global state variables** for inter-state communication
-+ **Event-driven transitions*: based on user input and sensor data
-
-![Software](software_diagram_best.svg)
 
 
 ### Schematics
@@ -144,6 +122,26 @@ The format is
 | 9 V Battery Connector with DC Jack | Connecting to a 9-volt battery. | [1.49 RON](https://www.optimusdigital.ro/en/wires-with-connectors/896-9v-battery-connector-with-dc-jack.html?search_query=9v+battery&results=796) |
 
 ## Software
+This embedded Rust application implements a finite state machine with 10 distinct states (PUZZLE_NUMBER 0-9) for an escape room controller.The code uses unsafe global variables like PUZZLE_NUMBER and COUNTDOWN_SECONDS to keep track of game state - not the prettiest Rust code, but it gets the job done. The hardware part (buttons, sensors, display) each get their own module with async functions that talk to the actual pins using standard embedded Rust traits. When things go wrong (like sensors failing or timers expiring), the system just rolls back to an earlier puzzle state instead of crashing, so players can keep trying without losing all their progress.
+
+### State Flow
+This module is responsible for delivering visual feedback and guiding the player through the game:
+**Linear Progression**: The game follows a sequential flow from State 0 → State 9, where each puzzle must be completed to advance.
+**Failure Recovery**: The system implements rollback mechanisms - when timers expire or wrong inputs occur, the state machine transitions back to previous states rather than terminating.
+
+### Key States
++ **State 0**: Entry point - waits for START button
++ **States 1,3,5,7**: Instruction screens between puzzles
++ **States 2,4,6,8**: Active puzzle states with countdown timers
++ **State 9**: Terminal success state
+
+### Technical Features
++ **Async timer management** using Embassy runtime
++ **Hardware abstraction** through dedicated modules (buttons, gyroscope, Hall sensors)
++ **Global state variables** for inter-state communication
++ **Event-driven transitions**: based on user input and sensor data
+
+![Software](software_diagram_best.svg)
 
 | Library | Description | Usage |
 |:---------:|:-------------:|:-------:|
