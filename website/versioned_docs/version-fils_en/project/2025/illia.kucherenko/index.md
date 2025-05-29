@@ -50,10 +50,12 @@ I've acquired all the necessary hardware, which is likely still subject to be re
 I managed to implement a basic version of Snake Game. Although initially it was choppy due to optimisation flaws in screen updates, I managed to fix it and the game now runs at buttery smooth 60 fps. The console is fully functional, but barebones and a little wonky to use for now. For now my plan is to add new gameplay features to the game which are not currently present, and add LEDs for visual feedback. Since I haven't done that yet my KiCad schematic doesn't include RGB LEDs, in the next weekly log I'll make sure to include that as well, as the project will reach a more finished and polished state.
 
 ### Week 19 - 25 May
-I moved buttons to a separate breadboard which is connected to the main one on order to make a more "d-pad" like controls layout. I implemented Tetris, which is still in beta. So far I encountered 0 unfixed issues but in case if I do I will try to fix them. For Snake Game I added 2 types of rare items: Golden Apples and Diamonds. Golden Apples generate on the field every 10 seconds with odds being 50%, Diamonds on the other hand can spawn with a chance of 25% every 10 seconds, while also moving. Golden Apples give 10 points and Diamonds give 20, Unlike the regular Apple which gives only 1. I also added difficulties to Snake Game: Easy, Normal, Hard, Nightmare. Each affect game's speed, the higher the difficulty - the faster the game is.
+I moved buttons to a separate breadboard which is connected to the main one on order to make a more "d-pad" like controls layout. I implemented Tetris, which is still in beta. So far I encountered 0 unfixed issues but in case if I do I will try to fix them. For Snake Game I added 2 types of rare items: Golden Apples and Diamonds. Golden Apples generate on the field every 10 seconds with odds being 50%, Diamonds on the other hand can spawn with a chance of 25% every 10 seconds, while also moving. Golden Apples give 10 points and Diamonds give 20, Unlike the regular Apple which gives only 1. I also added difficulties to Snake Game: Easy, Normal, Hard, Nightmare. Each affect game's speed, the higher the difficulty - the faster the game is. 
+
+The idea of using RGB was scrapped due to time constraints.
 
 ## Hardware
-Consists of RP Pico 2W (2x), LCD TFT 2.2" module, buttons and resistors and 2 breadboards to hold everything together. At the moment buttons and resistors are not installed due to design concerns.
+Consists of RP Pico 2W (2x), LCD TFT 2.2" module, buttons and resistors and 2 breadboards to hold everything together. The buttons are put on a separate breadboard to make it feel more like an actual controller.
 
 ![](pic1.webp)
 ![](pic2.webp)
@@ -92,5 +94,5 @@ Here's a KiCad schematic for the current version of the console:
 | [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Minimal panic handler for embedded | Handles panics safely in embedded context |
 
 ## Links
-
-1. [link](https://www.youtube.com/watch?v=SB3qwe6CTjM)
+1. [Live Demonstration](https://www.youtube.com/watch?v=qS5Os9aqI-E)
+2. [Project Inspiration (Pac Man Game)](https://www.youtube.com/watch?v=SB3qwe6CTjM)
