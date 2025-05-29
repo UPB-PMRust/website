@@ -160,8 +160,10 @@ Some debugging lines may be found throughout the code. You will notice there is 
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [ssd1306]([https://github.com/almindor/st7789](https://github.com/rust-embedded-community/ssd1306)) | Display driver for ssd1306 | Used for the OLED displays |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the displays |
+| [embassy-net](https://github.com/embassy-rs/embassy-net) | Embassy net crate | Used for internet connection |
+| [cyw43]() | cyw43 driver | Also used for internet connection |
 
 ## Links
 
