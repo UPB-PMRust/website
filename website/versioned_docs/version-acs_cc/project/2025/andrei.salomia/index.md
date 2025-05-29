@@ -1,5 +1,5 @@
 # Wireless Guitar Signal Transmitter
-A transmitter and a receiver that transmit wireless the guitar signal and modify it.
+A transmitter and a receiver that transmit wireless the guitar signal.
 
 :::info 
 
@@ -10,7 +10,7 @@ A transmitter and a receiver that transmit wireless the guitar signal and modify
 
 ## Description
 
-This project implements a wireless guitar transmitter based on two Raspberry Pi Pico 2W boards, enabling basic audio transmission over Wi-Fi from a guitar to an amplifier. Additionally, the system applies simple real-time audio effects using software processing: **mute**, **tremolo**, and **clipping**.
+This project implements a wireless guitar transmitter based on two Raspberry Pi Pico 2W boards, enabling basic audio transmission over Wi-Fi from a guitar to an amplifier. Additionally, the system allows for volume control, using two buttons to increase/decrease volume level and a mute button.
 
 ## Motivation
 
@@ -22,7 +22,7 @@ I am passionate about guitar, and I wanted to see if it is possible to create a 
   - Audio input from electric guitar (6.35 mm jack)
   - Signal filtering using capacitors
   - Analog-to-Digital Conversion (ADC)
-  - Apply software audio effects (tremolo, mute, clipping)
+  - Check for volume changes requests
   - Transmit data via Wi-Fi (UDP)
 
 - **Receiver (Pico 2)**:
@@ -31,9 +31,9 @@ I am passionate about guitar, and I wanted to see if it is possible to create a 
   - Signal filtering using capacitors
   - Output to amplifier
 
-- **Effect Control**:
-  - 3 buttons to switch between effects
-  - 3 LEDs indicating the selected effect
+- **Volume Control**:
+  - 3 buttons to apply volume control
+  - 3 LEDs indicating the volume settings
 
 ## System Diagram
 
@@ -54,6 +54,9 @@ modify later.
   basic functionalities, such as the ADC and DAC.
 
 ### Week 19 - 25 May
+- Completed the software part. I initially set out to implement some effects, but after completing the wireless transmission part, I realized it would be
+impossible to create some good sound effects/modulation. I adapted the original effects to just some volume settings. I also tweaked the filters a bit and
+modifided the schematic as I had made a mistake in the previous version.
 
 ## Hardware
 
@@ -71,8 +74,8 @@ modify later.
 | - 100nF | Signal filtering | Used in low-pass filter |
 | - 4.7nF | Signal filtering | Used in high-pass filter |
 | Resistors: |
-| - 100 Ohm | Signal filtering | Used in low-pass filter |
-| - 2.2K Ohm | Signal filtering | Used in high-pass filter |
+| - 3.3K Ohm | Signal filtering | Used in low-pass filter |
+| - 680K Ohm | Signal filtering | Used in high-pass filter |
 | Jumper wires (set) | Connections | Breadboard wiring between all components |
 | Headers 1.27mm (2 pcs) | Pico connection | Allows mounting the Pico onto the breadboard securely |
 
@@ -121,6 +124,15 @@ The format is
 |---------|-------------|-------|
 | [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display | -->
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy](https://github.com/embassy-rs/embassy) | Async framework for embedded Rust | Provides async executor, time, networking, and hardware abstraction |
+| [embassy-net](https://github.com/embassy-rs/embassy/tree/main/embassy-net) | Embedded async networking stack | Used for UDP communication and network stack setup |
+| [static-cell](https://github.com/embassy-rs/static-cell) | Safe static memory allocation | Used for statically allocated network stack and queue |
+| [heapless](https://github.com/japaric/heapless) | Fixed-capacity data structures without heap | Used forSPSC queue |
+| [embedded-hal-async](https://github.com/embassy-rs/embedded-hal) | Async hardware| Used for async I2C communication with the DAC |
+| [cyw43](https://github.com/embassy-rs/cyw43) | Wi-Fi driver| Enables Wi-Fi connectivity on the Raspberry Pi Pico 2W |
 
 ## Links
 
