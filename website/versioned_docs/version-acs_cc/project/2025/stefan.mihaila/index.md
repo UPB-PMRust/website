@@ -42,9 +42,13 @@ Crearea paginii proiectului pe gitlab. Crearea paginii proiectului pe github. Î
 
 Schimbarea platformei de pe gitlab pe github. Am adăugat informații suplimentare pentru documentație în ceea ce privește hardware-ul. Am adăugat schema creată în Kicad și poze cu proiectul. De asemenea am completat componentele noi cumpărate la BOM.
 
+Am verificat funcționalitatea hardware prin folosirea unei scanări I2C pentru fiecare dispozitiv. Am încărcat pe github classroom la pagina de proiect o parte din fișierele folosite, precum și codul scris și am completat o parte din README.
+
 Am verificat functționalitatea hardware prin folosirea unei scanări I2C pentru fiecare dispozitiv. Am încărcat pe github classroom la pagina de proiect o parte din fișierele folosite, precum și codul scris și am completat o parte din README.
 
-### Week 19 - 25 May
+### Week 19 - 26 May
+
+Am definitivat partea de Software a proiectului. Am reușit să afișez numărul de pași și pulsul pe ecranul LCD. Am reușit să creez și o conexiune prin wi-fi astfel încât să creez un site în care să fie afișate aceleași informații ca pe ecranul LCD și să se actualizeze la intervale regulate de timp.
 
 ## Hardware
 
@@ -89,6 +93,9 @@ The format is
 | [embassy-rs](https://embassy.dev/) | framework for embedded aplications for rust | Used for efficient multitasking in embedded systems |
 | [probe-rs](https://probe.rs/docs/overview/about-probe-rs/) | embedded debugging and target interaction toolkit | Used to program and debug microcontrollers via a debug probe |
 | [rp235x_hal](https://docs.rs/rp235x-hal/latest/rp235x_hal/index.html) | implementation of the embedded-hal traits for the RP235x microcontrollers | Used for features regarding implemtation of defmt and i2c-write-iter |
+| [cyw43](https://docs.embassy.dev/cyw43/git/default/index.html) | Wi-fi support in Rust | Used for supporting wi-fi (chip BCM43439) |
+| [micromath](https://docs.rs/micromath/2.1.0/micromath/) | Mathematic functions for microcontrollers | Used in some formulas especially for counting the steps |
+| [i2c-character-display](https://docs.rs/i2c-character-display/0.5.0/i2c_character_display/) | Api for using the LCD using I2C | Used for displaying the number of steps and heart rate |
 
 ## Links
 
@@ -98,3 +105,5 @@ The format is
 2. [Inter-Integrated Circuit](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
 3. [Inertial Measurement Unit](https://pmrust.pages.upb.ro/docs/acs_cc/lab/05#mpu-6500-inertial-measurement-unit)
 4. [Raspberry Pi Ltd, RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
+5. [Wi-fi](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07)
+6. [Asynchronous Development](https://pmrust.pages.upb.ro/docs/acs_cc/lab/04)
