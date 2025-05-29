@@ -23,11 +23,14 @@ A Raspberry Pi Pico 2 W handles timing-critical control, while an ESP32 DevKit l
 
 ## Log
 
-Week 5 - 11 May
+### Week 5 – 11 May:
+Project kickoff with initial requirement gathering.
 
-Week 12 - 18 May
+### Week 12 – 18 May: 
+Development sprint focusing on hardware functionality.
 
-Week 19 - 25 May
+### Week 19 – 25 May:
+Implemented the software and ran tests.
 
 ---
 
