@@ -10,8 +10,7 @@ A smart clock with an alarm, display, temperature/humidity monitoring and a web 
 
 ## Description
 
-This project is built using the Raspberry Pi Pico 2W, capable of displaying the current time and date on a small OLED display, and live temperature/humidity data on another small LCD display that also shows a real-time graph of both temperature and humidity. The current temperature and humidity also change color depending on their value. The device fetches accurate time from the internet every 3 to 6 hours, and offers a web interface for setting alarms. Alarms can be heard through a passive buzzer placed on the breadboard.
-
+This project is built using the Raspberry Pi Pico 2W, capable of displaying the current time and date on a small OLED display, and live temperature/humidity data on another small LCD display that also shows a real-time graph of both temperature and humidity. The current temperature and humidity also change color depending on their value. The device fetches accurate time from the internet every 2 hours, and offers the possibility to set alarms. Alarms can be heard through a passive buzzer placed on the breadboard.
 
 ## Motivation
 
@@ -32,7 +31,7 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 - **Sensor service**
     - polls DHT22 for temperature & humidity every 2 seconds and writes the data to the LCD display, updating the graphs in real time;
 - **Clock Service**
-    - fetches the exact time from the internet every 6h and keeps local RTC synced;
+    - fetches the exact time from the internet every 2h and keeps local RTC synced;
 - **Alarm Handler**
     - creates and triggers the alarm created by the user;
 - **Display units**
@@ -52,8 +51,28 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 ![progress1](./images/mai1.webp)
 
 ### Week 12 - 18 May
+
+- Got the second display (ssd1306 OLED) to display the correct date and time in hours:minutes:seconds in real time.
+- Added 2 buttons through which you can set alarms and view them on the screen. The first button is used to enter/exit alarm modes:
+    - default: nothing alarm related appears on the screen
+    - set hour: sets the alarm hour
+    - set minute: sets the alarm minute at which it will trigger
+    - toggle alarm on/off: if off the alarm will not be triggered at the specified time
+- The second button increments the alarm hour/ minute /toggle functionality.
+- When the alarm triggers, a buzzer will pulse for 3 seconds with 3 audible beeps on different pitched tones (50-200hz).
+
+![progress2](./images/progress2.webp)
  
 ### Week 19 - 25 May
+
+- 3D Printed a support with feet for the project and tied up the wires for a cleaner look.
+- Moved the set alarm functionality on an asynchronous task for efficiency and faster response although it may create some noise on the screens if they do not get clean, stable power. 
+- Finally got the Wi-Fi part working and sending the sensor data to a python web server that uses Flask. Time is sent from the server to the pico every 2h, mainly before initializing the screen and the main loop in order to have an accurate date and time displayed.
+- At the PM Fair the project will look even better, i am thinking of putting a plexiglass sheet raised on some supports but i don't currently have the cutting tools.
+
+![progress3](./images/progress3.webp)
+
+![graph](./images/graph.webp)
 
 ## Hardware
 
@@ -62,16 +81,18 @@ I always wanted a machine that sits on my desk and keeps track of time and sched
 - **ST7735 TFT LCD display** (SPI): acts as a colored screen for displaying the temperature and humidity info, their graphs and color mapping if the paramters are healthy or not(green, yellow and red);  
 - **SSD1306 OLED** (secondary SPI display): used for displaying the clock, the date and the alarms;
 - **DHT22** (temperature + humidity sensor): used for monitoring the temperature and humidity of the air with the help;
-- **Passive buzzer + resistor** (GPIO controlled): a buzzer that is controlled through PWM on a PWM capable GPIO pin(15);
+- **Passive buzzer + resistor** (GPIO controlled): a buzzer that is controlled through PWM on a PWM capable GPIO pin(20);
 - **12V power supply** terminated to a barrel jack feeding the HW131 power supply that outputs regulated 3.3V and 5V DC. (I only use 3.3V for this project).
 
 ![hw1](./images/hw1.webp)
+
+![hw2](./images/hw2.webp)
 
 ### Schematics
 
 **KiCAD schematic**
 
-![kicad](./images/kicad.webp)
+![kicad](./images/kicad-schema.svg)
 
 
 ### Bill of Materials
@@ -107,9 +128,17 @@ The format is
 | [embedded_graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library that is minimal in used resources | Used for writing and drawing to the display |
 | [embedded_hal](https://github.com/rust-embedded/embedded-hal)        | Abstraction layer for MCU drivers | Interfaces for all peripherals  |
 | [embedded_dht_rs](https://github.com/rust-dd/embedded-dht-rs)       | Temperature/humidity sensor crate | For controlling and reading data from the DHT22 sensor |
+| [pwm](https://docs.embassy.dev/embassy-rp/git/rp235xb/pwm/index.html)       | PWM module | For controlling the active buzzer on a precise tone in HZ |
+| [cyw43](https://docs.rs/cyw43/latest/cyw43/)       | Driver for the CYW43 Wi-Fi chip on the Pico W | Support for wi-fi station mode and AP mode as well as bluetooth support |
+| [heapless](https://github.com/rust-dd/embedded-dht-rs)       | Fixed-capacity collections for no_std | Used for String buffers and messaging, can be instantiated in a static variable|
+| [chrono](https://github.com/chronotope/chrono)       | Timezone-aware date and time handling | Used for the clock and the alarm in order to keep track of time accurately |
+| [embassy_net](https://docs.embassy.dev/embassy-net/git/default/index.html)       | Async embedded TCP/IP network stack | Used to serve a web interface over Wi-Fi|
 | [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Access to the pheripherals | Initializing and talking to peripherals|
 | [embassy_executor](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Provides an executor for running asynchronous tasks concurrently | Execute asynchronous tasks concurrently |
 | [embassy_time](https://docs.rs/embassy-time/latest/embassy_time/) | Timekeeping, delays and timeouts | Schedule tasks to run at specific times |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Async synchronization primitives | Used for Mutex in screens and sharing data through TCP |
+| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI display abstraction | Facilitates SPI communication between spi screens and device |
+| [static-cell](https://crates.io/crates/static-cell) | Safe static memory allocator | Used to initialize and store static data |
 | [defmt](https://github.com/knurling-rs/defmt) | A highly efficient logging framework that targets resource-constrained devices, like microcontrollers | Prints out messages in the terminal(debugging) |
 
 ## Links
@@ -121,3 +150,4 @@ The format is
 3. [DHT22 data sheet and crate usage](https://github.com/rust-dd/embedded-dht-rs)
 4. [Embedded-graphics examples](https://github.com/embedded-graphics/examples)
 5. [Simple rust examples with pico](https://pico.implrust.com/index.html)
+6. [Demo of working project on youtube](https://youtube.com/shorts/2jhZCI8OYJE?si=Fdq_udtOpBgoNPQ3)

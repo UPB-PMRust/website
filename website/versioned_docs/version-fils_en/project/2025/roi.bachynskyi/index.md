@@ -154,6 +154,7 @@ VitalPi utilizes a Raspberry Pi Pico 2W microcontroller as its processing core a
 
 ![Hardware](hardware_3.webp)
 
+
 ### Schematics
 
 This is the KiCad Schematics of the project.

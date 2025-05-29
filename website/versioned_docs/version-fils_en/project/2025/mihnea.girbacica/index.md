@@ -4,7 +4,7 @@ A compact and robust 2D video game for the NUCLEO-F411RE, written in Rust.
 
 :::info
 
-**Author**: Mihnea Girbacica \
+**Author**: Mihnea Girbacica\
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-Mihnea8848
 
 :::
@@ -19,7 +19,15 @@ As the owner of a Game Development Company, I've been fascinated by video games 
 
 ## Architecture
 
-*To be added at a later time, the hardware is still not fully configured.*
+As stated before, this project uses a Nucleo-F411RE Development Board at its core. To the microprocessor, the following parts were connected:
+
+- An **1.8" SPI TFT LCD Display**, used to display the game,
+- Two **Passive Buzzers** that are used to play the soundtrack of the game,
+- An Arduino SHIELD (Joystick + DPad Combo) used to interact with the game, mainly to move the player.
+
+The previoulsy stated configuration can be seen in the diagram below, as well as the *KiCAD Schematic*, that can be found later on in this documentation.
+
+![The Architecture of RustScape](./RustScape-Architecture.svg)
 
 ## Log
 
@@ -27,15 +35,80 @@ As the owner of a Game Development Company, I've been fascinated by video games 
 
 ### Week 5 - 11 May
 
-*This week is still to come, to be added.*
+The main goal of the first week was to make all of the peripherals work. \
+Code Changelog:
+
+- Created the Cargo.toml, with all the required dependencies
+- Created module display_module.rs, that integrates the ST7735s display to the microcontroller
+- Created module sound_module.rs, that integrates the 2 Passive Buzzers (one for Bass and one for Melody) to the microcontroller
+- Created module controller_module.rs, that integrates all of the SHIELD buttons to the microcontroller.
+
+Hardware Changelog:
+
+- Decided to use the cardboard shipping box of the NUCLEO-F411RE as the chassis of the project
+- Test fitted the following parts to the box: ST7735s, 2x Passive Buzzer, Fundruino SHIELD
+- Glued inside of the box a small 3V3 and GND bus, taken from a small breadboard
+- Tested the placement of the buzzers so that the soundtrack can be heard easily
+
+Photos:
+
+![The interior of the box: Wiring](./rustscape-photo-1.webp)
+![The closed chassis: RustScape!](./rustscape-photo-2.webp)
 
 ### Week 12 - 18 May
 
-*This week is still to come, to be added.*
+This week's goal was to start making the game's logic, mainly the player movement and loading up levels. I experimented different ways to load images onto the screen, but I ended up using .raw image files for their versatility and, most importantly, their relatively low storage footprint.
+
+Code Changelog:
+
+- Added game_module.rs, that includes very crude game logic (player movement, background loading)
+- Improved the game_module.rs to move the background when the player moves to undisplayed areas.
+- Optimized the code so that it works better (**!**)
+- Created and added all of the required assets (The player in all of its states, the background for level1)
+- Made the player stripe change based on what input is provided on the D-Pad
+- Made the player stripe change it's location (move) based on the input
+- Considering adding another microcontroller to the project (**!**)
+
+Hardware Changelog:
+*No hardware changes were made this week.*
+
+:::warning Significant Changes
+
+In this stage of development, I discovered that the NUCLEO-F411RE is severely limited in terms of RAM and FLASH storage. I am considering adding another microcontroller, *most likely the ESP32 WROOM32*, to drive the display. This will substantially increase the performance of the game.
+
+:::
+
+Photos:
+
+![RustScape: Initial Player Movement tests](./rustscape-photo-3.webp)
+![RustScape: Initial level1 tests](./rustscape-photo-4.webp)
 
 ### Week 19 - 25 May
 
-*This week is still to come, to be added.*
+:::tip Final Decision regarding Hardware
+As stated in the previous week's progress log, I discovered the NUCLEO's severe limitations in terms of hardware. While I considered implementing the *ESP32 WROOM32* as a graphics controller, **I decided against it**, sticking with only the **NUCLEO-F411RE** microcontroller. The reasoning behind this is that *"Anyone can put a better engine in their car, but that doesn't make themselves a better driver."*
+:::
+
+This week was **by far** the hardest week. Since I decided not to include another microcontroller, I tried optimizing the code as much as possible, so that the game will fit on the mere **512KB** of FLASH storage. Some optimizations include:
+
+- Reducing the images size by changing the file type from .png to .raw,
+- Using a Python script to compress the .raw files as much as possible, while also retaining the image quality,
+- Optimized the way the code handles the images and how they are loaded into RAM (*only* **128KB**).
+
+Code Changelog:
+- Changed the camera movement from dynamic to chunk-based (*part of the code optimizations*),
+- Reduced the file size of level1 to 2-bytes-per-pixel (*part of the code optimizations*),
+- Changed the way the player is loaded, as well as how the background behind the player is loaded (*part of the code optimizations*),
+- Added a Hitbox map for level1, so that the level doesn't feel like a plain image,
+- Reduced the Hitbox map to 1-byte-per-pixel, to reduce the file size (*part of the code optimizations*),
+- Re-added the boot-up sequence, the main menu and the soundtrack functionality.
+
+Hardware Changelog:
+*As stated before, I decided against adding another microprocessor, therefore, no hardware changes were made this week.*
+
+Photos:
+
+![RustScape: Level 1 Showcase](./showcase-level1.webp)
 
 ## Hardware
 
@@ -43,7 +116,9 @@ RustScape is built using the NUCLEO-F411RE development board, which acts as the 
 
 ### Schematics
 
-*The KiCAD Schematic is not yet finished.*
+*This is the finished KiCAD Schematic for RustScape:*
+
+![The KiCAD Schematic for RustScape](./RustScape.svg)
 
 ### Bill of Materials
 
@@ -86,6 +161,17 @@ The format is
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
-1.  [Embedded Rust Book](https://docs.rust-embedded.org/book/intro.html)
-2.  [embassy](https://github.com/embassy-rs/embassy)
-3.  [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+
+1. [Embedded Rust Book](https://docs.rust-embedded.org/book/intro.html)
+2. [embassy](https://github.com/embassy-rs/embassy)
+3. [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+
+I plan on using this project after **PMFair** as part of an educational programme for my company, **MEH Studios Incorporated**. More details can be found below:
+
+4. [MSINC Website](https://mehstudios.vercel.app) *(Note: This link might change in the future, search MEH Studios Incorporated on Google for permanent links.)*
+
+## YouTube Backup
+
+There exists a rather high possibility that the project won't work at **PMFair**, due to loose cables which are unaccessible, or due to the microcontroller malfunctioning. Therefore, I uploaded an unlisted YouTube video on my channel, showcasing the whole project in a late stage of development (roughly ~85% or ~90% done). This video is to be used as a backup:
+
+[![RustScape YouTube Demo](./youtube-rustscape-demo.webp)](http://www.youtube.com/watch?v=TIsyPn2RA-o "RustScape: The small handheld Undertale box")
