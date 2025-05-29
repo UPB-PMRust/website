@@ -58,7 +58,11 @@ In the first week of my PetSense project,I bought the necesarry components for t
 
 ### Week 7 - 19 May
 This week, I completed the KiCad schematic and finished the electronic design for the PetSense system. I also purchased the remaining components needed for the project to ensure I had everything. In terms of software, I worked on completing the code, with a particular focus on the servomotor functionality, ensuring it responds correctly to timer-based events. Additionally, I finished the overall project design and architecture,improving how each component interacts within the system to ensure efficient response to environmental changes.
+
 ### Week 20 - 26 May
+This week, I was able to complete the coding phase, adding several new elements to the project.
+Furthermore, I designed a custom enclosure and finished constructing a support for the ServoMotor.
+I incorporated all the sensors and the display in the 3D-printed case that I created which improves the functionality of the project.
 
 ## Hardware
 
@@ -77,7 +81,9 @@ Acts as the central controller for the pet environment monitoring system. It coo
         - **CLK:** Connected to **PIN_10**(used for the 8-segment display)
         - **MOSI:** Connected to **PIN_11**(used for the 8-segment display)
         - **MISO:** Connected to **PIN_12**(used for the 8-segment display)
-        - **CS:** Connected to** PIN_13**(used for the 8-segment display)
+        - **CS:** Connected to **PIN_13**(used for the 8-segment display)
+
+
     - **PWM Slice 3:**
         - **PWM Output A:** Connected to **PIN_6**(used for the Servomotor)
     - **GPIO:**
@@ -172,8 +178,16 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging framework for embedded | Used for logging (info!, etc) |
+| [embassy](https://github.com/akiles/embassy) | Asynchronous embedded framework | Core async task system |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Async timers and delays | Used for Timer::after, Duration, and managing periodic tasks |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Embassy support crate for Raspberry Pi Pico | GPIO, I2C, SPI, PWM, interrupt handling for RP2040 |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Async synchronization primitives | Channel, Signal used for inter-task communication |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer for embedded systems | Provides generic traits for I2C, SPI, PWM, and GPIO |
+| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async extension of embedded-hal | Used for async I2C trait |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Minimal panic handler with defmt support | Handles panic conditions for embedded systems
+| [tsl256x](https://github.com/JoshMcguigan/tsl256x) | Driver for TSL256x light sensors | Reads ambient light data from TSL2561 sensor |
+| [max7219-driver](https://github.com/apollolabsdev/stm32-nucleo-f401re/tree/main/Drivers/) | Driver for MAX7219 8-digit 7-segment display | Controls and updates the 7-segment display |
 
 ## Links
 
@@ -182,3 +196,7 @@ The format is
 1. [Raspberry Pi Automatic Cat Feeder](https://www.youtube.com/watch?v=xJ6TVPJNrc8)
 2. [Automatic cat feeder-PART 1](https://www.youtube.com/watch?v=JkKmJ7eeQjQ)
 3. [Automatic cat feeder-PART 2](https://www.youtube.com/watch?v=tp6coaSNY9I)
+
+## Link to youtube video
+
+1. [Pet Sense](https://youtu.be/RF2EOjKjYcg?si=CcYMeDAzCQIW3tOk)
