@@ -36,18 +36,17 @@ The system includes the following main architecture components:
 - Created GitLab fork and added base files
 
 ### Week 12 - 18 May  
-- Prepare audio acquisition setup  - TO DO
-- Build amplifier circuit for microphone - TO DO
-- Begin testing ADC and audio signal sampling  - TO DO
+- Prepared audio acquisition setup
+- Began testing ADC and audio signal sampling
 
 ### Week 19 - 25 May  
-- Integrate BPM detection logic  - TO DO
-- Display integration  - TO DO
-- Debug communication setup between MCUs  - TO DO
+- Integrated BPM detection logic
+- Display integration
+- Debug communication setup between MCUs
 
 ## Hardware
 
-- Raspberry Pi Pico W (MCU with Wi-Fi)  
+- Raspberry Pi Pico 2W (MCU with Wi-Fi)  
 - Electret microphone with MAX9814 amplifier  
 - 128x32 OLED SPI display  
 - Breadboard, jumper wires, USB power supply
