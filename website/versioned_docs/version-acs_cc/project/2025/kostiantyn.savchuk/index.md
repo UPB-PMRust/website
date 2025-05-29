@@ -115,7 +115,7 @@ Implemented the software and ran tests.
 ### Schematics
 The full schematic was drawn in **KiCad v9** and covers every connection between modules, power rails and connectors.
 
-![KiCad schematic overview](./Diagrams/Electrical-Schematic3.webp)
+![KiCad schematic overview](./Diagrams/schame-my-robo-assistent.svg)
 
 ### Photos
 ![MyRoboAssistant prototype](./Diagrams/Robo-front-view.webp)
