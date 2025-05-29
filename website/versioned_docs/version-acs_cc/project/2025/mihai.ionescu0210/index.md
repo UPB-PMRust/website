@@ -14,7 +14,12 @@ This project aims to provide a simple and engaging way to play the classic logic
 featuring three difficulty levels. The game grid is displayed on an LCD screen connected to a
 Raspberry Pi Pico 2 microcontroller. The user can interact with the game using intuitive
 hardware controls: a joystick for navigating between cells and a keypad for number input.
-The system includes input validation to ensure correct moves.
+The system includes input validation and displays a warning inside the grid for invalid moves.
+At the end of the game, the time needed to beat the puzzle is displayed.
+
+[Video Demonstration](https://www.youtube.com/shorts/IdEYMHnrd7Y)
+
+![Sudoku](images/Sudoku.webp)
 
 ## Motivation
 
@@ -32,7 +37,7 @@ an embedded environment project.
 
 ### Week 5 - 11 May
 - Environment setup for picotool flashing
-- Implemented USB logging for print messages instead of using a debugger
+- USB logging for log messages instead of using a debugger
 - Keypad initialization
 - Keypad polling for input reading
 - Joystick initialization
@@ -40,16 +45,28 @@ an embedded environment project.
 - Multiplexed Input between the Keypad and the Joystick
 
 ### Week 12 - 18 May
+- SPI bus initialisation
 - Display initialisation
-- Display drawings support using embedded-graphics crate
+- Display comatibility with embedded-grpahics library
 
-<!-- ### Week 19 - 25 May -->
+### Week 19 - 26 May
+- Sudoku board generation
+- Sudoku control using input peripherals
+- Sudoku grid drawing
+- Startup screen with difficulty selection
+- Warnings inside grid for invalid moves
+- Game over ending screen
+- Timer for how long it takes to beat the level
 
 ## Hardware
 
-The project uses four main hardware components: a Raspberry Pi Pico 2 as the microcontroller,
-a 2.8-inch ST7789 SPI TFT LCD to display the Sudoku grid, a 3x4 matrix keypad for number input,
-and a dual-axis XY joystick for navigating between cells.
+The project uses four main hardware components:
+- Raspberry Pi Pico 2 as the microcontroller
+- 2.8-inch ST7789 SPI TFT LCD to display the Sudoku grid
+- 3x4 matrix keypad for number input
+- dual-axis XY joystick for navigating between cells.
+
+![Hardware](images/Hardware.webp)
 
 ### Schematic
 
@@ -82,8 +99,10 @@ The format is
 | [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | Raspberry Pi Pico HAL | GPIO, SPI, ADC setup |
 | [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Synchronization primitives | Mutex for SPI bus |
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Time handling mechanisms | Measure Game Runtime |
+| [embassy_usb_logger](https://github.com/embassy-rs/embassy/tree/main/embassy-usb-logger) | USB implementation of the log crate | Debugging & logging player actions |
 | [mipidsi](https://github.com/almindor/mipidsi) | Crate for generic display drivers | Display driver for ST7789 |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing primitives to the display |
+| [picorand](https://github.com/inspier/picorand) | Fast random number generator library | Generating the Sudoku game board |
 | [micromath](https://github.com/tarcieri/micromath) | Embedded-friendly math library | Common arithmetic operations |
 
 ## Links

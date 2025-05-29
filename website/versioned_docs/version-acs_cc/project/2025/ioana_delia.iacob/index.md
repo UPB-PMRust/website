@@ -40,20 +40,28 @@ I successfully connected all the components to the microcontroller and wrote cod
 
 I also designed the support on which I'll be putting all the components. To save space, I decided to put the breadboard on top of the battery pack. I also added plenty of holes that will be used for wire management. To make sure everything fits correctly I created placeholder boxes with the exact dimensions of the components.
 ### Week 19 - 25 May
+I reorganized the code to work in tasks, separating the servo and DC motors movement in two different tasks. Now the DC motors move randomly while the servo moves with a set delay. In main, the infrared and accelerometer sensors are checked and when they detect either an obstacle or a change in orientation respectively, they send a signal to both the servo and motors tasks to stop movement.
 
+I also switched from using [this](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=driver&results=364) motor driver to the [L298N model](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html), which removed the need for a dedicated step down module. I also started to use a 9V battery instead of the 4 AA ones, because they weren't delivering enough current for my circuit.
+
+One of the lab assistants also 3D printed my support, which allowed me to assemble all the electrical parts on it.
 ## Hardware
+
+This is how the parts looked like before being assembled on the support.
 
 ![hardware](hardware.webp "Hardware")
 
-Since the pico is, for now, drawing power from the debugger, I'm currently using another breadboard to supply power to the other components. The plan is that, by the end, everything will be connected to the batteries using the smaller breadboard.
+And this is how the final product looks like.
+
+![final](pm_assembled.webp "Assembled")
 
 * Raspberry pi pico 2w: the microcontroller
 * The accelerometer: used for detecting changes in the movement of the robot
 * The infrared sensor: used for wall detection
 * The servomotor: mimics the movements of a tail
 * DC motors: movement
-* Dual motor driver: helps control the DC motors
-* Step down module LM2596S: converts the 6V supplied by the batteries to the 5V needed by the pico
+* Dual motor driver L298N: used for controlling the motors and for converting the 9V from the battery to the 5V needed by the components
+ 
 ### Schematics
 
 ![schematic](pm_project_schematic_small.svg "schematic")
@@ -77,12 +85,12 @@ The format is
 | Breadboard kit | Electrical connections | [22 Lei](https://www.optimusdigital.ro/ro/kituri/2222-kit-breadboard-hq-830-p.html?search_query=Kit+Breadboard+HQ830+cu+Fire+%C8%99i+Sursa)|
 | Infrared sensor | Obstacle avoidance | [3.49 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html?search_query=+Modul+Senzor+Infrarosu+de+Obstacole+&results=6)|
 | [Motor 130-13200](https://5ororwxhiiqojij.leadongcdn.com/LS-FA-130-aidlpBqmKinSRqqniirlki.pdf) | DC motors | [4.99 Lei](https://www.optimusdigital.ro/ro/motoare-motoare-fara-reductor/361-motor-130-13200.html?search_query=motor+dc&results=612) x 2|
-| [Dual Motor driver](https://lcsc.com/datasheet/lcsc_datasheet_2211080930_Shenzhen-Fuman-Elec-TC1508A_C5142992.pdf) | Motor control | [3.73 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/1514-modul-driver-de-motoare-dual-in-miniatura-10-v-15-a.html?search_query=Modul+Driver+de+Motoare+Dual+in+Miniatura&results=1)|
+| [Dual Motor driver](https://www.st.com/resource/en/datasheet/l298.pdf) | Motor control | [10.99 Lei](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html)|
 | Ball support | Ease of movement | [3.95 Lei](https://www.optimusdigital.ro/ro/mecanica-suporturi-cu-bila/74-ball-caster.html?search_query=Suport+cu+Bila+&results=118)|
 | [Accelerometer](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf) | Movement sensor | [12.99 Lei](https://www.optimusdigital.ro/ro/senzori-senzori-inertiali/97-modul-accelerometru-cu-3-axe-adxl345.html?search_query=Modul+Accelerometru+cu+3+axe+ADXL345&results=2)|
 | [Micro Servomotor](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Tail movement mechanism | [11.99](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html) |
-| [Step Down module LM2596S](https://www.ti.com/lit/ds/symlink/lm2591hv.pdf) | Converting voltage | [12.99](https://www.optimusdigital.ro/ro/surse-coboratoare-reglabile/1108-modul-dc-dc-step-down-lm2596hv.html)|
-| Battery support | Power supply | [9.43 Lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/2806-suport-baterii-4-x-r6.html)|
+| 9V Battery | Power supply | [17.99 Lei](https://www.auchan.ro/baterie-energizer-alkaline-9v-6lr61/p) |
+| Battery support | Power supply | [1.29 Lei](https://www.optimusdigital.ro/ro/suporturi-de-baterii/20-conector-pentru-baterie-de-9-v.html?search_query=suport+baterie&results=56) |
 
 
 
@@ -92,7 +100,7 @@ The format is
 |---------|-------------|-------|
 | [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | HAL for the Raspberry Pi PICO 2W microcontroller | Used to program the Pico |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor designed for embedded usage | Used for task execution |
-
+| [rand](https://crates.io/crates/rand) | Random number generators and other randomness functionality | Used the small_rng feature for generating random numbers in a non std environment |
 
 ## Links
 

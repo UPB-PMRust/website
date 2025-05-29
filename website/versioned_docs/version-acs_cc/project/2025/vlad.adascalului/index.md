@@ -54,7 +54,7 @@ Communication is done using:
 | MicroSD Card        | SPI/UART  | Used for storage                |
 
 
-![Schematic Diagram](diagramabuna.svg)
+![Schematic Diagram](diagrama.svg)
 
 ### Diagram
 TODO
@@ -64,25 +64,31 @@ TODO
 ### Week 5 - 11 May
 Documentation milestone, materials purchase, preparing materials for installation and testing the components.
 ### Week 12 - 18 May
+
 Assembled all the materials and wired everything up. Wrote test software for each component to check good installation. Created the schematics in KiCad mirroring the phisical connections. Completed the Hardware Milestone.
+
 ### Week 19 - 25 May
+I implemented the core functionality of the Snake game, along with a working menu.
+
 
 ## Hardware
 
 The Raspberry Pi Pico 2W is the central microcontroller for the Snake Game. It offers a sufficient GPIOs to interface with peripherals required by the system.
 
+
 The user controls the snake using four tactile push-buttons corresponding to movement directions. The game is displayed on a grid rendered on a TFT SPI LCD screen, offering a colorful and responsive interface. A piezo buzzer is also connected for basic sound feedback, such as playing a tone when food is collected or when the game ends. The snake game has a score system, and the game finish when the snake collide with a wall or when the head collide with snake's body. Also, when the snake eats it will become bigger. 
 
 [VIDEO: Testing the Components](https://imgur.com/a/Mxk566S)
+
 
 ![Hardware1](hard1.webp)
 ![Hardware2](hard2.webp)
 ![Hardware3](hard3.webp)
 
 ### Schematics
-TODO
 
 ![Schematic KiCad](kicad_project.svg)
+
 
 ### Bill of Materials
 
@@ -101,6 +107,9 @@ TODO
 | **Total**             |          | **207 RON**     |
 
 ## Software
+The Snake Game implementation features an interactive splash menu, responsive snake movement with wall and self-collision detection, score tracking via dynamic rendering on the ILI9341 display, and a game‐over screen that seamlessly returns the player to the menu.
+
+![Software Diagram](software.drawio.svg)
 
 | Library                                                                 | Description                                             | Usage                                                             |
 |-------------------------------------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------|
@@ -113,6 +122,7 @@ TODO
 | [`panic-probe`](https://github.com/probe-rs/probe-rs)                  | Panic handler for embedded systems                      | Helps diagnose runtime panics                                            |
 | [`static-cell`](https://github.com/embassy-rs/static-cell)             | Safe static storage                                     | For safely storing peripherals and shared resources in async context     
 | [`heapless`](https://github.com/rust-embedded/heapless?utm_source=chatgpt.com)             | Fixed‑capacity, heap‑free data structures (Vec, String, queues, maps) for microcontrollers   | Stores the snake’s body coordinates and input queue without dynamic allocation   |
+| [`rand_core + rand_xorshift`](https://docs.rs/rand_core/latest/rand_core/)             | Used for generating random numbers   | Stores the food's position randomly   |
 
 ## Links
  
