@@ -37,8 +37,8 @@ This week, I wrote the embedded Rust logic to read analog values from the DUFAFF
 I am currently working on the implementation of keyword detection ("hello", "attention", "sorry").
 ## Hardware
 
-![1:](/1.webp)
-![2:](/2.webp)
+![1:](./1.webp)
+![2:](./2.webp)
 
 The project is built around the **Raspberry Pi Pico W** microcontroller and integrates the following components:
 
@@ -54,11 +54,11 @@ The project is built around the **Raspberry Pi Pico W** microcontroller and inte
 
 Below is the schematics of the device:
 
-![Project Schematics:](/architecture.webp)
+![Project Schematics:](./architecture.webp)
 
 KiCad Schematics:
 
-![KiCad Schematics:](/rust.svg)
+![KiCad Schematics:](./rust.svg)
 
 
 ### Bill of Materials
