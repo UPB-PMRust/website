@@ -60,7 +60,7 @@ I bought all the parts for the project and began to assemble it. I have also wri
 ### Week 12 - 18 May
 I finished assembeling the project with only minor things left to sort out
 ### Week 19 - 25 May
-
+I have finished the software for a majority of the functionalities of the project but still have trouble with the wifi
 ## Hardware
 
 The project uses the following components:
@@ -116,5 +116,3 @@ The format is
 | [panic-halt](https://github.com/korken89/panic-halt) | Handles panic safely | Halts system on unrecoverable errors |
 
 ## Links
-
-// Add a few links that inspired you and that you think you will use for your project
