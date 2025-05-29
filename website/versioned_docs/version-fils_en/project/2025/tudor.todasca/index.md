@@ -63,7 +63,7 @@ Finnished motor logic, now when the car gets close to an obstacle it will stop a
 ![2](./2s.webp)
 
 ### Week 26 - 30 May
-Refined the motor logic, the car now gets commands from the laptop and runs them. I can move the car and change the speed of the motors. I added 2 more sensor for better detection at the front of the car.
+Refined the motor logic, the car now gets commands from the laptop and runs them. I can move the car and change the speed of the motors. I added 2 more sensors for better object detection at the front of the car.
 ## Hardware
 
 2x Raspberry Pi Pico 2W: acts as the primary processing unit, equipped with Wi-Fi capabilities.
