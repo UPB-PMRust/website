@@ -63,26 +63,26 @@ The diagram of the project:
 
 I souldered the pins on the picos and on the BME280 sensor at the laboratory and flased the debugger and connected it to the other pico.
 
-[picture_from_lab](first_step.webp)
-[picture_connection_not_full](flashed.webp)
+![picture_from_lab](first_step.webp)
+![picture_connection_not_full](flashed.webp)
 
 ### Week 6 - 11 May
 
 I connected an LED to the pico and made sure everything works smoothly.
 
-[picture_led](led.webp)
+![picture_led](led.webp)
 
 ### Week 6 - 12 May
 
 I managed to connect the SPI module to the pico and got it displaying some hardcoded messages.
 
-[picture_oled](oled_connection.webp)
+![picture_oled](oled_connection.webp)
 
 ### Week 6 - 14 May
 
 I connected and got the HC-SR04 sensor working and after many failed attempts it displays the correct distance until the closest object. At this time no connection in the code between the components was made. I was just making sure everything is wired properly and is working as intended. 
 
-[picture_hcsr](hc-sr_conenction.webp)
+![picture_hcsr](hc-sr_conenction.webp)
 
 ### Week 6 - 15 May
 
@@ -94,13 +94,19 @@ During the laboratory I finally connected the BME280 sensor and got it working. 
 
 After taking a few days' break I got back into work with a simple task at hand: make the components communicate with each other. I had trouble making the buzzer work, as I had used a piezo buzzer until now and it just hated me. I ordered another passive buzzer and until it came I just ignored the piezo buzzer. Other than that, making the sensors communicate with the screen was not that difficult, and now I have actual relevant data being displayed. I also connected the buttons.
 
-[picture_measurements](communication.webp)
+![picture_measurements](communication.webp)
 
 ### Week 7 - 22 May
 
 The hardware part was completed a few days ago, but I needed my new buzzer and unfortunately I was not able to get it until now. Other than that, I wrote some code for the HC-SR04 sensor, so that if an individual changes his/her position after powering the desk assistant with more than 5 cm, the device will consider this a 'bad posture' and will display a message on the screen. When this happens, the buzzer should also be buzzing, but I have yet to aquire the necessary buzzer.
 
-[picture_todate](all_together.webp)
+![picture_todate](all_together.webp)
+
+### Week 8 - 28 May
+
+I aquired the buzzer I was talking about previously and connected it and made it work in the code too. It starts buzzing when the user gets too close or too far from his/her initial position. 
+
+![picture_buzzer](final_hardware.webp)
 
 ## Hardware
 
@@ -117,26 +123,16 @@ I've used two Raspberry Pi Pico 2 W's, a BME280 sensor to detect the humidity an
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|
 | [2x Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=%09Raspberry+Pi+Pico+2W&results=26) | The microcontroller | [39.66 RON]|
-
-[HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/12897-senzor-ultrasonic-hc-sr04-.html?search_query=Senzor+ultrasonic+HC-SR04&results=31) | Detect distance from the device to the user  | 6.49 RON|
-
-[BME280 Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-de-presiune/5649-modul-senzor-barometric-de-presiune-bme280.html?search_query=bme280&results=6) | Reads the environments' temperature and humidity | 73.99 RON|
-
-[SPI OLED module](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/194-oled-096-.html?search_query=Modul+OLED+SPI+de+0.96%27%27&results=3) | Displays the data | 23.79 RON|
-
-[Passive Buzzer](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer+pasiv&results=14) | Used to notify the user | 0.99 RON|
-
-[2x Buttons6x6x6](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton&results=212) | Increment/Decrement timer | 2x0.36 RON|
-
-[3x 5.1k Resistor](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/853-rezistor-025w-51k.html?search_query=rezistor+5.1k&results=2) | Used for the buttons and for the voltage divider | 3x 0.10 RON|
-
-[1x 2.2k Resistor](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/851-rezistor-025w-22k.html?search_query=rezistor+2.2k&results=5) | Acceleration and breaking buttons | 1x 0.10 RON|
-
-[10x 10cm Female-Female wires](https://www.emag.ro/fire-conexiune-mama-mama-robofun-10-bucati-10cm-00002463-2079/pd/DQ8CPYYBM/) | Male-Female Wires | 4.88 RON |
-
-[10x 20cm Male-Female Wires](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-00002778/pd/DZJ66JBBM/) | Male-Female Wires | 2.36 RON|
-
-[40x 10cm Male-Male Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire+tata-tata&results=72)| Male-Male Wires | 4.99 RON |
+|[HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/12897-senzor-ultrasonic-hc-sr04-.html?search_query=Senzor+ultrasonic+HC-SR04&results=31) | Detect distance from the device to the user  | 6.49 RON|
+|[BME280 Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-de-presiune/5649-modul-senzor-barometric-de-presiune-bme280.html?search_query=bme280&results=6) | Reads the environments' temperature and humidity | 73.99 RON|
+|[SPI OLED module](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/194-oled-096-.html?search_query=Modul+OLED+SPI+de+0.96%27%27&results=3) | Displays the data | 23.79 RON|
+|[Passive Buzzer](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer+pasiv&results=14) | Used to notify the user | 0.99 RON|
+|[2x Buttons6x6x6](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton&results=212) | Increment/Decrement timer | 2x0.36 RON|
+|[3x 5.1k Resistor](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/853-rezistor-025w-51k.html?search_query=rezistor+5.1k&results=2) | Used for the buttons and for the voltage divider | 3x 0.10 RON|
+|[1x 2.2k Resistor](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/851-rezistor-025w-22k.html?search_query=rezistor+2.2k&results=5) | Acceleration and breaking buttons | 1x 0.10 RON|
+|[10x 10cm Female-Female wires](https://www.emag.ro/fire-conexiune-mama-mama-robofun-10-bucati-10cm-00002463-2079/pd/DQ8CPYYBM/) | Male-Female Wires | 4.88 RON |
+|[10x 20cm Male-Female Wires](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-00002778/pd/DZJ66JBBM/) | Male-Female Wires | 2.36 RON|
+|[40x 10cm Male-Male Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire+tata-tata&results=72)| Male-Male Wires | 4.99 RON |
 
 
 ## Software
