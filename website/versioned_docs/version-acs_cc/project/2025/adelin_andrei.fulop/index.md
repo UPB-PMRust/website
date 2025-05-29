@@ -33,6 +33,8 @@ Week 28 April - 2 May:
 Week 12 May - 18 May:
 -> hardware milestone
 ![alt text](image_proiect.webp)
+Week 26 May - 30 May:
+-> software milestone -> add software code, schematic files and README
 
 ## Hardware
 As hardware components, I chosed the best quality per price components, keeping simple and concise project. I selected a rapsberry pi pico, a joystick, an oled display, a breadboard and wires for connectivity between components.
