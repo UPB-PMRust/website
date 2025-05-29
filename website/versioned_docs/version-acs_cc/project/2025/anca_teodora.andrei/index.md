@@ -77,6 +77,7 @@ Completed the initial documentation and connected the main board and the debuggi
 Placed all hardware components onto the breadboard.
 
 ### Week 19 - 25 May
+Implemented the full game logic, button input handling, and LED matrix display updates using async Rust with Embassy.
 
 
 ## Hardware
@@ -109,13 +110,16 @@ The project uses the Raspberry Pi Pico 2W as the main microcontroller responsibl
 ## Software
 
 
-| Library                                                                 | Description                             | Usage                                                 |
-|-------------------------------------------------------------------------|-----------------------------------------|-------------------------------------------------------|
-| [rp2040-hal](https://github.com/rp-rs/rp-hal)                          | Raspberry Pi Pico HAL                   | Provides low-level access to GPIOs and peripherals     |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal)          | Abstraction traits for embedded devices | Used to write hardware-agnostic code for LED and input|
-| [bitbang-hal](https://github.com/eldruin/bitbang-hal)                  | Bit-banging I/O interface               | Used to drive shift registers connected to LED matrix |
-| [heapless](https://crates.io/crates/heapless)                          | No-heap data structures                 | Used for storing game state in a `no_std` environment |
-| [panic-halt](https://crates.io/crates/panic-halt)                      | Minimal panic handler                   | Used to safely halt on unrecoverable errors           |
+## Software
+
+| Library                                                                 | Description                                 | Usage                                                   |
+|-------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------------------|
+| [embassy-rp](https://github.com/embassy-rs/embassy)                     | HAL pentru Raspberry Pi Pico cu async/await | Control GPIO, SPI și alte periferice                    |
+| [embassy-executor](https://github.com/embassy-rs/embassy)               | Async task executor pentru embedded         | Rulează loop-ul principal al jocului                    |
+| [embassy-time](https://github.com/embassy-rs/embassy)                   | Temporizatoare și delay-uri async           | Realizează pauze și sincronizare afișaj                 |
+| [defmt](https://github.com/knurling-rs/defmt) & [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging eficient pentru embedded | Debug output și mesaje în timp real                     |
+| [panic-probe](https://crates.io/crates/panic-probe)                     | Gestionare panic                            | Afișare erori și oprire controlată în caz de panică     |
+
 
 
 ## Links

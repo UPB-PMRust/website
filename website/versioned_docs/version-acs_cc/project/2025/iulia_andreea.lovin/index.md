@@ -53,10 +53,13 @@ The **2x18650 battery pack** supplies power to the water pump, regulated to 5V b
 ## Log
 
 ### Week 5 - 11 May
+Completed documentation milestone, purchased necessary materials, prepared them for installation, and tested individual components.
 
 ### Week 12 - 18 May
+Completed assembly and wiring of all components. Developed and executed test programs to validate individual component functionality. Created KiCad schematics to reflect the physical setup. Concluded the Hardware Milestone phase.
 
 ### Week 19 - 25 May
+Developed embedded software to manage soil moisture monitoring logic. Implemented ADC reading for the moisture sensor and control routines for status LEDs (green/yellow/red) and water pump activation via MOSFET. Integrated async timers using Embassy framework for stable delays. Successfully validated moisture thresholds and motor control logic in hardware tests.
 
 ---
 
@@ -137,11 +140,23 @@ The **2x18650 battery pack** supplies power to the water pump, regulated to 5V b
 
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2040 async embedded support | Core hardware abstraction |
-| [dht-sensor](https://crates.io/crates/dht-sensor) | Reading DHT22 sensor data | Temperature and humidity |
-| [embedded-hal](https://crates.io/crates/embedded-hal) | Hardware abstraction layer | GPIO, ADC, PWM |
+
+| Library           | Description                             | Usage                                  |
+|------------------|-----------------------------------------|----------------------------------------|
+| [`embassy-rp`]   | Async embedded support for RP2040       | Core hardware abstraction (ADC, GPIO)  |
+| [`embassy-executor`] | Async runtime for embedded tasks     | Main async loop, task scheduling       |
+| [`embassy-time`] | Async delays and timers                 | Non-blocking delays (e.g. `Timer::after`) |
+| [`defmt`] + [`defmt-rtt`] | Lightweight logging framework   | RTT logging of sensor values/status    |
+| [`panic-probe`]  | Panic handler with `defmt` support       | Captures and logs panics               |
+| [`cortex-m-rt`]  | Runtime for Cortex-M                     | Startup, interrupts, memory layout     |
+
+[`embassy-rp`]: https://crates.io/crates/embassy-rp  
+[`embassy-executor`]: https://crates.io/crates/embassy-executor  
+[`embassy-time`]: https://crates.io/crates/embassy-time  
+[`defmt`]: https://crates.io/crates/defmt  
+[`defmt-rtt`]: https://crates.io/crates/defmt-rtt  
+[`panic-probe`]: https://crates.io/crates/panic-probe  
+[`cortex-m-rt`]: https://crates.io/crates/cortex-m-rt
 
 ---
 

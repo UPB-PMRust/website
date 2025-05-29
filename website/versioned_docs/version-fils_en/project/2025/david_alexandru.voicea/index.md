@@ -63,6 +63,7 @@ The diagram of the project:
 
 I souldered the pins on the picos and on the BME280 sensor at the laboratory and flased the debugger and connected it to the other pico.
 
+
 ![picture_from_lab](first_step.webp)
 ![picture_connection_not_full](flashed.webp)
 
@@ -72,15 +73,18 @@ I connected an LED to the pico and made sure everything works smoothly.
 
 ![picture_led](led.webp)
 
+
 ### Week 6 - 12 May
 
 I managed to connect the SPI module to the pico and got it displaying some hardcoded messages.
 
 ![picture_oled](oled_connection.webp)
 
+
 ### Week 6 - 14 May
 
 I connected and got the HC-SR04 sensor working and after many failed attempts it displays the correct distance until the closest object. At this time no connection in the code between the components was made. I was just making sure everything is wired properly and is working as intended. 
+
 
 ![picture_hcsr](hc-sr_conenction.webp)
 
@@ -133,6 +137,7 @@ I've used two Raspberry Pi Pico 2 W's, a BME280 sensor to detect the humidity an
 |[10x 10cm Female-Female wires](https://www.emag.ro/fire-conexiune-mama-mama-robofun-10-bucati-10cm-00002463-2079/pd/DQ8CPYYBM/) | Male-Female Wires | 4.88 RON |
 |[10x 20cm Male-Female Wires](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-00002778/pd/DZJ66JBBM/) | Male-Female Wires | 2.36 RON|
 |[40x 10cm Male-Male Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire+tata-tata&results=72)| Male-Male Wires | 4.99 RON |
+
 
 
 ## Software
