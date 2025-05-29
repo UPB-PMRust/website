@@ -18,70 +18,16 @@ This project was chosen due to its potential to combine several embedded systems
 
 ## Architecture
 
-![Diagram](project_diagram.webp)
+![Architecture Diagram](architecture.webp)
 
-#### 1. Difficulty Button
-- *Function*: User input to select game difficulty.
-- *Behavior*: Cycles through Easy, Medium, Hard.
-
-#### 2. Difficulty Selector
-- *Function*: Reads the state of the Difficulty Button.
-- *Behavior*: Maintains the currently selected difficulty level.
-- *Interaction*: Informs the Game Controller to adjust sequence logic and scoring weights.
-
-#### 3. Game Controller
-- *Function*: Central unit managing the game logic.
-- *Responsibilities*:
-  - Starts game when initiated.
-  - Coordinates sequence generation, input validation, and score calculation.
-
-#### 4. Random Sequence Generator
-- *Function*: Generates a random sequence of LED combinations.
-- *Tool*: Uses `oorandom::Rand32`.
-- *Output*: Passes the generated sequence to the Output Task.
-
-#### 5. Output Task (LEDs + Buzzer)
-- *Function*: Provides visual and audio feedback.
-- *Behavior*:
-  - Activates LEDs in a predefined sequence.
-  - Plays distinct tones for each LED using the buzzer.
-
-#### 6. User Button Input
-- *Function*: Allows user to replicate the LED sequence.
-- *Behavior*: Captures physical button presses and passes them to the Input Validator.
-
-#### 7. Input Validator
-- *Function*: Compares the player's input to the original generated sequence.
-- *Logic*:
-  - Correct input: trigger Reaction Time Measurer and continue game.
-  - Incorrect input: end game and trigger Scoring System.
-
-#### 8. Reaction Time Measurer
-- *Function*: Measures the player's response time.
-- *Tool*: Uses `embassy-time` timers.
-- *Output*: Reaction time data used in scoring.
-
-#### 9. Scoring System
-- *Function*: Calculates the player's final score.
-- *Criteria*:
-  - Input accuracy
-  - Reaction time
-  - Difficulty level
-
-#### 10. LCD Display
-- *Function*: Displays game state and results.
-- *Tool*: Uses `hd44780-driver`.
-- *Content*:
-  - Current difficulty
-  - Reaction times
-  - Final score
-
-#### 11. Score Sender
-- *Function*: Sends final score to leaderboard.
-- *Tools*: `embassy-net`, `reqwest`, `serde`
-- *Behavior*:
-  - Converts score to JSON
-  - Sends via POST request to server
+- **Raspberry Pi Pico 2W**: Connects directly to all other components in the system.
+- **Debug Probe**: Used during development and testing for programming.
+- **Play Button**: Read as a digital input, trigerring the countdown on the LCD.
+- **Difficulty Button**: Cycles through difficulty levels, updating the LCD accordingly.
+- **LCD**: Updated by the Pico based on game state and input events.
+- **Passive Buzzer**: Driven via PWM from the Pico. Different assigned tone for each LED.
+- **LEDs**: Each LED corresponds to an Input Button.
+- **Input Buttons**: Each Input Button corresponds to a LED. Read via digital input.
 
 ## Log
 
@@ -120,6 +66,36 @@ This project was chosen due to its potential to combine several embedded systems
 
 ### Week 19 - 25 May
 
+#### Project Case Design
+- Designed and built a physical case for the project to house all hardware components neatly and securely.
+
+#### Software Development
+- Implemented the following:
+  - Connection to Wi-Fi for network communication.
+  - Score and selected difficulty transmission to the server at the end of each game session.
+  - New scoring formula that factors in reaction time and input accuracy to generate a final performance score.
+- Cleaned up and restructured the code to make it easier to read and understand.
+
+#### Server Logic (`server.py`)
+- Initialized a Flask web server to serve both the HTML frontend and an API endpoint (`/data`) for live updates.
+- Implemented a background UDP listener thread that:
+  - Listens for score data over port 5000.
+  - Decodes incoming messages and timestamps them.
+  - Appends each score to an in-memory list.
+- Dynamically serves real-time JSON data to the frontend (`/data`) for:
+  - The 20 most recent scores.
+  - A leaderboard (top 10 scores).
+- Added real-time notifications on the webpage:
+  - Displays a pop-up when a new score is received.
+  - Triggers a celebration pop-up (with confetti effect) when a new top score is achieved.
+- Integrated a score trend chart that shows performance over time and a pie chart that shows the distribution of plays across difficulties.
+- Enhanced UI with:
+  - Card-style layout.
+  - Color-coded difficulties.
+  - Medals for the top 3 scores.
+  - Total number of games played.
+  - Difficulty filter.
+
 ## Hardware
 
 The project uses the **Raspberry Pi Pico 2W** as the main microcontroller, powered via USB and programmed using a **Raspberry Pi Debug Probe** over the SWD interface. Key hardware components include:
@@ -130,13 +106,13 @@ The project uses the **Raspberry Pi Pico 2W** as the main microcontroller, power
 
 - **Passive Buzzer**: Connected to a PWM-capable GPIO pin for audio tone output.
 
-- **1602 LCD Module**: Wired in 4-bit parallel mode, using six GPIOs for control and data.
+- **LCD1602**: Wired in 4-bit parallel mode, using six GPIOs for control and data.
 
 - **Breadboards (830 points)**: Used to prototype the circuit layout.
 
 - **Male-to-Male Jumper Wires**: For connecting components to the breadboard and microcontroller.
 
-- **Power Distribution**: 3.3V and GND from the Pico are shared across the breadboard rails.
+- **Power Distribution**: VSYS and GND from the Pico are shared across the breadboard rails.
 
 All components are integrated onto the breadboard to form a compact and testable embedded system.
 
@@ -164,13 +140,75 @@ The format is
 | [Debug Probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) | Programming & debugging | [69.06 RON](https://ro.farnell.com/raspberry-pi/sc0889/debug-connector-3-pin-raspberry/dp/4163983) |
 | [LCD Module 1602 Backlight Yellow Green 5V](https://www.waveshare.com/datasheet/LCD_en_PDF/LCD1602.pdf) | Display | [9.82 RON](https://www.optimusdigital.ro/en/lcds/867-modul-lcd-1602-cu-backlight-galben-verde-de-5v.html) |
 | [LEDs](https://www.farnell.com/datasheets/1498852.pdf) | Visual indicators | [4 x 0.39 RON](https://www.optimusdigital.ro/en/leds/696-led-rou-de-3-mm-cu-lentile-difuze.html) |
-| Resistors 0.25W 220Ω | LED current limiting | [4 x 0.10 RON](https://www.optimusdigital.ro/en/resistors/1097-025w-220-resistor.html) |
+| Resistors 0.25W 220Ω | LED current limiting | [5 x 0.10 RON](https://www.optimusdigital.ro/en/resistors/1097-025w-220-resistor.html) |
 | Push Buttons | User input | [6 x 1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1115-white-button-with-round-cover.html) |
 | Passive Buzzer | Audio feedback | [0.99 RON](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html) |
 | Breadboard HQ (830 points)| Prototyping connections | [2 x 9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
 | Male-to-Male Jumper Wires | For wiring components | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
 
 ## Software
+
+![Diagram](project_diagram.webp)
+
+#### 1. Difficulty Button
+- *Function*: User input to select game difficulty.
+- *Behavior*: Cycles through Easy, Medium, Hard.
+
+#### 2. Difficulty Selector
+- *Function*: Reads the state of the Difficulty Button.
+- *Behavior*: Maintains the currently selected difficulty level.
+- *Interaction*: Determines the Game Controller to adjust sequence logic.
+
+#### 3. Game Controller
+- *Function*: Central unit managing the game logic.
+- *Responsibilities*:
+  - Starts game when initiated.
+  - Coordinates sequence generation, input validation, and score calculation.
+
+#### 4. Random Sequence Generator
+- *Function*: Generates a random sequence of LED combinations.
+- *Tool*: Uses `oorandom::Rand32`.
+- *Output*: Passes the generated sequence to the Output Task.
+
+#### 5. Output Task (LEDs + Buzzer)
+- *Function*: Provides visual and audio feedback.
+- *Behavior*:
+  - Activates LEDs in a predefined sequence.
+  - Plays distinct tones for each LED using the buzzer.
+
+#### 6. User Button Input
+- *Function*: Allows user to replicate the LED sequence.
+- *Behavior*: Captures physical button presses and passes them to the Input Validator.
+
+#### 7. Input Validator
+- *Function*: Compares the player's input to the original generated sequence.
+- *Logic*:
+  - Correct input: trigger Reaction Time Measurer to save reaction time and continue game.
+  - Incorrect input: end game and trigger Scoring System to save score.
+
+#### 8. Reaction Time Measurer
+- *Function*: Measures the player's response time.
+- *Tool*: Uses `embassy-time` timers.
+- *Output*: Reaction time data used in scoring.
+
+#### 9. Scoring System
+- *Function*: Calculates the player's final score.
+- *Criteria*:
+  - Input accuracy
+  - Reaction time
+
+#### 10. LCD
+- *Function*: Displays game state and results.
+- *Tool*: Uses `hd44780-driver`.
+- *Content*:
+  - Current difficulty
+  - Countdown to game start
+  - Reaction times
+  - Final score
+
+#### 11. Score & Difficulty Sender
+- *Function*: Sends final score to leaderboard.
+- *Tools*: Uses `embassy-net`.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
@@ -183,8 +221,9 @@ The format is
 | [hd44780-driver](https://crates.io/crates/hd44780-driver) | LCD driver | Control of the LCD |
 | [heapless](https://crates.io/crates/heapless) | Fixed-size strings | Efficient string manipulation without heap |
 | [oorandom](https://crates.io/crates/oorandom) | Random number generation library | LED sequence generation |
-| [reqwest](https://github.com/seanmonstar/reqwest) | HTTP client library | HTTP requests (POST for score submission) |
-| [serde](https://github.com/serde-rs/serde) | Serialization/deserialization framework | Used for serializing and deserializing data (JSON for network communication) |
+| [cyw43](https://crates.io/crates/cyw43) | Driver for the CYW43 Wi-Fi chip | Enables Wi-Fi hardware communication |
+| [cyw43-pio](https://crates.io/crates/cyw43-pio) | PIO-based implementation of the CYW43 driver | Enables communication with CYW43 chip via PIO on RP2040 |
+| [static_cell](https://crates.io/crates/static_cell) | Safe static memory initialization | Used for safely initializing global statics like peripherals and executors |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient embedded logging framework | Debug output and panic diagnostics |
 | [panic-probe](https://crates.io/crates/panic-probe) | Minimal panic handler for embedded systems | Handles panic situations and logs output via defmt |
 
