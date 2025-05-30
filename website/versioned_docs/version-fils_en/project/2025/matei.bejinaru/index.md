@@ -67,7 +67,20 @@ All key systems are now integrated: RFID, keypad, LCD, buzzer, LEDs, servo, and 
 
 ![Week2Progress](Week2.webp)
 ### Week 19 - 25 May
+This week I focused on refining the project, improved reliability, interaction logic, UI, took out most of the components from the breadboards and put them into a cardboard box, displaying them nicely. The project is finished.
 
+1. Manual Locking Feature:
+  - Updated the PIN entry logic: now the system remains unlocked after a correct PIN, until the user presses * to lock it again.
+  - "*" is now excluded from the PIN itself and reserved exclusively as a locking command.
+  - Added a new button in the web interface (Lock) and now the web interface works like the pin, the unlock button keeps the servo unlocked until the user presses Lock
+
+2. Redesigned the HTML to look cleaner, added the Lock button.
+
+3. Added new LCD messages for the manual lock feature.
+
+4. Got a cardboard box and carved holes of the same dimensions as the hardware components, wired them inside the box to the pico. Screwed the door latch and connected the servo to it, carved a small door to prove the functionality of the project.
+
+![Week3Progress](Week3.webp)
 
 ## Hardware
 The hardware setup is centered around the Raspberry Pi Pico 2W, with its built-in Wi-Fi capabilities. A variety of peripherals are used to create an interactive, multi-authentication smart lock system.
@@ -90,7 +103,7 @@ The hardware setup is centered around the Raspberry Pi Pico 2W, with its built-i
 ### Schematics
 KiCad Scheme
 
-![KicadSchematic](KiCadSchematic.svg)
+![KicadSchematic](KiCadSchematic1.svg)
 
 
 ### Bill of Materials
@@ -115,7 +128,7 @@ KiCad Scheme
 [embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Timekeeping and delay abstraction | Used for creating delays and timers without blocking |
 [embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Primitives for concurrency and synchronization | Enables mutexes, signals, and channels between async tasks |
 [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html) | Async embedded TCP/IP network stack | Used to serve a web interface over Wi-Fi (for unlocking remotely) |
-[cyw43](https://github.com/embassy-rs/embassy/tree/main/drivers/cyw43) |	Driver for the CYW43 Wi-Fi chip on the Pico W | Used to join a Wi-Fi network and host a small HTTP server
+[cyw43](https://github.com/embassy-rs/embassy/tree/main/drivers/cyw43) |	Driver for the CYW43 Wi-Fi chip on the Pico 2W | Used to join a Wi-Fi network and host a small HTTP server
 [cyw43-pio](https://crates.io/crates/cyw43-pio) |	PIO SPI interface for CYW43 Wi-Fi chip | Interface for CYW43 to work over the RP2040’s PIO SPI
 [embedded-graphics](https://crates.io/crates/embedded-graphics) |	Drawing library for displays | Used to render text and countdowns on the LCD
 [mipidsi](https://crates.io/crates/mipidsi) |	ST7735s LCD display driver |Initializes and manages the LCD screen
@@ -128,5 +141,6 @@ KiCad Scheme
 ## Links
 1. [DIY Smart Door Lock](https://www.youtube.com/shorts/Bcqeyk_-kx8)
 2. [RFID DOOR LOCK](https://www.youtube.com/shorts/94idGywsd70)
+3. [My Youtube Video](https://youtube.com/shorts/e5VXx70VmvU)
 
 

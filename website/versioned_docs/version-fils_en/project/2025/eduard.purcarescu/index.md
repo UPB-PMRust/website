@@ -4,6 +4,7 @@ A smart turret using a Raspberry Pi Pico 2W, with servo control, ultrasonic obje
 :::info
 Author: Purcarescu Eduard-Gabriel \
 GitHub Project Link : https://github.com/UPB-PMRust-Students/project-EduarditoRealG
+Youtube Project Link : https://youtu.be/9hobQLP9Fqw
 :::
 
 ## Description
@@ -32,7 +33,7 @@ I began assembling all the components. I started also to look into the programmi
 The exterior design is finished and fully assembled. I continue making progress with the software milestone in order to interconnect all the parts' functions.
 
 ### Week 19-25 May
-
+The software part of the project is finished. The project is fully functional!
 
 ## Hardware
 1. Raspberry Pi Pico 2W
@@ -80,6 +81,8 @@ The exterior design is finished and fully assembled. I continue making progress 
 | [defmt](https://docs.rs/defmt/latest/defmt/) | Debug Formatter | Efficient logging and debug output for embedded systems |
 | [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | RTT Transport for defmt | Sends `defmt` logs over USB using Real-Time Transfer |
 | [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Panic Handler | Displays panic messages via `defmt` for debugging |
+| [hcsr04_async](https://crates.io/crates/hcsr04_async) | Ultrasonic sensor | Measures distance  |
+| [micromath](https://crates.io/crates/micromath) | Math crate | Used for trigonometric functions  |
 
 ## Links
 https://pico.implrust.com/ultrasonic/index.html

@@ -1,4 +1,5 @@
 
+
 # Matrix LED Adaptive Headlight System
 
 
@@ -38,19 +39,14 @@ The system architecture consists of the following functional layers:
    - Three ambient light sensors (TEMT6000) detect the direction and intensity of incoming light sources.
    - One ultrasonic sensor (HC-SR04) measures the distance to nearby objects.
 
-2. **Input Layer**  
-   - A joystick is used to simulate vehicle steering input for adaptive cornering.
-
-3. **Control Layer**  
+2. **Control Layer**  
    - A Raspberry Pi Pico 2W reads input data from all sensors.
    - A custom control algorithm written in Rust determines which LEDs should be turned on, off, or dimmed.
 
-4. **Output Layer**  
+3. **Output Layer**  
    - A matrix of white LEDs is powered and controlled via IRLZ44N MOSFETs.
    - The system dims or disables individual LEDs based on sensor input to avoid blinding oncoming traffic while preserving road visibility.
 
-5. **Feedback Layer (Planned)**  
-   - A small OLED display will be used to show real-time system feedback such as active LEDs, steering direction, and sensor status.
 
 Each component is connected using breadboards and jumper wires, with careful power and grounding design to ensure stability. The entire system operates without external Wi-Fi or cloud dependency, functioning in a fully local, embedded environment.
 
@@ -69,14 +65,87 @@ This week marked the official start of the documentation process. I’ve already
 
 I also started working on the architecture diagram using diagrams.net. I’m aiming to create something clean and professional, so the structure makes sense both visually and logically. Once that’s done, I’ll export it and integrate it into the site. Documentation is coming together nicely so far.
 
+### Week 9 – May 11
+Building the physical matrix was the main focus this week. I wired the 6×3 LED grid on the breadboards and connected the column MOSFET gates to the Pico’s GPIO 7 through 12. The row anode lines were wired to GPIO 13 through 15, each protected by a 330Ω resistor to limit current. After checking the wiring multiple times, I was able to confirm that I could control each LED individually and that the matrix multiplexing logic worked as planned.
+
+### Week 10 – May 18
+Sensor integration was the big challenge for this week. I connected two TEMT6000 light sensors, one on each side of the matrix, to serve as left/right ambient detectors. Both sensors were connected to Pico ADC pins (GP16 and GP17), and I wrote the initial Rust code to read and process their analog output. I also integrated the HC-SR04 ultrasonic distance sensor, adding a simple voltage divider on the ECHO pin to safely handle the 5V signal. There were some early issues with sensor noise and ADC instability, but after a few tweaks to the software and power supply setup, the sensor readings became reliable.
+
+### Week 11 – May 25
+This week was all about refining the software. I finished the main matrix control algorithm in Rust, implementing column-based multiplexing and software PWM for smooth row dimming. After some trial and error, I managed to significantly reduce LED flicker by increasing the PWM steps and optimizing the timing of the multiplex loop. I also improved the sensor code by reading the ultrasonic sensor less frequently (to avoid blocking LED refresh) and adding a smoothing function to the global brightness value, which eliminated any visible jitter in the LEDs. By the end of the week, the system reliably adapted the LED matrix in real time based on both ambient light and object distance, running smoothly and consistently.
+
+
+
 
 ## Hardware Design
 
-The hardware implementation is still in progress, but the core setup has already been planned and partially assembled. The project is built around a Raspberry Pi Pico 2W microcontroller, connected to a matrix of white LEDs via IRLZ44N MOSFETs.
+The core of the system is built around a Raspberry Pi Pico 2W, which interfaces with a 6×3 matrix of white LEDs. These LEDs are arranged in 6 columns and 3 rows and are controlled through IRLZ44N N-channel MOSFETs. Each column has a dedicated MOSFET that connects the cathodes of the LEDs in that column to ground, while the rows are powered individually using GPIO pins through 330Ω resistors. This allows matrix-style multiplexing, which significantly reduces the number of GPIOs required to control multiple LEDs individually.
 
-Sensor inputs include three ambient light sensors, an ultrasonic distance sensor, and a joystick to simulate adaptive cornering input. Power is delivered through a regulated breadboard power supply, and connections are made using standard jumper wires across two breadboards.
+The full assembly is split across two breadboards:
 
-A schematic will be added once final wiring is complete.
+One holds the Pico microcontroller, all necessary resistors, and distributes row power rails
+
+The second contains all MOSFETs, the LEDs, and the column control wiring
+
+In addition to the LED control, the hardware integrates multiple sensors:
+
+Two TEMT6000 light sensors, used to detect ambient brightness from both sides
+
+One HC-SR04 ultrasonic distance sensor, used to measure object proximity
+
+(Planned) A joystick for manual steering simulation
+
+All sensors are powered by the Pico and are connected to its GPIOs as shown below.
+
+| **Pico GPIO Pin** | **Function**                            | **Connected To**                              |
+|-------------------|------------------------------------------|-----------------------------------------------|
+| GP17               | TRIG signal for ultrasonic sensor        | HC-SR04 pin 3 (TRIG)                           |
+| GP16               | ECHO signal input (via voltage divider)  | HC-SR04 pin 4 (ECHO)                           |
+| GP7               | MOSFET Gate for Column 1                 | Gate of MOSFET 1 (via 220Ω resistor)           |
+| GP8               | MOSFET Gate for Column 2                 | Gate of MOSFET 2 (via 220Ω resistor)           |
+| GP9               | MOSFET Gate for Column 3                 | Gate of MOSFET 3 (via 220Ω resistor)           |
+| GP10              | MOSFET Gate for Column 4                 | Gate of MOSFET 4 (via 220Ω resistor)           |
+| GP11              | MOSFET Gate for Column 5                 | Gate of MOSFET 5 (via 220Ω resistor)           |
+| GP12              | MOSFET Gate for Column 6                 | Gate of MOSFET 6 (via 220Ω resistor)           |
+| GP13              | LED Matrix Row 1 (Anode supply)          | Row 1 LEDs via 330Ω resistor                   |
+| GP14              | LED Matrix Row 2                         | Row 2 LEDs via 330Ω resistor                   |
+| GP15              | LED Matrix Row 3                         | Row 3 LEDs via 330Ω resistor                   |
+| GP26              | Light Sensor 1 (left side)               | Analog OUT (V pin) of TEMT6000 #1              |
+| GP17              | Light Sensor 2 (right side)              | Analog OUT (V pin) of TEMT6000 #2              |
+
+
+Sensor Wiring 
+TEMT6000 Ambient Light Sensors (x2)
+The project uses two TEMT6000 ambient light sensors, placed on opposite sides of the breadboard to detect directional brightness — simulating oncoming traffic from the left or right. These sensors output an analog voltage that varies with light intensity, allowing the Pico to react accordingly.
+
+Each sensor has three pins:
+S (Supply): Connected directly to the Pico’s 3.3V output pin
+G (Ground): Connected to the common GND rail shared across the circuit
+V (Analog output): Connected to an ADC-capable GPIO on the Pico 
+
+HC-SR04 Ultrasonic Distance Sensor
+The HC-SR04 module is used to detect obstacles in front of the LED array, simulating real-time responsiveness to nearby objects or vehicles. It has four pins:
+VCC: Connected to 5V (VSYS) from the Pico
+GND: Connected to the common ground rail
+TRIG: Connected to GP2, configured as an output
+ECHO: Connected to GP3, configured as an input, with a voltage divider
+
+The ECHO pin outputs 5V, which is unsafe for direct connection to the Pico’s 3.3V GPIOs. To protect the microcontroller, a simple resistive voltage divider is used:
+A 10kΩ resistor connects ECHO to GP3
+A 22kΩ resistor connects the midpoint between ECHO and GP3 to GND
+This reduces the 5V ECHO pulse to ~3.3V, making it safe for the RP2040 input.
+
+### 📸 Photos of the Build
+
+The following images show the current stage of hardware assembly, including breadboard layout, wiring details, and sensor positioning.
+
+![alt text](photo1-1.webp)
+![alt text](photo4-1.webp)
+
+
+#### KiCad Schematic
+
+<img src="ProiectMicroprocesoare.svg" alt="Full Setup" width="500"/>
 
 ## Bill of Materials
 
@@ -84,12 +153,11 @@ A schematic will be added once final wiring is complete.
 |------------------------|------------------------------------------|------------------|
 | Raspberry Pi Pico W    | The microcontroller                      | 35 RON           |
 | Breadboard             | The main breadboard                      | 10 RON           |
-| Light Sensors (x3)     | Measure ambient light                    | 3 x 9.99 RON     |
+| Light Sensors (x2)     | Measure ambient light                    | 2 x 9.99 RON     |
 | Ultrasonic Sensor      | Detect object distance                   | 6.49 RON         |
-| Joystick Module        | Manual control for LED direction         | 11.99 RON        |
 | MOSFETs (IRLZ44N x6)   | Drive high-power LEDs                    | 6 x 4.99 RON     |
 | LED Assortment         | Visual output (matrix lighting)          | 26.99 RON        |
-| OLED Display (0.96")   | Diagnostic feedback                      | 23.79 RON        |
+
 
 
 
@@ -102,8 +170,8 @@ A schematic will be added once final wiring is complete.
 | `embassy_rp`     | Embassy HAL for the Raspberry Pi RP2040                                 | Used to program the Pico                       |
 | `embassy_sync`   | Sync primitives and async data support                                  | Communicating through tasks                    |
 | `embedded-hal`   | Hardware abstraction traits                                             | Common interface for embedded peripherals      |
-| `ssd1306`        | OLED display driver                                                     | Drives the OLED via I2C                        |
 | `defmt`, `defmt-rtt` | Lightweight logging + RTT interface                                | Debugging via the probe                        |
 | `cortex-m`       | ARM Cortex-M microcontroller support                                    | Low-level control                              |
 | `cortex-m-rt`    | Runtime support                                                         | Startup and interrupts                         |
 | `panic-halt`     | Panic behavior                                                          | Safe stop on crash                             |
+

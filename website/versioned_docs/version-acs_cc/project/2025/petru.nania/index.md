@@ -61,6 +61,18 @@ As you can see, I was watching the vote count live :)
 
 ### Week 19 - 25 May
 
+I've had problems with the original crate I had chosen ([lcd1602-rs](https://crates.io/crates/lcd1602-rs)), which was quite old and incompatible with my project. I was able to find a new one ([ag-lcd](https://crates.io/crates/ag-lcd)) which was compatible.
+
+The LCD still did not work, but no errors were showing up.
+Turns out I had problems with the wiring of the potentiometer used for the screen contrast.
+Now the screen works.
+
+I've added a new task called `menu_task` in the executor which handles button presses and changes the effect added to the audio.
+
+I've also been researching and implementing a couple of commonly used audio effects.
+
+Hope I'll finish by the deadline... I'm greatful it's been extended by a day!
+
 ## Hardware
 
 ### Overview
@@ -83,19 +95,15 @@ This is achieved by using an external microSD module.
 
 The processed signal is sent to an external DAC module, filtered again, and ultimately sent to the amplifier.
 
-<table>
-  <tr>
-    <td><img src="assets/hardware.webp" width="1024"/></td>
-  </tr>
-</table>
+![Hardware](assets/hardware.webp)
 
 Here are the components from the image:
 - the two Picos are the green rectangles (left for debug, right for project)
 - the DAC is the red square in the middle of the image
 - the microSD is in my hand, at the top of the image
-- the audio jack sockets with cables plugged in can be seen on the right side
-- the buttons for menu selection are at the bottom
-- the potentiometer is between the debug Pico and the DAC
+- the audio jack sockets with cables plugged in can be seen on the left side
+- the buttons for menu selection in the bottom-right corner
+- the potentiometer is to the right of the buttons
 - the 1602A LCD is on a separate breadboard, glowing a bright blue shade
 
 ### Detailed look
@@ -133,14 +141,18 @@ The challenge of designing the hardware comes from the multitude of communicatio
 
 ## Software
 
+### Software diagram
+
+![Software](assets/software.svg)
+
+### Crates used in the project
+
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-rp](https://embassy.dev/) | Rust + async ❤️ embedded | Next-generation framework for embedded applications |
-| [lcd1602-rs](https://crates.io/crates/lcd1602-rs) | Driver for 1602 LCD via an embedded-hal implementation | Show menu on LCD screen |
-| [micromath](https://crates.io/crates/micromath) | Embedded-friendly math library | Fast floating-point math |
-| [arrayvec](https://crates.io/crates/arrayvec) | A vector with fixed capacity, backed by an array (it can be stored on the stack too) | Storing samples of the signal on the stack |
-| [fixed](https://crates.io/crates/fixed) | Fixed-point numbers | Faster arithmetic |
-| [biquad](https://crates.io/crates/biquad) | A library for digital second order IIR filtrers | Signal processing |
+| [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Startup code and minimal runtime for Cortex-M microcontrollers | Pretty much everything else needs this |
+| [ag-lcd](https://crates.io/crates/ag-lcd) | Driver for 1602 LCD which uses embedded-hal | Show menu on LCD screen |
+| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | Read/write files on a FAT formatted SD card | Storing samples of the signal on SD card for looping |
 
 ## Links
 
