@@ -1,7 +1,7 @@
 # Mini-sera inteligenta
 
 
-:::info 
+Sera cu control automat in functie de factorii externi
 
 **Author**: Ionescu Ana-Corina 334CC \
 **GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-Corina0408)
