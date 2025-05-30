@@ -1,36 +1,33 @@
-# Fan Rotation Detection with Door Control
+# Fan Rotation Detection with Window Control
 If a fan exceeds a certain number of RPMs, the Pico closes the door.
 
 
 
-**Author**: Popazu George-Alexandru\
+**Author**: Popazu George-Alexandru
 **GitHub Project Link**:https://github.com/UPB-PMRust-Students/project-PopazuAlexandru
 
 
 ## Description
-This project is built using two Raspberry Pi Pico 2W and two servo-motors. The first Pico monitors temperature and pressure, controls the fan, and detects when the fan is rotating.
- When fan rotation is detected, the first Pico transmits a signal to a second Pico which controls a door mechanism to close it.
+This project is built using two Raspberry Pi Pico 2W, one servo-motor and one encoder. The first Pico monitors detects when the fan is rotating.
+ When fan rotation is detected, the first Pico tells a window mechanism to close it and transmits a signal to a second Pico(debugger).
 
 ## Motivation
 The motivation behind this project is to create an affordable and automated solution for protecting homes from incoming rain. By using a simple external fan as a wind-speed sensor and Raspberry Pi Pico microcontrollers, the system detects high wind speeds—often a precursor to rain—and automatically signals to close windows. This adds a layer of convenience and protection for homeowners, especially when they are away or unable to act quickly.
 ## Architecture 
+
 ### Schematic Diagram
 This is the diagram that illustrates the components and their connections.
 
-
 ![alt text](fan_rotation_schematic.webp)
 
-
 **Raspberry Pi Pico 2W**
-- **Role**: The brain of the system.Reads signals from the Hall effect sensor.Controls the LED based on fan rotation status.Processes sensor data to determine if the fan is moving.
+- **Role**: The brain of the system. Reads signals from the encoder. Processes sensor data to determine if the fan is moving and controls a window mechanism to close it and transmits a signal to a second Pico which is a debugger.
 
+**Servo motor**
+- **Role**:  Is a precision-controlled motor that adjusts its position, speed, or torque based on feedback, commonly used in robotics and automation.
 
-**LEDs**
-- **Role**: Visual indicator. Lights up when the Hall sensor detects rotation (fan is ON). Turns off when no rotation is detected (fan is OFF). Resistor Purpose: Limits current to prevent LED burnout.
-
-
-**Hall Effect Sensor**
-- **Role**: Detects fan rotation. Senses the magnetic field from the magnet attached to the fan blade. Outputs a digital signal (HIGH/LOW) to the Pico each time the magnet passes by. Note: Requires a magnet mounted on the fan blade.
+**Encoder**
+- **Role**: Detects fan rotation. Outputs a digital signal to the Pico when the rpm's reaches a certain number.
 
 **Breadboard & Jumper Wires**
 - **Role**:  System assembly. Provides a platform for prototyping without soldering. Jumper wires connect components to the Pico.
@@ -38,15 +35,6 @@ This is the diagram that illustrates the components and their connections.
 **USB Cable**
 - **Role**:   Power and programming. Powers the Pico during development. Used to upload code to the microcontroller.
 
-**Neodymium Magnet**
-- **Role**:  Triggers the Hall effect sensor.
-Mounted on one fan blade. Each rotation brings the magnet close to the sensor, generating a detectable pulse.
-
-
- **220Ω Resistor**
-  - **Interface**: SPI
-  - **Role**: Protects the LED. Limits current flow through the LED to a safe level (typically 5–20mA). Connected in series with the LED.
-  
 ## Log
 ### Week 5 - 11 May
 Once the project was approved, I collected all the required components and began assembling the hardware. I also started designing a 3D model for the fan, but paused the design temporarily since I had not finalized the component layout for the final setup. After completing the hardware assembly, I moved on to researching the crates I planned to use for software development.
@@ -54,38 +42,40 @@ Once the project was approved, I collected all the required components and began
 
 ### Week 12 - 18 May
 
+After finalizing the hardware, I proceeded with software implementation, achieving stable control and initial testing.
+
 ### Week 19 - 25 May
 
+During this week, I completed the software development and finalized all remaining implementation details. I ensured the integration between the rotary encoder, servo motor, and Wi-Fi communication worked seamlessly. Final testing was performed to validate the system's behavior under expected operating conditions. With everything functioning as intended, I prepared the project for final documentation and presentation.
 
 ## Hardware
-The hardware setup consists of a Raspberry Pi Pico microcontroller as the core unit, interfacing with multiple peripherals.
+The hardware setup consists of a two Raspberry Pi Pico microcontroller as the core units, interfacing with multiple peripherals.
 
-A Hall effect sensor (A44E), connected to a digital GPIO pin, detects rotational movement by sensing magnetic pulses from a neodymium magnet mounted on the fan blade. The sensor's output signal is processed by the Pico to determine real-time fan operation status.
+An encoder detects the fan's RPM, and if it exceeds a set limit, the connected Pico sends a signal to another Pico.
 
-An LED indicator, driven through a current-limiting 220Ω resistor, provides immediate visual feedback by illuminating when fan rotation is detected. The LED connects to a dedicated GPIO pin configured for digital output control.
+A servo motor opens a window when the Raspberry Pi Pico receives a signal from another Raspberry Pi Pico.
 
-Power is supplied through the Pico's USB interface or external 5V source, with onboard voltage regulation ensuring stable 3.3V operation for all components. The compact design uses a breadboard or soldered perfboard for reliable interconnections between the Pico, sensor, and indicator circuit.
+Power is supplied through the Pico's USB interface or external 3.3V source, with onboard voltage regulation ensuring stable 3.3V operation for all components. The compact design uses a breadboard or soldered perfboard for reliable interconnections between the Pico, sensor, and indicator circuit.
 
+![alt text](architecture.webp)
 
 ### Schematics
 KiCad Scheme
 
-![alt text](KiCad.webp)
-
-
+![alt text](Fan-rotation.svg)
 
 ### Bill of Materials
 | Component | Purpose | Price |  
 |-----------|---------|----------|  
-| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Microcontroller | [34.50 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) | 
-|[Breadboard 175 x 67 x 9 mm](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/13244-breadboard-175-x-67-x-9-mm.html?search_query=bread+board&results=129) | Motherboard | [11,99 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) | 
-| [Hall Effect Sensor (A44E)](https://www.optimusdigital.ro/ro/senzori-senzori-hall/250-modul-cu-senzor-hall-a44e.html?search_query=Hall+Sensor+&results=3) | Detects fan rotation | [9,99 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) |  
-| [Servo Motor](https://towerpro.com.tw/product/sg90-7/) | Mounts on fan blade | [13.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servo+motor&results=145) |  
-| [8 x LED (Red/Green)](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/696-led-rou-de-3-mm-cu-lentile-difuze.html?search_query=led&results=779) | Rotation indicator | [0.39 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26)  |  
-| [Debuger probe](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html) | Debugs the program | [62.62 RON](https://www.tme.eu/ro/details/sc0889/raspberry-pi-accesorii/raspberry-pi/debug-probe/?brutto=1&currency=RON&utm_source=google&utm_medium=cpc&utm_campaign=RUMUNIA%20%5BPLA%5D%20CSS&gad_source=1&gad_campaignid=10591401989&gbraid=0AAAAADyylhLIalzdikROUJ5OaesMylBGh&gclid=Cj0KCQjwoNzABhDbARIsALfY8VPhRLmm3ZYvX88qYYSuwuyljeRuP47NEkTOQakHe_OXlYOwL8TLZfQaAmRzEALw_wcB) |  
+|[2X Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | Microcontroller | [34.50 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) | 
+|[2X Breadboard 175 x 67 x 9 mm](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/13244-breadboard-175-x-67-x-9-mm.html?search_query=bread+board&results=129) | Motherboard | [11,99 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12394-raspberry-pi-pico-w.html?search_query=raspberry+pico+pi&results=26) |   
+| [Servo Motor](https://towerpro.com.tw/product/sg90-7/) | Mounts on fan blade | [13.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servo+motor&results=145) |    
 | [15 cm 10p Male-Female Wires](https://www.optimusdigital.ro/en/all-products/876-15-cm-male-female-wires-10p.html?search_query=male-male&results=808) | Male-Female Wires | [4.45 RON](https://www.optimusdigital.ro/en/all-products/876-15-cm-male-female-wires-10p.html?search_query=male-male&results=808)|
-[10 cm 40p Male-Female Wires](https://www.optimusdigital.ro/en/wires-with-connectors/653-10-cm-40p-male-to-female-wire.html?search_query=male-male&results=808) | Male-Male Wires | [5.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/653-10-cm-40p-male-to-female-wire.html?search_query=male-male&results=808)
-[8 x 220Ω Resistors](https://www.optimusdigital.ro/en/resistors/10958-05w-220-resistor.html)| Resistors | [0.80 RON](https://www.optimusdigital.ro/en/resistors/10958-05w-220-resistor.html) |  
+[10 cm 40p Male-Female Wires](https://www.optimusdigital.ro/en/wires-with-connectors/653-10-cm-40p-male-to-female-wire.html?search_query=male-male&results=808) | Male-Male Wires | [5.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/653-10-cm-40p-male-to-female-wire.html?search_query=male-male&results=808)|
+[RotaryEncoder](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/7150-modul-encoder-rotativ.html?search_query=encoder&results=34) | Detects fan rotation | [4,99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/7150-modul-encoder-rotativ.html?search_query=encoder&results=34)|
+|[3X Fan](https://www.optimusdigital.ro/ro/mecanica-elice/1300-elice-neagra-1147-cu-gaura-de-6-mm.html?search_query=elice&results=129) | Is rotating  | [8,49 RON](https://www.optimusdigital.ro/ro/mecanica-elice/1300-elice-neagra-1147-cu-gaura-de-6-mm.html?search_query=elice&results=129)|
+
+
 
 ## Software
 
