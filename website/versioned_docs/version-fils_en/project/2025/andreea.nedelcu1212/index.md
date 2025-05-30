@@ -76,8 +76,8 @@ The main challenge regarding hardware was having components that operate on 5V, 
 ### Pictures
 
 ![Hardware wide shot](wide.webp)
-![Breadboard close-up](breadboard.webp)
-![Breadboard close-up new](breadboard2.webp)
+![Breadboard close-up](breadboard_close.webp)
+![Breadboard close-up new](breadboard_new.webp)
 ^ *Breadboard wirings post level shifter incident*
 
 ### Schematics
