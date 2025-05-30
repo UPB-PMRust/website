@@ -4,7 +4,7 @@ A portable device that detects and displays the Beats Per Minute (BPM) of music 
 :::info 
 
 **Author**: Harpa George-Alexandru (Group 1221EA)  
-**GitHub Project Link**: https://gitlab.cs.pub.ro/george.harpa/pmrust.pages.upb.ro
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-harpa-g
 
 :::
 
