@@ -144,11 +144,16 @@ My goal was to unify all the code that I had had before and make one program wit
 
 ### Week 19 - 25 May
 
+During the final week, I managed to connect every single component to the holistic system, wrapped it into a convenient box. I faced some problems with Wi-Fi and PubSubChannels, but now it works and can be used by a user.
+
+![HardwareWeek3](hardware_3.webp)
+
 ## Hardware
 
 VitalPi utilizes a Raspberry Pi Pico 2W microcontroller as its processing core and webbite communicator, paired with a TFT LCD touchscreen (240×320px) for user interaction. Health monitoring is provided through an AD8232 ECG sensor module for cardiac activity, an MLX90614ESF infrared temperature sensor for contactless temperature readings, and a GY-MAX30102 optical heart rate and blood oxygen sensor. Environmental monitoring comes from an MQ135 gas sensor configured with a 10kΩ/20kΩ resistor voltage divider. User notifications are delivered via an RGB LED (with 220Ω current-limiting resistors) for visual alerts and a passive buzzer for audible warnings.
 
-![Hardware](hardware_2.webp)
+![Hardware](hardware_3.webp)
+
 
 ### Schematics
 
@@ -177,29 +182,95 @@ This is the KiCad Schematics of the project.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy)|	Embassy support for Raspberry Pi RP2350|Runs async embedded tasks on Raspberry Pi Pico 2W|
+| [embassy-rp](https://github.com/embassy-rs/embassy)| Embassy support for Raspberry Pi RP2350|Runs async embedded tasks on Raspberry Pi Pico 2W|
 |[embassy-embedded-hal](https://github.com/embassy-rs/embassy)|Async implementation of embedded-hal traits|Interfaces with async-compatible embedded peripherals|
 |[embassy-sync](https://github.com/embassy-rs/embassy)|Synchronization primitives for async embedded Rust|Used for mutexes, signals, and channels in concurrent tasks|
 |[embassy-executor](https://github.com/embassy-rs/embassy)|Async task executor for bare-metal embedded systems|Manages scheduling and running async tasks on the device|
 |[embassy-futures](https://github.com/embassy-rs/embassy)|Lightweight async utilities for embedded systems|Provides futures and combinators used in async workflows|
 |[embassy-time](https://github.com/embassy-rs/embassy)|Timekeeping and delays for embedded systems|Used for timers, delays, and task timeouts|
 |[embassy-net](https://github.com/embassy-rs/embassy)|Async TCP/IP networking stack|Handles communication between device and remote server|
+|[embassy-net-wiznet](https://github.com/embassy-rs/embassy)|Wiznet W5500 Ethernet driver for Embassy|Provides Ethernet connectivity support|
 |[cyw43](https://github.com/embassy-rs/embassy)|Driver for the CYW43 Wi-Fi chip|Provides Wi-Fi connectivity to the Raspberry Pi Pico 2W|
-|[cyw43-pio](https://github.com/embassy-rs/embassy)|PIO-based CYW43 driver implementation|Allows communication with CYW43 via the Pico’s PIO|
+|[cyw43-pio](https://github.com/embassy-rs/embassy)|PIO-based CYW43 driver implementation|Allows communication with CYW43 via the Pico's PIO|
 |[defmt](https://github.com/knurling-rs/defmt)|Logging framework optimized for embedded devices|Used for low-overhead logging during debugging|
-|[defmt-rtt](https://github.com/knurling-rs/defmt)|Backend for defmt using RTT (Real-Time Transfer)|Backend for defmt using RTT (Real-Time Transfer)|
+|[defmt-rtt](https://github.com/knurling-rs/defmt)|Backend for defmt using RTT (Real-Time Transfer)|Enables real-time logging over debug probe|
 |[cortex-m-rt](https://github.com/rust-embedded/cortex-m)|Runtime for Cortex-M microcontrollers|Sets up interrupt vectors and program entry point|
 |[panic-probe](https://github.com/knurling-rs/defmt)|Panic handler for defmt-enabled embedded apps|Captures and displays panics for debugging|
-|[embedded-hal-async](https://github.com/rust-embedded/embedded-hal)|	Asynchronous embedded-hal traits|Defines async traits for interacting with hardware|
+|[embedded-hal-async](https://github.com/rust-embedded/embedded-hal)|Asynchronous embedded-hal traits|Defines async traits for interacting with hardware|
 |[display-interface-spi](https://github.com/therealprof/display-interface)|SPI interface for display drivers|Provides abstraction for SPI-based display communication|
 |[ili9341](https://github.com/yuri91/ili9341-rs)|Driver for ILI9341 LCD display controller|Enables graphics output to ILI9341-based displays|
-|[heapless](https://github.com/rust-embedded/heapless)|	Data structures that don’t require dynamic memory|Used for buffers and queues with guaranteed memory use|
+|[heapless](https://github.com/rust-embedded/heapless)|Data structures that don't require dynamic memory|Used for buffers and queues with guaranteed memory use|
 |[xpt2046](https://github.com/nullstalgia/mff-hr-v1/tree/master/xpt2046)|Touchscreen driver for XPT2046|Reads user input from resistive touchscreen displays|
 |[micromath](https://github.com/tarcieri/micromath)|Lightweight math library for microcontrollers|Used for computations like ECG signal processing|
-|[embedded-alloc](https://github.com/rust-embedded/embedded-alloc)|Minimal allocator for embedded environments|Enables dynamic memory allocation in no_std contexts|
-|[embedded-canvas](https://github.com/LechevSpace/embedded-canvas)|Drawing primitives for embedded displays|Renders basic shapes and text to embedded screens|
 |[mlx9061x](https://github.com/eldruin/mlx9061x-rs)|Driver for MLX90614 temperature sensor|Used for contactless infrared temperature measurement|
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+|[embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)|2D graphics library|Used for drawing to the display|
+|[static_cell](https://github.com/embassy-rs/static-cell)|Statically allocated, initialized at runtime cell|Provides safe static storage for async resources|
+|[embedded-io-async](https://github.com/rust-embedded/embedded-io)|Async I/O traits for embedded systems|Enables async I/O operations for networking and communication|
+
+### Software Design
+
+#### Architecture Overview
+
+The software follows an async task-based architecture using the Embassy framework. The application is structured around independent async tasks that communicate through publish-subscribe channels and simple channels, enabling real-time sensor monitoring while maintaining responsive user interaction.
+
+#### Core Components
+
+**Task Architecture**
+
+The system implements eight primary async tasks, each responsible for specific functionality:
+
+- **`main`** - System initialization and task spawning
+- **`wifi_task`** - Network communication and cloud data transmission  
+- **`display_task`** - User interface state machine and touchscreen handling
+- **`led_task`** - Visual feedback system with color-coded health indicators
+- **`buzzer_task`** - Audio notification system for alerts and confirmations
+- **`temp_task`** - Temperature sensor monitoring via I²C
+- **`adc_task`** - ECG measurement using AD8232 sensor and Air Quality measurement using MQ135 sensor
+- **`bpm_task`** - BPM and Saturation measurement using MAX30102 via I²C
+
+**Communication System**
+
+Inter-task communication is handled through Embassy's **publish-subscribe channels**. This decoupled architecture allows tasks to operate independently while coordinating through standardized `Command` messages that specify source device, target device, and requested action. The data is sent via simple **channels** to ensure that it has been transfered successfully.
+
+**Device Abstraction**
+
+Hardware interfaces are abstracted through the **pins module**, which groups related GPIO pins into logical bundles. This abstraction simplifies hardware management and enables clean separation between hardware configuration and application logic.
+
+#### State Management
+
+**Display State Machine**
+
+The user interface operates as a comprehensive state machine with states for each measurement workflow:
+- **Startup sequence** with visual/audio feedback
+- **Main menu** for measurement selection  
+- **Measurement states** (ECG, pulse/SpO₂, temperature, air quality)
+- **Data transmission states** with cloud upload feedback
+- **Success/failure states** with retry capabilities
+
+**Sensor Data Flow**
+
+Sensor readings follow a standardized pipeline:
+1. **Measurement initiation** through display commands
+2. **Data collection** by dedicated sensor tasks
+3. **Processing and validation** within sensor-specific logic
+4. **Display presentation** with health status indicators
+5. **Cloud transmission** via WiFi with success confirmation
+
+#### Real-time Capabilities
+
+The Embassy executor enables **cooperative multitasking** where tasks voluntarily yield control during I/O operations or delays. This approach ensures:
+- **Responsive UI** - Touch events processed within 50ms polling intervals
+- **Continuous monitoring** - Sensors operate independently without blocking other tasks
+- **Efficient resource usage** - No preemptive context switching overhead
+- **Deterministic timing** - Precise control over measurement windows and data transmission
+
+**Memory Management**
+
+The system uses **static allocation** exclusively through `heapless` data structures and `static_cell` for async resources. 
+
+### Software Diagram
+
+![Software Architecture](software.svg "VitalPi Software Architecture")
 
 ## Links
 
