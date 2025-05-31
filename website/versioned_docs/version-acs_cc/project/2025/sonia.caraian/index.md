@@ -23,14 +23,21 @@ I chose this project because I had taken a lot of creative freedom when designin
 ## Log
 
 ### Week 5 - 11 May
+Started doing the hardware and finished the documentation.
 
 ### Week 12 - 18 May
+Done the hardware, began designing the case.
 
 ### Week 19 - 25 May
+Started and finished the code, including taking button input, drawing on the SPI display and the general game logic.
+Modeled and 3D printed the case.
 
 ## Hardware
 
 The console is built around the Raspberry Pi Pico 2W, and is powered by a 9V battery regulated through a step-down voltage module. User input is handled via push buttons connected on a breadboard, while game audio is played through a buzzer. An LCD display is used for game output.
+
+![Hardware](fara-carcasa.webp)
+![With case](cu-carcasa.webp)
 
 ### Schematics
  
@@ -51,8 +58,8 @@ The console is built around the Raspberry Pi Pico 2W, and is powered by a 9V bat
 | [Set fire F-F 40p, 10 cm](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire&results=429) | Short jumper wires for compact connections | [5 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire&results=429) |
 | [Buzzer pasiv 3V](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=63) | Outputs sound/music using PWM | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=63) |
 | [Buton 6x6x6 mm](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=butoane&results=190) | Input controls for the game (e.g., A/B/Start) | [0.36 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=butoane&results=190) |
-| [3.5" TFT LCD ILI9486 Display](https://www.aliexpress.com/item/1005006651048414.html) | Large color display with touchscreen, SPI interface | ~43 RON |
-
+| [2.8" TFT LCD ILI9341 Display](https://www.emag.ro/display-tactil-tft-lcd-2-8-inch-320x240-touchscreen-spi-driver-ili9341-arduino-rx961/pd/DSFJ88YBM/) | Color display with touchscreen, SPI interface | 67 RON |
+| [4k7 resistor](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/849-rezistor-025w-47k.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DpzQivl1HoGD6feRIlY_6Bz&gclid=Cj0KCQjwiqbBBhCAARIsAJSfZkYsCfmMA7yz82mEIl74jerlQXi-1eW7_KELxUh22H8H1Raadj400ZwaAmulEALw_wcB)  | Resistors | 0.10 RON |
 
 
 ## Software
@@ -60,8 +67,8 @@ The console is built around the Raspberry Pi Pico 2W, and is powered by a 9V bat
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | A 2D graphics library for embedded systems without a framebuffer. Supports drawing text, shapes, and images. | Used to render visuals for the game on the LCD screen |
-| [ili9486-driver](https://github.com/chrismoos/ili9486-driver) | A Rust driver for ILI9486-based TFT displays over SPI, compatible with embedded-graphics. | Used to control and render graphics on the 3.5" TFT LCD |
+| [ili9341-driver](https://github.com/maciekglowka/lcd-ili9341-spi) | A Rust driver for ILI9341-based TFT displays over SPI, compatible with embedded-graphics. | Used to control and render graphics on the 2.8" TFT LCD |
 | [tinybmp](https://docs.rs/tinybmp/latest/tinybmp/) | A parser for BMP image files with no std dependency, useful for rendering sprites. | Loads and draws bitmap assets onto the display |
 
-## Links
 
+## Links

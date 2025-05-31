@@ -67,7 +67,8 @@ This windmill made everything easier, given its large size. After using some neo
 ![hall](hall.webp)
 The sensor picks on the magnetic pulses quite well, im proud of the way i improvised this. Overall, it was an exciting project, and im excited to present it at PMFair, i hope all will go well. This is how my project looks:
 ![finished](finished.webp)
-![conf](configuration.webp)
+![config](configuration.webp)
+
 ---
 
 ## Hardware

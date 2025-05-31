@@ -90,6 +90,16 @@ Each state dictates what is drawn on the screen and how user input is interprete
 - Finally collected all the necessary components
 - Started the software base
 
+
+### Week 12 - 18 May
+
+- Finished the hardware side of things
+- Continued working on the software, implementing the display connection
+
+
+### Week 12 - 18 May
+- continued working on the software, mainly the game logic, and dealing with dependecies issues
+=======
 ### Week 12 - 18 May
 
 - Finished the hardware side of things
@@ -101,6 +111,10 @@ Each state dictates what is drawn on the screen and how user input is interprete
 
 ### Week 19 - 25 May
 
+
+### Week 19 - 25 May
+-finished the game logic
+-finished work on the hardware presentation
 ## Hardware
 
 

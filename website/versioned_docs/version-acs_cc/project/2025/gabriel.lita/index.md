@@ -99,6 +99,18 @@ Data flow:
 
 ### Week 19 – 25 May
 
+- Implemented full async multitasking logic for:
+  - Button input handling (play, pause, next, previous)
+  - LCD display update (track number and pause/play state)
+  - I2C communication with LCD 1602 via hd44780 driver
+
+- Created a system that loops back to track 1 after track 30 is reached
+- Integrated `heapless::String` formatting for LCD-safe printing
+- Used atomic variables to share track state between tasks safely
+- Used defmt logging to trace button presses and playback state changes
+- Added debounce handling and edge detection for stable button reading
+
+
 ---
 
 ## Hardware Overview
@@ -192,14 +204,22 @@ Rust will be used for firmware development, utilizing asynchronous programming w
 | [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD card filesystem | Handles file reading from microSD |
 | **DFPlayer Mini UART driver** (to be implemented) | Serial commands | Sends control commands to DFPlayer Mini module |
 
+---
 
 ## Photos
 
-![Hardware Photo](poza_hard.webp)
+![Hardware Photo](final_project_photo.webp)
 
 ---
 
 ## Links
 
-(Links will be added)
+- Video Link of the device working: https://youtu.be/8vQ_hNDtamI?si=suAuZD4rEEmw9f1n
+- HD44780-driver: https://crates.io/crates/hd44780-driver
+-  DFPlayer Mini Command Reference: https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299#Getting_Started
+- LCD 1602 with I2C Guide: https://lastminuteengineers.com/i2c-lcd-arduino-tutorial/
+
+
+
+
 
