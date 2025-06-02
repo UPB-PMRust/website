@@ -49,23 +49,26 @@ I wanted to build a practical IoT device that bridges hardware and software, whi
 ## Log 
 
 ### Week 1
+
 The first week of the project was intense, but i got around to setting up the sensors, and even got around to working on the code. I hope the code will turn out nicely as well in the end. The only thing left for the hardware part is setting up the propeller, which im not sure yet how to do. I do have some ideas but i need to experiment. Also, i started working on the code for the other sensors, but i have some problems with the dht22 and the pressure bme280 sensor. The only one i got to work (other than the display) is the rain module, which displays if it's raining or not.
 This is how it looks so far:
 ![first pic](hardware1.webp)
 ![second](hardware2.webp)
+
 ### Week 2
-The second and third week were very stressful, i hit a lot of roadbumps that i am going to write about :)
+
+The second and third week were very stressful, i hit a lot of roadbumps that i am going to write about.
 The first difficult step was wifi integration, which took me about one day, and after some extensive searching i found a repository in github that helped me a little bit. I will leave the link below, at the links tab. The second major step for me was creating a website to showcase my weather station's readings. The website was made in django and it wasn't that difficult to create. The problem, however, was that it was my first time using API's to store my sensor reading in, and i had a difficult time setting up the views.py of the project. After successfully displaying some test variables (i used CURL to write some values), i started the rust part of the connection, which took me a long time to accomplish, but after talking to class mates that had similar projects, i managed to finally make the connection between the pico and the API. Im going to attach a picture of the django frontend page, as well as the backend page from development, where i check the API.
 ![frontend](api.webp)
 ![backend](apisensor.webp)
-After finishing the code, i started working on the hardware part some more. I wanted it to be more compact, so i got rid of the alternator i usually used to power the project, and replaced with some rechargeables batteries, with voltage up to 11.1 volts, plenty for my project. Also, i changed the windmill i had in the first place, and replaced it with a bigger one, as i will show now.
+After finishing the code, i started working on the hardware part some more. I wanted it to be more compact, so i got rid of the alternator i usually used to power the project, and replaced with some rechargeables batteries, with voltage up to 11.1 volts, plenty for my project. Also, i changed the windmill i had in the first place, and replaced it with a bigger one.
 ![windmill](windmill.webp)
-This windmill made everything easier, given its large size. After using some neodym magnets, as you saw in the photo, the next challenge was setting up the hall effect sensor, which i ended up placing in a small box, and then attaching said small box using some zipties.
+This windmill made everything easier, given its large size. After using some neodym magnets, as you will see in the photos, the next challenge was setting up the hall effect sensor, which i ended up placing in a small box, and then attaching said small box using some zipties.
 ![hall](hall.webp)
-The sensor picks on the magnetic pulses quite well, im proud of the way i improvised this. In the end, this is how the project looks:
+The sensor picks on the magnetic pulses quite well, im proud of the way i improvised this. Overall, it was an exciting project, and im excited to present it at PMFair, i hope all will go well. This is how my project looks:
 ![finished](finished.webp)
-![conf](configuration.webp)
-Overall, it was an exciting project, and im excited to present it at PMFair, i hope all will go well :)
+![config](configuration.webp)
+
 ---
 
 ## Hardware
