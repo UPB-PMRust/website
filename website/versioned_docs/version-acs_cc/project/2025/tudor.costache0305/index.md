@@ -23,6 +23,12 @@ The buttons are used by the user to input the code for unlocking the door.
 The servomotor is used as the lock of the door.
 The LEDs and the buzzer provide the user feedback to let them know whether the inputede code is correct or not.
 
+# Log
+
+### Week 5-11 May
+### Week 12-18 May
+### Week 9-25 May
+
 ## Hardware Components
 
 + Raspberry Pico 2W – main controller of the system, reads the input and controls ouput to LEDs and buzzer
@@ -52,10 +58,20 @@ The user presses buttons to enter the code. The microcontroller checks whether t
 
 # Photos
 
+![IMG_6613](https://github.com/user-attachments/assets/f9d37fe5-58ca-4ecd-b86f-5e00f9a98f7e)
+![IMG_6615](https://github.com/user-attachments/assets/7332fe71-4fbb-4c1a-a47a-ba76632d8cef)
+![IMG_6617](https://github.com/user-attachments/assets/6da1ecf2-c034-4208-93e8-62515c6a0144)
+![IMG_6614](https://github.com/user-attachments/assets/66487d98-becf-4d35-aa24-6cc0394ceaa9)
+![IMG_6616](https://github.com/user-attachments/assets/2d4bf082-395d-4afa-a5d5-cf6beff45442)
 
+# Final Photos
 
-# Biil of Materials
+![IMG_6619](https://github.com/user-attachments/assets/2cdbb63c-3e14-4435-82fb-30afa97584dc)
+![IMG_6621](https://github.com/user-attachments/assets/16001e65-c8f8-488e-9cac-a25656e4e493)
+![IMG_6618](https://github.com/user-attachments/assets/5690a5f8-1052-4ebc-a795-7a69c32ad496)
+![IMG_6623](https://github.com/user-attachments/assets/f50b6ef5-421b-49a3-a7c9-a8edfd7cbf79)
 
+# Bill of Materials
 
 | Device | Usage | Price | Quantity |
 |--------|-------|-------------|----------|
@@ -68,4 +84,18 @@ The user presses buttons to enter the code. The microcontroller checks whether t
 | Resistors | Used to ensure proper circuit operation | Already had them | ~6 |
 | [Servomotor](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?srsltid=AfmBOopNX7R_hjvSguzCn--QktQ5BoKMQ9fOrtjxloPUm0SnechT1Dbx) | Used to lock/unlock the door | ~13 | 1 |
 | Total |  |  ~93 |  |
+
+# Software
+
+| Library | Description | Usage |
+|:--------|:------------|:-------------------|
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Library for peripheral access on the chip | Used to interact with the microcontroller |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Asynchronous task runtime | Entry point |
+| [embassy-time](https://crates.io/crates/embassy-time) | Asynchronous timers and delays | Used for delays |
+
+# Links
+1. [Rust Programming for Beginners](https://github.com/Perlatecnica/getting-started-embassy-stm32f401re)
+2. [Servomotor Interface with Raspberry Pico](https://randomnerdtutorials.com/raspberry-pi-pico-servo-motor-micropython/)
+3. [Raspberry Pico 2 Book](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf)
+   
 
