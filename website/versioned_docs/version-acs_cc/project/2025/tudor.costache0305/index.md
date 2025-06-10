@@ -1,13 +1,21 @@
 # Morse Code Door Lock
 
-Proiectul consta intr-un sistem de deblocare a unei usi controlat prin codul Morse. Utilizatorul introduce, folosind doua butoane, unul pentru “punct” si unul pentru “linie” aferent codului morse, un cod pentru a debloca usa, care este blocata de catre un servo motor.
+**Author**: Tudor-Cristian Costache
+**GitHub Project Link**: (https://github.com/UPB-PMRust-Students/proiect-iJackT.git
 
-Motivatia Proiectului
-Am ales acest proiect deoarece combina securitatea cu o metoda alternativa si creativa de introducere a unui parole – codul morse. Este o metoda interesanta care combine un element pe care il folosim cu totii zilnic, incuietoarea usii, cu un mod interactiv de a debloca usa, folsoind codul morse in locul unei chei obisnuite. 
+## Description
 
-Arhitectura:
+The project give the user the possibility to unlock the door of a house unsing the Morse code. The input comes from the user using two buttons.
+
+## Motivation
+
+I chose this project because it combines security with an alternative and creative method of entering a password – Morse code. It's an interesting approach that merges something we all use daily, a door lock, with an interactive way to unlock the door by using Morse code instead of a traditional key.
+
+## Architecture 
+![Uploading diagram.svg…]()
+
 Componentele utilizare:
--   2x Raspberry Pico 2W – a doilea folosit pentru debug 
+- 2x Raspberry Pico 2W – a doilea folosit pentru debug 
 -	1 buzzer – ofera feedback auditiv pentru codul gresit introdus
 -	2x led-uri – unul verde si unul rosu
 -	1x servomotor – folosit pentru blocarea/deblocarea usii
