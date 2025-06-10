@@ -2,7 +2,7 @@
 
 **Author**: Tudor-Cristian Costache
 
-**GitHub Project Link**: (https://github.com/UPB-PMRust-Students/proiect-iJackT.git
+**GitHub Project Link**: (https://github.com/UPB-PMRust-Students/proiect-iJackT.git)
 
 ## Description
 
