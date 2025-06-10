@@ -1,4 +1,4 @@
-![Proiect_PM](https://github.com/user-attachments/assets/86e1ca94-7854-4d87-add2-b323c808dfd7)# Morse Code Door Lock
+# Morse Code Door Lock
 
 **Author**: Tudor-Cristian Costache
 **GitHub Project Link**: (https://github.com/UPB-PMRust-Students/proiect-iJackT.git
