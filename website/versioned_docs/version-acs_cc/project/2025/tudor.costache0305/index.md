@@ -6,7 +6,7 @@
 
 ## Description
 
-The project give the user the possibility to unlock the door of a house unsing the Morse code. The input comes from the user using two buttons. It gives feeback to the user using:
+The project gives the user the possibility to unlock the door of a house using the Morse code. The input comes from the user using two buttons. It gives feedback to the user using:
 + Sound signals using a buzzer
 + Visual signals using GREEN and RED LEDs
 
@@ -19,10 +19,10 @@ The following diagram shows the system architecture:
 
 ![diagram](https://github.com/user-attachments/assets/44a96d33-9b22-457d-b9d3-9be17945bc4b)
 
-The Raspberry Pi Pico 2W acts as the CNS of the hole system, managing everything.
+The Raspberry Pi Pico 2W acts as the CNS of the whole system, managing everything.
 The buttons are used by the user to input the code for unlocking the door.
 The servomotor is used as the lock of the door.
-The LEDs and the buzzer provide the user feedback to let them know whether the inputede code is correct or not.
+The LEDs and the buzzer provide the user with feedback to let them know whether the inputted code is correct or not.
 
 # Log
 
@@ -32,9 +32,9 @@ The LEDs and the buzzer provide the user feedback to let them know whether the i
 
 ## Hardware Components
 
-+ Raspberry Pico 2W – main controller of the system, reads the input and controls ouput to LEDs and buzzer
++ Raspberry Pico 2W – main controller of the system, reads the input and controls output to LEDs and buzzer
 + 1 buzzer – provides auditory feedback for incorrect code input
-+ 2x LEDs – one green and one red, provideing visual feedback
++ 2x LEDs – one green and one red, providing visual feedback
 + 1x servomotor – used for locking/unlocking the door
 + 2x buttons – one for "dot" and the other for "dash", corresponding to Morse code
 + Resistors – used to protect components and ensure proper circuit operation
@@ -78,8 +78,8 @@ The user presses buttons to enter the code. The microcontroller checks whether t
 |--------|-------|-------------|----------|
 | Breadboard | Connecting components | Already had it | 1 |
 | Jumper Cables | Connecting the Pico to the components | Already had them | ~20 |
-| Red LED | Signaling inputed code is wrong | Already had it | 1 |
-| Green LED | Signaling inputed code is correct | Already had it | 1 |
+| Red LED | Signaling that the entered code is wrong | Already had it | 1 |
+| Green LED | Signaling that the entered code is correct | Already had it | 1 |
 | Buzzer | Auditory feedback in case of wrong code | Already had it | 1 |
 | [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) | Main microcontroller | ~40 | 2 |
 | Resistors | Used to ensure proper circuit operation | Already had them | ~6 |
