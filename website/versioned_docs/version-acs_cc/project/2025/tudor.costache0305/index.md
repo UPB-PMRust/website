@@ -1,4 +1,4 @@
-Morse Code Door Lock
+# Morse Code Door Lock
 
 Proiectul consta intr-un sistem de deblocare a unei usi controlat prin codul Morse. Utilizatorul introduce, folosind doua butoane, unul pentru “punct” si unul pentru “linie” aferent codului morse, un cod pentru a debloca usa, care este blocata de catre un servo motor.
 
