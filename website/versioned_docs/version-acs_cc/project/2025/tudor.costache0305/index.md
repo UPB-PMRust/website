@@ -49,3 +49,23 @@ The user presses buttons to enter the code. The microcontroller checks whether t
 ## Schematics
 
 ![Proiect_PM](https://github.com/user-attachments/assets/64b10ff1-c110-44ee-9abd-21c814ea9434)
+
+# Photos
+
+
+
+# Biil of Materials
+
+
+| Device | Usage | Price | Quantity |
+|--------|-------|-------------|----------|
+| Breadboard | Connecting components | Already had it | 1 |
+| Jumper Cables | Connecting the Pico to the components | Already had them | ~20 |
+| Red LED | Signaling inputed code is wrong | Already had it | 1 |
+| Green LED | Signaling inputed code is correct | Already had it | 1 |
+| Buzzer | Auditory feedback in case of wrong code | Already had it | 1 |
+| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) | Main microcontroller | ~40 | 2 |
+| Resistors | Used to ensure proper circuit operation | Already had them | ~6 |
+| [Servomotor](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?srsltid=AfmBOopNX7R_hjvSguzCn--QktQ5BoKMQ9fOrtjxloPUm0SnechT1Dbx) | Used to lock/unlock the door | ~13 | 1 |
+| Total |  |  ~93 |  |
+
