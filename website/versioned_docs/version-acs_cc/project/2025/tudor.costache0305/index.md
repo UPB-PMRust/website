@@ -18,14 +18,19 @@ The following diagram shows the system architecture:
 
 ![diagram](https://github.com/user-attachments/assets/44a96d33-9b22-457d-b9d3-9be17945bc4b)
 
+The Raspberry Pi Pico 2W acts as the CNS of the hole system, managing everything.
+The buttons are used by the user to input the code for unlocking the door.
+The servomotor is used as the lock of the door.
+The LEDs and the buzzer provide the user feedback to let them know whether the inputede code is correct or not.
 
-Componentele utilizare:
-- 2x Raspberry Pico 2W – a doilea folosit pentru debug 
--	1 buzzer – ofera feedback auditiv pentru codul gresit introdus
--	2x led-uri – unul verde si unul rosu
--	1x servomotor – folosit pentru blocarea/deblocarea usii
--	2x butoane – unul pentru “punct” si celalalt pentru “linie”, aferent codului morse
--	Rezistente – folosite pentru  a proteja componentele si corecta functionare a circuitului
+## Components
+
++ 2x Raspberry Pico 2W – the second one used for debugging
++ 1 buzzer – provides auditory feedback for incorrect code input
++ 2x LEDs – one green and one red, provideing visual feedback
++ 1x servomotor – used for locking/unlocking the door
++ 2x buttons – one for "dot" and the other for "dash", corresponding to Morse code
++ Resistors – used to protect components and ensure proper circuit operation
 
 
 Functionare:
