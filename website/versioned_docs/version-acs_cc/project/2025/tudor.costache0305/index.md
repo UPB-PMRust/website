@@ -5,7 +5,9 @@
 
 ## Description
 
-The project give the user the possibility to unlock the door of a house unsing the Morse code. The input comes from the user using two buttons.
+The project give the user the possibility to unlock the door of a house unsing the Morse code. The input comes from the user using two buttons. It gives feeback to the user using:
++ Sound signals using a buzzer
++ Visual signals using GREEN and RED LEDs
 
 ## Motivation
 
