@@ -23,7 +23,7 @@ The buttons are used by the user to input the code for unlocking the door.
 The servomotor is used as the lock of the door.
 The LEDs and the buzzer provide the user feedback to let them know whether the inputede code is correct or not.
 
-## Components
+## Hardware Components
 
 + 2x Raspberry Pico 2W – the second one used for debugging
 + 1 buzzer – provides auditory feedback for incorrect code input
@@ -32,17 +32,18 @@ The LEDs and the buzzer provide the user feedback to let them know whether the i
 + 2x buttons – one for "dot" and the other for "dash", corresponding to Morse code
 + Resistors – used to protect components and ensure proper circuit operation
 
+## Hardware Description:
+The two microcontrollers are connected according to the laboratory diagram for debugging. The components are connected as follows:
+- Pins 4-7 are used for debugging
+- Pin 39 is used for power supply
+- Pin 38 is connected to GND
+- The servo motor is connected to 3V3, GND, and pin 2 of the Raspberry Pi
+- Pin 9 is connected to the button for the respective function
+- Pin 10 is connected to the button for the respective function
+- Pins 11 and 12 are used for the green and red LEDs, respectively
+- Pin 14 is used to control the buzzer
 
-Functionare:
-Utilizatorul apasa pe butoane pentru a introduce codul. Microcontroler-ul verifica daca daca parola corespundei celei stocate. In cazul in care secventa introdusa corespunde cu cea prestabilita, servomotorul va debloca usa, iar un led verde se va aprinde. In caz contrar, se va aprinde led-ul rosu, iar buzzer-ul va suna pentru a atentiona faptul ca nu a fost introdus codul corect. 
+## Operation
+The user presses buttons to enter the code. The microcontroller checks whether the password matches the one stored. If the entered sequence matches the preset one, the servo motor will unlock the door, and a green LED will light up. Otherwise, the red LED will turn on, and the buzzer will sound to alert that the code was entered incorrectly.
 
-Descrierea hardware:
-Cele doua microcontrolere sunt conectate confor diagramei din laborator pentru debug. Componentele sunt conectate astfel:
-Pinurile 4-7 sunt folosite pentru debug
-Pinul 39 este folosit pentru pentru alimentare
-Pinul 38 este conectat la GND
-Servomotorul este conectat la 3v3, GND si la pinul 2 al raspberry-ului
-Pe pinul 9 este conectat butonul aferent punctului
-Pe pinul 10 este conectat butonul aferent punctului
-Pinii 11 respectiv 12 sunt folositi pentru ledul verde respectiv rosu
-Pinul 14 este folosit pentru a controla buzzer-ul
+
