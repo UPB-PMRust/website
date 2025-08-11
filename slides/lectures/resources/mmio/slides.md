@@ -18,6 +18,8 @@ layout: two-cols
 # The Bus
 example for RP2
 
+ToDoDanut: pt placa curenta
+
 <style>
 .two-columns {
     grid-template-columns: 2fr 5fr;
@@ -62,6 +64,8 @@ layout: two-cols
 # STM32L0x2
 A real MCU
 
+ToDoDanut: de vazut daca gasim chir pt M33-ul pe care il folim acum? Anul trecut am pus acest exemplu pt ca are datesheetul mai detaliat pe partea asta de mememorie :)) 
+
 | | |
 |-|-|
 | Cortex-M0+ Peripherals | MCU's *settings* and internal peripherals, available at the same address on all M0+ |
@@ -80,6 +84,8 @@ layout: two-cols
 
 # System Control Registers
 Cortex-M0+[^m33] SCR Peripheral @0xe000_0000
+
+ToDoDanut: should we update this?
 
 Compute the actual address 
 $$ e000\_0000_{(16)} + register_{offset} $$
@@ -224,6 +230,8 @@ layout: two-cols
 # Read the CPUID
 About the MCU
 
+ToDoDanut: should we update this? Are sens fiind doar de exemplu sau il lasam asa?
+
 ```rust {all|1|3-4|6|7-9|11,12|14,15|17,18|20,21}{lines: false}
 use core::ptr::read_volatile;
 
@@ -261,6 +269,8 @@ layout: two-cols
 
 # AIRCR
 Application Interrupt and Reset Control Register
+
+ToDoDanut: should we update this? Are sens fiind doar de exemplu sau il lasam asa?
 
 ```rust {all|1,2|4,5|10-13|8,17|7,15|7,16|19-21}{lines: false}
 use core::ptr::read_volatile;

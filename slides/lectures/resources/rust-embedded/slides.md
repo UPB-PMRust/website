@@ -78,8 +78,11 @@ pub trait OutputPin: ErrorType {
 
 
 ---
----
+
 # Bare metal
+
+ToDoDanut: pp ca de aici doar mici modificari like use-ul de mai jos?
+
 This is how a Rust application would look like
 
 <div grid="~ cols-2 gap-4">

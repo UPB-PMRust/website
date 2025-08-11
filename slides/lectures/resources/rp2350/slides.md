@@ -10,6 +10,11 @@ ARM Cortex-M33, built by Raspberry Pi
 # Bibliography
 for this section
 
+ToDoDanut: update pt 
+https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D
+with <br>
+STM32U545RET6Q
+
 **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
    - Chapter 1 - *Introduction*
    - Chapter 2 - *System Description*

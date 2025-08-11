@@ -210,6 +210,8 @@ Extras:
 
 # Memory on ARM - RP2350 example - M33 based
 
+ToDoDanut: update pt STM32U545RET6Q
+
 <style>
     table {
         width: 100%;
