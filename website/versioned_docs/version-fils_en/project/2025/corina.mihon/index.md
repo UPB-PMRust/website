@@ -1,5 +1,5 @@
 # Fitness tracker with breathing assistant
-A heart rate based breathing guiding system to help regulate the heart beat through controlled breathing exercises and with features for timing and hydration.
+A heart rate based breathing guiding system to help regulate the heart beat through controlled breathing exercises with features for timing and hydration.
 
 :::info 
 
@@ -10,7 +10,7 @@ A heart rate based breathing guiding system to help regulate the heart beat thro
 
 ## Description
 
-This project is a fitness tracker with a guided breathing assistant, built on Raspberry Pi Pico 2 using Rust and Embassy. It measures heart rate through a pulse sensor, displays real-time data on a screen, and guides users with visual breathing exercises using an LED indicator.  If the rate is too high, an LED pulses in a rhythm that guides the user to breath in and out slowly. The device also includes features for hydration tracking, workout timing, making it a compact welness tool.
+This project is a fitness tracker with a guided breathing assistant. It measures heart rate through a pulse sensor, displays real-time data on a screen, and guides users with visual breathing exercises using an LED indicator.  If the rate is too high, an LED pulses in a rhythm that guides the user to breath in and out slowly. The device also includes features for hydration tracking, workout timing, making it a compact welness tool.
 
 ## Motivation
 
