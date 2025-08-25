@@ -1,5 +1,5 @@
-# Heart rate guided breathing assistant
-A heart rate based breathing guiding system to help regulate the heart beat through controlled breathing exercises.
+# Fitness tracker with breathing assistant
+A heart rate based breathing guiding system to help regulate the heart beat through controlled breathing exercises and with features for timing and hydration.
 
 :::info 
 
@@ -10,17 +10,17 @@ A heart rate based breathing guiding system to help regulate the heart beat thro
 
 ## Description
 
-This project uses a heart rate sensor to monitor the user's pulse. The user can select a mode (for example: exercising) and then the heart beat is shown on a display. If the rate is too high, an LED pulses in a rhythm that guides the user to breath in and out slowly.
+This project is a fitness tracker with a guided breathing assistant, built on Raspberry Pi Pico 2 using Rust and Embassy. It measures heart rate through a pulse sensor, displays real-time data on a screen, and guides users with visual breathing exercises using an LED indicator.  If the rate is too high, an LED pulses in a rhythm that guides the user to breath in and out slowly. The device also includes features for hydration tracking, workout timing, making it a compact welness tool.
 
 ## Motivation
 
-I chose this project because of the increasing importance of stress management and heart health. By combining heart rate monitoring with breathing exercises, users can make adjustments to improve their physical health or their mental health. It is a way of integrating technology into wellness practices.
+I chose this project because of the increasing importance of stress management and heart health. By combining heart rate monitoring with breathing exercises, users can make adjustments to improve their physical health. It is a way of integrating technology into wellness practices.
 
 ## Architecture 
 
-![Diagram](Diagram.webp)
+![DiagramFinal](DiagramFinal.webp)
 
-The main controller reads physiological data from the pulse sensor and controls an LED for visual breathing guidance. A button connected to the microcontroller allows user interaction and the display, also connected to the microcontroller, shows the data. The second microcontroller handles debugging. 
+The main controller reads physiological data from the pulse sensor and controls an LED for visual breathing guidance. A button connected to the microcontroller allows the user to scroll through the menus (pulse reading, timin, hydration) and a second button allows the users to chose the menu or other settings. The display, also connected to the microcontroller, shows the data. The second microcontroller handles debugging. 
 
 ## Log
 
@@ -48,14 +48,16 @@ XD-58C pulse sensor: measure the user's heart rate
 
 RBG LED: used for the visual breathing feedback
 
-Button: allows the user to switch between modes
+Button(mode): allows the user to switch between menus
+
+Button(action): allows the user to make choices
 
 1.44'' LCD Display: Displays the heart rate
 
 ### Schematics
 
-![schemafinalkicad](schemafinalkicad.svg)
-![Poza](Poza.webp)
+![schemaFinalKicad](schemaFinalKicad.svg)
+![PozaFinal](PozaFinal.webp)
 
 ### Bill of Materials
 
@@ -74,7 +76,8 @@ The format is
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [39.66 RON x 2](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?) |
 | [XD-58C pulse sensor](https://pulsesensor.com) | The pulse sensor | [15.17 RON](https://www.optimusdigital.ro/ro/senzori-altele/1273-senzor-de-puls-xd-58c.html?)|
 | [1.44'' LCD Module](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.optimusdigital.ro/en/index.php%3Fcontroller%3Dattachment%26id_attachment%3D196%26srsltid%3DAfmBOoruUzWlsxzAAf_-B4iAEJVfx2yxuVbGb-puhPoLH_3ZoySWRy6B&ved=2ahUKEwibuP6e7oaNAxXUiv0HHQ0hO54QFnoECB4QAQ&usg=AOvVaw0UxpN128YQYtVhZADYz4ql) | Display | [28 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html?)|
-| [Button](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?) | Press the button to select modes | [2 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?)|
+| [Button](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html?search_query=buton+cu+capac+rosu&results=7) | Press the button to select modes | [2 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html?search_query=buton+cu+capac+rosu&results=7)|
+| [Button](https://www.optimusdigital.ro/ro/altele/1118-buton-cu-capac-rotund-albastru.html?search_query=buton+cu+capac+albastru&results=1) | Press the button to scroll | [2 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html?search_query=buton+cu+capac+rosu&results=7)|
 | [RGB LED module](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/737-modul-cu-led-rgb.html?) | LED light | [5 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/737-modul-cu-led-rgb.html?)|
 
 
