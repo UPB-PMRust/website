@@ -3,8 +3,10 @@
 An emotional journal based on button inputs for daily mood tracking and sentiment analysis.
 
 :::info
-**Author**: Miriam Constantinescu \
+
+**Author**: Constantinescu Patricia Miriam \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-miriamct20
+
 :::
 
 ## Description
