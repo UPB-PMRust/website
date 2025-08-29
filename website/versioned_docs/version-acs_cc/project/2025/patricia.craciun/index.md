@@ -9,7 +9,9 @@
 
 ### Description
 
-The idea of the project is to build a smart mirror that can play music over Bluetooth and has LED lighting with adjustable brightness. The mirror can be controlled using an IR remote and a mobile phone. All functionality is implemented on an ESP32 board, programmed entirely in Rust.
+The idea of the project is to build a smart mirror that can play music over Bluetooth and has LED lighting with adjustable brightness. The mirror can be controlled using an IR remote. All functionality is implemented on an ESP32 board, programmed entirely in Rust.
+
+In audio-reactive mode, the LED brightness changes in real-time, pulsing to the rhythm of the music
 
 ## Motivation
 
@@ -27,6 +29,7 @@ I chose this project because I've always wanted a smart mirror, especially becau
 - **Bluetooth Audio** – receives audio from phone
 - **Amplifier** – amplifies signal for the speakers
 - **Speakers** – play the music
+- **Sound Sensor** – captures sound for audio-reactive mode
 - **Power Supply** – powers everything with 12V and a step-down to 5V for ESP32
 
 
@@ -45,7 +48,11 @@ I chose this project because I've always wanted a smart mirror, especially becau
 - Designed complete KiCad schematic
 
 ### Week 19 – 25 May
-
+- Implemented the full software logic in Rust:
+  - Added button state machine with multiple brightness levels (25%, 50%, 75%, 100%)
+  - Integrated audio-reactive mode: LED brightness changes based on sound amplitude
+  - Integrated Bluetooth audio streaming using MH-M28 module and TPA3116D2 amplifier
+  - Tested entire system: LED brightness adjustment + music playback + LED pulse on sound
 
 ## Hardware
 

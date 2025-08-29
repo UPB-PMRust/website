@@ -20,41 +20,52 @@ Since I was in primary school, my favourite toys were remote-controlled cars, wh
 
 ## Architecture 
 
-![](sadf.webp)
+![](architecture.webp)
 
-1. **Web App**
-   - Hosted by the Raspberry Pi Pico 2W using its onboard Wi-Fi.
-   - Allows the user to control the car from a browser.
-   - Sends control commands over Wi-Fi.
+##  Components
 
-2. **Web Server (on Raspberry Pi Pico 2W)**
-   - Receives user commands from the web app.
-   - Runs Rust firmware to handle routing and control logic.
-   - Acts as the central coordinator of the system.
+### 1. Raspberry Pi Pico 2W 
+- The brain of the system.
+- Handles:
+  - Wi-Fi communication using `cyw43` driver
+  - TCP server via `embassy-net`
+  - GPIO-based control of motors and sensors
+  - Real-time task management via `embassy` async runtime
 
-3. **Motor Control Module**
-   - Processes movement commands (forward, backward, turn).
-   - Sends PWM and direction signals to the L298N motor driver.
+### 2. Web App
+- Runs in any browser on the same Wi-Fi network.
+- Sends TCP commands to the Pico 2W (`"forward"`, `"backward"`, `"left"`, `"right"`, `"stop"`, `"distance"`, `"map"`).
 
-4. **DC Motors with Gearbox and Wheels**
-   - Receive power and control signals from the L298N module.
-   - Convert electronic commands into physical motion.
-   - Enable the robot to move.
+### 3. Web Server (Rust Firmware on Pico 2W)
+- Accepts and parses TCP socket messages.
+- Sends movement signals to motors and reads data from sensors.
+- Responds with sensor readings or map history when requested.
 
-5. **IOE-SR05 Ultrasonic Sensor (Sensor Module)**
-   - Measures the distance to nearby objects.
-   - Sends distance data to the Pico 2W via GPIO.
-   - Used for basic room mapping.
+### 4. Ultrasonic Sensor (IOE-SR05)
+- Triggered via GPIO (`PIN_7`) and receives echo on `PIN_6`.
+- Measures front-facing distance using echo timing.
+- Used for mapping and collision awareness.
 
+### 5. Motor Control (L298N via GPIO)
+- Controlled through GPIO (`PIN_2` to `PIN_5`) — no PWM used.
+- Logic functions for movement:
+  - `forward()` – move ahead
+  - `backward()` – move back
+  - `left()` / `right()` – turn
+  - `stop()` – stop motion
 
+---
 
-###  Communication between components:
+## Communication Between Components
 
-- The **web app** is hosted by the **Pico 2W** and accessed via Wi-Fi from a user’s browser.
-- The **web server** interprets commands and forwards them to the **motor control module**.
-- The **motor control module** sends PWM and direction signals to the **L298N driver**.
-- The **L298N driver** powers two **DC motors with gearboxes and wheels** to drive the vehicle.
-- The **sensor module** sends distance readings to the Pico W to enable obstacle detection or mapping.
+The architecture relies on coordinated communication between all components as follows:
+
+| From           | To                  | Medium | Purpose                                         |
+|----------------|---------------------|--------|-------------------------------------------------|
+| Web App        | Pico 2W             | Wi-Fi  | Send movement/query commands via TCP socket    |
+| Pico 2W        | L298N Motor Driver  | GPIO   | Control motor direction (IN1–IN4 logic levels) |
+| Pico 2W        | IOE-SR05 Sensor     | GPIO   | Send trigger and read echo (distance)          |
+| Pico 2W        | Web App             | TCP    | Reply with sensor or mapping information       |
 
 
 
@@ -73,9 +84,11 @@ This week, I finished the code and functions for the DC motors (final adjustment
 
 ### Week 19 - 25 May
 
+During the last week I customised the web app for the remote control, making it user-friendly and visually pleasing. I also finished the mapping logic and function and made the car show it in the web app as well as in the terminal.
+
 ## Hardware
 
-The car uses a Raspberry Pi Pico 2W microcontroller that manages motor control and sensor input. I included 2 motors with gearbox and attached wheels that allow movement in 4 directions (left, right, forward, backward) as well as stopping the movement when the user presses the " stop" button. The 2 DC motors are controlled through PWM signal via a L298N module. The module recieves enable / direction signals from the Pico.
+The car uses a Raspberry Pi Pico 2W microcontroller that manages motor control and sensor input. I included 2 motors with gearbox and attached wheels that allow movement in 4 directions (left, right, forward, backward) as well as stopping the movement when the user presses the " stop" button.
 An IOE-SR05 Ultrasonic sensor is attached in the front and used for distance measurement and mapping. It provides feedback for the user to help avoid obstacles. Finally, for debugging, a Raspberry Pi Pico 1 was as it helped in testing the hardware components and developing the source code.
 ![](fuf2.webp)
 
@@ -107,18 +120,26 @@ An IOE-SR05 Ultrasonic sensor is attached in the front and used for distance mea
 
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy) | RP2040 peripheral access | Initializes and interacts with Pico W hardware peripherals |
-| [embassy-executor](https://github.com/embassy-rs/embassy) | Async runtime | Runs asynchronous tasks like timers, Wi-Fi, and server logic |
-| [embassy-time](https://github.com/embassy-rs/embassy) | Time utilities | Used for delays, timers, and scheduling |
-| [embassy-net](https://github.com/embassy-rs/embassy) | Networking stack | Manages TCP/IP over Wi-Fi; serves the web interface |
-| [embassy-lab-utils](https://github.com/embassy-rs/embassy-lab) | Pico W Wi-Fi macros and helpers | Used for quickly initializing Wi-Fi and networking on the Pico W |
-| [defmt](https://github.com/knurling-rs/defmt) | Logging framework | Lightweight debug logging over RTT |
-| [panic-probe](https://docs.rs/panic-probe) | Panic handler | Provides minimal panic handling for embedded Rust |
-| [static_cell](https://docs.rs/static_cell) | Static memory allocation | Used to safely manage network stack resources statically |
-| [gpio](https://docs.rs/embassy-rp/latest/embassy_rp/gpio/) | GPIO module | Used to control motors and interact with the ultrasonic sensor |
-| [pwm](https://docs.rs/embassy-rp/latest/embassy_rp/pwm/) | PWM module | Controls the speed of the DC motors via L298N |
+## Software Libraries
+
+| Library / Crate | Description | Usage Example |
+|------------------|-------------|----------------|
+| [`embassy-executor`](https://github.com/embassy-rs/embassy/tree/master/embassy-executor) | Async runtime for embedded Rust | Drives async `main` loop |
+| [`embassy-rp`](https://github.com/embassy-rs/embassy/tree/master/embassy-rp) | HAL for Raspberry Pi Pico boards | Access GPIOs, peripherals |
+| [`embassy-time`](https://github.com/embassy-rs/embassy/tree/master/embassy-time) | Timing and delays | `Timer::after_millis(100).await` |
+| [`embassy-net`](https://github.com/embassy-rs/embassy/tree/master/embassy-net) | TCP/IP networking stack | Runs a TCP server |
+| [`embassy-usb`](https://github.com/embassy-rs/embassy/tree/master/embassy-usb) | USB support (optional) | USB-related functions (if used) |
+| [`cyw43`](https://github.com/embassy-rs/embassy/tree/master/embassy-net-driver/src/cyw43) | Driver for CYW43 Wi-Fi chip on Pico W | Connects to Wi-Fi |
+| [`cyw43-pio`](https://github.com/embassy-rs/embassy/tree/master/embassy-net-driver/src/cyw43-pio) | PIO backend used by CYW43 | Enables PIO communication |
+| [`defmt`](https://github.com/knurling-rs/defmt) / [`defmt-rtt`](https://github.com/knurling-rs/defmt) | Efficient logging and debugging via RTT | `info!("message")` in terminal |
+| [`panic-probe`](https://docs.rs/panic-probe) | Panic handler for embedded Rust | Shows panic messages |
+| [`embedded-io-async`](https://github.com/embassy-rs/embedded-io) | Async I/O traits for sockets | Used for `socket.write_all(...)` |
+| [`gpio::{Level, Input, Output}`](https://docs.rs/embassy-rp/latest/embassy_rp/gpio/) | Pin control for motors and sensors | Used for motor/sensor pins |
+| [`fixed::traits::ToFixed`](https://docs.rs/fixed) | Numeric conversion to fixed-point | Converts float to fixed |
+| [`static_cell`](https://docs.rs/static_cell) | Safe global static memory management | Static memory for network stack |
+
+
+---
 
 
 

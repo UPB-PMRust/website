@@ -114,6 +114,29 @@ Black - Button pins
 
 Software week
 
+I started the software part by programming the bmp280 as we used it in a lab. At first I used that code but I found the bme280-rs crate that also
+works with bmp280 and it made the code easier. Then I continued with the lcd screen as we also used one of those in a lab. Initially I tried to 
+use the st7735-lcd-rs crate thinking it will be easy as it was named after the module, but I didn't manage to get it to work, so I rolled back 
+to use the mipidsi crate used in the lab and it worked fine.
+
+Next I programmed the buttons to cycle through the screens. I used a mutex to hold the index of the current page and created 2 tasks, one for
+each button, that loop infinitely while waiting the button to be pressed. In the main loop I take the value from the mutex and match it to select
+what to display on the screen.
+I also programmed the GPS but it says that it doesn't have signal.
+
+For the fingerprint sensor I needed to do the crate myself, I found the official
+repository with the Cpp code and I tried to convert the minimum ammount I needed
+into Rust code. I did 2 functions, one to save a fingerprint and one to identify,
+but I didn't manage to understand the packets sent from the sensor to the pico,
+so unfortunately it doesn't work.
+
+I also needed to create a crate for the pulse sensor, as the one on crates.io is
+blocking and it doesn't work in my project. I didn't have much time with this one
+so I tried to do something else.
+
+Lastly I implemented a clock in this device by counting the seconds starting from
+the start of the code and adding the time saved when building the project.
+
 ## Hardware
 
 1. **Raspberry Pi Pico 2W**
@@ -158,10 +181,14 @@ This is the device's circuit. I need to make a small case to hide the wires and 
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-rp](https://crates.io/crates/embassy-rp) | HAL implementation to not use registers directly | Gives access to GPIO, I2C, SPI ports |
-| [bmp280](https://crates.io/crates/bme280) | Driver for the Bosch BMP280 temperature and atmospheric pressure sensor | Tracks temperature and atmospheric pressure |
+| [bme280_rs](https://crates.io/crates/bme280-rs) | Driver for the Bosch BME280 sensor to query temperature, pressure and humidity, also works with the BMP280 | Tracks temperature and atmospheric pressure |
 | [ublox](https://crates.io/crates/ublox) | Library for uBlox GPS devices | Tracks GPS coordinates |
-| [max3010x](https://docs.rs/max3010x/latest/max3010x/) | Driver for the MAX3010x sensor based on embedded-hal traits | Tracks wearer's pulse |
-| [st7735-lcd](https://crates.io/crates/st7735-lcd) | Library for displays using ST7735 driver with embedded_graphics and embedded_hal support | Displays data on screen |
+| [mipidsi](https://crates.io/crates/mipidsi/0.9.0) | Generic display driver that supports the ST7735-LCD Screen model | Displays data on screen |
+
+## Demo
+[Demo with debugger](https://youtu.be/dhYRVteN-iY)
+
+[Demo with batteries](https://youtu.be/rQPiQWmaLSk)
 
 ## Links
 1. [PM Labs](https://pmrust.pages.upb.ro/docs/acs_cc/category/lab)

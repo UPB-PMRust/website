@@ -38,6 +38,7 @@ I created documentation that includes how the components interact and how I plan
 ### Week 12 - 18 May
 I worked on the hardware part of the project, where I physically connected all the components and made sure everything worked as expected. I also created the circuit schematic using KiCad to have a clear and organized view of the connections.
 ### Week 19 - 25 May
+I completed the software design for the system, integrating both software logic and hardware control (servo motor, LEDs, buzzer, and keypad). The design includes asynchronous task coordination and communication over Wi-Fi via a web interface. I also created a detailed README.md to document the software functionality and its interaction with the hardware components.
 
 ## Hardware
 
@@ -77,18 +78,34 @@ The system uses the following components:
 
 ### Software
 
+![Software Diagram](software_diagram.webp)
+
+The software controls a servo motor that functions as a door lock, using two input methods: a physical 4x2 keypad and a remote web interface over Wi-Fi. The Raspberry Pi Pico W is responsible for managing the hardware, which includes a servo motor for locking and unlocking, two LEDs for status indication, and a buzzer for audio feedback.
+
+Once the device connects to Wi-Fi, it starts a simple TCP server that serves a minimal HTML page containing a "Lock/Unlock" button. When this button is pressed, the server receives a GET /ok request, which toggles the servo motor to change the lock state.
+
+The keypad is configured as a 4x2 matrix and is used to input a hardcoded 4-key PIN. If the correct PIN is entered, the system unlocks the door. If the user makes eight incorrect button presses, an alarm is triggered using the buzzer and flashing LEDs.
+
+The software uses asynchronous tasks to manage different components and communicates between them using an enum called DeviceCommand, which includes Toggle, Success, and Fail variants. A Toggle command changes the lock state and updates the LED indicators. A Success command produces two short beeps from the buzzer to confirm the action, while a Fail command triggers a long beep and flashes the red LED three times as a warning.
+
+The current state is clearly communicated to the user: a green LED means the door is locked, a red LED means it is unlocked, two beeps signal success, and an alarm sequence is triggered after too many failed attempts.
+
+
 | Library         | Description                                    | Usage                          |
 |----------------|------------------------------------------------|--------------------------------|
-| [embassy-executor](https://crates.io/crates/embassy-executor) | Asynchronous executor for embedded Rust | Running tasks asynchronously |
-| [embassy-rp](https://crates.io/crates/embassy-rp)             | Embassy support for Raspberry Pi Pico W | Access peripherals          |
-| [embassy-time](https://crates.io/crates/embassy-time)         | Timer driver and time utilities         | Delays, alarms, and timekeeping |
-| [embassy-sync](https://crates.io/crates/embassy-sync)         | Async channels, signals, and mutexes    | Communication between tasks |
-| [cyw43](https://crates.io/crates/cyw43)                       | Wi-Fi driver for CYW43439 chip          | Wi-Fi connectivity          |
-| [embassy-net](https://crates.io/crates/embassy-net)           | Asynchronous embedded TCP/IP stack      | HTTP over TCP               |
-| [defmt](https://crates.io/crates/defmt)                       | Efficient logging framework for embedded devices | Debug print messages |
-| [static_cell](https://crates.io/crates/static_cell)           | Safe statics for no_std environments    | Static allocation           |
-
-
+| [`embassy-executor`](https://crates.io/crates/embassy-executor)      | Async task executor for embedded systems              | Entry point and task scheduling    |
+| [`embassy-rp`](https://crates.io/crates/embassy-rp)                  | Embassy support for Raspberry Pi Pico and peripherals | GPIO, PWM, peripheral access       |
+| [`embassy-time`](https://crates.io/crates/embassy-time)              | Embedded async timers and delays                      | Timed waits, delays, alarms        |
+| [`embassy-sync`](https://crates.io/crates/embassy-sync)              | Async synchronization primitives                      | Task communication via `Channel`   |
+| [`embassy-net`](https://crates.io/crates/embassy-net)                | Async TCP/IP network stack for embedded               | TCP server & IP stack              |
+| [`cyw43`](https://crates.io/crates/cyw43)                            | Driver for CYW43439 Wi-Fi chip                        | Connect Pico W to Wi-Fi            |
+| [`defmt`](https://crates.io/crates/defmt)                            | Lightweight logging for embedded systems              | Logging & debugging via RTT        |
+| [`defmt-rtt`](https://crates.io/crates/defmt-rtt)                    | RTT (Real-Time Transfer) backend for `defmt`          | Print logs over debug interface    |
+| [`panic-probe`](https://crates.io/crates/panic-probe)                | Minimal panic handler using `defmt`                   | Panic handling and diagnostics     |
+| [`static_cell`](https://crates.io/crates/static_cell)                | Safe, lazy static initialization in `no_std`          | Static allocation for global state |
+| [`fixed`](https://crates.io/crates/fixed)                            | Fixed-point arithmetic support                        | PWM timing configuration           |
+| [`heapless`](https://crates.io/crates/heapless)                      | Data structures without dynamic allocation            | HTTP response strings              |
+| [`embedded-io-async`](https://crates.io/crates/embedded-io-async)    | Async I/O traits for embedded systems                 | Writing async to TCP socket        |
 
 
 ## Links
