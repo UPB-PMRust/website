@@ -11,6 +11,7 @@ PiglowTune is a Rust-powered project that syncs LED light patterns with music in
 
 This project features a music-reactive LED system powered by a Raspberry Pi Pico W 2, which lights up 5 RGB LEDs in real time based on sound intensity. Using 2 shift registers (74HC595), the Pico controls each LED’s color and brightness through pulse and fade effects. A web app connected over Wi-Fi allows you to remotely select different LED effects, making it easy to switch between vibrant color modes and create an interactive light-and-sound experience.
 
+
 ## Motivation
 
 My motivation for this project comes from my passion for both music and visual aesthetics. I've always been fascinated by how sound can be transformed into something you can see and feel, not just hear. This project gave me the perfect opportunity to blend those interests by creating a system where music drives a visual experience in real time. I wanted to explore how technology could bridge the gap between auditory and visual art, and building a music-reactive LED setup felt like a natural and exciting challenge—especially with the added control and customization through a web interface.
@@ -18,7 +19,6 @@ My motivation for this project comes from my passion for both music and visual a
 ## Architecture 
 
 ![Diagram](diagram.webp)
-
 
 The sound sensor picks up music and sends audio intensity data to the Raspberry Pi Pico W 2, which also connects via Wi-Fi to a mobile web app for remote control. The Pico processes the analog sound input and controls 5 RGB LEDs (common cathode) using 2× 74HC595 shift registers, with each RGB channel driven through current-limiting resistors. The entire LED system is powered by an external 5V power supply. The LEDs respond to music with synchronized light effects, including pulsing and dynamic color changes.
 ## Log
@@ -32,7 +32,10 @@ After purchasing all the necessary materials for my project, I began assembling 
 ![poza2](./poza2_hardware.webp)\
 This week, I began by individually testing all my RGB LEDs to ensure they were functioning properly. I then carefully connected them using two shift registers, which required a lot of patience and precision. After setting up the hardware, I created three distinct lighting effects: Rainbow, Pulse White, and Strobe Party—each selectable by the user. Finally, I made the effects respond to sound by connecting the LEDs to a sound sensor, allowing the lights to react dynamically to audio input.
 ### Week 19 - 25 May
-
+![poza_finala](poza_finala_2.webp)
+![poza_finala1](poza_finala_1.webp)
+This week, I successfully configured the Wi-Fi on my Raspberry Pi Pico 2W, turning it into an access point. Additionally, I created a simple HTML page where the user can select their desired LED effect. The project's software is finished and I also worked on the design of the project.
+[Video of the Project working](https://youtu.be/UlZHCPw0-Iw)
 ## Hardware
 
 ![Poza](poza_proiect.webp)\
@@ -82,13 +85,12 @@ The format is
 ## Software
 
 | Library | Description | Usage |
-|---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
-| [smart-leds](https://github.com/smart-leds-rs/smart-leds)| A library designed to control addressable LED strips and matrices, with support for multiple protocols and pixel formats.| Used to control the LED ring by setting the color and brightness of each LED based on the sound intensity of the music|
-| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)| A hardware abstraction layer (HAL) for the Raspberry Pi RP2040 microcontroller, built on the async-first Embassy framework, enabling efficient, non-blocking embedded applications in Rust| Used to interact asynchronously with the Raspberry Pi Pico 2W’s hardware components, enabling responsive and efficient control of the LED ring in sync with music input|
-
-
+|--------|-------------|-------|
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Hardware abstraction layer for RP2040 | Enables async interaction with the microcontroller hardware |
+| [embassy-net](https://github.com/embassy-rs/embassy) | Networking stack for embedded systems | Manages Wi-Fi connectivity and enables web server features |
+| [cyw43](https://github.com/embassy-rs/embassy) | Wi-Fi driver for CYW43439 chip | Supports wireless communication for Raspberry Pi Pico W |
+| [defmt](https://docs.rust-embedded.org/defmt/defmt/) | Lightweight logging framework | Used for efficient embedded debugging |
+| [panic-probe](https://docs.rs/panic-probe/0.3.0/panic_probe/) | Panic handler for embedded Rust apps | Helps capture crash reports in no-std environments |
 
 ## Links
 

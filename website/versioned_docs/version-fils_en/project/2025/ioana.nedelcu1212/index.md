@@ -10,7 +10,7 @@ Rusty Rythm is a simple rhythm game where you press buttons to the beat of a tra
 
 ## Description
 
-When booting up the game, you will be prompted to pick one of the available songs and the difficulty which you wish to play on. You can then input a 3 character username. The gameplay itself consists of pressing the buttons to the rhythm of the song you selected with the aid of the visual interface. Hitting the correct button(s) at the right time adds to your score. If it is high enough, your score will be registered to the leaderboard (for the song and difficulty that you played), which shows the username of the 5 top scoring users.
+When booting up the game, you will be prompted to pick one of the available songs and the difficulty which you wish to play on. You can then input a 3 character username. The gameplay itself consists of pressing the buttons to the rhythm of the song you selected with the aid of the visual interface. Hitting the correct button(s) at the right time adds to your score.
 
 ## Motivation
 
@@ -26,11 +26,10 @@ While being more familiar with mobile, touch-screen based rhythm games, I've alw
 Finished ordering any remaining parts that I might have needed. My components ended up requiring more current than I was expecting so I couldn't power everything using the pico as I had planned (went for a battery + step down module set up instead). Brought KiCad scheme in its final form.
 
 ### Week 7 - 19 May
-<!-- I made the KiCad Schematic for the project. Because I couldn't find any symbol for Pico Display Pack, I created it and added to the schematic. -->
-<!-- I created the stage and added it to the circuit having now the final shape of it. -->
+Battery proved too troublesome so in the end I'm using a 3.3V and 5V power source. All components now work together. Coded in game menus (song select, difficulty select, gameplay). Will need to add a results screen. Have a few ideas for beatmap implementation.
 
 ### Week 20 - 26 May
-<!-- I started the software and finished it, while also doing final improvements to my project. -->
+Final gameplay elements implemented (falling notes, scoring). Made some small KiCad scheme changes to reflect the power source setup. In the end I chose to design the beatmap manually. To do this, I played the song and started a timer. First I measured the amount of time a note takes to reach the bottom of the screen. Then I played the song and pressed buttons to the beat, each button displaying its timing and column number. This is how I got the timestamps that will later have to be compared to the player's inputs.
 
 ## Hardware
 
@@ -48,7 +47,7 @@ Finished ordering any remaining parts that I might have needed. My components en
 ### Schematics
 
 <!-- ![KiCad Schematic](ProjectKicadScheme.webp) -->
-![KiCad Schematic](rustProj.svg)
+![KiCad Schematic](finalRustProj.svg)
 
 
 ### Final Look
@@ -92,11 +91,10 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Embedded I/O | Manages buttons, PWM for buzzer |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Embedded I/O | Screen SPI |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing to the display |
 | [st7735-lcd](https://github.com/sajattack/st7735-lcd-rs) | Display driver | Controls the display |
-| [embedded-time](https://crates.io/crates/embedded-time) | Durations, clocks, rates | Beatmap timings |
-| [fugit](https://crates.io/crates/fugit) | Precise timing utilities | Beatmap timings |
+| [embedded-time](https://crates.io/crates/embedded-time) | Durations, clocks, rates | Beatmap timings, general delays |
 | [heapless](https://docs.rs/heapless/latest/heapless/) | Static data structures | Beatmap storing |
 | [mipidsi](https://docs.rs/heapless/latest/heapless/) | SPI Driver | Screen Controller |
 

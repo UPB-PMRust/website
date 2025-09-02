@@ -37,15 +37,26 @@ I was inspired to create this classic game because of its nostalgic value to me,
 
 Here is the block scheme and how the components are all conected:
 
-![schema](schema.png)
+![schema](schema.webp)
 
 ## Log
 
 ### Week 5 - 11 May
 
+Bought the components and planned the project, preparing the hardware and software technologies.
+
 ### Week 12 - 18 May
 
+![proiect_hardware](proiect_hardware.webp)
+
+I assembled the components and tested them.
+
 ### Week 19 - 25 May
+
+I finished the project. I ended up using the led to indicate that a fruit had been eaten by the snake, and the buzzer to play the Nokia theme when I'm not in a game, meaning before the game when you wait for input to start the game.
+Here is a video of the final result:
+
+[![Demo](https://youtu.be/3r2ZJlaT-eM?si=ndewh0CsY7dM61zA)](https://youtu.be/3r2ZJlaT-eM?si=ndewh0CsY7dM61zA)
 
 ## Hardware
 
@@ -57,7 +68,7 @@ Here is the block scheme and how the components are all conected:
 
 ### Schematics
 
-![kicad](kicad.png)
+![kicad](kicad.svg)
 
 ### Bill of Materials
 

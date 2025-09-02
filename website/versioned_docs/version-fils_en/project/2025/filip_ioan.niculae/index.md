@@ -30,9 +30,8 @@ The following diagram presents an overview of the physical interconnections in t
 - **Role**: Central controller that reads sensor data, manages irrigation logic, triggers alerts, and communicates with the desktop app.
 - **Interfaces Used**:
   - I2C: BME280
-  - ADC: Soil Moisture Sensor, NTC Thermistor
+  - ADC: Soil Moisture Sensor, NTC Thermistor, Active Buzzer
   - Digital GPIO: HC-SR04, Relay Module
-  - PWM: Passive Buzzer
   - UART: Communication with ImGui App
 
 ---
@@ -97,10 +96,18 @@ The following diagram presents an overview of the physical interconnections in t
 
 ---
 
-### Passive Buzzer
+### Second Mini Submersible Water Pump
 
-- **Interface**: PWM / GPIO  
-- **Role**: Beeps for alerts (dry soil, low water, etc.)
+- **Interface**: Relay-controlled  
+- **Role**: Refills the Water Tank
+- **Power**: Controlled via relay module from a 5V power source
+
+---
+
+### Active Buzzer
+
+- **Interface**: GPIO  
+- **Role**: Beeps for alerts
 
 ---
 
@@ -139,7 +146,21 @@ This week, I focused on getting all the hardware parts set up. I put together an
 The primary focus shifted to software, starting with the Windows desktop GUI. I set up the ImGui and DirectX 11 environment and designed the basic UI layout for sensor data display and user controls. Concurrently, I began implementing the UART communication protocol on both the NUCLEO firmware and the desktop application to establish an initial data link. Basic sensor reading stubs were also added to the firmware.
 
 ### Week 8 - 26 May
+The main objective this week was to build out the core Rust firmware and establish its communication with the desktop GUI, allowing for clear data presentation and user-driven control.
 
+- **Firmware Sensor Integration & Data Handling (Rust)**: On the NUCLEO, I focused on robust sensor integration using Rust. This involved implementing the necessary driver interactions and logic to reliably read data from all connected sensors:
+  - BME280 (atmospheric temperature & pressure via I2C).
+  - HC-SR04 (water level via GPIO and timer-based pulse measurement).
+  - Soil Moisture Sensor (humidity via ADC).
+  - NTC Thermistor (water tank temperature via ADC, including resistance-to-temperature conversion).
+
+- **GUI Enhancement & Data Display**: The ImGui desktop application was significantly updated. I developed the routines to parse the incoming real-time sensor data stream originating from the NUCLEO's Rust firmware. UI elements were then populated to display these values clearly (e.g., dedicated sections for atmospheric conditions, soil moisture, water tank status).
+
+- **Basic System Logic (NUCLEO - Rust)**: On the NUCLEO, I began implementing the core decision-making logic in Rust. This included parsing commands received from the GUI (like manual pump control or mode switching) and establishing the initial framework for the AUTO mode (e.g., checking soil moisture readings against a preliminary threshold to trigger irrigation).
+
+- **Control Implementation**: I added interactive controls to the GUI, specifically buttons/switches for toggling between AUTO and MANUAL irrigation modes, and for manually activating/deactivating the water pump. The corresponding command structures were defined, and the GUI now sends these commands back to the NUCLEO via UART, enabling user interaction with the system.
+
+- **Testing & Debugging**: Conducted initial end-to-end tests to ensure that sensor data was flowing correctly from the physical sensors, through the NUCLEO (processed by the Rust firmware), over UART, and displayed accurately on the GUI. Similarly, I tested that commands sent from the GUI were correctly received and interpreted by the NUCLEO's firmware. This phase involved significant debugging of both the UART communication protocol and the sensor data interpretation, ensuring reliable communication between the embedded Rust application and the desktop interface.
 ---
 
 ## Hardware
@@ -152,7 +173,7 @@ The Smart Irrigation System is built around several key hardware components, eac
 *   **NTC Thermistor**: Provides temperature reading.
 *   **4-Channel Relay Module**: Works as an electromechanical switch. It is controlled by the NUCLEO board (via a level translator) to turn the Mini Submersible Water Pump on or off.
 *   **Mini Submersible Water Pump**: The actuator responsible for water delivery. It pumps water from the tank to the cultivated area when activated by the relay module.
-*   **Passive Buzzer**: Serves as an auditory alert system, signaling conditions such as critically dry soil, low water levels in the tank, or other system events.
+*   **Active Buzzer**: Serves as an auditory alert system.
 *   **Level Translator** : An essential interface component that safely converts the 3.3V logic signals from the NUCLEO's GPIO pins to the 5V required to operate the relay module.
 *   **5V Power Source**: Provides the necessary power for higher-voltage components like the relay module and the water pump, separate from the NUCLEO's USB power.
 *   **UTP CAT5E Cable and Double Surface-mount UTP CAT5e Outlet**: These are used to make good, organized cable connections.
@@ -193,12 +214,14 @@ The Smart Irrigation System is built around several key hardware components, eac
 | [embassy](https://github.com/embassy-rs/embassy) | Async framework for embedded systems | Used for async execution and peripheral control |
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | STM32 HAL for Embassy | Used to control STM32F411RE peripherals |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Async timing utilities | Used for delays and timers |
-| [embassy-sync](https://github.com/embassy-rs/embassy) | Sync primitives for async tasks | Used for potential task synchronization |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Sync primitives for async tasks | Used for task synchronization |
 | [bme280](https://github.com/VersBinarii/bme280-rs) | Driver for BME280 sensor | Used for reading temperature and pressure |
 | [hcsr04_async](https://github.com/1-rafael-1/hcsr04_async) | HC-SR04 ultrasonic sensor driver | Used for measuring distance |
-| [panic-probe](https://github.com/embedded-graphics/embedded-graphics) | Panic handler for embedded systems | Used for debugging panic messages |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded development | Used for efficient logging over RTT |
-| [libm](https://github.com/rust-lang/compiler-builtins) | Math functions for no-std environments | Used for thermistor temperature calculation |
+| [heapless](https://github.com/rust-embedded/heapless) | Data structures that don't need dynamic memory (the "heap") | Used for creating formatted UART data packets without requiring dynamic memory allocation. |
+| [micromath](https://github.com/tarcieri/micromath) | Math functions for no-std environments | Used for calculation |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Access to Cortex-M processor | Used for Core CPU functions |
+| [static_cell](https://github.com/embassy-rs/static-cell) | Static memory allocation utilities | Used by Embassy's task macro |
 
 ---
 
@@ -208,5 +231,6 @@ The Smart Irrigation System is built around several key hardware components, eac
 2. [UART Communication with STM32](https://blog.theembeddedrustacean.com/stm32f4-embedded-rust-at-the-hal-uart-serial-communication)
 3. [Automatic Plant Watering](https://www.youtube.com/watch?v=ojhrVsBs0nM)
 4. [Nerdcave](https://nerdcave.xyz/)
-
+4. [Hardware Video](https://youtube.com/shorts/sSeyEuOE7hc)
+4. [Software Video](https://youtu.be/UaqmrkFk1Tg)
 

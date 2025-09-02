@@ -54,13 +54,21 @@ Gathered all my parts for the car.
 Started working on the code for the car. Connected it to the laptop over internet and worked a little bit on the motor setup.
 ### Week 12 - 18 May
 I implemented the sensor in the code. Connected everything. Now i only need the chassis for the car .
-### Week 19 - 25 May
 
+![1](./1r.webp)
+
+### Week 19 - 25 May
+Finnished motor logic, now when the car gets close to an obstacle it will stop and emit sound.
+
+![2](./2s.webp)
+
+### Week 26 - 30 May
+Refined the motor logic, the car now gets commands from the laptop and runs them. I can move the car and change the speed of the motors. I added 2 more sensors for better object detection at the front of the car.
 ## Hardware
 
 2x Raspberry Pi Pico 2W: acts as the primary processing unit, equipped with Wi-Fi capabilities.
 
-1x HC-SR04 Ultrasonic Sensor: utilized for measuring distances to detect nearby objects.
+4x HC-SR04 Ultrasonic Sensor: utilized for measuring distances to detect nearby objects.
 
 1x L298N Motor Driver Module: Provides the ability to control the two wheels.
 
@@ -68,30 +76,26 @@ I implemented the sensor in the code. Connected everything. Now i only need the 
 
 2x Wheels with motors
 
+2x LED
+
 1x Buzzer
 
 1x Battery Support (4 x 1.5v)
 
 1x Baterry 9v
 
-![1](./1r.webp)
-![2](./2r.webp)
+![f1](./f1.webp)
+![f2](./f2.webp)
+
+![c1](./c1.webp)
+![c2](./c2.webp)
 
 ### Schematics
 
 ![Kicad](./intelicar.svg)
 
+
 ### Bill of Materials
-
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
 
 | Device | Usage | Price |
 |--------|--------|-------|
@@ -101,6 +105,7 @@ The format is
 | [U Shape Photoelectric Sensor](about:blank) | The photoelectric senzor | [9 RON](https://www.optimusdigital.ro/en/optical-sensors/171-u-shape-photoelectric-sensor.html) |
 | [HC-SR04P](https://handsontec.com/index.php/product/hc-sr04-ultrasonic-ranging-module/) | The sensor | [7 RON](https://www.optimusdigital.ro/en/distance-sensors/8150-hc-sr04p-ultrasonic-distance-sensor-3-55-v.html) |
 | [Battery support ](about:blank) | Battery  | [6 RON](https://www.optimusdigital.ro/en/all-products/2374-suport-baterii-4-x-r6-patrat.html) |
+
 
 
 ## Software
@@ -117,9 +122,7 @@ The format is
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
 1. [Raspberry Pi Pico RC Vehicle](https://www.instructables.com/Raspberry-Pi-Pico-RC-Vehicle/)
 2. [Chassis](https://www.printables.com/model/836711-arduino-line-follower-robot-chassis/files)
-
+3. [Motor LN298n Tutorial](https://www.youtube.com/watch?v=H1Fzil_VUq4)
 
