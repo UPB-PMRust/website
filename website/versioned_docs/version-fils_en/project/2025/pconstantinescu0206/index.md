@@ -1,6 +1,8 @@
 # Mood Tracker
 
+
 An emotional journal based on button inputs for daily mood tracking and sentiment analysis.
+
 
 :::info
 
@@ -14,12 +16,14 @@ A simple mood tracking device that allows users to record their daily emotional 
 \
 **Future ideas** : Implement the analysis via ChatGPT implementing it via its API and the wireless capability of Pico 2W.
 
+
 ## Motivation
 I chose this project because keeping track of one's emotional state can be beneficial for mental health awareness. A physical device with simple button inputs makes the process of mood tracking more tangible and accessible than smartphone apps, potentially encouraging more consistent usage. I'm also interested in creating a device that combines hardware interaction with data visualization.
 
 ## Architecture
 The main components of the system are:
 - **Input Module**: Buttons for mood selection (happy/sad/neutral)
+
 - **Storage Module**: EEPROM for persistent mood data storage(can be implemented for future storage capability for removing the need to be plugged nonstop)
 - **Processing Unit**: Raspberry Pi Pico 2W as the central controller
 - **Display Module**: LCD screen for visualization of mood data and analysis
@@ -39,10 +43,15 @@ These components interact as follows:
 - Created initial project structure
 - Polished the documentation
 - Ordered the broken hardware
-
+### Week 25-31 
+- Finished software with some optimization (DRY) and created a static component for faster render after inputs
+- Added a restart the process function
+- Assembled hardware in final form
+- Thought of some other features that can be implemented
+  
 ## Hardware
 
-![Hardware](Hardware.svg)
+![Hardware](Hardware.webp)
 
 The project uses a Raspberry Pi Pico 2W as the main controller, with a 2.4" LCD screen for display and (optionally) an AT24C256 EEPROM module for data storage. Buttons for input and basic resistors are used for the interface.
 
