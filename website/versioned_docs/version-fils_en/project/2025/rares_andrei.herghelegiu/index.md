@@ -46,18 +46,24 @@ Controlled via L293D outputs, activates automatically when temperature exceeds a
 After submitting the project proposal and refining it to add complexity, as advised by the lab professor, I proceeded to purchase the necessary components and began assembling the system. I encountered my first major issue when attempting to interface the DHT-22 temperature sensor with the Raspberry Pi Pico. Although I identified an embassy-rs crate that supports the sensor, it turned out to be non-functional. Unfortunately, the DHT-22 lacks broader support outside of this crate, leaving me with two options: either switch from Embassy to another framework, such as Tock, or attempt to fix the existing crate by rewriting or adapting a significant portion of its rather complicated codebase.
 
 ### Week 5 - 11 May
+I came across a new crate called embedded-dht-rs, but unfortunately, it did not function as expected on my Raspberry Pi Pico. After spending a considerable amount of time attempting to implement the code for the DHT sensor without success, I ultimately decided to switch to a different temperature sensor.
 
 ### Week 12 - 18 May
+I purchased a new Raspberry Pi Pico to facilitate hardware debugging and accelerate the development process. However, after several attempts to get my LCD 16x2 to display even basic output, I’m considering replacing it, as it appears to be either malfunctioning or particularly difficult to work with.The hardware appears to be nearly complete, with the LCD being the only component that may still require replacement.
+![](IMG.webp)
 
 ### Week 19 - 25 May
-
+I recently bought a new temperature sensor, the BMP280—the same model we use in the lab. I tried to use it with a 16x2 LCD display, but unfortunately, there wasn’t an existing crate for the display since it’s a clone of an Adafruit model designed for the full-sized Raspberry Pi. Thankfully, during one of the project help sessions, the professor assisted me by creating a custom library for it. The final issue has now come up: it seems that my current circuit configuration doesn’t provide enough power for both the DC motor driver and the display. Hopefully, I’ll be able to resolve it soon.
 ## Hardware
 
-Detail in a few words the hardware used.
+DC Motor: Powered through a motor driver and controlled using PWM signals.
+BMP280 Temperature Sensor: Communicates via the I2C protocol.
+MCP23017-Based LCD Display (Clone): Also operates over I2C.
+Raspberry Pi Pico Marble: Used as a debugging tool.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![](schem.svg)
 
 ### Bill of Materials
 
@@ -73,15 +79,21 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [Raspberry Pi Pico Marble](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5562/Marble%20Pico.pdf) | Debugger | [24 RON](https://ardushop.ro/ro/groundstudio/1590-groundstudio-marble-pico-6427854000682.html) |
+| [Raspberry Pi Pico 2W](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf) | The microcontroller | [28 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13266-raspberry-pi-pico-2.html) |
+| [BMP280 Sensor](https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001-11.pdf) | Temperature sensor | [8,5 RON](https://www.optimusdigital.ro/en/pressure-sensors/1777-bmp280-barometric-pressure-sensor-module.html)
+| [LCD 16x2](https://werner.rothschopf.net/microcontroller/202105_arduino_liquid_crystal_mcp23017_en.htm) | Display | [58 RON](https://www.optimusdigital.ro/en/lcds/1158-lcd-hat-1602-pentru-raspberry-pi.html?search_query=lcd+&results=257)
+
 
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [BMP280](https://github.com/pietgeursen/bmp280-rs) | BMP280 crate | Used to transform raw data to temperature |
+| [Ryu](https://github.com/dtolnay/ryu) | RYU | Used to convert floats to strings |
+| [Embassy-rs](https://github.com/embassy-rs/embassy) | Embassy-rs | The framework for embedded application |
+
 
 ## Links
 

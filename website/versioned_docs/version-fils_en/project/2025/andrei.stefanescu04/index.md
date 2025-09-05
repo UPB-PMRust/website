@@ -63,9 +63,17 @@ Main components used:
 
 ### Week 5 - 11 May
 
+During this week I've wired up and soldered most of the components, such as the screen and buttons. Other than that, I worked on a side-project for the Students Scientific Communications Session, which helped me learn how to do multiplayer in Rust.
+
 ### Week 12 - 18 May
 
+During this week I prepared for the hardware milestone by checking my electronic connections and finding several bad connections for SPI, which I've fixed, both physically and in the electric schematic below.
+
 ### Week 19 - 25 May
+
+In the final week I've done most of the programming. I've written a quick and dirty server for Retro Heroes, and I designed a menu for the console. My controllers unfortunately borked this week, so I had to do the programming in the `embedded_graphics_simulator` until I could get new ones.
+
+Once I solved my hardware fault. I went to work by porting the Retro Heroes client to the console. I made several stylistic changes, in order to account for the different form factor, different controls and limitations with embedded graphics, however the underlying client works the same as the web client.
 
 ## Hardware
 
@@ -73,13 +81,22 @@ The hardware consists of the Raspberry Pi Pico 2W microcontroller and various pe
 
 There are five buttons connected that control the graphical interface: Left, Ok, Right, Up and Down. Also, a small green LED is attached, indicating the boot status of the board.
 
-The most important peripherals attached are the ILI9341 touch screen module and the buzzer, which allow for an embedded game development platform. Every single peripheral is attached via GPIO, except for the screen, which communicates with the board via SPI. On the screen we draw a menu, allowing the user to select from a list of games to play.
+The most important peripherals attached are the ILI9341 touch screen module and the buzzer, which allow for an embedded game development platform. Every single peripheral is attached via GPIO, except for the screen, which communicates with the board via SPI. On the screen we draw a menu, allowing the user to select from a list of games to play. Details can be seen in the figures below.
+
+
+Figure 1
+
+![Top-down view of the hardware](hardware_pic1.webp "Top-down view of the hardware")
+
+Figure 2
+
+![Side view of the hardware](hardware_pic2.webp "Side view of the hardware")
 
 ## Schematics
 
 Electrical schematic
 
-![Electrical schematic](kicad_schematic.webp "Electrical schematic")
+![Electrical schematic](kicad_schematic.svg "Electrical schematic")
 
 ## Bill of Materials
 
@@ -107,8 +124,14 @@ Electrical schematic
 [embedded-hal-async](https://docs.rs/embedded-hal-async/latest/embedded_hal_async/) | An asynchronous Hardware Abstraction Layer (HAL) for embedded systems | Asynchronous hardware access
 [gpio](https://docs.embassy.dev/embassy-rp/git/rp235xb/gpio/index.html) | GPIO management | Controlling GPIO pins |
 [pwm](https://docs.embassy.dev/embassy-rp/git/rp235xb/pwm/index.html) | PWM module | Controlling the buzzer and the intensity of the boot LED | 
+[embassy_lab_utils](https://github.com/UPB-PMRust/lab-2025-solutions/tree/main/lab07/embassy-lab-utils) | Embassy lab library | Lab code for networking |
+[cyw43](https://docs.rs/cyw43/latest/cyw43/) | cyw43 wireless chip | Wireless driver |
+[heapless](https://docs.rs/heapless/latest/heapless/) | heapless | No std strings |
+[rand_core](https://crates.io/crates/rand_core) | rand_core | Random with no std |
+[biski64](https://crates.io/crates/biski64) | biski64 randomizer | Library to interface with rand_core |
 
 ## Links
 
 1. [Retro Heroes](https://andrewstephen.xyz/retro-heroes)
 2. [Pixper](https://andrewstephen.xyz/pixper)
+3. [PicoPlay console demo](https://youtube.com/shorts/vR0Hnv4gpR0)

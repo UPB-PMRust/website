@@ -40,7 +40,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 **Connections:**
 - GPIO → Motor Driver (control signals)
-- GPIO ← IR Proximity Sensors, Ultrasonic Sensor, IR Receiver, Buttons
+- GPIO ← IR Proximity Sensors, Ultrasonic Sensor, Buttons
 - SPI → Display
 - WiFi ↔ Web App (bidirectional)
 - Power Input ← Battery (5V via Power Supply Module)
@@ -67,7 +67,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 3. IR Proximity Sensors (Left and Right)
+### 3. IR Proximity Sensors (Left, Right and Rear)
 
 **Role:** Detects nearby objects for navigation or avoidance
 
@@ -99,22 +99,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 5. IR Receiver
-
-**Role:** Receives commands from remote control
-
-**Interface:** GPIO (digital)
-
-**Functions:**
-- Receives modulated IR signals
-- Decodes remote control button presses
-
-**Connections:**
-- Signal → Pico GPIO
-
----
-
-### 6. Buttons (Red and Blue)
+### 5. Buttons (Red and Blue)
 
 **Role:** Manual input for control
 
@@ -128,7 +113,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 7. Display (SPI)
+### 6. Display (SPI)
 
 **Role:** Provides visual feedback
 
@@ -142,7 +127,7 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 8. Web App
+### 7. Web App
 
 **Role:** Enables remote control and monitoring
 
@@ -157,10 +142,10 @@ But beyond just fun, I wanted something more personal than another phone notific
 
 ---
 
-### 9. Power Supplies
+### 8. Power Supplies
 
 - **Pico:** Powered by a battery via Power Supply Module
-- **Motor Driver:** Powered directly from 12V battery
+- **Motor Driver:** Powered directly from 9V + 4×1.5V batteries
 
 ## Log
 
@@ -170,7 +155,11 @@ After receiving the components, I tested their functionality and researched comp
 
 ### Week 12 - 18 May
 
+Focused on implementing the remote control functionality and integrating it with the display system. Developed the basic logic for the menu navigation and began working on the on-screen keyboard, including input handling and layout structuring.
+
 ### Week 19 - 25 May
+
+Focused on putting everything together: updated all layouts, verified that TCP communication works correctly, and made sure async tasks run smoothly without issues. Focus was on ensuring the system behaves as expected during integration.
 
 ## Hardware
 
@@ -178,55 +167,69 @@ After receiving the components, I tested their functionality and researched comp
 - **Raspberry Pi Pico 2W**: The brain of the operation, running all control logic
 - **DC Motors**: 4 gearmotors providing wheel movement (2 per side)
 - **L298N Driver**: Powers and controls motor speed/direction
-- **Infrared Sensors**: Left/right obstacle detection (reflectance sensors)
+- **Infrared Sensors**: Left/right/rear obstacle detection (reflectance sensors)
 - **Ultrasonic Sensor**: Front-facing distance measurement (2cm-400cm range)
 - **TFT Display**: 2.4" color screen with touch input for user interface
-- **IR Receiver**: Decodes signals from standard remote controls and transfers to the pico
 - **Buttons**: Physical input for selection
 - **Dupont Wires**: Jumper cables for all electrical connections
 - **Chassis**: Frame holding all components
+- **Power Supply Module**: 9V battery to 5V regulator, powers up the components
+- **Motor Power Supply**: Direct 9V battery connection(with 4×1.5V battery pack as boost power)
 
-![](keyboard.webp)
 ![](top.webp)
-![](rear.webp)
+![](motor.webp)
+![](back.webp)
+![](front.webp)
+![](keyboard.webp)
 
 ### Schematics
 
-Here is the KiCad schematics
-![](kicad.webp)
+Here is the KiCad schematics. On the schematics Power Supply Module is denoted as +5V for simplicity
+
+![](kicad.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|-------|-------|
-| [Raspberry Pi Pico 2W *2](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | Microcontroller board | [39.66 RON each(79.32 RON total)](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
+| [Raspberry Pi Pico 2W *2](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | Microcontroller board | [39.66 RON each (79.32 RON total)](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html) |
 | [DC Motor (×4)](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html) | Wheel drive motors | ~7 RON each (28 RON total) |
 | [L298N Dual Motor Driver Module](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html) | Motor control | 10.99 RON |
-| [Infrared Obstacle Sensor (×2)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) | Object detection | 3.49 RON each (6.98 RON total) |
-| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4513-senzor-ultrasonic-hc-sr04.html) | Distance measurement | 39.66 RON |
+| [Infrared Obstacle Sensor (×3)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) | Object detection | 3.49 RON each (10.47 RON total) |
+| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/9-senzor-ultrasonic-hc-sr04-.html) | Distance measurement | 6.49 RON |
 | [10cm Dupont Wires (40-pin)](https://www.optimusdigital.ro/ro/fire-fire-mufate/653-fire-colorate-mama-tata-40p-10-cm.html) | Short connections | 5.17 RON |
 | [20cm Dupont Wires (40-pin)](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html) | Long connections | 5.99 RON |
-| [2.4" SPI TFT Display](https://www.optimusdigital.ro/ro/afișaje/4516-afișaj-tft-24-spi-240x320.html) | User interface | 47.99 RON |
-| [KY-022 IR Receiver (VS1838B)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4515-modul-receptor-ir-vs1838b-ky-022.html) | Infrared signal reception | 1.99 RON |
-| [Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html?search_query=buton&results=213) | User selection | 1.99 RON each(3.98 RON in total) |
+| [2.4" SPI TFT Display](https://www.emag.ro/display-tactil-tft-lcd-240-x-320-px-cu-cititor-sd-spi-2-4-inch-gri-rosu-tft-24-ili9341-restouch-spi/pd/D49CJMYBM/) | User interface | 47.99 RON |
+| [Buttons(×2)](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1115-buton-cu-capac-rotund-alb.html) | Option selection | 1.99 RON each (3.98 RON total) |
 | Chasis | Base for the robot | 30 RON |
-
+| [Power Supply Module](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) | Power Supply | 4.69 RON |
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [heapless](https://crates.io/crates/heapless) | Stack-allocated data structures | Creating fixed-size strings for LCD writing |
-| [embassy-time](https://crates.io/crates/embassy-time) | Timekeeping for async embedded | Delays, timeouts and scheduling |
-| [embassy-executor](https://crates.io/crates/embassy-executor) | Async/await executor | Managing concurrent tasks |
-| [embassy-sync](https://crates.io/crates/embassy-sync) | Synchronization primitives | Inter-task communication and resource sharing |
-| [micromath](https://crates.io/crates/micromath) | Sensor data processing |
-| [fixed](https://crates.io/crates/fixed) | Fixed-point math for sensors |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics primitives and text rendering | Drawing shapes, text and UI elements |
-| [ili9341](https://crates.io/crates/ili9341) | TFT LCD display driver | Controlling screen output and display settings |
-| [xpt2046](https://github.com/nullstalgia/mff-hr-v1/tree/master/xpt2046) | Resistive touch controller driver | Handling touch input and calibration |
+| Library                | Description                                   | Usage                                                              |
+|------------------------|-----------------------------------------------|--------------------------------------------------------------------|
+| embassy-rp             | RP2040 HAL and Embassy support                | Hardware abstraction, peripheral and SPI management, async runtime |
+| embassy-embedded-hal   | Embedded HAL traits and utilities             | Provides hardware abstraction traits for Embassy                   |
+| embassy-sync           | Async synchronization primitives              | Mutexes, signals, and shared state between async tasks             |
+| embassy-executor       | Async/await executor for embedded             | Runs async tasks and manages concurrency                           |
+| embassy-futures        | Utilities for async/await and futures         | Used for select, join, and other async combinators                 |
+| embassy-time           | Timekeeping, delays, and timers               | Delays, timeouts, and scheduling                                   |
+| embassy-net            | Embedded network stack                        | Handles TCP/UDP networking and DHCP for WiFi                       |
+| cyw43                  | WiFi chip driver                              | Provides WiFi connectivity for the RP2040                          |
+| defmt, defmt-rtt       | Logging and debug output                      | Efficient logging for embedded systems                             |
+| cortex-m-rt            | Cortex-M runtime support                      | Startup and interrupt vector table                                 |
+| panic-probe            | Panic handler for probe-run                   | Handles panics and outputs debug info                              |
+| embedded-graphics      | 2D graphics library                           | Drawing UI elements on the display                                 |
+| display-interface-spi  | SPI interface for displays                    | SPI communication with the ILI9341 display                         |
+| display-interface      | Display interface abstraction                 | Used by display drivers                                            |
+| heapless               | Fixed-capacity data structures                | Used for message buffers and queues                                |
+| embedded-hal-1         | Embedded HAL traits                           | Hardware abstraction for drivers                                   |
+| embedded-io-async      | Async IO traits                               | Async communication with peripherals                               |
+| static_cell            | Statically allocated runtime-initialized cell | Used for safe static initialization of peripherals                 |
+| embedded-storage       | Traits for non-volatile storage               | Access to non-volatile storage                                     |
+| ili9341                | ILI9341 display driver                        | Controls the TFT display                                           |
+| xpt2046                | XPT2046 touchscreen driver                    | Handles touchscreen input                                          |
+| embassy-lab-utils      | Project-specific utilities                    | Shared helpers and abstractions for this project                   |
 
 ## Links
 
 1. Inspiration: [Delievery robots](https://www.youtube.com/shorts/X4sxt9EzPo8)
-2. [IR Remote](https://www.youtube.com/watch?v=q97VE3oEwIc)
-...

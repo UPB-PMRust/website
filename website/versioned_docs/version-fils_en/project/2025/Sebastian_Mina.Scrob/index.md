@@ -1,4 +1,4 @@
-# Rust Calculator 
+# Rust Calculator
 A calculator that take numbers and opperations as inputs and outputs results and can use wifi
 
 :::info 
@@ -43,13 +43,13 @@ I wanted to make something practical for my project and I use calculators all th
 <!-- write every week your progress here -->
 
 ### Week 5 - 11 May
-WIP
+Parts have arived and got the bords to work.
 
 ### Week 12 - 18 May
-WIP
+Schematics and wireing done. Now coding for the dispaly and keypad is in progress.
 
 ### Week 19 - 25 May
-WIP
+Coding part has started.
 
 ## Hardware
 - Raspberry Pi Pico 2W (RP2350): Main microcontroller handling system logic, display and wifi functionality  
@@ -61,7 +61,7 @@ WIP
 
 ### Schematics
 
-WIP
+![Schematic diagram2](MAproject1.svg)
 
 ### Bill of Materials
 
@@ -89,10 +89,17 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Peripheral access library | Used for accessing the peripherals |
-| [embedded-graphics](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | 2D graphics librarys | For LCD display |
-| [gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html) | GPIO | Used for interacting with GPIO pins |
-|wip|||
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | RP2040 peripheral access library | GPIO pins |
+| [embassy-executor] | Async task executor | `#[embassy_executor::main]` entry point |
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Async timer utilities | Debounce delays and scan timing |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Efficient logging framework for embedded | `info!`, `warn!`, `error!`|
+| [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | RTT transport layer for `defmt` logs | Sends log frames over SWD |
+| [panic-probe](https://docs.rs/crate/panic-probe/latest/features) | Panic handler with probe support | Halts on panic, outputs location via RTT |
+| [heapless](https://docs.rs/heapless/latest/heapless/) | Fixed-capacity data structures (no-std) | `String<32>` for input buffer |
+| core (https://doc.rust-lang.org/core/) | Rust core library (no-std) | String manipulation, iterators, arithmetic |
+| [embedded-hal](https://docs.rs/embedded-hal/latest/embedded_hal/) | Hardware abstraction traits | used by PCF8574 driver |
+| [ag_lcd](https://docs.rs/ag-lcd/latest/ag_lcd/) | Generic LCD display driver | `LcdDisplay` over PCF8574 I/O expander |
+| [port-expander](https://docs.rs/port-expander/latest/port_expander/) | Drivers for I²C I/O expanders | `pcf8574::Pcf8574` implementation |
 
 
 ## Links
