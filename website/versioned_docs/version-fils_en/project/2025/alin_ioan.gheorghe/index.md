@@ -4,6 +4,7 @@ A remote controlled car designed to drive around for entertainment using a physi
 :::info 
 
 **Author**: Gheorghe Alin-Ioan
+
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-blue-v27
 
 :::
@@ -27,26 +28,32 @@ The diagram of the project:
 **Raspberry Pi Pico 2W**
 - **Role**: Controls every component. In the case of the car it controls the motors and the LEDs. In the case of the controller it reads the input from the buttons and the joystick.
 - **Connections**: GPIO for LEDs, motors, buttons and ADC joystick.
+
 **DC motors**
 - **Interface**: GPIO
 - **Role**:  Allow the car to go forward and backwards
 - **Connections**: conected to the L298N Module, left Motor: + -> out1, - -> out2; right Motor: + -> out3, - -> out4
+
 **L298N**
 - **Interface**: GPIO
 - **Role**:  controls the motors
 - **Connections**: Vcc -> powerSource, Gnd -> Gnd, 5V -> Vsys, in1 -> GP2, in2 -> GP3, in3 -> GP4, in4 -> GP5,
+
 **Servo motor**
 - **Interface**: GPIO
 - **Role**:  controls the steering of the car
 - **Connections**: Gnd -> Gnd, 5V -> powerSource, Pwm - GP14
+
 **LEDs**
 - **Interface**: GPIO
 - **Role**: Indicate when the car is breaking.
 - **Connections**: GP12 and GP13, each having a 470Ohm resistor connected in series. 
+
 **Joystick**
 - **Interface**: ADC
 - **Role**:  Controlls the steering of the car
 - **Connections**: yAxis -> GP27, VCC -> powerSource, GND -> Gnd.
+
 **Buttons**
 - **Interface**: GPIO
 - **Role**:  Controlls the acceleration and breaking of the car
@@ -73,6 +80,8 @@ Completed the hardware of the project making all connections and the cable manag
 ![picture of the controller](buf3.webp)
 
 ### Week 19 - 25 May
+
+Completed the code for the car wich gets inputs, and acts acordingly, from the controller via UDP acces point.
 
 ## Hardware
 
@@ -112,11 +121,12 @@ I've used two Raspberry Pi Pico 2 W's, a L298N module connected to 2 Dc motors w
 | [embassy-net](https://github.com/embassy-rs/embassy) | Networking stack | Manages TCP/IP over Wi-Fi; used for remote control |
 | [embassy-lab-utils](https://github.com/embassy-rs/embassy-lab) | Pico W Wi-Fi helpers | Simplifies Wi-Fi and network stack setup |
 | [gpio](https://docs.rs/embassy-rp/latest/embassy_rp/gpio/) | GPIO module | Controls motor direction pins (L298N IN1–IN4) |
-| [pwm](https://docs.rs/embassy-rp/latest/embassy_rp/pwm/) | PWM module | Adjusts motor speed via ENA/ENB on L298N |
+| [pwm](https://docs.rs/embassy-rp/latest/embassy_rp/pwm/) | PWM module | Adjusts the arm position of the servo motor |
 | [adc](https://docs.rs/embassy-rp/latest/embassy_rp/adc/) | ADC module | Reads analog joystick values for direction/speed input |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework | For debug messages via RTT/serial |
 | [panic-probe](https://docs.rs/panic-probe) | Panic handler | Handles panics with minimal overhead |
 | [static_cell](https://docs.rs/static_cell) | Static memory allocation | Safely manages statically allocated Embassy resources |
+| [cyw43](https://docs.rs/cyw43/latest/cyw43) | WIFI | Handles the wifi chip on the board |
 
 
 ## Links

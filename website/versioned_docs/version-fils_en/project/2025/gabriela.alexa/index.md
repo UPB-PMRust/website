@@ -18,7 +18,7 @@ The project I am about to make has the purpose of illustrating PID principles, u
 My interest in PID control began in high school, when I first used it to optimize the trajectory of an autonomous robot (as I was part of a robotics team). Since then, I've been fascinated by how control systems are applied in everyday life-whether in cars, drones, or even household appliances like thermostats. This project allows me to dive deeper into a topic I find both intellectually challenging and personally rewarding. By combining sensors, real-time feedback, and control algorithms, I aim to better understand and illustrate the principles behind modern automation. I am excited to help the 16 y.o. version of me understand the 'magic' behind the programming tools she had used in high school, but also create a visual representation of a very cool principle, so that others can understand it too.
 
 ## Architecture 
-![Scheme of the project shoud show here](Scheme_PID_Project-1.webp)
+![Scheme of the project shoud show here](scheme1.webp)
 
 The architecture of the system is designed to demonstrate PID control principles in a real-time environment. The main components of the architecture are:
 
@@ -62,7 +62,24 @@ These components are interconnected to form a closed-loop control system that co
 
 ![Photo shoud show here](sideView-1.webp)
 
-### Week 19 - 25 May
+### Week 19 - 28 May
+
+- Initially, I used Windows to develop the project because I thought that if it worked in the labs, it would work now. I couldn't have been more wrong. Many errors occurred and they were difficult to solve.
+
+- I reviewed the theoretical support for this project posted in the Project Description and saw that using WSL was suggested. I managed to free up disk space and install it. Somehow, I accidentally installed two Linux distributions for the same WSL (I'm still learning these things). However, due to disk storage limitations and my laptop's poor performance, I decided to buy a new SSD and install Linux properly.
+
+- Installing Linux (Arch Linux) became another adventure. The latest released version had kernel problems and wouldn't boot (it took me 2 hours to realize the problem wasn't on my end this time).
+
+- Windows somehow corrupted the new SSD and affected its own configuration. I lost all data and couldn't recover anything (even after watching YouTube tutorials about data recovery).
+- I had to make a completely fresh start with everything: new project (which was painful), new OS, and new expectations.
+
+- While testing the arm via the servo motor programmer, something strange happened: the ESC became extremely hot and the motor stopped working while making unusual noises.
+- I discovered I had short-circuited the motor cables. After fixing this with proper insulation, everything worked fine.
+
+- To use the distance sensor and gyro, I needed the I2C communication protocol. I kept getting errors even when using the basic I2C initialization method from the official documentation.
+- Apparently, there was a migration in the official esp-hal repository that changed how I2C was addressed. This took me a while to understand since there were no online issues posted about it yet.
+
+- I independently implemented the VL53L0X, MPU6050, and motor code so I could run and test them separately. Previously I had done this in Arduino, which was easier, but now I'm using full Rust code.
 
 
 ## Hardware
@@ -110,19 +127,57 @@ The project uses the following hardware components:
 
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [`embassy-rs`](https://github.com/embassy-rs/embassy) | Asynchronous embedded framework | Handles async tasks on the ESP32 |
-| [`esp-idf-sys`](https://github.com/esp-rs/esp-idf-sys) | Rust bindings for ESP-IDF | Enables low-level interaction with ESP32 |
-| [`i2cdev`](https://github.com/rust-embedded/linux-embedded-hal) | I2C device communication | Communicates with distance sensor and gyroscope |
-| [`pwm`](https://docs.rs/pwm/) | Pulse Width Modulation | Controls ESC for motor speed |
-| [`serialport`](https://docs.rs/serialport/) | Serial communication | Debugging and data logging |
+![Functional diagram shoud show here](funtionalDiagram.webp)
 
----
+
+## System Overview
+The software continuously reads orientation data from an IMU and distance measurements from a time-of-flight sensor, processes this information through a control algorithm, and adjusts motor speeds accordingly.
+
+## Workflow Components
+
+### 1. Sensor Reading
+- **MPU6050 IMU**:
+  - Provides:
+    - Raw accelerometer data (3-axis)
+    - Gyroscope rotation rates (3-axis)
+- **VL53L0X Time-of-Flight**:
+  - Provides millimeter-precise distance measurements (or so it should. It is not as precise as expected).
+- **I2C Bus**:
+  - Managed by `shared_bus` for multi-sensor communication (so that both distance sensor and gyroscope data are received simultaniously).
+
+### 2. Data Processing
+- **IMU Data Fusion**:
+
+    A[Accelerometer] --> C[Complementary Filter]
+    
+    B[Gyroscope] --> C
+    
+    C --> D[Stable Orientation]
+
+    (This needs further improvement. i should filter data. Fine-tuning is definetely needed.)
+
+| Library/Crate | Description | Usage in Project |
+|--------------|-------------|------------------|
+| [`esp-hal`](https://github.com/esp-rs/esp-hal) | Hardware Abstraction Layer for ESP32 | Provides low-level hardware access (GPIO, I2C, PWM, timers) |
+| [`defmt`](https://github.com/knurling-rs/defmt) | Efficient embedded logging framework | Used for `info!` debug logging |
+| [`vl53l0x`](https://crates.io/crates/vl53l0x) | VL53L0X Time-of-Flight sensor driver | Measures precise distances in mm |
+| [`mpu6050`](https://crates.io/crates/mpu6050) | MPU6050 IMU (accelerometer + gyro) driver | Tracks device orientation and movement |
+| [`shared_bus`](https://github.com/Rahix/shared-bus) | I2C bus sharing manager | Allows multiple sensors on one I2C bus |
+| [`pid`](https://crates.io/crates/pid) | PID controller implementation | Implements the control algorithm for balancing |
+| [`esp-backtrace`](https://github.com/esp-rs/esp-backtrace) | ESP-specific backtrace support | Handles panics and crash debugging |
+| [`esp-println`](https://github.com/esp-rs/esp-println) | Basic println for ESP devices | Alternative logging output |
+
 
 ## Links
 
-1. [PID Explained](https://www.youtube.com/watch?v=UR0hOmjaHp0) – Useful introduction to PID control.
 1. [Idea](https://www.instagram.com/reel/DHL0V8ZMKM4/) – From here I have the project idea.
-1. [ESP32 & BLDC Motor](https://www.electronicsforu.com/electronics-projects/wireless-bldc-motor-control-esp32) – Useful tutorial.
+2. [PID Explained](https://www.youtube.com/watch?v=UR0hOmjaHp0) – Useful introduction to PID control.
+3. [ESP32 & BLDC Motor](https://www.electronicsforu.com/electronics-projects/wireless-bldc-motor-control-esp32) – Useful tutorial.
+4. [impl Rust for ESP32](https://esp32.implrust.com/esp32-intro/pinout.html) – ESP essentials (with rust).
+5. [ESC from ESP32](https://esp32.com/viewtopic.php?t=20450) – Understanding how to use ESC in my project.
+6. [Migrating](https://github.com/esp-rs/esp-hal/blob/main/esp-hal/MIGRATING-0.22.md) – See what are the latest configuration changes.
+7. [BLDC](https://blog.mbedded.ninja/electronics/circuit-design/bldc-motor-control/) – Understanding how BLDC Motor works.
+8. [ESP32 I2C Communication](https://randomnerdtutorials.com/esp32-i2c-communication-arduino-ide/) – ESP32 with Multiple I2C Devices.
+9. [Motor Control Pulse Width Modulator](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/mcpwm.htmlc) – Trying to understand how PWM works.
+
 

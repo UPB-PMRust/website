@@ -102,6 +102,8 @@ I continued developing the web interface, working on both the frontend and backe
 
 I shifted gears toward documentation and presentation. I wrote detailed explanations of the system, created wiring diagrams, and refined the overall structure of the project to make it clear, accessible, and ready to share.
 
+This week was dedicated to writing up and finishing the code necessary for this project. In addition, I have submitted the software milestone, as well as the entirety of my code. This week, I have also focused on making the project more appealing to the eye, by diy-ing a box in the shape of a door lock, in oreder to reinforce the purpose of my project and hide all the hardware.
+
 ## Hardware
 
 The hardware design centers around a modular, event-driven architecture that combines sensing, actuation, and user interaction. The system is built to detect motion and vibration, respond to visitor input, and control a locking mechanism, all while providing real-time feedback through LEDs, sound, and a custom web interface. Two microcontrollers are used to separate core logic from debugging, improving reliability and development flexibility. 
@@ -109,8 +111,9 @@ The hardware design centers around a modular, event-driven architecture that com
 ### Core Components
 
     Raspberry Pi Pico 2W (Main Controller) Runs the Rust firmware and handles all real-time tasks including sensor polling, servo control, and USB communication. Its dual-core processor and Wi-Fi capability make it ideal for embedded applications, though Wi-Fi is disabled in this project for offline security.
-
+    
     Raspberry Pi Pico 2 (Debugger) Used exclusively for development and debugging. It provides a stable USB serial interface for monitoring logs, sending commands, and testing firmware behavior during runtime.
+    
 
 ### Sensors & Inputs
 
@@ -147,7 +150,7 @@ Resistors: Used to limit current and protect GPIO pins. Essential for safe opera
 | [SW-420 Vibration Sensor](https://media.digikey.com/pdf/Data%20Sheets/Seeed%20Technology/Grove_Vibration_Sensor_SW-420_Web.pdf) | Detects strong vibrations or knocks on the door | [6 RON](https://www.bitmi.ro/senzor-vibratie-sw-420-11516.html?gad_source=1&gad_campaignid=22005142538&gclid=EAIaIQobChMI4Ie_4uuqjQMVgz4GAB3aFg6TEAQYASABEgKrUPD_BwE) |
 | [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | Physically locks or unlocks a latch or bolt by rotating to a defined angle. | [10 RON](https://www.bitmi.ro/servomotor-sg90-180-grade-9g-10496.html?gad_source=1&gad_campaignid=22005721655&gclid=EAIaIQobChMIqISq6eyqjQMVvzsGAB1aXgsNEAQYASABEgIpwPD_BwE) | 
 | [LED Indicators](https://cdn.robotshop.com/media/b/blu/rb-blu-131/pdf/subsea-led-indicator-red-datasheet.pdf) | Used to provide visual feedback. | [18 RON/box](https://www.emag.ro/kit-200-buc-led-3mm-5mm-de-diferite-culori-ai707/pd/D4DJYTMBM/?ref=graph_profiled_similar_fallback_1_2&provider=rec&recid=rec_49_c3cf01a5f6d67f883d5335d536a19e5ac00d688d8498e9bc137fdb4a25e0e10f_1757069964&scenario_ID=49)
-|
+
 
 ## Software
 

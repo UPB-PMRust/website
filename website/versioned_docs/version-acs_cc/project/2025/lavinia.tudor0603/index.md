@@ -23,7 +23,7 @@ This project is not just a technical challenge, but also a personal dream to con
 
 ## Architecture 
 
-![Description of Image](diagr.svg)
+![Description of Image](diagr.svg) \
 The system is based on a Raspberry Pi Pico 2W, connected to environmental sensors (BME280, BMP280, MQ-2 Gas Sensor) and LCD display via I2C + a stepper motor driver (ULN2003) via GPIO. The Pico collects indoor and outdoor data, displays it, and controls the window motor automatically based on the conditions.
 
 ## Log
@@ -54,6 +54,10 @@ The system is based on a Raspberry Pi Pico 2W, connected to environmental sensor
 - Built the window prototype for the system.
 
 ### Week 19 - 25 May
+- Finalized the complete software implementation for the project.
+- Implemented the automatic closing system for the window.
+- Confirmed that the system responds correctly to environmental changes in real-time.
+- Built and mounted the custom link between the stepper motor and the window for physical closing.
 
 ## Hardware
 
@@ -108,13 +112,10 @@ The format is
 |---------|-------------|-------|
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Runtime support for Cortex-M devices | Defines entry point (`entry`) |
 | [embassy-time](https://crates.io/crates/embassy-time) | Time and delay handling | Used for timers and delays |
-| [embassy-rp](https://crates.io/crates/embassy-rp) | Raspberry Pi Pico peripherals (PWM, I2C) | Used for PWM motor control and I2C communication |
-| [embassy-sync](https://crates.io/crates/embassy-sync) | Asynchronous primitives (Signal, PubSub) | Synchronization between tasks |
-| [embassy-embedded-hal](https://crates.io/crates/embassy-embedded-hal) | Shared bus abstractions for SPI/I2C | For safe shared bus access |
-| [embedded-hal-async](https://crates.io/crates/embedded-hal-async) | Asynchronous traits for embedded devices | Async I2C communication |
-| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI interface for displays | Used for SPI communication with display |
-| [mipidsi](https://crates.io/crates/mipidsi) | Display driver for MIPI-DSI displays (ST7735/7789 etc.) | Used to control the LCD screen |
-| [embassy-lab-utils](https://github.com/embassy-rs/embassy-lab-utils) | Helper macros and utilities (init_wifi!) | WiFi initialization support |
+| [embassy-rp](https://crates.io/crates/embassy-rp) | Raspberry Pi Pico peripherals (PWM, I2C, ADC, GPIO) | Used for controlling peripherals |
+| [embedded-hal-async](https://crates.io/crates/embedded-hal-async) | Asynchronous traits for embedded devices | Enables async I2C communication |
+| [hd44780-driver](https://crates.io/crates/hd44780-driver) | Driver for HD44780 LCDs over I2C | Used to display messages and alerts |
+
 
 ## Links
 
