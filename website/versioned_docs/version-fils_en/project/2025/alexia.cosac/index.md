@@ -15,6 +15,8 @@ The Smart Pet Water Dispenser is an automated system designed to keep pets hydra
 
 To ensure safety and usability, the system also monitors water temperature via a sensor and displays it on an LCD screen, while an RGB LED provides status indicators (green for normal, red for errors). It also features remote connectivity for monitoring and controlling the system through a simple web interface.
 
+[Smart Pet Water Dispenser Presentation](https://youtube.com/shorts/5p4oQqmrmHQ?feature=shared)
+
 ## Motivation
 
 I chose to work on this project because ensuring pets have constant access to clean water is a common challenge for many pet owners, especially during busy schedules or when away from home. As a cat owner, I have personally faced the difficulty of maintaining a reliable water supply for my pet, which motivated me to develop the Smart Pet Water Dispenser.
@@ -52,6 +54,7 @@ I connected and tested several components of the project. The RGB LED was succes
 
 ### Week 19 - 25 May
 
+This week I finished both software and hardware parts of my project and presented it to my laboratory professor. The final steps were implementing the water pump, the relay module and a level shifter to make my project work properly.
 
 ### Week 26 - 2 June
 

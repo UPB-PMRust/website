@@ -74,6 +74,7 @@ Obtained the necessary components for the project and completed the Kicad schema
 Assembled the components together and tested them, making sure that everything works as intended.
 
 ### Week 20 - 26 May
+Started and completed the software for the laser turret, everythink working perfectly. I added a new use for the buzzer: an alert for when the laser turret is going to fire. 3 seconds before the turret is going to fire, the buzzer starts making a sound to alert those nearby. For a better experience, now you will be announced on the display when there's no ammo left and you also get announced when the turret is going to fire.
 
    
 
@@ -123,15 +124,17 @@ The ultrasonic distance sensor, connected via GPIO, enables the turret to measur
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer for embedded systems | Used for SPI, GPIO and PWM control |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | HAL integration for Embassy | Used for shared SPI device support via SpiDevice |
 | [embassy-rp](https://github.com/golemparts/rppal) | Embassy HAL for Raspberry Pi Pico (RP2040) | Provides support for GPIO, PWM, SPI, and more on Pico 2W |
 | [embassy](https://github.com/embassy-rs/embassy) | Modern, lightweight, and safe async framework for embedded systems | Used for async task scheduling, timers, and peripheral drivers |
-| [st7735-lcd](https://crates.io/crates/st7735-lcd) | Driver for ST7735 LCD displays | Used to control the SPI LCD screen |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems | Used for rendering text on display |
-| [log](https://github.com/rust-lang/log) | Logging facade for Rust | Used for logging debug and informational messages |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives | 	Used for shared mutex around SPI bus |
+| [mipidsi](https://crates.io/crates/mipidsi) | Display driver crate for MIPI displays | Used to interface with the ST7735 LCD via SPI |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems | Used for drawing text and shapes to the display |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time and delays | Used for time delays, durations, and instant timestamps |
 | [panic-probe](https://crates.io/crates/panic-probe/) | A panic handler for embedded systems | Used for handling panics and debugging |
 | [static-cell](https://github.com/embassy-rs/static-celll) | Provides safe, static storage for data that outlives the main function | Used for managing static data |
-| [fixed](https://crates.io/crates/fixed) | Fixed-point arithmetic library | Used for precise timing calculations |
+| [fixed](https://crates.io/crates/fixed) | Fixed-point arithmetic library | Used for PWM configuration with fractional dividers |
+| [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging for embedded Rust | Used for logging debug and info messages |
 
 ## Links
 

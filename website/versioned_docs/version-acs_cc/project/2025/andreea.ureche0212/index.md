@@ -48,7 +48,7 @@ Week 19 - 25 May -->
 |-------------|-------------------------------------------|
 | Week 5  - 11 May    | Finished the project documentation and started working on the initial wiring as well as some part of the software.    |
 | Week 12 - 18 May   | Updated the project documentation, uploaded the pictures with the hardware and the Schematics. |
-| Week 19  - 25 May  ||
+| Week 19  - 25 May  |Completed the software , finished the logic for sending emails via SMTP and uploaded the source code and documentation |
 
 
 

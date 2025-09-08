@@ -38,12 +38,13 @@ I wanted a simple and useful device to help manage my tasks without being distra
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-Am planificat proiectul si mi-am ales piesele.
+I did some research for picking my components and made some high-level schematics to help me organize the project.
 
 ### Week 12 - 18 May
-Am asamblat hardware-ul si am inceput implementarea software-ului.
+I have assembled my components and implemented formatted displaying of the notifications, navigating between them and handling sound alerts. 
 
 ### Week 19 - 25 May
+During this week worked on the networking code of the device, along with writing the main server and implementing a basic protocol for simple and fast communication. 
 
 ## Hardware
 
