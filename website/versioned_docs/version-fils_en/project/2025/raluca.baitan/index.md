@@ -5,7 +5,7 @@ An interactive smart lamp that dynamically adjusts lighting based on touch, moti
 :::info 
 
 **Author**: Băițan Raluca \
-**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/project-raluca-baitan](https://github.com/UPB-PMRust-Students/project-raluca-baitan)  
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/project-RalucaBaitan](https://github.com/UPB-PMRust-Students/project-RalucaBaitan)  
 
 :::
 
@@ -79,7 +79,6 @@ Implemented the FSM logic in Rust using the `embassy` async framework. Integrate
 ![image5](./img5.webp)
 
 ### Week 19 – 25 May  
-Finished setting up the hardware and software. All sensors, buttons, and the LED ring are working properly. Currently working on building the lamp’s case.
 
 
 ## Hardware
@@ -127,13 +126,13 @@ Power is provided via standard 5V USB adapters, and components are interconnecte
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| `embassy-executor` | Async executor for embedded Rust | Runs async `main`, timers, and peripherals |
-| `embassy-time` | Timekeeping utilities | Delays, timers, and timestamps |
-| `embassy-rp` | Embassy HAL for Raspberry Pi Pico | Access GPIO, UART, DMA, interrupts |
-| `heapless` | Data structures without dynamic allocation | Used for fixed-size `String<32>` commands |
-| `defmt` | Logging for embedded systems | Debug info for mode changes and events |
-| `panic-probe` | Panic handler for embedded Rust | Debug on panic (via RTT) |
-| `core::fmt::Write` | Core trait for writing to strings | Formats UART commands |
+| `embassy-executor` | Async executor for embedded Rust; provides the runtime for tasks | Runs async `main`, spawns tasks, coordinates timers and peripherals <br> **Example:** `#[embassy_executor::main] async fn main(_spawner: Spawner)` |
+| `embassy-time` | Timekeeping utilities with async support | Used for non-blocking delays, debouncing buttons, motion timeout, and measuring intervals with `Instant` <br> **Example:** `Timer::after(Duration::from_millis(300)).await;` |
+| `embassy-rp` | Embassy HAL for Raspberry Pi Pico (RP2040) | Access to GPIO inputs (touch, PIR, sound, buttons), UART with DMA channels, and binding interrupts <br> **Example:** `let b1 = Input::new(p.PIN_14, Pull::Up);` |
+| `heapless` | Data structures without dynamic allocation | Used for fixed-size `String<32>` to build UART text commands safely without heap allocation <br> **Example:** `let mut cmd: String<32> = String::new();` |
+| `defmt` | Logging framework optimized for embedded systems | Prints debug information for mode changes, brightness updates, random colors, and sensor events <br> **Example:** `defmt::info!("MODE: {:?}", mode);` |
+| `panic-probe` | Panic handler for embedded Rust (via RTT) | Captures and reports panics during runtime so debugging can be done through RTT logs <br> **Example:** automatic, no explicit code — active on panic |
+| `core::fmt::Write` | Core formatting trait for writing into buffers | Formats UART command strings with `write!` before sending them through UART <br> **Example:** `write!(&mut cmd, "set_color {} {} {} {}", r, g, b, brightness).unwrap();` |
 
 ## Links
 
