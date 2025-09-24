@@ -124,7 +124,6 @@ andrei.batasev@stud.acs.upb.ro
 **Genan Omer**
 ![Genan Omer](images/genan_omer.jpeg)
 
-Lab Professor \
 GitHub: [genan2003](https://github.com/genan2003) \
 genan.omer@stud.fils.upb.ro
 </td>
