@@ -88,6 +88,7 @@ All products ordered from ArduShop: https://ardushop.ro/ro/
 
 The python script that runs the image recognition is quite simple, and was done in collaboration with ChatGPT (I have no reason to try and reinvent the wheel). I will spare you the details as it is nothing too exciting, but the script receives an image through a flask app, it rotates it, divides the 5 cards by detecting their contours, then matches them to templates (yes, I have scanned an entire deck of cards and tested each one to make sure the templates work as intented). In the end, a 10 character string is generated to pe processed by in the rust code (So, for example, for the following hand: King of Hearts, Queen of Diamonds, 5 of Spades, 5 of Clubs, Queen of Hearts, the following string is generated: KHQD5S5CQH).
 
+! Disclaimer: the rust code was 100% written by hand, no ChatGPT involved (i tried but it didn't know how to do anything)
 Now on the rust side is where the fun begins. The 10-character string is received through wi-fi and is processed as follows: Every 2 characters represent a card, and a struct Card is used to store them in a 5 element array. The cards are then sorted by their "true rank" (so 9 is 9, 0 is 10, J is 11, and so on), because that makes it easier to detect hands. Each type of hand has its own function, for example, here is how a Straight is detected:
 ```
 fn is_straight(hand: &mut [Card; 5]) -> bool 
@@ -160,8 +161,10 @@ Some debugging lines may be found throughout the code. You will notice there is 
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [ssd1306]([https://github.com/almindor/st7789](https://github.com/rust-embedded-community/ssd1306)) | Display driver for ssd1306 | Used for the OLED displays |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the displays |
+| [embassy-net](https://github.com/embassy-rs/embassy-net) | Embassy net crate | Used for internet connection |
+| [cyw43]() | cyw43 driver | Also used for internet connection |
 
 ## Links
 
