@@ -13,7 +13,10 @@ export function ElectronicsTutorial({title, anchor}) {
 }
 
 The purpose of this lab is to understand how to start developing firmware in [Rust](https://www.rust-lang.org/) 
-with [Embassy](https://embassy.dev) for the RP2350 MCU.
+with [Embassy](https://embassy.dev) for the RP2350 STM32U545 MCU.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Concepts
 
@@ -27,14 +30,16 @@ with [Embassy](https://embassy.dev) for the RP2350 MCU.
 
 1. *[Embassy Book](https://embassy.dev/book/)* - an overview of the *Embassy* framework
    1. *For Beginners*
-2. *[`embassy-rp`'s Documentation](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)* - the API for the RP2040 and RP2350 
-3. **The Rusty Bits**, *[Intro to Embassy : embedded development with async Rust](https://www.youtube.com/watch?v=pDd5mXBF4tY)*
+2. *[`embassy-stm32`'s Documentation](https://docs.embassy.dev/embassy-stm32/git/stm32u545re/index.html)* - the API for the STM32U545
+3. *[`embassy-rp`'s Documentation](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)* - the API for the RP2040 and RP2350 
+4. **The Rusty Bits**, *[Intro to Embassy : embedded development with async Rust](https://www.youtube.com/watch?v=pDd5mXBF4tY)*
 
 ### Extra Resources
 
-4. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
-5. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf)*
-6. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2W Datasheet](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf)*
+4. **DS14217**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u535cb.pdf)*
+5. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+6. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf)*
+7. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2W Datasheet](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf)*
 
 ## What is GPIO?
 
@@ -44,7 +49,7 @@ General-Purpose Input/Output, or GPIO, is an essential part of embedded systems 
 
 GPIO pins can be used as outputs (LEDs, motors, buzzers) or as inputs (buttons, sensors).
 
-The RP2040 and RP2350 have three peripherals that control the GPIO pins:
+The STM32U545, RP2040 and RP2350 have three peripherals that control the GPIO pins:
  1. *Pads* - control the actual physical pin or pad that the processor has outside. They control the electrical parameters, like maximum current or pull up and pull down resistors
  2. *IO Bank0* - connects and multiplexes the peripheral's pins to the output pads. Several peripherals use the same output pad to communicate with the exterior. For example, in the image below, `GPIO0` can be used either for:
     * `SIO` - the `GPIO` function
@@ -53,18 +58,29 @@ The RP2040 and RP2350 have three peripherals that control the GPIO pins:
     * `UART0_TX` - the transmit pin for the `UART0` (serial port 0) peripheral
  3. *SIO* - that controls the interior MCU's pins. This is the peripheral that developers use to read and write the value of the pins.
 
-![Pico2W Pinout](images/pico2w-pinout.svg)
 
 Every pin of the MCU can perform multiple functions. Several peripherals need to use input and output pins.
 It is the role of the *IO Bank0* to multiplex and connect the peripherals to the pins.
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+    Here will be the STM32U545 pinout when will be ready.
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+![Pico2W Pinout](images/pico2w-pinout.svg)
+  </TabItem>
+
+</Tabs>
 
 <div align="center">
 ![IO Bank0](images/gpio_mux.png)
 </div>
 
+
 ## Hardware access
 
-There are 3 different ways in which the hardware the Raspberry Pi Pico can be used:
+There are 3 different ways in which the hardware—either the STM32 Nucleo-U545RE-Q or the Raspberry Pi Pico 2—can be used:
 
 1. Embassy framework, with the Embedded HAL implementation
 2. Platform Access Crate (PAC)
@@ -78,11 +94,13 @@ In trying to standardize firmware development, The Rust [Embedded devices Workin
 a set of standard traits (interfaces) for interacting with an MCU. This is called the **Embedded Hardware Abstraction Layer**, or shortly Embedded HAL. The main purpose is to define a common hardware interface that
 frameworks, libraries and operating systems can build upon. Regardless of what MCUs the device is using, the upper level software should be as portable as possible.
 
-There are several crates that implement the Embedded HAL traits for the RP2040 and RP2350 MCUs. These
+There are several crates that implement the Embedded HAL traits for the STM32U545, RP2040 and RP2350 MCUs. These
 crates are called *HAL Implementations*.
+- [embassy-stm32](https://docs.embassy.dev/embassy-stm32/git/stm32u545re/index.html) - crate implements the Embedded HAL for STM32U545 that is used with the [embassy-rs](https://embassy.dev/) framework
 - [rp2350_hal](https://docs.rs/rp235x-hal/latest/rp235x_hal/) crate, implements just the embedded HAL traits, it is *the bare minimum* for developing RP2350 applications
 - [rp2040_hal](https://docs.rs/rp2040-hal/latest/rp2040_hal/) crate, implements just the embedded HAL traits, it is *the bare minimum* for developing RP2040 applications
 - [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) crate implements the Embedded HAL for RP2040 and RP2350 that is used with the [embassy-rs](https://embassy.dev/) framework
+
 
 Several frameworks are available on top of the *HAL Implementations* to speed things up. The most common used ones are:
 - [RTIC - The hardware accelerated Rust RTOS](https://rtic.rs) - *A concurrency framework for building real-time systems*
@@ -91,7 +109,7 @@ Several frameworks are available on top of the *HAL Implementations* to speed th
 ### The Software Stack
 
 [Embassy](https://embassy.dev/) is a full fledged embedded framework for Rust embedded development.
-Besides the implementation of the embedded HAL for different MCUs (RP2040 and RP2350 included), Embassy provides
+Besides the implementation of the embedded HAL for different MCUs (STM32U545, RP2350 and RP2040 included), Embassy provides
 several functions like timers, BLE and network communication.
 
 <div align="center">
@@ -122,10 +140,90 @@ The name *Embassy* is derived from **Emb**edded **Asy**nchronous Rust.
 
 The Embassy Framework is a collection of crates. Building an *empty* firmware that uses
 embassy requires:
-- adding the Embassy HAL Implementation for a specific board, in this case RP2350;
+- adding the Embassy HAL Implementation for a specific board, in this case STM32U545 or RP2350;
 - adding the core Embassy crates, that provide the executor, timers and futures;
 - adding the `cortex-m-rt` and `defmt` crates that Embassy requires.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+    ```toml
+# STM32U545 HAL
+embassy-stm32 = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = [
+    "defmt",
+    "stm32u545re",
+    "unstable-pac",
+    "memory-x",
+    "time-driver-tim4",
+    "exti",
+    "chrono",
+] }
+
+# Embedded HAL utilities
+embassy-embedded-hal = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = [
+    "defmt",
+] }
+
+# Synchronization primitives and data structures with async support
+embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = [
+    "defmt",
+] }
+
+# Async/await executor
+embassy-executor = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = [
+    "task-arena-size-98304",
+    "arch-cortex-m",
+    "executor-thread",
+    "executor-interrupt",
+    "defmt",
+] }
+
+# Utilities for working with futures, compatible with no_std and not using alloc
+embassy-futures = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+
+# Timekeeping, delays and timeouts
+embassy-time = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = [
+    "defmt",
+    "defmt-timestamp-uptime",
+    "tick-hz-32_768",
+] }
+
+# USB device
+embassy-usb = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = [
+    "defmt",
+] }
+
+# Defmt support
+defmt = "0.3"
+defmt-rtt = "0.4"
+
+# Low level access to Cortex-M processors
+cortex-m = { version = "0.7.7", features = [
+    "inline-asm",
+    "critical-section-single-core",
+] }
+
+cortex-m-rt = "0.7.5"
+panic-probe = { version = "1.0.0", features = ["print-defmt"] }
+
+# Panic handler that exits `probe-run` with an error code
+    ```
+The `embassy-stm32` crate provides support for the STM32 Nucleo-U545RE-Q microcontroller within the Embassy framework. It includes features such as `defmt` for efficient debugging, `unstable-pac` for accessing low-level peripherals, and time-driver for handling `time-related` operations. The crate also implements `critical-section` for safe concurrency and supports STM32U545RETxQ and `binary-info` for additional STM32U545-specific functionality.  
+
+The `embassy-embedded-hal` crate provides embedded-hal-compatible utilities for asynchronous embedded development. It enables easy interaction with hardware peripherals, such as GPIO, SPI, and I2C, while integrating with the Embassy async runtime. It includes `defmt` for lightweight debugging. 
+
+The `embassy-sync` crate offers synchronization primitives and data structures designed for async environments. It includes mutexes, signal primitives, and channel-based communication for safe, cooperative multitasking. The crate is optimized for `no_std` systems and supports `defmt` for debugging. 
+
+The `embassy-executor` crate provides an async/await executor tailored for embedded systems. It supports multitasking via interrupt-based and thread-based execution models, with optimizations for Cortex-M microcontrollers. Features include configurable task arena sizes and `defmt` for debugging.
+
+The `embassy-futures` crate supplies utilities for working with Rust futures in embedded environments. It is designed to be compatible with `no_std` and avoids dynamic memory allocation, making it lightweight and efficient for constrained devices.
+
+The `embassy-usb` crate provides a USB device stack for embedded systems. It supports USB control, bulk, and interrupt transfers, making it useful for implementing HID, CDC, and other USB classes. It integrates with `defmt` for debugging and logging.
+
+
+
+</TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ```toml
 # RP2350 HAL
 embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xa", "binary-info"] }
@@ -238,13 +336,39 @@ and an async interface for managing Wi-Fi connections in embedded systems.
 The `cyw43-pio` crate offers PIO (Programmable I/O) support for the CYW43 
 Wi-Fi chip, enabling efficient SPI communication between the microcontroller 
 and the Wi-Fi module. It includes `defmt` logging for debugging low-level 
-interactions.  
+interactions.
+
+</TabItem>
+
+</Tabs>
+
+  
 
 ### Entry
 
 Embassy is a framework built on top of `cortex-m-rt` and provides its own method of defining
 the entrypoint and bootloader.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+```rust
+#![no_main]
+#![no_std]
+
+use embassy_executor::Spawner;
+
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    let peripherals = embassy_stm32::init(Default::default());
+}
+```
+
+The `embassy_stm32::init` function takes care of the peripheral initialization so that developers can jump
+right in and use them.  
+
+</TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ```rust
 #![no_main]
 #![no_std]
@@ -259,6 +383,11 @@ async fn main(_spawner: Spawner) {
 
 The `embassy_rp::init` function takes care of the peripheral initialization so that developers can jump
 right in and use them.
+</TabItem>
+
+</Tabs>
+
+
 
 :::note
 
@@ -273,6 +402,25 @@ details from developers.
 
 The `pin` variable implements the embadded HAL [`OutputPin`](https://docs.rs/embedded-hal/latest/embedded_hal/digital/trait.OutputPin.html) trait.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+```rust
+use gpio::{Level, Output, Speed};
+
+// initialize PX_n (replace x with a letter(see the datasheet) and n with a number) and set its
+// default value to LOW (0)
+let mut pin = Output::new(peripherals.Px_n, Level::Low, Speed::Medium);
+
+// set the pin value to HIGH (1)
+pin.set_high();
+
+// set the pin value to LOW (0)
+pin.set_low();
+``` 
+
+</TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ```rust
 use gpio::{Level, Output};
 
@@ -286,14 +434,15 @@ pin.set_high();
 // set the pin value to LOW (0)
 pin.set_low();
 ```
+</TabItem>
+
+</Tabs>
+
 
 
 :::tip
 
-While the device initialization is specific to every hardware device (the example uses the 
-`embassy_rp` crate that is for RP2350 and RP2040), the pin initialization and usage is portable. It
-uses the same code, regardless of the MCU used.
-
+While the device initialization is specific to each hardware family, the pin initialization and usage is mostly portable. The same basic API applies across MCUs, but STM32 devices require an additional parameter for pin speed, since their GPIOs expose configurable slew rates. By contrast, RP2 devices (RP2040 / RP2350) use a simpler form without speed configuration.
 :::
 
 ### Configure GPIO Input
@@ -303,7 +452,7 @@ Using a pin as input is very similar to using it as output.
 ```rust
 use gpio::{Input, Pull};
 
-let pin = Input::new(peripherals.PIN_n, Pull::Up);
+let pin = Input::new(peripherals.Px_n, Pull::Up);
 
 if pin.is_high() {
     // Do something if the pin value is HIGH (1)

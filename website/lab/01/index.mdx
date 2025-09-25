@@ -5,7 +5,7 @@ slug: /lab/01
 
 # 01 - Debug
 
-This lab will teach you how to debug and run programs written in Rust and [embassy](https://embassy.dev) on the STM32 Nucleo-U545RE-Q and Raspberry Pi Pico boards.
+This lab will teach you how to debug and run programs written in Rust and [embassy](https://embassy.dev) on the Raspberry Pi Pico boards.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -15,22 +15,21 @@ import TabItem from '@theme/TabItem';
 - How to debug a microcontroller's firmware
 - How the binary of the firmware looks like and how to inspect it
 - How to cross-compile Rust software
-- How to use `probe-rs` for STM32/RP2 processors
+- How to use `probe-rs` for RP2 processors
 - How to print messages from a microcontroller
 - How to use the Visual Studio Code probe-rs extension
 
 ## Resources
 
-1. **DS14217**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u535cb.pdf)*
-2. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+1. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
 - Chapter 4 - *Memory*
   - Section 4.1 - *ROM*
   - Section 4.2 - *SRAM*
   - Section 4.3 - *Boot RAM*
 - Chapter 5 - *Bootrom*
-3. [probe-rs's documentation](https://probe.rs/docs/overview/about-probe-rs/)
-4. [rp235x-hal documentation](https://docs.rs/rp235x-hal/latest/rp235x_hal/index.html)
-5. [Embassy documentation](https://embassy.dev/book/dev/runtime.html)
+2. [probe-rs's documentation](https://probe.rs/docs/overview/about-probe-rs/)
+3. [rp235x-hal documentation](https://docs.rs/rp235x-hal/latest/rp235x_hal/index.html)
+4. [Embassy documentation](https://embassy.dev/book/dev/runtime.html)
 
 ## Software Prerequisites
 
@@ -49,7 +48,7 @@ Developing software (*firmware*[^firmware]) on devices is a little different fro
 is that the software is developed and compiled on the computer and then 
 uploaded and run on a separate device.
 
-Each development board defines its own way of uploading software to it. Some boards, like the STM32s or Raspberry Pi Picos, provide a *simulated* USB drive
+Each development board defines its own way of uploading software to it. Some boards, like the Raspberry Pi Picos, provide a *simulated* USB drive
 where users can copy a file, others, like the ESP32 boards, provide a WiFi Access Point and a web interface.
 
 One method that all boards have in common is using the *debug interface*. Microcontrollers provide a special hardware interface
@@ -72,30 +71,13 @@ never be able to access such an interface and tamper with the device's program.
 Each microcontroller offers a way in which the debug interface can be permanently disabled or restricted.
 :::
 
-<Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-    ### ST-LINK/V3SET Debug Probe
-  The Nucleo-STM32U545RE-Q development board can be debugged using the following methods:
-  - On-board ST-LINK/V3-E Debugger (included with the Nucleo board)
-  - External SWD Debug Probe (optional, if bypassing or replacing the on-board debugger)
+The Raspberry Pi Pico can be debugged using one of the two pieces of hardware:
+- The Raspberry Pi Debug Probe
+- A secondary Raspberry Pi Pico
 
-Professional debuggers, while offering a lot of features, are usually expensive. STMicroelectronics provides the ST-LINK/V3SET, an affordable and versatile in-circuit debugger and programmer designed specifically for STM32 microcontrollers.
-
-The ST-LINK firmware is maintained by ST and is regularly updated through STM32CubeProgrammer. It is proprietary but widely supported across ST’s software ecosystem, including STM32CubeIDE, OpenOCD, and many others third-party options.
-
-Unlike custom open-source probes, the ST-LINK hardware and firmware are tightly integrated with STM32 development tools and come with professional-grade features like drag-and-drop programming (in mass storage mode), high-speed transfers, and support for multiple power configurations.
-
-For wiring and pinout information, refer to the ST-LINK/V3SET’s [user manual](https://www.st.com/resource/en/user_manual/um1075-stlinkv2-incircuit-debuggerprogrammer-for-stm8-and-stm32-stmicroelectronics.pdf) which includes details on connecting to SWD/JTAG interfaces.  
-  </TabItem>
-
-  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
 ### Raspberry Pi Debug Probe
 
-  The Raspberry Pi Pico can be debugged using one of the two pieces of hardware:
-  - The Raspberry Pi Debug Probe
-  - A secondary Raspberry Pi Pico
-
-  Professional debuggers, while offering a lot of features, are usually expensive. Raspberry Pi provides the [Debug Probe](https://www.raspberrypi.com/products/debug-probe/), an affordable debug device
+Professional debuggers, while offering a lot of features, are usually expensive. Raspberry Pi provides the [Debug Probe](https://www.raspberrypi.com/products/debug-probe/), an affordable debug device
 that uses an RP2040 processor. It is similar to a Raspberry Pi Pico board, just that it has a smaller form factor and
 provides debug cables. 
 
@@ -103,12 +85,6 @@ The firmware running on the debug device is open source and available on [github
 it uses [FreeRTOS](https://www.freertos.org). It is compatible with both versions of the RP2 processors, RP2040 and RP2350.
 
 The details about the wiring are available on the Pico Debug Probe's [website](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html#getting-started).
-  </TabItem>
-
-</Tabs>
-
-
-
 
 ### Secondary Pico
 
@@ -128,7 +104,7 @@ traces soldered to Raspberry Pi Pico's socket.
 ## Debugger software
 
 Hardware debuggers require specialized software on the host computer (the computer used for development) to 
-communicate with and control the target device (the Raspberry Pi Pico 2/STM32 Nucleo-U545RE-Q in this case). These software tools provide 
+communicate with and control the target device (the Raspberry Pi Pico 2 in this case). These software tools provide 
 essential debugging capabilities, such as setting breakpoints, inspecting 
 memory, and stepping through code execution. While most debugger vendors offer 
 proprietary software tailored to their specific hardware, developers often seek 
@@ -138,7 +114,7 @@ microcontrollers.
 
 One widely used open-source tool is [OpenOCD](https://openocd.org), which 
 provides a powerful and configurable interface for debugging and programming 
-ARM and RISC-V devices, including the STM32 Nucleo-U545RE-Q and Raspberry Pi Pico 2. OpenOCD supports a 
+ARM and RISC-V devices, including the Raspberry Pi Pico 2. OpenOCD supports a 
 variety of debug probes and allows integration with GDB for source-level 
 debugging.
 
@@ -158,7 +134,7 @@ manual debugging and automated workflows.
 
 Cross-compiling is the process of building software on one system (the host) 
 that is intended to run on a different system (the target). This is necessary 
-when developing for embedded systems like the STM32 Nucleo-U545RE-Q or Raspberry Pi Pico 2 because the 
+when developing for embedded systems like the Raspberry Pi Pico 2 because the 
 target device has a different processor architecture than the development 
 computer. Unlike normal compiling, where the compiled binary runs on the same 
 system that builds it, cross-compiling generates machine code suitable for the 
@@ -169,7 +145,7 @@ For example, when using `cargo build` for embedded development, Rust compiles
 the firmware for the microcontroller's architecture and flashes it to the 
 device. 
 
-For example, cross-compiling for the STM32 Nucleo-U545RE-Q requires the
+For example, cross-compiling for the Raspberry Pi Pico 2 requires the
 `thumbv8m.main-none-eabihf` triple. It tells the compiler to build code
 for:
 - the **ARMv8-M Mainline** (`thumbv8m.main`) architecture
@@ -179,10 +155,6 @@ for:
 ```sh
 cargo build --target thumbv8m.main-none-eabihf
 ```
-
-:::info
-The Raspberry Pi Pico 2 uses the same target triple as the STM32 Nucleo-U545RE-Q (`thumbv8m.main-none-eabihf`). This means you can build for the Pico 2 using the exact same command shown above.
-:::
 
 ### Using a configuration file
 
@@ -207,8 +179,9 @@ The target triple for the Raspberry Pi Pico 1 is `thumbv6m-none-eabi`.
 
 ## Binary format
 
-To be able to properly run the code, both the STM32 Nucleo-U545RE-Q microcontrollers and the Raspberry Pi Pico (1 and 2) expect the binary to follow a specific format defined by their memory map and startup sequence. The compiler and linker, provided by Rust, must ensure that the generated binary places the required regions correctly and meets the device’s format requirements. Otherwise, the microcontroller will fail to start.
-
+To be able to properly run the code, the Raspberry Pi Pico (1 and 2) expects a certain binary format.
+The compiler and the linker, both provided by Rust, have to make sure that the generated
+binary code meets the requirements, otherwise the Raspberry Pi Pico will not start.
 
 ### Sections
 
@@ -235,17 +208,6 @@ store here we can find:
 - function name mappings
 :::
 
-<Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-The binary file for the STM32U545 is organized to ensure proper execution and booting, with specific sections for the developer’s code and variables. At the very beginning of flash memory lies the `vector table`, which contains the reset handler and interrupt vectors required by the Cortex‑M33 core. Immediately following this, the `.text` section holds the developer’s executable instructions that make up the application’s logic. This section is stored in flash memory and is executed directly from there when the system starts. It is the core of the firmware, containing the main program logic.
-
-Following the `.text` section, the .data section contains initialized global and static variables. These variables are stored in flash memory but are copied into RAM during startup so that they can be modified at runtime. The developer’s predefined values for global variables are preserved here. In contrast, the `.bss` section holds uninitialized variables. These are allocated in RAM and automatically zeroed out during the boot process, ensuring they are ready for use by the application.
-
-The `.rodata` section follows, storing read‑only data such as string literals and constant values. These are kept in flash memory, conserving RAM while still allowing the program to access them efficiently throughout execution.
-
-  </TabItem>
-
-  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
 The binary file for the Raspberry Pi Pico 2 is organized to ensure proper 
 execution and booting, with specific sections for the developer's code and 
 variables. The first section that holds the developer’s code is the *`.text`* 
@@ -273,11 +235,6 @@ with the *`.end_block`* section. This section marks the end of the firmware
 and ensures that no additional data is written past this point. It is important 
 for memory management, preventing the accidental overwrite of critical memory 
 regions during updates or execution.
-  </TabItem>
-
-</Tabs>
-
-
 
 ### Linker Script
 
@@ -291,23 +248,6 @@ The linker script is in the firmware's crate root folder, not in the `src` folde
 :::
 
 <Tabs>
-
-<TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-```ld
-MEMORY
-{
-  /* On-chip Flash memory */
-  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 512K
-
-  /* On-chip SRAM (SRAM1+SRAM2+SRAM3 combined) */
-  RAM (rwx)  : ORIGIN = 0x20000000, LENGTH = 272K
-}
-
-/* Initial stack pointer: top of RAM */
-_estack = ORIGIN(RAM) + LENGTH(RAM);
-```
-</TabItem>
-
   <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 
 ```ld
@@ -539,22 +479,6 @@ This example instructs the linker to use:
 
 ### Inspect binaries
 
-
-
-<Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-When working in Rust for the STM32 Nucleo-U545RE-Q, tools such as `rust-objdumb` can be used to inspect the compiled binary and analyze its memory layout. The output includes various sections that are crucial for embedded development.
-  
-  | Section         | Fixed Offset  | Description |
-|----------------|--------------|-------------|
-| *`.vector_table`* | `0x08000000` | Reset vector and interrupt table. The CPU fetches the initial stack pointer and reset handler from here after reset. |
-| *`.text`* | `0x08000238` | Stores executable code, typically placed in flash memory. Optimizing this section can reduce flash usage and improve execution efficiency. |
-| *`.rodata`* | `0x080112F0` | Contains read-only data, such as string literals and constants, stored in flash memory. Helps minimize RAM usage. |
-| *`.data`* | `0x20000000` (load image at `0x08014780`) | Includes initialized variables that are stored in flash and copied to RAM during startup. Used for global and static variables requiring predefined values. |
-| *`.bss`* | 	`0x20000050` | Represents uninitialized variables that are zeroed out in RAM before execution. Large `.bss` sections can impact RAM availability. |
-  </TabItem>
-
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 When working in Rust for the Raspberry Pi Pico 2, `rust-objdump` can be used to 
 inspect the compiled binary and examine its memory layout. The output includes 
 various sections that are crucial for embedded development.  
@@ -569,38 +493,29 @@ various sections that are crucial for embedded development.
 | *`.bss`* | N/A | Represents uninitialized variables that are zeroed out in RAM before execution. Large `.bss` sections can impact RAM availability. |
 | *`.bi_entries`* | N/A | Contains boot information entries used by the RP2350 ROM bootloader and firmware updater to manage and validate firmware images. |
 | *`.end_block`* | N/A | Marks the end of the firmware image. This section helps bootloaders determine the total size of the firmware and ensures that no unexpected data is included beyond this point. It is used for integrity checks and defining boundaries for updates or memory protection. |
-  </TabItem>
-
-    <TabItem value="rp2040" label="Raspberry Pi Pico" default>
-When working in Rust for the Raspberry Pi Pico, `rust-objdump` can be used to 
-inspect the compiled binary and examine its memory layout. The output includes 
-various sections that are crucial for embedded development.  
-
-| Section         | Fixed Offset  | Description |
-|----------------|--------------|-------------|
-| *`.vector_table`* | `0x10000100` | Contains the initial stack pointer value and interrupt vector table. Essential for system startup and exception handling, allowing the processor to correctly respond to interrupts. |
-| *`.boot_info`* | `0x100001C0` | Contains boot metadata used by the ROM bootloader to validate and launch the firmware. |
-| *`.boot2`* | `0x10000000` | The second-stage bootloader. This is the first code executed after reset, responsible for preparing the system and jumping into user firmware. |
-| *`.text`* | N/A | Stores executable code, typically placed in flash memory. Optimizing this section can reduce flash usage and improve execution efficiency. |
-| *`.bi_entries`* | `0x10002998`| Contains boot information entries used by the RP2350 ROM bootloader and firmware updater to manage and validate firmware images. |
-| *`.rodata`* | N/A | Contains read-only data, such as string literals and constants, stored in flash memory. Helps minimize RAM usage. |
-| *`.data`* | N/A | Includes initialized variables that are stored in flash and copied to RAM during startup. Used for global and static variables requiring predefined values. |
-| *`.bss`* | N/A | Represents uninitialized variables that are zeroed out in RAM before execution. Large `.bss` sections can impact RAM availability. |
-  </TabItem>
-</Tabs>
 
 
+#### Pico 1 vs Pico 2
+The primary difference between the Raspberry Pi Pico 1 and Pico 2 in terms of 
+firmware layout is the presence of the *`.boot2`* section in the Pico 1, 
+which is not present in the Pico 2. The *`.boot2`* section in the Pico 1 
+is located at a fixed offset of `0x10000000` and contains the bootloader code 
+along with necessary metadata for bootstrapping the device. 
 
-#### Pico 1 vs Pico 2 vs STM32 Nucleo-U545RE-Q
-The primary difference between the Raspberry Pi Pico 1 and Pico 2 in terms of firmware layout is the presence of the `.boot2` section in the Pico 1, which is not present in the Pico 2. The `.boot2` section in the Pico 1 is located at a fixed offset of `0x10000000` and contains the bootloader code along with necessary metadata for bootstrapping the device.
+The *`.vector_table`*  section in the Pico 1 is placed immediately 
+after the *`.boot2`* section, 
+unlike the Pico 2 where it is located at the beginning of the flash memory at 
+`0x00000000`. 
 
-The `.vector_table` section in the Pico 1 is placed immediately after the `.boot2` section, unlike the Pico 2 where it is located at the beginning of the flash memory at `0x00000000`.
+The Pico 2 uses the *`.start_block`* and *`.end_block`* sections 
+to handle boot metadata and firmware boundaries, while the Pico 1 relies on the 
+bootloader for these tasks. Furthermore, the Pico 1 does not have a fixed 
+*`.end_block`* section, which is used in the Pico 2 to mark the end of the 
+firmware image. 
 
-The Pico 2 uses the `.start_block` and `.end_block` sections to handle boot metadata and firmware boundaries, while the Pico 1 relies on the bootloader for these tasks. Furthermore, the Pico 1 does not have a fixed `.end_block` section, which is used in the Pico 2 to mark the end of the firmware image.
-
-By contrast, the STM32U545 series follows a more traditional ARM Cortex‑M layout. The `.vector_table` is always located at the start of Flash (`0x08000000` by default), and there is no `.boot2`, `.start_block`, or `.end_block` section unless the developer explicitly defines them for a custom bootloader or secure‑boot scheme. Instead, STM32 devices rely on their built‑in system bootloader (in ROM) and the standard ARM exception model. Sections such as `.text`, `.rodata`, `.data`, and `.bss` are placed in Flash and SRAM according to the linker script, with optional regions like `.uninit` or `.gnu.sgstubs` (for TrustZone) depending on the project.
-
-Despite these differences, all three platforms — Pico 1, Pico 2, and STM32U545 — share the same fundamental structure of executable code in Flash and runtime data in SRAM, with the familiar `.text`, `.rodata`, `.data`, and `.bss` sections serving their usual roles in embedded development.
+Despite these differences, both devices share a similar overall 
+firmware structure, with the *`.text`*, *`.rodata`*, *`.data`*, and *`.bss`* 
+sections serving similar purposes in both devices.
 
 ### Check section headers
 
@@ -610,45 +525,6 @@ The `rust-objdumb` tool can be used to inspect firmware binaries. Using the `--s
 flag will display the sections of the firmware.
 
 <Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-
-```shell
-rust-objdump --section-headers target/thumbv8m.main-none-eabihf/debug/$app_name
-```
-
-:::tip
-Make sure that:
-- section `.vector_table` is `0x238` long and at `0x80000000`
-:::
-
-```shell
-Sections:
-Idx Name            Size     VMA      LMA      Type
-  0                 00000000 00000000 00000000 
-  1 .vector_table   00000238 08000000 08000000 DATA
-  2 .text           000110b4 08000238 08000238 TEXT
-  3 .rodata         0000348c 080112f0 080112f0 DATA
-  4 .data           00000050 20000000 08014780 DATA
-  5 .gnu.sgstubs    00000000 080147e0 080147e0 DATA
-  6 .bss            0001819c 20000050 20000050 BSS
-  7 .uninit         00000400 200181ec 200181ec BSS
-  8 .defmt          00000030 00000000 00000000 
-  9 .debug_abbrev   0000dfc8 00000000 00000000 DEBUG
- 10 .debug_info     00187084 00000000 00000000 DEBUG
- 11 .debug_aranges  00011180 00000000 00000000 DEBUG
- 12 .debug_ranges   0002a698 00000000 00000000 DEBUG
- 13 .debug_str      001e097a 00000000 00000000 DEBUG
- 14 .comment        0000008b 00000000 00000000 
- 15 .ARM.attributes 0000003a 00000000 00000000 
- 16 .debug_frame    00032f20 00000000 00000000 DEBUG
- 17 .debug_line     0009313e 00000000 00000000 DEBUG
- 18 .debug_loc      00002dbc 00000000 00000000 DEBUG
- 19 .symtab         00009c00 00000000 00000000 
- 20 .shstrtab       000000dd 00000000 00000000 
- 21 .strtab         00018095 00000000 00000000 
-```
-
-  </TabItem>
   <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 
 ```shell
@@ -850,7 +726,7 @@ Different frameworks like `embassy-rs` will use different entry macros.
 
 ## Flashing firmware
 
-To run firmware on the STM32 Nucleo-U545RE-Q or Raspberry Pi Pico 2, the 
+To run firmware on the Raspberry Pi Pico 2, the 
 compiled program must be transferred to the device's flash (non-volatile) memory. This 
 process is called *flashing*, and it ensures that the firmware remains on the 
 device even after a power reset. 
@@ -861,28 +737,16 @@ with the device through a debug probe or other interfaces, such as USB or
 also verify the uploaded firmware to ensure data integrity and provide 
 additional features like chip erasing or memory protection configuration.
 
-When developing Rust firmware for the STM32 Nucleo-U545RE-Q or Raspberry Pi Pico 2, `probe-rs` is the 
+When developing Rust firmware for the Raspberry Pi Pico 2, `probe-rs` is the 
 preferred flashing tool to upload and debug code. 
 
 After building the firmware using `cargo build`, an ELF file will be generated in
 `target/thumbv8m.main-none-eabihf/debug/$app_name`. This file can be flashed to the
 board using:
-<Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
 
-```sh
-probe-rs run --chip STM32U545RETxQ target/thumbv8m.main-none-eabihf/debug/$app_name
-```
-
-  </TabItem>
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ```sh
 probe-rs run --chip RP235x target/thumbv8m.main-none-eabihf/debug/$app_name
 ```
-  </TabItem>
-
-</Tabs>
-
 
 :::info
 Replace $app_name with the name of the firmware's crate, usually the name of the folder
@@ -896,7 +760,7 @@ On a computer, running a Rust program with `cargo run` compiles the source
 code into an executable and immediately starts it. This command streamlines 
 development by combining compilation and execution into a single step.
 
-A similar process applies when using `cargo run` to develop firmware for the STM32 Nucleo-U545RE-Q or Raspberry 
+A similar process applies when using `cargo run` to develop firmware for the Raspberry 
 Pi Pico 2. Instead of just compiling and running a program on the host computer, 
 `cargo run` cross compiles the firmware and flashes it onto the target device in one 
 step. Under the hood, it uses `probe-rs` to detect the connected debug probe 
@@ -907,35 +771,18 @@ Rust program on a computer.
 To be able to use `cargo run` for flashing firmware, a runner has to be specified in the
 `.cargo/config.toml` file. The following lines have to be added.
 
-<Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-
-```toml
-[target.'cfg(all(target_arch = "arm", target_os = "none"))']
-runner = "probe-rs run --chip STM32U545RETxQ"
-```
-
-  </TabItem>
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ```toml
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
 runner = "probe-rs run --chip RP235x"
 ```
-
-This setup makes flashing firmware to the Raspberry Pi Pico 2 as simple
-as running a Rust program on a computer.
-  </TabItem>
-
-</Tabs>
-
 
 :::warning
 Make sure the correct `[target]` is specified in the `.cargo/config.toml` configuration file. See the
 [cross-compiling](#using-a-configuration-file) section.
 :::
 
-This setup makes flashing firmware to the STM32 Nucleo‑U545RE‑Q or the Raspberry Pi Pico 2 as simple as running a Rust program on a computer.
-
+This setup makes flashing firmware to the Raspberry Pi Pico 2 as simple
+as running a Rust program on a computer.
 
 ## Printing messages
 
@@ -1266,7 +1113,7 @@ You can add the `--no-location` parameter to the runner.
 The [`probe-rs` extension for *Visual Studio Code*](https://marketplace.visualstudio.com/items?itemName=probe-rs.probe-rs-debugger) is a powerful tool designed to streamline 
 the development and debugging of embedded Rust applications. It provides a seamless experience 
 for flashing firmware, setting breakpoints, and inspecting memory on embedded devices, 
-including the STM32 Nucleo-U545RE-Q, Raspberry Pi Pico 1 and Pico 2. By integrating with `probe-rs`, this extension 
+including the Raspberry Pi Pico 1 and Pico 2. By integrating with `probe-rs`, this extension 
 removes the complexity of configuring traditional debugging setups that rely on *GDB* and *OpenOCD*.
 
 Using `probe-rs` within *VS Code* greatly simplifies the debugging workflow. Instead of manually 
@@ -1286,39 +1133,7 @@ VS Code's `probe-rs` extension uses a configuration file called `launch.json` lo
 `.vscode` folder of the project.
 
 <Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "preLaunchTask": "rust: cargo build",
-            "type": "probe-rs-debug",
-            "request": "launch",
-            "name": "STM32 Nucleo-U545RE-Q",
-            "cwd": "${workspaceFolder}",
-            "connectUnderReset": false,
-            "chip": "STM32U545RETxQ",
-            "flashingConfig": {
-                "flashingEnabled": true,
-                "haltAfterReset": false,
-            },
-            "coreConfigs": [
-                {
-                    "coreIndex": 0,
-                    "programBinary": "./target/thumbv8m.main-none-eabihf/debug/${workspaceFolderBasename}",
-                    "svdFile": "./STM32U545.svd",
-                    "rttEnabled": true,
-                }
-            ]
-        }
-    ]
-}
-```
-
-  </TabItem>
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2">
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 
 ```json
 {
@@ -1385,7 +1200,7 @@ VS Code's `probe-rs` extension uses a configuration file called `launch.json` lo
 
 This `launch.json` file configures VS Code's `probe-rs` extension for debugging 
 firmware on the Raspberry Pi Pico. It defines how the debugger interacts 
-with the `RP235x`,`RP2040` or the `STM32U545` chip, including *flashing*, *RTT support*, and the 
+with the `RP235x` or the `RP2040` chip, including *flashing*, *RTT support*, and the 
 *firmware's location*.  
 
 The `"version": "0.2.0"` field specifies the configuration format. The 
@@ -1399,7 +1214,7 @@ new debugging session. The `"name"` field labels this configuration.
 
 The `"cwd": "${workspaceFolder}"` sets the working directory to the project 
 root. The `"connectUnderReset": false` prevents connecting while the device 
-is held in reset. The `"chip": "RP235x"`,`"chip": "RP2040"` or `"chip": "STM32U545RETxQ"`  tells probe-rs which microcontroller  
+is held in reset. The `"chip": "RP235x"` or `"chip": "RP2040"` tells probe-rs which microcontroller  
 is in use.  
 
 The `"flashingConfig"` section controls how firmware is written to flash. 
@@ -1409,7 +1224,7 @@ The `"haltAfterReset": false` allows execution to continue after reset.
 The `coreConfigs` array defines how individual CPU cores are handled. Since 
 RP235x has multiple cores, this example configures **core 0**. The firmware 
 binary is loaded from `./target/thumbv8m.main-none-eabihf/debug/${workspaceFolderBasename}`. 
-The `"svdFile": "./STM32U545.svd"` provides **register descriptions** for 
+The `"svdFile": "./rp2350.svd"` provides **register descriptions** for 
 debugging.  
 
 The `"rttEnabled": true"` setting enables **Real-Time Transfer (RTT)**, 
@@ -1423,7 +1238,7 @@ debugging firmware.
 
 ![probe-rs VSCode extension](probe_rs_vscode.webp)
 
-To run firmware on the STM32 Nucleo-U545RE-Q/Raspberry Pi Pico 1 or 2 using the `probe-rs` extension 
+To run firmware on the Raspberry Pi Pico 1 or 2 using the `probe-rs` extension 
 in *Visual Studio Code*, open your project and ensure your `launch.json` 
 file is [correctly configured](#set-up-launchjson). Before starting, connect
 your *debugger** to the Pico and power the board.
@@ -1435,7 +1250,7 @@ If you are using the lab board, please make sure you are using the USB-C connect
 #### Starting the Debugging Session
 1. Open the **Run and Debug** panel in VS Code by clicking the **Run** icon  
    in the left sidebar or pressing `Ctrl+Shift+D`.  
-2. Select *"Raspberry Pi Pico 2"*/*"NUCLEO-STM32U545"* (or the name of your configuration) from  
+2. Select *"Raspberry Pi Pico 2"* (or the name of your configuration) from  
    the drop-down menu at the top of the panel.  
 3. Click the **Start Debugging** button (<span style={{color: "green"}}>▶</span>), or press `F5`.  
 
@@ -1543,7 +1358,7 @@ program reached a specific line of code.
 ### Peripherals: Inspecting Hardware Registers
 
 The **Peripherals** panel lets you inspect hardware registers based on 
-the **SVD (System View Description) file** for the **STM32U545RETxQ**, **RP235x** or **RP2040** chip. This 
+the **SVD (System View Description) file** for the **RP235x** or **RP2040** chip. This 
 allows direct observation of GPIO states, timers, UART, and more.  
 
 :::warning
@@ -1556,15 +1371,13 @@ Please make sure that the project folder contains the correct SVD file.
 |-|-|
 | *RP2350* | [rp235x_pac](https://github.com/rp-rs/rp235x-pac/tree/main/svd) |
 | *RP2040* | [rp2040_pac](https://github.com/rp-rs/rp2040-pac/tree/main/svd) |
-| *STM32U545RETxQ* | [stm32-rs](https://github.com/stm32-rs/stm32-rs/tree/master/svd/vendor) |
-
 
 :::tip
 Make sure you download the `.pacthed` versions of the files.
 :::
 
 #### How to Enable Peripheral Debugging
-1. Ensure `"svdFile": "./stm32u545.svd"`, `"svdFile": "./rp2350.svd"` or `"svdFile": "./rp2040.svd"` is set in `launch.json`.  
+1. Ensure `"svdFile": "./rp2350.svd"` or `"svdFile": "./rp2040.svd"` is set in `launch.json`.  
 2. Start debugging and hit a **breakpoint**.  
 3. Open the **Peripherals** panel in the Debug sidebar.  
 4. Expand peripheral groups (e.g., `GPIO`, `TIMER`, `UART`) to see 
