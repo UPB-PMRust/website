@@ -21,15 +21,16 @@ import TabItem from '@theme/TabItem';
 
 ## Resources
 
-1. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+1. **DS14217**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u535cb.pdf)*
+2. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
 - Chapter 4 - *Memory*
   - Section 4.1 - *ROM*
   - Section 4.2 - *SRAM*
   - Section 4.3 - *Boot RAM*
 - Chapter 5 - *Bootrom*
-2. [probe-rs's documentation](https://probe.rs/docs/overview/about-probe-rs/)
-3. [rp235x-hal documentation](https://docs.rs/rp235x-hal/latest/rp235x_hal/index.html)
-4. [Embassy documentation](https://embassy.dev/book/dev/runtime.html)
+3. [probe-rs's documentation](https://probe.rs/docs/overview/about-probe-rs/)
+4. [rp235x-hal documentation](https://docs.rs/rp235x-hal/latest/rp235x_hal/index.html)
+5. [Embassy documentation](https://embassy.dev/book/dev/runtime.html)
 
 ## Software Prerequisites
 
@@ -127,7 +128,7 @@ traces soldered to Raspberry Pi Pico's socket.
 ## Debugger software
 
 Hardware debuggers require specialized software on the host computer (the computer used for development) to 
-communicate with and control the target device (the Raspberry Pi Pico 2/STM32U545 in this case). These software tools provide 
+communicate with and control the target device (the Raspberry Pi Pico 2/STM32 Nucleo-U545RE-Q in this case). These software tools provide 
 essential debugging capabilities, such as setting breakpoints, inspecting 
 memory, and stepping through code execution. While most debugger vendors offer 
 proprietary software tailored to their specific hardware, developers often seek 
@@ -137,7 +138,7 @@ microcontrollers.
 
 One widely used open-source tool is [OpenOCD](https://openocd.org), which 
 provides a powerful and configurable interface for debugging and programming 
-ARM and RISC-V devices, including the Raspberry Pi Pico 2. OpenOCD supports a 
+ARM and RISC-V devices, including the STM32 Nucleo-U545RE-Q and Raspberry Pi Pico 2. OpenOCD supports a 
 variety of debug probes and allows integration with GDB for source-level 
 debugging.
 
@@ -157,7 +158,7 @@ manual debugging and automated workflows.
 
 Cross-compiling is the process of building software on one system (the host) 
 that is intended to run on a different system (the target). This is necessary 
-when developing for embedded systems like the Raspberry Pi Pico 2 or STM32U545 because the 
+when developing for embedded systems like the STM32 Nucleo-U545RE-Q or Raspberry Pi Pico 2 because the 
 target device has a different processor architecture than the development 
 computer. Unlike normal compiling, where the compiled binary runs on the same 
 system that builds it, cross-compiling generates machine code suitable for the 
@@ -180,7 +181,7 @@ cargo build --target thumbv8m.main-none-eabihf
 ```
 
 :::info
-The Raspberry Pi Pico 2 uses the same target triple as the STM32U545 (`thumbv8m.main-none-eabihf`). This means you can build for the Pico 2 using the exact same command shown above.
+The Raspberry Pi Pico 2 uses the same target triple as the STM32 Nucleo-U545RE-Q (`thumbv8m.main-none-eabihf`). This means you can build for the Pico 2 using the exact same command shown above.
 :::
 
 ### Using a configuration file
@@ -849,7 +850,7 @@ Different frameworks like `embassy-rs` will use different entry macros.
 
 ## Flashing firmware
 
-To run firmware on the Raspberry Pi Pico 2 or STM32U545, the 
+To run firmware on the STM32 Nucleo-U545RE-Q or Raspberry Pi Pico 2, the 
 compiled program must be transferred to the device's flash (non-volatile) memory. This 
 process is called *flashing*, and it ensures that the firmware remains on the 
 device even after a power reset. 
@@ -860,7 +861,7 @@ with the device through a debug probe or other interfaces, such as USB or
 also verify the uploaded firmware to ensure data integrity and provide 
 additional features like chip erasing or memory protection configuration.
 
-When developing Rust firmware for the Raspberry Pi Pico 2 or STM32U545, `probe-rs` is the 
+When developing Rust firmware for the STM32 Nucleo-U545RE-Q or Raspberry Pi Pico 2, `probe-rs` is the 
 preferred flashing tool to upload and debug code. 
 
 After building the firmware using `cargo build`, an ELF file will be generated in
@@ -895,8 +896,8 @@ On a computer, running a Rust program with `cargo run` compiles the source
 code into an executable and immediately starts it. This command streamlines 
 development by combining compilation and execution into a single step.
 
-A similar process applies when using `cargo run` to develop firmware for the Raspberry 
-Pi Pico 2/STM32U545. Instead of just compiling and running a program on the host computer, 
+A similar process applies when using `cargo run` to develop firmware for the STM32 Nucleo-U545RE-Q or Raspberry 
+Pi Pico 2. Instead of just compiling and running a program on the host computer, 
 `cargo run` cross compiles the firmware and flashes it onto the target device in one 
 step. Under the hood, it uses `probe-rs` to detect the connected debug probe 
 and handle the flashing process automatically. This eliminates the need for 
@@ -920,6 +921,9 @@ runner = "probe-rs run --chip STM32U545RETxQ"
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
 runner = "probe-rs run --chip RP235x"
 ```
+
+This setup makes flashing firmware to the Raspberry Pi Pico 2 as simple
+as running a Rust program on a computer.
   </TabItem>
 
 </Tabs>
@@ -930,8 +934,8 @@ Make sure the correct `[target]` is specified in the `.cargo/config.toml` config
 [cross-compiling](#using-a-configuration-file) section.
 :::
 
-This setup makes flashing firmware to the Raspberry Pi Pico 2 as simple
-as running a Rust program on a computer.
+This setup makes flashing firmware to the STM32 Nucleo‑U545RE‑Q or the Raspberry Pi Pico 2 as simple as running a Rust program on a computer.
+
 
 ## Printing messages
 
@@ -1262,7 +1266,7 @@ You can add the `--no-location` parameter to the runner.
 The [`probe-rs` extension for *Visual Studio Code*](https://marketplace.visualstudio.com/items?itemName=probe-rs.probe-rs-debugger) is a powerful tool designed to streamline 
 the development and debugging of embedded Rust applications. It provides a seamless experience 
 for flashing firmware, setting breakpoints, and inspecting memory on embedded devices, 
-including the Raspberry Pi Pico 1 and Pico 2. By integrating with `probe-rs`, this extension 
+including the STM32 Nucleo-U545RE-Q, Raspberry Pi Pico 1 and Pico 2. By integrating with `probe-rs`, this extension 
 removes the complexity of configuring traditional debugging setups that rely on *GDB* and *OpenOCD*.
 
 Using `probe-rs` within *VS Code* greatly simplifies the debugging workflow. Instead of manually 
@@ -1405,7 +1409,7 @@ The `"haltAfterReset": false` allows execution to continue after reset.
 The `coreConfigs` array defines how individual CPU cores are handled. Since 
 RP235x has multiple cores, this example configures **core 0**. The firmware 
 binary is loaded from `./target/thumbv8m.main-none-eabihf/debug/${workspaceFolderBasename}`. 
-The `"svdFile": "./rp2350.svd"` provides **register descriptions** for 
+The `"svdFile": "./STM32U545.svd"` provides **register descriptions** for 
 debugging.  
 
 The `"rttEnabled": true"` setting enables **Real-Time Transfer (RTT)**, 
@@ -1419,7 +1423,7 @@ debugging firmware.
 
 ![probe-rs VSCode extension](probe_rs_vscode.webp)
 
-To run firmware on the Raspberry Pi Pico 1 or 2/STM32U545 using the `probe-rs` extension 
+To run firmware on the STM32 Nucleo-U545RE-Q/Raspberry Pi Pico 1 or 2 using the `probe-rs` extension 
 in *Visual Studio Code*, open your project and ensure your `launch.json` 
 file is [correctly configured](#set-up-launchjson). Before starting, connect
 your *debugger** to the Pico and power the board.
@@ -1539,7 +1543,7 @@ program reached a specific line of code.
 ### Peripherals: Inspecting Hardware Registers
 
 The **Peripherals** panel lets you inspect hardware registers based on 
-the **SVD (System View Description) file** for the **RP235x** or **RP2040** chip. This 
+the **SVD (System View Description) file** for the **STM32U545RETxQ**, **RP235x** or **RP2040** chip. This 
 allows direct observation of GPIO states, timers, UART, and more.  
 
 :::warning
@@ -1560,7 +1564,7 @@ Make sure you download the `.pacthed` versions of the files.
 :::
 
 #### How to Enable Peripheral Debugging
-1. Ensure `"svdFile": "./rp2350.svd"`, `"svdFile": "./rp2040.svd"` or `"svdFile": "./stm32u545.svd"` is set in `launch.json`.  
+1. Ensure `"svdFile": "./stm32u545.svd"`, `"svdFile": "./rp2350.svd"` or `"svdFile": "./rp2040.svd"` is set in `launch.json`.  
 2. Start debugging and hit a **breakpoint**.  
 3. Open the **Peripherals** panel in the Debug sidebar.  
 4. Expand peripheral groups (e.g., `GPIO`, `TIMER`, `UART`) to see 
