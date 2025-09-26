@@ -13,7 +13,7 @@ export function ElectronicsTutorial({title, anchor}) {
 }
 
 The purpose of this lab is to understand how to start developing firmware in [Rust](https://www.rust-lang.org/) 
-with [Embassy](https://embassy.dev) for the RP2350 STM32U545 MCU.
+with [Embassy](https://embassy.dev) for the STM32U545 and RP2 MCUs.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -36,7 +36,7 @@ import TabItem from '@theme/TabItem';
 
 ### Extra Resources
 
-4. **DS14217**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u535cb.pdf)*
+4. **STMicroelectronics**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u535cb.pdf)*
 5. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
 6. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf)*
 7. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2W Datasheet](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf)*
@@ -80,7 +80,7 @@ It is the role of the *IO Bank0* to multiplex and connect the peripherals to the
 
 ## Hardware access
 
-There are 3 different ways in which the hardware—either the STM32 Nucleo-U545RE-Q or the Raspberry Pi Pico 2—can be used:
+There are 3 different ways in which the hardware either on the STM32 Nucleo-U545RE-Q or the Raspberry Pi Pico 2 can be used:
 
 1. Embassy framework, with the Embedded HAL implementation
 2. Platform Access Crate (PAC)
@@ -407,7 +407,7 @@ The `pin` variable implements the embadded HAL [`OutputPin`](https://docs.rs/emb
 ```rust
 use gpio::{Level, Output, Speed};
 
-// initialize PX_n (replace x with a letter(see the datasheet) and n with a number) and set its
+// initialize PX_n (replace x with a letter(see the datasheet, e.g. PA5) and n with a number) and set its
 // default value to LOW (0)
 let mut pin = Output::new(peripherals.Px_n, Level::Low, Speed::Medium);
 
