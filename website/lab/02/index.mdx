@@ -36,7 +36,7 @@ import TabItem from '@theme/TabItem';
 
 ### Extra Resources
 
-4. **STMicroelectronics**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u535cb.pdf)*
+4. **STMicroelectronics**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u545ce.pdf)*
 5. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
 6. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2 Datasheet](https://datasheets.raspberrypi.com/pico/pico-2-datasheet.pdf)*
 7. **Raspberry Pi Ltd**, *[Raspberry Pi Pico 2W Datasheet](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf)*
@@ -49,14 +49,6 @@ General-Purpose Input/Output, or GPIO, is an essential part of embedded systems 
 
 GPIO pins can be used as outputs (LEDs, motors, buzzers) or as inputs (buttons, sensors).
 
-The STM32U545, RP2040 and RP2350 have three peripherals that control the GPIO pins:
- 1. *Pads* - control the actual physical pin or pad that the processor has outside. They control the electrical parameters, like maximum current or pull up and pull down resistors
- 2. *IO Bank0* - connects and multiplexes the peripheral's pins to the output pads. Several peripherals use the same output pad to communicate with the exterior. For example, in the image below, `GPIO0` can be used either for:
-    * `SIO` - the `GPIO` function
-    * `SPI_RX` - the receive pin for the `SPI` peripheral
-    * `I2C0_SDA` - the data pin for the `I2C0` peripheral
-    * `UART0_TX` - the transmit pin for the `UART0` (serial port 0) peripheral
- 3. *SIO* - that controls the interior MCU's pins. This is the peripheral that developers use to read and write the value of the pins.
 
 
 Every pin of the MCU can perform multiple functions. Several peripherals need to use input and output pins.
@@ -64,18 +56,37 @@ It is the role of the *IO Bank0* to multiplex and connect the peripherals to the
 
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+The STM32U545 control the GPIO pins through one main GPIO block per port, but inside it you can think of three roles:
+1. *Pad control* - manages the physical pin on the outside of the chip. It decides the electrical behavior of the pad, such as whether it has a pull‑up or pull‑down resistor, whether it drives strongly or weakly, and whether it is push‑pull or open‑drain.
+2. *Alternate function multiplexer* - connects the internal peripherals to the outside pins. Each pin can be switched to different functions. For example, a single pin can be used as:
+    * A normal `GPIO` input/output
+    * A `UART` transmit line
+    * An `I2C` data line
+    * An `SPI` clock or data line
+3. *GPIO Input/Output* - this is the simple digital interface that developers use when they want to read or write a pin directly in software. It’s what you use to toggle an LED or read a button.
+
+
     Here will be the STM32U545 pinout when will be ready.
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+  The RP2040 and RP2350 have three peripherals that control the GPIO pins:
+ 1. *Pads* - control the actual physical pin or pad that the processor has outside. They control the electrical parameters, like maximum current or pull up and pull down resistors
+ 2. *IO Bank0* - connects and multiplexes the peripheral's pins to the output pads. Several peripherals use the same output pad to communicate with the exterior. For example, in the image below, `GPIO0` can be used either for:
+    * `SIO` - the `GPIO` function
+    * `SPI_RX` - the receive pin for the `SPI` peripheral
+    * `I2C0_SDA` - the data pin for the `I2C0` peripheral
+    * `UART0_TX` - the transmit pin for the `UART0` (serial port 0) peripheral
+ 3. *SIO* - that controls the interior MCU's pins. This is the peripheral that developers use to read and write the value of the pins.
 ![Pico2W Pinout](images/pico2w-pinout.svg)
-  </TabItem>
-
-</Tabs>
 
 <div align="center">
 ![IO Bank0](images/gpio_mux.png)
 </div>
+  </TabItem>
+
+</Tabs>
+
 
 
 ## Hardware access
