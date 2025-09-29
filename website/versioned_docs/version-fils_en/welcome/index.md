@@ -119,6 +119,7 @@ Lab Professor \
 GitHub: [Pfat8equalsD](https://github.com/Pfat8equalsD) \
 andrei.batasev@stud.acs.upb.ro
 </td>
+
 </tr>
 </table>
 
