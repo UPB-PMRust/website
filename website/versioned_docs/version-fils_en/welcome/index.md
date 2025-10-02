@@ -119,6 +119,16 @@ Lab Professor \
 GitHub: [Pfat8equalsD](https://github.com/Pfat8equalsD) \
 andrei.batasev@stud.acs.upb.ro
 </td>
+
+<td>
+**Genan Omer**
+![Genan Omer](images/genan_omer.jpeg)
+
+Responsible for Lab Materials \
+GitHub: [genan2003](https://github.com/genan2003) \
+genan.omer@stud.fils.upb.ro
+</td>
+
 </tr>
 </table>
 
