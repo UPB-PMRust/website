@@ -1,5 +1,3 @@
----
----
 # Outline
 
 <div grid="~ cols-2 gap-5">
@@ -10,11 +8,10 @@
   - 1 Q&A lecture for the project
 
 ## Labs
-  - 12 labs
+  - 7 labs
 
 ## Project
 - Build a hardware device running software written in Rust
-- The cost for the hardware is around 150 RON
 - Presented at PM Fair during the last week of the semester
 
 </div>
@@ -24,13 +21,14 @@
 </div>
 
 ---
----
+
 # Grading
 
 | Part | Description | Points |
-|-----|-------------|--------|
-| [Lecture](/docs/category/lecture) tests | You will have a test at every class with subjects from the previous class. | 2p |
-| [Lab](/docs/category/lab) | Your work at every lab will be graded. | 2p |
-| [Project](/docs/project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
-| Exam | You will have to take an exam during the session. | 4p |
+|--------|-------------|--------|
+| [Lecture](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lecture) tests | You will have a test at every class with subjects from the previous class. | 1p |
+| [Final Lecture](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lecture) test | You will have a test during one of the lectures in January. | 4p |
+| [Lab](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab) | Your work at every lab will be graded. | 1p |
+| [Project](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
+| Final Test | You will have to take an exam during the last week of the semester. | 2p |
 | **Total** | *You will need at least 4.5 points to pass the subject.* | **11p** |

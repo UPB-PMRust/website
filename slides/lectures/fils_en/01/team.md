@@ -20,15 +20,8 @@ layout: section
 
 ## Labs
 
+- Alexandru Radovici
 - Teodor Dicu
-- Alexandru Ungureanu
-- Andrei Zamfir
-- Dănuț Aldea
-- Ioana Culic
-- Cristiana Precup
-- Layla El-Ghoul
-- Gabriel Păvăloiu
-- Andrei Batasev
 
 </div>
 </div>
