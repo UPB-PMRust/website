@@ -12,7 +12,6 @@
 
 ## Project
 - Build a hardware device running software written in Rust
-- The cost for the hardware is around 150 RON
 - Presented at PM Fair during the last week of the semester
 
 </div>
