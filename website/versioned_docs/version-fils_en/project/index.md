@@ -161,10 +161,9 @@ The **IoT** stream has to use the networking (**WiFi**, **Bluetooth** or **Ether
 
 | Part | Deadline | Points |
 |--------|--------|--------|
-| Documentation Milestone | Lab 9 | 0.5p |
-| Hardware Milestone | Lab 11 | 0.5p |
-| Software Milestone | Lab 12 | 0.5p |
-| PM Fair | TBD | 1.5p |
+| Hardware Milestone | Week 12 | 0.75p |
+| Software Milestone | Week 14 | 0.75p |
+| PM Fair | Week 14 | 1.5p |
 | **Total** |  | **3p** |
 
 ## F.A.Q
