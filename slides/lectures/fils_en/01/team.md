@@ -21,7 +21,8 @@ layout: section
 ## Labs
 
 - Alexandru Radovici
-- Teodor Dicu
+- Teodor Dicu (Hardware)
+- Genan Omer (Software)
 
 </div>
 </div>
