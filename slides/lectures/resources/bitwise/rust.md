@@ -6,6 +6,55 @@ How to set and clear bits
 
 ---
 
+# Reminder
+Core operations
+
+<div grid="~ cols-2 gap-20">
+<div>
+
+AND:
+
+```rust
+0b0011 & 0b0101 = 0b0001
+```
+
+OR:
+
+```rust
+0b0011 | 0b0101 = 0b0111
+```
+
+XOR:
+
+```rust
+0b0011 ^ 0b0101 = 0b0110
+```
+</div>
+<div>
+
+NOT:
+
+```rust
+!0b01 = 0b10
+```
+
+SHIFT LEFT
+
+```rust
+0b0010 << 1 = 0b0100
+```
+
+SHIFT RIGHT
+
+```rust
+0b0100 >> 2 = 0b0001
+```
+
+</div>
+</div>
+
+---
+
 # Set bit
 ## set the `1` on position `bit` of `register`
 
@@ -116,7 +165,7 @@ Extracted: 00000000000000000000110010101111 */
 ```rust {2-13|3|3,4|4-10|5-9|3,4,11|,3,4,11,12|all}
 const MASK: u32 = 0b0000_0000_0000_0000_0000_1111_1111_1111;
 fn format_binary(num: u32) -> String {
-    (0..32).rev()
+    (0..32).rev()   // ranges in Rust are half-open: start..end contains all values with start <= x < end
         .map(|i| {
             if i != 0 && i % 4 == 0 {
                 format!("{}_", (num >> i) & 1)

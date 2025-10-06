@@ -34,7 +34,7 @@ $$ V_{OL\_transmiter} < V_{IL\_receiver} $$
 
 :: right ::
 
- <img src="./ICs_same_voltage.svg" class="rounded h 80">
+<img src="./ICs_same_voltage.svg" class="rounded h 80">
 
 ---
 layout: two-cols
@@ -64,7 +64,7 @@ Examples:
 
 :: right ::
 
- <img src="./vcc1_larger_vcc2.svg" class="rounded h 80">
+<img src="./vcc1_larger_vcc2.svg" class="rounded h 80">
  
 
 ---
@@ -96,7 +96,7 @@ Examples:
 
 :: right ::
 
- <img src="./VCC1_smaller_VCC2.svg" class="rounded h 80">
+<img src="./VCC1_smaller_VCC2.svg" class="rounded h 80">
 
 
 ---
@@ -114,10 +114,10 @@ Examples:
 </div>
 
 <div align="center">
- <img src="./pull_down.png" class="rounded" h="100">
+<img src="./pull_down.png" class="rounded" h="100">
 </div>
 
- </div>
+</div>
 
 ---
 
@@ -130,7 +130,7 @@ Examples:
 - Same reasoning
 - R1 is called a "pull-up" resistor.
 
-##Obs:
+## Obs:
 - most microcontrollers have at least a pull-up resistor incorporated on GPIOs - that can be activated in software
 - some have both pull-up and pull-down
 - typically, these are sized for a 50 - 10 nA current consumption

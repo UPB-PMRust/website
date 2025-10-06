@@ -208,17 +208,18 @@ c: 0c 94 48 00 jmp 0x90  ; 0x90 <__bad_interrupt>
 # Behind the scene (2/4)
 
 ```c
-//__trampolines_start(): 
-   7c: 11 24 	eor r1, r1    //r1 = 0 //this is where the program jumps at RESET
-   7e: 1f be 	out 0x3f, r1  //SREG = r1 
+// __trampolines_start(): 
+   7c: 11 24 	eor r1, r1    // r1 = 0 // this is where the program jumps at RESET
+   7e: 1f be 	out 0x3f, r1  // SREG = r1 
    80: cf ef 	ldi r28, 0xFF  
    82: d8 e0 	ldi r29, 0x08  
-   84: de bf 	out 0x3e, r29 //init stack pointer
-   86: cd bf 	out 0x3d, r28 //init stack pointer
-   88: 0e 94 4a 00 	call 0xb8 //call main 
-   8c: 0c 94 59 00 	jmp 0xc0  //0xc0 <_exit> 
-//<__bad_interrupt>: __vector_22(): 
-   90: 0c 94 00 00 	jmp 0 ; 0x0 <__vectors> //any undefined interrupt jumps to the RESET interrupt, essentially triggering a REST
+   84: de bf 	out 0x3e, r29 // init stack pointer
+   86: cd bf 	out 0x3d, r28 // init stack pointer
+   88: 0e 94 4a 00 	call 0xb8 // call main 
+   8c: 0c 94 59 00 	jmp 0xc0  // 0xc0 <_exit> 
+// <__bad_interrupt>: __vector_22(): 
+   90: 0c 94 00 00 	jmp 0 ; 0x0 <__vectors> // any undefined interrupt jumps to the RESET 
+                                            // interrupt, essentially triggering a REST
 
 ```
 
@@ -258,13 +259,13 @@ c: 0c 94 48 00 jmp 0x90  ; 0x90 <__bad_interrupt>
 
 ```c
 
-b8: 38 9a sbi 0x07, 0    //DDRC |= (1 << PC0); 
-ba: e8 9a sbi 0x1d, 0    //EIMSK |= (1 << INT0);  
-bc: 78 94 sei            //sei();
-be: ff cf rjmp .-2       // jumps back (while(1))
+b8: 38 9a sbi 0x07, 0     // DDRC |= (1 << PC0); 
+ba: e8 9a sbi 0x1d, 0     // EIMSK |= (1 << INT0);  
+bc: 78 94 sei             // sei();
+be: ff cf rjmp .-2        // jumps back (while(1))
 
-c0: f8 94 cli             //Clear global interrupt flag
+c0: f8 94 cli             // Clear global interrupt flag
 
-c2: ff cf rjmp .-2       // 0xc2 <__stop_program>
+c2: ff cf rjmp .-2        // 0xc2 <__stop_program>
 
 ```

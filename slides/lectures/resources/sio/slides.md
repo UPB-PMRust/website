@@ -9,7 +9,7 @@ General Purpose Input Output for RP2040
 # Bibliography
 for this section
 
-ToDoDanut: YUP - this 50  - 62 cred ca trebuie actualizat pt placa si controlerul nou ca nu pare ca le putem pastra asa fiind foarte specifice 
+<!-- ToDoDanut: YUP - this 50  - 62 cred ca trebuie actualizat pt placa si controlerul nou ca nu pare ca le putem pastra asa fiind foarte specifice  -->
 
 **Raspberry Pi Ltd**, *[RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)*
    - Chapter 2 - *System Description*

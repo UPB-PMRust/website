@@ -336,26 +336,28 @@ fn main () {
 <br>
 <br>
 
-```rust
+```rust {all}{lines:false}
 
 ...
 ...
 
+// Check for division by zero
 bb2: {
-        _4 = Eq(copy _2, const 0_isize);
-        assert(!move _4, "attempt to divide `{}` 
-by zero", copy _1) -> 
-[success: bb3, unwind continue];
-    }
+    _4 = Eq(copy _2, const 0_isize);
+    assert(!move _4, "attempt to divide `{}` by zero",
+copy _1) -> [success: bb3, unwind continue];
+}
 
-    bb3: {
-        _5 = Eq(copy _2, const -1_isize);
-        _6 = Eq(copy _1, const isize::MIN);
-        _7 = BitAnd(move _5, move _6);
-        assert(!move _7, "attempt to compute `{} / {}`, 
-which would overflow", copy _1, copy _2) -> 
-[success: bb4, unwind continue];
-    }
+// Check for potential overflow caused by
+// dividing `isize::MIN` by `-1`
+bb3: {
+    _5 = Eq(copy _2, const -1_isize);
+    _6 = Eq(copy _1, const isize::MIN);
+    _7 = BitAnd(move _5, move _6);
+    assert(!move _7, "attempt to compute `{} / {}`,
+which would overflow", copy _1, copy _2) -> [success: bb4,
+unwind continue];
+}
 
 ...
 ...

@@ -16,9 +16,9 @@ layout: two-cols
 ---
 
 # The Bus
-example for RP2
+example for STM32U545RE
 
-ToDoDanut: pt placa curenta
+<!-- ToDoDanut: pt placa curenta -->
 
 <style>
 .two-columns {
@@ -45,13 +45,15 @@ ToDoDanut: pt placa curenta
 
 <template #-3>
 
-![Bus](./internal_bus.svg)
+<!-- ![Bus](./internal_bus.svg) -->
+![STM32U545RE - Internal Bus](./STM32U545RE_BUS_INTERNAL.svg)
 
 </template>
 
 <template #0>
 
-![Bus](./bus.svg)
+<!-- ![Bus](./bus.svg) -->
+![STM32U545RE - External Bus](./STM32U545RE_BUS_EXTERNAL.svg)
 
 </template>
 
@@ -61,58 +63,105 @@ ToDoDanut: pt placa curenta
 layout: two-cols
 ---
 
-# STM32L0x2
-A real MCU
+<!-- # STM32L0x2
+A real MCU -->
+# STM32U535/545
+Real MCUs
 
-ToDoDanut: de vazut daca gasim chir pt M33-ul pe care il folim acum? Anul trecut am pus acest exemplu pt ca are datesheetul mai detaliat pe partea asta de mememorie :)) 
+<!-- ToDoDanut: add a trustZone slide -->
+
+<!-- ToDoDanut: de vazut daca gasim chir pt M33-ul pe care il folim acum? Anul trecut am pus acest exemplu pt ca are datesheetul mai detaliat pe partea asta de mememorie :))  -->
 
 | | |
 |-|-|
-| Cortex-M0+ Peripherals | MCU's *settings* and internal peripherals, available at the same address on all M0+ |
+| Cortex-M33 Peripherals | MCU's *settings* and internal peripherals, available at the same address on all M33 |
 | Peripherals | GPIO, USART, SPI, I2C, USB, etc |
 | Flash | The storage space |
 | SRAM | RAM memory |
 | @0x0000_0000 | Alias for SRAM or Flash |
+| Secure vs Non-secure | Resources can be partitioned between secure and non-secure domain |
 
 ::right::
 
-<img src="./stm32_mmio.png" class="rounded">
+<!-- <img src="./stm32_mmio.png" class="rounded"> -->
+<img src="./stm32u5_mmio.png" style="height: 500px">
 
 ---
 layout: two-cols
 ---
 
-# System Control Registers
-Cortex-M0+[^m33] SCR Peripheral @0xe000_0000
+# ARM TrustZone
+Hardware Isolation Model
 
-ToDoDanut: should we update this?
+- Splits code into two regions **Secure** and **Non-Secure**
+- Designed for protecting keys, boot, and critical services while running normal app code
+- Partition memory, peripherals and interrupts
+- fixed **IDAU** map + programmable **SAU** map
+- Attributes:
+  - **NS** - typical application code
+  - **S** - secure drivers, keys, crypto
+  - **NSC** - veneer stubs that call secure functions
 
-Compute the actual address 
-$$ e000\_0000_{(16)} + register_{offset} $$
+:: right ::
+
+### Secure/nonsecure TrustZone partitioning
+
+<div align="center">
+<img src="./TrustZone.png" class="rounded h-50"/>
+</div>
+
+### Secure world transition
+
+<div align="center">
+<img src="./TrustZone_transitions.png" class="rounded h-50"/>
+</div>
+
+---
+layout: two-cols
+---
+
+<!-- # System Control Registers -->
+<!-- Cortex-M0+[^m33] SCR Peripheral @0xe000_0000 -->
+# System Control Block
+Cortex-M33 SCB Peripheral @0xe000_ed00
+
+<!-- ToDoDanut: should we update this? -->
+
+Compute the actual address
+$$ e000\_ed00_{(16)} + register_{offset} $$
 
 Register Examples:
-- SYST_CSR: **0xe000_e010** (*0xe000_0000 + 0xe010*)
-- CPUID: **0xe000_ed00** (*0xe000_0000 + 0xed00*)
+
+- CPUID: **0xe000_ed00** (*0xe000_ed00 + 0x0000*)
+- SCR: **0xe000_ed00** (*0xe000_ed00 + 0x0010*)
 
 ```rust {all|1-2|4|5|6,7}{lines:false}
-const SYS_CTRL_ADDR: usize = 0xe000_0000;
-const CPUID_OFFSET: usize = 0xed00;
+const SCB_ADDR: usize = 0xe000_ed00;
+const SCR_OFFSET: usize = 0x0010;
 
-let cpuid_reg = (SYS_CTRL_ADDR+CPUID_OFFSET) as *const u32;
-let cpuid_value = unsafe { *cpuid_reg };
+let scr_reg = (SCB_ADDR + SCR_OFFSET) as *const u32;
+let scr_value = unsafe { *cpuid_reg };
 // or
-let cpuid_value = unsafe { cpuid_reg.read() };
+let scr_value = unsafe { cpuid_reg.read() };
 ```
 
-<v-click>
+<v-switch>
+<template #0>
+⚠️ Reading and Writing to pointers is `unsafe`.
+</template>
+<template #1>
+⚠️ Reading and Writing to pointers is `unsafe`.
+
 ⚠️ Compilers optimize code and processors use cache!
-</v-click>
+</template>
+</v-switch>
 
 ::right::
 
-![SysCtrl Registers](./sysctrl_registers.png)
+![SysCtrl Registers](./system_ctrl_block_reg.png)
+<!-- ![SysCtrl Registers](./sysctrl_registers.png) -->
 
-[^m33]: Cortex-M33 has some additional registers
+<!-- [^m33]: Cortex-M33 has some additional registers -->
 
 ---
 
@@ -123,7 +172,7 @@ Write bytes to the `UART` (serial port) data register
 
 ```rust {1,2|3,4,7|5,6|all}
 // we use mut as we need to write to it
-const UART_TX: *mut u8 = 0x4003_4000 as *mut u8;
+const UART_TX: *mut u8 = 0x4001_3828 as *mut u8;
 // b".." means ASCII string (Rust uses UTF-8 strings by default)
 for character in b"Hello, World".iter() {
 	// character is &char, so we use *character to get the value
@@ -142,7 +191,7 @@ for character in b"Hello, World".iter() {
 <v-after>
 
 ```rust
-const UART_TX: *mut u8 = 0x4003_4000;
+const UART_TX: *mut u8 = 0x4001_3828;
 unsafe { UART_TX.write(b'd'); }
 ```
 
@@ -154,15 +203,16 @@ layout: two-cols
 
 # No Compiler Optimization
 
-CPUID: **0xe000_ed00** (*0xe000_0000 + 0xed00*)
+CPUID: **0xe000_ed00** (*0xe000_ed00 + 0xed00*)
 
-```rust {all|1|3-4|6|7-10}{lines: false}
+```rust {all|1|3-4|6,7|8-11}{lines: false}
 use core::ptr::read_volatile;
     
-const SYS_CTRL_ADDR: usize = 0xe000_0000;
-const CPUID_OFST: usize = 0xed00;
+const SYS_CTRL_ADDR: usize = 0xe000_ed00;
+const CPUID_OFST: usize = 0x0000;
 
-let cpuid_reg = (SYS_CTRL_ADDR + CPUID_OFST) as *const u32;
+let cpuid_reg = 
+    (SYS_CTRL_ADDR + CPUID_OFST) as *const u32;
 unsafe {
 	// avoid compiler optimization
 	read_volatile(cpuid_reg) 
@@ -176,7 +226,8 @@ unsafe {
 
 ::right::
 
-![SysCtrl Registers](./sysctrl_registers.png)
+![SysCtrl Registers](./system_ctrl_block_reg.png)
+<!-- ![SysCtrl Registers](./sysctrl_registers.png) -->
 
 ---
 
@@ -188,7 +239,7 @@ Write bytes to the `UART` (serial port) data register
 use core::ptr::write_volatile;
 
 // we use mut as we need to write to it
-const UART_TX: *mut u8 = 0x4003_4000 as *mut u8;
+const UART_TX: *mut u8 = 0x4001_3828 as *mut u8;
 // b".." means ASCII string (Rust uses UTF-8 strings by default)
 for character in b"Hello, World".iter() {
 	// character is &char, so we use *character to get the value
@@ -230,7 +281,7 @@ layout: two-cols
 # Read the CPUID
 About the MCU
 
-ToDoDanut: should we update this? Are sens fiind doar de exemplu sau il lasam asa?
+<!-- ToDoDanut: should we update this? Are sens fiind doar de exemplu sau il lasam asa? -->
 
 ```rust {all|1|3-4|6|7-9|11,12|14,15|17,18|20,21}{lines: false}
 use core::ptr::read_volatile;
@@ -270,7 +321,7 @@ layout: two-cols
 # AIRCR
 Application Interrupt and Reset Control Register
 
-ToDoDanut: should we update this? Are sens fiind doar de exemplu sau il lasam asa?
+<!-- ToDoDanut: should we update this? Are sens fiind doar de exemplu sau il lasam asa? -->
 
 ```rust {all|1,2|4,5|10-13|8,17|7,15|7,16|19-21}{lines: false}
 use core::ptr::read_volatile;
@@ -369,25 +420,25 @@ define registers format
 ```rust {1|2,22|3-15|16-32|all}
 use tock_registers::register_bitfields;
 register_bitfields! {u32,
-    CPUID [
-        IMPLEMENTER OFFSET(24) NUMBITS(8) [],
-        VARIANT OFFSET(20) NUMBITS(4) [],
-        ARCHITECTURE OFFSET(16) NUMBITS(4) [
-            ARM_V6_M = 0xc,
-            ARM_V8_M = 0xa
-        ],
-        PARTNO OFFSET(4) NUMBITS(12) [
-            CORTEX_M0P = 0xc60,
-            CORTEX_M33 = 0xd21
-        ],
-        REVISION OFFSET(0) NUMBITS(2) []
+  CPUID [
+    IMPLEMENTER OFFSET(24) NUMBITS(8) [],
+    VARIANT OFFSET(20) NUMBITS(4) [],
+    ARCHITECTURE OFFSET(16) NUMBITS(4) [
+      ARM_V6_M = 0xc,
+      ARM_V8_M = 0xa
     ],
-    AIRCR [
-        VECTKEY OFFSET(16) NUMBITS(8) [KEY = 0x05fa],
-        ENDIANESS OFFSET(15) NUMBITS(1) [],
-        SYSRESETREQ OFFSET(2) NUMBITS(1) [],
-        VECTCLRACTIVE OFFSET(1) NUMBITS(1) []
-    ]
+    PARTNO OFFSET(4) NUMBITS(12) [
+      CORTEX_M0P = 0xc60,
+      CORTEX_M33 = 0xd21
+    ],
+    REVISION OFFSET(0) NUMBITS(2) []
+  ],
+  AIRCR [
+    VECTKEY OFFSET(16) NUMBITS(8) [KEY = 0x05fa],
+    ENDIANESS OFFSET(15) NUMBITS(1) [],
+    SYSRESETREQ OFFSET(2) NUMBITS(1) [],
+    VECTCLRACTIVE OFFSET(1) NUMBITS(1) []
+  ]
 }
 ```
 
@@ -416,6 +467,19 @@ register_bitfields! {u32,
 ## CPUID Register
 ![CPUID Register](./cpuid_register.png)
 
+`ARCHITECTURE` field example:
+
+- It is **4 bit** long -- `NUMBITS(4)`
+- The filed has an offset of **16 bits** in regards to the register's start -- `OFFSET(16)`
+- `ARM_V6_M` and `ARM_V8_M` are both valid variants of the `ARCHITECTURE` and can be used with methods of the `Register` structures (e.g. `modify`).
+
+</template>
+
+<template #-3>
+
+## CPUID Register
+![CPUID Register](./cpuid_register.png)
+
 </template>
 
 </v-switch>
@@ -434,11 +498,11 @@ use tock_registers::registers::{ReadOnly, ReadWrite};
 // generates a C-style SysCtrl struct
 register_structs! {
 SysCtrl {
-	// we registers up to 0xed00
+	// we ingore registers up to 0xed00
 	(0x0000 => _reserved1),
 	// we define the CPUID register
 	(0xed00 => cpuid: ReadOnly<u32, CPUID::Register>),
-	// we registers up to 0xed
+	// we ignore registers up to 0xed
 	(0xed04 => _reserved2),
 	// we define the AIRCR register
 	(0xed0c => aircr: ReadWrite<u32, AIRCR::Register>),
@@ -470,23 +534,83 @@ SysCtrl {
 ![SysCtrl Registers](./sysctrl_registers.png)
 
 ---
+layout: two-cols
+---
+
+# `tock-registers`
+memory mapping
+
+```rust {all}{lines:false}
+const SYS_CTRL_ADDR: usize = 0xe000_0000;
+
+// generates a C-style SysCtrl struct
+register_structs! {
+SysCtrl {
+	// we ingore registers up to 0xed00
+	(0x0000 => _reserved1),
+	// we define the CPUID register
+	(0xed00 => cpuid: ReadOnly<u32, CPUID::Register>),
+	// we ignore registers up to 0xed
+	(0xed04 => _reserved2),
+	// we define the AIRCR register
+	(0xed0c => aircr: ReadWrite<u32, AIRCR::Register>),
+	// we ignore the rest of the registers
+	(0xed10 => @END),
+}
+}
+
+// C: struct SysCtrl *sys_ctrl = SYS_CTRL_ADDR;
+let sys_ctrl = unsafe { 
+  &*(SYS_CTRL_ADDR as *const SysCtrl)
+};
+```
+
+::right::
+
+![Tock Registers Memory Mapping](./TockRegisterStruct.png)
+
+<v-switch>
+
+<template #0>
+<arrow x1="440" y1="295" x2="580" y2="230" color="#0060df" width="2" arrowSize="1" />
+<arrow x1="450" y1="367" x2="834" y2="230" color="#0060df" width="2" arrowSize="1" />
+
+- The registers will be mapped at the defined offset from the `SysCtrl` structure beginning, with the designated access rights.
+</template>
+
+<template #1>
+<arrow x1="260" y1="257" x2="700" y2="145" color="#0060df" width="2" arrowSize="1" />
+<arrow x1="260" y1="329" x2="700" y2="230" color="#0060df" width="2" arrowSize="1" />
+
+- The macro will insert padding `u8` arrays the size of the gaps between the start, the defined registers and end of the structure. (*\*if needed*)
+</template>
+
+<template #2>
+<arrow x1="400" y1="507" x2="525" y2="110" color="#0060df" width="2" arrowSize="1" />
+
+- We ensure the structure is correctly alligned with the memory mapped registers by casting the peripheral's address as found in the datasheet into a `SysCtrl` reference.
+</template>
+
+</v-switch>
+
+---
 
 # Reset the processor
 using `tock-registers`
 
-```rust {1|3-11|13-17|1,14,19|6,8,21,22|all}
+```rust {1|3-11|12-17|1,14,19|6,8,21,22,23|all}
 const SYS_CTRL_ADDR: usize = 0xe000_0000;
 
 register_bitfields! {u32,
     // ...
     AIRCR [
-        VECTKEY OFFSET(16) NUMBITS(8) [KEY = 0x05fa],
+        VECTKEY OFFSET(16) NUMBITS(8) [KEY = 0x05fa], // `KEY` is a predefined variant of the `VECTKEY` field
         ENDIANESS OFFSET(15) NUMBITS(1) [],
         SYSRESETREQ OFFSET(2) NUMBITS(1) [],
         VECTCLRACTIVE OFFSET(1) NUMBITS(1) []
     ]
 }
-
+// The `SysCtrl` strcture generated will have a memory layout matching the indicated offsets of the registers
 register_structs! {
 SysCtrl {
   (0xed0c => aircr: ReadWrite<u32, AIRCR::Register>),
@@ -495,8 +619,9 @@ SysCtrl {
 
 let sys_ctrl = unsafe { &*(SYS_CTRL_ADDR as *const SysCtrl) }; // C: struct SysCtrl *sys_ctrl = SYS_CTRL_ADDR;
 
-sys_ctrl.aircr
-    .modify(AIRCR::VECTKEY::KEY + AIRCR::SYSRESETREQ::SET);
+sys_ctrl.aircr                                              // `SET` and `CLEAR` are variants generated by
+    .modify(AIRCR::VECTKEY::KEY + AIRCR::SYSRESETREQ::SET); // default and correspond to setting all bits
+                                                            // of the field to 1 and 0 respectively.
 ```
 
 <!--

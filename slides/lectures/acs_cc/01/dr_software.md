@@ -208,9 +208,7 @@ Extras:
 
 ---
 
-# Memory on ARM - RP2350 example - M33 based
-
-ToDoDanut: update pt STM32U545RET6Q
+# Memory on ARM - STM32U545RET6Q - M33 based
 
 <style>
     table {
@@ -234,7 +232,7 @@ ToDoDanut: update pt STM32U545RET6Q
         font-weight: bold;
     }
 </style>
-## RP2350 Memory Breakdown
+<!-- ## RP2350 Memory Breakdown
 | Memory Type       | Size       | Purpose                                      |
 |-------------------|------------|----------------------------------------------|
 | XIP [^1] Flash         | Up to 16 MB| Stores program code (external QSPI Flash).   |
@@ -242,7 +240,18 @@ ToDoDanut: update pt STM32U545RET6Q
 | Boot ROM          | 32 KB      | Stores bootloader, factory firmware.         |
 | OTP               | 8 KB       | One-time-programmable (Product id, cryptographic keys). |
 | Peripheral Space  | Varies     | Memory-mapped I/O for GPIO, UART, SPI, DMA.  |
-| Registers         | 16 + control registers | General purpose + program flow + special purpose |
+| Registers         | 16 + control registers | General purpose + program flow + special purpose | -->
+
+## STM32U545RET6Q Memory Breakdown
+
+| Memory Type | Size | Purpose |
+| - | - | - |
+| XIP [^1] Flash | 512 KB| Dual bank architecture. Stores program code. |
+| SRAM (On-chip) | 274 KB | Stores stack, heap, variables and data. |
+| OTP | 512 B | One-time-programmable (Product id, cryptographic keys). |
+| Backup SRAM | 2KB | Battery-powered contents retention in case of main power failure. |
+| Peripheral Space | Varies | Memory-mapped I/O for GPIO, UART, SPI, DMA. |
+| Registers | 16 + control registers | General purpose + program flow + special purpose |
 
 <br> 
 

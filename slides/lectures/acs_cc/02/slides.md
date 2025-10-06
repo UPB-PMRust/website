@@ -26,7 +26,7 @@ Lecture 2
 
 ---
 
-# GPIO for RP2350
+# GPIO for STM32U545
 
 - Memory Mapped I/O
   - GPIO Peripheral
@@ -71,10 +71,10 @@ src: ../../resources/gpio_avr/slides.md
 ---
 
 
-<!-- SIO -->
+<!-- GPIO STM32 -->
 
 ---
-src: ../../resources/sio/slides.md
+src: ../../resources/gpio_stm32/slides.md
 ---
 
 <!-- rust-embedded -->
@@ -111,10 +111,11 @@ src: ../../resources/signals/extra.md
 we talked about
 
 - Memory Mapped IO
-- RP2040 GPIO
+<!-- - RP2040 GPIO
   - Single Cycle IO
   - IO Bank
-  - Pad
+  - Pad -->
+- STM32U545 GPIO
 - The Rust embedded standard stack
 - Bare metal Rust
 - The embassy-rs framework

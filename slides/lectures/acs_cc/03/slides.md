@@ -53,7 +53,6 @@ src: ../../resources/interrupts/slides.md
 src: ../../resources/dr-03/extra_timers.md 
 ---
 
-
 <!-- Timers -->
 
 ---

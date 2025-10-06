@@ -14,9 +14,9 @@ The Rust API for embedded systems
 | | |
 |-|-|
 | Framework | Tasks, Memory Management, Network etc. `embassy-rs`, `rtic` |
-| BSC | Board Support Crate `embassy-rp`, `rp-pico` |
-| *HAL Implementation* | Uses the PAC and exports a standard HAL towards the upper levels `embassy-rp` |
-| PAC | Accesses registers, usually created automatically from SVD files - `rp2040_pac`, `rp-pac` |
+| BSC | Board Support Crate `embassy-rp`, `rp-pico`, `embassy-stm32` |
+| *HAL Implementation* | Uses the PAC and exports a standard HAL towards the upper levels `embassy-stm32` |
+| PAC | Accesses registers, usually created automatically from SVD files - `rp-pac`, `stm32-metapac` |
 | μ-architecture | `cortex-m` processor startup |
 
 
@@ -69,7 +69,10 @@ pub trait OutputPin: ErrorType {
   fn set_high(&mut self) -> Result<(), Self::Error>;
 
   // Provided method
-  fn set_state(&mut self, state: PinState) -> Result<(), Self::Error> { ... }
+  fn set_state(
+    &mut self,
+    state: PinState
+  ) -> Result<(), Self::Error> { ... }
 }
 ```
 </div>
@@ -81,7 +84,7 @@ pub trait OutputPin: ErrorType {
 
 # Bare metal
 
-ToDoDanut: pp ca de aici doar mici modificari like use-ul de mai jos?
+<!-- ToDoDanut: pp ca de aici doar mici modificari like use-ul de mai jos? -->
 
 This is how a Rust application would look like
 
@@ -124,38 +127,49 @@ This is how a Rust application would look like
 
 <div grid="~ cols-2 gap-2">
 
-```rust {all}
+```rust{all}
 #![no_std]
 #![no_main]
 
-use core::ptr::{read_volatile, write_volatile};
-use cortex_m_rt::entry;
-use core::panic::PanicInfo;
-
-const GPIOX_CTRL: u32 = 0x4001_4004;
-const GPIO_OE_SET: *mut u32= 0xd000_0024 as *mut u32;
-const GPIO_OUT_SET:*mut u32= 0xd000_0014 as *mut u32;
-const GPIO_OUT_CLR:*mut u32= 0xd000_0018 as *mut u32;
+use core::ptr::write_volatile;
+use core::ptr::read_volatile;
 
 #[panic_handler]
 pub fn panic(_info: &PanicInfo) -> ! {
   loop { }
 }
+
+const PORT_x: u32 = ...;  // A is 0, B is 1, ...
+const PIN: u32 = ...;     // Ranging from 0 to 15
+
+const GPIOx_BASE_ADDR: usize =
+  0x4202_0000 + 0x400 * PORT_x;
+const GPIOx_MODER: *mut u32 = 
+  GPIOx_BASE_ADDR as *mut u32;
+const GPIOx_ODR: *mut u32 = 
+  (GPIOx_BASE_ADDR + 0x14) as *mut u32;
 ```
 
-```rust {all}{startLine:18}
-#[entry]
+```rust{all}{startLine:21}
+const RCC_BASE_ADDR: usize = 0x4602_0C00;
+const RCC_AHB2ENR1: *mut u32 = 
+  (RCC_BASE_ADDR + 0x8C) as *mut u32;
+
+#[cortex_m_rt::entry]
 fn main() -> ! {
-  let gpio_ctrl = (GPIOX_CTRL + 8 * pin) as *mut u32;
   unsafe {
-      write_volatile(gpio_ctrl, 5);
-      write_volatile(GPIO_OE_SET, 1 << pin);
-      let reg = match value {
-      0 => GPIO_OUT_CLR,
-      _ => GPIO_OUT_SET
-      };
-      write_volatile(reg, 1 << pin);
-  };
+    let mut val = read_volatile(RCC_AHB2ENR1);
+    let val = val | (1 << PORT_x);
+    write_volatile(RCC_AHB2ENR1, val);
+  }
+
+  unsafe {
+    let val = read_volatile(GPIOx_MODER);
+    let mask = !(0b11 << (2 * PIN));
+    let val = (val & mask) | (0b01 << (2 * PIN));
+    write_volatile(GPIOx_MODER, val);
+    write_volatile(GPIOx_ODR, 1 << PIN);
+  }
 
   loop { }
 }

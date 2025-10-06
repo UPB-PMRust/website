@@ -56,11 +56,16 @@ it needs attention.-->
     peripheral they control
 - Developers have to **bind** interrupts to the driver.
 
-![RP2350 Interrupts 1](./rp2350_interrupts_1.png)
-List of some of the RP2350's interrupts
+<!-- ![RP2350 Interrupts 1](./rp2350_interrupts_1.png) -->
+<!-- List of some of the RP2350's interrupts -->
+
+<div align="center">
+<img src="./stm32u5_vector_table.png" class="w-180 rounded">
+</div>
 
 <div grid="~ cols-2 gap-3">
 
+<!--
 <div>
 
 Register the Interrupt
@@ -77,6 +82,28 @@ bind_interrupts!(struct Irqs {
 Bind it to the driver
 ```rust {*}{lines: false}
 let mut adc = Adc::new(p.ADC, Irqs, Config::default());
+```
+
+</div>
+-->
+
+<div>
+Register the Interrupt
+
+```rust {*}{lines: false}
+bind_interrupts!(struct Irqs {
+    I2C1_EV => i2c::EventInterruptHandler<I2C1>;
+    I2C1_ER => i2c::ErrorInterruptHandler<I2C1>;
+});
+```
+
+</div>
+
+<div>
+Bind it to the driver
+
+```rust {*}{lines: false}
+let mut i2c = I2c::new(p.I2C1, p.PB6, p.PB7, Irqs, ...);
 ```
 
 </div>

@@ -428,10 +428,10 @@ c: 0c 94 48 00 jmp 0x90  ; 0x90 <__bad_interrupt>
 src: ../../resources/mcu/slides.md
 ---
 
-<!-- RP2040 -->
+<!-- STM32U545RETQ -->
 
 ---
-src: ../../resources/rp2350/slides.md
+src: ../../resources/stm32u545re/slides.md
 ---
 
 ---
@@ -443,7 +443,7 @@ we talked about
 - Microcontrollers (MCU) / Microprocessors (CPU)
 - Microcontroller architectures
 - ARM Cortex-M
-- RP2040
+- STM32U545RETQ
 
 ---
 src: avr.md
