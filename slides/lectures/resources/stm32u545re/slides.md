@@ -39,7 +39,7 @@ that use STM32U545RE
 
 ### Nucleo U545RE-Q
 
-<br> 
+<br>
 
 <img src="./nucleo_u545re_q.jpg" class="w-100 rounded" />
 
@@ -78,3 +78,9 @@ have multiple functions
 
 <img src="./pins.png" class="rounded">
 
+# The Bus
+that interconnects the core with the peripherals
+
+<div align="center">
+    <img src="./bus.svg" class="h-100 rounded">
+</div align="center">
