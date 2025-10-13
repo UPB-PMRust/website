@@ -14,6 +14,11 @@ for this section
    - Chapter 2 - *Memory and bus architecture*
      - Section 2.1 - *System architecture*
 
+**STMicroelectronics**, *[STM32U5 Datasheet](https://www.st.com/resource/en/datasheet/stm32u545re.pdf)*
+  - Chapter 2 - *"Description"*
+  - Chapter 4 - *"Pinout, pin description, and alternate function"*
+
+
 ---
 layout: two-cols
 ---

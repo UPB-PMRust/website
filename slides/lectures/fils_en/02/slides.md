@@ -45,6 +45,12 @@ src: ../../resources/mmio/slides.md
 src: ../../resources/sio/slides.md
 ---
 
+<!-- GPIO -->
+
+---
+src: ../../resources/gpio_stm32/slides.md
+---
+
 <!-- rust-embedded -->
 
 ---

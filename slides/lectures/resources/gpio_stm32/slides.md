@@ -42,14 +42,14 @@ layout: two-cols
 
 <img src="./RCC_AHB2.png" class="rounded">
 
-- Enable I/O Port x clock signal. (x from A to J)
+- Enable I/O Port `x` clock signal (`x` from `A` to `J`)
   - Set the corresponding GPIOxEN bit
 - Input
-  - Set GPIOx_MODER bits for pin y to `0b00`
-  - Read GPIOx_IDR bit y
+  - Set GPIOx_MODER bits for pin `y` to `0b00`
+  - Read GPIOx_IDR bit `y`
 - Output
   - Set GPIOx_MODER bits for pin y to `0b01`
-  - Set GPIOx_ODR bit y
+  - Set GPIOx_ODR bit `y`
 
 :: right ::
 
@@ -89,7 +89,7 @@ layout: two-cols
 
 <img src="./RCC_address.png" class="rounded">
 
-```rust{all|4|4,5,6|4,5,6,9|4,5,6,9,10,11|all}
+```rust{none|4|4,5,6|4,5,6,9|4,5,6,9,10,11|all}
 use core::ptr::write_volatile;
 use core::ptr::read_volatile;
 
@@ -126,7 +126,7 @@ layout: two-cols
 
 <img src="./GPIO_port_address.png" class="rounded h-45">
 
-```rust{all|3|3-7|4,5,10|4,5,10,11|4,5,10,11,12,13|4,5,10,11,12,13,14|6,7,15,16|all}
+```rust{none|3|3-7|4,5,10|4,5,10,11|4,5,10,11,12,13|4,5,10,11,12,13,14|6,7,15,16|all}
 use core::ptr::{write_volatile, read_volatile};
 
 const GPIOA_BASE_ADDR: usize = 0x4202_0000;
@@ -166,7 +166,7 @@ layout: two-cols
 
 :: right ::
 
-```rust{all|3-5,12|3-5,12,13|3-5,12-15|3,6,7,17-19|3,6,7,17-21|3,8,9,23-24|3,8,9,23-25}
+```rust{none|3-5,12|3-5,12,13|3-5,12-15|3,6,7,17-19|3,6,7,17-21|3,8,9,23-24|3,8,9,23-25|all}
 use core::ptr::{write_volatile, read_volatile};
 
 const GPIOC_BASE_ADDR: usize = 0x4202_0800;

@@ -59,6 +59,50 @@ example for RP2
 layout: two-cols
 ---
 
+# The Bus
+example for STM32U545RE
+
+<style>
+.two-columns {
+    grid-template-columns: 2fr 5fr;
+}
+</style>
+
+<v-clicks>
+
+1. **Memory Controller** asks for data transfer
+2. **Internal Bus Routes** the request
+   - to the *External Bus* **or**
+   - to the *Internal Peripherals*
+3. **External Bus Routes** the request based on the *Address Mapping Table*
+   1. to **RAM**
+   2. to **Flash**
+   3. to an **External Peripheral**
+
+</v-clicks>
+
+:: right ::
+
+<v-switch>
+
+<template #-3>
+
+![STM32U545RE - Internal Bus](./stm32u545re_internal_bus.svg)
+
+</template>
+
+<template #0>
+
+![STM32U545RE - External Bus](./stm32u545re_external_bus.svg)
+
+</template>
+
+</v-switch>
+
+---
+layout: two-cols
+---
+
 # STM32L0x2
 A real MCU
 
@@ -81,7 +125,7 @@ layout: two-cols
 # System Control Registers
 Cortex-M0+[^m33] SCR Peripheral @0xe000_0000
 
-Compute the actual address 
+Compute the actual address
 $$ e000\_0000_{(16)} + register_{offset} $$
 
 Register Examples:
@@ -152,14 +196,14 @@ CPUID: **0xe000_ed00** (*0xe000_0000 + 0xed00*)
 
 ```rust {all|1|3-4|6|7-10}{lines: false}
 use core::ptr::read_volatile;
-    
+
 const SYS_CTRL_ADDR: usize = 0xe000_0000;
 const CPUID_OFST: usize = 0xed00;
 
 let cpuid_reg = (SYS_CTRL_ADDR + CPUID_OFST) as *const u32;
 unsafe {
 	// avoid compiler optimization
-	read_volatile(cpuid_reg) 
+	read_volatile(cpuid_reg)
 }
 ```
 
@@ -235,8 +279,8 @@ let cpuid_value = unsafe {
     read_volatile(cpuid_reg)
 };
 
-// shift right 24 bits and keep only the last 8 bits
-let variant = (cpuid_value >> 24) & 0b1111_1111;
+// shift right 24 bits and keep only the last 4 bits
+let variant = (cpuid_value >> 24) & 0b1111;
 
 // shift right 16 bits and keep only the last 4 bits
 let architecture = (cpuid_value >> 16) & 0b1111;
@@ -273,11 +317,11 @@ const VECTKEY_POS: u32 = 16;
 const SYSRESETREQ_POS: u32 = 2;
 
 let aircr_register = (SYS_CTRL + AIRCR) as *mut u32;
-let mut aircr_value = unsafe { 
-    read_volatile(aircr_register) 
+let mut aircr_value = unsafe {
+    read_volatile(aircr_register)
 };
 
-aircr_value = aircr_value & !(0xffff << VECTKEY_POS); 
+aircr_value = aircr_value & !(0xffff << VECTKEY_POS);
 aircr_value = aircr_value | (0x05fa << VECTKEY_POS);
 aircr_value = aircr_value | (1 << SYSRESETREQ_POS);
 
@@ -304,7 +348,7 @@ they do stuff
 - Read
   - reads the value of a register
   - might ask the peripheral to do something
-  
+
 - Write
   - writes the value to a register
   - might ask the peripheral to do something
@@ -533,6 +577,6 @@ if part_no == CPUID::PARTNO::Value::CORTEX_M0P as u32 {
   // this is a Cortex-M0+
 } else if part_no == CPUID::PARTNO::Value::CORTEX_M33 as u32 {
   // this is a Cortex-M33
-} 
+}
 
 ```

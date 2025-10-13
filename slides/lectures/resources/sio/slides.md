@@ -95,7 +95,7 @@ layout: two-cols
 ##### GPIO_IN
 <img src="./sio_gpio_in.png" class="rounded">
 
-```rust{all|4,8|4,9|10,11|4,12|5,7,13,14}
+```rust{none|4,8|4,9|10,11|4,12|5,7,13,14|all}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -128,7 +128,7 @@ layout: two-cols
 ##### GPIO_IN
 <img src="./sio_gpio_in.png" class="rounded">
 
-```rust{all|4,8,9|5,7,10,11}
+```rust{none|4,8,9|5,7,10,11|all}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -167,7 +167,7 @@ layout: two-cols
 ##### GPIO_OUT
 <img src="./sio_gpio_out.png" class="rounded">
 
-```rust{all|4,8,9|5,10|5,11|12|5,13}
+```rust{none|4,8,9|5,10|5,11|12|5,13|all}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -201,7 +201,7 @@ efficient
 ##### GPIO_OUT_CLR
 <img src="./sio_gpio_out_clr.png" class="rounded">
 
-```rust{all|4,9|5,6,10-13|14}
+```rust{none|4,9|5,6,10-13|14|all}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -218,7 +218,6 @@ unsafe {
     write_volatile(reg, 1 << pin);
 };
 ```
-
 
 ---
 layout: two-cols
@@ -244,7 +243,7 @@ layout: two-cols
 
 <img src="./gpio_status_ctrl.png" class="rounded">
 
-```rust{all|4,8|8,11|5,12|6,10,13,14}
+```rust{none|4,8|8,11|5,12|6,10,13,14|all}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -275,7 +274,7 @@ layout: two-cols
 
 <img src="./gpio_status_ctrl.png" class="rounded">
 
-```rust{all|4,9|9,11|5,12|6,7,13-16|17}
+```rust{none|4,9|9,11|5,12|6,7,13-16|17|all}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -301,7 +300,6 @@ unsafe {
 ##### GPIOx_CTRL
 Offset: 0x004, 0x00c, ... 0x0ec (0x4 + 8*x)
 <img src="./gpio_ctrl_register.png" class="rounded">
-
 
 ---
 layout: two-cols
