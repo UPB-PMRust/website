@@ -1,9 +1,22 @@
 ---
 layout: section
 ---
+
 # MMIO
 Memory Mapped Input Output
 
+---
+---
+# Bibliography
+for this section
+
+**Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M23 and Cortex-M33 Processors*
+   - Chapter 6 - *Memory system*
+     - Section 6.1 - *Overview of the memory system*
+     - Section 6.2 - *Memory map*
+     - Section 6.11 - *Memory systems in microcontrollers*
+
+---
 ---
 
 # 8 bit processor
