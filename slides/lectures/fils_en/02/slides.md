@@ -64,7 +64,7 @@ src: ../../resources/embassy-rs/slides.md
 ---
 
 ---
----
+
 # Conclusion
 we talked about
 
@@ -73,6 +73,10 @@ we talked about
   - Single Cycle IO
   - IO Bank
   - Pad
+- STM32U545RE
+  - GPIO
+  - Port MODER
+  - Port Setup
 - The Rust embedded standard stack
 - Bare metal Rust
 - The embassy-rs framework

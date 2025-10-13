@@ -5,11 +5,15 @@ layout: section
 Memory Mapped Input Output
 
 ---
----
+
 # 8 bit processor
 a simple 8 bit processor with a text display
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![8 Bit Processor](./8-bit-processor.svg)
+
+</div>
 
 ---
 layout: two-cols
@@ -43,13 +47,21 @@ example for RP2
 
 <template #-3>
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![Bus](./internal_bus.svg)
+
+</div>
 
 </template>
 
 <template #0>
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![Bus](./bus.svg)
+
+</div>
 
 </template>
 
@@ -100,23 +112,13 @@ example for STM32U545RE
 </v-switch>
 
 ---
-layout: two-cols
 ---
 
-# STM32L0x2
-A real MCU
+# Cortex-M33 Memory Layout
 
-| | |
-|-|-|
-| Cortex-M0+ Peripherals | MCU's *settings* and internal peripherals, available at the same address on all M0+ |
-| Peripherals | GPIO, USART, SPI, I2C, USB, etc |
-| Flash | The storage space |
-| SRAM | RAM memory |
-| @0x0000_0000 | Alias for SRAM or Flash |
-
-::right::
-
-<img src="./stm32_mmio.png" class="rounded">
+<center>
+<img src="./layout.png" class="w-155 rounded">
+</center>
 
 ---
 layout: two-cols
@@ -132,7 +134,7 @@ Register Examples:
 - SYST_CSR: **0xe000_e010** (*0xe000_0000 + 0xe010*)
 - CPUID: **0xe000_ed00** (*0xe000_0000 + 0xed00*)
 
-```rust {all|1-2|4|5|6,7}{lines:false}
+```rust {none|1-2|4|5|6,7|all}{lines:false}
 const SYS_CTRL_ADDR: usize = 0xe000_0000;
 const CPUID_OFFSET: usize = 0xed00;
 
@@ -194,7 +196,7 @@ layout: two-cols
 
 CPUID: **0xe000_ed00** (*0xe000_0000 + 0xed00*)
 
-```rust {all|1|3-4|6|7-10}{lines: false}
+```rust {none|1|3-4|6|7-10|all}{lines: false}
 use core::ptr::read_volatile;
 
 const SYS_CTRL_ADDR: usize = 0xe000_0000;
@@ -241,11 +243,15 @@ The compiler **knows** that `UART_TX` **must be written** every time.
 </v-clicks>
 
 ---
----
+
 # 8 bit processor
 with cache
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![8 Bit Processor](./8-bit-processor-with-cache.svg)
+
+</div>
 
 ---
 ---
@@ -268,7 +274,7 @@ layout: two-cols
 # Read the CPUID
 About the MCU
 
-```rust {all|1|3-4|6|7-9|11,12|14,15|17,18|20,21}{lines: false}
+```rust {none|1|3-4|6|7-9|11,12|14,15|17,18|20,21|all}{lines: false}
 use core::ptr::read_volatile;
 
 const SYS_CTRL_ADDR: usize = 0xe000_0000;
@@ -306,7 +312,7 @@ layout: two-cols
 # AIRCR
 Application Interrupt and Reset Control Register
 
-```rust {all|1,2|4,5|10-13|8,17|7,15|7,16|19-21}{lines: false}
+```rust {none|1,2|4,5|10-13|8,17|7,15|7,16|19-21|all}{lines: false}
 use core::ptr::read_volatile;
 use core::ptr::write_volatile;
 
@@ -368,7 +374,7 @@ Offset: 0xed0c
 # SVD XML File
 System View Description
 
-```xml{all|3|4,21|4,5,21|4,6,21|4,7-9,20,21|4,7-8,12-17,20,21}
+```xml{none|3|4,21|4,5,21|4,6,21|4,7-9,20,21|4,7-8,12-17,20,21|all}
 <device schemaVersion="1.1"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd">
 	<name>RP2040</name>

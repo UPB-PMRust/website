@@ -18,14 +18,13 @@ for this section
      - Section 2.19 - *GPIO* (except Interrupts)
 
 ---
----
+
 # RP2040 GPIO Pins
 GPIO pins are connected to the processor pins through three peripherals
 
 <div align="center">
-<img src="./rp2040_gpio.svg" class="h-80 rounded" />
+<img src="./rp2040_gpio.svg" style="background: white; padding: 5px;" class="h-80 rounded" />
 </div>
-
 
 ---
 layout: two-cols
