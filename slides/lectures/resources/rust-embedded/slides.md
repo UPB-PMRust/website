@@ -121,7 +121,7 @@ pub fn panic(_info: &PanicInfo) -> ! {
 </div>
 
 ---
----
+
 # Bare metal without PAC & HAL
 This is how a Rust application would look like on the RP2
 
@@ -134,6 +134,8 @@ This is how a Rust application would look like on the RP2
 use core::ptr::{read_volatile, write_volatile};
 use cortex_m_rt::entry;
 use core::panic::PanicInfo;
+
+const PIN: u32 = ...; // 0 to 20
 
 const GPIOX_CTRL: u32 = 0x4001_4004;
 const GPIO_OE_SET: *mut u32= 0xd000_0024 as *mut u32;
@@ -149,15 +151,15 @@ pub fn panic(_info: &PanicInfo) -> ! {
 ```rust {all}{startLine:18}
 #[entry]
 fn main() -> ! {
-  let gpio_ctrl = (GPIOX_CTRL + 8 * pin) as *mut u32;
+  let gpio_ctrl = (GPIOX_CTRL + 8 * PIN) as *mut u32;
   unsafe {
       write_volatile(gpio_ctrl, 5);
-      write_volatile(GPIO_OE_SET, 1 << pin);
+      write_volatile(GPIO_OE_SET, 1 << PIN);
       let reg = match value {
       0 => GPIO_OUT_CLR,
       _ => GPIO_OUT_SET
       };
-      write_volatile(reg, 1 << pin);
+      write_volatile(reg, 1 << PIN);
   };
 
   loop { }
@@ -166,9 +168,8 @@ fn main() -> ! {
 
 </div>
 
+---
 
----
----
 # Bare metal without PAC & HAL
 This is how a Rust application would look like on the STM32U545RE
 
@@ -178,13 +179,9 @@ This is how a Rust application would look like on the STM32U545RE
 #![no_std]
 #![no_main]
 
-use core::ptr::write_volatile;
-use core::ptr::read_volatile;
-
-#[panic_handler]
-pub fn panic(_info: &PanicInfo) -> ! {
-  loop { }
-}
+use core::ptr::{read_volatile, write_volatile};
+use cortex_m_rt::entry;
+use core::panic::PanicInfo;
 
 const PORT_x: u32 = ...;  // A is 0, B is 1, ...
 const PIN: u32 = ...;     // Ranging from 0 to 15
@@ -195,12 +192,16 @@ const GPIOx_MODER: *mut u32 =
   GPIOx_BASE_ADDR as *mut u32;
 const GPIOx_ODR: *mut u32 =
   (GPIOx_BASE_ADDR + 0x14) as *mut u32;
-```
-
-```rust{all}{startLine:21}
 const RCC_BASE_ADDR: usize = 0x4602_0C00;
 const RCC_AHB2ENR1: *mut u32 =
   (RCC_BASE_ADDR + 0x8C) as *mut u32;
+```
+
+```rust{all}{startLine:20}
+#[panic_handler]
+pub fn panic(_info: &PanicInfo) -> ! {
+  loop { }
+}
 
 #[cortex_m_rt::entry]
 fn main() -> ! {

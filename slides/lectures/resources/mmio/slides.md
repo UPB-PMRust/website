@@ -298,8 +298,8 @@ let cpuid_value = unsafe {
     read_volatile(cpuid_reg)
 };
 
-// shift right 24 bits and keep only the last 4 bits
-let variant = (cpuid_value >> 24) & 0b1111;
+// shift right 20 bits and keep only the last 4 bits
+let variant = (cpuid_value >> 20) & 0b1111;
 
 // shift right 16 bits and keep only the last 4 bits
 let architecture = (cpuid_value >> 16) & 0b1111;
