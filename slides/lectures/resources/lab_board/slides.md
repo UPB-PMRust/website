@@ -3,7 +3,7 @@ layout: two-cols
 ---
 
 # Lab Board
-[Schematics and PCB](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb)
+<!-- [Schematics and PCB](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb) -->
 
 <style>
 .two-columns {
@@ -77,7 +77,7 @@ layout: two-cols
 </template>
 
 <template #-10>
-<Arrow x1="300" y1="355" x2="710" y2="355" width="3" color="red"/>
+<Arrow x1="300" y1="355" x2="650" y2="355" width="3" color="red"/>
 <Arrow x1="900" y1="470" x2="800" y2="390" width="3" color="red"/>
 </template>
 
