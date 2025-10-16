@@ -787,6 +787,7 @@ On STM32 devices, the interrupt vector table is provided by the `cortex-m-rt` cr
 // we use as _ to avoid a compiler warning
 // saying that the crate is not used
 use cortex_m_rt as _;
+use stm32u5 as _;
 ```
 
 
@@ -1340,114 +1341,9 @@ This table show the advantages and disadvantages of both methods.
 | **Memory Usage** | High (standard Rust formatting) | Low (compact binary format)   |
 | **Use Case** | Debugging with full text output  | Real-time logging on embedded devices |
 
-## Exercises
-
-1. Create a new project using `cargo init`. Configure the project using a configuration file
-  to build for the lab board's target. Test it by running `cargo build`. Take a look at [Cross-compiling](#cross-compiling)(**1p**). 
-:::tip
-All you have to do is to make sure you are building a binary that does not depend on `std`, has no `main` function
-and provides an **empty panic handler**.
-
-<Tabs>
-
-<TabItem value="vscode" label="Visual Studio Code" default>
-To prevent `rust-analyzer` from showing an error on the first line and to automatically
-format your source when saving, create a `.vscode/settings.json` file with:
-
-```json
-{
-    "rust-analyzer.cargo.allTargets": false,
-    "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust-analyzer",
-        "editor.formatOnSave": true,
-        "editor.formatOnSaveMode": "file",
-    },
-}
-```
-</TabItem>
-
-  <TabItem value="zed" label="Zed" default>
-
-  Edit the file `.zed/settings.json`:
-
-  ```json
-{
-  "lsp": {
-    "rust-analyzer": {
-      "initialization_options": {
-        "cargo": {
-          "target": "thumbv8m.main-none-eabihf",
-          "allTargets": false
-        }
-      }
-    }
-  }
-}
-
-```
-
-  </TabItem>
-  <TabItem value="helix" label="Helix" default>
-
-Edit the file `.helix/languages.json`:
-  ```json
-[[language]]
-name = "rust"
-
-[language-server.rust-analyzer.config.check]
-targets = ["thumbv8m.main-none-eabihf"]
-allTargets = false
-
-```
-
-  </TabItem>
-</Tabs>
-:::
-2. Inspect the binary and figure out what sections are missing. Explain why each of the sections
-  is missing. take a look at [Inspect binaries](#inspect-binaries). (**1p**)
-3. Add the `cortex-m-rt` crate to your project and define a 
-  function as an *entry point* for your firmware. Inspect the binary and see which of the required sections are present. (**1p**)
-:::tip
-The `cargo add` command adds crates to a project.
-:::
-4. Write a linker script to add the correct sections to your binary. 
-  Take a look at [Linker script](#linker-script). Inspect the binary and check if the 
-  required sections are present. (**1p**)
-5. Write the build script to instruct the linker to use the linker script. Take a look at [Build script](#build-script).
-  Inspect the binary and see if the required sections are present. Is one of the sections missing? (**1p**) 
-  
-:::tip
-Make sure that the build script only uses linker scripts that exist in the project.
-Some crates, like `cortex-m-rt` and `defmt` provide linker scripts.
-:::
-6. Print a message from the main function using semihosting. Try running 
-  the firmware using `probe-rs run target/...$app_name`. Why doesn't it work? Take a look at [Semihosting](#semihosting) (**1p**). 
-7. Create a `memory.x` file for your STM32U545 project that defines the FLASH and RAM regions. Build the project and inspect the ELF map to confirm that the vector table is placed at `0x0800_0000` and that the stack pointer is set to the top of RAM. (**1p**)
-8. Use semihosting to print the panic message in the *panic handler*. Use the `panic!` macro to 
-  generate a panic. Take a look at [Printing the panic](#printing-the-panic) (**1p**).
-9. Use the `defmt` and `defmt_rtt` crates to print `info!` and `error!` messages. Generate a panic to verify the error message.
-  Take a look at [Using `defmt`](#using-defmt) (**1p**)
-:::tip
-- Make sure you add all the necessary linker scripts to the `build.rs` build script.
-- Make sure you set the `DEFMT_LOG` variable to `info` when building to see the `info` messages or
-  use the `.cargo/config.toml` file (take a look at [Filtering Messages](#filtering-messages)).
-- Messages are printed together with the location where the message was issued. To supress this
-  use the ` --no-location` parameter for `probe-rs run`.
-:::
-10. Use the `panic-probe` crate to display better panics. (**1p**)
-:::tip
-- This crate provides a panic handler.
-- Enable the `print-defmt` features of `panic-probe` to use `defmt` to print panics.
-:::
-11. Make the necessary configuration so that you can use `cargo run` to flash the firmware. Take a look 
-  at [Using `cargo run`](#using-cargo-run) (**1p**)
-:::tip
-You can add the `--no-location` parameter to the runner.
-:::
-
 ## Editor Setup
 
-When working on embedded Rust projects (like our STM32U5 or RP2040 firmware), having a well‑configured editor makes development smoother and debugging less painful. Here are three excellent options — Visual Studio Code, Zed, and Helix — with setup instructions and recommendations.
+When working on embedded Rust projects (like our STM32U5 or RP2 firmware), having a well‑configured editor makes development smoother and debugging less painful. Here are three excellent options — Visual Studio Code, Zed, and Helix — with setup instructions and recommendations.
 
 <Tabs>
 
@@ -1468,6 +1364,8 @@ Create a file `.vscode/settings.json`:
 ```
 
 :::info
+
+Make sure to disable `allTargets` in `rust-analyzer` as shown above, otherwise it will try to build host + embedded targets and flood you with errors.
 
 You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5_lab/tree/main/.vscode).
 
@@ -1525,6 +1423,8 @@ And a file `.zed/debug.json`:
 
 :::info
 
+Remember to set `allTargets: false` in Zed’s LSP config to avoid host build errors.
+
 You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5_lab/tree/main/.zed).
 
 :::
@@ -1547,12 +1447,63 @@ allTargets = false
 
 :::info
 
+Be sure to add `allTargets = false` in `languages.toml` so rust-analyzer doesn’t try to build every target.
+
 You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5_lab/tree/main/.helix).
 
 :::
 
   </TabItem>
 </Tabs>
+
+## Exercises
+
+1. Create a new project using `cargo init`. Configure the project using a configuration file
+  to build for the lab board's target. Test it by running `cargo build`. Take a look at [Cross-compiling](#cross-compiling)(**1p**). 
+
+2. Inspect the binary and figure out what sections are missing. Explain why each of the sections
+  is missing. take a look at [Inspect binaries](#inspect-binaries). (**1p**)
+3. Add the `cortex-m-rt` crate to your project and define a 
+  function as an *entry point* for your firmware. Inspect the binary and see which of the required sections are present. (**1p**)
+:::tip
+The `cargo add` command adds crates to a project.
+:::
+4. Write a linker script to add the correct sections to your binary. 
+  Take a look at [Linker script](#linker-script). Inspect the binary and check if the 
+  required sections are present. (**1p**)
+5. Write the build script to instruct the linker to use the linker script. Take a look at [Build script](#build-script).
+  Inspect the binary and see if the required sections are present. Is one of the sections missing? (**1p**) 
+  
+:::tip
+Make sure that the build script only uses linker scripts that exist in the project.
+Some crates, like `cortex-m-rt` and `defmt` provide linker scripts.
+:::
+6. Print a message from the main function using semihosting. Try running 
+  the firmware using `probe-rs run target/...$app_name`. Why doesn't it work? Take a look at [Semihosting](#semihosting) (**1p**). 
+7. Create a `memory.x` file for your STM32U545 project that defines the FLASH and RAM regions. Build the project and inspect the ELF map to confirm that the vector table is placed at `0x0800_0000` and that the stack pointer is set to the top of RAM. (**1p**)
+8. Use semihosting to print the panic message in the *panic handler*. Use the `panic!` macro to 
+  generate a panic. Take a look at [Printing the panic](#printing-the-panic) (**1p**).
+9. Use the `defmt` and `defmt_rtt` crates to print `info!` and `error!` messages. Generate a panic to verify the error message.
+  Take a look at [Using `defmt`](#using-defmt) (**1p**)
+:::tip
+- Make sure you add all the necessary linker scripts to the `build.rs` build script.
+- Make sure you set the `DEFMT_LOG` variable to `info` when building to see the `info` messages or
+  use the `.cargo/config.toml` file (take a look at [Filtering Messages](#filtering-messages)).
+- Messages are printed together with the location where the message was issued. To supress this
+  use the ` --no-location` parameter for `probe-rs run`.
+:::
+10. Use the `panic-probe` crate to display better panics. (**1p**)
+:::tip
+- This crate provides a panic handler.
+- Enable the `print-defmt` features of `panic-probe` to use `defmt` to print panics.
+:::
+11. Make the necessary configuration so that you can use `cargo run` to flash the firmware. Take a look 
+  at [Using `cargo run`](#using-cargo-run) (**1p**)
+:::tip
+You can add the `--no-location` parameter to the runner.
+:::
+
+
 
 ## VS Code probe-rs Extension
 
