@@ -85,11 +85,16 @@ Each microcontroller offers a way in which the debug interface can be permanentl
 
 Professional debuggers, while offering a lot of features, are usually expensive. STMicroelectronics provides the ST-LINK/V3SET, an affordable and versatile in-circuit debugger and programmer designed specifically for STM32 microcontrollers.
 
-The ST-LINK firmware is maintained by ST and is regularly updated through STM32CubeProgrammer. It is proprietary but widely supported across ST’s software ecosystem, including STM32CubeIDE, OpenOCD, and many others third-party options.
+The ST-LINK firmware is maintained by ST and is regularly updated through [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html). It is proprietary but widely supported across ST’s software ecosystem, including [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html), OpenOCD, and many others third-party options.
 
 Unlike custom open-source probes, the ST-LINK hardware and firmware are tightly integrated with STM32 development tools and come with professional-grade features like drag-and-drop programming (in mass storage mode), high-speed transfers, and support for multiple power configurations.
 
-For wiring and pinout information, refer to the ST-LINK/V3SET’s [user manual](https://www.st.com/resource/en/user_manual/um1075-stlinkv2-incircuit-debuggerprogrammer-for-stm8-and-stm32-stmicroelectronics.pdf) which includes details on connecting to SWD/JTAG interfaces.  
+:::info
+
+If using an external ST-LINK device, please refer to the ST-LINK/V3SET’s [user manual](https://www.st.com/resource/en/user_manual/um1075-stlinkv2-incircuit-debuggerprogrammer-for-stm8-and-stm32-stmicroelectronics.pdf) which includes details on connecting to SWD/JTAG interfaces.  
+
+:::
+
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
@@ -107,12 +112,6 @@ The firmware running on the debug device is open source and available on [github
 it uses [FreeRTOS](https://www.freertos.org). It is compatible with both versions of the RP2 processors, RP2040 and RP2350.
 
 The details about the wiring are available on the Pico Debug Probe's [website](https://www.raspberrypi.com/documentation/microcontrollers/debug-probe.html#getting-started).
-  </TabItem>
-
-</Tabs>
-
-
-
 
 ### Secondary Pico
 
@@ -127,6 +126,11 @@ Pico-series](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.p
 The lab board uses RP2040 processor soldered to the PCB as a debugger. It runs the [debugprobe](https://github.com/raspberrypi/debugprobe) firmware and has 
 traces soldered to Raspberry Pi Pico's socket.
 :::
+
+  </TabItem>
+
+</Tabs>
+
 
 
 ## Debugger software
@@ -241,9 +245,9 @@ store here we can find:
 
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-The binary file for the STM32U545 is organized to ensure proper execution and booting, with specific sections for the developer’s code and variables. At the very beginning of flash memory lies the `vector table`, which contains the reset handler and interrupt vectors required by the Cortex‑M33 core. Immediately following this, the `.text` section holds the developer’s executable instructions that make up the application’s logic. This section is stored in flash memory and is executed directly from there when the system starts. It is the core of the firmware, containing the main program logic.
+The binary file for the STM32U545 is organized to ensure proper execution and booting, with specific sections for the developer’s code and variables. At the very beginning of flash memory lies the `.vector_table`, which contains the reset handler and interrupt vectors required by the Cortex‑M33 core. Immediately following this, the `.text` section holds the developer’s executable instructions that make up the application’s logic. This section is stored in flash memory and is executed directly from there when the system starts. It is the core of the firmware, containing the main program logic.
 
-Following the `.text` section, the .data section contains initialized global and static variables. These variables are stored in flash memory but are copied into RAM during startup so that they can be modified at runtime. The developer’s predefined values for global variables are preserved here. In contrast, the `.bss` section holds uninitialized variables. These are allocated in RAM and automatically zeroed out during the boot process, ensuring they are ready for use by the application.
+Following the `.text` section, the `.data` section contains initialized global and static variables. These variables are stored in flash memory but are copied into RAM during startup so that they can be modified at runtime. The developer’s predefined values for global variables are preserved here. In contrast, the `.bss` section holds uninitialized variables. These are allocated in RAM and automatically zeroed out during the boot process, ensuring they are ready for use by the application.
 
 The `.rodata` section follows, storing read‑only data such as string literals and constant values. These are kept in flash memory, conserving RAM while still allowing the program to access them efficiently throughout execution.
 
@@ -769,6 +773,51 @@ the device in an endless loop. To boot, the firmware has to perform the followin
 - initialize the BSS section in RAM with 0 values
 - jump to the `main` function and never return.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+### The `.interrupt_vector` section
+
+On STM32 devices, the interrupt vector table is provided by the `cortex-m-rt` crate. Importing this crate is enough to provide a valid vector table with reset, fault, and interrupt handlers.
+
+
+```rust
+#![no_std]
+#![no_main]
+
+// we use as _ to avoid a compiler warning
+// saying that the crate is not used
+use cortex_m_rt as _;
+```
+
+
+### The `main` function
+
+In bare-metal Rust, there is no operating system to initialize memory or call `main`. The `cortex-m-rt` crate provides the `#[entry]` macro, which generates the startup code: it copies `.data` from FLASH to RAM, zeros `.bss`, sets up the stack, and then calls your entry function.
+
+```rust
+use cortex_m_rt::entry;
+
+#[entry]
+fn main() -> ! {
+    // Your firmware starts here.
+    loop {}
+}
+
+```
+
+:::info
+The important aspect is the usage of the `#[entry]` macro, 
+while the name of the function does not need to be `main`.
+:::
+
+The `entry!` macro will rewrite the `main` function and add all the initialization code.
+
+:::note
+Different frameworks like `embassy-rs` will use different entry macros.
+:::
+
+  </TabItem>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ### The `.interrupt_vector` section
 
 The `.interrupt_section` is provided by `rp235x_hal` crate (or `rp2040_hal` for the Pico 1).
@@ -851,6 +900,98 @@ The `entry!` macro will rewrite the `main` function and add all the initializati
 :::note
 Different frameworks like `embassy-rs` will use different entry macros.
 :::
+  </TabItem>
+
+  <TabItem value="rp2040" label="Raspberry Pi Pico" default>
+
+  The `.interrupt_vector` section
+  On the RP2040, the interrupt vector table is provided by the `rp2040-hal` crate. Simply importing this crate is enough to provide a valid interrupt vector table.
+
+  ```rust
+#![no_std]
+#![no_main]
+
+// we use as _ to avoid a compiler warning
+// saying that the crate is not used
+use rp2040_hal as _;
+```
+
+### The `.start_block` and `.end_block`s
+
+The `rp235x_hal` crate provides the valid `.start_block` and `.end_block`.
+
+```rust
+use rp2040_hal::rom_data::ImageDef;
+
+#[unsafe(link_section = ".start_block")]
+#[used]
+pub static IMAGE_DEF: ImageDef = ImageDef::default();
+```
+
+:::warning
+Older Rust versions do not require `unsafe` around the `link_section` attribute.
+:::
+
+This code creates a static variable `IMAGE_DEF` of type `ImageDef` and places it 
+in the `.start_block` section, a dedicated section for bootloader 
+or secure boot metadata. The `#[used]` attribute ensures the variable is 
+included in the binary, even if it isn't directly referenced, 
+which is crucial for secure boot functionality or other boot-related processes.
+
+The `secure_exe` function creates a `.start_block` that instructs the `BOOTROM` of the 
+Raspberry Pi Pico 2 to start the firmware in secure execution mode. The processor
+always starts in secure execution mode and has to be switched to unsecure mode
+by the firmware.
+
+:::warning
+The `#[used]` attribute is important as linkers will discard code that is
+not used to lower the size of the binary. The `IMAGE_DEF` variable is not 
+directly used by anything in the firmware and might be discarded.
+:::
+
+The `.end_block` is automatically inserted by the linker using the `memory.x` file.
+
+
+### The `main` function
+
+When writing software that runs on top of an operating system, the operating system
+is responsible for initializing the memory of the software and the calling 
+of the `main` function. 
+
+Embedded firmware that does not run on top of an operating system has to perform the
+memory initialization tasks and calling the `main` function itself.
+
+The Rust Embedded Working Group provides a crate called `cortex_m_rt` (*Cortex-M Runtime*) that
+exposes the macro `entry!` to perform these tasks. The macro is placed on top of a function
+that takes no parameters and does no return (`!`).
+
+```rust
+use cortex_m_rt::entry;
+
+#[entry]
+fn main() -> ! {
+    // Your firmware starts here.
+    // For now, just loop forever.
+    loop {}
+}
+
+```
+
+:::info
+The important aspect is the usage of the `#[entry]` macro, 
+while the name of the function does not need to be `main`.
+:::
+
+The `entry!` macro will rewrite the `main` function and add all the initialization code.
+
+:::note
+Different frameworks like `embassy-rs` will use different entry macros.
+:::
+
+  </TabItem>
+
+</Tabs>
+
 
 ## Flashing firmware
 
@@ -1207,6 +1348,9 @@ This table show the advantages and disadvantages of both methods.
 All you have to do is to make sure you are building a binary that does not depend on `std`, has no `main` function
 and provides an **empty panic handler**.
 
+<Tabs>
+
+<TabItem value="vscode" label="Visual Studio Code" default>
 To prevent `rust-analyzer` from showing an error on the first line and to automatically
 format your source when saving, create a `.vscode/settings.json` file with:
 
@@ -1220,6 +1364,44 @@ format your source when saving, create a `.vscode/settings.json` file with:
     },
 }
 ```
+</TabItem>
+
+  <TabItem value="zed" label="Zed" default>
+
+  Edit the file `.zed/settings.json`:
+
+  ```json
+{
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "cargo": {
+          "target": "thumbv8m.main-none-eabihf",
+          "allTargets": false
+        }
+      }
+    }
+  }
+}
+
+```
+
+  </TabItem>
+  <TabItem value="helix" label="Helix" default>
+
+Edit the file `.helix/languages.json`:
+  ```json
+[[language]]
+name = "rust"
+
+[language-server.rust-analyzer.config.check]
+targets = ["thumbv8m.main-none-eabihf"]
+allTargets = false
+
+```
+
+  </TabItem>
+</Tabs>
 :::
 2. Inspect the binary and figure out what sections are missing. Explain why each of the sections
   is missing. take a look at [Inspect binaries](#inspect-binaries). (**1p**)
@@ -1240,15 +1422,13 @@ Some crates, like `cortex-m-rt` and `defmt` provide linker scripts.
 :::
 6. Print a message from the main function using semihosting. Try running 
   the firmware using `probe-rs run target/...$app_name`. Why doesn't it work? Take a look at [Semihosting](#semihosting) (**1p**). 
-7. Add the `rp235x_hal` crate to the project and configure the `.start_block` and the `.end_block`. Take 
-  a look at [The `.start_block` and `.end_block`](#the-start_block-and-end_blocks). (**1p**)
+7. Create a `memory.x` file for your STM32U545 project that defines the FLASH and RAM regions. Build the project and inspect the ELF map to confirm that the vector table is placed at `0x0800_0000` and that the stack pointer is set to the top of RAM. (**1p**)
 8. Use semihosting to print the panic message in the *panic handler*. Use the `panic!` macro to 
   generate a panic. Take a look at [Printing the panic](#printing-the-panic) (**1p**).
 9. Use the `defmt` and `defmt_rtt` crates to print `info!` and `error!` messages. Generate a panic to verify the error message.
   Take a look at [Using `defmt`](#using-defmt) (**1p**)
 :::tip
 - Make sure you add all the necessary linker scripts to the `build.rs` build script.
-- Make sure you enable the `defmt` and `critical-section-impl` features of the `rp235x_hal` crate (`cargo add --features`).
 - Make sure you set the `DEFMT_LOG` variable to `info` when building to see the `info` messages or
   use the `.cargo/config.toml` file (take a look at [Filtering Messages](#filtering-messages)).
 - Messages are printed together with the location where the message was issued. To supress this
@@ -1264,6 +1444,115 @@ Some crates, like `cortex-m-rt` and `defmt` provide linker scripts.
 :::tip
 You can add the `--no-location` parameter to the runner.
 :::
+
+## Editor Setup
+
+When working on embedded Rust projects (like our STM32U5 or RP2040 firmware), having a well‑configured editor makes development smoother and debugging less painful. Here are three excellent options — Visual Studio Code, Zed, and Helix — with setup instructions and recommendations.
+
+<Tabs>
+
+<TabItem value="vscode" label="Visual Studio Code" default>
+VS Code is the most popular choice for embedded Rust because of its rich extension ecosystem and debugging support.
+
+Create a file `.vscode/settings.json`:
+
+```json
+{
+  "rust-analyzer.cargo.allTargets": false,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  }
+}
+```
+
+:::info
+
+You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5_lab/tree/main/.vscode).
+
+:::
+
+</TabItem>
+
+  <TabItem value="zed" label="Zed" default>
+
+  Zed is a lightweight, modern editor with built‑in Rust support and a focus on speed.
+
+  Create a file `.vscode/settings.json`:
+
+  ```json
+{
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "cargo": {
+          "target": "thumbv8m.main-none-eabihf",
+          "allTargets": false
+        }
+      }
+    }
+  },
+  "inlay_hints": {
+    "enabled": true
+  }
+}
+
+```
+
+And a file `.zed/debug.json`:
+```json
+
+[
+  {
+    "label": "Launch probe-rs debugging",
+    "adapter": "probe-rs",
+    "request": "launch",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "server": "127.0.0.1:50000",
+    "coreConfigs": [
+      {
+        "coreIndex": 0,
+        "programBinary": "./target/thumbv8m.main-none-eabihf/debug/${workspaceFolderBasename}",
+        "svdFile": "./stm32u545re.svd",
+        "rttEnabled": true
+      }
+    ]
+  }
+]
+
+```
+
+:::info
+
+You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5_lab/tree/main/.zed).
+
+:::
+
+  </TabItem>
+  <TabItem value="helix" label="Helix" default>
+
+Helix is a modal editor (like Vim/Neovim) with first‑class LSP support and a Rust‑friendly workflow.
+
+Create a file file `.helix/languages.json`:
+  ```json
+[[language]]
+name = "rust"
+
+[language-server.rust-analyzer.config.check]
+targets = ["thumbv8m.main-none-eabihf"]
+allTargets = false
+
+```
+
+:::info
+
+You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5_lab/tree/main/.helix).
+
+:::
+
+  </TabItem>
+</Tabs>
 
 ## VS Code probe-rs Extension
 
