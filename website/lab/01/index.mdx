@@ -1377,7 +1377,7 @@ You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5
 
   Zed is a lightweight, modern editor with built‑in Rust support and a focus on speed.
 
-  Create a file `.vscode/settings.json`:
+  Create a file `.zed/settings.json`:
 
   ```json
 {
@@ -1398,29 +1398,6 @@ You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5
 
 ```
 
-And a file `.zed/debug.json`:
-```json
-
-[
-  {
-    "label": "Launch probe-rs debugging",
-    "adapter": "probe-rs",
-    "request": "launch",
-    "cwd": "$ZED_WORKTREE_ROOT",
-    "server": "127.0.0.1:50000",
-    "coreConfigs": [
-      {
-        "coreIndex": 0,
-        "programBinary": "./target/thumbv8m.main-none-eabihf/debug/${workspaceFolderBasename}",
-        "svdFile": "./stm32u545re.svd",
-        "rttEnabled": true
-      }
-    ]
-  }
-]
-
-```
-
 :::info
 
 Remember to set `allTargets: false` in Zed’s LSP config to avoid host build errors.
@@ -1435,7 +1412,7 @@ You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5
 Helix is a modal editor (like Vim/Neovim) with first‑class LSP support and a Rust‑friendly workflow.
 
 Create a file file `.helix/languages.json`:
-  ```json
+  ```toml
 [[language]]
 name = "rust"
 
@@ -1459,7 +1436,15 @@ You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5
 ## Exercises
 
 1. Create a new project using `cargo init`. Configure the project using a configuration file
-  to build for the lab board's target. Test it by running `cargo build`. Take a look at [Cross-compiling](#cross-compiling)(**1p**). 
+  to build for the lab board's target. Test it by running `cargo build`. Take a look at [Cross-compiling](#cross-compiling)(**1p**).
+
+:::tip
+
+All you have to do is to make sure you are building a binary that does not depend on `std`, has `no main` function and provides an **empty panic handler**.
+
+To prevent rust-analyzer from showing an error on the first line and to automatically format your source when saving, make sure to properly [setup the editor](#editor-setup).
+
+:::
 
 2. Inspect the binary and figure out what sections are missing. Explain why each of the sections
   is missing. take a look at [Inspect binaries](#inspect-binaries). (**1p**)
