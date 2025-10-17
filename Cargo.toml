@@ -1,2 +1,60 @@
-[workspace]
-members = ["firmware/lab01"]
+[package]
+name = "lab-2025-main"
+version = "0.1.0"
+edition = "2024"
+
+
+[dependencies]
+embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xa", "binary-info"] }
+
+# Embedded HAL utilities
+embassy-embedded-hal = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Synchronization primitives and data structures with async support
+embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Async/await executor
+embassy-executor = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
+
+# Utilities for working with futures, compatible with no_std and not using alloc
+embassy-futures = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+
+# Timekeeping, delays and timeouts
+embassy-time = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "defmt-timestamp-uptime"] }
+
+# Network stack
+embassy-net = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "tcp", "udp", "raw", "dhcpv4", "medium-ethernet", "dns"] }
+embassy-net-wiznet = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# WiFi Chip
+cyw43 = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "firmware-logs"] }
+cyw43-pio = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Defmt support
+defmt = "0.3"
+defmt-rtt = "0.4"
+
+# Low level access to Cortex-M processors
+cortex-m-rt = "0.7.0"
+
+# Panic handler that exits probe-run with an error code
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+embedded-hal-async = "1.0.0"
+embedded-graphics = "0.8.1"
+display-interface-spi = "0.4.1"
+ili9341 = {version = "0.6.0", features = ["graphics"] }
+heapless = "0.8.0"
+xpt2046 = { git = "https://github.com/nullstalgia/mff-hr-v1", package = "xpt2046" }
+micromath = "2.1.0"
+embedded-alloc = "0.6.0"
+embedded-canvas = "0.3.1"
+mlx9061x = { version = "0.3.0", features = ["defmt-03"] }
+max3010x = "0.2.0"
+mipidsi = "0.9.0" 
+embedded-hal = "1.0.0"
+
+
+display-interface = "0.4.1"
+ssd1306 = "0.8.4"
+serde = { version = "1.0", default-features = false, features = ["derive"] }
+serde-json-core = "0.6.0"
