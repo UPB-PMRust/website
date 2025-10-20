@@ -112,13 +112,17 @@ example for STM32U545RE
 
 <template #-3>
 
-<img src="./stm32u545re_internal_bus.svg" style="background-color: white; padding: 0px;" class="rounded">
+<div style="background-color: white; padding: 5px;" class="rounded">
+<img src="./stm32u545re_internal_bus.svg">
+</div>
 
 </template>
 
 <template #0>
 
-<img src="./stm32u545re_external_bus.svg" style="background-color: white; padding: 5px;" class="rounded">
+<div style="background-color: white; padding: 5px;" class="rounded">
+<img src="./stm32u545re_external_bus.svg">
+</div>
 
 </template>
 
