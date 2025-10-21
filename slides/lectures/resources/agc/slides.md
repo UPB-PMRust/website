@@ -35,12 +35,12 @@ This landed the *moon eagle*.
 </div>
 
 ---
----
+
 # DSKY
-Display and keyboard
+Display and keyboards
 
 <div align="center">
-<img src="./dsky.png" class="h-90" />
+<img src="./dsky.png" class="rounded h-90" />
 </div align="center">
 
 [Simulator](https://svtsim.com/moonjs/agc.html)

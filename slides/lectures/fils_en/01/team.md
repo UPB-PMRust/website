@@ -20,15 +20,9 @@ layout: section
 
 ## Labs
 
-- Teodor Dicu
-- Alexandru Ungureanu
-- Andrei Zamfir
-- Dănuț Aldea
-- Ioana Culic
-- Cristiana Precup
-- Layla El-Ghoul
-- Gabriel Păvăloiu
-- Andrei Batasev
+- Alexandru Radovici
+- Teodor Dicu (Hardware)
+- Genan Omer (Software)
 
 </div>
 </div>

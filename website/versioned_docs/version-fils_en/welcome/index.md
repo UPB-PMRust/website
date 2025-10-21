@@ -11,7 +11,7 @@ During the class you will learn how to design and implement a hardware device.
 
 You takeaways from the course are:
   - learn how computer hardware works;
-  - learning how a microprocessor (*MCU*) works, using as an example the RP2040 MCU from the [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/);
+  - learning how a microprocessor (*MCU*) works, using as an example the STM32U5 MCU from the [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) and RP2 MCUs from the [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) and [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/);
   - building the hardware device either using a breadboard, a prototyping board or a printed circuit board (*PCB*);
   - learning how to develop the software that controls hardware in [Rust](https://www.rust-lang.org/);
   - presenting the hardware device at the *PM Fair* show.
@@ -120,6 +120,15 @@ GitHub: [Pfat8equalsD](https://github.com/Pfat8equalsD) \
 andrei.batasev@stud.acs.upb.ro
 </td>
 
+<td>
+**Genan Omer**
+![Genan Omer](images/genan_omer.jpeg)
+
+Responsible for Lab Materials \
+GitHub: [genan2003](https://github.com/genan2003) \
+genan.omer@stud.fils.upb.ro
+</td>
+
 </tr>
 </table>
 
@@ -127,7 +136,10 @@ andrei.batasev@stud.acs.upb.ro
 
 | Activity | Group | Day | Hour | Room | Professor |
 |----------|-------|-----|------|-------|----------|
-| Lecture | *all students* | Friday | 10 - 12 | AN024 | Alexandru Radovici |
+| Lecture | *all students* | Tuesday | 10 - 12 | EC002 | Alexandru Radovici |
+| Lab | 1241EC | Friday (weeks 2-8) | 10 - 12 | EG 306 | Alexandru Radovici |
+
+<!--
 | Lab | 1221Aa - first half | Thursday | 8 - 10 | ED 218 | Andrei Zamfir |
 | Lab | 1221Ab - second half | Thursday | 12 - 14 | ED 217 | Ioana Culic |
 | Lab | 1221Ba - first half | Thursday | 10 - 12 | ED 218 | Cristiana Precup <br/> Layla El-Ghoul |
@@ -137,15 +149,17 @@ andrei.batasev@stud.acs.upb.ro
 | Lab | 1221D | Thursday | 10 - 12 | ED 217 | Andrei Batasev |
 | Lab | 1222EEA | Thursday | 14 - 16 | ED 218 | Dănuț Aldea |
 | Lab | 1222EEB | Thursday | 12 - 14 | ED 218 | Teodor Dicu |
+-->
 
 ## Grading
 
 | Part | Description | Points |
 |--------|-------------|--------|
-| [Lecture](./category/lecture) tests | You will have a test at every class with subjects from the previous class. | 2p |
-| [Lab](./category/lab) | Your work at every lab will be graded. | 2p |
+| [Lecture](./category/lecture) tests | You will have a test at every class with subjects from the previous class. | 1p |
+| [Final Lecture](./category/lecture) test | You will have a test at one of the lectures in January. | 4p |
+| [Lab](./category/lab) | Your work at every lab will be graded. | 1p |
 | [Project](./project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
-| Exam | You will have to take an exam during the session. | 4p |
+| Final Test | You will have to take an exam during the last lecture. | 2p |
 | **Total** | *You will need at least 4.5 points to pass the subject.* | **11p** |
 
 ## Rules
@@ -161,18 +175,27 @@ andrei.batasev@stud.acs.upb.ro
  
 ## Bibliography
 
+### Theory
+<!-- 1. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M0 and Cortex-M0+ Processors, 2nd Edition* --> 
+1. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M23 and Cortex-M33 Processors* 
+
 ### Hardware
-1. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M0 and Cortex-M0+ Processors, 2nd Edition* 
-2. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M23 and Cortex-M33 Processors* 
-3. **Charles Platt**, *Encyclopedia of Electronic Components*, Volumes 1, 2, 3 
-4. **Paul Scherz, Simon Monk**, *Practical Electronics for Inventors, 2nd edition*
-5. **Raspberry Pi Ltd**, *[RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)*
+1. **STMicroelectronics**, *[STM32U5 ARM 32bit Series Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)
+2. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+3. **Raspberry Pi Ltd**, *[RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)*
+4. **Charles Platt**, *Encyclopedia of Electronic Components*, Volumes 1, 2, 3 
+5. **Paul Scherz, Simon Monk**, *Practical Electronics for Inventors, 2nd edition*
 
 ### Software
 1. **Steve Klabnik, Carol Nichols**, *[The Rust Programming Language](https://doc.rust-lang.org/stable/book/)*
 2. **Rust Team**, *[Rust Embedded, The Discovery book](https://docs.rust-embedded.org/discovery/microbit/)*
 3. **Raspberry Pi Ltd**, *[Getting started with Raspberry Pi Pico-series](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)*
-4. [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) crate documentation
-5. [embassy_rp examples](https://github.com/embassy-rs/embassy/tree/main/examples/rp/src/bin)
-6. [Raspberry Pi Pico Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf)
-7. [Connecting to the Internet with Raspberry Pi Pico W](https://datasheets.raspberrypi.com/picow/connecting-to-the-internet-with-pico-w.pdf)
+
+### Crates
+
+1. [embassy_rp](https://docs.embassy.dev/embassy-rp/) crate documentation
+2. [embassy_rp examples `rp2040`](https://github.com/embassy-rs/embassy/tree/main/examples/rp/src/bin)
+3. [embassy_rp examples `rp235xa`](https://github.com/embassy-rs/embassy/tree/main/examples/rp235x/src/bin)
+4. [embassy_stm32](https://docs.embassy.dev/embassy-stm32/) crate documentation
+5. [embassy_stm32 examples `stm32u5`](https://github.com/embassy-rs/embassy/tree/main/examples/stm32u5/src/bin)
+6. [embassy_stm32 examples `stm32f4`](https://github.com/embassy-rs/embassy/tree/main/examples/stm32f4/src/bin)
