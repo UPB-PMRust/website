@@ -1220,7 +1220,7 @@ Using `defmt` implies working with its own printing macros:
 - `debug!` used for logging debug messages that should not be displayed under normal functioning;
 - `trace!` used for logging almost all the actions of the firmware, messages that should be enabled only when the firmware does not work correctly and needs detailed debugging.
 
-:::info
+:::warning
 
 When using `defmt` on Cortex-M devices, you must enable the `critical-section-single-core` feature of the `cortex-m` crate. This feature provides the synchronization primitives (`critical-section` implementation) that `defmt` relies on to ensure safe logging in interrupt-driven environments.
 
