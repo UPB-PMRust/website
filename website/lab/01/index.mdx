@@ -790,7 +790,6 @@ On STM32 devices, the interrupt vector table is provided by the `cortex-m-rt` cr
 // we use as _ to avoid a compiler warning
 // saying that the crate is not used
 use cortex_m_rt as _;
-use stm32u5 as _;
 ```
 
 
@@ -1222,7 +1221,25 @@ Using `defmt` implies working with its own printing macros:
 - `warn!` used for logging warning messages, that are usually recoverable errors, and the framework can continue to run correctly;
 - `info!` used for logging information messages;
 - `debug!` used for logging debug messages that should not be displayed under normal functioning;
-- `trace!` used for logging almost all the actions of the firmware, messages that should be enabled only when the firmware does not work correctly and needs detailed debugging. 
+- `trace!` used for logging almost all the actions of the firmware, messages that should be enabled only when the firmware does not work correctly and needs detailed debugging.
+
+:::info
+
+When using `defmt` on Cortex-M devices, you must enable the `critical-section-single-core` feature of the `cortex-m` crate. This feature provides the synchronization primitives (`critical-section` implementation) that `defmt` relies on to ensure safe logging in interrupt-driven environments.
+
+If you forget to enable this feature, the linker will fail with an error because the required synchronization symbols are missing. To fix this, update your `Cargo.toml` like so:
+
+```toml
+
+[dependencies]
+cortex-m = { version = "0.7", features = ["critical-section-single-core"] }
+defmt = "0.3"
+
+```
+
+This ensures that `defmt` can safely coordinate access to its internal buffers on single-core Cortex-M microcontrollers.
+
+:::
 
 #### Transports
 
@@ -1396,7 +1413,7 @@ You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5
   },
   "inlay_hints": {
     "enabled": true
-  }
+    }
 }
 
 ```
