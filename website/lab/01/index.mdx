@@ -1224,7 +1224,19 @@ Using `defmt` implies working with its own printing macros:
 
 When using `defmt` on Cortex-M devices, you must enable the `critical-section-single-core` feature of the `cortex-m` crate. This feature provides the synchronization primitives (`critical-section` implementation) that `defmt` relies on to ensure safe logging in interrupt-driven environments.
 
-If you forget to enable this feature, the linker will fail with an error because the required synchronization symbols are missing. To fix this, update your `Cargo.toml` like so:
+If you forget to enable this feature, the linker will fail with an error because the required synchronization symbols are missing. 
+
+```bash
+  = note: rust-lld: error: undefined symbol: _critical_section_1_0_acquire
+          >>> referenced by lib.rs:202 (/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/critical-section-1.2.0/src/lib.rs:202)
+          >>>               defmt_rtt-2e5f4d6c7462fd7b.defmt_rtt.985b52c98b8f2f50-cgu.0.rcgu.o:(defmt_rtt::RttEncoder::acquire::hca10ac2a388a637d) in archive /Users/user/projects/lab1/target/thumbv8m.main-none-eabihf/debug/deps/libdefmt_rtt-2e5f4d6c7462fd7b.rlib
+
+          rust-lld: error: undefined symbol: _critical_section_1_0_release
+          >>> referenced by lib.rs:219 (/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/critical-section-1.2.0/src/lib.rs:219)
+          >>>               defmt_rtt-2e5f4d6c7462fd7b.defmt_rtt.985b52c98b8f2f50-cgu.0.rcgu.o:(defmt_rtt::RttEncoder::release::h88de2c91fd62d36c) in archive /Users/user/projects/lab1/target/thumbv8m.main-none-eabihf/debug/deps/libdefmt_rtt-2e5f4d6c7462fd7b.rlib
+```
+
+To fix this, update your `Cargo.toml` like so:
 
 ```toml
 
