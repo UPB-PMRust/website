@@ -66,7 +66,14 @@ The STM32U545 control the GPIO pins through one main GPIO block per port, but in
 3. *GPIO Input/Output* - this is the simple digital interface that developers use when they want to read or write a pin directly in software. It’s what you use to toggle an LED or read a button.
 
 
-    Here will be the STM32U545 pinout when will be ready.
+![STM32 Nucleo-U545RE-Q Pinout](images/stm32u5-pinout.jpeg)
+
+:::info
+
+The pins in pink represent the Arduino header pins.
+
+:::
+
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
@@ -322,7 +329,21 @@ Wi-Fi chip, enabling efficient SPI communication between the microcontroller
 and the Wi-Fi module. It includes `defmt` logging for debugging low-level 
 interactions.
 
+:::info 
+
+For Raspberry Pi Pico you just have to change the feature in `embassy-rp` like this:
+
+```toml
+embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp2040", "binary-info"] }
+
+```
+
+:::
+
+
 </TabItem>
+
+
 
 </Tabs>
 
