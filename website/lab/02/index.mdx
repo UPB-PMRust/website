@@ -56,14 +56,21 @@ It is the role of the *IO Bank0* to multiplex and connect the peripherals to the
 
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-The STM32U545 control the GPIO pins through one main GPIO block per port, but inside it you can think of three roles:
-1. *Electrical Configuration* - manages the physical pin on the outside of the chip. It decides the electrical behavior of the pad, such as whether it has a pull‑up or pull‑down resistor, whether it drives strongly or weakly, and whether it is push‑pull or open‑drain.
-2. *Alternate function multiplexer* - connects the internal peripherals to the outside pins. Each pin can be switched to different functions. For example, a single pin can be used as:
-    * A normal `GPIO` input/output
-    * A `UART` transmit line
-    * An `I2C` data line
-    * An `SPI` clock or data line
-3. *GPIO Input/Output* - this is the simple digital interface that developers use when they want to read or write a pin directly in software. It’s what you use to toggle an LED or read a button.
+The STM32U545 controls the GPIO pins through several GPIO Ports (PortA, PortB, PortC, PortD, PortE, etc.). Using GPIOs implies configuring the:
+1. *MODER* - connects the outer GPIO pin to one of the:
+   * internal `GPIO` peripheral as `input`
+   * internal `GPIO` peripheral as `output`
+   * one of the alternate function peripheral (further selected by the *Alternate Function Multiplexer*)
+   * the `ADC` peripheral
+2. *Electrical Configuration* - manages the physical pin on the outside of the chip. It decides the electrical behavior of the pad, such as whether it has a pull‑up or pull‑down resistor, whether it drives strongly or weakly, and whether it is push‑pull or open‑drain.
+3. *Alternate Function Multiplexer* - connects the internal peripherals to the outside pins. Each pin can be switched to different functions. For example, a single pin can be used as:
+    * a `UART` transmit line
+    * an `I2C` data line
+    * an `SPI` clock or data line
+    * a `TIM` timer channel
+    * a `PWM` timer channel
+    * ...
+4. *GPIO Input/Output* - this is the simple digital interface that developers use when they want to read or write a pin directly in software. It’s what you use to toggle an LED or read a button.
 
 
 ![STM32 Nucleo-U545RE-Q Pinout](images/stm32u5-pinout.jpeg)
