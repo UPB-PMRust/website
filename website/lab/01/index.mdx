@@ -787,7 +787,6 @@ On STM32 devices, the interrupt vector table is provided by the `cortex-m-rt` cr
 // we use as _ to avoid a compiler warning
 // saying that the crate is not used
 use cortex_m_rt as _;
-use stm32u5 as _;
 ```
 
 
@@ -1219,7 +1218,37 @@ Using `defmt` implies working with its own printing macros:
 - `warn!` used for logging warning messages, that are usually recoverable errors, and the framework can continue to run correctly;
 - `info!` used for logging information messages;
 - `debug!` used for logging debug messages that should not be displayed under normal functioning;
-- `trace!` used for logging almost all the actions of the firmware, messages that should be enabled only when the firmware does not work correctly and needs detailed debugging. 
+- `trace!` used for logging almost all the actions of the firmware, messages that should be enabled only when the firmware does not work correctly and needs detailed debugging.
+
+:::warning
+
+When using `defmt` on Cortex-M devices, you must enable the `critical-section-single-core` feature of the `cortex-m` crate. This feature provides the synchronization primitives (`critical-section` implementation) that `defmt` relies on to ensure safe logging in interrupt-driven environments.
+
+If you forget to enable this feature, the linker will fail with an error because the required synchronization symbols are missing. 
+
+```bash
+  = note: rust-lld: error: undefined symbol: _critical_section_1_0_acquire
+          >>> referenced by lib.rs:202 (/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/critical-section-1.2.0/src/lib.rs:202)
+          >>>               defmt_rtt-2e5f4d6c7462fd7b.defmt_rtt.985b52c98b8f2f50-cgu.0.rcgu.o:(defmt_rtt::RttEncoder::acquire::hca10ac2a388a637d) in archive /Users/user/projects/lab1/target/thumbv8m.main-none-eabihf/debug/deps/libdefmt_rtt-2e5f4d6c7462fd7b.rlib
+
+          rust-lld: error: undefined symbol: _critical_section_1_0_release
+          >>> referenced by lib.rs:219 (/Users/user/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/critical-section-1.2.0/src/lib.rs:219)
+          >>>               defmt_rtt-2e5f4d6c7462fd7b.defmt_rtt.985b52c98b8f2f50-cgu.0.rcgu.o:(defmt_rtt::RttEncoder::release::h88de2c91fd62d36c) in archive /Users/user/projects/lab1/target/thumbv8m.main-none-eabihf/debug/deps/libdefmt_rtt-2e5f4d6c7462fd7b.rlib
+```
+
+To fix this, update your `Cargo.toml` like so:
+
+```toml
+
+[dependencies]
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+defmt = "1.0.1"
+
+```
+
+This ensures that `defmt` can safely coordinate access to its internal buffers on single-core Cortex-M microcontrollers.
+
+:::
 
 #### Transports
 
@@ -1393,7 +1422,7 @@ You can find all the files you need [here](https://github.com/UPB-PMRust/stm32u5
   },
   "inlay_hints": {
     "enabled": true
-  }
+    }
 }
 
 ```
