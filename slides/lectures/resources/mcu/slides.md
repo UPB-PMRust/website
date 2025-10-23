@@ -134,6 +134,7 @@ Advanced RISC Machine
 ---
 layout: two-cols
 ---
+
 # ARM Cortex-M Instruction Set
 what the MCU can do
 
@@ -155,7 +156,7 @@ what the MCU can do
 
 ::right::
 
-<img src="./arm_cortex_m_instruction_set.png" class="h-125" />
+<img src="./arm_cortex_m_instruction_set.png" class="rounded h-125" />
 
 ---
 ---
