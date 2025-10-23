@@ -60,9 +60,9 @@ example for RP2
 
 <template #-3>
 
-<div style="background: white; padding: 5px" class="rounded">
+<div style="background-color: white; padding: 5px" class="rounded">
 
-![Bus](./internal_bus.svg)
+<img src="./internal_bus.svg">
 
 </div>
 
@@ -70,9 +70,9 @@ example for RP2
 
 <template #0>
 
-<div style="background: white; padding: 5px" class="rounded">
+<div style="background-color: white; padding: 5px" class="rounded">
 
-![Bus](./bus.svg)
+<img src="./bus.svg">
 
 </div>
 
