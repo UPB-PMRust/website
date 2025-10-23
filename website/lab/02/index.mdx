@@ -336,17 +336,122 @@ Wi-Fi chip, enabling efficient SPI communication between the microcontroller
 and the Wi-Fi module. It includes `defmt` logging for debugging low-level 
 interactions.
 
-:::info 
+</TabItem>
 
-For Raspberry Pi Pico you just have to change the feature in `embassy-rp` like this:
-
+  <TabItem value="rp2040" label="Raspberry Pi Pico" default>
 ```toml
+# RP2350 HAL
 embassy-rp = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp2040", "binary-info"] }
 
+# Embedded HAL utilities
+embassy-embedded-hal = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Synchronization primitives and data structures with async support
+embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Async/await executor
+embassy-executor = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
+
+# Utilities for working with futures, compatible with no_std and not using alloc
+embassy-futures = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+
+# Timekeeping, delays and timeouts
+embassy-time = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "defmt-timestamp-uptime"] }
+
+# USB device
+embassy-usb = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Network stack
+embassy-net = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "tcp", "udp", "raw", "dhcpv4", "medium-ethernet", "dns"] }
+embassy-net-wiznet = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# USB logging
+embassy-usb-logger = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+log = "0.4"
+
+# WiFi Chip
+cyw43 = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "firmware-logs"] }
+cyw43-pio = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+
+# Defmt support
+defmt = "0.3"
+defmt-rtt = "0.4"
+
+# Low level access to Cortex-M processors
+# cortex-m = { version = "0.7.6", features = ["inline-asm"] }
+cortex-m-rt = "0.7.0"
+
+# Panic handler that exits `probe-run` with an error code
+panic-probe = { version = "0.3", features = ["print-defmt"] }
 ```
 
-:::
+The `embassy-rp` crate provides support for the Raspberry Pi RP2040 
+microcontroller within the Embassy framework. It includes features such 
+as `defmt` for efficient debugging, `unstable-pac` for accessing low-level 
+peripherals, and `time-driver` for handling time-related operations. 
+The crate also implements `critical-section` for safe concurrency and 
+supports `rp2040` and `binary-info` for additional RP2350-specific 
+functionality.  
 
+The `embassy-embedded-hal` crate provides embedded-hal-compatible utilities 
+for asynchronous embedded development. It enables easy interaction with 
+hardware peripherals, such as GPIO, SPI, and I2C, while integrating with 
+the Embassy async runtime. It includes `defmt` for lightweight debugging.  
+
+The `embassy-sync` crate offers synchronization primitives and data 
+structures designed for async environments. It includes mutexes, signal 
+primitives, and channel-based communication for safe, cooperative 
+multitasking. The crate is optimized for `no_std` systems and supports 
+`defmt` for debugging.  
+
+The `embassy-executor` crate provides an async/await executor tailored for 
+embedded systems. It supports multitasking via interrupt-based and 
+thread-based execution models, with optimizations for Cortex-M 
+microcontrollers. Features include configurable task arena sizes and 
+`defmt` for debugging.  
+
+The `embassy-futures` crate supplies utilities for working with Rust futures 
+in embedded environments. It is designed to be compatible with `no_std` 
+and avoids dynamic memory allocation, making it lightweight and efficient 
+for constrained devices.  
+
+The `embassy-time` crate handles timekeeping, delays, and timeouts in async 
+applications. It provides a high-precision time driver and supports uptime-based 
+timestamps for logging. The crate is optimized for `no_std` 
+environments and integrates with `defmt`.  
+
+The `embassy-usb` crate provides a USB device stack for embedded systems. It 
+supports USB control, bulk, and interrupt transfers, making it useful for 
+implementing HID, CDC, and other USB classes. It integrates with `defmt` 
+for debugging and logging.  
+
+The `embassy-net` crate implements a network stack with support for TCP, 
+UDP, and raw Ethernet frames. It includes DHCPv4 for automatic IP 
+configuration and DNS resolution. The crate is designed for embedded 
+networking and integrates with `defmt` for efficient debugging.  
+
+The `embassy-net-wiznet` crate adds support for WIZnet Ethernet modules to 
+the Embassy networking stack. It provides an async interface for handling 
+network communication over SPI-connected WIZnet chips, with `defmt` 
+integration for logging.  
+
+The `embassy-usb-logger` crate enables USB-based logging for embedded 
+applications. It provides a mechanism for transmitting log messages over 
+USB, allowing for real-time debugging and monitoring of embedded systems.  
+
+The `log` crate is a lightweight logging facade that allows messages to be 
+recorded using different logging backends. It is widely used in Rust 
+projects, including embedded systems, to enable flexible debugging and 
+monitoring.  
+
+The `cyw43` crate provides support for the CYW43 Wi-Fi chip, commonly found 
+on Raspberry Pi Pico W. It includes firmware logging, `defmt` integration, 
+and an async interface for managing Wi-Fi connections in embedded systems.  
+
+The `cyw43-pio` crate offers PIO (Programmable I/O) support for the CYW43 
+Wi-Fi chip, enabling efficient SPI communication between the microcontroller 
+and the Wi-Fi module. It includes `defmt` logging for debugging low-level 
+interactions.
 
 </TabItem>
 
@@ -380,7 +485,7 @@ right in and use them.
 
 </TabItem>
 
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2/Raspberry Pi Pico" default>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 #![no_main]
 #![no_std]
@@ -419,9 +524,12 @@ The `pin` variable implements the embadded HAL [`OutputPin`](https://docs.rs/emb
 ```rust
 use gpio::{Level, Output, Speed};
 
-// initialize PX_n (replace x with a letter(see the datasheet, e.g. PA5) and n with a number) and set its
-// default value to LOW (0)
-let mut pin = Output::new(peripherals.Px_n, Level::Low, Speed::Medium);
+// initialize PXn
+// -replace X with the port letter(A, B, C, D, E, etc.)
+// -n with the pin number
+//...see the datasheet, e.g. PA5 
+// and set its default value to LOW (0)
+let mut pin = Output::new(peripherals.PXn, Level::Low, Speed::Medium);
 
 // set the pin value to HIGH (1)
 pin.set_high();
@@ -432,7 +540,7 @@ pin.set_low();
 
 </TabItem>
 
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2/Raspberry Pi Pico" default>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 use gpio::{Level, Output};
 
@@ -464,7 +572,7 @@ Using a pin as input is very similar to using it as output.
 ```rust
 use gpio::{Input, Pull};
 
-let pin = Input::new(peripherals.Px_n, Pull::Up);
+let pin = Input::new(peripherals.PXn, Pull::Up);
 
 if pin.is_high() {
     // Do something if the pin value is HIGH (1)
@@ -630,7 +738,7 @@ Please make sure the `embassy_stm32` crate is included in your build either:
 This crate provides the **startup and linker sections** required for the STM32U545 to boot correctly.
 </TabItem>
 
-  <TabItem value="rp2350" label="Raspberry Pi Pico 2/Raspberry Pi Pico" default>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 Please make sure the `embassy_rp` crate is included in your build either:
 - by importing it with `use embassy_rp as _;`
 - or by initialising the peripherals
