@@ -525,9 +525,9 @@ The `pin` variable implements the embadded HAL [`OutputPin`](https://docs.rs/emb
 use gpio::{Level, Output, Speed};
 
 // initialize PXn
-// -replace X with the port letter(A, B, C, D, E, etc.)
-// -n with the pin number
-//...see the datasheet, e.g. PA5 
+//   - replace X with the port letter(A, B, C, D, E, etc.)
+//   - n with the pin number
+//   ... see the datasheet, e.g. PA5 
 // and set its default value to LOW (0)
 let mut pin = Output::new(peripherals.PXn, Level::Low, Speed::Medium);
 
