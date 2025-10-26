@@ -718,7 +718,7 @@ Make sure you follow these steps:
 - add the [build script](./01#build-script) file called `build.rs`;
 - add the required *Embassy* dependencies - take a look at [*Empty* Embassy Firmware](#empty-embassy-firmware) - take a look at [*Empty* Firmware](./01#empty-firmware);
 - use `defmt_rtt` as a logger, make sure you import it even if you are not using it directly `use ... as _`;
-- use `panic-probe` to provide a panic handler, make sure you import it even if you are not using it directly `use ... as _`;
+- use `panic_probe` to provide a panic handler, make sure you import it even if you are not using it directly `use ... as _`;
 - ask the Rust compiler not to depend on the standard library, 
     not to provide a main function and 
     add the *Embassy* [entry](#entry);
