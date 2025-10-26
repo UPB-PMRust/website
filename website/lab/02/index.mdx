@@ -172,26 +172,26 @@ embassy requires:
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
     ```toml
-# STM32U545 HAL
-embassy-stm32 = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "stm32u545re", "unstable-pac", "memory-x", "time-driver-tim4", "exti", "chrono"] }
+[dependencies]
+embassy-stm32 = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe", features = ["defmt", "stm32u545re", "unstable-pac", "memory-x", "time-driver-tim4", "exti", "chrono"] }
 
 # Embedded HAL utilities
-embassy-embedded-hal = { version = "0.3.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+embassy-embedded-hal = { version = "0.5.0", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe", features = ["defmt"] }
 
 # Synchronization primitives and data structures with async support
-embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+embassy-sync = { version = "0.7.2", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe", features = ["defmt"] }
 
 # Async/await executor
-embassy-executor = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["task-arena-size-98304", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt"] }
+embassy-executor = { version = "0.9.0", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe", features = ["arch-cortex-m", "executor-thread", "defmt"] }
 
 # Utilities for working with futures, compatible with no_std and not using alloc
-embassy-futures = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6" }
+embassy-futures = { version = "0.1.2", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe" }
 
 # Timekeeping, delays and timeouts
-embassy-time = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "defmt-timestamp-uptime", "tick-hz-32_768"] }
+embassy-time = { version = "0.5.0", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe", features = ["defmt", "defmt-timestamp-uptime", "tick-hz-32_768"] }
 
 # USB device
-embassy-usb = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt"] }
+# embassy-usb = { version = "0.5.1", git = "https://github.com/embassy-rs/embassy", rev = "3e8d8fe", features = ["defmt"] }
 
 # Defmt support
 defmt = "0.3"
@@ -200,10 +200,11 @@ defmt-rtt = "0.4"
 # Low level access to Cortex-M processors
 cortex-m = { version = "0.7.7", features = ["inline-asm", "critical-section-single-core"] }
 
+# Boostrap crate for Cortex-M Processors
 cortex-m-rt = "0.7.5"
-panic-probe = { version = "1.0.0", features = ["print-defmt"] }
 
 # Panic handler that exits `probe-run` with an error code
+panic-probe = { version = "1.0.0", features = ["print-defmt"] }
     ```
 The `embassy-stm32` crate provides support for the STM32 Nucleo-U545RE-Q microcontroller within the Embassy framework. It includes features such as `defmt` for efficient debugging, `unstable-pac` for accessing low-level peripherals, and time-driver for handling `time-related` operations. The crate also implements `critical-section` for safe concurrency and supports STM32U545RETxQ and `binary-info` for additional STM32U545-specific functionality.  
 
@@ -599,6 +600,18 @@ until a change is detected in the input if a GPIO pin.
 | [`wait_for_any_edge`](https://docs.embassy.dev/embassy-rp/git/rp2040/gpio/struct.Input.html#method.wait_for_any_edge) | Suspends the execution until the pin state switches. |
 | [`wait_for_rising_edge`](https://docs.embassy.dev/embassy-rp/git/rp2040/gpio/struct.Input.html#method.wait_for_rising_edge) | Suspends the execution until the pin state switches from `Level::Low` to `Level::High` |
 | [`wait_for_falling_edge`](https://docs.embassy.dev/embassy-rp/git/rp2040/gpio/struct.Input.html#method.wait_for_falling_edge) | Suspends the execution until the pin state switches `Level::High` to `Level::Low` |
+
+:::info
+
+On the `STM32U5`, the idea is the same, but the implementation uses the `external interrupt (EXTI) system`. Instead of a plain `Input`, you wrap the pin in an `ExtiInput`, which connects the GPIO to its interrupt line:
+
+```rust
+
+let mut button = ExtiInput::new(peripherals.PA8, peripherals.EXTI8, Pull::None);
+
+```
+
+:::
 
 ### Waiting
 
