@@ -225,7 +225,6 @@ The `embassy-usb` crate provides a USB device stack for embedded systems. It sup
   <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
 ```toml
 [dependencies]
-# RP2350 HAL
 embassy-rp = { version = "0.8.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp235xa", "binary-info"] }
 
 # Embedded HAL utilities
@@ -343,7 +342,6 @@ interactions.
   <TabItem value="rp2040" label="Raspberry Pi Pico" default>
 ```toml
 [dependencies]
-# RP2040 HAL
 embassy-rp = { version = "0.8.0", git = "https://github.com/embassy-rs/embassy", rev = "2e7a2b6", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp2040", "binary-info"] }
 
 # Embedded HAL utilities
