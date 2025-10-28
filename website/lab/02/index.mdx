@@ -615,9 +615,9 @@ The EXTI peripheral uses something called the EXTI multiplexer (EXTI MUX) to con
 Not every pin can have its own interrupt line!
 There are only 16 EXTI lines for all GPIOs, so:
 
-`PA0`, `PB0`, `PC0`, `PD0`, etc. all share EXTI line 0.
-
-`PA1`, `PB1`, `PC1`, `PD1`, etc. all share EXTI line 1, and so on.
+- `PA0`, `PB0`, `PC0`, `PD0`, etc. all share EXTI line 0.
+- `PA1`, `PB1`, `PC1`, `PD1`, etc. all share EXTI line 1
+-  and so on
 
 So if you use `PB0` and `PC0` simultaneously, they will share the same interrupt line, and your code must check which pin actually triggered the interrupt.
 
