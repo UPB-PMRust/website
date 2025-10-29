@@ -627,7 +627,7 @@ This way, the ADC pin measures the photoresistor's resistance, without the risk 
 
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-    On the STM32, the ADC peripheral does not use a FIFO interrupt like the RP2040. Instead, each ADC (ADC1, ADC2, etc.) can be configured directly, and Embassy provides a driver that handles resolution, averaging, and sample time for you. All we need to do is create the ADC driver, configure it, and then bind it to the pin we want to read from.
+    On the STM32, the ADC peripheral does not use a FIFO interrupt like the RP2. Instead, each ADC (ADC1, ADC2, etc.) can be configured directly, and Embassy provides a driver that handles resolution, averaging, and sample time for you. All we need to do is create the ADC driver, configure it, and then bind it to the pin we want to read from.
   
   ```rust
   // ---- fn main() ----
@@ -653,7 +653,6 @@ use embassy_stm32::timer::simple_pwm::Config as ConfigPwm; // PWM config
 
 Once we have the ADC and pin set up, we can start reading values from the pin. Here’s a simple loop that reads the raw ADC value, converts it to a voltage, and prints it:
 ```rust
-
 loop {
     // Read a raw ADC value (blocking read)
     let level: u16 = adc.read(&mut adc_pin).await.unwrap();
@@ -663,13 +662,11 @@ loop {
     // Wait a bit before reading again
     embassy_time::Timer::after_secs(1).await;
 }
-
-
 ```
 
   </TabItem>
 
-  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 On the RP2040, ADC uses an interrupt called `ADC_IRQ_FIFO` to signal whenever a new sample has been added to the ADCs' FIFO. This new sample will be stored inside a FIFO. In the Embassy library, this interrupt is already implemented, so all we need to do is bind it and use it in our ADC variable.
 
 ```rust
@@ -757,9 +754,9 @@ Unlike the photoresistor, which requires an external resistor to form a voltage 
     (The potentiometer that the board provides is signaled with label `POTENTIOMETER` in the connectors section.)
 :::
 
-3. Make the RGB LED switch from red -> yellow -> blue every time the button `SW4` is pressed. (**2p**)
+3. Make the RGB LED switch from red -> yellow -> blue every time the button `S4` is pressed. (**2p**)
 :::note
-`GP2`, `GP3`, and `GP4` can be used to control an RGB LED. Although `GP2` and `GP3` share the same PWM channel and therefore have the same frequency, each pin can have an **independent duty cycle**, allowing individual control of the brightness for each color.
+`PC6`, `PB4`, and `PB10` can be used to control an RGB LED. Although `PC6` and `PB4` share the same PWM channel and therefore have the same frequency, each pin can have an **independent duty cycle**, allowing individual control of the brightness for each color.
 :::
 ![Colors](images/colors.png)
 
