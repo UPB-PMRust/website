@@ -229,7 +229,7 @@ For this lab, we will be using **common anode** RGB LEDs, which means that the P
 
 The RGB LED that the board provides is signaled with labels `RGB_B` (blue), `RGB_G` (green) and `RGB_R` (red) in the connectors section.
 
-![RGBWiring](images/board_rgb.png)
+![RGBWiring](images/board_rgb.jpg)
 
 #### How to wire a servo motor
 
@@ -243,9 +243,9 @@ A servo motor has three wires:
 
 The board provides the connectors for the servo motor. These connectors are labeled `GND`, `PWR`, and `SIG` in the connectors section.
 
-![ServoMotor](images/board_servo.png)
+![ServoMotor](images/board_servo.jpg)
 
-To wire the servo motor to the Raspberry Pi Pico 2, first connect the servo motor to the board using the `GND`, `PWR`, and `SIG` connectors. Then, a jumper wire is needed to connect the `SERVOS` connector on the board to a PWM pin on the Raspberry Pi Pico 2.
+To wire the servo motor to the STM32 Nucleo-U545RE-Q, first connect the servo motor to the board using the `GND`, `PWR`, and `SIG` connectors. Then, a jumper wire is needed to connect the `SERVOS` connector on the board to a PWM pin on the STM32 Nucleo-U545RE-Q.
 
 ### PWM in Embassy-rs
 
@@ -311,7 +311,7 @@ ch1.set_duty_cycle(10);
 
   </TabItem>
 
-  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 // Initialize peripherals
 let peripherals = embassy_rp::init(Default::default());
@@ -434,9 +434,8 @@ let servo_pin = PwmPin::new_ch1(p.PA0, OutputType::PushPull);
 
   let min = (500 * ARR)/PERIOD; //For a 0.5ms pulse
   let max = (2500 * ARR)/PERIOD; // For a 2.5ms pulse 
-```
 
-// Main loop to move the servo back and forth
+  // Main loop to move the servo back and forth
 loop {
     // Move servo to maximum position (180 degrees)
     // Set compare value for max pulse width
@@ -444,11 +443,14 @@ loop {
     // Wait 1 second
     // Then move the servo to minimum position (0 degrees)
 }
+```
+
+
 
 
   </TabItem>
 
-  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 // Initialize peripherals
 let peripherals = embassy_rp::init(Default::default());
@@ -601,7 +603,7 @@ A **photoresistor** (or photocell) is a sensor that measures the intensity of li
 
 The photoresistor that the board provides is signaled with the label `PHOTORESISTOR` in the connectors section.
 
-![PhotoresistorWiring](images/board_photoresistor.png)
+![PhotoresistorWiring](images/board_photoresistor.jpg)
 
 :::info
 To wire a photoresistor on your board at home, you need to connect one leg to *GND* and the other leg to a voltage divider. Take a look at the [Electronics](/tutorial/electronics/index.md#voltage-divider) tutorial:
