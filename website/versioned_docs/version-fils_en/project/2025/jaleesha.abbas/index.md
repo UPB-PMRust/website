@@ -92,12 +92,11 @@ I uploaded the necessary project documentation, making sure everything was in or
 
 ### Week 7 - 19 May
 
-Continuing the progress. Will update as soon as I reach the milestone.
+Custom OLED driver with optimized SPI commands for fast refresh rates. Implemented animated welcome screen with scrolling "EXPOSE OR EXPLORE" title. Created letter selection interface with visual feedback and smooth transitions. Built challenge display system with automatic text wrapping and scrolling. Designed game over screen with prominent "GAME OVER" text rendering.Added screen clearing and text area management functions for clean displaysImplemented Embassy async runtime framework for embedded Rust development. Created robust state machine architecture with 6 distinct game states. Developed custom font rendering system for OLED display text. Integrated JSON parsing using serde-json-core for question/dare content management. Established defmt logging system for real-time debugging and monitoring
 
 ### Week 20 - 26 May
 
-Continuing the progress. Will update as soon as I reach the milestone.
-
+Completed final integration and testing. Fixed timer precision and LED blinking patterns. Added comprehensive error handling for JSON parsing and hardware failures. Optimized display refresh rates and implemented smooth transitions between all game states. Successfully tested full game cycle from welcome screen through challenges to restart functionality.Successfully integrated all hardware components with software state machine. Implemented seamless transitions between all game states. Added fallback mechanisms for missing JSON content or hardware failures. Created comprehensive button debouncing to prevent false triggers.Optimized display refresh rates to prevent flickering during rapid updates. Completed full game cycle testing with various letter selections and challenge types
 
 ## Hardware
 
@@ -123,7 +122,7 @@ Continuing the progress. Will update as soon as I reach the milestone.
     
 -   **RGB LED (3-legged)** → Provides colorful visual feedback and indicates ga>
     
--   **Single Color LEDs (Red, White, Green)** → Used for specific cues and visu>
+-   **Single Color LEDs (Red, Green)** → Used for specific cues and visu>
     
 -   **Power Supply (Micro USB)** → Powers the Raspberry Pi Pico and peripherals.
     
@@ -160,14 +159,21 @@ Continuing the progress. Will update as soon as I reach the milestone.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| embassy | Rust framework for embedded programming | Used for async tasks, delays, blinking LEDs, button handling |
-| rp2040-hal | Rust crate for RP2040 peripherals | Used for GPIO, SPI, PWM, and other microcontroller functions |
-| embedded-hal | Rust crate providing embedded hardware abstraction | Used for generic traits for GPIO, SPI, and other peripherals |
-| rand | Rust crate for random number generation | Used to select random Truth or Dare challenges |
-| serde + serde_json | Rust crates for serialization and JSON parsing | Used to load and parse local JSON database of Truth and Dare |
-| ssd1331 | Rust driver crate for SSD1331 OLED display (SPI) | Used for displaying text like Truth, Dare, and other messages |
-| embassy-time | Rust crate for async time handling | Used for delays, LED blinking and timing related tasks |
-| embassy-sync | Rust crate for task synchronization | Used to manage async/await tasks cleanly (optional but recommended) |
+| embassy-rp | Embassy framework for RP2040/RP2350 peripherals | Used for async GPIO, SPI, PWM, microcontroller functions |
+| embassy-executor | Async/await executor for embedded systems | Used to run concurrent tasks for LEDs, buttons, display |
+| embassy-time | Timekeeping and delays for embedded systems | Used for delays, LED blinking, and 30-second game timer |
+| embassy-sync | Synchronization primitives with async support | Used to manage async/await tasks and data sharing |
+| embedded-hal | Hardware abstraction layer for embedded systems | Used for generic GPIO, SPI, and peripheral traits |
+| embedded-hal-async | Async version of embedded-hal | Used for non-blocking SPI communication with OLED display |
+| ssd1306 | Driver for SSD1306 OLED displays | Used for displaying game text, menus, and challenge content |
+| serde | Serialization framework for Rust | Used for deserializing JSON challenge data structures |
+| serde-json-core | JSON parsing without heap allocation | Used to parse local JSON database of Truth/Dare challenges |
+| heapless | Collections without heap allocation | Used for storing challenge arrays and game state data |
+| defmt | Efficient logging framework for embedded | Used for debugging and monitoring game state transitions |
+| defmt-rtt | RTT transport for defmt logging | Used for real-time debugging output during development |
+| cortex-m-rt | Runtime for ARM Cortex-M microcontrollers | Used for interrupt handling and system initialization |
+| panic-probe | Panic handler for probe debugging | Used for error handling and debugging during development |
+
 
 ---
 
