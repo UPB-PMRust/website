@@ -462,7 +462,7 @@ let mut pwm = SimplePwm::new(
         // Use set_duty_cycle_fraction(max_value, 1000) to set servo to ~180°.
         // Wait 1 second before moving back
         // A 0.5 ms pulse means 0.5/20 = 2.5% duty cycle.
-        // Use set_duty_cycle_fraction(min_value, 1000) to set servo to ~0°.
+        set_duty_cycle_fraction(min_value as u16, 1000); // sets the servo to set servo to ~0°.
         // Wait 1 second before repeating
     }
 ```
