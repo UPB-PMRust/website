@@ -52,6 +52,8 @@ The most precise type of clock on the STM32 Nucleo-U545RE-Q is the *High-Speed E
 The processor also provides several *internal RC oscillators* (HSI, MSI, LSI), which are less accurate because they rely on resistor-capacitor timing rather than quartz resonance. These internal clocks are useful when small variations in clock pulses are acceptable, or when minimizing external components is important.
 
 The STM32 Nucleo-U545RE-Q does not have a built-in crystal frequency. Instead, the board designer selects an appropriate crystal (commonly 8 MHz, 16 MHz, or 24 MHz) to drive the HSE, depending on the application requirements.
+
+![High-Speed External oscillator (HSE)](images/hse.png)
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
