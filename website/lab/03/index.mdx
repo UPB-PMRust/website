@@ -401,33 +401,43 @@ Servos interpret PWM signals based on the pulse width rather than just frequency
 let peripherals = embassy_stm32::init(Default::default());
 ```
 
-To control a servo motor using PWM, we need to calculate the **TOP value**, which determines the PWM period.
+At 50 Hz, the PWM period is:
+$$ 
 
-#### Calculating ARR value
-
-STM32 timers tick at the timer input clock $$f_{tim}$$ divided by the prescaler ($$psc+1$$). The period in ticks is the auto-reload value $$arr$$.
-
-$$
-
-ARR = \left( \frac{f_{tim} \times T}{PSC+1} \right)
+T = 20ms 
 
 $$
 
-Where:
+For a given pulse width $$pulse_{width}$$ the duty cycle percentage is:
+$$
 
-- $$f_{tim}$$ is the maximum frequency of the core/timer
-- $$T$$ is the target period
-
-#### Converting pulse width to compare value
-
-For PWM mode, the duty cycle is set via $$ccr$$ and is relative to $$arr$$. Given the desired pulse width $$pulse_{width}$$:
+duty_{cycle} = \left( \frac{pulse_{width} \times 100}{T} \right)
 
 $$
 
-duty_{cycle} = \left( \frac{pulse_{width} \times arr}{T} \right)
+#### Using `set_duty_cycle_fraction`
+
+The function `set_duty_cycle_fraction(num, den)` expects a fraction representing the duty cycle.
+
+For example:
+
+- For $$pulse_{width}$$ = 2.5ms:
+$$
+
+duty_{cycle} = \left( \frac2.5 \times 100}{20} \right)
 
 $$
 
+That means `set_duty_cycle_fraction(125, 1000)`
+
+- For $$pulse_{width}$$ = 0.5ms:
+$$
+
+duty_{cycle} = \left( \frac0.5 \times 100}{20} \right)
+
+$$
+
+That means `set_duty_cycle_fraction(25, 1000)`
 
 Now, let's implement it in Rust:
 ```rust
