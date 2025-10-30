@@ -382,7 +382,16 @@ pwm.set_config(&config); // set the new configuration for PWM
 
 ### Controlling a Servo Motor Using PWM
 
-Just like controlling other hardware through PWM, we start by initializing the peripherals:
+Just like controlling other hardware through PWM, we start by initializing the peripherals.
+
+Servos typically expect a 50 Hz PWM signal, which corresponds to a 20 ms period.
+
+Servos interpret PWM signals based on the pulse width rather than just frequency:
+
+- `Period`: The total time for one PWM cycle, which is 20 ms (50 Hz).
+- `Minimum Pulse Width`: Typically **0.5 ms**, which corresponds to a servo position of **0 degrees**.
+- `Maximum Pulse Width`: Typically **2.5 ms**, which corresponds to a servo position of **180 degrees**.
+
 
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
@@ -472,8 +481,6 @@ To control a servo motor using PWM, we need to calculate the **TOP value**, whic
 
 #### Calculating the TOP Value
 
-Servos typically expect a **50 Hz** PWM signal, which corresponds to a **20 ms** period.  
-
 $$
 
 top = \left( \frac{f_{clock}}{f_{pwm} \times divider} \right) - 1
@@ -500,12 +507,6 @@ $$
 which is `0xB71A` in hexadecimal.
 
 The **clock divider** is used to slow down the high-frequency system clock so that it can generate a usable PWM signal. The RP2350's system clock runs at 150 MHz, which is too fast for direct PWM control of a servo. By setting the divider to 64, we effectively slow down the clock.
-
-Servos interpret PWM signals based on the pulse width rather than just frequency:
-
-- `Period`: The total time for one PWM cycle, which is 20 ms (50 Hz).
-- `Minimum Pulse Width`: Typically **0.5 ms**, which corresponds to a servo position of **0 degrees**.
-- `Maximum Pulse Width`: Typically **2.5 ms**, which corresponds to a servo position of **180 degrees**.
 
 To convert these pulse widths into PWM compare values, we use:
 
