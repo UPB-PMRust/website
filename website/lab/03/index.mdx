@@ -453,8 +453,8 @@ const MIN_PERIOD_US: u32 = 500;
 const MAX_PERIOD_US: u32 = 2500;
 const PERIOD_US: u32 = 20000;
 
-    let min_value = (MIN_PERIOD_MS * 1000) / PERIOD;
-    let max_value = (MAX_PERIOD_MS * 1000) / PERIOD;
+let min_value = (MIN_PERIOD_US * 1000) / PERIOD_US;
+let max_value = (MAX_PERIOD_US * 1000) / PERIOD_US;
 
     // Main loop to move the servo back and forth
     loop {
