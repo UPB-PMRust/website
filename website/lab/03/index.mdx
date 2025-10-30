@@ -653,6 +653,8 @@ let mut adc = adc::Adc::new(p.ADCx);
 adc.set_resolution(adc::Resolution::BITS14);
 adc.set_averaging(adc::Averaging::Samples1024);
 adc.set_sample_time(adc::SampleTime::CYCLES160_5);
+
+const MAX_VALUE: u32 = adc::resolution_to_max_count(adc::Resolution::BITS14);
   ```
 
   :::warning 
@@ -681,8 +683,9 @@ Once we have the ADC and pin set up, we can start reading values from the pin. H
 loop {
     // Read a raw ADC value (blocking read)
     let level: u16 = adc.blocking_read(&mut adc_pin);
+    let voltage = 3.3f32 * level as f32 / MAX_VALUE as f32;
 
-    info!("Light sensor reading: {}", level);
+    info!("Light sensor reading: {}, voltage: {}", level, voltage);
 
     // Wait a bit before reading again
     embassy_time::Timer::after_secs(1).await;
@@ -748,13 +751,13 @@ loop {
 </Tabs>
 
 :::info
-Cortex‑M33 cores include a hardware FPU, but **only for single precision (`f32`)**.  
+Cortex‑M33 cores include a hardware Floating Point Unit (FPU), but **only for single precision (`f32`)**.  
 Double precision (`f64`) is emulated in software and runs much slower.  
 Cortex‑M0 cores have **no FPU at all**, so all floating‑point math is emulated.
 
-For clarity, examples here use volts (`f32`) instead of millivolts.  
+For clarity, examples here use volts represented as `f32` instead of millivolts.  
 On RP2040 (Cortex‑M0+), floating‑point operations are **very slow**.  
-For efficiency, prefer **integer arithmetic in mV** in performance‑sensitive code.
+For efficiency, prefer **integer arithmetic in mV** expressed as `u32` in performance‑sensitive code.
 :::
 
 ## Exercises
