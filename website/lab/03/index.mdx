@@ -449,9 +449,9 @@ let mut pwm = SimplePwm::new(
     let mut ch1 = pwm.ch1();
     ch1.enable();
 
-    const MIN_PERIOD_MS: u32 = 500;
-    const MAX_PERIOD_MS: u32 = 2500;
-    const PERIOD: u32 = 20000;
+const MIN_PERIOD_US: u32 = 500;
+const MAX_PERIOD_US: u32 = 2500;
+const PERIOD_US: u32 = 20000;
 
     let min_value = (MIN_PERIOD_MS * 1000) / PERIOD;
     let max_value = (MAX_PERIOD_MS * 1000) / PERIOD;
