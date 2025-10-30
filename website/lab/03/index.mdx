@@ -251,10 +251,9 @@ A servo motor has three wires:
 
 The board provides the connectors for the servo motor. These connectors are labeled `GND`, `PWR`, and `SIG` in the connectors section.
 
-![ServoMotor](images/board_servo.jpg)
+![ServoMotor](images/servo_pins.jpg)
 
-To wire the servo motor to the STM32 Nucleo-U545RE-Q, first connect the servo motor to the board using the `GND`, `PWR`, and `SIG` connectors. Then, a jumper wire is needed to connect the `SERVOS` connector on the board to a PWM pin on the STM32 Nucleo-U545RE-Q.
-
+To wire the servo motor to the STM32 Nucleo-U545RE-Q, note that the servo’s `PWR`, `GND`, and `SIG` lines are already connected to the lab board. The only additional step is to place a jumper wire from the SIG connector of the the lab board to a suitable PWM-capable pin on the STM32 Nucleo-U545RE-Q.
 ### PWM in Embassy-rs
 
 First, we need a reference to all peripherals, as usual.
