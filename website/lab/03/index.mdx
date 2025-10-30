@@ -667,13 +667,13 @@ use embassy_stm32::timer::simple_pwm::Config as ConfigPwm; // PWM config
 When configuring the ADC, it is important to distinguish between the maximum digital count and the maximum input voltage. The function
 
 ```rust
-let max1 = adc::resolution_to_max_count(adc::Resolution::BITS14);
+const MAX_VALUE: u32 = adc::resolution_to_max_count(adc::Resolution::BITS14);
 ```
 returns the largest integer code that the ADC can produce for a 14‑bit conversion.
 
 - For a 14‑bit ADC, the digital output spans from 0 to `2^14 - 1 = 16383`.
-- `max1` will therefore hold the value `16383`.
-- This is not the maximum voltage that the ADC can measure. The maximum voltage is determined by the reference voltage (e.g., 3.3 V), while `max1` simply represents the highest possible digital code.
+- `MAX_VALUE` will therefore hold the value `16383`.
+- This is not the maximum voltage that the ADC can measure. The maximum voltage is determined by the reference voltage (e.g., 3.3 V), while `MAX_VALUE` simply represents the highest possible digital code.
 :::
 
 Once we have the ADC and pin set up, we can start reading values from the pin. Here’s a simple loop that reads the raw ADC value, converts it to a voltage, and prints it:
