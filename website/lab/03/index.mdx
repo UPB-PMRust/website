@@ -458,11 +458,12 @@ let servo_pin = PwmPin::new_ch1(p.PA0, OutputType::PushPull);
 
   // Main loop to move the servo back and forth
 loop {
-    // Move servo to maximum position (180 degrees)
-    // Set compare value for max pulse width
-    // Update PWM configuration
-    // Wait 1 second
-    // Then move the servo to minimum position (0 degrees)
+    // At 50 Hz, T = 20 ms. A 2.5 ms pulse means 2.5/20 = 12.5% duty cycle.
+    // Use set_duty_cycle_fraction to set servo to ~180°.
+	// Wait 1 second before moving back
+	// A 0.5 ms pulse means 0.5/20 = 2.5% duty cycle.
+    // Use set_duty_cycle_fraction to set servo to ~0°.
+	// Wait 1 second before repeating
 }
 ```
 
