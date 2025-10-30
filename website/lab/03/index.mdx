@@ -434,16 +434,16 @@ Now, let's implement it in Rust:
 // Set the PWM pin
 let servo_pin = PwmPin::new_ch1(p.PA0, OutputType::PushPull);
 
-    // 50 Hz PWM (20 ms period)
-    let mut pwm = SimplePwm::new(
-        p.TIM2,
-        Some(servo_pin),
-        None,
-        None,
-        None,
-        hz(50),
-        Default::default(),
-    );
+// 50 Hz PWM (20 ms period)
+let mut pwm = SimplePwm::new(
+    p.TIM2,
+    Some(servo_pin),
+    None,
+    None,
+    None,
+    hz(50),
+    Default::default(),
+);
 
 // Enable the PWM channel
     let mut ch1 = pwm.ch1();
