@@ -449,22 +449,22 @@ let servo_pin = PwmPin::new_ch1(p.PA0, OutputType::PushPull);
     let mut ch1 = pwm.ch1();
     ch1.enable();
 
-// Compute the min
-  const PERIOD = 20000;
-  const ARR = 50000;
+    const MIN_PERIOD_MS: u32 = 500;
+    const MAX_PERIOD_MS: u32 = 2500;
+    const PERIOD: u32 = 20000;
 
-  let min = (500 * ARR)/PERIOD; //For a 0.5ms pulse
-  let max = (2500 * ARR)/PERIOD; // For a 2.5ms pulse 
+    let min_value = (MIN_PERIOD_MS * 1000) / PERIOD;
+    let max_value = (MAX_PERIOD_MS * 1000) / PERIOD;
 
-  // Main loop to move the servo back and forth
-loop {
-    // At 50 Hz, T = 20 ms. A 2.5 ms pulse means 2.5/20 = 12.5% duty cycle.
-    // Use set_duty_cycle_fraction to set servo to ~180°.
-	// Wait 1 second before moving back
-	// A 0.5 ms pulse means 0.5/20 = 2.5% duty cycle.
-    // Use set_duty_cycle_fraction to set servo to ~0°.
-	// Wait 1 second before repeating
-}
+    // Main loop to move the servo back and forth
+    loop {
+        // At 50 Hz, T = 20 ms. A 2.5 ms pulse means 2.5/20 = 12.5% duty cycle.
+        // Use set_duty_cycle_fraction(max_value, 1000) to set servo to ~180°.
+        // Wait 1 second before moving back
+        // A 0.5 ms pulse means 0.5/20 = 2.5% duty cycle.
+        // Use set_duty_cycle_fraction(min_value, 1000) to set servo to ~0°.
+        // Wait 1 second before repeating
+    }
 ```
 
 
