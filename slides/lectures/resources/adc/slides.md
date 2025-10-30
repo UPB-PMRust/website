@@ -94,14 +94,14 @@ how the ADC works
 <img src="./adc.svg" class="rounded w-150">
 </div>
 
-There are different [types of ADCs](https://www.monolithicpower.com/en/analog-to-digital-converters/introduction-to-adcs/types-of-adcs) depending on the architecture. 
+There are different [types of ADCs](https://www.monolithicpower.com/en/analog-to-digital-converters/introduction-to-adcs/types-of-adcs) depending on the architecture.
 The most common used is SAR ([*Successive Approximation Register*](https://en.wikipedia.org/wiki/Successive-approximation_ADC)) ADC, also integrated in RP2350.
 
 ---
 layout: two-cols
 ---
 
-# RP2350's ADC 
+# RP2350's ADC
 
 <style>
 .two-columns {
@@ -161,4 +161,91 @@ loop {
     info!("Pin 26 voltage: {}.{}V", voltage / 1000, voltage % 1000);
     Timer::after_secs(1).await;
 }
+```
+
+---
+layout: two-cols
+---
+
+# STM32U545RE's ADC
+
+ADC12 and ADC4
+
+<style>
+.two-columns {
+    grid-template-columns: 4fr 5fr;
+}
+</style>
+
+| | ADC12 | ADC4 |
+|-|-|-|
+| *channels* | 20 | 23 |
+| *sampling rate* | 2.5 Msps | 2.5 Msps |
+| *resolution* | 14 bits | 12 bits |
+| *V<sub>max</sub>* | 3.3 V | 3.3 V |
+
+- internal channels connected to
+  - temperature sensors (V<sub>SENSE</sub>)
+  - V<sub>BAT</sub> monitoring channel
+  - internal reference voltage (V<sub>REFERENCE</sub>)
+  - V<sub>CORE</sub> and DAC 1 and 2 output channels
+
+:: right ::
+
+### ADC1 conectivity
+
+<div align="center">
+<img src="./stm32u545_adc1.png" class="rounded w-90">
+</div>
+
+---
+---
+# ADC - blocking
+in Embassy
+
+```rust {1|3|5,6|7-9|11|13-14|all}
+use embassy_stm32::adc;
+
+let mut p = embassy_stm32::init(Default::default());
+
+let mut adc1 = adc::Adc::new(p.ADC1);
+
+adc1.set_resolution(adc::Resolution::BITS14);
+adc1.set_averaging(adc::Averaging::Samples1024);
+adc1.set_sample_time(adc::SampleTime::CYCLES160_5);
+
+let measurement = adc1.blocking_read(&p.PA3);
+
+let max = adc::resolution_to_max_count(adc::Resolution::BITS14);
+let voltage: f32 = 3.3 * measurement as f32 / max as f32;
+```
+
+---
+---
+# ADC - asynchornous
+in Embassy
+
+```rust {1|3|5,6|8-10|6,12|14|15-19|21,8|22|all}
+use embassy_stm32::adc;
+
+let mut p = embassy_stm32::init(Default::default());
+
+let mut adc1 = adc::Adc::new(p.ADC1);
+let mut adc1_pin = p.PA3;
+
+adc1.set_resolution(adc::Resolution::BITS14);
+adc1.set_averaging(adc::Averaging::Samples1024);
+adc1.set_sample_time(adc::SampleTime::CYCLES160_5);
+
+let mut degraded_channel = adc1_pin.degrade_adc();
+
+let mut measurements = [0u16; 1];
+adc1.read(
+    p.GPDMA1_CH0.reborrow(),
+    [(&mut degraded_channel, adc::SampleTime::CYCLES160_5)].into_iter(),
+    &mut measurements,
+).await;
+
+let max = adc::resolution_to_max_count(adc::Resolution::BITS14);
+let voltage: f32 = 3.3 * measurements[0] as f32 / max as f32;
 ```
