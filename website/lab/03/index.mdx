@@ -666,7 +666,7 @@ use embassy_stm32::timer::simple_pwm::Config as ConfigPwm; // PWM config
 :::
 
   :::warning 
-When configuring the ADC, it is important to distinguish between the maximum digital count and the maximum input voltage. The function
+When reading the ADC, it is important to distinguish between the maximum digital count and the maximum input voltage. The function
 
 ```rust
 const MAX_VALUE: u32 = adc::resolution_to_max_count(adc::Resolution::BITS14);
@@ -722,6 +722,10 @@ use embassy_rp::adc::Config as ConfigAdc; // ADC config
 // ---- fn main() ----
 let mut adc = Adc::new(peripherals.ADC, Irqs, ConfigAdc::default());
 ```
+:::
+
+:::warning 
+Since the RP2s uses a 12‑bit ADC, the maximum representable digital value is 4095.
 :::
 
 Now, we need to initialize the ADC pin we will be using. The Raspberry Pi Pico has 3 pins that support ADC: `ADC0`, `ADC1`, and `ADC2`.
