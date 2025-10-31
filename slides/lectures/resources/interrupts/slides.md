@@ -48,7 +48,7 @@ some hardware device notifies the MCU
 it needs attention.-->
 
 ---
----
+
 # Exceptions and Interrupts in Embassy
 
 - Embassy registers handlers for Exceptions
