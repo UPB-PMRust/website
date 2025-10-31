@@ -7,6 +7,9 @@ slug: /lab/03
 
 The purpose of this lab is to help you learn about different types of signals in electronics and how to work with them.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Concepts 
 
 - Understanding digital vs. analog signals;
@@ -17,7 +20,9 @@ The purpose of this lab is to help you learn about different types of signals in
 
 ## Resources
 
-1. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+1. **STMicroelectronics**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u545ce.pdf)*
+2. **STMicroelectronics**, *[Nucleo STM32U545 User manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)*
+2. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
    - Chapter 8 - *Clocks*
      - Subchapter 8.1.1
      - Subchapter 8.1.2
@@ -29,7 +34,7 @@ The purpose of this lab is to help you learn about different types of signals in
      - Chapter 12.5 - *PWM*
      - Chapter 12.8 - *System Timers*
 
-2. **Paul Denisowski**, *[Understanding PWM](https://www.youtube.com/watch?v=nXFoVSN3u-E)*
+3. **Paul Denisowski**, *[Understanding PWM](https://www.youtube.com/watch?v=nXFoVSN3u-E)*
 
 ## Timing
 
@@ -41,11 +46,26 @@ A clock is a piece of hardware that provides us with that reference. Its purpose
 
 ![ClockSignal](images/clock_signal.png)
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+The most precise type of clock on the STM32 Nucleo-U545RE-Q is the *High-Speed External oscillator (HSE)*. The reason why it is so accurate is because it uses the crystal’s natural vibration frequency to generate the clock signal. This oscillator is usually external to the microcontroller itself, requiring a crystal or external clock source connected to the HSE pins.
+
+The processor also provides several *internal RC oscillators* (HSI, MSI, LSI), which are less accurate because they rely on resistor-capacitor timing rather than quartz resonance. These internal clocks are useful when small variations in clock pulses are acceptable, or when minimizing external components is important.
+
+The STM32 Nucleo-U545RE-Q does not have a built-in crystal frequency. Instead, the board designer selects an appropriate crystal (commonly 8 MHz, 16 MHz, or 24 MHz) to drive the HSE, depending on the application requirements.
+
+![High-Speed External oscillator (HSE)](images/hse.png)
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
 The most precise type of clock is the crystal oscillator (XOSC). The reason why it is so accurate is because it uses the crystal's natural vibration frequency to create the clock signal. This clock is usually external to the processor itself, but the processor also has an internal clock (ROSC) that is less accurate and that can be used in cases where small variations of clock pulses are negligible. When using the USB protocol, for instance, a more stable clock signal is required, therefore the XOSC is necessary. The crystal oscillator on the Raspberry Pi Pico board has a frequency of 12MHz.
 
 This clock signal is just a reference, and most of the time we need to adjust it to our needs. This is done by either multiplying or dividing the clock, or in other words, elevating or lowering the frequency of the clock. For example, the RP2040 itself runs on a 133MHz clock, so the crystal oscillator frequency of 12MHz is multiplied (this is done using a method called Phase-Locked Loop). Similarly, the RP2350, the successor to the RP2040, also uses a PLL to adjust the 12MHz reference clock but supports a higher clock speed of 150MHz. This increased clock speed, along with more precise frequency control and improved power management, makes the RP2350 more versatile for both high-performance and energy-efficient applications.
 
 ![RPCrystal](images/rp_crystal.png)
+  </TabItem>
+
+</Tabs>
 
 ### Counters
 
@@ -70,13 +90,17 @@ The way the counter works here is that it increments/decrements every clock cycl
 
 #### SysTick
 
-The ARM Cortex-M0 used by RP2040 and the ARM Cortex-M33 used by RP2350 both use the SysTick time counter to keep track of time. This counter is decremented every microsecond, and when it reaches 0, it triggers an exception and then resets.
+The ARM Cortex‑M0+ used by the RP2040, the ARM Cortex‑M33 used by the RP2350, and the ARM Cortex‑M33 used by the STM32U545 all provide the SysTick time counter to keep track of time. This counter automatically decrements, and when it reaches 0, it triggers an exception and then resets to the reload value.
 
 - `SYST_CVR` register - the value of the timer itself
 - `SYST_RVR` register - the reset value
 - `SYST_CSR_SET` register:
 	- `ENABLE` field - enable/disable the counter
 	- `TICKINT` field - enable/disable exception on reaching 0
+
+**Difference:**
+
+On the RP2040, documentation often describes the counter as decrementing “every microsecond,” since it is usually configured that way. On the RP2350 and STM32U5, the counter instead decrements on every processor clock cycle (or external reference clock), so to get a 1 µs or 1 ms tick you must calculate the reload value based on the actual system clock frequency.
 
 ### Timers
 
@@ -89,9 +113,11 @@ An **alarm** is a counter that triggers an interrupt every time it reaches a cer
 ![Alarm](images/alarm.svg)
 
 :::info
-The **RP2350** timer and the **RP2040's** are fully monotonic, meaning they can never truly overflow. Their value is stored on 64 bits and incremented every 1 microsecond, ensuring precise and consistent timekeeping. This means the last value they can increment to before overflowing is 2<sup>^64-1</sup>, which is equivalent to roughly 500,000 years. RP2040 and RP2350 support 4 different alarms (TIMERx_IRQ_0/1/2/3), which can be used independently, allowing for multiple timed events or tasks to be managed simultaneously.
+The **RP2350** timer and the **RP2040's** are fully monotonic, meaning they can never truly overflow. Their value is stored on 64 bits and incremented every 1 microsecond, ensuring precise and consistent timekeeping. This means the last value they can increment to before overflowing is 2<sup>64</sup>‑1, which is equivalent to roughly 500,000 years. RP2040 and RP2350 support 4 different alarms (TIMERx_IRQ_0/1/2/3), which can be used independently, allowing for multiple timed events or tasks to be managed simultaneously.
 
-RP2350 provides two timer peripherals, while RP2040 provides only one.
+The **RP2350** provides two timer peripherals, while the **RP2040** provides only one.
+
+The **STM32U5**, by contrast, does not use a single 64‑bit monotonic timer. Instead, it provides a set of general‑purpose 16‑bit and 32‑bit timers (TIMx) as well as advanced timers for motor control and low‑power timers for energy‑sensitive applications. These timers can be configured with prescalers and auto‑reload registers to generate periodic interrupts, PWM signals, input capture, or output compare events. Unlike the RP2040 and RP2350’s unified 64‑bit microsecond counter, STM32 timers can overflow depending on their bit‑width (e.g., a 16‑bit timer rolls over after 65,535 counts). To achieve long‑duration or monotonic timekeeping, software typically chains timers or uses the SysTick timer in combination with interrupts.
 :::
 
 ## Analog and Digital Signals
@@ -129,16 +155,52 @@ duty\_cycle = \frac{time\_on}{period} \%
 
 $$
 
-*Counters* are used by the RP2350 and RP2040 to generate the PWM signals. The PWM counters are controlled by these registers (`X` can be from 0-7, depending on the channel):
+*Counters* are used by the STM32U5, the RP2350, and the RP2040  to generate PWM signals. On the RP2040 and RP2350, the PWM counters are controlled by channel registers (X can be from 0–7, depending on the channel). On the STM32U545, PWM generation is handled by the timer peripherals (`TIMx`), where each channel uses a counter (`TIMx_CNT`), a compare register (`TIMx_CCRy`), and an auto‑reload register (`TIMx_ARR`) to define the duty cycle and period.
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+- `TIMx_CNT` - the actual value of the counter
+- `TIMx_CCRy` - the compare value for channel y (this sets the duty cycle)
+- `TIMx_ARR` - the auto‑reload value, the maximum count before the counter resets (this sets the period)
 
+When `TIMx_CNT` is reset (0), the output signal is set to 1 (active). The counter counts up until it reaches `TIMx_CCRy`, after which the output signal becomes 0 (inactive). The counter continues to count until it reaches `TIMx_ARR`, then it resets to 0 and the signal becomes 1 again.
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 - `CHX_CTR` - the actual value of the counter
 - `CHX_CC` - the value that the counter will compare to
 - `CHX_TOP` - the value at which the counter will reset (or *wrap*)
 
 When `CHX_CTR` is reset, the value of the output signal is 1. The counter counts up until it reaches `CHX_CC`, after which the value of the output signal becomes 0. The counter continues to count until it reaches `CHX_TOP`, and then the signal becomes 1 again. This way, by choosing the value of `CHX_CC`, we set the duty cycle of the PWM signal.
+  </TabItem>
+
+</Tabs>
+
 
 ![PWMRP2040](images/pwm_rp2040_example.png)
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+On STM32U5, PWM signals are generated by the timer peripherals (TIMx). Each timer provides multiple channels, and each channel can be mapped to specific GPIO pins through the alternate function system.
+
+| Arduino connector | STM32 pin |PWMs |
+|-----------|----------|----------|
+| `D3` |`PB3` |`TIM2_CH2` |
+| `D5` | `PB4`|`TIM3_CH1` |
+| `D6` |`PB10`|`TIM2_CH3` |
+| `D9` |`PC6`|`TIM3_CH1` |
+| `D11` |`PA7`|`TIM3_CH2` |
+
+![STM32U5PWMPins](images/stm32u545re_timers_cont.png)
+
+:::info
+
+You can find more details about the pins in the [user manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf) of the board(page 33)
+
+:::
+  
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 On RP2350 and RP2040, all GPIO pins support PWM. Every two pins share a PWM slice, and each one of them is on a separate channel. 
 
 ![RP2040PWMPins](images/pwm_rp2040_pins.png)
@@ -146,6 +208,10 @@ On RP2350 and RP2040, all GPIO pins support PWM. Every two pins share a PWM slic
 :::info
 This means that in order to use a pin as PWM, we need to know what channel it's on, and which output it uses (A or B).
 :::
+  </TabItem>
+
+</Tabs>
+
 
 ### Examples of hardware controlled through PWM
 
@@ -180,7 +246,7 @@ For this lab, we will be using **common anode** RGB LEDs, which means that the P
 
 The RGB LED that the board provides is signaled with labels `RGB_B` (blue), `RGB_G` (green) and `RGB_R` (red) in the connectors section.
 
-![RGBWiring](images/board_rgb.png)
+![RGBWiring](images/board_rgb.jpg)
 
 #### How to wire a servo motor
 
@@ -194,14 +260,70 @@ A servo motor has three wires:
 
 The board provides the connectors for the servo motor. These connectors are labeled `GND`, `PWR`, and `SIG` in the connectors section.
 
-![ServoMotor](images/board_servo.png)
+![ServoMotor](images/servo_pins.jpg)
 
-To wire the servo motor to the Raspberry Pi Pico 2, first connect the servo motor to the board using the `GND`, `PWR`, and `SIG` connectors. Then, a jumper wire is needed to connect the `SERVOS` connector on the board to a PWM pin on the Raspberry Pi Pico 2.
-
+To wire the servo motor to the STM32 Nucleo-U545RE-Q, note that the servo’s `PWR`, `GND`, and `SIG` lines are already connected to the lab board. The only additional step is to place a jumper wire from the SIG connector of the the lab board to a suitable PWM-capable pin on the STM32 Nucleo-U545RE-Q.
 ### PWM in Embassy-rs
 
-First, we need a reference to all peripherals, as usual. 
+First, we need a reference to all peripherals, as usual.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+
+```rust
+// Initialize peripherals
+let peripherals = embassy_stm32::init(Default::default());
+```
+
+```rust
+use embassy_stm32::timer::simple_pwm::{PwmPin, SimplePwm};
+use embassy_stm32::peripherals::TIM2;
+use embassy_stm32::timer::Ch1;
+
+    // Configure PA0 as TIM2_CH1 PWM output
+    let led_pwm_pin: PwmPin<'_, TIM2, Ch1> = PwmPin::new(p.PA0, OutputType::PushPull);
+```
+
+    - `PA0` → the physical GPIO pin you want to use.
+    - `TIM2` → the timer peripheral that will generate the PWM signal.
+    - `Ch1` → the channel of that timer (channel 1).
+    - `PwmPin::new_ch1` → ties PA0 to TIM2 channel 1’s output.
+    - `OutputType::PushPull` → configures the electrical drive mode of the pin.
+
+```rust
+let mut pwm = SimplePwm::new(
+    p.TIM2,              // Timer 2 peripheral
+    Some(led_pwm_pin),   // Channel 1 output (PA0)
+    None,                // Channel 2 not used
+    None,                // Channel 3 not used
+    None,                // Channel 4 not used
+    khz(1),              // PWM frequency = 1 kHz
+    Default::default(),  // Default configuration
+);
+```
+
+:::warning
+
+The code above is an example for PA0 with TIM2_CH1. You need to modify the timer, channel, and pin depending on which PWM‑capable pin you want to use!
+:::
+
+If we decide to modify the duty cycle of the PWM, we can update it directly on the channel:
+
+```rust
+let mut ch1 = pwm.ch1(); // Get handle for channel 1
+ch1.enable();
+
+// Set duty cycle to 50%
+ch1.set_duty_cycle(50);
+
+// Later, change duty cycle to 10%
+ch1.set_duty_cycle(10);
+```
+
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 // Initialize peripherals
 let peripherals = embassy_rp::init(Default::default());
@@ -227,6 +349,7 @@ In the example above:
     - `compare_a` is the field from `Config` that will define the value at which the PWM signal will switch from 1 to 0
 In this case, `config.compare_a` is half of `config.top`. This means that the duty cycle of the generated PWM signal will be 50%, or, in other words, that the PWM signal will switch from 1 to 0 halfway through each period.
 
+
 To select the pin that we want to use for PWM, we need to create a new PWM driver that uses the correct channel and output for our pin.
 
 ```rust
@@ -249,21 +372,126 @@ If we decide to modify the value of `compare_a` or `compare_b`, we have to updat
 config.compare_b += 100; // modified value of `compare_b`
 pwm.set_config(&config); // set the new configuration for PWM
 ```
+ 
+  </TabItem>
+
+</Tabs>
+
+
+
 
 ### Controlling a Servo Motor Using PWM
 
-Just like controlling other hardware through PWM, we start by initializing the peripherals:
+Just like controlling other hardware through PWM, we start by initializing the peripherals.
+
+Servos typically expect a 50 Hz PWM signal, which corresponds to a 20 ms period.
+
+Servos interpret PWM signals based on the pulse width rather than just frequency:
+
+- `Period`: The total time for one PWM cycle, which is 20 ms (50 Hz).
+- `Minimum Pulse Width`: Typically **0.5 ms**, which corresponds to a servo position of **0 degrees**.
+- `Maximum Pulse Width`: Typically **2.5 ms**, which corresponds to a servo position of **180 degrees**.
+
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
 
 ```rust
-// Initialize the RP2350 peripherals
+// Initialize peripherals
+let peripherals = embassy_stm32::init(Default::default());
+```
+
+At 50 Hz, the PWM period is:
+$$ 
+
+T = 20ms 
+
+$$
+
+For a given pulse width $$pulse_{width}$$ the duty cycle percentage is:
+$$
+
+duty_{cycle} = \left( \frac{pulse_{width} \times 100}{T} \right)
+
+$$
+
+The function `set_duty_cycle_fraction(num, den)` expects a fraction representing the duty cycle.
+
+For example, to generate a $$pulse_{width}$$ of 2.5ms,
+
+$$
+
+duty_{cycle} = \left( \frac{2.5 \times 1000}{20} \right) ‰ = 125 ‰
+
+$$
+
+That means `set_duty_cycle_fraction(125, 1000)`
+
+- For $$pulse_{width}$$ = 0.5ms:
+$$
+
+duty_{cycle} = \left( \frac{0.5 \times 1000}{20} \right) ‰ = 25 ‰
+
+$$
+
+That means `set_duty_cycle_fraction(25, 1000)`
+
+:::note
+We use ‰ for accuracy, as the PWM works with integer numbers and % is not accurate enough.
+:::
+
+Now, let's implement it in Rust:
+```rust
+// Set the PWM pin
+let servo_pin = PwmPin::new_ch1(p.PA0, OutputType::PushPull);
+
+// 50 Hz PWM (20 ms period)
+let mut pwm = SimplePwm::new(
+    p.TIM2,
+    Some(servo_pin),
+    None,
+    None,
+    None,
+    hz(50),
+    Default::default(),
+);
+
+// Enable the PWM channel
+    let mut ch1 = pwm.ch1();
+    ch1.enable();
+
+const MIN_PERIOD_US: u32 = 500;
+const MAX_PERIOD_US: u32 = 2500;
+const PERIOD_US: u32 = 20000;
+
+let min_value = (MIN_PERIOD_US * 1000) / PERIOD_US;
+let max_value = (MAX_PERIOD_US * 1000) / PERIOD_US;
+
+    // Main loop to move the servo back and forth
+    loop {
+        // At 50 Hz, T = 20 ms. A 2.5 ms pulse means 2.5/20 = 12.5% duty cycle.
+        set_duty_cycle_fraction(max_value as u16, 1000); // sets the servo to set servo to ~180°.
+        // Wait 1 second before moving back
+        // A 0.5 ms pulse means 0.5/20 = 2.5% duty cycle.
+        set_duty_cycle_fraction(min_value as u16, 1000); // sets the servo to set servo to ~0°.
+        // Wait 1 second before repeating
+    }
+```
+
+
+
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
+```rust
+// Initialize peripherals
 let peripherals = embassy_rp::init(Default::default());
 ```
 
 To control a servo motor using PWM, we need to calculate the **TOP value**, which determines the PWM period.
 
 #### Calculating the TOP Value
-
-Servos typically expect a **50 Hz** PWM signal, which corresponds to a **20 ms** period.  
 
 $$
 
@@ -292,12 +520,6 @@ which is `0xB71A` in hexadecimal.
 
 The **clock divider** is used to slow down the high-frequency system clock so that it can generate a usable PWM signal. The RP2350's system clock runs at 150 MHz, which is too fast for direct PWM control of a servo. By setting the divider to 64, we effectively slow down the clock.
 
-Servos interpret PWM signals based on the pulse width rather than just frequency:
-
-- `Period`: The total time for one PWM cycle, which is 20 ms (50 Hz).
-- `Minimum Pulse Width`: Typically **0.5 ms**, which corresponds to a servo position of **0 degrees**.
-- `Maximum Pulse Width`: Typically **2.5 ms**, which corresponds to a servo position of **180 degrees**.
-
 To convert these pulse widths into PWM compare values, we use:
 
 $$
@@ -313,8 +535,8 @@ where:
 Now, let's implement this in Rust:
 
 ```rust
-// Configure PWM for servo control
-let mut servo_config: PwmConfig = Default::default();
+// Set the PWM pin
+let servo_pin = PwmPin::new_ch1(p.PA0, OutputType::PushPull);
 
 // Set the calculated TOP value for 50 Hz PWM
 servo_config.top = 0xB71A; 
@@ -351,6 +573,11 @@ loop {
     // Then move the servo to minimum position (0 degrees)
 }
 ```
+  </TabItem>
+
+</Tabs>
+
+
 
 
 ## Analog-to-Digital Converter (ADC)
@@ -378,7 +605,7 @@ The [Nyquist-Shannon sampling theorem](https://en.wikipedia.org/wiki/Nyquist%E2%
 For an analog signal to be represented without loss of information, the conversion needs to satisfy the following formula:
 
 $$
-sampling_f >= 2 \times max_{f}
+sampling_f > 2 \times max_{f}
 $$
 
 The analog signal needs to be sampled at a frequency greater than twice the *maximum frequency* of the signal.
@@ -401,7 +628,7 @@ A **photoresistor** (or photocell) is a sensor that measures the intensity of li
 
 The photoresistor that the board provides is signaled with the label `PHOTORESISTOR` in the connectors section.
 
-![PhotoresistorWiring](images/board_photoresistor.png)
+![PhotoresistorWiring](images/board_photoresistor.jpg)
 
 :::info
 To wire a photoresistor on your board at home, you need to connect one leg to *GND* and the other leg to a voltage divider. Take a look at the [Electronics](/tutorial/electronics/index.md#voltage-divider) tutorial:
@@ -423,6 +650,64 @@ This way, the ADC pin measures the photoresistor's resistance, without the risk 
 
 ### ADC in Embassy-rs
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+    On the STM32, the ADC peripheral does not use a FIFO interrupt like the RP2. Instead, each ADC (ADC1, ADC2, etc.) can be configured directly, and Embassy provides a driver that handles resolution, averaging, and sample time for you. All we need to do is create the ADC driver, configure it, and then bind it to the pin we want to read from.
+  
+  ```rust
+  // ---- fn main() ----
+
+let p = embassy_stm32::init(Default::default());
+
+// Create ADC driver on ADCx
+let mut adc = adc::Adc::new(p.ADCx);
+
+// Configure resolution, averaging, and sample time
+adc.set_resolution(adc::Resolution::BITS14);
+adc.set_averaging(adc::Averaging::Samples1024);
+adc.set_sample_time(adc::SampleTime::CYCLES160_5);
+
+const MAX_VALUE: u32 = adc::resolution_to_max_count(adc::Resolution::BITS14);
+  ```
+
+  :::warning 
+  If we are using PWM and ADC in the same code, both modules export a Config type. To avoid compilation errors, we should import them with different names:
+```rust
+use embassy_stm32::adc::Config as ConfigAdc;   // ADC config
+use embassy_stm32::timer::simple_pwm::Config as ConfigPwm; // PWM config
+```
+:::
+
+  :::warning 
+When reading the ADC, it is important to distinguish between the maximum digital count and the maximum input voltage. The function
+
+```rust
+const MAX_VALUE: u32 = adc::resolution_to_max_count(adc::Resolution::BITS14);
+```
+returns the largest integer code that the ADC can produce for a 14‑bit conversion.
+
+- For a 14‑bit ADC, the digital output spans from 0 to `2^14 - 1 = 16383`.
+- `MAX_VALUE` will therefore hold the value `16383`.
+- This is not the maximum voltage that the ADC can measure. The maximum voltage is determined by the reference voltage (e.g., 3.3 V), while `MAX_VALUE` simply represents the highest possible digital code.
+:::
+
+Once we have the ADC and pin set up, we can start reading values from the pin. Here’s a simple loop that reads the raw ADC value, converts it to a voltage, and prints it:
+```rust
+loop {
+    // Read a raw ADC value (blocking read)
+    let level: u16 = adc.blocking_read(&mut adc_pin);
+    let voltage = 3.3f32 * level as f32 / MAX_VALUE as f32;
+
+    info!("Light sensor reading: {}, voltage: {}", level, voltage);
+
+    // Wait a bit before reading again
+    embassy_time::Timer::after_secs(1).await;
+}
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 On the RP2040, ADC uses an interrupt called `ADC_IRQ_FIFO` to signal whenever a new sample has been added to the ADCs' FIFO. This new sample will be stored inside a FIFO. In the Embassy library, this interrupt is already implemented, so all we need to do is bind it and use it in our ADC variable.
 
 ```rust
@@ -444,11 +729,16 @@ let mut adc = Adc::new(peripherals.ADC, Irqs, Config::default());
 If we are using PWM and ADC in the same code, we will have two different `Config` imports with the same name. In order to avoid compilation errors, we need to separate the PWM config import from the ADC one. To do this, we can import the two `Config`s with different names.
 
 ```rust
+use embassy_rp::pwm::Config as ConfigPwm; // PWM config
 use embassy_rp::adc::Config as ConfigAdc; // ADC config
 
 // ---- fn main() ----
 let mut adc = Adc::new(peripherals.ADC, Irqs, ConfigAdc::default());
 ```
+:::
+
+:::warning 
+Since the RP2s uses a 12‑bit ADC, the maximum representable digital value is 4095.
 :::
 
 Now, we need to initialize the ADC pin we will be using. The Raspberry Pi Pico has 3 pins that support ADC: `ADC0`, `ADC1`, and `ADC2`.
@@ -473,6 +763,19 @@ loop {
     Timer::after_secs(1).await; 
 }
 ```
+  </TabItem>
+
+</Tabs>
+
+:::info
+Cortex‑M33 cores include a hardware Floating Point Unit (FPU), but **only for single precision (`f32`)**.  
+Double precision (`f64`) is emulated in software and runs much slower.  
+Cortex‑M0 cores have **no FPU at all**, so all floating‑point math is emulated.
+
+For clarity, examples here use volts represented as `f32` instead of millivolts.  
+On RP2040 (Cortex‑M0+), floating‑point operations are **very slow**.  
+For efficiency, prefer **integer arithmetic in mV** expressed as `u32` in performance‑sensitive code.
+:::
 
 ## Exercises
 
@@ -506,9 +809,9 @@ Unlike the photoresistor, which requires an external resistor to form a voltage 
     (The potentiometer that the board provides is signaled with label `POTENTIOMETER` in the connectors section.)
 :::
 
-3. Make the RGB LED switch from red -> yellow -> blue every time the button `SW4` is pressed. (**2p**)
+3. Make the RGB LED switch from red -> yellow -> blue every time the button `S4` is pressed. (**2p**)
 :::note
-`GP2`, `GP3`, and `GP4` can be used to control an RGB LED. Although `GP2` and `GP3` share the same PWM channel and therefore have the same frequency, each pin can have an **independent duty cycle**, allowing individual control of the brightness for each color.
+`PC6`, `PB4`, and `PB10` can be used to control an RGB LED. Although `PC6` and `PB4` share the same PWM channel and therefore have the same frequency, each pin can have an **independent duty cycle**, allowing individual control of the brightness for each color.
 :::
 ![Colors](images/colors.png)
 
