@@ -415,16 +415,13 @@ duty_{cycle} = \left( \frac{pulse_{width} \times 100}{T} \right)
 
 $$
 
-#### Using `set_duty_cycle_fraction`
-
 The function `set_duty_cycle_fraction(num, den)` expects a fraction representing the duty cycle.
 
-For example:
+For example, to generate a $$pulse_{width}$$ of 2.5ms,
 
-- For $$pulse_{width}$$ = 2.5ms:
 $$
 
-duty_{cycle} = \left( \frac2.5 \times 100}{20} \right)
+duty_{cycle} = \left( \frac{2.5 \times 1000}{20} \right) ‰ = 125 ‰
 
 $$
 
@@ -433,11 +430,15 @@ That means `set_duty_cycle_fraction(125, 1000)`
 - For $$pulse_{width}$$ = 0.5ms:
 $$
 
-duty_{cycle} = \left( \frac0.5 \times 100}{20} \right)
+duty_{cycle} = \left( \frac{0.5 \times 1000}{20} \right) ‰ = 25 ‰
 
 $$
 
 That means `set_duty_cycle_fraction(25, 1000)`
+
+:::note
+We use ‰ for accuracy, as the PWM works with integer numbers and % is not accurate enough.
+:::
 
 Now, let's implement it in Rust:
 ```rust
