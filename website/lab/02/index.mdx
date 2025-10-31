@@ -523,7 +523,7 @@ The `pin` variable implements the embadded HAL [`OutputPin`](https://docs.rs/emb
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
 ```rust
-use gpio::{Level, Output, Speed};
+use embassy_stm3::gpio::{Level, Output, Speed};
 
 // initialize PXn
 //   - replace X with the port letter(A, B, C, D, E, etc.)
@@ -543,7 +543,7 @@ pin.set_low();
 
   <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
-use gpio::{Level, Output};
+use embassy_rp::gpio::{Level, Output};
 
 // initialize PIN_n (replace n with a number) and set its
 // default value to LOW (0)
