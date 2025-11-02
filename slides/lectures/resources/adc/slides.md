@@ -222,7 +222,7 @@ let voltage: f32 = 3.3 * measurement as f32 / max as f32;
 
 ---
 ---
-# ADC - asynchornous
+# ADC - asynchronous 
 in Embassy
 
 ```rust {1|3|5,6|8-10|6,12|14|15-19|21,8|22|all}
