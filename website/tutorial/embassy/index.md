@@ -521,7 +521,7 @@ SECTIONS {
 
 :::info
 You don’t need to provide a `memory.x` file when using **Embassy**,  
-because the `embassy-rp` crate has a feature called **memory-x**  
+because the `embassy-rp` crate has a feature called `memory-x`
 that already supplies the required linker script.
 :::
 
