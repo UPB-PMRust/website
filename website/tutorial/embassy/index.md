@@ -286,7 +286,6 @@ We can use the same `rust-toolchain.toml` file for both the **RP2350** and the *
 
 :::
 
-:::tip
 
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q/Raspberry Pi Pico 2" default>
@@ -297,10 +296,9 @@ rustup target add thumbv8m.main-none-eabihf
 ```
 
 :::info
-
 You can skip this step when the target is defined in `rust-toolchain.toml`.
-
 :::
+
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico" default>
@@ -311,16 +309,12 @@ rustup target add thumbv6m-none-eabi
 ```
 
 :::info
-
 You can skip this step when the target is defined in `rust-toolchain.toml`.
-
 :::
-  </TabItem>
 
+  </TabItem>
 </Tabs>
 
-
-:::
 
 #### Memory layout
 
