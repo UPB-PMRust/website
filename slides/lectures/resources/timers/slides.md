@@ -72,7 +72,7 @@ let p = embassy_stm32::init(Default::default());
 
 <div align="center">
 <!-- <img src="./rp2350_clocks.png" class="rounded w-140"> -->
-<img src="./stm32u545re_clock_tree.png" class="rounded w-80">
+<img src="./stm32u545re_clock_tree.png" class="rounded w-75">
 </div>
 
 ---
