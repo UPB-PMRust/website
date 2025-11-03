@@ -541,6 +541,15 @@ pin.set_low();
 
 </TabItem>
 
+  <TabItem>
+use embassy_stm32::gpio::{Input, Pull};
+let mut pin = Input::new(PxN, Pull::Up);
+
+let is_high = pin.is_high();
+let is_low = pin.is_low();
+
+</TabItem>
+
   <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 use embassy_rp::gpio::{Level, Output};
