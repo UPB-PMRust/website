@@ -682,14 +682,6 @@ const MAX_VALUE: u32 = adc::resolution_to_max_count(adc::Resolution::BITS14);
   ```
 
   :::warning 
-  If we are using PWM and ADC in the same code, both modules export a Config type. To avoid compilation errors, we should import them with different names:
-```rust
-use embassy_stm32::adc::Config as ConfigAdc;   // ADC config
-use embassy_stm32::timer::simple_pwm::Config as ConfigPwm; // PWM config
-```
-:::
-
-  :::warning 
 When reading the ADC, it is important to distinguish between the maximum digital count and the maximum input voltage. The function
 
 ```rust
