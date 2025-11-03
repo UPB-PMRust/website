@@ -801,6 +801,24 @@ You should use the lab skeleton provided in the [Lab Repository](https://github.
 Embassy will reset all the peripherals when the `main` function exits, that means `PWM` and `ADC` will stop. Make sure the `main` function never exits so you can see how the circuit behaves.
 :::
 
+:::info
+
+The LEDs on the lab board are active‑low. This means they turn ON when the pin is driven LOW and turn OFF when the pin is driven HIGH.
+
+Because of this wiring, the default PWM polarity (`ActiveHigh`) will feel inverted:
+
+- A 0% duty cycle (always LOW) → LED fully ON
+- A 100% duty cycle (always HIGH) → LED fully OFF
+
+To make the duty cycle behave intuitively (so that a higher percentage means “brighter”), you must explicitly set the channel polarity to ActiveLow:
+
+```rust
+// Make sure to replace `channel` with the correct channel of you `TIMx` peripheral(e.g. ch1)
+ch1.set_polarity(OutputPolarity::ActiveLow);
+```
+
+:::
+
 2. Write a program using Embassy to control the led intensity using a potentiometer. The potentiometer is connected to an ADC-capable GPIO pin. The LED should change intensity based on the potentiometer's position. (**2p**) 
 
 :::warning 
