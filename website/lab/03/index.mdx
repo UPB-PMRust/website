@@ -813,9 +813,7 @@ Unlike the photoresistor, which requires an external resistor to form a voltage 
 :::
 
 3. Make the RGB LED switch from red -> yellow -> blue every time the button `S4` is pressed. (**2p**)
-:::note
-`PC6`, `PB4`, and `PB10` can be used to control an RGB LED. Although `PC6` and `PB4` share the same PWM channel and therefore have the same frequency, each pin can have an **independent duty cycle**, allowing individual control of the brightness for each color.
-:::
+
 ![Colors](images/colors.png)
 
 4. Write a program using Embassy that measures light intensity using a photoresistor connected to ADC.
