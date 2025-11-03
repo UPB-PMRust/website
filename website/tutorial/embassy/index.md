@@ -271,18 +271,18 @@ An example of such file is this:
 
 [toolchain]
 # The release to be used.
-channel = "1.75"
+channel = "1.90"
 # The targets for compilation that need to be added. This is used for 
 # cross-compilation, as the executables we are producing need to be
 # run on our boards.
-targets = ["thumbv6m-none-eabi"]
+targets = ["thumbv6m-none-eabi", "thumbv8m.main-none-eabihf"]
 # The additional componets to be installed along the Rust toolchain
 components = ["rust-src", "rustfmt", "llvm-tools", "clippy"]
 ```
 
 :::tip
 
-We can use the same `rust-toolchain.toml` file for both the **RP2350** and the **STM32U545**, but we need to change the **target triple** depending on which chip we are compiling for. The RP2350 and STM32U545 are both Cortex‑M33 devices, so the correct target is `thumbv8m.main-none-eabi`.
+We can use the same `rust-toolchain.toml` file for both the **RP2350** and the **STM32U545**, we just need to make sure to add both  **target triples**. The RP2040 is a Cortex-M0+ that uses the `thumbv6m-none-eabi` target while the RP2350 and STM32U545 are both Cortex‑M33 devices, so they use the `thumbv8m.main-none-eabi` target.
 
 :::
 
@@ -295,6 +295,12 @@ Please make sure that you install the Rust ARMv8-M target (thumbv8m.main-none-ea
 ```bash
 rustup target add thumbv8m.main-none-eabihf
 ```
+
+:::info
+
+You can skip this step when the target is defined in `rust-toolchain.toml`.
+
+:::
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico" default>
@@ -303,6 +309,12 @@ Please make sure that you install the Rust ARMv6-M target (thumbv6m-none-eabi).
 ```bash
 rustup target add thumbv6m-none-eabi
 ```
+
+:::info
+
+You can skip this step when the target is defined in `rust-toolchain.toml`.
+
+:::
   </TabItem>
 
 </Tabs>
@@ -329,6 +341,13 @@ MEMORY
   RAM (rwx)  : ORIGIN = 0x20000000, LENGTH = 256K
 }
 ```
+
+:::info
+You don’t need to provide a `memory.x` file when using **Embassy**,  
+because the `embassy-stm32` crate has a feature called **memory-x**  
+that already supplies the required linker script.
+:::
+
 </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
@@ -410,6 +429,12 @@ SECTIONS {
 PROVIDE(start_to_end = __end_block_addr - __start_block_addr);
 PROVIDE(end_to_start = __start_block_addr - __end_block_addr);
 ```
+
+:::info
+You don’t need to provide a `memory.x` file when using **Embassy**,  
+because the `embassy-rp` crate has a feature called **memory-x**  
+that already supplies the required linker script.
+:::
 
   </TabItem>
   <TabItem value="rp2040" label="Raspberry Pi Pico" default>
@@ -500,6 +525,12 @@ SECTIONS {
 } INSERT AFTER .text;
 ```
 
+:::info
+You don’t need to provide a `memory.x` file when using **Embassy**,  
+because the `embassy-rp` crate has a feature called **memory-x**  
+that already supplies the required linker script.
+:::
+
   </TabItem>
 </Tabs>
 
@@ -550,6 +581,22 @@ fn main() {
     println!("cargo:rustc-link-arg-bins=-Tdefmt.x");
 }
 ```
+
+:::info
+
+If you are using the `memory.x` provided by `embassy-rs` comment this part:
+
+```rust
+    let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
+    File::create(out.join("memory.x"))
+        .unwrap()
+        .write_all(include_bytes!("./memory.x"))
+        .unwrap();
+    println!("cargo:rustc-link-search={}", out.display());
+    println!("cargo:rerun-if-changed={{layout}}");
+```
+
+:::
 
 #### Adding the Dependencies
 
