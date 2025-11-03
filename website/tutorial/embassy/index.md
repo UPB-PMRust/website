@@ -338,7 +338,7 @@ MEMORY
 
 :::info
 You don’t need to provide a `memory.x` file when using **Embassy**,  
-because the `embassy-stm32` crate has a feature called **memory-x**  
+because the `embassy-stm32` crate has a feature called `memory-x`
 that already supplies the required linker script.
 :::
 
