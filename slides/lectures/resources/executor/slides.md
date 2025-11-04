@@ -114,6 +114,7 @@ async fn main(spawner: Spawner) {
 ---
 layout: two-cols
 ---
+
 # Priority Tasks
 
 <style>
@@ -143,7 +144,7 @@ layout: two-cols
 <v-click>
 
 ### RP2
-- use `SWI_IRQ_01` and `SWI_IRQ_01`
+- use `SWI_IRQ_1` and `SWI_IRQ_0`
 
 </v-click>
 

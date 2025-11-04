@@ -14,6 +14,7 @@ for this section
 ---
 layout: two-cols
 ---
+
 # Future
 
 <style>
@@ -33,7 +34,7 @@ trait Future {
 }
 ```
 
-```rust {5,10|6|6,7|6|6,7|6|6,8|1,8|all}{lines: false}
+```rust {5,10|6,9|6,7,9|6,9|6,7,9|6,9|6,8,9|1,8|all}{lines: false}
 fn execute<F>(mut f: F) -> F::Output
 where
   F: Future
@@ -69,7 +70,7 @@ sequenceDiagram
 ```
 
 ---
----
+
 # Implementing a Future
 
 <div grid="~ cols-2 gap-5">
@@ -98,7 +99,7 @@ impl Sleep {
 <v-click>
 
 ````md magic-move
-```rust {1,20|1,2,20|4,19|5,18|6-10|11-17|11,12,13|11,14,15|all}{lines: false}
+```rust {1,20|1,2,20|4,19|5,18|6-10|11-17|11,12,14,15|11,12,13|all}{lines: false}
 impl Future for Sleep {
     type Output = ();
 
@@ -157,7 +158,7 @@ impl Future for Sleep {
 
 <div grid="~ cols-2 gap-5">
 
-```rust {1,17|2,16|3,15|4-7|2,16|3,15|8-14|8,9,10|1,17|8,11,12|all}{lines: false}
+```rust {1,17|2,16|3,15|4-7|2,16|3,15|8-14|8,9,11,12|1,17|8,9,10|all}{lines: false}
 fn poll(&mut self) -> Poll<Self::Output> {
     loop {
         match self.status {
@@ -200,7 +201,6 @@ sequenceDiagram
 ```
 
 </div>
-
 
 ---
 layout: two-cols
@@ -250,7 +250,7 @@ impl Future for Blink {
       match self.status {
         BlinkStatus::Part1 => {
           self.led.on();
-          self.timer1 = Some(Timer::after_secs(1));
+          self.timer = Some(Timer::after_secs(1));
           self.status = BlinkStatus::Part2;
         }
         BlinkStatus::Part2 => {
@@ -272,7 +272,6 @@ impl Future for Blink {
 
 </div>
 
-
 ---
 
 # Async Rust
@@ -281,7 +280,7 @@ impl Future for Blink {
 - it does not know how to execute them
 - executors are implemented into third party libraries
 
-```rust {12|11,13,15|14|all}
+```rust {12|11,13,15|14|1-11,14-15}
 use engine::execute;
 
 // Rust rewrites the function to a Future
@@ -298,7 +297,6 @@ fn main() -> ! {
     execute(blink()); // this works, as `execute` executes the Blink future
 }
 ```
-
 
 ---
 ---
@@ -329,7 +327,7 @@ fn executor() {
 - an efficient executor will not poll all the tasks, it uses a `waker` that tasks use to signal the executor
 
 ---
----
+
 # The `Future` trait
 that Rust provides
 
@@ -337,7 +335,7 @@ that Rust provides
 trait Future {
     type Output;
 
-    fn poll(mut self: std::pin::Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output>;
+    fn poll(mut self: core::pin::Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output>;
 }
 ```
 
