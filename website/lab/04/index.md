@@ -71,7 +71,7 @@ A task in Embassy is represented by an *asynchronous function*. Asynchronous fun
 #[embassy_executor::task]
 async fn button_pressed(mut led: Output<'static>, mut button: Input<'static>) {
     loop {
-	info!("waiting for button press");
+	    info!("waiting for button press");
         button.wait_for_falling_edge().await;
         led.toggle();
     }
