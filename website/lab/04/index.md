@@ -402,7 +402,7 @@ A buzzer is a hardware device that emits sound. There are two types of buzzers:
 :::tip
 To control the buzzer, you just need to set the PWM so that its period matches the sound frequency you want.  
 - On RP2s, this is done by adjusting the `top` value.  
-- On STM32U545RE, you achieve the same thing by adjusting the timer’s period setting.  
+- On STM32U545RE, you achieve the same thing by adjusting the timer’s `SimplePwm` frequency using the [`set_frequency`](https://docs.embassy.dev/embassy-stm32/git/stm32u545re/timer/simple_pwm/struct.SimplePwm.html#method.set_frequency) function.  
 
 In both cases, the duty cycle controls how strong or “loud” the buzzer sounds.
 :::
