@@ -65,6 +65,12 @@ Short answer is: it doesn't. In reality, both functions run asynchronously.
 
 A task in Embassy is represented by an *asynchronous function*. Asynchronous functions are different from normal functions, in the sense that they allow asynchronous code execution. Let's take an example from the previous lab:
 
+:::note
+In the examples below you’ll see `Output<'static>` and `Input<'static>`.  
+The `'static` lifetime here means that once the peripherals are initialized, those pins remain valid for the entire lifetime of the firmware. Their role as input or output will not change while the program is running, and Embassy’s async tasks can safely hold on to them without risk of dangling references.  
+:::
+
+
 <Tabs>
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
 ```rust
@@ -128,6 +134,8 @@ async fn main(spawner: Spawner) {
   </TabItem>
 
 </Tabs>
+
+
 
 
 In this example, we notice that both the `button_pressed` and `main` functions are declared as `async`, telling the compiler to treat them as asynchronous functions. Inside the `main` function (which is also a task, actually), we blink the LED:
