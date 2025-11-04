@@ -541,26 +541,6 @@ pin.set_low();
 
 </TabItem>
 
-<TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-
-```rust
-use embassy_stm32::gpio::{Input, Pull};
-
-// initialize PXn
-//   - replace X with the port letter(A, B, C, D, E, etc.)
-//   - n with the pin number
-//   ... see the datasheet, e.g. PA5 
-// and activate its internal pull up resistor.
-let pin = Input::new(peripherals.PXn, Pull::Up);
-
-if pin.is_high() {
-    // Do something if the pin value is HIGH (1)
-} else {
-    // Do something if the pin value if LOW (0)
-}
-
-</TabItem>
-
   <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 use embassy_rp::gpio::{Level, Output};
@@ -590,19 +570,23 @@ While the device initialization is specific to each hardware family, the pin ini
 
 Using a pin as input is very similar to using it as output.
 
-```rust
-use embassy_rp::gpio::{Input, Pull};
+<TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
 
-// initialize PIN_n (replace n with a number) and activate its
-// internal pull top resistor.
-let pin = Input::new(peripherals.PIN_n, Pull::Up);
+```rust
+use embassy_stm32::gpio::{Input, Pull};
+
+// initialize PXn
+//   - replace X with the port letter(A, B, C, D, E, etc.)
+//   - n with the pin number
+//   ... see the datasheet, e.g. PA5 
+// and activate its internal pull up resistor.
+let pin = Input::new(peripherals.PXn, Pull::Up);
 
 if pin.is_high() {
     // Do something if the pin value is HIGH (1)
 } else {
     // Do something if the pin value if LOW (0)
 }
-```
 
 :::warning 
 
