@@ -62,7 +62,7 @@ git version 2.34.1
 
 ### Create a GitHub Account
 
-If you don't already have one, go to [GitHub official website](github.com) and sign up for a free account. This will be where you'll host your remote repositories.
+If you don't already have one, go to [GitHub official website](https://github.com) and sign up for a free account. This will be where you'll host your remote repositories.
 
 ## First-Time Configuration
 
