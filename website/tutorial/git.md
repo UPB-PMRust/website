@@ -197,6 +197,16 @@ git add README.md
 3. *Repository (`.git` folder)*: The permanent history of commits.
 :::
 
+:::tip
+To remove a file from the staging area (the opposite of `git add`), you can run:
+
+```shell
+git reset HEAD <file>
+```
+
+This removes the file from the Staging Area but leaves your changes in your Working Directory, so you haven't lost any work.
+:::
+
 4. **Commit your changes**. Now, you "commit" (save) everything currently in the staging area.
 
 ```shell
@@ -409,6 +419,79 @@ Rebasing rewrites history (it changes the commit IDs). If you rebase a shared br
 **Only rebase your own local branches that nobody else is working on**.
 :::
 
+### Undoing commits
+
+While `rebase` is for replaying history, `git reset` is for erasing it. It is a powerful command that moves the `HEAD` pointer (a symbolic reference to the branch you’re currently on) to a different commit, and optionally, modifies your Staging Area and Working Directory.
+
+`git reset` has three primary modes:
+
+- `--soft`: Moves `HEAD` only. The Staging Area and Working Directory are untouched.
+- `--mixed` (default): Moves `HEAD` and resets the Staging Area. The Working Directory is untouched.
+- `--hard`: Moves `HEAD`, resets the Staging Area, and resets the Working Directory.
+
+Let's say we just make two commits, `C3` and `C4` and we want to undo them.
+
+Our history looks like this: `C1---C2---C3---C4 <-- my-feature (HEAD)`
+
+You want to go back to commit `C2`. You can specify the target commit by its hash or, more commonly, relative to `HEAD`. `HEAD~2` means "two commits before `HEAD`."
+
+```shell
+# This will move the my-feature branch pointer back to C2
+git reset HEAD~2
+```
+
+Now, the results will depend on what option we choose:
+
+<Tabs>
+
+<TabItem value="soft" label="--soft" default> 
+
+```shell
+git reset --soft HEAD~2
+```
+
+* **`HEAD`:** The branch pointer moves to `C2`.
+* **Staging Area:** Unchanged. It still contains the changes from `C4`.
+* **Working Directory:** Unchanged. Your files are exactly as they were at `C4`.
+
+**Result:** All your changes from `C3` and `C4` are now staged and ready to be re-committed as a single, new commit. This is great for squashing local commits.
+
+</TabItem>
+
+<TabItem value="mixed" label="--mixed" default> 
+
+```shell
+git reset --mixed HEAD~2
+```
+
+* **`HEAD`:** The branch pointer moves to `C2`.
+* **Staging Area:** **Reset.** The Staging Area is matched to `C2` (so, it's empty of your new changes).
+* **Working Directory:** Unchanged. Your files still have all the changes from `C3` and `C4`.
+
+**Result:** Your `HEAD` is back at `C2`, and all your work from `C3` and `C4` is now in your Working Directory as "unstaged changes." This is useful if you want to re-commit the work in different, smaller commits.
+
+</TabItem>
+
+<TabItem value="hard" label="--hard" default> 
+
+```shell
+git reset --hard HEAD~2
+```
+
+* **`HEAD`:** The branch pointer moves to `C2`.
+* **Staging Area:** **Reset.** The Staging Area is matched to `C2`.
+* **Working Directory:** **Reset.** Your files are forcibly changed to match their state at commit `C2`.
+
+**Result:** Your work from `C3` and `C4` is **completely gone**. This is a destructive, non-recoverable operation. It's used to permanently throw away commits and all associated changes.
+
+</TabItem>
+
+</Tabs>
+
+:::warning
+Never use `git reset --hard` on a branch that has been pushed and shared with others, because it rewrites public history and removes commits!
+:::
+
 ### Pull Requests: The GitHub Workflow
 
 In a team, you almost never merge directly on your own computer. Instead, you use **Pull Requests (PRs)** on GitHub.
@@ -420,6 +503,24 @@ A Pull Request is a formal request to merge your branch into another (e.g., merg
 ```shell
 git push -u origin my-new-feature
 ```
+
+:::danger
+To overwrite the remote history with your new, rewritten local history, you must use a **force push**.
+
+```shell
+git push --force origin my-feature
+```
+
+You should **ONLY** force push to a feature branch that **you and only you** are working on.
+
+A much safer (and highly recommended) alternative is `git push --force-with-lease`:
+
+```shell
+git push --force-with-lease origin my-feature
+```
+
+This command will only push if nobody else has updated the remote.
+:::
 
 2. **Go to GitHub**. You will see a green button to "Compare & pull request." Click it.
 3. **Fill out the PR**: Give it a title and a description of your changes. This is where you can tag teammates for a **code review**.
