@@ -124,8 +124,8 @@ when data is read and written
 
 | | | |
 |-|-|-|
-| `CPOL` | Clock polarity | defines the idle clock state and the data *bit reading* edge<br> 0: *rising edge* <br> 1: *falling edge* |
-| `CPHA` | Clock phase | defines when the data is written to the line <br> 0: when `CS` *activates* and the *trailing clock edge* <br> 1: on the *leading clock edge* |
+| `CPOL` | Clock polarity | Defines the idle level of the clock when no data is being sent.<br> 0: *Clock is LOW when idle.* <br> 1: *Clock is HIGH when idle.* |
+| `CPHA` | Clock phase | Defines which clock edge is used to read) he data bit. <br> 0: Data is sampled on the first clock edge (*the leading edge*). <br> 1: Data is sampled on the second clock edge (*the trailing edge*). |
 
 ---
 
