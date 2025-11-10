@@ -124,8 +124,8 @@ when data is read and written
 
 | | | |
 |-|-|-|
-| `CPOL` | Clock polarity | Defines the idle level of the clock when no data is being sent.<br> 0: *Clock is LOW when idle.* <br> 1: *Clock is HIGH when idle.* |
-| `CPHA` | Clock phase | Defines which clock edge is used to read) he data bit. <br> 0: Data is sampled on the first clock edge (*the leading edge*). <br> 1: Data is sampled on the second clock edge (*the trailing edge*). |
+| `CPOL` | Clock polarity | The idle level of the clock when no data is being sent.<br> 0: *Clock is LOW when idle.* <br> 1: *Clock is HIGH when idle.* |
+| `CPHA` | Clock phase | That clock edge used to read the data bit. <br> 0: Data sampled on the 1<sup>st</sup> clock edge (*the leading edge*). <br> 1: Data sampled on the 2<sup>nd</sup> clock edge (*the trailing edge*). |
 
 ---
 
