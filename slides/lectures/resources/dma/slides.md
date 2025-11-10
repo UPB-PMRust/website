@@ -14,9 +14,13 @@ for this section
    - Chapter 12 - *Peripherals*
      - Chapter 16.6 - *DMA*
 
+2. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
+   - Chapter 17 - *General purpose direct memory access controller*
+
 ---
 layout: two-cols
 ---
+
 # DMA
 
 <style>
@@ -45,4 +49,29 @@ layout: two-cols
 
 :: right ::
 
-<img src="./dma.svg" class="rounded">
+<img src="./dma.svg" class="rounded" style="background-color: white; padding: 5px;">
+
+---
+layout: two-cols
+---
+
+# RP2
+
+- 12 (RP2040) channels or 16 (RP2350) channels
+- Transfers
+  - Memory to Peripheral
+  - Peripheral to Memory
+  - Memory to Memory
+
+:: right ::
+
+# STM32U545RE
+
+- 16 General Purpose DMA (GPDMA) channels
+- 4 Low Power DMA (LPDMA) channels
+- 4 priority levels
+- Transfers
+  - Memory to Peripheral
+  - Peripheral to Memory
+  - Memory to Memory
+  - Peripheral to Peripheral
