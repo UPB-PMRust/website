@@ -13,11 +13,15 @@ for this section
    - Chapter 12 - *Peripherals*
      - Chapter 12.1 - *UART*
 
-2. **Paul Denisowski**, *[Understanding Serial Protocols](https://www.youtube.com/watch?v=LEz5UCN3aHA)*
-3. **Paul Denisowski**, *[Understanding UART](https://www.youtube.com/watch?v=sTHckUyxwp8)*
+2. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
+   - Chapter 66 - *Universal synchronous/asynchronous receiver
+transmitter*
+
+3. **Paul Denisowski**, *[Understanding Serial Protocols](https://www.youtube.com/watch?v=LEz5UCN3aHA)*
+4. **Paul Denisowski**, *[Understanding UART](https://www.youtube.com/watch?v=sTHckUyxwp8)*
 
 ---
----
+
 # UART
 aka serial port
 
@@ -33,7 +37,7 @@ aka serial port
 
 </div>
 
-<img src="./uart_wiring.svg" class="rounded">
+<img src="./uart_wiring.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 </div>
 
@@ -44,6 +48,7 @@ aka serial port
 ---
 layout: two-cols
 ---
+
 # UART Device
 properties
 
@@ -63,7 +68,7 @@ properties
 :: right ::
 
 
-<img src="./uart_device.svg" class="rounded">
+<img src="./uart_device.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 <br>
 
@@ -76,6 +81,7 @@ $$
 ---
 layout: two-cols
 ---
+
 # UART Device
 types
 
@@ -93,7 +99,7 @@ types
 :: right ::
 
 
-<img src="./uart_device.svg" class="rounded">
+<img src="./uart_device.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 <div align="center">
 <img src="./rs232_cable.jpg" class="rounded w-90">
@@ -102,6 +108,7 @@ types
 ---
 layout: two-cols
 ---
+
 # Receiver
 RX part of the serial port
 
@@ -111,11 +118,11 @@ RX part of the serial port
 }
 </style>
 
-<img src="./uart_receiver.svg" class="rounded">
+<img src="./uart_receiver.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 :: right ::
 
-<img src="./uart_device.svg" class="rounded">
+<img src="./uart_device.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 - *Shift Register* to read **serially every bit**
 - Triggers an interrupt
@@ -128,6 +135,7 @@ RX part of the serial port
 ---
 layout: two-cols
 ---
+
 # Transmitter
 TX part of the serial port
 
@@ -137,11 +145,11 @@ TX part of the serial port
 }
 </style>
 
-<img src="./uart_transmitter.svg" class="rounded">
+<img src="./uart_transmitter.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 :: right ::
 
-<img src="./uart_device.svg" class="rounded">
+<img src="./uart_device.svg" class="rounded" style="background-color: white; padding: 5px;">
 
 - *Shift Register* to output **serially every bit**
 - Triggers an interrupt
@@ -177,7 +185,7 @@ using the 8N1 data format
 <img src="./uart_transmissions_delay.svg" class="rounded">
 
 ---
----
+
 # Facts
 
 | | | |
@@ -189,7 +197,7 @@ using the 8N1 data format
 | Speed | *115 KB/s* | usually a maximum baud rate of 115200 is used |
 
 <div align="center">
-<img src="./uart_wiring.svg" class="rounded m-5">
+<img src="./uart_wiring.svg" class="rounded m-5" style="background-color: white; padding: 5px;">
 </div>
 
 ---
@@ -199,17 +207,26 @@ using the 8N1 data format
 - print debug information
 - device console
 - RP2350 has two USART devices
+- STM32U545RE has two full (UASRT1, USART3), two basic (UART4, UART5) and one low power (LPUART1)
+
+<div grid="~ cols-2 gap-5">
 
 <div align="center">
-<img src="../rp2350/pico2w-pinout.svg" class="rounded m-5 w-100">
+<img src="../rp2350/pico2w-pinout.svg" class="rounded m-5 w-100" style="background-color: white; padding: 5px;">
+</div>
+
+<div>
+
+</div>
+
 </div>
 
 ---
 
-# Embassy API
-for RP2350, synchronous
+# Synchronous Embassy API
+for RP2350
 
-<div grid="~ cols-4 gap-5">
+<div grid="~ cols-4 gap-3">
 
 ```rust {*}{lines: false}
 pub struct Config {
@@ -217,10 +234,7 @@ pub struct Config {
   pub data_bits: DataBits,
   pub stop_bits: StopBits,
   pub parity: Parity,
-  pub invert_tx: bool,
-  pub invert_rx: bool,
-  pub invert_rts: bool,
-  pub invert_cts: bool,
+  // ...
 }
 ```
 
@@ -266,8 +280,66 @@ uart.blocking_read(&mut buf);
 
 ---
 
-# Embassy API
-for RP2350, asynchronous
+# Synchronous Embassy API
+for STM32U545RE
+
+<div grid="~ cols-4 gap-3">
+
+```rust {*}{lines: false}
+pub struct Config {
+  pub baudrate: u32,
+  pub data_bits: DataBits,
+  pub stop_bits: StopBits,
+  pub parity: Parity,
+  // ...
+}
+```
+
+```rust {*}{lines: false}
+pub enum DataBits {
+  DataBits7,
+  DataBits8,
+  DataBits9,
+}
+```
+
+```rust {*}{lines: false}
+pub enum StopBits {
+  STOP1,
+  STOP0P5
+  STOP2,
+  STOP1P5
+}
+```
+
+```rust {*}{lines: false}
+pub enum Parity {
+  ParityNone,
+  ParityEven,
+  ParityOdd,
+}
+```
+
+</div>
+
+```rust {1|1,2|4,5|6,7|9,10,11|all}
+use embassy_stm32::usart::Config as UartConfig;
+let config = UartConfig::default();
+
+// use UART1, Pins PA10 and PA9
+let mut uart = Uart::new_blocking(p.USART1, p.PA10, p.PA9, config).unwrap();
+// write
+uart.blocking_write("Hello World!\r\n".as_bytes());
+
+// read 5 bytes
+let mut buf = [0; 5];
+uart.blocking_read(&mut buf);
+```
+
+---
+
+# Asynchronous Embassy API
+for RP2350
 
 ```rust {1|3-5|7|9,10|12,13|15,16,17|all}
 use embassy_rp::uart::Config as UartConfig;
@@ -280,6 +352,31 @@ let config = UartConfig::default();
 
 // use UART0, Pins 0 and 1
 let mut uart = uart::Uart::new(p.UART0, p.PIN_0, p.PIN_1, Irqs, p.DMA_CH0, p.DMA_CH1, config);
+
+// write
+uart.write("Hello World!\r\n".as_bytes()).await;
+
+// read 5 bytes
+let mut buf = [0; 5];
+uart.read(&mut buf).await;
+```
+
+---
+
+# Asynchronous Embassy API
+for STM32U545RE
+
+```rust {1|3-5|7|9,10|12,13|15,16,17|all}
+use embassy_stm32::usart::Config as UartConfig;
+
+bind_interrupts!(struct Irqs {
+    USART1 => usart::InterruptHandler<peripherals::USART1>;
+});
+
+let config = UartConfig::default();
+
+// use USART3, Pins PA10 and PA9
+let mut uart = Uart::new(p.USART1, p.PA10, p.PA9, Irqs, p.GPDMA1_CH0, p.GPDMA1_CH1, config).unwrap();
 
 // write
 uart.write("Hello World!\r\n".as_bytes()).await;
