@@ -470,15 +470,15 @@ However if the switch **S1** is pressed the state of traffic light changes immed
     ```mermaid
     flowchart LR
         green(GREEN) -- Button pressed --> yellow(Yellow)
-        green(GREEN) -- 5s --> yellow(Yellow)
+        green(GREEN) -- 10s --> yellow(Yellow)
 
         
-        yellow(YELLOW - Blink 4 times/second) -- Button pressed --> red(RED)
+        yellow(YELLOW - Blink 4 times, once / second) -- Button pressed --> red(RED)
 
-        yellow(YELLOW - Blink 4 times/second) -- 1s --> red(RED)
+        yellow(YELLOW - Blink 4 times, once / second) -- 3s --> red(RED)
 
         red(RED) -- Button pressed --> red(RED)
-        red(RED) -- 2s --> green(GREEN)
+        red(RED) -- 5s --> green(GREEN)
 
         classDef red fill:#ff0000,stroke:#000000,color: #ffffff
         classDef yellow fill:#efa200,stroke:#000000
@@ -501,8 +501,8 @@ However if the switch **S1** is pressed the state of traffic light changes immed
    :::
 
 6. Continue exercise 5:
-   - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red (Use the [formula from Lab03](./03#calculating-the-top-value) to calculate the frequency) . (**1p**)
-   - add a new task for a servo motor. Set the motor position at 180° when the light is green, 90° the light is yellow, and 0° if its red. (**1p**)
+   - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red. (**1p**)
+   - add a new task for a servo motor. Set the motor position at 90° when the light is green, 70° the light is yellow, and 0° if its red. (**1p**)
    :::tip
     Use a `PubSubChannel` to transmit the state of the traffic light from the LEDs task to both the buzzer and the servo motor tasks.
    :::
