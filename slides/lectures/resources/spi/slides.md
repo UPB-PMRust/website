@@ -314,7 +314,7 @@ pub enum Phase {
  CaptureOnFirstTransition,
  CaptureOnSecondTransition,
 }
-pub enum BitOrder { 
+pub enum BitOrder {
   LsbFirst, MsbFirst,
 }
 ```
@@ -329,7 +329,7 @@ pub enum Speed { Low,
 
 ```rust {1|2|2,3|5-7|5-8|10,11|13|13,14|13,14,15|13,14,15,16|all}
 use embassy_stm32::spi::Config as SpiConfig;
-let mut config = Config::default();
+let mut config = SpiConfig::default();
 config.frequency = Hertz(1_000_000);
 
 let miso = p.PA6;
@@ -377,7 +377,7 @@ cs.set_high();
 for STM32U545RE
 
 ```rust {1|2|2,3|5-7|5-8|10,11|13|13,14,15|13,14,15,16|13,14,15,16,17|all}
-use embassy_rp::spi::Config as SpiConfig;
+use embassy_stm32::spi::Config as SpiConfig;
 let mut config = SpiConfig::default();
 config.frequency = Hertz(1_000_000);
 
