@@ -64,7 +64,7 @@ SPI is most commonly implemented in a 4-wire configuration. However, there is al
 :::note 
 The specific timing in steps 4 (sampling) and 5 (changing) depends on the SPI mode, which is defined by both `CPOL` **(Clock Polarity)** and `CPHA` **(Clock Phase)**.
 
-The example shown here describes **SPI Mode 0** (`CPOL=0`, `CPHA=0`), where the clock is idle-low, data is sampled on the *rising edge*, and new data is written on the *falling edge*. 
+The example shown here describes **SPI Mode 0** (`CPOL=0`, `CPHA=0`), where the clock is idle-low, data is sampled on the *rising edge* and new data is written on the *falling edge*. 
 :::
 
 ![SPI_example](images/spi_network_transmission.svg)
