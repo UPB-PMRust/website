@@ -431,7 +431,7 @@ while start_time.elapsed().as_millis() < time_interval {}
 
 You should notice that one of the tasks is not running. Why? (**1p**)
     :::tip
-    Use a different task instance for each LED. You can spawn multiple instances of the same task, however you need to specify the pool size with `#[embassy_executor::task(pool_size = 2)]`. Take a look at [task-arena](https://docs.embassy.dev/embassy-executor/git/std/index.html#task-arena) for more info.
+    Use a different task instance for each LED. You can spawn multiple instances of the same task, however you need to specify the pool size with `#[embassy_executor::task(pool_size = 2)]`.
     Use [`AnyPin`](https://docs.embassy.dev/embassy-stm32/git/stm32u545re/gpio/struct.AnyPin.html) and blinking frequency parameters for the task. 
     :::
     
@@ -470,15 +470,15 @@ However if the switch **S1** is pressed the state of traffic light changes immed
     ```mermaid
     flowchart LR
         green(GREEN) -- Button pressed --> yellow(Yellow)
-        green(GREEN) -- 5s --> yellow(Yellow)
+        green(GREEN) -- 10s --> yellow(Yellow)
 
         
-        yellow(YELLOW - Blink 4 times/second) -- Button pressed --> red(RED)
+        yellow(YELLOW - Blink 4 times, once / second) -- Button pressed --> red(RED)
 
-        yellow(YELLOW - Blink 4 times/second) -- 1s --> red(RED)
+        yellow(YELLOW - Blink 4 times, once / second) -- 3s --> red(RED)
 
         red(RED) -- Button pressed --> red(RED)
-        red(RED) -- 2s --> green(GREEN)
+        red(RED) -- 5s --> green(GREEN)
 
         classDef red fill:#ff0000,stroke:#000000,color: #ffffff
         classDef yellow fill:#efa200,stroke:#000000
@@ -501,8 +501,8 @@ However if the switch **S1** is pressed the state of traffic light changes immed
    :::
 
 6. Continue exercise 5:
-   - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red (Use the [formula from Lab03](./03#calculating-the-top-value) to calculate the frequency) . (**1p**)
-   - add a new task for a servo motor. Set the motor position at 180° when the light is green, 90° the light is yellow, and 0° if its red. (**1p**)
+   - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red. (**1p**)
+   - add a new task for a servo motor. Set the motor position at 90° when the light is green, 70° the light is yellow, and 0° if its red. (**1p**)
    :::tip
     Use a `PubSubChannel` to transmit the state of the traffic light from the LEDs task to both the buzzer and the servo motor tasks.
    :::
