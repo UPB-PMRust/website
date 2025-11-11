@@ -500,7 +500,7 @@ However if the switch **S1** is pressed the state of traffic light changes immed
     The traffic light transitions between states either based on the elapsed time or through pressing the switches as described above.
    :::
 
-6. Continue exercise 5:
+6. Improve exercise 4:
    - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red. (**1p**)
    - add a new task for a servo motor. Set the motor position at 90° when the light is green, 70° the light is yellow, and 0° if its red. (**1p**)
    :::tip
