@@ -275,7 +275,7 @@ let clk = p.PIN_10;
 let mut spi = Spi::new_blocking(p.SPI1, clk, mosi, miso, config);
 
 // Configure CS
-let mut cs = Output::new(p.PIN_X, Level::Low);
+let mut cs = Output::new(p.PIN_X, Level::High);
 
 cs.set_low();
 let mut buf = [0x90, 0x00, 0x00, 0xd0, 0x00, 0x00];
@@ -300,26 +300,28 @@ pub struct Config {
 ```
 
 ```rust {*}{lines: false}
+pub struct Mode {
+  pub polarity: Polarity,
+  pub phase: Phase,
+}
+pub enum Polarity {
+  IdleLow, IdleHigh,
+}
+```
+
+```rust {*}{lines: false}
 pub enum Phase {
  CaptureOnFirstTransition,
  CaptureOnSecondTransition,
 }
+pub enum BitOrder { 
+  LsbFirst, MsbFirst,
+}
+```
+
+```rust {*}{lines: false}
 pub enum Speed { Low,
     Medium, High, VeryHigh,
-}
-```
-
-```rust {*}{lines: false}
-pub enum Polarity {
-  IdleLow,
-  IdleHigh,
-}
-```
-
-```rust {*}{lines: false}
-pub enum Polarity {
-  IdleLow,
-  IdleHigh,
 }
 ```
 
@@ -336,7 +338,7 @@ let clk = p.PA5;
 let mut spi = Spi::new_blocking(p.SPI1, clk, mosi, miso, config);
 
 // Configure CS
-let mut cs = Output::new(p.PXn, Level::Low, Speed::Low);
+let mut cs = Output::new(p.PXn, Level::High, Speed::Low);
 
 cs.set_low();
 let mut buf = [0x90, 0x00, 0x00, 0xd0, 0x00, 0x00];
@@ -360,7 +362,7 @@ let clk = p.PIN_10;
 let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.DMA_CH0, p.DMA_CH1, config);
 
 // Configure CS
-let mut cs = Output::new(p.PIN_X, Level::Low);
+let mut cs = Output::new(p.PIN_X, Level::High);
 
 cs.set_low();
 let tx_buf = [1_u8, 2, 3, 4, 5, 6];
@@ -385,7 +387,7 @@ let clk = p.PIN_10;
 let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, config);
 
 // Configure CS
-let mut cs = Output::new(p.PIN_X, Level::Low);
+let mut cs = Output::new(p.PIN_X, Level::High, Speed::Low);
 
 cs.set_low();
 let tx_buf = [1_u8, 2, 3, 4, 5, 6];
