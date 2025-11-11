@@ -111,7 +111,7 @@ When it comes to standard communication protocols that rely on [MMIO](../lecture
 In Embassy, we can use the SPI both blocking and asynchronously. The following example will be using the asynchronous version.
 
 :::warning
-The SPI can also be used synchronously, but this means that for every transfer, the thread will be blocked, as we found out in the [previous lab](./04).
+The SPI can also be used synchronously, but this means that for every transfer, all tasks will be blocked, as we found out in the [previous lab](./04).
 :::
 
 <Tabs>
