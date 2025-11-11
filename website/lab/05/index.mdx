@@ -139,6 +139,8 @@ let clk = p.PXn;
 
 Now we can create our SPI instance. The example uses the SPI1 channel, but others can be used. Being an asynchronous SPI, it also needs a pair of `DMA` channels, one that handles the *transmission* of data, and one that handles the *receiving* of data.
 
+We can use any DMA channels that we have not used for another peripheral.
+
 ```rust
 let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, config);
 ```
