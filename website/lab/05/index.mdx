@@ -146,7 +146,7 @@ let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, conf
 ```
 
 :::info
-To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#mpu-6500-wiring) of the STM32 Nucleo-U545RE-Q.
+To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#board-pinouts) of the STM32 Nucleo-U545RE-Q.
 :::
 
 We also need a `CS` pin, that is simply a GPIO output pin. We will initialize it as such. Any pin can be used. For multiple subs, multiple pins will be initialized. 
@@ -237,6 +237,32 @@ Once we are done with the transfer, we set the `cs` line back to `high` to deact
 ```rust
 cs.set_high();
 ```
+
+## Board Pinouts
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+
+The STM32 Nucleo-U545RE-Q has three SPI channels. Each channel has a multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`.
+
+![STM32 Nucleo-U545RE-Q pinout](images/stm32u5-pinout.jpeg)
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
+The Raspberry Pi Pico has two usable SPI channels: SPI0 and SPI1. Each channel has multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`. They are marked with pink in the pinout diagram.
+
+![pico_pinout](images/pico-2-r4-pinout.png)
+  </TabItem>
+
+</Tabs>
+
+
+:::info
+`TX` = transmitter = `MOSI`
+
+`RX` = receiver = `MISO`
+:::
 
 ## Digital vs Analog sensors
 
@@ -360,30 +386,6 @@ The MPU-6500 can also be interfaced through I2C, using the same pins but with di
 
 :::note
 The MPU-6500 can also act as an I2C master and communicate with external sensors. This functionality will be ignored.
-:::
-
-<Tabs>
-  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
-
-The STM32 Nucleo-U545RE-Q has three SPI channels. Each channel has a multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`.
-
-![STM32 Nucleo-U545RE-Q pinout](images/stm32u5-pinout.jpeg)
-
-  </TabItem>
-
-  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
-The Raspberry Pi Pico has two usable SPI channels: SPI0 and SPI1. Each channel has multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`. They are marked with pink in the pinout diagram.
-
-![pico_pinout](images/pico-2-r4-pinout.png)
-  </TabItem>
-
-</Tabs>
-
-
-:::info
-`TX` = transmitter = `MOSI`
-
-`RX` = receiver = `MISO`
 :::
 
 
@@ -676,7 +678,7 @@ let pitch = f32::atan2(acc_y, f32::sqrt(acc_x * acc_x + acc_z * acc_z)).to_degre
 let roll = f32::atan2(-acc_x, f32::sqrt(acc_y * acc_y + acc_z * acc_z)).to_degrees();
 ```
 
-Make sure to add `micromath = "2.1.0"` to the project `Cargo.toml` dependencies.
+Make sure to add the latest version of `micromath` to the project `Cargo.toml` dependencies.
 :::
 
 :::tip
