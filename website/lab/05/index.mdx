@@ -133,8 +133,8 @@ Once we have the configuration, we can initialize the `MISO`, `MOSI` and `CLK` p
 
 ```rust
 let miso = p.PXn;
-let mosi = p.PXn;
-let clk = p.PXn;
+let mosi = p.PYm;
+let clk = p.PZo;
 ```
 
 Now we can create our SPI instance. The example uses the SPI1 channel, but others can be used. Being an asynchronous SPI, it also needs a pair of `DMA` channels, one that handles the *transmission* of data, and one that handles the *receiving* of data.
@@ -194,7 +194,7 @@ let mut spi = Spi::new(p.SPI0, clk, mosi, miso, p.DMA_CH0, p.DMA_CH1, config);
 ```
 
 :::info
-To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#mpu-6500-wiring) of the Raspberry Pi Pico.
+To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#board-pinouts) of the Raspberry Pi Pico.
 :::
 
 We also need a `CS` pin, that is simply a GPIO output pin. We will initialize it as such. Any pin can be used. For multiple subs, multiple pins will be initialized. 
@@ -407,13 +407,13 @@ let p = embassy_stm32::init(Default::default());
 let mut config = spi::Config::default();
 
 let miso = p.PXn;
-let mosi = p.PXn;
-let clk = p.PXn;
+let mosi = p.PYm;
+let clk = p.PZo;
 
 let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, config);
 
 // make sure to actually choose a pin
-let mut cs = Output::new(p.PIN_N, Level::High, Speed:Low);
+let mut cs = Output::new(p.PQa, Level::High, Speed:Low);
 ```
 
   </TabItem>
@@ -452,7 +452,7 @@ This way, we're sending a command to the sensor for it to know what to do: eithe
 
 #### Reading a register
 
-To read the value of a register, the main device (the RP2350) needs to first send a control byte containing the address of that register, with the 7th bit a `1`.
+To read the value of a register, the main device (the STM32U5 or RP2350) needs to first send a control byte containing the address of that register, with the 7th bit a `1`.
 The sub device (the sensor) will then send a byte back, containing the value of the requested register.
 
 ```rust
@@ -519,8 +519,8 @@ let mut screen_config = embassy_stm32::spi::Config::default();
 screen_config.frequency = Hertz(32_000_000);
 
 let screen_rst = Output::new(p.PXn, Level::Low, Speed::Low);
-let screen_dc = Output::new(p.PXn, Level::Low, Speed::Low);
-let screen_cs = Output::new(p.PXn, Level::High, Speed::Low);
+let screen_dc = Output::new(p.PYm, Level::Low, Speed::Low);
+let screen_cs = Output::new(p.PZo, Level::High, Speed::Low);
 
 let spi = Spi::new_blocking(p.SPI1, clk, mosi, miso, screen_config);
 let spi_bus: Mutex<NoopRawMutex, _> = Mutex::new(RefCell::new(spi));
