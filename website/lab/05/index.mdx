@@ -152,7 +152,7 @@ To figure out which pins work with SPI and what channels they are associated wit
 We also need a `CS` pin, that is simply a GPIO output pin. We will initialize it as such. Any pin can be used. For multiple subs, multiple pins will be initialized. 
 
 ```rust
-let mut cs = Output::new(p.PXn, Level::Low, Speed::Low);
+let mut cs = Output::new(p.PQa, Level::High, Speed:Low);
 ```
 
 Now we have set up the SPI, and can use it to communicate with the connected sub. To activate the sub, we need to set the `cs` pin to `low`.
