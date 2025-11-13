@@ -518,7 +518,7 @@ use mipidsi::options::{Orientation, Rotation};
 let mut screen_config = embassy_stm32::spi::Config::default();
 screen_config.frequency = Hertz(3_000_000);
 
-let screen_rst = Output::new(p.PXn, Level::Low, Speed::Low);
+let screen_rst = Output::new(p.PXn, Level::High, Speed::Low);
 let screen_dc = Output::new(p.PYm, Level::Low, Speed::Low);
 let screen_cs = Output::new(p.PZo, Level::High, Speed::Low);
 
@@ -551,7 +551,7 @@ screen_config.frequency = 32_000_000u32;
 screen_config.phase = embassy_rp::spi::Phase::CaptureOnSecondTransition;
 screen_config.polarity = embassy_rp::spi::Polarity::IdleHigh;
 
-let screen_rst = Output::new(p.PIN_X, Level::Low);
+let screen_rst = Output::new(p.PIN_X, Level::High);
 let screen_dc = Output::new(p.PIN_Y, Level::Low);
 let screen_cs = Output::new(p.PIN_Z, Level::High);
 
