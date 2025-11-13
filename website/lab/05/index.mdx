@@ -516,7 +516,7 @@ use mipidsi::options::{Orientation, Rotation};
 
 
 let mut screen_config = embassy_stm32::spi::Config::default();
-screen_config.frequency = Hertz(32_000_000);
+screen_config.frequency = Hertz(3_000_000);
 
 let screen_rst = Output::new(p.PXn, Level::Low, Speed::Low);
 let screen_dc = Output::new(p.PYm, Level::Low, Speed::Low);
@@ -626,7 +626,7 @@ To compute the **RAW** values, we need to read both registers and reconstruct th
 val = i16::from_be_bytes([val_h, val_l]);
 ```
 :::
-- Read and print the rest of the values. (**1p**)
+- Read and print the rest of the values. (**2p**)
 
 4. Print the actual value of the accelerations (in $m/s^2$) and the angular velocities (in $°/s$) (**1p**)
 
@@ -664,7 +664,10 @@ You can write all values in the same buffer. Use `\n` in the format string to wr
 The video buffer does not automatically clear after each write. In order for the text to not overlap over time, clear the screen before drawing.
 :::
 
-6. Did you notice that, when resting the board on the table, the acceleration over the **z** axis indicates the acceleration caused by Earth's gravity? Using this fact, if kept still, you can determine the absolute [pitch and roll](https://en.wikipedia.org/wiki/Aircraft_principal_axes) of the sensor. Create a small game where a ball rolls on the screen depending on the tilt. (**1p**)
+
+## Bonus at home
+
+1. Did you notice that, when resting the board on the table, the acceleration over the **z** axis indicates the acceleration caused by Earth's gravity? Using this fact, if kept still, you can determine the absolute [pitch and roll](https://en.wikipedia.org/wiki/Aircraft_principal_axes) of the sensor. Create a small game where a ball rolls on the screen depending on the tilt. (**1p**)
 
 :::info
 You are **not** *required* to simulate gravity and acceleration in the game. Moving the circle proportional to the tilt angle is enough.
