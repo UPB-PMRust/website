@@ -595,7 +595,20 @@ Text::new("Hello!", Point::new(20, 20), style)
     .draw(&mut screen)
     .unwrap();
 ```
+:::note
+Make sure to have the correct versions of the crates in `Cargo.toml`:
+```toml
+# Graphics crate 
+embedded-graphics = "0.8.1"
 
+# SPI Display support
+display-interface-spi = "0.5.0"
+display-interface = "0.5.0"
+
+# Generic display driver to connect to TFT displays
+mipidsi = "0.8.0"
+```
+:::
 :::tip
 Make sure to check out the [documentation](https://docs.rs/embedded-graphics/latest/embedded_graphics/index.html).
 :::
