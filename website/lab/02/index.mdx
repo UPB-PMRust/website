@@ -595,11 +595,8 @@ if pin.is_high() {
 ```rust
 use embassy_rp::gpio::{Input, Pull};
 
-// initialize PXn
-//   - replace X with the port letter(A, B, C, D, E, etc.)
-//   - n with the pin number
-//   ... see the datasheet, e.g. PA5 
-// and activate its internal pull up resistor.
+// initialize PIN_n (replace n with a number) and set its
+// default value to HIGH (1)
 let pin = Input::new(peripherals.PIN.n, Pull::Up);
 
 if pin.is_high() {
