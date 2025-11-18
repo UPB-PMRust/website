@@ -7,22 +7,30 @@ slug: /lab/06
 
 This lab will teach you how to communicate with hardware devices using the Inter-Integrated Circuit (I2C) protocol, in Embassy.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Resources
 
-1. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+1. **STMicroelectronics**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u545ce.pdf)*
+
+2. **STMicroelectronics**, *[Nucleo STM32U545 User manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)*
+
+
+3. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
   - Chapter 12 - *Peripherals*
     - Chapter 12.2 - *I2C*
 
-2. **BOSCH**, *[BMP280 Digital Pressure Sensor](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf)*
+4. **BOSCH**, *[BMP390 Digital Pressure Sensor](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf)*
   - Chapter 3 - *Functional Description*
   - Chapter 4 - *Global memory map and register description*
   - Chapter 5 - *Digital Interfaces*
     - Subchapter 5.2 - *I2C Interface*
 
-3. **Atmel** *[Two-wire Serial EEPROMs AT24C128 AT24C256](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0670.pdf)*
+5. **Atmel** *[Two-wire Serial EEPROMs AT24C128 AT24C256](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0670.pdf)*
 
-4. **Paul Denisowski**, *[Understanding Serial Protocols](https://www.youtube.com/watch?v=LEz5UCN3aHA)*
-5. **Paul Denisowski**, *[Understanding I2C](https://www.youtube.com/watch?v=CAvawEcxoPU)*
+6. **Paul Denisowski**, *[Understanding Serial Protocols](https://www.youtube.com/watch?v=LEz5UCN3aHA)*
+7. **Paul Denisowski**, *[Understanding I2C](https://www.youtube.com/watch?v=CAvawEcxoPU)*
 
 ## Inter-Integrated Circuit (I2C)
 
@@ -83,7 +91,59 @@ For 10-bit addresses, the controller first issues a specific sequence of bits. T
 
 ### I2C in Embassy
 
-These are the I2C imports we will be using. We will use the functions provided by the `embedded_hal_async` crate, since these are standard and used by most frameworks.
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+These are the I2C imports we will be using.
+
+  ```rust
+use embassy_stm32::i2c::I2c;
+use embassy_stm32::{bind_interrupts, i2c, peripherals};
+```
+
+We start by initializing the peripherals.
+
+```rust
+let peripherals = embassy_stm32::init(Default::default());
+```
+
+Next, we declare the pins we will be using for the SDA and SCL lines. We can find which pins of the STM32 Nucleo-U545RE-Q have these functions by looking at the pinout.
+
+```rust
+let sda = peripherals.PXn;
+let scl = peripherals.PYm;
+```
+
+We then initialize our I2C instance, using the pins we defined earlier and a default configuration. It's recommended to use the asynchronous version, since it won't block the executor.
+
+```rust
+/// I2C
+    let mut i2c = I2c::new(
+        peripherals.I2C1,
+        scl,
+        sda,
+        Irqs,
+        peripherals.GPDMA1_CH0,
+        peripherals.GPDMA1_CH1,
+        Default::default(),
+    );
+```
+
+The first argument of the `new` function is the I2C channel that will be used. The STM32 Nucleo-U545RE-Q has multiple usable I2C channels. Each has multiple sets of pins that can be used for and you can find them on the pinout diagram. 
+
+The `Irqs` variable refers to the interrupt that the I2C driver will use when handling transfers. We also need to bind this interrupt, which depends on the I2C channel we are working with.
+
+```rust
+bind_interrupts!(struct Irqs {
+    I2C1_EV => i2c::EventInterruptHandler<peripherals::I2C1>;
+    I2C1_ER => i2c::ErrorInterruptHandler<peripherals::I2C1>;
+});
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
+These are the I2C imports we will be using.
 
 ```rust
 use embassy_rp::i2c::{I2c, InterruptHandler as I2CInterruptHandler, Config as I2cConfig};
@@ -132,6 +192,11 @@ use embassy_rp::i2c::{I2c, InterruptHandler as I2CInterruptHandler, Config as I2
 ```
 :::
 
+  </TabItem>
+
+</Tabs>
+
+
 #### Reading from a target
 
 To read from a target, we will be using the `read` **async** function of the I2C driver. 
@@ -172,11 +237,11 @@ i2c.write_read(TARGET_ADDR, &tx_buf, &mut rx_buf).await.unwrap();
 ```
 :::
 
-## BMP280 Digital Pressure Sensor
+## BMP390 Digital Pressure Sensor
 
-The BMP280 is a digital temperature and pressure sensor designed by Bosch. It can be interfaced both with SPI and with I2C. In this lab, we will use the I2C protocol to communicate with the sensor, in order to retrieve the pressure and temperature values.
+The BMP390 is a digital temperature and pressure sensor designed by Bosch. It can be interfaced both with SPI and with I2C. In this lab, we will use the I2C protocol to communicate with the sensor, in order to retrieve the pressure and temperature values.
 
-You can find its datasheet containing more relevant information [here](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf).
+You can find its datasheet containing more relevant information [here](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf).
 
 :::tip BMP280 Address
 The default I2C address of the BMP280 is `0x76`.
@@ -184,136 +249,242 @@ The default I2C address of the BMP280 is `0x76`.
 
 ### Register map
 
-![Register map](./images/bmp280_memory_map.png)
+![Register map](./images/bmp390_memory_map.jpg)
 
 Next, we are going to explore some of the key registers we are going to use.
 
-#### Register `ctrl_meas` (0xF4)
+#### Register `PWR_CTRL` (0x1B)
 
-The control measurement register sets the data acquisition options of the sensor.
+The Power Control register enables or disables pressure and temperature measurements and sets the power mode.
 
-| Address (0xF4)| Name | Description |
+| Address (0x1B)| Name | Description |
 | - | - | - |
-| Bit 7, 6, 5 | `osrs_t` | This 3 bits control the oversampling of the temperature data. |
-| Bit 4, 3, 2 | `osrs_p` | This 3 bits control the oversampling of the pressure data. |
-| Bit 1, 0 | `mode` | This 2 bits control the power mode of the device. |
-
-:::info Oversampling
-The oversampling value refers to the number of actual measurement taken and averaged out for one measurement of either the pressure or temperature values.
-:::
-
-`osrs_t` and `osrs_p` possible values:
-  * `000` - Skipped
-  * `001` - Oversampling x 1
-  * `010` - Oversampling x 2
-  * `011` - Oversampling x 4
-  * `100` - Oversampling x 8
-  * `101`, `110` and `111` - Oversampling x 16
+| Bit 5..4 | `mode` | These 2 bits control the power mode of the device. |
+| Bit 1 | `temp_en` | Enables or disables the temperature sensor. |
+| Bit 0 | `press_en` | Enables or disables the pressure sensor. |
 
 `mode` possible values:
   * `00` - Sleep mode (no measurements are performed, and power consumption is at a minimum)
   * `01` and `10` - Forced mode (a single measurement is performed, then the sensor returns to Sleep mode)
   * `11` - Normal mode (continuously cycles between a measurement period and a standby period)
 
-#### Register `press` (0xF7...0xF9)
+`temp_en`/`press_en` possible values:
+  * `0` - Disabled (Skipped)
+  * `1` - Enabled
 
-The `press` contains the raw pressure measurement data. The measurement output is a **20 bit** value split into 3 registers.
+#### Register `OSR` (0x1C)
+
+The Oversampling register controls the oversampling settings for pressure and temperature measurements.
+
+| Address (0x1C)| Name | Description |
+| - | - | - |
+| Bit 5..3 | `osr_t` | These 3 bits control the oversampling of the temperature data. |
+| Bit 2..0 | `osr_p` | These 3 bits control the oversampling of the pressure data. |
+
+`osr_t` and `osr_p` possible values:
+* `000` - No oversampling (x1)
+* `001` - Oversampling x 2
+* `010` - Oversampling x 4
+* `011` - Oversampling x 8
+* `100` - Oversampling x 16
+* `101` - Oversampling x 32
+
+:::info Oversampling 
+Oversampling reduces noise and increases the output resolution. Each step reduces noise and increases the output resolution by one bit. 
+:::
+
+#### Register `DATA_0`...`DATA_2` (Pressure Data) (0x04...0x06)
+
+The pressure data is split and stored in three consecutive registers. The measurement output is an **unsigned 24-bit** value.
 
 | Address | Name | Description |
 | - | - | - |
-| 0xF7 | `press_msb` | Contains the most significant 8 bits (**press[19:12]**) of the raw pressure measurement output data. |
-| 0xF8 | `press_lsb` | Contains the next 8 bits (**press[11:4]**) of the raw pressure measurement output data. |
-| 0xF9 (bit 7, 6, 5, 4) | `press_xlsb` | Contains the last 4 bits (**press[3:0]**) of the raw pressure measurement output data. |
+| 0x06 | `DATA_2 (PRESS_MSB_23_16)` | Contains the most significant 8 bits (**press[23:16]**) of the raw pressure measurement. |
+| 0x05 | `DATA_1 (PRESS_LSB_15_8)` | Contains the middle 8 bits (**press[15:8]**) of the raw pressure measurement. |
+| 0x04 | `DATA_0 (PRESS_XLSB_7_0)` | Contains the least significant 8 bits (press[7:0]) of the raw pressure measurement. |
 
-:::tip Reading the raw pressure value
-To determine the raw pressure measurement, you need to first read the `press_msb`, `press_lsb` and `press_xlsb` register values, then compute the raw value:
+:::danger Important 
+Burst Read Required To guarantee data consistency (shadowing), you must use a single burst read to read all data registers at once. Reading registers individually may result in mixed data from different measurement cycles. 
+:::
+
+:::tip 
+Reading the raw pressure value Because the output is a standard 24-bit unsigned integer (unlike the 20-bit format of previous generations), the calculation is straightforward:
 
 ```rust
-// Assuming the `press_*` values are i32s. If not, additional
-// casts will be necessary.
-let raw_press: i32 = (press_msb << 12) + (press_lsb << 4) + (press_xlsb >> 4)
+// Assuming the values are read into 32-bit integers (or u8 cast to u32).
+// Note: Registers must be read in a burst transaction!
+let raw_press: u32 = (press_msb << 16) | (press_lsb << 8) | press_xlsb;
 ```
 :::
 
-#### Register `temp` (0xFA...0xFC)
+#### Register `DATA_3`...`DATA_5` (Temperature Data) (0x07...0x09)
 
-The `temp` contains the raw temperature measurement data. The measurement output is a **20 bit** value split into 3 registers.
+The temperature data is split and stored in three consecutive registers. The measurement output is an **unsigned 24-bit** value.
 
 | Address | Name | Description |
 | - | - | - |
-| 0xFA | `temp_msb` | Contains the most significant 8 bits (**temp[19:12]**) of the raw temperature measurement output data. |
-| 0xFB | `temp_lsb` | Contains the next 8 bits (**temp[11:4]**) of the raw temperature measurement output data. |
-| 0xFC (bit 7, 6, 5, 4) | `temp_xlsb` | Contains the last 4 bits (**temp[3:0]**) of the raw temperature measurement output data. |
+| 0x09 | `DATA_5 (TEMP_MSB_23_16)` | Contains the most significant 8 bits (**temp[23:16]**) of the raw temperature measurement. |
+| 0x08 | `DATA_4 (TEMP_LSB_15_8)` | Contains the middle 8 bits (**temp[15:8]**) of the raw temperature measurement. |
+| 0x07 | `DATA_3 (TEMP_XLSB_7_0)` | Contains the least significant 8 bits (**temp[7:0]**) of the raw temperature measurement. |
 
-:::tip Reading the raw temperature value
-To determine the raw temperature measurement, you need to first read the `temp_msb`, `temp_lsb` and `temp_xlsb` register values, then compute the raw value:
+Based on the BMP390 datasheet, the temperature data registers have moved to addresses 0x07 through 0x09, and the resolution is now 24 bits.
 
-```rust
-// Assuming the `temp_*` values are i32s. If not, additional
-// casts will be necessary.
-let raw_temp: i32 = (temp_msb << 12) + (temp_lsb << 4) + (temp_xlsb >> 4)
-```
+Here is the adapted content:
+
+Register DATA_3...DATA_5 (Temperature Data) (0x07...0x09)
+
+The temperature data is split and stored in three consecutive registers. The measurement output is an unsigned 24-bit value.
+
+Address	Name	Description
+0x09	DATA_5 (TEMP_MSB_23_16)	
+
+Contains the most significant 8 bits (temp[23:16]) of the raw temperature measurement.
+
+0x08	DATA_4 (TEMP_LSB_15_8)	
+
+Contains the middle 8 bits (temp[15:8]) of the raw temperature measurement.
+
+0x07	DATA_3 (TEMP_XLSB_7_0)	
+
+Contains the least significant 8 bits (temp[7:0]) of the raw temperature measurement.
+
+:::danger Important 
+Burst Read Required To guarantee data consistency (shadowing), you must use a single burst read to read all data registers at once. Reading registers individually may result in mixed data from different measurement cycles. 
 :::
 
-#### Compensation parameters
+:::tip Reading the raw temperature value To determine the raw temperature measurement, you need to first read the temp_msb, temp_lsb and temp_xlsb register values in a burst, then assemble the raw value:
 
-These are `u16` and `i16` factory-calibrated parameters stored inside the `BMP280` internal calibration registers. Due to manufacturing variations, no two BMP280 are the same. Because of this, Bosch measures each sensor individually at the factory and saves its *personal correction factors* into a non-volatile, read-only memory to be used to more accurately determine the pressure and temperature values.
+```rust
+// Assuming the values are read into 32-bit integers (or u8 cast to u32).
+// Note: Registers must be read in a burst transaction!
+let raw_temp: u32 = (temp_msb << 16) | (temp_lsb << 8) | temp_xlsb;
+```
 
-| Register Address (LSB / MSB) | Content | Data type |
-| - | - | - |
-| 0x88 / 0x89 | `dig_T1` | unsigned short (u16) |
-| 0x8A / 0x8B | `dig_T2` | signed short (i16) |
-| 0x8C / 0x8D | `dig_T3` | signed short (i16) |
-| 0x8E / 0x8F | `dig_P1` | unsigned short (u16) |
-| 0x90 / 0x91 | `dig_P2` | signed short (i16) |
-| 0x92 / 0x93 | `dig_P3` | signed short (i16) |
-| 0x94 / 0x95 | `dig_P4` | signed short (i16) |
-| 0x96 / 0x97 | `dig_P5` | signed short (i16) |
-| 0x98 / 0x99 | `dig_P6` | signed short (i16) |
-| 0x9A / 0x9B | `dig_P7` | signed short (i16) |
-| 0x9C / 0x9D | `dig_P8` | signed short (i16) |
-| 0x9E / 0x9F | `dig_P9` | signed short (i16) |
-| OxA0 / 0xA1 | reserved | reserved |
+:::
+
+#### Trimming Coefficients (0x31...0x45)
+
+These are `u8`, `i8`, `u16`, and `i16` factory-calibrated parameters stored inside the BMP390 non-volatile memory (NVM). Due to manufacturing variations, Bosch measures each sensor individually at the factory and saves its personal correction factors to be used to accurately compensate the raw pressure and temperature values.
+
+| Register Address (LSB / MSB) | Register Name | Trimming Coefficient | Data type |
+| - | - | - | - |
+| 0x31 / 0x32 | `NVM_PAR_T1` | `PAR_T1` | unsigned short (u16) |
+| 0x33 / 0x34 | `NVM_PAR_T2` | `PAR_T2` | unsigned short (u16) |
+| 0x35 | `NVM_PAR_T3` | `PAR_T3` | signed byte (i8) |
+| 0x36 / 0x37 | `NVM_PAR_P1` | `PAR_P1` | signed short (i16) |
+| 0x38 / 0x39 | `NVM_PAR_P2` | `PAR_P2` | signed short (i16) |
+| 0x3A | `NVM_PAR_P3` | `PAR_P3` | signed byte (i8) |
+| 0x3B | `NVM_PAR_P4` | `PAR_P4` | signed byte (i8) |
+| 0x3C / 0x3D | `NVM_PAR_P5` | `PAR_P5` | unsigned short (u16) |
+| 0x3E / 0x3F | `NVM_PAR_P6` | `PAR_P6` | unsigned short (u16) |
+| 0x40 | `NVM_PAR_P7` | `PAR_P7` | signed byte (i8) |
+| 0x41 | `NVM_PAR_P8` | `PAR_P8` | signed byte (i8) |
+| 0x42 / 0x43 | `NVM_PAR_P9` | `PAR_P9` | signed short (i16) |
+| 0x44 | `NVM_PAR_P10` | `PAR_P10` | signed byte (i8) |
+| 0x45 | `NVM_PAR_P11` | `PAR_P11` | signed byte (i8) |
+
+:::info Floating Point Conversion
+ The BMP390 datasheet recommends converting these raw integer coefficients into floating-point values before applying the compensation formula. Each coefficient must be divided by a specific power of 2 (e.g., $ PAR\_T1=NVM\_PAR\_T1/2^{−8} $). 
+ :::
+
 
 ### Temperature computation formula
 
-This formula is based on the **Compensation formula in fixed point** which can be found in section **8.2** of the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf).
+This formula is based on the **Compensation formula in fixed point** which can be found in section **8.5** of the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf).
 
-To determine the actual temperature, you need the raw temperature measurement value and the temperature compensation parameters (`dig_t1`, `dig_t2` and `dig_t3`). We will assume these are already determined.
+**Coefficient Conversion** before calculating the temperature, convert the raw NVM coefficients into floats using the scaling factors defined in **Section 8.4**:
 
 ```rust
-let var1 = (((raw_temp >> 3) - ((dig_t1 as i32) << 1)) * (dig_t2 as i32)) >> 11;
-let var2 = (((((raw_temp >> 4) - (dig_t1 as i32)) * ((raw_temp >> 4) - (dig_t1 as i32))) >> 12) * (dig_t3 as i32)) >> 14;
-let t_fine = var1 + var2;
-
-let actual_temp = (t_fine * 5 + 128) >> 8;
+// Powers of 2 used for scaling (Section 8.4)
+let par_t1 = (nvm_par_t1 as f32) / 0.00390625;  // 2^-8
+let par_t2 = (nvm_par_t2 as f32) / 1073741824.0; // 2^30
+let par_t3 = (nvm_par_t3 as f32) / 281474976710656.0; // 2^48
 ```
 
-The `actual_temp` value is in hundredths of a degree Celsius, meaning that a `1234` represents 12.34°C.
+**Compensation Calculation** using the floating-point coefficients and the raw temperature (`raw_temp`), calculate the compensated temperature (`t_lin`).
+
+```rust
+// Based on Appendix 8.5: Temperature compensation
+// `raw_temp` is the u32 value read from registers 0x07..0x09
+let partial_data1 = (raw_temp as f32) - par_t1;
+let partial_data2 = partial_data1 * par_t2;
+
+// t_lin is the compensated temperature in degrees Celsius
+let t_lin = partial_data2 + (partial_data1 * partial_data1) * par_t3;
+```
+
+The resulting `t_lin` is the actual temperature in **degrees Celsius** (e.g., 23.5 represents 23.5°C).
+
+:::info Important 
+t_lin dependency Keep the calculated `t_lin` value stored in memory. It is required as an input to calculate the compensated pressure value later. 
+:::
 
 ### Wiring
 
-The BMP280 has 5 pins with the following functions. Keep in mind that for the I2C protocol, there are **only two wires** we need to connect (excepting the `VCC` and `GND` needed for powering the sensor). 
+For the I2C protocol, you connect the SDI (Data) and SCK (Clock) pins. The SDO pin is used to select the I2C address (connected to GND for address 0x76 or VDDIO for 0x77). 
 
 | Pin | Function |
 |-|-|
-| `VCC` | power source (3V3) |
-| `GND` | ground |
-| `SCL` | `SCL` (for I2C) / `CLK` (for SPI) line |
-| `SDA` | `SDA` (for I2C) / `MOSI` (for SPI) line |
-| `CSB` | `CS` (for SPI) |
-| `SDO` | `MISO` (for SPI) |
+| `VDDIO` | Digital Supply |
+| `VDD` | Analog Supply |
+| `VSS` | Ground |
+| `SCK` | Acts as `SCL` for I2C or `SCK` for SPI. |
+| `SDI` | Acts as `SDA` for I2C or `MOSI` for SPI. |
+| `SDO` | Acts as the I2C Address Select (LSB) or `MISO` for SPI. |
+| `CSB` | Chip Select |
+| `INT` | Interrupt |
 
-The BMP280 is integrated already integrated in the lab board, having some of these pins already wired, and some exposed in the **J10** breakout. Consult the board [schematic](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb/-/blob/main/Schematic/MA.pdf?ref_type=heads) to figure out which ones you need to connect to your *"I2C capable"* pins.
 
-![J10_Breakout](./images/J10_Breakout.png)
+The BMP390 is integrated already integrated in the lab board, having some of these pins already wired, and some exposed in the **J8** breakout.
 
-### Reading and writing to the BMP280
+![J8_Breakout](./images/J8_Breakout.png)
+
+### Reading and writing to the BMP390
 
 Instructions on how to use I2C with the BMP280 can be found in the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf), at section 5.2.
 
 Before we start, we initialize the I2C driver with the pins and channel we will be using.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+```rust
+use embassy_stm32::i2c::I2c;
+use embassy_stm32::{bind_interrupts, i2c, peripherals};
+
+bind_interrupts!(struct Irqs {
+    I2C1_EV => i2c::EventInterruptHandler<peripherals::I2C1>;
+    I2C1_ER => i2c::ErrorInterruptHandler<peripherals::I2C1>;
+});
+
+fn main() {
+  let peripherals = embassy_stm32::init(Default::default());
+
+  // I2C pins
+  let sda = peripherals.PXn;
+  let scl = peripherals.PYm;
+
+  // I2C definition
+      let mut i2c = I2c::new(
+        peripherals.I2C1,
+        scl,
+        sda,
+        Irqs,
+        peripherals.GPDMA1_CH0,
+        peripherals.GPDMA1_CH1,
+        Default::default(),
+    );
+
+  ...
+}
+```
+
+:::warning ``PXn`, `PYm` do not exist
+You will need to replace them with the proper I2C peripheral and corresponding pins. 
+:::
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico/Raspberry Pi Pico 2" default>
 ```rust
 use embassy_rp::i2c::{I2c, InterruptHandler as I2CInterruptHandler, Config as I2cConfig};
 use embedded_hal_async::i2c::{Error, I2c as _};
@@ -341,13 +512,18 @@ fn main() {
 You will need to replace them with the proper I2C peripheral and corresponding pins. 
 :::
 
-In section 5.2.1 and 5.2.2 of the datasheet, we get the information we need in order to read/write to a register of the BMP280 using I2C.
+  </TabItem>
+
+</Tabs>
+
+
+In section 5.2.1 and 5.2.2 of the datasheet, we get the information we need in order to read/write to a register of the BMP390 using I2C.
 
 #### Reading a register
 
-![i2c_bmp280_read](images/i2c_bmp280_read.png)
+![i2c_bmp280_read](images/i2c_bmp390_read.png)
 
-To read the value of a register, we first need to send the BMP280 the address of the register we want to read. Afterwards, the sensor will send back the value of the register we requested.
+To read the value of a register, we first need to send the BMP390 the address of the register we want to read. Afterwards, the sensor will send back the value of the register we requested.
 
 For this, we need to first *write* this register address over I2C and then *read* the value we get back from the sensor. We could use the `write_read_async` function to do this.
 
@@ -357,8 +533,8 @@ let tx_buf = [REG_ADDR];
 // the rx buffer will contain the value of the requested register
 // after the transfer is complete.
 let mut rx_buf = [0x00u8]; 
-// The function's arguments are the I2C address of the BMP280 and the two buffers
-i2c.write_read(BMP280_ADDR, &tx_buf, &mut rx_buf).await.unwrap();
+// The function's arguments are the I2C address of the BMP390 and the two buffers
+i2c.write_read(BMP390_ADDR, &tx_buf, &mut rx_buf).await.unwrap();
 ```
 
 :::info I2C is *half-duplex*.
@@ -376,7 +552,7 @@ This is explained in section 5.3 of the datasheet.
 
 #### Writing to a register
 
-![i2c_bmp280_write](images/i2c_bmp280_write.png)
+![i2c_bmp280_write](images/i2c_bmp390_write.png)
 
 To write to a register, we need to send the sensor a buffer containing pairs of register addresses and values we want to write to those registers. For example, if we wanted to write `0x00` to `REG_A`:
 
@@ -398,7 +574,7 @@ The AT24C256 is a 256-kilobit **Electrically Erasable Programmable Read-Only Mem
 
 ### Device Addressing
 
-The AT24C256 uses a 7-bit I2C address, with the most significant 5 bits fixed as `10100`. The remaining 2 bits are configurable by connecting the `A1` and `A0` pins to either `GND` or `VCC`, allowing up to 4 devices to be connected on the same I2C bus. Knowing the state of the pins, you can determine the address using the formula: `0x50 | (A1 << 1) | A0`. To determine the address of the EEPROM used by our board, you can check the [schematic](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb/-/blob/main/Schematic/MA.pdf?ref_type=heads) or perform an I2C scan.
+The AT24C256 uses a 7-bit I2C address, with the most significant 5 bits fixed as `10100`. The remaining 2 bits are configurable by connecting the `A1` and `A0` pins to either `GND` or `VCC`, allowing up to 4 devices to be connected on the same I2C bus. Knowing the state of the pins, you can determine the address using the formula: `0x50 | (A1 << 1) | A0`. To determine the address of the EEPROM used by our board, you can perform an I2C scan.
 
 ### Wiring
 
@@ -413,15 +589,15 @@ The AT24C256 has 8 pins with the following functions. For more information, cons
 | NC | No Connect |
 | GND | Ground |
 
-The AT24C256 is integrated already integrated in the lab board, having some of these pins already wired, and some exposed in the **J10** breakout. Consult the board [schematic](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb/-/blob/main/Schematic/MA.pdf?ref_type=heads) to figure out which ones you need to connect to your *"I2C capable"* pins.
+The AT24C256 is integrated already integrated in the lab board, having some of these pins already wired, and some exposed in the **J8** breakout.
 
-![J10_Breakout](./images/J10_Breakout.png)
+![J8_Breakout](./images/J8_Breakout.png)
 
 ### Memory Organization
 
 The memory is organized into 32,768 bytes, divided into 512 pages of 64 bytes each. Each byte can be accessed individually, or multiple bytes can be written/read in a single operation using page addressing.
 
-We can connect the EEPROM to the same I2C bus as the BMP280, therefore we can reuse the same `I2c` instance we [previously](./index.mdx#reading-and-writing-to-the-bmp280) initialized.
+We can connect the EEPROM to the same I2C bus as the BMP390, therefore we can reuse the same `I2c` instance we [previously](./index.mdx#reading-and-writing-to-the-bmp390) initialized.
 
 #### Reading from the AT24C256
 
@@ -478,56 +654,57 @@ At the end of this lab, you should be familiar with both the **blocking** and **
 :::
 
 ## Exercises
-1. Connect both the BMP280 and AT24C256 at the same I2C pins and perform a scan to determine their addresses. (**2p**)
+1. Connect both the BMP390 and AT24C256 at the same I2C pins and perform a scan to determine their addresses. (**2p**)
 
 :::tip I2C scan
 You can perform an I2C scan by attempting a one byte `read` at every address within the **viable address range**. The addresses used by the I2C protocol are 7-bit address, ranging from `0x00` to `0x7F`, but some of these are either reserved, or have a special function (the general call `0x00` address). The unusable addresses range from `0x00` to `0x07` and `0x78` to `0x7F`. This leaves us with addresses ranging from `0x08` to `0x77`
 :::
 
-2. Read the raw temperature value from the BMP280 and print it once a second.
+2. Read the raw temperature value from the BMP390 and print it once a second. To do that, you have to configure the `OSR` and `PWR_CTRL ` registers. Writing to a register is explained here, and for details about the registers' function, you can consult the `OSR` and `PWR_CTRL` subsections of the register map.
 
-* To do that, you have to configure the `ctrl_meas` register. Writing to a register is explained [here](./index.mdx#writing-to-a-register), and for details about the registers's function, you can consult this [subsection](./index.mdx#register-ctrl_meas-0xf4) of the register map. You can opt for **Normal mode**, a **temperature oversampling of x 2**, and we can **skip** the pressure measurement (Hint `0b010_000_11`). (**2p**)
+You need to perform two writes to set up the sensor:
+
+* `OSR` (0x1C): Set **temperature oversampling to x 2**. (Hint `0b00_001_000`) .
+
+* `PWR_CTRL` (0x1B): Opt for Normal mode, enable temperature, and disable the pressure measurement. (Hint `0b00_11_00_10`) . (**2p**)
 
 :::warning Configuring the data acquisition options
 This should be done **only once**, before reading the sensor.
 :::
 
-* Read the raw temperature value stored in the `temp` register once a second, and print it to the terminal using the `defmt` macros. Details on how this can be performed can be found in this [subsection](./index.mdx#register-temp-0xfa0xfc) of the register map and in the [Reading a register](./index.mdx#reading-a-register) subsection. (**2p**)
+* Read the raw temperature value stored in the `DATA_3...DATA_5` register once a second, and print it to the terminal using the `defmt` macros. Details on how this can be performed can be found in this [subsection](./index.mdx#register-temp-0xfa0xfc) of the register map and in the [Reading a register](./index.mdx#reading-a-register) subsection. (**2p**)
 
 3. Based on the raw temperature value previously determined, compute the actual temperature value using the **mock** calibration values provided bellow and the formula described in the [sections above](./index.mdx#temperature-computation-formula). (**1p**)
 
 ```rust
-let dig_t1: u16 = 27504;
-let dig_t2: i16 = 26435;
-let dig_t3: i16 = -1000;
+let nvm_par_t1: u16 = 27504;
+let nvm_par_t2: u16 = 26435;
+let nvm_par_t3: i8 = -50;
 ```
 
 :::tip Temperature format
 You can print the `actual_temp` value like so:
 
 ```rust
-info!(
-    "Temperature {}.{}°C",
-    actual_temp / 100,
-    actual_temp.abs() % 100
-);
+info!("Temperature {}°C", t_lin);
 ```
 :::
 
-4. Read the calibration data(`dig_t1`, `dig_t2` and `dig_t3`) from the sensor's internal storage, instead of using the **mock** values previously provided to improve the accuracy of the measurement. (**1p**)
+4. Read the calibration data (`nvm_par_t1`, `nvm_par_t2` and `nvm_par_t3`) from the sensor's internal storage, instead of using the mock values previously provided to improve the accuracy of the measurement. (**1p**)
 
 :::note
-The reading of the calibration values should be performed only once, after configuring the `ctrl_meas` register.
+The reading of the calibration values should be performed only once, after configuring the `PWR_CTRL` register.
 
->**Hint!**
->
->You can read the first 6 byte into a 6 byte long `u8` buffer we will call data, and determine the values of the 3 temperature compensation values like this:
->
->```rust
->let dig_t1: u16 = ((data[1] as u16) << 8) | (data[0] as u16);
->let dig_t2: i16 = ((data[3] as i16) << 8) | (data[2] as i16);
->let dig_t3: i16 = ((data[5] as i16) << 8) | (data[4] as i16);
->```
+**Hint!**
+
+You need to read 5 bytes starting from register address `0x31`. If you read them into a 5-byte `u8` buffer called `data`, you can reconstruct the values like this:
+
+```rust
+// 0x31 (LSB) & 0x32 (MSB) -> u16
+let nvm_par_t1: u16 = ((data[1] as u16) << 8) | (data[0] as u16);
+// 0x33 (LSB) & 0x34 (MSB) -> u16 let nvm_par_t2: u16 = ((data[3] as u16) << 8) | (data[2] as u16);
+// 0x35 -> i8 (Note: This is an 8-bit signed value!) let nvm_par_t3: i8 = data[4] as i8;
+```
 :::
 
 5. Every time you perform a sensor reading, log the temperature value (in hundredths of a degree) in the non-volatile memory at the address `0xACDC`. To be able to test that this is properly working, the first thing we will do when the board boots will be to print the previously written temperature value. You have more details about reading and writing to the EEPROM in this [section](./index.mdx#memory-organization). (**2p**)
