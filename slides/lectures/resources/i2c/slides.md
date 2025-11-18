@@ -5,7 +5,6 @@ layout: section
 Inter-Integrated Circuit
 
 ---
----
 
 # Bibliography
 for this section
@@ -13,6 +12,9 @@ for this section
 1. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
    - Chapter 12 - *Peripherals*
      - Chapter 12.2 - *I2C*
+
+2. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
+   - Chapter 65 - *Inter integrated circuit interface*
 
 2. **Paul Denisowski**, *[Understanding I2C](https://www.youtube.com/watch?v=CAvawEcxoPU)*
 
@@ -191,15 +193,23 @@ Transmission
 | Speed | *5 Mbit/s* | usually 100 Kbit/s, 400 Kbit/s and 1 Mbit/s |
 
 ---
----
+
 # Usage
 
 - sensors
 - small displays
 - RP2350 has two I2C devices
+- STM32U545RE has four I2C devices
+
+<div grid="~ cols-2 gap-5">
 
 <div align="center">
 <img src="./raspberry_pi_pico_pins.jpg" class="rounded m-5 w-120">
+</div>
+
+<div>
+</div>
+
 </div>
 
 ---
@@ -254,6 +264,50 @@ i2c.write_read(0x5e, &tx_buf, &mut rx_buf).unwrap();
 ```
 
 ---
+
+# Embassy API
+for STM32U545RE, synchronous
+
+<div grid="~ cols-2 gap-5">
+
+```rust {*}{lines: false}
+pub struct Config {
+    pub frequency: Hertz,
+    pub gpio_speed: Speed,
+    pub sda_pullup: bool,
+    pub scl_pullup: bool,
+    pub timeout: Duration,
+}
+```
+
+```rust {*}{lines: false}
+pub enum Error {
+    Bus, Arbitration,
+    Nack, Timeout,
+    Crc, Overrun,
+    ZeroLengthTransfer,
+}
+```
+
+</div>
+
+```rust {1|3,4|3-5|7,8|10,11|13|all}
+use embassy_stm32::i2c::Config as I2cConfig;
+
+let sda = p.PB7;
+let scl = p.PB6;
+let mut i2c = i2c::I2c::new_blocking(p.I2C1, scl, sda, I2cConfig::default());
+
+let tx_buf = [0x90];
+i2c.blocking_write(0x5e, &tx_buf).unwrap();
+
+let mut rx_buf = [0x00u8; 7];
+i2c.blocking_read(0x5e, &mut rx_buf).unwrap();
+
+i2c.blocking_write_read(0x5e, &tx_buf, &mut rx_buf).unwrap();
+```
+
+---
 ---
 # Embassy API
 for RP2350, asynchronous
@@ -268,6 +322,32 @@ bind_interrupts!(struct Irqs {
 let sda = p.PIN_14;
 let scl = p.PIN_15;
 let mut i2c = i2c::I2c::new_async(p.I2C1, scl, sda, Irqs, I2cConfig::default());
+
+let tx_buf = [0x90];
+i2c.write(0x5e, &tx_buf).await.unwrap();
+
+let mut rx_buf = [0x00u8; 7];
+i2c.read(0x5e, &mut rx_buf).await.unwrap();
+
+i2c.write_read(0x5e, &tx_buf, &mut rx_buf).await.unwrap();
+```
+
+---
+---
+# Embassy API
+for STM32U545RE, asynchronous
+
+```rust {1|3-6|8,9|8-10|12,13|15,16|18|all}
+use embassy_rp::i2c::Config as I2cConfig;
+
+bind_interrupts!(struct Irqs {
+    I2C1_EV => i2c::EventInterruptHandler<I2C1>;
+    I2C1_ER => i2c::ErrorInterruptHandler<I2C1>;
+});
+
+let sda = p.PB7;
+let scl = p.PB6;
+let mut i2c = I2c::new(p.I2C1, p.PB6, p.PB7, Irqs, p.GPDMA1_CH0, p.GPDMA1_CH1, Default::default());
 
 let tx_buf = [0x90];
 i2c.write(0x5e, &tx_buf).await.unwrap();
