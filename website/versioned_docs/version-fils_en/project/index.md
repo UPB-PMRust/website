@@ -9,7 +9,7 @@ The goal of the project is to showcase the knowledge gained throughout the semes
 ## Deliverables
 The deliverables will be stored in two places: 
 - the *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students) 
-- the project documentation will be stored on [Gitlab](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro), by creating a fork of the course's website
+- the project documentation will be stored on [Github](https://github.com/upb-pmrust/website), by creating a fork of the course's website
 
 The **documentation repository** should contain:
 - the full documentation of the project, in the `index.md` file
@@ -31,7 +31,7 @@ The **documentation repository** should contain:
 
 :::warning 
 
-You need to work in a fork of this website's Gitlab repository and not in a blank one, in order to create a _merge request_, as described below.
+You need to work in a fork of this [website's Github repository](https://github.com/upb-pmrust/website) and not in a blank one, in order to create a _merge request_, as described below.
 
 :::
 
@@ -64,19 +64,19 @@ If you are using WSL2, you should follow the instructions for installing on Linu
 These steps should be performed on inside your **VM**, or in **WSL2**, **not on your host machine**.
 :::
 
-1. Please login with your UPB login to [Gitlab](https://gitlab.cs.pub.ro)
-2. You will have to add an SSH Key to your Gitlab account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS's console: `ssh-keygen -t rsa -b 2048`. Press press ENTER until you exit the respective command prompts.
+1. Please login with your UPB login to [Github](https://github.com)
+2. You will have to add an SSH Key to your Github account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS's console: `ssh-keygen -t rsa -b 2048`. Press press ENTER until you exit the respective command prompts.
  - If your command prompt `Overwrite (y/n)?` press `n` and run the above command again, changing the destination of the key.
  - If the key was generated successfully, you will have the keys generated in the location indicated by the command `Enter file in which to save the key (/home/"NAME"/.ssh/id_rsa):`
  - Read the content of the file `id_rsa.pub` or the name you gave to the file and transfer it to Github.
- - Login to [Gitlab](https://gitlab.cs.pub.ro/) and go to: [SSH Keys](https://gitlab.cs.pub.ro/-/user_settings/ssh_keys).
+ - Login to [Github](https://github.com/) and go to: [SSH Keys](https://github.com/settings/keys).
  - Click on *Add new key* and insert into the *Key* textbox your key from `id_rsa.pub`.
  - Be very careful about the expiration date of the ssh key, change the expiration date otherwise it is set to 30 days.
 
 3. [Download Git](https://git-scm.com) from the official website and access it in the command line using `git -v` to check if it was installed correctly. You might have to use *Git Bash*.
-4. Navigate to the [website's Gitlab repository](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro) and create a public fork by clicking on the button in the top right corner.
+4. Navigate to the [website's Github repository](https://github.com/upb-pmrust/website) and create a public fork by clicking on the button in the top right corner.
 
-5. Clone the newly created repository by running `git clone git@gitlab.cs.pub.ro:<gitlab_username>/pmrust.pages.upb.ro.git`, where `<gitlab_username>` is replaced by your gitlab username.
+5. Clone the newly created repository by running `git clone git@github.com:UPB-PMRust/website.git`.
 
 6. Now you have your own clone. You need to create a new branch. For this, follow the steps:
   - Navigate to your cloned repository 
@@ -88,7 +88,7 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
 
 7. To start creating your page for the project, go to `website/versioned_docs/version-fils_en/project/2025` and create a new directory with your curs.upb.ro username. Example: `andrei_paul.zamfir`.
 
-8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2025/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last year's projects](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro/-/tree/main/website/versioned_docs/version-fils_en/project/2024).
+8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2025/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last years' projects](https://github.com/UPB-PMRust/website/tree/main/website/versioned_docs/version-fils_en/project).
 
 9. To build and test the website, you can run the `./build_website.sh` in the project's root folder, then run `cd ./website/ && npm run serve`.
 
@@ -96,7 +96,7 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
 After running the script, you could run `npm run start` instead of `serve`. This would ensure that the changes you are making in your Markdown file reflect in the running build (without needing to rebuild the project over and over again). But make sure to re-run the build script when you are done, because some subtle bugs may not be caught by this method.
 :::
 
-10. After finishing the project, make a _merge request_ to the [upstream repository](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro). Do not forget to change the Merge Request Description template to **project**.
+10. After finishing the project, make a _merge request_ to the [upstream repository](https://github.com/UPB-PMRust/website). Do not forget to change the Merge Request Description template to **project**.
 
 ![Merge Request Template](../../../static/img/MR_template.webp)
 
