@@ -600,7 +600,7 @@ use embassy_rp::gpio::{Input, Pull};
 //   - n with the pin number
 //   ... see the datasheet, e.g. PA5 
 // and activate its internal pull up resistor.
-let pin = Input::new(peripherals.PXn, Pull::Up);
+let pin = Input::new(peripherals.PIN.n, Pull::Up);
 
 if pin.is_high() {
     // Do something if the pin value is HIGH (1)
