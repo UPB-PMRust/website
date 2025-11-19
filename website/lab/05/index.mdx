@@ -510,28 +510,42 @@ Because writing an SPI driver for the ST7735 would be out of the scope of the la
 use embassy_embedded_hal::shared_bus::blocking::spi::SpiDevice;
 use embassy_sync::blocking_mutex::{Mutex, raw::NoopRawMutex};
 use embassy_time::Delay;
-use display_interface_spi::SPIInterface;
+use mipidsi::interface::SpiInterface;
 use mipidsi::models::ST7735s;
 use mipidsi::options::{Orientation, Rotation};
 
+let mut config = Config::default();
+config.rcc.hsi = true;
+config.rcc.pll1 = Some(Pll {
+      source: PllSource::HSI, // 16 MHz
+      prediv: PllPreDiv::DIV1,
+      mul: PllMul::MUL10,
+      divp: None,
+      divq: None,
+      divr: Some(PllDiv::DIV1), // 160 MHz
+   });
+config.rcc.sys = Sysclk::PLL1_R;
+config.rcc.voltage_range = VoltageScale::RANGE1;
+config.rcc.mux.iclksel = mux::Iclksel::HSI48;
 
-let mut screen_config = embassy_stm32::spi::Config::default();
-screen_config.frequency = Hertz(3_000_000);
+let mut screen_spi_config = embassy_stm32::spi::Config::default();
+screen_spi_config.frequency = Hertz(3_000_000);
 
 let screen_rst = Output::new(p.PXn, Level::Low, Speed::Low);
 let screen_dc = Output::new(p.PYm, Level::Low, Speed::Low);
 let screen_cs = Output::new(p.PZo, Level::High, Speed::Low);
 
-let spi = Spi::new_blocking(p.SPI1, clk, mosi, miso, screen_config);
 let spi_bus: Mutex<NoopRawMutex, _> = Mutex::new(RefCell::new(spi));
-let display_spi = SpiDevice::new(&spi_bus, screen_cs);
+let display_spi = SpiDeviceWithConfig::new(&spi_bus_mutex, screen_cs, screen_spi_config);
 
-let di = SPIInterface::new(display_spi, screen_dc);
+let mut screen_buffer = [0; 10 * 4096];
+
+let di = SpiInterface::new(display_spi, screen_dc, &mut screen_buffer);
 let mut screen = mipidsi::Builder::new(ST7735s, di)
-    .reset_pin(screen_rst)
-    .orientation(Orientation::new().rotate(Rotation::Deg180))
-    .init(&mut Delay)
-    .unwrap();
+      .reset_pin(screen_rst)
+      .orientation(Orientation::new().rotate(Rotation::Deg180))
+      .init(&mut Delay)
+      .unwrap();
 ```
 
   </TabItem>
