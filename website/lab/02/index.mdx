@@ -595,8 +595,7 @@ if pin.is_high() {
 ```rust
 use embassy_rp::gpio::{Input, Pull};
 
-// initialize PIN_n (replace n with a number) and set its
-// default value to HIGH (1)
+// initialize PIN_n (replace n with a number) and set
 let pin = Input::new(peripherals.PIN.n, Pull::Up);
 
 if pin.is_high() {
