@@ -548,6 +548,19 @@ let mut screen = mipidsi::Builder::new(ST7735s, di)
       .unwrap();
 ```
 
+:::note System Clock Configuration
+
+By default, the microcontroller may run at a lower frequency (e.g., 16 MHz). While this is enough to make the display work, the drawing speed will be visibly slow.
+
+The code below configures the PLL (Phase Locked Loop) to boost the system clock to 160 MHz.
+
+This high frequency is necessary to:
+
+* Process Graphics: Calculate pixel colors and fill buffers quickly.
+
+* Drive SPI: Support high data transfer rates (high SPI frequencies) required for smooth frame updates. 
+:::
+
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
