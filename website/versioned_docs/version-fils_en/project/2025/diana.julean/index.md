@@ -2,10 +2,10 @@
 
 A STM32-based environment monitoring system that tracks data about temperature, humidity and Ambiental light, displaying it locally and on an LCD.
 
-:::info
+:::info 
 
-Author: Julean Diana-Gabriela
-GitHub Project Link:
+**Author**: Julean Diana-Gabriela \
+**GitHub Project Link**:  
 
 :::
 
