@@ -2,6 +2,13 @@
 
 A STM32-based environment monitoring system that tracks data about temperature, humidity and Ambiental light, displaying it locally and on an LCD.
 
+:::info
+
+Author: Julean Diana-Gabriela
+GitHub Project Link:
+
+:::
+
 ## Description
 
 The Smart Environment Tracker is an embedded system designed to measure and respond to environmental conditions in real time using an STM32 microcontroller programmed in Rust. It uses a DHT22 sensor to monitor temperature and humidity, and a photoresistor (LDR) to detect ambient light levels. Three LEDs visually indicate temperature ranges — green for normal, yellow for warm, and red for hot — while an LCD display presents live sensor readings.
