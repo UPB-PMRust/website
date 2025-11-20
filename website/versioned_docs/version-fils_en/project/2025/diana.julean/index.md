@@ -29,4 +29,4 @@ Another LED is turned on when the light read from the photoresistor is reading a
 
 •	Button – to stop the alarm
 
-## Architecture
+
