@@ -17,16 +17,10 @@ Another LED is turned on when the light read from the photoresistor is reading a
 
 ## Components Overview
 
-•	DHT11 – to read and display temperature and humidity
-
-•	LDR – to display light levels
-
-•	LEDs – to show the temperature level and to act as a lamp 
-
-•	LCD – display temperature, humidity and light level
-
-•	Buzzer – alarm when temperature exceeds predefined thresholds
-
-•	Button – to stop the alarm
-
+-	DHT11 – to read and display temperature and humidity=
+-	LDR – to display light levels
+-	LEDs – to show the temperature level and to act as a lamp 
+-	LCD – display temperature, humidity and light level
+-	Buzzer – alarm when temperature exceeds predefined thresholds
+-	Button – to stop the alarm
 
