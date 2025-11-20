@@ -697,7 +697,7 @@ The reading of the calibration values should be performed only once, after confi
 
 **Hint!**
 
-You need to read 5 bytes starting from register address `0x31`. If you read them into a 5-byte `u8` buffer called `data`, you can reconstruct the values like this:
+You need to read 5 bytes starting from register `NVM_PAR_T1` (address `0x31`). If you read them into a 5-byte `u8` buffer called `data`, you can reconstruct the values like this:
 
 ```rust
 // 0x31 (LSB) & 0x32 (MSB) -> u16
