@@ -552,7 +552,22 @@ let mut screen = mipidsi::Builder::new(ST7735s, di)
 
 By default, the microcontroller may run at a lower frequency (e.g., 16 MHz). While this is enough to make the display work, the drawing speed will be visibly slow.
 
-The code above configures the **PLL (Phase Locked Loop)** to boost the system clock to 160 MHz.
+The code below configures the **PLL (Phase Locked Loop)** to boost the system clock to 160 MHz.
+
+```rust
+config.rcc.hsi = true;
+config.rcc.pll1 = Some(Pll {
+      source: PllSource::HSI, // 16 MHz
+      prediv: PllPreDiv::DIV1,
+      mul: PllMul::MUL10,
+      divp: None,
+      divq: None,
+      divr: Some(PllDiv::DIV1), // 160 MHz
+   });
+config.rcc.sys = Sysclk::PLL1_R;
+config.rcc.voltage_range = VoltageScale::RANGE1;
+config.rcc.mux.iclksel = mux::Iclksel::HSI48;
+```
 
 This high frequency is necessary to:
 - Process Graphics: Calculate pixel colors and fill buffers quickly.
