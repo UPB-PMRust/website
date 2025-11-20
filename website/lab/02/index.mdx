@@ -596,7 +596,7 @@ if pin.is_high() {
 use embassy_rp::gpio::{Input, Pull};
 
 // initialize PIN_n (replace n with a number) and set the internal pull up resistor.
-let pin = Input::new(peripherals.PIN.n, Pull::Up);
+let pin = Input::new(peripherals.PIN_n, Pull::Up);
 
 if pin.is_high() {
     // Do something if the pin value is HIGH (1)
