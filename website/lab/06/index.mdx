@@ -208,7 +208,7 @@ The function takes 2 parameters:
 The following example reads two bytes from the target of address `0x44`.
 
 ```rust
-const TARGET_ADDR: u16 = 0x44;
+const TARGET_ADDR: u8 = 0x44;
 let mut rx_buf = [0x00u8; 2];
 i2c.read(TARGET_ADDR, &mut rx_buf).await.unwrap();
 ```
