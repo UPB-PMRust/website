@@ -24,6 +24,3 @@ Another LED is turned on when the light read from the photoresistor is reading a
 - Buzzer – alarm when temperature exceeds predefined thresholds
 - Button – to stop the alarm
 
-
-
-
