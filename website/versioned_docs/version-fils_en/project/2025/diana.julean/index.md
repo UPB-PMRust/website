@@ -26,6 +26,6 @@ Another LED is turned on when the light read from the photoresistor is reading a
 
 ## Motivation
 
-This project is developed to create a simple and reliable system for monitoring environmental conditions in real time. By combining temperature, humidity, and light sensing with visual and audible alerts, it aims to demonstrate how embedded systems can improve comfort, safety, and automation in everyday environments such as homes, labs, or offices. 
+This project is developed to create a simple and reliable system for monitoring environmental conditions in real time. By combining temperature, humidity, and light sensing with visual and audible alerts, it aims to demonstrate how embedded systems can improve comfort, safety, and automation in environments such as homes, labs, or offices. 
 
 ## Architecture 
