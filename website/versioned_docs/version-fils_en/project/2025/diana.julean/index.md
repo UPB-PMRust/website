@@ -24,3 +24,8 @@ Another LED is turned on when the light read from the photoresistor is reading a
 - Buzzer – alarm when temperature exceeds predefined thresholds
 - Button – to stop the alarm
 
+## Motivation
+
+This project is developed to create a simple and reliable system for monitoring environmental conditions in real time. By combining temperature, humidity, and light sensing with visual and audible alerts, it aims to demonstrate how embedded systems can improve comfort, safety, and automation in everyday environments such as homes, labs, or offices. 
+
+## Architecture 
