@@ -29,3 +29,17 @@ Another LED is turned on when the light read from the photoresistor is reading a
 This project is developed to create a simple and reliable system for monitoring environmental conditions in real time. By combining temperature, humidity, and light sensing with visual and audible alerts, it aims to demonstrate how embedded systems can improve comfort, safety, and automation in environments such as homes, labs, or offices. 
 
 ## Architecture 
+
+![hardware used](schematics.webp)
+
+The STM32 reads sensor data, processes it and controls the LEDs, buzzer and LCD. 
+
+Input devices (send data to the MCU): 
+- DHT11 sensor – one-way data flow, from the sensor to the MCU
+- LDR - STM reads its value via ADC pin, one-way input
+- Button - user input device
+
+Output devices: 
+- LEDs
+- LCD - MCU sends sensor readings to be displayed
+- Buzzer - MCU activates an alarm using a timer
