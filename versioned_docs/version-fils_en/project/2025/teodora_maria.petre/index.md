@@ -26,3 +26,5 @@ Since I was little I used to make dollhouses out of cardboard, but I’ve always
 * LEDs – provides immediate visual feedback for granted/denied access
 * LCD Screen – displays personalized **“Welcome, [user’s name]”** message upon successful entry
 
+##Schematics
+
