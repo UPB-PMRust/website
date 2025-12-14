@@ -4,7 +4,7 @@ RustBox - The Rust Gaming Box
 :::info 
 
 **Author**: Frimu Aurel-Viorel \
-**GitHub Project Link**: https://github.com/AurasV/RustBox-The-Rust-Gaming-Box
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-dm-2025-AurasV
 
 :::
 
