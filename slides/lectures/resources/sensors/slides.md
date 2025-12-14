@@ -16,7 +16,7 @@ for this section
     - Subchapter 5.3 - *SPI Interface*
 
 ---
----
+
 # Sensors
 analog and digital
 
@@ -33,7 +33,7 @@ analog and digital
 
 <br>
 
-<img src="./analog_sensor.svg" class="rounded">
+<img src="./analog_sensor.svg" class="rounded" style="background-color: white; padding: 5px;">
 </div>
 
 <div>
@@ -47,7 +47,7 @@ analog and digital
 
 <br>
 
-<img src="./digital_sensor.svg" class="rounded">
+<img src="./digital_sensor.svg" class="rounded" style="background-color: white; padding: 5px;">
 </div>
 
 </div>
