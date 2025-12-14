@@ -80,7 +80,7 @@ The format is
 |---------|-------------|-------|
 | [mipidsi](https://github.com/almindor/mipidsi) | MIPI Display Serial Interface unified driver | Used to control the display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
-| [defmt](https://github.com/knurling-rs/defmt) | Efficient, deferred formatting for logging on embedded systems | Used for logging
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient, deferred formatting for logging on embedded systems | Used for logging |
 
 ## Links
 
