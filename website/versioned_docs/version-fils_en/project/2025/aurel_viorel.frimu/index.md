@@ -1,4 +1,4 @@
-# Project Name
+# RustBox
 RustBox - The Rust Gaming Box
 
 :::info 
