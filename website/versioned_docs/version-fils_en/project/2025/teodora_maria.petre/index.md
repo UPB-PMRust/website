@@ -29,7 +29,7 @@ Since I was little I used to make dollhouses out of cardboard, but I’ve always
 
 ## Architecture 
 
-![the architecture](architecture2.svg)
+![the architecture](architecture2.webp)
 
 
 
