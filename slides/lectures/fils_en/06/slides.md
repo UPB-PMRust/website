@@ -27,7 +27,7 @@ Lecture 6
 ---
 
 # I2C & USB 2.0
-used by RP2040
+used by RP2040 & STM32U545RE
 
 - Buses
   - Inter-Integrated Circuit

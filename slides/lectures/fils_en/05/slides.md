@@ -27,7 +27,7 @@ Lecture 5
 ---
 
 # UART & SPI
-used by RP2350
+used by RP2350 and STM32U545RE
 
 - Direct Memory Access
 - Buses
