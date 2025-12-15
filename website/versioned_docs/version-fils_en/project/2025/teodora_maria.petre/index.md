@@ -4,7 +4,7 @@ This project aims to automate basic home devices based on the state of the room.
 
 :::info
 
-**Author:** Petre Teodora-Maria
+**Author:** Petre Teodora-Maria \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/project-dm-2025-730dora
 
 :::
@@ -29,13 +29,11 @@ Since I was little I used to make dollhouses out of cardboard, but I’ve always
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+![the architecture](architecture2.svg)
 
-## Log
 
-<!-- write your progress here every week -->
+
+week -->
 
 ### Week 5 - 11 May
 
