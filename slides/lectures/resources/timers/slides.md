@@ -4,11 +4,15 @@ layout: section
 # Timers
 
 ---
----
+
 # Bibliography
 for this section
 
-**Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+1. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M23 and Cortex-M33 Processors*
+   - Chapter 11 - *OS support features*
+     - Section 11.2 - *SysTick timer*
+
+2. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
    - Chapter 8 - *Clocks*
      - Chapter 8.1 - *Overview*
        - Subchapter 8.1.1
@@ -18,7 +22,8 @@ for this section
 
 ---
 ---
-# Clocks
+
+# Clocks for RP235x
 
 <div grid="~ cols-2 gap-5">
 
@@ -42,6 +47,32 @@ let p = embassy_rp::init(Default::default());
 <img src="./rp2350_clocks.png" class="rounded w-140">
 </div>
 
+</div>
+
+---
+layout: two-cols
+---
+
+# Clocks for STM32U545RE
+
+all peripherals and the MCU use a clock to execute at certain intervals
+
+| Source | Usage |
+|-|-|
+| *LSE, LSE32 and HSE* | oscillators based on crystals external crystals |
+| *LSI*, *HSI*, *HSI48*, *MSIS* and *MSIK* | Internal RC oscillators which can be used as main clock source or as a clock source for peripherals |
+
+Embassy initializes the STM32U545RE with the clock source from Multi-Speed Internal oscillator (**MSIS**).
+
+```rust
+let p = embassy_stm32::init(Default::default());
+```
+
+:: right ::
+
+<div align="center">
+<!-- <img src="./rp2350_clocks.png" class="rounded w-140"> -->
+<img src="./stm32u545re_clock_tree.png" class="rounded w-75">
 </div>
 
 ---
@@ -92,7 +123,7 @@ ARM Cortex-M time counter
 <v-clicks>
 
 - decrements the value of `SYST_CVR` every μs
-- when `SYST_CVR` becomes `0`: 
+- when `SYST_CVR` becomes `0`:
   - triggers the `SysTick` exception
   - next clock cycle sets the value of `SYST_CVR` to `SYST_RVR`
 - `SYST_CALIB` is the value of `SYST_RVR` for a 10ms interval (might not be available)
@@ -143,8 +174,8 @@ unsafe {
 
 ```rust
 #[exception]
-unsafe fn SysTick() { 
-    /* systick fired */ 
+unsafe fn SysTick() {
+    /* systick fired */
 }
 ```
 
@@ -268,4 +299,34 @@ unsafe {
 <div align="center">
     <img src="./rp2350_timer_registers_alarm.png" class="rounded w-100">
     <img src="./rp2350_timer_registers_2.png" class="rounded w-100">
+</div>
+
+---
+
+# STM32U5's Timers
+11 timers and 4 low power timers
+
+<div grid="~ cols-2 gap-5">
+
+<div>
+
+Basic Timers
+- two basic 16-bit timers
+
+Timers
+- PWM generation
+- four 32-bit timers
+- three 16-bit timers
+- two advanced control 16-bit timers
+
+Low Power Timers
+- four low power 16-bit timers
+
+</div>
+
+<div align="center">
+<img src="./stm32u545re_timers.png" class="rounded w-200">
+<img src="./stm32u545re_timers_cont.png" class="rounded w-200">
+</div>
+
 </div>

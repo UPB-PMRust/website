@@ -7,15 +7,21 @@ slug: /lab/05
 
 This lab will teach you how to communicate with hardware devices using the Serial Peripheral Interface (SPI) protocol, in Embassy. 
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Resources
 
-1. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+1. **STMicroelectronics**, *[STM32U545 Datasheet](https://www.st.com/resource/en/datasheet/stm32u545ce.pdf)*
+2. **STMicroelectronics**, *[Nucleo STM32U545 User manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)*
+
+3. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
    - Chapter 12 - *Peripherals*
      - Chapter 12.3 - *SPI*
 
-2. **Invensense**, *[MPU-6500 Six-Axis (Gyro + Accelerometer) MEMS MotionTracking™ Device](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/#documentation)*
+4. **Invensense**, *[MPU-6500 Six-Axis (Gyro + Accelerometer) MEMS MotionTracking™ Device](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/#documentation)*
 
-3. **Paul Denisowski**, *[Understanding SPI](https://www.youtube.com/watch?v=0nVNwozXsIc)*
+5. **Paul Denisowski**, *[Understanding SPI](https://www.youtube.com/watch?v=0nVNwozXsIc)*
 
 ## Serial Peripheral Interface (SPI)
 
@@ -55,8 +61,10 @@ SPI is most commonly implemented in a 4-wire configuration. However, there is al
     - sub writes data to the `MISO` line
 6. repeat steps 4 and 5 until main stops the clock
 
-:::note
-Whether steps 4 and 5 happen on rising/falling edge depends on the `CPOL` configuration of the SPI.
+:::note 
+The specific timing in steps 4 (sampling) and 5 (changing) depends on the SPI mode, which is defined by both `CPOL` **(Clock Polarity)** and `CPHA` **(Clock Phase)**.
+
+The example shown here describes **SPI Mode 0** (`CPOL=0`, `CPHA=0`), where the clock is idle-low, data is sampled on the *rising edge* and new data is written on the *falling edge*. 
 :::
 
 ![SPI_example](images/spi_network_transmission.svg)
@@ -65,7 +73,7 @@ In the image above, the main first exchanges data with the first sub by setting 
 
 ### SPI modes
 
-SPI has 4 different modes which define when data is read or written. These modes can be configured through `CPOL` and `CPHA` by changing the `SPO` and `SPH` bits of the [`SSPCR0`](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf#reg-spi-SSPCR0) register.
+SPI has 4 different modes which define when data is read or written. These modes can be configured through CPOL (Clock Polarity) and CPHA (Clock Phase). On the STM32U5, these settings are controlled by configuring the **"Programmable clock polarity and phase"** bits within the peripheral registers for one of the three available SPI instances.
 
 | Mode | `CPOL` | `CPHA` | Clock polarity in idle state | Clock phase used to read and/or write data |
 |-|-|-|-|-|
@@ -76,8 +84,8 @@ SPI has 4 different modes which define when data is read or written. These modes
 
 | | | |
 |-|-|-| 
-| `CPOL` | Clock polarity | defines when the clock is considered *idle*, or when no transfer is occurring |
-| `CPHA` | Clock phase | defines when the data bit is read and when it is written: depends on `CPOL` |
+| `CPOL` | Clock polarity | Defines the idle level of the clock when no data is being sent. |
+| `CPHA` | Clock phase | Defines the clock edge used to read the data bit. |
 
 ![SPI_timing_diagram](images/spi_variants.svg)
 
@@ -103,9 +111,59 @@ When it comes to standard communication protocols that rely on [MMIO](../lecture
 In Embassy, we can use the SPI both blocking and asynchronously. The following example will be using the asynchronous version.
 
 :::warning
-The SPI can also be used synchronously, but this means that for every transfer, the thread will be blocked, as we found out in the [previous lab](./04).
+The SPI can also be used synchronously, but this means that for every transfer, all tasks will be blocked, as we found out in the [previous lab](./04).
 :::
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+First, we initialize the peripherals.
+
+```rust
+let p = embassy_stm32::init(Default::default());
+```
+
+Next, we create the configuration for the SPI. We can set the clock frequency, polarity and phase (the SPI mode).
+
+```rust
+let mut config = spi::Config::default();
+config.frequency = Hertz(1_000_000);
+```
+
+Once we have the configuration, we can initialize the `MISO`, `MOSI` and `CLK` pins.
+
+```rust
+let miso = p.PXn;
+let mosi = p.PYm;
+let clk = p.PZo;
+```
+
+Now we can create our SPI instance. The example uses the SPI1 channel, but others can be used. Being an asynchronous SPI, it also needs a pair of `DMA` channels, one that handles the *transmission* of data, and one that handles the *receiving* of data.
+
+We can use any DMA channels that we have not used for another peripheral.
+
+```rust
+let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, config);
+```
+
+:::info
+To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#board-pinouts) of the STM32 Nucleo-U545RE-Q.
+:::
+
+We also need a `CS` pin, that is simply a GPIO output pin. We will initialize it as such. Any pin can be used. For multiple subs, multiple pins will be initialized. 
+
+```rust
+let mut cs = Output::new(p.PQa, Level::High, Speed:Low);
+```
+
+Now we have set up the SPI, and can use it to communicate with the connected sub. To activate the sub, we need to set the `cs` pin to `low`.
+
+```rust
+cs.set_low();
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 First, we initialize the peripherals.
 
 ```rust
@@ -136,7 +194,7 @@ let mut spi = Spi::new(p.SPI0, clk, mosi, miso, p.DMA_CH0, p.DMA_CH1, config);
 ```
 
 :::info
-To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#mpu-6500-wiring) of the Raspberry Pi Pico and the [lab board schematic](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb/-/blob/main/Schematic/MA.pdf).
+To figure out which pins work with SPI and what channels they are associated with, you need to take a look at the [pinout](./05#board-pinouts) of the Raspberry Pi Pico.
 :::
 
 We also need a `CS` pin, that is simply a GPIO output pin. We will initialize it as such. Any pin can be used. For multiple subs, multiple pins will be initialized. 
@@ -150,6 +208,10 @@ Now we have set up the SPI, and can use it to communicate with the connected sub
 ```rust
 cs.set_low();
 ```
+  </TabItem>
+
+</Tabs>
+
 
 Once we do this, we can use two buffers:
 - `tx_buf` - used to store data to transmit to the sub via the `MOSI` line
@@ -175,6 +237,32 @@ Once we are done with the transfer, we set the `cs` line back to `high` to deact
 ```rust
 cs.set_high();
 ```
+
+## Board Pinouts
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+
+The STM32 Nucleo-U545RE-Q has three SPI channels. Each channel has a multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`.
+
+![STM32 Nucleo-U545RE-Q pinout](images/stm32u5-pinout.jpeg)
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
+The Raspberry Pi Pico has two usable SPI channels: SPI0 and SPI1. Each channel has multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`. They are marked with pink in the pinout diagram.
+
+![pico_pinout](images/pico-2-r4-pinout.png)
+  </TabItem>
+
+</Tabs>
+
+
+:::info
+`TX` = transmitter = `MOSI`
+
+`RX` = receiver = `MISO`
+:::
 
 ## Digital vs Analog sensors
 
@@ -300,19 +388,6 @@ The MPU-6500 can also be interfaced through I2C, using the same pins but with di
 The MPU-6500 can also act as an I2C master and communicate with external sensors. This functionality will be ignored.
 :::
 
-The Raspberry Pi Pico has two usable SPI channels: SPI0 and SPI1. Each channel has multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`. They are marked with pink in the pinout diagram.
-
-![pico_pinout](images/pico-2-r4-pinout.png)
-
-:::info
-`TX` = transmitter = `MOSI`
-
-`RX` = receiver = `MISO`
-:::
-
-:::tip
-It is recommended to use the pins connected to the dedicated J12 & J13 headers on the [lab board](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb/-/blob/main/Schematic/MA.pdf)
-:::
 
 ### Reading data from the MPU-6500 sensor using Embassy
 
@@ -320,6 +395,30 @@ To get the data we want from the digital sensor, we need to access its internal 
 
 First, we make sure our SPI is initialized correctly.
 
+
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+
+```rust
+let p = embassy_stm32::init(Default::default());
+
+// default values are fine
+let mut config = spi::Config::default();
+
+let miso = p.PXn;
+let mosi = p.PYm;
+let clk = p.PZo;
+
+let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, config);
+
+// make sure to actually choose a pin
+let mut cs = Output::new(p.PQa, Level::High, Speed:Low);
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 let p = embassy_rp::init(Default::default());
 
@@ -335,6 +434,9 @@ let mut spi = Spi::new(p.SPI0, clk, mosi, miso, p.DMA_CH0, p.DMA_CH1, config);
 // make sure to actually choose a pin
 let mut cs = Output::new(p.PIN_N, Level::High);
 ```
+  </TabItem>
+
+</Tabs>
 
 In section 6.5 of the [datasheet](https://invensense.tdk.com/wp-content/uploads/2020/06/PS-MPU-6500A-01-v1.3.pdf), we get the information we need in order to read/write to a register of the MPU-6500. 
 
@@ -350,7 +452,7 @@ This way, we're sending a command to the sensor for it to know what to do: eithe
 
 #### Reading a register
 
-To read the value of a register, the main device (the RP2350) needs to first send a control byte containing the address of that register, with the 7th bit a `1`.
+To read the value of a register, the main device (the STM32U5 or RP2350) needs to first send a control byte containing the address of that register, with the 7th bit a `1`.
 The sub device (the sensor) will then send a byte back, containing the value of the requested register.
 
 ```rust
@@ -383,7 +485,7 @@ This is explained in section 6.5 of the datasheet.
 
 #### Writing to a register
 
-To write a value to a register, the main device (the RP2350) needs to first send a control byte containing the address of that register, with the 7th bit a `0`.
+To write a value to a register, the main device (the STM32U5 or RP2350) needs to first send a control byte containing the address of that register, with the 7th bit a `0`.
 The main device then must send the value that it wants to write to that register.
 
 ```rust
@@ -401,6 +503,80 @@ The **ST7735** features a **128x160** screen and an integrated **SD card reader*
 
 Because writing an SPI driver for the ST7735 would be out of the scope of the lab, we will be using the one provided by the **mipidsi** crate.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+
+```rust
+use embassy_embedded_hal::shared_bus::blocking::spi::SpiDevice;
+use embassy_sync::blocking_mutex::{Mutex, raw::NoopRawMutex};
+use embassy_time::Delay;
+use mipidsi::interface::SpiInterface;
+use mipidsi::models::ST7735s;
+use mipidsi::options::{Orientation, Rotation};
+
+let mut config = Config::default();
+config.rcc.hsi = true;
+config.rcc.pll1 = Some(Pll {
+      source: PllSource::HSI, // 16 MHz
+      prediv: PllPreDiv::DIV1,
+      mul: PllMul::MUL10,
+      divp: None,
+      divq: None,
+      divr: Some(PllDiv::DIV1), // 160 MHz
+   });
+config.rcc.sys = Sysclk::PLL1_R;
+config.rcc.voltage_range = VoltageScale::RANGE1;
+config.rcc.mux.iclksel = mux::Iclksel::HSI48;
+
+let mut screen_spi_config = embassy_stm32::spi::Config::default();
+screen_spi_config.frequency = Hertz(3_000_000);
+
+let screen_rst = Output::new(p.PXn, Level::Low, Speed::Low);
+let screen_dc = Output::new(p.PYm, Level::Low, Speed::Low);
+let screen_cs = Output::new(p.PZo, Level::High, Speed::Low);
+
+let spi_bus: Mutex<NoopRawMutex, _> = Mutex::new(RefCell::new(spi));
+let display_spi = SpiDeviceWithConfig::new(&spi_bus_mutex, screen_cs, screen_spi_config);
+
+let mut screen_buffer = [0; 10 * 4096];
+
+let di = SpiInterface::new(display_spi, screen_dc, &mut screen_buffer);
+let mut screen = mipidsi::Builder::new(ST7735s, di)
+      .reset_pin(screen_rst)
+      .orientation(Orientation::new().rotate(Rotation::Deg180))
+      .init(&mut Delay)
+      .unwrap();
+```
+
+:::note System Clock Configuration
+
+By default, the microcontroller may run at a lower frequency (e.g., 16 MHz). While this is enough to make the display work, the drawing speed will be visibly slow.
+
+The code below configures the **PLL (Phase Locked Loop)** to boost the system clock to 160 MHz.
+
+```rust
+config.rcc.hsi = true;
+config.rcc.pll1 = Some(Pll {
+      source: PllSource::HSI, // 16 MHz
+      prediv: PllPreDiv::DIV1,
+      mul: PllMul::MUL10,
+      divp: None,
+      divq: None,
+      divr: Some(PllDiv::DIV1), // 160 MHz
+   });
+config.rcc.sys = Sysclk::PLL1_R;
+config.rcc.voltage_range = VoltageScale::RANGE1;
+config.rcc.mux.iclksel = mux::Iclksel::HSI48;
+```
+
+This high frequency is necessary to:
+- Process Graphics: Calculate pixel colors and fill buffers quickly.
+- Drive SPI: Support high data transfer rates (high SPI frequencies) required for smooth frame updates. 
+:::
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 use embassy_embedded_hal::shared_bus::blocking::spi::SpiDevice;
 use embassy_sync::blocking_mutex::{Mutex, raw::NoopRawMutex};
@@ -430,10 +606,15 @@ let mut screen = mipidsi::Builder::new(ST7735s, di)
     .init(&mut Delay)
     .unwrap();
 ```
+  </TabItem>
 
-Make sure to wire the pins on **J9** according to the pins chosen in the code and the picture below.
+</Tabs>
 
-![screen_wiring](images/screen_wiring.png)
+
+
+Make sure to wire the pins on **J7** according to the pins chosen in the code and the picture below.
+
+![screen_wiring](images/screen_wiring.jpg)
 
 ### Embedded Graphics
 
@@ -468,10 +649,6 @@ Make sure to check out the [documentation](https://docs.rs/embedded-graphics/lat
 Take a look at the [Reading data from the MPU-6500 sensor using Embassy](#reading-data-from-the-mpu-6500-sensor-using-embassy) section.
 :::
 
-:::note
-Use the provided [lab skeleton](https://github.com/UPB-PMRust/lab-2025) as a base.
-:::
-
 3. Get the acceleration and angular velocity readings from the sensor.
 - Configure the full scale as **$±2 g$** for the acceleration and **$±1000 °/s$** for the angular velocity (**2p**)
 - Read the raw values for the X axis of the accelerometer and print them in a loop. (**2p**)
@@ -489,7 +666,7 @@ To compute the **RAW** values, we need to read both registers and reconstruct th
 val = i16::from_be_bytes([val_h, val_l]);
 ```
 :::
-- Read and print the rest of the values. (**1p**)
+- Read and print the rest of the values. (**2p**)
 
 4. Print the actual value of the accelerations (in $m/s^2$) and the angular velocities (in $°/s$) (**1p**)
 
@@ -527,7 +704,10 @@ You can write all values in the same buffer. Use `\n` in the format string to wr
 The video buffer does not automatically clear after each write. In order for the text to not overlap over time, clear the screen before drawing.
 :::
 
-6. Did you notice that, when resting the board on the table, the acceleration over the **z** axis indicates the acceleration caused by Earth's gravity? Using this fact, if kept still, you can determine the absolute [pitch and roll](https://en.wikipedia.org/wiki/Aircraft_principal_axes) of the sensor. Create a small game where a ball rolls on the screen depending on the tilt. (**1p**)
+
+## Bonus at home
+
+1. Did you notice that, when resting the board on the table, the acceleration over the **z** axis indicates the acceleration caused by Earth's gravity? Using this fact, if kept still, you can determine the absolute [pitch and roll](https://en.wikipedia.org/wiki/Aircraft_principal_axes) of the sensor. Create a small game where a ball rolls on the screen depending on the tilt. (**1p**)
 
 :::info
 You are **not** *required* to simulate gravity and acceleration in the game. Moving the circle proportional to the tilt angle is enough.
@@ -541,7 +721,7 @@ let pitch = f32::atan2(acc_y, f32::sqrt(acc_x * acc_x + acc_z * acc_z)).to_degre
 let roll = f32::atan2(-acc_x, f32::sqrt(acc_y * acc_y + acc_z * acc_z)).to_degrees();
 ```
 
-Make sure to add `micromath = "2.1.0"` to the project `Cargo.toml` dependencies.
+Make sure to add the latest version of `micromath` to the project `Cargo.toml` dependencies.
 :::
 
 :::tip

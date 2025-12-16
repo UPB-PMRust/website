@@ -198,8 +198,8 @@ c.top = 0x8000;
 c.compare_b = 8;
 
 let mut pwm = Pwm::new_output_b(
-    p.PWM_CH4, 
-    p.PIN_25, 
+    p.PWM_SLICE4,
+    p.PIN_25,
     c.clone()
 );
 
@@ -240,4 +240,98 @@ pub struct Config {
     pub top: u16,
 }
 
+```
+
+---
+layout: two-cols
+---
+
+# STM32U545RE's PWM
+`
+- generates square signals
+- counts the pulse width of input signals
+- each **timer** (*TIM*) has up to four channels
+- each PWM channel is connected to one or more pins
+- frequency is determined by the value of the TIMx_ARR register, and the duty
+cycle by the value of the TIMx_CCRy register.
+
+<br>
+
+### Pin Alternate functions
+
+<div align="center">
+<img src="./stm32u5_alternate.png" class="rounded w-150">
+</div>
+
+:: right ::
+
+<div align="center">
+<img src="./nucleo-u545re-CN9.png" class="rounded w-150">
+<img src="./nucleo-u545re-q.png" class="rounded w-150">
+</div>
+
+---
+layout: two-cols
+---
+
+# Example
+using Embassy
+
+```rust {none|5|1,7|2,3,8-13|1,7,10|14|16,17,18,23|16,19,20,23|16,21,22,23|all}
+use embassy_stm32::timer::simple_pwm::PwmPin;
+use embassy_stm32::timer::simple_pwm::SimplePwm;
+use embassy_stm32::timer::low_level::CountingMode;
+
+let p = embassy_stm32::init(Default::default());
+
+let pin = PwmPin::new(p.PB0, OutputType::PushPull);
+let mut pwm = SimplePwm::new(
+    p.TIM3,                      // Timer instance
+    None, None, Some(pin), None, // Pin channel map
+    khz(10),                     // Frequency
+    CountingMode::default()      // Counter config
+);
+let mut ch3 = pwm.ch3();
+
+loop {
+    ch3.set_duty_cycle_fully_off();
+    Timer::after_millis(300).await;
+    ch3.set_duty_cycle_fraction(1, 2);
+    Timer::after_millis(300).await;
+    ch3.set_duty_cycle(ch3.max_duty_cycle() - 1);
+    Timer::after_millis(300).await;
+}
+```
+
+:: right ::
+
+```rust {lineNumbers: false}
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub enum CountingMode {
+    #[default]
+    /// The timer counts up to the reload value and then
+    /// resets back to 0.
+    EdgeAlignedUp,
+    /// The timer counts down to 0 and then resets back to
+    /// the reload value.
+    EdgeAlignedDown,
+    /// The timer counts up to the reload value and then
+    /// counts back to 0.
+    /// The output compare interrupt flags of channels
+    /// configured in output are set when the counter is
+    /// counting down.
+    CenterAlignedDownInterrupts,
+    /// The timer counts up to the reload value and then
+    /// counts back to 0.
+    /// The output compare interrupt flags of channels
+    /// configured in output are set when the counter is
+    /// counting up.
+    CenterAlignedUpInterrupts,
+    /// The timer counts up to the reload value and then
+    /// counts back to 0.
+    /// The output compare interrupt flags of channels
+    /// configured in output are set when the counter is
+    /// counting both up or down.
+    CenterAlignedBothInterrupts,
+}
 ```
