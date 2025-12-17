@@ -21,7 +21,7 @@ Since I was little I used to make dollhouses out of cardboard, but I’ve always
 
 ## Architecture 
 
-![the architecture](architecture2.webp)
+![the architecture](architecture.webp)
 
 * **STM32** - used for handling the logic of the project. It receives an interrupt from the *PIR detector* that a person is at the door which sends the RFID from an idle state to an active one.
 * **PIR Motion Detector (HC-SR501)** – detects the person approaching the door
@@ -58,8 +58,7 @@ week -->
 
 ### Schematics
 
-Place your KiCAD schematics here.
-will do soon
+![kicadschematics](kicad.svg)
 
 ### Bill of Materials
 
