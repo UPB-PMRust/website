@@ -133,44 +133,70 @@ I have provided links for reference.
   - Buzzer 2: `PB10` on `TIM2_CH3`
 - **7 Push Buttons**
   - `PC8`, `PB3`, `PB5`, `PB4`, `PA2`, `PC7`, `PC6`
+- **4×4 Button Matrix (Keypad)**
+  - **Columns 1->4**: `PC13`, `PC12`, `PC11`, `PC10`
+  - **Rows 1->4**: `PA9`, `PA10`, `PA11`, `PA12`
 - **Joystick**
   - VRx / VRy on `A0`, `A1`
   - powered at 3.3 V
+  - Not using the SW(Joystick Click)
 
 ### Schematics
+![Hardware](./Hardware.webp)
 
-<!--Place your KiCAD schematics here.-->
+![Schematic](./RustPiano.svg)
 
 ### Bill of Materials
 
-<!-- Fill out this table with all the hardware components that you might need.
+| Device | Usage | Quantity | Unit Price | Subtotal |
+|--------|-------|----------|------------|----------|
+| STM32 NUCLEO-U545RE-Q | Main microcontroller board; handles all input processing, sound generation and display control | 1 | ~100 RON | ~100.00 RON |
+| Passive buzzer 3V | Audio output for generating musical notes via PWM | 2 | 0.99 RON | 1.98 RON |
+| Yellow push button | Piano key inputs (Do–Si) | 7 | 1.99 RON | 13.93 RON |
+| 4×4 Button Matrix Keypad | Menu navigation, mode selection and control input | 1 | 3.99 RON | 3.99 RON |
+| LCD 16×2 with I2C interface | Displays current mode, notes and system feedback | 1 | 14.99 RON | 14.99 RON |
+| Analog 2-axis joystick module | Experimental pitch / expression control via ADC | 1 | 5.35 RON | 5.35 RON |
+| Breadboard | Prototyping platform for wiring components | 1 | — | — |
+| Jumper wires (M-M, M-F, F-F) | Electrical connections between components | — | — | — |
 
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
+**Total hardware cost: ~140 RON**
 
-```
-
-| Device | Usage | Price |
-|--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
--->
 
 ## Software
 
-<!--
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
--->
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Hardware Abstraction Layer (HAL) for STM32 in Embassy | GPIO (buttons + matrix scan), ADC (joystick), PWM timers (buzzers), I2C (LCD) |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor for embedded Rust | runs the async `#[embassy_executor::main]` entry point and the main event loop |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Async timers and delays | scan timing for matrix, debounce-ish delays, periodic loop pacing (`Timer::after_*`) |
+| [defmt](https://github.com/knurling-rs/defmt) | Lightweight embedded logging framework | structured logs for button/keypad events, ADC debug, state transitions |
+| [defmt-rtt](https://github.com/knurling-rs/defmt/tree/main/defmt-rtt) | RTT (Real-Time Transfer) transport for defmt logs | sends logs to the host while debugging (no UART required) |
+| [panic-probe](https://github.com/knurling-rs/probe-run/tree/main/crates/panic-probe) | Panic handler for embedded targets | reports panics through the debug probe/RTT |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Traits for embedded drivers (portable interfaces) | used for I2C traits and PWM trait bounds |
+
+## Detailed Software Design
+
+The firmware is implemented as a single asynchronous control loop using the Embassy framework. All application logic is centralized in the main loop, with functionality divided into clearly defined stages.
+
+The system is divided into:
+- Initializing the components
+  - LCD: Finding the I2C address, passing the value to the constants
+  - Joystick: Calibrating the center of the joystick
+  - Buzzers: Creating the "voices" that will handle the notes
+  - Hardcoding the frequencies
+  - Attributing different functions for each of the buttons on the matrix
+  - Defining different modes (FreePlay, SinglePlay, DoublePlay)
+- Main loop 
+  - Default: FreePlay Mode
+  - Await button presses that trigger changes to a different mode
+    - Intermediary steps e.g. confirmation etc.
+- Async functions
+  - These will be called when the main loop will switch control
+
+![Software](./Software.svg)
+
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
-<!--
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
--->
+1. [Pico Piano](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project/2025/remus.bercut)
+2. [Electric Piano](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project/2025/vlad.preda2503)
