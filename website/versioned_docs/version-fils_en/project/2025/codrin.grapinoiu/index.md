@@ -1,7 +1,7 @@
 # Smart Bedside Lamp
 A smart bedside lamp prototype that automates lighting based on motion and darkness, with Bluetooth control over other functionalities.
 
-::: General Introduction
+:::info
 
 **Author**: Codrin-Emilian Grăpinoiu (Group 1241EC FILS)
 **GitHub Project Link**: [Smart Bedside Lamp](https://github.com/UPB-PMRust-Students/project-dm-2025-studentcodrr)
@@ -30,7 +30,7 @@ I chose this project to experiment with IoT design because I wanted a custom sma
 
 **Connection Setup**
 
-![Connection Diagram](website\website\versioned_docs\version-fils_en\project\2025\codrin.grapinoiu\ConnectionDiagramPS.svg)
+![Connection Diagram](ConnectionDiagramPS.svg)
 
 **Features & Logic**
 **Manual Mode**: The default state where the user has direct control. The Rotary Encoder adjusts brightness, and the button toggles power. Sensors are ignored to prevent accidental triggering.
@@ -58,17 +58,17 @@ The system is built around the Raspberry Pi Pico WH. It integrates environmental
 
 **Hardware Setup**
 
-![Hardware Prototype](website\website\versioned_docs\version-fils_en\project\2025\codrin.grapinoiu\Hardware1.jpeg)
+![Hardware Prototype](Hardware1.jpeg)
 
-(website\website\versioned_docs\version-fils_en\project\2025\codrin.grapinoiu\Hardware2.jpeg)
+(Hardware2.jpeg)
 
-(website\website\versioned_docs\version-fils_en\project\2025\codrin.grapinoiu\Hardware3.jpeg)
+(Hardware3.jpeg)
 
 ### Schematics
 
 **KiCad Schematic**
 
-![KiCad Schematic](website\website\versioned_docs\version-fils_en\project\2025\codrin.grapinoiu\KiCadSchematic.svg)
+![KiCad Schematic](KiCadSchematic.svg)
 
 ### Bill of Materials
 
@@ -100,4 +100,4 @@ The system is built around the Raspberry Pi Pico WH. It integrates environmental
 1.  [Raspberry Pi Pico W Bluetooth Setup Module](https://www.instructables.com/How-to-Use-HC-05-Bluetooth-With-Raspberry-Pi-Pico-/)
 2.  [Driving LED Strips with Rust](https://github.com/rahix/avr-hal)
 3.  [Motion Detection with a Raspberry Pi Pico](https://www.youtube.com/watch?v=h0eotQQlndI)
-4. [Embedded Rust 101](https://github.com/rust-embedded/awesome-embedded-rust)
+4.  [Embedded Rust 101](https://github.com/rust-embedded/awesome-embedded-rust)
