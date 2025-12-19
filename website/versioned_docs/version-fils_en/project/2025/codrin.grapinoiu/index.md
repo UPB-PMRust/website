@@ -30,7 +30,7 @@ I chose this project to experiment with IoT design because I wanted a custom sma
 
 **Connection Setup**
 
-![Connection Diagram](ConnectionDiagramPS.svg)
+![Connection Diagram](ConnectionsDiagramPS.svg)
 
 **Features & Logic**
 **Manual Mode**: The default state where the user has direct control. The Rotary Encoder adjusts brightness, and the button toggles power. Sensors are ignored to prevent accidental triggering.
@@ -58,11 +58,9 @@ The system is built around the Raspberry Pi Pico WH. It integrates environmental
 
 **Hardware Setup**
 
-![Hardware Prototype](Hardware1.jpeg)
-
-(Hardware2.jpeg)
-
-(Hardware3.jpeg)
+![Hardware Prototype 1](Hardware1.jpeg)
+![Hardware Prototype 2](Hardware2.jpeg)
+![Hardware Prototype 3](Hardware3.jpeg)
 
 ### Schematics
 
