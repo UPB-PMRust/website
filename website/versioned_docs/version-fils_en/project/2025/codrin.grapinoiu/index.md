@@ -3,8 +3,8 @@ A smart bedside lamp prototype that automates lighting based on motion and darkn
 
 :::info
 
-**Author**: Codrin-Emilian Grăpinoiu (Group 1241EC FILS)
-**GitHub Project Link**: [Smart Bedside Lamp](https://github.com/UPB-PMRust-Students/project-dm-2025-studentcodrr)
+* **Author**: Codrin-Emilian Grăpinoiu (Group 1241EC FILS)
+* **GitHub Project Link**: [Smart Bedside Lamp](https://github.com/UPB-PMRust-Students/project-dm-2025-studentcodrr)
 
 :::
 
@@ -33,7 +33,7 @@ I chose this project to experiment with IoT design because I wanted a custom sma
 ![Connection Diagram](ConnectionsDiagramPS.svg)
 
 **Features & Logic**
-**Manual Mode**: The default state where the user has direct control. The Rotary Encoder adjusts brightness, and the button toggles power. Sensors are ignored to prevent accidental triggering.
+* **Manual Mode**: The default state where the user has direct control. The Rotary Encoder adjusts brightness, and the button toggles power. Sensors are ignored to prevent accidental triggering.
 * **Smart Mode**: Automation takes over. The system continuously monitors the PIR and LDR sensors, fading the light ON only when movement is detected *and* the room is dark, then fading it OFF after inactivity.
 * **Bluetooth Mode**: A configuration state used for pairing with the mobile app. In this mode, the system prioritizes commands from the phone over the physical controls.
 * **Connectivity**: A control system where the Bluetooth app acts as a "Digital Remote" for color selection and light dimming, when Bluetooth mode is active.
