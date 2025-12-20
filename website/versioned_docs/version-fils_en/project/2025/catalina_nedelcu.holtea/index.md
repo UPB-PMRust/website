@@ -133,6 +133,16 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ### Bill of materials
 
+| Device | Usage | Price (RON) |
+|---|---|---:|
+| ESP32 development board (ESP-WROOM-32) | Main controller: reads sensors, runs the automation logic, and publishes data / receives commands via MQTT over Wi-Fi | 46.99 |
+| 1-channel relay module (5V, low-level trigger) | Switches the water pump ON/OFF under ESP32 control (acts like an electronic switch) | 4.99 |
+| Soil moisture sensor module (LM393 + probe, YL-69/FC-28 style) | Measures soil moisture level to decide when watering is needed | 3.99 |
+| Rain sensor module (LM393 + rain plate, FC-37 style) | Detects rain / water droplets so watering can be avoided when it’s already raining/wet | 19.00 |
+| Mini submersible water pump (5V) | Pumps water from a container to the plant pot when watering is triggered | 7.99 |
+| Silicone tube (4/6 mm, 1 m) | Carries water from the pump outlet to the plant pot | 1.31 |
+| **Total (approx.)** |  | **84.27** |
+
 ## Software
 
 
