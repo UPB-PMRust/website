@@ -72,8 +72,6 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ## Log 
 
-## Log
-
 ### Week 10 - 16 Nov
 - Decided on the overall hardware approach: ESP32 as controller + relay module for switching the pump (pump is not driven directly from GPIO).
 - Identified the two power domains that must be handled correctly: 3.3 V logic (ESP32 + sensors) and 5 V load side (pump + relay).
