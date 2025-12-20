@@ -43,3 +43,27 @@ Output devices:
 - ST7735 - MCU sends sensor readings to be displayed
 - Buzzer - MCU activates an alarm using a timer
 - DHT11
+
+## Log
+
+### Week 17 - 23 Nov
+I drafted my idea for the project and decided upon the components I wanted to use. Overall, I spent this week documenting my project and searching for options of display. 
+
+### Week 24 - 31 Nov
+I started testing some of the project components, such as the LDR, the LEDs and DHT11 sensor. Implemented the logic for the LDR sensor, to read the light level and to light up an LED when light dropped below the 300 level. I made the architecture of the project schematics. 
+
+### Week 1 - 7 Dec
+This week I searched for a crate for the DHT sensor. I tried to test it, but after all code errors were solved, the DHT11 still gave me a reading error. I first tested it on arduino to see if there was something wrong with the hardware part, but as the sensor worked just fine there, I concluded it was a code problem. I also tested my initial display, an LCD1602, which unfortunately didn't work, neither on Rust nor with other programming languages. I bought another display with an LM1602 I2C.  
+
+### Week 14 - 21 Dec
+With help received from the lab, I got over the DHT11 problem. In the meantime I tested the new LCD with the integrated I2C. It didn't work either, so I decided to use a ST7735 instead. 
+
+## Hardware
+
+### Schematics
+
+### Bill of materials
+
+## Software
+
+
