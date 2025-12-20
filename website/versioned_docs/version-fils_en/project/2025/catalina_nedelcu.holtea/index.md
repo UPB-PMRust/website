@@ -108,6 +108,25 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ## Hardware
 
+- **ESP32 DevKit V1 (ESP32-WROOM-32 module)**  
+  The ESP32 is the main controller of HydroSense. It reads the sensors, runs the automatic watering logic, drives the pump switching stage, and provides Wi-Fi connectivity. Over Wi-Fi it communicates with an MQTT broker to publish measurements (telemetry) and receive optional manual ON/OFF commands.
+
+- **Soil moisture sensor: YL-69 probe + YL-38 (LM393) module**  
+  This is the common resistive soil moisture kit composed of a two-prong probe (YL-69) and a small conditioning board (YL-38) based on the LM393 comparator. In HydroSense it provides the soil moisture signal used to decide whether watering is required. The module exposes:
+  - **AO (analog output)** for a continuous moisture-related voltage, and
+  - **DO (digital output)** for a threshold-based dry/wet signal set via the onboard potentiometer.
+
+- **Rain sensor: FC-37 rain plate + LM393 comparator module**  
+  This module detects rain/water on the sensor plate and outputs a signal that indicates rainfall (analog and/or thresholded digital, depending on how it is used). In HydroSense it is used as a safety/logic input to prevent watering when rain is detected.
+
+- **Relay module: 1-channel 5 V relay (typically Songle SRD-05VDC-SL-C)**  
+  The relay module is the electrical switching stage between the ESP32 and the pump power line. The ESP32 drives the relay input pin with a GPIO signal, and the relay contacts switch the pump’s supply. This allows the pump to be controlled safely without driving the load directly from the microcontroller.
+
+- **Water pump: mini DC submersible pump (5 V)**  
+  The pump is the actuator that moves water from a container/reservoir into the tube. HydroSense turns it ON/OFF through the relay module based on soil moisture and rain status, or via manual override through MQTT.
+
+- **Tube (silicone/PVC)**  
+  Provides water delivery from the pump outlet to the plant/soil area. It is the physical interface that completes the irrigation path.
 
 
 
