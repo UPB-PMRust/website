@@ -70,4 +70,6 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 - ESP32 → relay module → 5 V pump → tube (irrigation)  
 - ESP32 ↔ MQTT broker ↔ phone dashboard (telemetry + manual control)
 
+### Log 
+
 
