@@ -119,7 +119,7 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 - **Rain sensor: FC-37 rain plate + LM393 comparator module**  
   This module detects rain/water on the sensor plate and outputs a signal that indicates rainfall (analog and/or thresholded digital, depending on how it is used). In HydroSense it is used as a safety/logic input to prevent watering when rain is detected.
 
-- **Relay module: 1-channel 5 V relay (typically Songle SRD-05VDC-SL-C)**  
+- **Relay module: 1-channel 5 V relay**  
   The relay module is the electrical switching stage between the ESP32 and the pump power line. The ESP32 drives the relay input pin with a GPIO signal, and the relay contacts switch the pump’s supply. This allows the pump to be controlled safely without driving the load directly from the microcontroller.
 
 - **Water pump: mini DC submersible pump (5 V)**  
