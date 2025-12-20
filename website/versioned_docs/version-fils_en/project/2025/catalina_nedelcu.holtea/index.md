@@ -144,6 +144,17 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ## Software
 
+## Software
+
+| Library / Driver | Description | Usage |
+|---|---|---|
+| `esp-idf-hal` | ESP32 Hardware Abstraction Layer for GPIO/ADC/timers on top of ESP-IDF. | Reading the soil moisture signal (AO/DO), reading the rain sensor, driving the relay control pin. |
+| `esp-idf-svc` | High-level system services (Wi-Fi, networking) built on ESP-IDF. | Connecting the ESP32 to Wi-Fi and maintaining the network stack for MQTT. |
+| `rumqttc` | MQTT client implementation in Rust (publish/subscribe). | Publishing telemetry (moisture/rain/pump state) and receiving manual ON/OFF commands from the phone/dashboard. |
+| `embedded-hal` | Standard embedded traits used by many Rust drivers. | Common interfaces for I/O primitives (keeps the firmware structure clean and modular). |
+| `heapless` | Fixed-capacity strings/collections for embedded environments. | Building MQTT topics/payloads without relying on dynamic allocation. |
+| `log` + `esp-idf-svc::log` | Logging facade + ESP32 logging backend. | Debugging (sensor reads, state transitions, MQTT connect/disconnect events). |
+
 
 
 
