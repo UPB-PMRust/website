@@ -30,7 +30,6 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 ## Architecture
 
 ![Architecture diagram](./architecture.svg)
-## Architecture
 
 ### Main components
 
