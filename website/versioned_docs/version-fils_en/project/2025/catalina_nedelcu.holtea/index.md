@@ -106,6 +106,7 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 - Consolidated the current pin/wiring assumptions in one place so hardware assembly can follow a single reference.
 
 
+## Hardware
 
 
 
