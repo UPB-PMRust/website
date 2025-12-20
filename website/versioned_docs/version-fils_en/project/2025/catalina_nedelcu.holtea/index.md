@@ -72,4 +72,45 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ## Log 
 
+## Log
+
+### Week 10 - 16 Nov
+- Decided on the overall hardware approach: ESP32 as controller + relay module for switching the pump (pump is not driven directly from GPIO).
+- Identified the two power domains that must be handled correctly: 3.3 V logic (ESP32 + sensors) and 5 V load side (pump + relay).
+
+### Week 17 - 23 Nov
+- Drafted the first wiring plan for the system:
+  - soil moisture sensor → ESP32 input,
+  - rain sensor → ESP32 input,
+  - ESP32 GPIO → relay IN,
+  - relay contacts → pump power line.
+- Started documenting basic safety constraints (common ground, separation of logic wiring from pump wiring, secure connections due to water).
+
+### Week 24 Nov - 30 Nov
+- Selected the soil moisture module type (probe + LM393 board) and documented AO vs DO behavior.
+- Chosen an initial strategy for the first prototype: start with the simplest stable signal (DO threshold output), with the option to move to AO later if needed.
+- Noted that the sensor module should be powered from 3.3 V to keep ESP32 inputs safe.
+
+### Week 1 - 7 Dec
+- Refined the relay wiring plan (control pin + power + COM/NO contacts for the pump).
+- Checked relay logic assumptions (active HIGH vs active LOW) to avoid incorrect behavior when writing firmware.
+- Sketched a minimal “first wiring test” plan: relay click test without pump, then pump test, then sensor gating.
+
+### Week 8 - 14 Dec
+- Defined the first version of the control logic :
+  - soil dry AND no rain → pump ON,
+  - soil wet OR rain detected → pump OFF.
+- Planned MQTT usage at a high level (telemetry + command), but postponed exact topic/payload finalization until after basic wiring and sensor reads work reliably.
+
+### Week 15 - 21 Dec
+- Set up the repository documentation and added the initial project page structure (description, motivation, architecture).
+- Created an architecture block diagram aligned with the current wiring plan (ESP32 ↔ sensors, ESP32 → relay → pump, MQTT ↔ phone).
+- Consolidated the current pin/wiring assumptions in one place so hardware assembly can follow a single reference.
+
+
+
+
+
+
+
 
