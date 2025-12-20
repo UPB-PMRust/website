@@ -14,7 +14,7 @@ An ESP32-based irrigation controller written in Rust, using soil moisture + rain
 ## Description
 
 <div style="text-align: justify;">
-HydroSense is an ESP32-based irrigation controller written in Rust, designed to automate watering decisions using real sensor data. The system reads a soil moisture sensor and a rain sensor, then switches a 12 V water pump through an N-channel MOSFET stage when irrigation is needed. In parallel, it publishes status and measurements via MQTT, which enables remote monitoring and makes testing/debugging significantly easier.
+HydroSense is an ESP32-based irrigation controller written in Rust, designed to automate watering decisions using real sensor data. The system reads a soil moisture sensor and a rain sensor, then switches a 5 V water pump through an N-channel MOSFET stage when irrigation is needed. In parallel, it publishes status and measurements via MQTT, which enables remote monitoring and makes testing/debugging significantly easier.
 </div>
 
 ## Motivation
@@ -122,7 +122,7 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 - **Relay module: 1-channel 5 V relay**  
   The relay module is the electrical switching stage between the ESP32 and the pump power line. The ESP32 drives the relay input pin with a GPIO signal, and the relay contacts switch the pump’s supply. This allows the pump to be controlled safely without driving the load directly from the microcontroller.
 
-- **Water pump: mini DC submersible pump (3,3 V)**  
+- **Water pump: mini DC submersible pump (5 V)**  
   The pump is the actuator that moves water from a container/reservoir into the tube. HydroSense turns it ON/OFF through the relay module based on soil moisture and rain status, or via manual override through MQTT.
 
 - **Tube (silicone/PVC)**  
@@ -139,7 +139,7 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 | 1-channel relay module (5V, low-level trigger) | Switches the water pump ON/OFF under ESP32 control (acts like an electronic switch) | 4.99 |
 | Soil moisture sensor module (LM393 + probe, YL-69/FC-28 style) | Measures soil moisture level to decide when watering is needed | 3.99 |
 | Rain sensor module (LM393 + rain plate, FC-37 style) | Detects rain / water droplets so watering can be avoided when it’s already raining/wet | 19.00 |
-| Mini submersible water pump (3,3V) | Pumps water from a container to the plant pot when watering is triggered | 7.99 |
+| Mini submersible water pump (5V) | Pumps water from a container to the plant pot when watering is triggered | 7.99 |
 | Silicone tube (4/6 mm, 1 m) | Carries water from the pump outlet to the plant pot | 2.08 |
 
 ## Software
