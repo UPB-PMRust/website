@@ -144,8 +144,6 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ## Software
 
-## Software
-
 | Library / Driver | Description | Usage |
 |---|---|---|
 | `esp-idf-hal` | ESP32 Hardware Abstraction Layer for GPIO/ADC/timers on top of ESP-IDF. | Reading the soil moisture signal (AO/DO), reading the rain sensor, driving the relay control pin. |
