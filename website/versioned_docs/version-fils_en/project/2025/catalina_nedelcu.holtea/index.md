@@ -2,7 +2,6 @@
 ---
 title: HydroSense
 ---
->>>>>>> 19d62b6 (Add architecture diagram)
 
 # HydroSense
 
@@ -14,9 +13,6 @@ An ESP32-based irrigation controller written in Rust, using soil moisture + rain
 **Author:** Cătălina Nedelcu-Holtea (`catalina_nedelcu.holtea`)  
 **GitHub Project Link:**
 
-=======
-**Author:** Cătălina Nedelcu-Holtea (`catalina_nedelcu.holtea`)  
->>>>>>> 19d62b6 (Add architecture diagram)
 :::
 
 ## Description
@@ -40,4 +36,4 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 ![Architecture diagram](./architecture.svg)
 
 >>>>>>> 19d62b6 (Add architecture diagram)
->>>>>>> e2905b4 (Add architecture diagram)
+
