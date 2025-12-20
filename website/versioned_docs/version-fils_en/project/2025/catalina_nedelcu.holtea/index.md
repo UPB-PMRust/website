@@ -35,5 +35,4 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ![Architecture diagram](./architecture.svg)
 
->>>>>>> 19d62b6 (Add architecture diagram)
 
