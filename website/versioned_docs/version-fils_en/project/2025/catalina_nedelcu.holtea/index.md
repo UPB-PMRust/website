@@ -1,8 +1,4 @@
 
----
-title: HydroSense
----
-
 # HydroSense
 
 An ESP32-based irrigation controller written in Rust, using soil moisture + rain sensing and MQTT telemetry.
