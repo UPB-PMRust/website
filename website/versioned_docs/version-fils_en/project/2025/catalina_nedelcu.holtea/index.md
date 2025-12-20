@@ -129,6 +129,12 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
   Provides water delivery from the pump outlet to the plant/soil area. It is the physical interface that completes the irrigation path.
 
 
+### Schematics
+
+### Bill of materials
+
+## Software
+
 
 
 
