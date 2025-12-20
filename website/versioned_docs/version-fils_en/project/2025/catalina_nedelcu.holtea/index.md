@@ -25,3 +25,7 @@ I am particularly interested in embedded and IoT systems because they connect so
 <div style="text-align: justify;">
 At the same time, HydroSense started from a personal need. I genuinely enjoy taking care of plants, but watering often becomes a routine task that is easy to forget during busy periods. I have experienced situations where inconsistent watering led to plants drying out and dying. This project is my practical solution: a small, dependable system that handles watering based on actual conditions, not memory or fixed schedules.
 </div>
+
+## Architecture
+
+![Architecture diagram](./architecture.svg)
