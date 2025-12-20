@@ -4,7 +4,10 @@
 An ESP32-based irrigation controller written in Rust, using soil moisture + rain sensing and MQTT telemetry.
 
 :::info
+
 **Author:** Cătălina Nedelcu-Holtea (`catalina_nedelcu.holtea`)  
+**GitHub Project Link:**
+
 :::
 
 ## Description
