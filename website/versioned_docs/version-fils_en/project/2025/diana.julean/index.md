@@ -40,6 +40,6 @@ Input devices (send data to the MCU):
 
 Output devices: 
 - LEDs
-- LCD - MCU sends sensor readings to be displayed
+- ST7735 - MCU sends sensor readings to be displayed
 - Buzzer - MCU activates an alarm using a timer
 - DHT11
