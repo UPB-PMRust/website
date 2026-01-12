@@ -1,0 +1,10 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "elf2uf2-rs -d" 
+
+[build]
+target = "thumbv8m.main-none-eabihf"
+
+[env]
+DEFMT_LOG = "info"
+# This tells the compiler how much memory to reserve for async tasks
+EMBASSY_EXECUTOR_TASK_ARENA_SIZE = "32768"
