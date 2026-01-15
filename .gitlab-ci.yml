@@ -1,0 +1,109 @@
+image: node:22-bullseye
+
+stages:
+  - test
+  - deploy
+
+cache:
+  key: modules
+  paths:
+    - website/node_modules/
+    - slides/node_modules/
+
+test fake slides:
+  stage: test
+  script:
+    - cd slides
+    - SLIDES_OUTPUT_FOLDER=../website/static/slides FAKE_SLIDES=pm_cc ./build.sh acs_cc 
+    - SLIDES_OUTPUT_FOLDER=../website/static/slides FAKE_SLIDES=ma ./build.sh fils_en 
+  artifacts:
+    paths:
+      - website/static/slides/acs_cc/**/*
+      - website/static/slides/fils_en/**/*
+    expire_in: 60 mins
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+
+test slides acs_cc:
+  stage: test
+  script:
+    - rm -rf website/static/slides/acs_cc/*
+    - cd slides
+    - npx -y playwright@^1.41.2 install chromium
+    - npx playwright install-deps
+    - npm ci
+    - chmod a+x build.sh
+    - SLIDES_OUTPUT_FOLDER=../website/static/slides ./build.sh acs_cc 
+  artifacts:
+    paths:
+      - website/static/slides/acs_cc/**/*
+    expire_in: 60 mins
+  needs: ["test fake slides"]
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+      changes:
+        - slides/lectures/acs_cc/**/*
+        - slides/lectures/resources/**/*
+        - slides/lectures/assets/**/*
+        - slides/build.sh
+        - slides/package*.json
+
+test slides fils_en:
+  stage: test
+  script:
+    - rm -rf website/static/slides/fils_en/*
+    - cd slides
+    - npx -y playwright@^1.41.2 install chromium
+    - npx playwright install-deps
+    - npm ci
+    - SLIDES_OUTPUT_FOLDER=../website/static/slides ./build.sh fils_en 
+  artifacts:
+    paths:
+      - website/static/slides/fils_en/**/*
+    expire_in: 60 mins
+  needs: ["test fake slides"]
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+      changes:
+        - slides/lectures/fils_en/**/*
+        - slides/lectures/resources/**/*
+        - slides/lectures/assets/**/*
+        - slides/build.sh
+        - slides/package*.json
+
+test website:
+  stage: test
+  script:
+    - cd website
+    - npm ci
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+      changes:
+        - website/**/*
+        - website/*
+  needs:
+    - job: test fake slides
+    - job: test slides acs_cc
+      optional: true
+    - job: test slides fils_en
+      optional: true
+
+pages:
+  stage: deploy
+  script:
+    - ./build.sh
+    - mv website/build public
+  artifacts:
+    paths:
+      - public
+    expire_in: 60 mins
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      changes:
+        - build.sh
+        - slides/**/*
+        - slides/*
+        - website/**/*
+        - website/*
+  

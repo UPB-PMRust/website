@@ -1,0 +1,37 @@
+acs_cc:
+  - website/versioned_docs/version-acs_cc/**/*
+  - website/versioned_sidebars/version-acs_cc-sidebars.json
+
+fils_en:
+  - website/versioned_docs/version-fils_en/**/*
+  - website/versioned_sidebars/version-file_en-sidebars.json
+
+lecture:
+  - website/versioned_docs/version-acs_cc/lecture/**/*
+  - website/versioned_docs/version-fils_en/lecture/**/*
+
+lab:
+  - website/lab/**/*
+  - website/lab/*
+
+tutorial:
+  - website/tutorial/**/*
+  - website/tutorial/*
+
+project:
+  - website/versioned_docs/version-acs_cc/project/**/*
+  - website/versioned_docs/version-acs_cc/project.md
+  - website/versioned_docs/version-fils_en/project/**/*
+  - website/versioned_docs/version-fils_en/project.md
+
+workflow:
+  - .github/**/*
+  - .github/*
+
+website:
+  - website/*
+  - website/**/*
+
+slides:
+  - slides/*
+  - slides/**/*
