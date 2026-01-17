@@ -4,7 +4,7 @@ A smart IoT gardening assistant that monitors soil and air conditions to automat
 :::info 
 
 **Author**: Andrei Anghelea \
-**GitHub Project Link**: https://github.com/AngAndrei/automatic-plant-watering.git
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-dm-2025-AngAndrei
 
 :::
 
