@@ -350,7 +350,7 @@ Specifications:
 - Sound output: approximately 2 kHz
 - Drive: Direct GPIO high/low control
 
-## Schematics
+## Schematic
 
 ![Schematics](./schematic.webp)
 
