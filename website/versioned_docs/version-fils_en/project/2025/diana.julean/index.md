@@ -5,7 +5,7 @@ A STM32-based environment monitoring system that tracks data about temperature, 
 :::info 
 
 **Author**: Julean Diana-Gabriela \
-**GitHub Project Link**:  
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-dm-2025-Gabriela3456 
 
 :::
 
@@ -62,11 +62,13 @@ With help received from the lab, I got over the DHT11 problem. In the meantime I
 Implemented the whole hardware part of the project, including the ST7735 screen, the buzzer and the button aimed at stopping the alarm. Tested those components in order to make sure they work. 
 
 ### Week 19 - 25 Ian
-Implemented the software part for the project.
+Tested the buzzer, button and ST7735 screen.
 
 ## Hardware
+ ![Top view](./Photo1.webp)
 
 ### Schematics
+ ![KiCad Schematics](./circuits.webp)
 
 ### Bill of materials
 | [Device](link://to/device) | Usage | [Price](link://to/store) |
@@ -84,4 +86,15 @@ Implemented the software part for the project.
 
 ## Software
 
+| Library                                                | Description | Usage |
+| ------------------------------------------------------ | ----------- | ----- |
+| [embassy_stm32](https://github.com/embassy-rs/embassy) | STM32 Hardware Abstraction | Provides async HAL for ADC, GPIO, SPI, and PWM (TIM2/TIM3) |
+| [embassy_time](https://github.com/embassy-rs/embassy)  | Timer and timer API. | Manages the main async loop |
+| [mipidsi](https://github.com/almindor/mipidsi)         | Display Driver | Drives the ST7735s LCD screen via SPI |
+| [defmt](https://crates.io/crates/defmt)                | Logging Framework. | Efficient logging for information and error reporting. |
+| [embedded_graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D Graphics Library | Draws lines, text and shapes on the display.                     |
+
+## Links 
+
+1. [ST7735 wiring](https://www.youtube.com/watch?v=3-yzHpOAa0w)
 
