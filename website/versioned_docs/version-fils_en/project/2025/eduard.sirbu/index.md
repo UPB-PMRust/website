@@ -32,7 +32,7 @@ This was due to the fact that, when I was younger, I used to have a Yamaha digit
 
 ## Architecture 
 
-![Arhitecture](./arhitecture.svg)
+![Arhitecture](./arhitecture.webp)
 
 ### Inputs
 - **7× Push Buttons**
@@ -144,7 +144,7 @@ I have provided links for reference.
 ### Schematics
 ![Hardware](./Hardware.webp)
 
-![Schematic](./RustPiano.svg)
+![Schematic](./RustPiano.webp)
 
 ### Bill of Materials
 
@@ -193,7 +193,7 @@ The system is divided into:
 - Async functions
   - These will be called when the main loop will switch control
 
-![Software](./Software.svg)
+![Software](./Software.webp)
 
 
 ## Links
