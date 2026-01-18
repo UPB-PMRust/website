@@ -68,7 +68,7 @@ This project combines interests in cybersecurity (my passion), embedded systems,
 Here is the final assembled device:
 ![Hardware Device](Hardware.jfif)
 ### Schematics
-![Electrical Schematic](Electrical_Schematic.jpg)
+![Electrical_Schematic](Electrical_Schematic.jpg)
 The Raspberry Pi Pico W integrates primary components. Breadboard adds status indicators.
 
 **Pinout Description:**
