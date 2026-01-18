@@ -350,9 +350,9 @@ Specifications:
 - Sound output: approximately 2 kHz
 - Drive: Direct GPIO high/low control
 
-## Schematic
+## Schematics
 
-![Schematics](./schematic.webp)
+![Schematics](./schematic.svg)
 
 *Could not use the acutal oled dsiplay in kicad so i put a placeholder and only connected what i actually had
 --------------------------------------------------------------------------------
@@ -489,7 +489,7 @@ Commands (text, newline terminated):
 
 --------------------------------------------------------------------------------
 
-## References
+## Links
 
 Embassy Framework
 https://embassy.dev
