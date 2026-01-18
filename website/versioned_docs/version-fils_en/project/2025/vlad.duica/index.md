@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # RustyDucky
 
 USB HID Attack Device with Discord Exfiltration
