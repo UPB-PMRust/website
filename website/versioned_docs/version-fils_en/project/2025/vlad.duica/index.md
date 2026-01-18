@@ -15,12 +15,12 @@ RustyDucky is a USB-based penetration testing tool built with Rust on the Raspbe
 
 ### Motivation
 
-This project combines interests in cybersecurity, embedded systems, and Rust programming. It applies course knowledge including GPIO control, asynchronous programming, USB protocols, and real-time command execution in a practical security research context.
+This project combines interests in cybersecurity (my passion), embedded systems, and Rust programming. It applies course knowledge including GPIO control, asynchronous programming, USB protocols, and real-time command execution in a practical security research context.
 
 ## Architecture
 
 ### Block Diagram
-```
+```text
 ┌─────────────────────────────────┐
 │  Raspberry Pi Pico W (RP2040)   │
 │  ┌───────────────────────────┐  │
@@ -34,23 +34,25 @@ This project combines interests in cybersecurity, embedded systems, and Rust pro
 │  │ (3× LEDs + Buzzer)        │  │
 │  └───────────────────────────┘  │
 └─────────────────────────────────┘
-         ↓
+          ↓
 ┌─────────────────────────────────┐
 │ Discord Webhook                 │
 │ (Data Exfiltration)             │
 └─────────────────────────────────┘
+
 ```
 
 ### Components
 
-- **USB HID Module**: Implements USB keyboard protocol using usbd-hid crate
-- **Payload Engine**: Executes automated attack sequence with timing control
-- **GPIO Interface**: Controls status LEDs and buzzer for visual/audio feedback
-- **Data Exfiltration**: HTTP POST via curl to Discord webhook
+* **USB HID Module**: Implements USB keyboard protocol using usbd-hid crate
+* **Payload Engine**: Executes automated attack sequence with timing control
+* **GPIO Interface**: Controls status LEDs and buzzer for visual/audio feedback
+* **Data Exfiltration**: HTTP POST via curl to Discord webhook
 
 ## Log
+
 | Week | Date Range | Work Done |
-|------|------------|-----------|
+| --- | --- | --- |
 | Week 1 | 17-23 Nov | Project research and documentation setup |
 | Week 2 | 24-30 Nov | Hardware selection, ordered Raspberry Pi Pico 2 W |
 | Week 3 | 1-7 Dec | Research on USB Rubber Ducky concepts and attack vectors |
@@ -59,15 +61,19 @@ This project combines interests in cybersecurity, embedded systems, and Rust pro
 | Week 6 | 22-28 Dec | Component assembly, GitHub repository setup, serial communication testing |
 | Week 7 | Jan 29-4 | Project research on Raspberry Pico 2w |
 | Week 8 | Jan 5-11 | Libraries and code switched to Raspberry Pi Pico W |
-| Week 9 | Jan 12-18 | Successful USB HID keyboard implementation and testing and discord webhook exfiltration, 3LEDs and buzzer indicators, final hardware integration|
+| Week 9 | Jan 12-18 | Successful USB HID keyboard implementation and testing and discord webhook exfiltration, 3LEDs and buzzer indicators, final hardware integration |
 
 ## Hardware
+
+Here is the final assembled device:
 
 ### Schematics
 
 The Raspberry Pi Pico W integrates primary components. Breadboard adds status indicators.
 
-```
+**Pinout Description:**
+
+```text
 Raspberry Pi Pico W
 ├── RP2040 (Dual Cortex-M0+, 133MHz)
 ├── USB Port (Micro USB)
@@ -79,6 +85,7 @@ Breadboard (Status Indicators)
 ├── LED 2 (GP3) - Command collection
 ├── LED 3 (GP5) - Discord upload
 └── Buzzer (GP4) - Upload alert
+
 ```
 
 ### Bill of Materials
@@ -103,53 +110,59 @@ Breadboard (Status Indicators)
 - **Static cell** (memory management)
 
 ### Software Architecture
-```
+```text
 src/main.rs - Main
 ├── USB HID keyboard initialization
 ├── Payload execution engine
 ├── GPIO control (LEDs + Buzzer)
 └── Timing and synchronization
+
 ```
 
 ### Payload Execution Flow
 
 **Stage 1 (LED 1 - GP2 ON):**
-- Wait 3 seconds for user preparation
-- Press Win+R
-- LED 1 turns on
+
+* Wait 3 seconds for user preparation
+* Press Win+R
+* LED 1 turns on
 
 **Stage 2 (LED 2 - GP3 ON):**
-- Type "cmd" and press Enter
-- Wait for CMD to open (2 seconds)
-- Type collection command: `whoami > %temp%\info.txt && hostname >> %temp%\info.txt && ipconfig >> %temp%\info.txt`
-- LED 2 turns on
+
+* Type "cmd" and press Enter
+* Wait for CMD to open (2 seconds)
+* Type collection command: `whoami > %temp%\info.txt && hostname >> %temp%\info.txt && ipconfig >> %temp%\info.txt`
+* LED 2 turns on
 
 **Stage 3 (LED 3 + Buzzer ON):**
-- Press Enter (file collection runs, 3 seconds)
-- Type Discord webhook curl command
-- LED 3 + Buzzer activate on command completion
-- Press Enter (file uploads to Discord)
+
+* Press Enter (file collection runs, 3 seconds)
+* Type Discord webhook curl command
+* LED 3 + Buzzer activate on command completion
+* Press Enter (file uploads to Discord)
 
 **Total Execution Time**: ~8-10 seconds
 
 ## Results
 
 **Completed:**
-- USB HID keyboard enumeration on Windows
-- Automated command execution via keystrokes
-- System information collection (whoami, hostname, ipconfig)
-- File-based data exfiltration to Discord
-- Status LED indicators (3 stages)
-- Buzzer audio alert to mark it done
-- Hardware assembly and testing
-- GitHub repository with full source
+
+* USB HID keyboard enumeration on Windows
+* Automated command execution via keystrokes
+* System information collection (whoami, hostname, ipconfig)
+* File-based data exfiltration to Discord
+* Status LED indicators (3 stages)
+* Buzzer audio alert to mark it done
+* Hardware assembly and testing
+* GitHub repository with full source
 
 **Tested & Working:**
-- Device recognized as USB keyboard
-- Commands execute reliably on target
-- Data appears in Discord channel within seconds
-- LEDs light up at correct stages
-- Cross-platform (tested on Windows)
+
+* Device recognized as USB keyboard
+* Commands execute reliably on target
+* Data appears in Discord channel within seconds
+* LEDs light up at correct stages
+* Cross-platform (tested on Windows)
 
 ## Technical Achievements
 
