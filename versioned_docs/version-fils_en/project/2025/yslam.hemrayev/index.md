@@ -44,7 +44,7 @@ The project uses the Raspberry Pi Pico2W (RP2350).
 * **Audio:** Active Buzzer.
 
 ### Schematics
-![Schematic](./schematics.webp)
+![Schematic](./rust.svg)
 
 ### Bill of Materials
 
