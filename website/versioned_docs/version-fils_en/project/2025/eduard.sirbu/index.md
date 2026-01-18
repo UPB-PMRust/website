@@ -144,7 +144,7 @@ I have provided links for reference.
 ### Schematics
 ![Hardware](./Hardware.webp)
 
-![Schematic](./RustPiano.webp)
+![Schematic](./RustPiano.svg)
 
 ### Bill of Materials
 
