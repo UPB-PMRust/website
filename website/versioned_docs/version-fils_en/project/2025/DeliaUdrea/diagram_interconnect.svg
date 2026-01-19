@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+    </marker>
+  </defs>
+  
+  <!-- Boxes -->
+  <rect x="50" y="100" width="200" height="200" fill="#e1f5fe" stroke="#01579b" stroke-width="2" rx="10" />
+  <text x="150" y="130" font-family="Arial" font-size="20"   text-anchor="middle" font-weight="bold">Input Block</text>
+  <text x="150" y="160" font-family="Arial" font-size="16" text-anchor="middle">(Matrix RxC)</text>
+  
+  <rect x="300" y="100" width="200" height="200" fill="#e8f5e9" stroke="#1b5e20" stroke-width="2" rx="10" />
+  <text x="400" y="130" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold">Control Block</text>
+  <text x="400" y="160" font-family="Arial" font-size="16" text-anchor="middle">(STM32 Nucleo)</text>
+  
+  <rect x="550" y="100" width="200" height="200" fill="#fff3e0" stroke="#e65100" stroke-width="2" rx="10" />
+  <text x="650" y="130" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold">Output Block</text>
+  <text x="650" y="160" font-family="Arial" font-size="16" text-anchor="middle">(Audio)</text>
+
+  <!-- Details Input -->
+  <text x="150" y="200" font-family="Arial" font-size="14" text-anchor="middle">Switches Check</text>
+  <text x="150" y="220" font-family="Arial" font-size="14" text-anchor="middle">Diodes</text>
+
+  <!-- Details Control -->
+  <text x="400" y="200" font-family="Arial" font-size="14" text-anchor="middle">GPIO</text>
+  <text x="400" y="220" font-family="Arial" font-size="14" text-anchor="middle">ADC / Timers</text>
+  <text x="400" y="240" font-family="Arial" font-size="14" text-anchor="middle">DAC / PWM</text>
+
+  <!-- Details Output -->
+  <text x="650" y="200" font-family="Arial" font-size="14" text-anchor="middle">RC Filter</text>
+  <text x="650" y="220" font-family="Arial" font-size="14" text-anchor="middle">PAM8403 Amp</text>
+  <text x="650" y="240" font-family="Arial" font-size="14" text-anchor="middle">Speaker</text>
+
+  <!-- Arrows -->
+  <line x1="250" y1="200" x2="290" y2="200" stroke="#333" stroke-width="3" marker-end="url(#arrow)" />
+  <line x1="500" y1="200" x2="540" y2="200" stroke="#333" stroke-width="3" marker-end="url(#arrow)" />
+
+</svg>

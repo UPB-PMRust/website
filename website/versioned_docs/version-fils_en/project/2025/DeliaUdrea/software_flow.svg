@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+    </marker>
+  </defs>
+
+  <!-- Step 1 -->
+  <rect x="200" y="50" width="200" height="60" fill="#fff9c4" stroke="#fbc02d" stroke-width="2" rx="5" />
+  <text x="300" y="85" font-family="Arial" font-size="14" text-anchor="middle">1. Physical Input</text>
+  
+  <line x1="300" y1="110" x2="300" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Step 2 -->
+  <rect x="200" y="150" width="200" height="60" fill="#e1bee7" stroke="#8e24aa" stroke-width="2" rx="5" />
+  <text x="300" y="185" font-family="Arial" font-size="14" text-anchor="middle">2. Scan Task</text>
+
+  <line x1="300" y1="210" x2="300" y2="240" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Step 3 -->
+  <polygon points="300,250 400,300 300,350 200,300" fill="#bbdefb" stroke="#1976d2" stroke-width="2" />
+  <text x="300" y="305" font-family="Arial" font-size="14" text-anchor="middle">3. Key Event?</text>
+
+  <line x1="300" y1="350" x2="300" y2="380" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Step 4 -->
+  <rect x="200" y="390" width="200" height="60" fill="#c8e6c9" stroke="#388e3c" stroke-width="2" rx="5" />
+  <text x="300" y="425" font-family="Arial" font-size="14" text-anchor="middle">4. Control Logic</text>
+
+  <line x1="300" y1="450" x2="300" y2="480" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Step 5 -->
+  <rect x="200" y="490" width="200" height="60" fill="#ffccbc" stroke="#d84315" stroke-width="2" rx="5" />
+  <text x="300" y="525" font-family="Arial" font-size="14" text-anchor="middle">5. Audio Gen Task</text>
+
+  <line x1="300" y1="550" x2="300" y2="580" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Step 6 -->
+  <rect x="200" y="590" width="200" height="60" fill="#f0f4c3" stroke="#afb42b" stroke-width="2" rx="5" />
+  <text x="300" y="625" font-family="Arial" font-size="14" text-anchor="middle">6. Output (Speaker)</text>
+
+</svg>
