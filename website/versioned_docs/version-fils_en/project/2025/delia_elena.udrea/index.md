@@ -15,20 +15,20 @@ sidebar_label: 'Polyphonic Keyboard'
 
 :::
 
-## 1. General Description
+## Description
 
 This project aims to develop a fully functional digital musical instrument capable of rendering **polyphony** (chords) and responding in **real-time** to user interactions (keys, sustain pedal, pitch bend).
 
 The core of the system is an **STM32 Nucleo** microcontroller, programmed in the **Rust** language (using a Real-Time framework) to guarantee minimal audio latency and high reliability.
 
-### 1.1 Functionality
+### Functionality
 
 1.  **Polyphonic Input:** Reading approximately 61 keys (organized in an $R \times C$ matrix) with anti-ghosting protection (diode per switch).
 2.  **Audio Synthesis:** Digital generation of sound waves (sine/square) on the microcontroller, utilizing the DAC or PWM peripheral.
 3.  **Expressive Control:** Implementation of the *Sustain* function (pedal) and *Pitch Bend* control (joystick).
 4.  **Audio Output:** Amplifying the weak digital signal from the MCU to drive an external speaker.
 
-## 2. Motivation
+## Motivation
 
 ### 2.1 Project Motivation
 *   **Technical Challenge:** The project combines electronics (key matrix, audio filtering) with real-time programming, serving as an excellent demonstration of Rust capabilities in the `no_std` (embedded systems) environment.
@@ -50,9 +50,9 @@ The core of the system is an **STM32 Nucleo** microcontroller, programmed in the
 
 ---
 
-## 3. System Architecture
+## Architecture
 
-![System Architecture](architecture.png)
+![System Architecture](architecture.webp)
 
 ### 2.1 Hardware Architecture
 
@@ -88,45 +88,11 @@ The software interacts directly with the STM32F4 peripherals via the `stm32f4xx-
 
 ![Software Functional Diagram](software_flow.svg)
 
----
 
-## 4. Hardware Design (Circuit Design)
 
-### 3.1 Critical Components
 
-| Component | Specifications | Role in the Circuit |
-| :--- | :--- | :--- |
-| **Microcontroller** | STM32 Nucleo (e.g., F401RE) | Processing, Timers, ADC, DAC/PWM. |
-| **Switches** | Outemu Linear (3-pin), 65g | Ensures quality tactile input. |
-| **Polyphony Diode** | 1N4148 | Prevents "ghosting" in the $R \times C$ matrix. |
-| **Amplifier** | PAM8403 Module ($2 \times 3$ W) | Audio amplification from 3.3V to speaker level. |
-| **Matrix Wiring** | Set 5 Spools 24 AWG | Stable, soldered wiring for the ~70 internal connections. |
 
-### 3.2 Logical Interconnection Diagram
-
-The hardware blocks connect to the STM32 peripherals as follows:
-
-*   **STM32 Box:** Handles GPIO, DAC/PWM, and ADC pins.
-*   **Matrix:** $R$ rows connect to GPIO (Output) and $C$ columns connect to GPIO (Input with Pull-up).
-*   **Audio:** Connection runs from the DAC/PWM pin, through the RC filter to the input of the PAM8403 module.
-
-![Matrix Wiring Illustration](matrix_wiring.svg)
-
-### 3.3 Detailed Electronic Schematic (KiCad)
-
-![Electronic Schematic](schematic.png)
-
-*   **Key Matrix:** $R \times C$ connection with each diode (1N4148) correctly oriented on each switch.
-*   **Audio Filter:** Resistor and capacitor (RC Low-Pass Filter) needed to smooth the PWM signal.
-
-### 3.4 Prototyping and Wiring
-
-*   **Matrix Construction:** Will be built by manually soldering the 24 AWG cable to the output pin of each switch.
-*   **Termination:** The approx 20 wires from the matrix will be soldered onto the 20-pin IDC Connector.
-
----
-
-## 5. Weekly Log (Project Status)
+## Log
 
 This log tracks the project's progress, from component acquisition to the implementation of key functionalities.
 
@@ -156,7 +122,72 @@ This log tracks the project's progress, from component acquisition to the implem
 
 ---
 
-## 6. Software Design (Code Design)
+## Hardware
+
+### 3.1 Critical Components
+
+| Component | Specifications | Role in the Circuit |
+| :--- | :--- | :--- |
+| **Microcontroller** | STM32 Nucleo (e.g., F401RE) | Processing, Timers, ADC, DAC/PWM. |
+| **Switches** | Outemu Linear (3-pin), 65g | Ensures quality tactile input. |
+| **Polyphony Diode** | 1N4148 | Prevents "ghosting" in the $R \times C$ matrix. |
+| **Amplifier** | PAM8403 Module ($2 \times 3$ W) | Audio amplification from 3.3V to speaker level. |
+| **Matrix Wiring** | Set 5 Spools 24 AWG | Stable, soldered wiring for the ~70 internal connections. |
+
+### 3.2 Logical Interconnection Diagram
+
+The hardware blocks connect to the STM32 peripherals as follows:
+
+*   **STM32 Box:** Handles GPIO, DAC/PWM, and ADC pins.
+*   **Matrix:** $R$ rows connect to GPIO (Output) and $C$ columns connect to GPIO (Input with Pull-up).
+*   **Audio:** Connection runs from the DAC/PWM pin, through the RC filter to the input of the PAM8403 module.
+
+![Matrix Wiring Illustration](matrix_wiring.svg)
+
+### 3.3 Detailed Electronic Schematic (KiCad)
+
+![Electronic Schematic](schematic.webp)
+
+*   **Key Matrix:** $R \times C$ connection with each diode (1N4148) correctly oriented on each switch.
+*   **Audio Filter:** Resistor and capacitor (RC Low-Pass Filter) needed to smooth the PWM signal.
+
+### 3.4 Prototyping and Wiring
+
+*   **Matrix Construction:** Will be built by manually soldering the 24 AWG cable to the output pin of each switch.
+*   **Termination:** The approx 20 wires from the matrix will be soldered onto the 20-pin IDC Connector.
+
+---
+
+### Bill of Materials
+
+Estimates based on average market rates (RON).
+
+| No. | Component | Specifications | Qty | Unit (RON) | Total |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **HARDWARE** | | | | | |
+| 1. | Microcontroller | [STM32 Nucleo (F401RE)](https://www.st.com) | 1 | 80.00 | 80.00 |
+| 2. | Key Switches | [Outemu Linear, 65g](https://example.com) | 70 | 1.80 | 126.00 |
+| 3. | Diode Kit | 1N4148 (20 pcs/kit) | 4 | 12.00 | 48.00 |
+| 4. | Audio Amplifier | PAM8403 (2 x 3W) | 1 | 25.00 | 25.00 |
+| 5. | Speaker | 4 inch, 8 Ohm | 1 | 40.00 | 40.00 |
+| 6. | Sustain Button | Momentary Pushbutton | 1 | 10.00 | 10.00 |
+| **PROTOTYPING** | | | | | |
+| 7. | Protoboard | Breadboard MB102 | 1 | 20.00 | 20.00 |
+| 8. | Jumper Wires | Male-Male | 1 set | 15.00 | 15.00 |
+| 9. | Matrix Wire | 24 AWG Cable | 1 set | 30.00 | 30.00 |
+| 10. | Matrix Conn. | IDC 20 pin | 1 | 10.00 | 10.00 |
+| 11. | Speaker Cable | 2 x 0.75 mm^2 | 1 m | 5.00 | 5.00 |
+| **TOOLS** | | | | | |
+| 12. | Soldering Kit | 60W Iron + Stand | 1 set | 125.00 | 125.00 |
+| 13. | Resistor Kit | 600 pcs | 1 set | 45.00 | 45.00 |
+| 14. | Capacitor Kit | 500 pcs | 1 set | 50.00 | 50.00 |
+| | | **TOTAL ESTIMATED** | | | **~ 619** |
+
+---
+
+
+
+## Software
 
 ### 5.1 Detailed Software Architecture
 
@@ -185,34 +216,7 @@ To prevent *data races*, all data accessed by both the Audio Task and the I/O Ta
 5.  **Audio Gen Task:** Reads shared structure, calculates wave value.
 6.  **Output:** Digital signal $\rightarrow$ Filter $\rightarrow$ Amp $\rightarrow$ Speaker.
 
----
 
-## 7. Bill of Materials (BOM)
-
-Estimates based on average market rates (RON).
-
-| No. | Component | Specifications | Qty | Unit (RON) | Total |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **HARDWARE** | | | | | |
-| 1. | Microcontroller | [STM32 Nucleo (F401RE)](https://www.st.com) | 1 | 80.00 | 80.00 |
-| 2. | Key Switches | [Outemu Linear, 65g](https://example.com) | 70 | 1.80 | 126.00 |
-| 3. | Diode Kit | 1N4148 (20 pcs/kit) | 4 | 12.00 | 48.00 |
-| 4. | Audio Amplifier | PAM8403 (2 x 3W) | 1 | 25.00 | 25.00 |
-| 5. | Speaker | 4 inch, 8 Ohm | 1 | 40.00 | 40.00 |
-| 6. | Sustain Button | Momentary Pushbutton | 1 | 10.00 | 10.00 |
-| **PROTOTYPING** | | | | | |
-| 7. | Protoboard | Breadboard MB102 | 1 | 20.00 | 20.00 |
-| 8. | Jumper Wires | Male-Male | 1 set | 15.00 | 15.00 |
-| 9. | Matrix Wire | 24 AWG Cable | 1 set | 30.00 | 30.00 |
-| 10. | Matrix Conn. | IDC 20 pin | 1 | 10.00 | 10.00 |
-| 11. | Speaker Cable | 2 x 0.75 mm^2 | 1 m | 5.00 | 5.00 |
-| **TOOLS** | | | | | |
-| 12. | Soldering Kit | 60W Iron + Stand | 1 set | 125.00 | 125.00 |
-| 13. | Resistor Kit | 600 pcs | 1 set | 45.00 | 45.00 |
-| 14. | Capacitor Kit | 500 pcs | 1 set | 50.00 | 50.00 |
-| | | **TOTAL ESTIMATED** | | | **~ 619** |
-
----
 
 ## Links
 
