@@ -3,7 +3,7 @@ A smart bedside lamp prototype that automates lighting based on motion and darkn
 
 :::info
 
-**Author**: Codrin-Emilian Grăpinoiu (Group 1241EC FILS)
+**Author**: Codrin-Emilian Grăpinoiu (Group 1241EC FILS) \
 **GitHub Project Link**: [Smart Bedside Lamp](https://github.com/UPB-PMRust-Students/project-dm-2025-studentcodrr)
 
 :::
