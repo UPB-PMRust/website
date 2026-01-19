@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Pomodoro Timer with Environmental Monitoring
 
 A productivity timer implementing the Pomodoro Technique, the device features an OLED display, environmental sensors, audible notifications, and bidirectional USB communication with a companion PC application.
