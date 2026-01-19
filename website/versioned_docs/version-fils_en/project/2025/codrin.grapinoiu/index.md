@@ -63,9 +63,9 @@ The system is built around the Raspberry Pi Pico WH. It integrates environmental
 
 **Hardware Setup**
 
-![Hardware Prototype 1](Hardware1.jpeg)
-![Hardware Prototype 2](Hardware2.jpeg)
-![Hardware Prototype 3](Hardware3.jpeg)
+![Hardware Prototype 1](Hardware1.webp)
+![Hardware Prototype 2](Hardware2.webp)
+![Hardware Prototype 3](Hardware3.webp)
 
 ### Schematics
 
