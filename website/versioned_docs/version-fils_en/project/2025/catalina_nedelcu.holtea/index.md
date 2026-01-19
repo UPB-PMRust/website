@@ -123,6 +123,8 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 
 ### Schematics
+![HydroSense schematics](./schematics.png)
+
 
 ### Bill of materials
 
