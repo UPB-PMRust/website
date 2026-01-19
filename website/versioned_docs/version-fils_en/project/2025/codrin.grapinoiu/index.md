@@ -33,7 +33,7 @@ I chose this project to experiment with IoT design because I wanted a custom sma
 ![Connection Diagram](ConnectionsDiagramPS.svg)
 
 **Features & Logic**
-**Manual Mode**: The default state where the user has direct control. The Rotary Encoder adjusts brightness and color and its button toggles power. Sensors are ignored in this state.
+* **Manual Mode**: The default state where the user has direct control. The Rotary Encoder adjusts brightness and color and its button toggles power. Sensors are ignored in this state.
 * **Smart Mode**: Automation takes over. The system continuously monitors the PIR and LDR sensors, turning the light ON only when movement is detected *and* the room is dark, then turning it OFF after inactivity.
 * **Bluetooth Mode**: An advanced state used for pairing with the web app. In this mode, the system prioritizes commands from the app over the physical controls. The Bluetooth app acts as a "Digital Remote" for color selection and light dimming, when Bluetooth mode is active.
 * **Memory**: The system "auto-saves" current settings (Color, Brightness, Mode) to the AT24C08 EEPROM.
