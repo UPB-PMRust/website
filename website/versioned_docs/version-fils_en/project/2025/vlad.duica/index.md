@@ -21,7 +21,7 @@ RustyDucky is a USB-based penetration testing tool built with Rust on the Raspbe
 
 This project combines interests in cybersecurity (my passion), embedded systems, and Rust programming. It applies course knowledge including GPIO control, asynchronous programming, USB protocols, and real-time command execution in a practical security research context.
 
-##Details of the implementation - Block Diagram & Components
+## Details of the implementation - Block Diagram & Components
 
 ## Architecture
 
@@ -106,7 +106,7 @@ Breadboard (Status Indicators)
 | [Active Buzzer (3.3V)](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-activ-de-33v-sau-3v.html?search_query=buzzer&results=47) | Payload alert | Connected to GP4 |
 | [Jumper Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/888-set-fire-tata-tata-40p-20-cm.html?search_query=fire+tata+tata&results=62) | Connections | Standard breadboard jumpers |
 
-##Details of the implementation - Technologies & Payload Execution Flow
+## Details of the implementation - Technologies & Payload Execution Flow
 
 ## Software
 
@@ -154,6 +154,7 @@ src/main.rs - Main
 ## Results
 
 Here is the final Result:
+![Hardware Device](Results.webp)
 
 **Completed:**
 
