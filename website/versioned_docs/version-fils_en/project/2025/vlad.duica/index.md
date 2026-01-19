@@ -13,13 +13,15 @@ USB HID Attack Device with Discord Exfiltration
 
 :::
 
-## Description
+## Project Description
 
-RustyDucky is a USB-based penetration testing tool built with Rust on the Raspberry Pi Pico W. The device emulates a USB keyboard to automatically execute commands on target systems and exfiltrates captured data via Discord webhook.
+RustyDucky is a USB-based penetration testing tool built with Rust on the Raspberry Pi Pico W. The device emulates a USB keyboard, that is recognized by the computer as a HID Keyboard to automatically execute commands on target systems and exfiltrates captured data via Discord webhook.
 
 ### Motivation
 
 This project combines interests in cybersecurity (my passion), embedded systems, and Rust programming. It applies course knowledge including GPIO control, asynchronous programming, USB protocols, and real-time command execution in a practical security research context.
+
+##Details of the implementation - Block Diagram & Components
 
 ## Architecture
 
@@ -104,6 +106,8 @@ Breadboard (Status Indicators)
 | [Active Buzzer (3.3V)](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-activ-de-33v-sau-3v.html?search_query=buzzer&results=47) | Payload alert | Connected to GP4 |
 | [Jumper Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/888-set-fire-tata-tata-40p-20-cm.html?search_query=fire+tata+tata&results=62) | Connections | Standard breadboard jumpers |
 
+##Details of the implementation - Technologies & Payload Execution Flow
+
 ## Software
 
 ### Technologies
@@ -148,6 +152,8 @@ src/main.rs - Main
 **Total Execution Time**: ~8-10 seconds
 
 ## Results
+
+Here is the final Result:
 
 **Completed:**
 
