@@ -65,7 +65,9 @@ Implemented the whole hardware part of the project, including the ST7735 screen,
 Tested the buzzer, button and ST7735 screen.
 
 ## Hardware
- ![Top view](./Photo1.webp)
+ ![Top view](./hardware1.webp)
+ ![Top view](./hardware2.webp)
+ ![Top view](./hardware3.webp)
 
 ### Schematics
  ![KiCad Schematics](./circuits.webp)
