@@ -90,6 +90,9 @@ graph TD;
 
 ## Hardware
 
+![Photo Hardware](./Picture2.webp)
+![Photo Hardware](./Picture1.webp)
+
 ### Schematics
 
 ![Hardware Schematic](./schematic.svg)
@@ -120,6 +123,45 @@ graph TD;
 | `dht-sensor` | DHT11 Driver | Specialized driver to read Air Temperature & Humidity from the DHT11 sensor. |
 | `heapless` | Static Data Structures | Used to create fixed-size String buffers for formatting the UART messages ("22,50,4000\n"). |
 | `panic-probe` | Panic Handler | Handles system panics by printing the error location to the debug console. |
+
+## Detailed Software Functionality
+
+The system architecture is divided into:
+
+System Initialization & Configuration
+
+Clock & Peripherals: Configuring the STM32 system clocks and enabling power to necessary GPIO ports.
+ADC Setup: Initializing the Analog-to-Digital Converter (ADC1) with 12-bit resolution for precise soil moisture readings.
+    
+GPIO Configuration:
+    Relay/Pump: Configured as Push-Pull Output, initialized to Low (OFF) to prevent accidental flooding during boot.
+    DHT11: Configured as Open-Drain Output for single-wire bidirectional communication.
+
+Communication (UART): Setting up USART1 (115200 baud) with Direct Memory Access (DMA) channels to send data to the ESP-01 without stalling the processor.
+Safety Delay: A mandatory 2-second stabilization pause at startup to settle power rails before any logic begins.
+
+Modular Drivers
+    Soil Sensor: Reads raw voltage values mapped to a 0–4095 range (where ~4000 represents dry air and less than 2000 represents water).
+    DHT11 Protocol: Implements a custom "bit-banging" protocol that handles microsecond-level timing to handshake with the sensor and decode the 40-bit temperature/humidity data stream.
+
+Main Application Loop
+
+Sensor Acquisition Phase:
+    Performs a blocking read of the Soil Moisture Sensor (PA0).
+    Performs an asynchronous query of the DHT11 Sensor (PA4) to fetch Temperature (°C) and Humidity (%).
+
+Telemetry Phase:
+    Formats sensor data into a CSV string (TEMP,HUM,SOIL\n).
+    Transmits the string via UART/DMA to the ESP-01 module for Wi-Fi upload (ThingSpeak).
+
+Control Logic (The Decision Engine):
+    Threshold Check: Compares the Soil Moisture value against the defined "Dry Threshold" (3000).
+    Activation: If the soil is dry (>3000), the system asserts the Relay Pin (PA5) High.
+    Timing Control: The pump runs for a strictly enforced 3-second window using Timer::after_secs(3).
+    Deactivation: The Relay is forced Low immediately after the window closes.
+
+Sleep Cycle:
+    The system enters a low-power async wait state for 15 seconds before repeating the loop, allowing the soil water levels to settle.
 
 ## Links
 
