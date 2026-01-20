@@ -33,15 +33,22 @@ Since I was little I used to make dollhouses out of cardboard, but I’ve always
 
 
 
-week -->
+### Week 5 - 11 
+Put my idea on paper, drawings of hardware, design, connections to make it easier to follow later.
+![idea](idea.webp)
 
-### Week 5 - 11 May
+### Week 12 - 18 
+Bought the materials and started building.
 
-### Week 12 - 18 May
+### Week 19 - 25 
+Connected all the devices, finished and polished the code and finalized the setup (the house).
 
-### Week 19 - 25 May
+  ![finalproject](inside.webp)
+  ![finalproject](outside.webp)
 
 ## Hardware
+
+![how the wiring looks like](hardware.webp)
 
 -   **STM32 Microcontroller** - the central processing unit, responsible for running the embedded Rust firmware, using PWM for motor control and SPI for the communication with the RFID module and the rest via GPIO pins
 
@@ -56,9 +63,10 @@ week -->
 -   **LCD Screen** - displays the personalized welcome message
 
 
+
 ### Schematics
 
-![kicadschematics](kicad.svg)
+![kicadschematics](better.svg)
 
 ### Bill of Materials
 
@@ -88,12 +96,22 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-executor](https://docs.embassy.dev/embassy-executor/git/std/index.html) | Async runtime for embedded systems | Running concurrent tasks (sensors, gates, display) |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for writing to the display |
+|[embassy-stm32](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/index.html)|Hardware Abstraction Layer (HAL) for STM32 microcontrollers. Provides async APIs for chip's peripherals|Used to initialize the hardware, configure GPIO pins (LEDs, PIR), set up SPI for the RFID, I2C for the LCD, and ADC for the light sensor|
+| [embassy-executor](https://docs.embassy.dev/embassy-executor/git/std/index.html) | Async runtime for embedded systems | Used Spawner to run the LDR and servo in the background while the main loop handles the RFID and PIR logic |
 | [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Timekeeping, delays and timeouts | Stop waiting if card isn't scanned fast enough & manage motor to open/close door |
+|[mfrc522](https://docs.rs/mfrc522/latest/mfrc522/)|Driver library for the MFRC522 RFID|Gives the device the ability to read and write data from/to the card|
+|[lcd-lcm1602-i2c](https://docs.rs/lcd-lcm1602-i2c/latest/lcd_lcm1602_i2c/)|A driver for 16x2 LCD screens using the I2C interface|To send text commands like `lcd.write_str("Welcome home")` and clear the screen|
+|[embedded-hal-bus](https://docs.rs/embedded-hal-bus/latest/embedded_hal_bus/)|embedded-hal provides traits for SPI and I2C buses and devices|Uses `ExclusiveDevice` helper to ensure the RFID uses SPI pins alone|
+|[defmt-rtt](https://crates.io/crates/defmt-rtt)|Transmit [`defmt`](https://github.com/knurling-rs/defmt) log messages over the RTT (Real-Time Transfer) protocol|Used `info!` and `error!` to print messages to the terminal (via a debugger) while the code is running|
+|[panic-probe](https://crates.io/crates/panic-probe/)| A panic handler that works with `defmt`|In case the code crashes, it catches it, print the error to console to avoid freezing|
+
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [The labs](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab)
+2. [The Projects](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/project)
+3. The Beautiful YouTube for [PIR](https://www.youtube.com/watch?v=FxaTDvs34mM&pp=ygULcGlyIGFyZHVpbm8%3D), [RFID](https://www.youtube.com/watch?v=lg8HRY8q004&t=43s&pp=ygULUkZJRGFyZHVpbm8%3D), [LDR](https://www.youtube.com/watch?v=XwJQJnY6iUs&pp=ygULbGRyIGFyZHVpbm8%3D), [LCD I2C 1602](https://www.youtube.com/watch?v=l_7EJuqawkA&t=35s&pp=ygUUbGNkIGkyYyAxNjAyIGFyZHVpbm8%3D) and servo
+4. [This man with his project](https://www.youtube.com/watch?v=GOO84CGBPz8)
