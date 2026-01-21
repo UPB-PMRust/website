@@ -154,4 +154,23 @@ Prepared the project for demonstration and documentation.
 | **`heapless`**                 | Fixed-capacity data structures for embedded environments.             | Constructing MQTT topics and payloads without dynamic memory allocation.                                                      |
 | **`log` + `esp-idf-svc::log`** | Logging facade with ESP32 backend.                                    | Debug output for sensor readings, state transitions, and MQTT connection events.                                              |
 
+Below is the **exact same GitHub Markdown format**, adapted to your links.
+You can copy–paste this directly.
+
+---
+
+## Links
+
+### Saving the Flower ([https://embedded-rust-101.wyliodrin.com/docs/fils_en/project/2024/alecsandra_elena.iordache](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project/2024/alecsandra_elena.iordache))
+
+Smart plant care system focused on monitoring environmental conditions and preventing plant dehydration.
+
+### PlantaSoteria ([https://embedded-rust-101.wyliodrin.com/docs/fils_en/project/2025/ana.adascalitei](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project/2025/ana.adascalitei))
+
+Automated plant watering solution using embedded sensors and intelligent control logic.
+
+### YouTube Demonstration ([https://www.youtube.com/watch?v=ojhrVsBs0nM](https://www.youtube.com/watch?v=ojhrVsBs0nM))
+
+Video demonstration showcasing the system setup, operation, and irrigation workflow but with Arduino.
+
 
