@@ -11,16 +11,17 @@ A STM32-based environment monitoring system that tracks data about temperature, 
 
 ## Description
 
-The Smart Environment Tracker is an embedded system designed to measure and respond to environmental conditions in real time using an STM32 microcontroller programmed in Rust. It uses a DHT22 sensor to monitor temperature and humidity, and a photoresistor (LDR) to detect ambient light levels. Three LEDs visually indicate temperature ranges — green for normal, yellow for warm, and red for hot — while an LCD display presents live sensor readings.
+The Smart Environment Tracker is an embedded system designed to measure and respond to environmental conditions in real time using an STM32 microcontroller programmed in Rust. It uses a DHT22 sensor to monitor temperature and humidity, and a photoresistor (LDR) to detect ambient light levels. Three LEDs visually indicate temperature ranges — green for normal, blue for cold, and red for hot — while an LCD display presents live sensor readings.
 An integrated buzzer alarm system, controlled by a timer, activates when temperature or humidity exceeds predefined thresholds, providing an audible warning for unsafe conditions. A button should silence the buzzer when the user is noticed of the alert.
-Another LED is turned on when the light read from the photoresistor is reading a value beneath a set threshold. 
+Another LED (a lamp system) is turned on when the light read from the photoresistor is reading a value beneath a set threshold. 
+Further developments would include displaying on the screen a warning sign if the temperature is too high and the state of the button. 
 
 ## Components Overview
 
 - DHT11 – to read and display temperature and humidity
-- LDR – to display light levels
+- LDR – to read light levels for turning a lamp on when level drops
 - LEDs – to show the temperature level and to act as a lamp 
-- LCD – display temperature, humidity and light level
+- ST7735s – display temperature, humidity and light level.  
 - Buzzer – alarm when temperature exceeds predefined thresholds
 - Button – to stop the alarm
 
@@ -62,7 +63,7 @@ With help received from the lab, I got over the DHT11 problem. In the meantime I
 Implemented the whole hardware part of the project, including the ST7735 screen, the buzzer and the button aimed at stopping the alarm. Tested those components in order to make sure they work. 
 
 ### Week 19 - 25 Ian
-Tested the buzzer, button and ST7735 screen.
+Tested the buzzer, button and ST7735 screen. First, integrated the buzzer and the button in the project, making sure the whole alarm system worked with the rest of the project. Included the display in the project, showing values such as temperature, light and button status.  
 
 ## Hardware
  ![Top view](./hardware1.webp)
