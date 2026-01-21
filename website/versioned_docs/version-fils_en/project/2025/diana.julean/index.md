@@ -67,8 +67,8 @@ Tested the buzzer, button and ST7735 screen. First, integrated the buzzer and th
 
 ## Hardware
  ![Top view](./hardware1.webp)
- ![Top view](./hardware2.webp)
- ![Top view](./hardware3.webp)
+ ![Top view](./Hardware1_proj.webp)
+ ![Top view](./Hardware2_proj.webp)
 
 ### Schematics
  ![KiCad Schematics](./circuits.webp)
@@ -100,4 +100,4 @@ Tested the buzzer, button and ST7735 screen. First, integrated the buzzer and th
 ## Links 
 
 1. [ST7735 wiring](https://www.youtube.com/watch?v=3-yzHpOAa0w)
-
+2. [Weather System](https://www.hackster.io/jotrinelectronics/building-a-weather-station-with-raspberry-pi-pico-rp2040-9d5cbb)
