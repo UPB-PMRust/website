@@ -139,15 +139,13 @@ At the same time, HydroSense started from a personal need. I genuinely enjoy tak
 
 ## Software
 
-| Library / Driver | Description | Usage |
-|---|---|---|
-| `esp-idf-hal` | ESP32 Hardware Abstraction Layer for GPIO/ADC/timers on top of ESP-IDF. | Reading the soil moisture signal (AO/DO), reading the rain sensor, driving the relay control pin. |
-| `esp-idf-svc` | High-level system services (Wi-Fi, networking) built on ESP-IDF. | Connecting the ESP32 to Wi-Fi and maintaining the network stack for MQTT. |
-| `rumqttc` | MQTT client implementation in Rust (publish/subscribe). | Publishing telemetry (moisture/rain/pump state) and receiving manual ON/OFF commands from the phone/dashboard. |
-| `embedded-hal` | Standard embedded traits used by many Rust drivers. | Common interfaces for I/O primitives (keeps the firmware structure clean and modular). |
-| `heapless` | Fixed-capacity strings/collections for embedded environments. | Building MQTT topics/payloads without relying on dynamic allocation. |
-| `log` + `esp-idf-svc::log` | Logging facade + ESP32 logging backend. | Debugging (sensor reads, state transitions, MQTT connect/disconnect events). |
-
-
+| Library / Driver               | Description                                                           | Role in Project                                                                                                               |
+| ------------------------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **`esp-idf-hal`**              | Hardware Abstraction Layer for ESP32 peripherals (GPIO, ADC, timers). | Reading soil moisture (analog/digital), rain sensor input, and controlling the pump relay.                                    |
+| **`esp-idf-svc`**              | High-level ESP-IDF system services (Wi-Fi, networking, logging).      | Wi-Fi connectivity, system initialization, and network stack support for MQTT communication.                                  |
+| **`rumqttc`**                  | Lightweight MQTT client for Rust (publish/subscribe).                 | Publishing telemetry (soil moisture, rain status, pump state) and receiving manual ON/OFF commands from the mobile dashboard. |
+| **`embedded-hal`**             | Standardized embedded hardware traits.                                | Ensures portability and clean abstraction of I/O interfaces.                                                                  |
+| **`heapless`**                 | Fixed-capacity data structures for embedded environments.             | Constructing MQTT topics and payloads without dynamic memory allocation.                                                      |
+| **`log` + `esp-idf-svc::log`** | Logging facade with ESP32 backend.                                    | Debug output for sensor readings, state transitions, and MQTT connection events.                                              |
 
 
