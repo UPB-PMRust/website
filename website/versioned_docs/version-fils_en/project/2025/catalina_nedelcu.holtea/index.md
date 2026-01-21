@@ -124,8 +124,8 @@ Prepared the project for demonstration and documentation.
 - **Tube (silicone/PVC)**  
   Provides water delivery from the pump outlet to the plant/soil area. It is the physical interface that completes the irrigation path.
 
-![Hardware setup](poza1.jpeg)
-![Hardware setup](poza2.jpeg)
+![Hardware setup](poza1.webp)
+![Hardware setup](poza2.webp)
 
 
 ### Schematics
