@@ -129,7 +129,7 @@ Prepared the project for demonstration and documentation.
 
 
 ### Schematics
-![HydroSense schematics](./schematics.svg)
+![HydroSense schematics](./hydrosense.svg)
 
 
 ### Bill of materials
