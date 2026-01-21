@@ -153,10 +153,6 @@ Prepared the project for demonstration and documentation.
 | **`embedded-hal`**             | Standardized embedded hardware traits.                                | Ensures portability and clean abstraction of I/O interfaces.                                                                  |
 | **`heapless`**                 | Fixed-capacity data structures for embedded environments.             | Constructing MQTT topics and payloads without dynamic memory allocation.                                                      |
 | **`log` + `esp-idf-svc::log`** | Logging facade with ESP32 backend.                                    | Debug output for sensor readings, state transitions, and MQTT connection events.                                              |
-
-Below is the **exact same GitHub Markdown format**, adapted to your links.
-You can copy–paste this directly.
-
 ---
 
 ## Links
