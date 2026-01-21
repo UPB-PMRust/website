@@ -64,7 +64,7 @@ The system is divided into three main interconnected blocks:
 
 **Logical Interconnection Diagram:**
 
-![Logical Interconnection Diagram](diagram_interconnect.svg)
+![Logical Interconnection Diagram](diagram_interconnect.webp)
 
 ### 2.2 Software Architecture
 
@@ -86,7 +86,7 @@ The software interacts directly with the STM32F4 peripherals via the `stm32f4xx-
 
 **Software Functional Diagram:**
 
-![Software Functional Diagram](software_flow.svg)
+![Software Functional Diagram](software_flow.webp)
 
 
 
@@ -142,7 +142,7 @@ The hardware blocks connect to the STM32 peripherals as follows:
 *   **Matrix:** $R$ rows connect to GPIO (Output) and $C$ columns connect to GPIO (Input with Pull-up).
 *   **Audio:** Connection runs from the DAC/PWM pin, through the RC filter to the input of the PAM8403 module.
 
-![Matrix Wiring Illustration](matrix_wiring.svg)
+![Matrix Wiring Illustration](matrix_wiring.webp)
 
 ### 3.3 Detailed Electronic Schematic (KiCad)
 
