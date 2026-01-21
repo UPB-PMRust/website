@@ -69,7 +69,7 @@ Provided in SDK
 - provides a ROM bootloader:
   - Secure Boot
   - Secure Update
-  - Try-before-you-by
+  - Try-before-you-buy
   - A/B partitioning
   - Rollback
 
