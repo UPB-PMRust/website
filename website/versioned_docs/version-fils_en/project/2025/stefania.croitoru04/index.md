@@ -45,6 +45,8 @@ After testing each component on its own, I looked into the right crates and meth
 
 ### Week 20 - 26 May
 
+I implemented the alarm logic and I also configured the Wi-Fi connection with dynamic IP assignment using Embassy's networking stack, and implemented a dynamic web interface that refreshes periodically to display the real-time status of the alarm system.
+
 ## Hardware
 
 2× Raspberry Pi Pico 2W: One runs the system; the other is used for debugging. \
@@ -63,7 +65,6 @@ LED: Changes color to visually signal system status.
 ![This is what the wiring looks like initially](./hardwarewires.webp)
 ![This is what the wiring looks like at the end](./hardwarewiresupdate.webp) 
 ![A the close look](./closelook.webp) 
-
 
 
 ### Schematics
@@ -89,7 +90,6 @@ This is the kicad schematic.
 | [Female-Male Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html) | Used for flexible pin-to-board connections | ~7 RON |
 
 
-
 ## Software
 
 | Library | Description | Usage |
@@ -101,7 +101,7 @@ This is the kicad schematic.
 | [embassy-hal](https://docs.embassy.dev/embassy-embedded-hal/git/default/index.html)| Hardware Abstraction Layer for Raspberry Pi Pico W | Interfaces with low-level hardware in a safe and portable way |
 | [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html)| Embedded networking stack | Handles Wi-Fi networking and IP configuration |
 | [embassy-gpio](https://docs.rs/embassy-gpio/latest/embassy_gpio/) | GPIO management | Controls GPIO pins for devices and inputs |
-| [embassy-usb](https://docs.rs/embassy-usb/latest/embassy_usb/) | USB management | Manages USB operation |
+
 
 
 
