@@ -76,7 +76,7 @@ Tested the buzzer, button and ST7735 screen. First, integrated the buzzer and th
 ### Bill of materials
 | [Device](link://to/device) | Usage | [Price](link://to/store) |
 |-----------------------------|-------|-------------------------|
-| [STM32u545re-O](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microprocessor | [200 RON] |
+| [STM32u545re-O](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microprocessor | [borrowed] |
 | [DHT11 Sensor](https://www.emag.ro/senzor-de-temperatura-si-umiditate-dht11-arduino-ai051-s37/pd/D9CZ56BBM/) | Detects temperature and humidity | [6,5 RON](https://www.emag.ro/senzor-de-temperatura-si-umiditate-dht11-arduino-ai051-s37/pd/D9CZ56BBM/) |
 | [Photoresistor](https://www.optimusdigital.ro/ro/componente-electronice-altele/28-fotorezistor10-pcs-set.html?search_query=photoresistor&results=3) | Detects light levels | [1.9 RON](https://www.optimusdigital.ro/ro/componente-electronice-altele/28-fotorezistor10-pcs-set.html?search_query=photoresistor&results=3) |
 | [4 LEDs](https://www.optimusdigital.ro/ro/kituri/11970-set-led-uri-asortate-plusivo-500-buc-led-uri-100-buc-rezistoare-i-pcb-bonus.html?search_query=Led&results=662) | Shows temperature levels with colors | [8 RON](https://www.optimusdigital.ro/ro/kituri/11970-set-led-uri-asortate-plusivo-500-buc-led-uri-100-buc-rezistoare-i-pcb-bonus.html?search_query=Led&results=662) |
