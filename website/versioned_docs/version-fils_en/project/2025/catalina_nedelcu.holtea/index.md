@@ -7,7 +7,7 @@ An ESP32-based irrigation controller written in Rust, using soil moisture + rain
 
 
 **Author:** Cătălina Nedelcu-Holtea (`catalina_nedelcu.holtea`)  
-**GitHub Project Link:**
+**GitHub Project Link: [https://github.com/UPB-PMRust-Students/project-dm-2025-catanedelcu)**
 
 :::
 
