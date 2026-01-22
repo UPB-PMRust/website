@@ -7,6 +7,9 @@ slug: /lab/04
 
 This lab will teach you the principles of asynchronous programming, and its application in Embassy.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 
 ## Resources
 
@@ -57,10 +60,50 @@ sequenceDiagram
 
  To address this issue, we would need to spawn a new task in which we would wait for the button press, while blinking the LED in the `main` function. 
 
-When thinking of how exactly this works, you would probably think that the task is running on a separate *thread* than the `main` function. Usually this would be the case when developing a normal computer application. Multithreading is possible, but requires a preemptive operating system. Without one, only one thread can independently run per processor core and that means that, since we are using only one core of the RP2350 (which actually has only 2), we would only be able to run **one thread at a time**. So how exactly does the task wait for the button press in parallel with the LED blinking? 
+When thinking of how exactly this works, you would probably think that the task is running on a separate *thread* than the `main` function. Usually this would be the case when developing a normal computer application. Multithreading is possible, but requires a preemptive operating system. Without one, only one thread can independently run per processor core and that means that, since we are using only one core of the STM32U545RE (which has only 1) or the RP2350\RP2040 (which actually has only 2), we would only be able to run **one thread at a time**. So how exactly does the task wait for the button press in parallel with the LED blinking? 
 Short answer is: it doesn't. In reality, both functions run asynchronously. 
 
 A task in Embassy is represented by an *asynchronous function*. Asynchronous functions are different from normal functions, in the sense that they allow asynchronous code execution. Let's take an example from the previous lab:
+
+:::note
+In the examples below you’ll see `Output<'static>` and `Input<'static>`.  
+The `'static` lifetime here means that once the peripherals are initialized, those pins remain valid for the entire lifetime of the firmware. Their role as input or output will not change while the program is running, and Embassy’s async tasks can safely hold on to them without risk of dangling references.  
+:::
+
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+```rust
+#[embassy_executor::task]
+async fn button_pressed(mut led: Output<'static>, mut button: Input<'static>) {
+    loop {
+	    info!("waiting for button press");
+        button.wait_for_falling_edge().await;
+        led.toggle();
+    }
+}
+
+#[embassy_executor::main]
+async fn main(spawner: Spawner) {
+    let peripherals = embassy_stm32::init(Default::default());
+
+    let button = Input::new(peripherals.PXn, Pull::None);
+    let led2 = Output::new(peripherals.PXn, Level::Low, Speed::Medium);
+
+    spawner.spawn(button_pressed(led2, button)).unwrap();
+
+    let mut led = Output::new(peripherals.PXn, Level::Low, Speed::Medium);
+
+    loop {
+        led.toggle();
+        Timer::after_millis(200).await;
+    }
+}
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 ```rust
 #[embassy_executor::task]
 async fn button_pressed(mut led: Output<'static>, mut button: Input<'static>) {
@@ -88,6 +131,13 @@ async fn main(spawner: Spawner) {
     }
 }
 ```
+  </TabItem>
+
+</Tabs>
+
+
+
+
 In this example, we notice that both the `button_pressed` and `main` functions are declared as `async`, telling the compiler to treat them as asynchronous functions. Inside the `main` function (which is also a task, actually), we blink the LED:
 
 ```rust
@@ -101,7 +151,7 @@ loop {
 ## `await` keyword
 
 After setting the timer, our `main` function would need to wait until the alarm fires after 200 ms. Instead of just waiting and blocking the current and *only* thread of execution, it could allow the thread to do another action in the meantime. This is where the `.await` keyword comes into play.
-When using `.await` inside of an asynchronous function, we are telling a third party (called the **executor**, detailed later) that this action might take more time to finish, so *do something else* until it's ready. Basically, the execution flow of the asynchronous function function is halted exactly where `.await` is used, and the executor starts running another task. In our case, it would halt the main function while waiting for the alarm to go off and it could start running the code inside the `button_pressed` task.
+When using `.await` inside of an asynchronous function, we are telling a third party (called the **executor**, detailed later) that this action might take more time to finish, so *do something else* until it's ready. Basically, the execution flow of the asynchronous function is halted exactly where `.await` is used, and the executor starts running another task. In our case, it would halt the main function while waiting for the alarm to go off and it could start running the code inside the `button_pressed` task.
 ```rust
 loop {
     info!("waiting for button press");
@@ -358,14 +408,18 @@ A buzzer is a hardware device that emits sound. There are two types of buzzers:
 ![Buzzer](images/buzzer.png)
 
 :::tip
-To control the buzzer, all you need to do is to set the `top` value of the PWM config to match the frequency you want!
+To control the buzzer, you just need to set the PWM so that its period matches the sound frequency you want.  
+- On RP2s, this is done by adjusting the `top` value.  
+- On STM32U545RE, you achieve the same thing by adjusting the timer’s `SimplePwm` frequency using the [`set_frequency`](https://docs.embassy.dev/embassy-stm32/git/stm32u545re/timer/simple_pwm/struct.SimplePwm.html#method.set_frequency) function.  
+
+In both cases, the duty cycle controls how strong or “loud” the buzzer sounds.
 :::
 
 #### How to wire an RGB LED
 
 The buzzer on the development board is connected to a pin in the J9 block.
 
-![board_buzzer](./images/board_buzzer.png)
+![board_buzzer](./images/board_buzzer.jpeg)
 
 ## Exercises
 
@@ -377,8 +431,8 @@ while start_time.elapsed().as_millis() < time_interval {}
 
 You should notice that one of the tasks is not running. Why? (**1p**)
     :::tip
-    Use a different task instance for each LED. You can spawn multiple instances of the same task, however you need to specify the pool size with `#[embassy_executor::task(pool_size = 2)]`. Take a look at [task-arena](https://docs.embassy.dev/embassy-executor/git/std/index.html#task-arena) for more info.
-    Use [`AnyPin`](https://docs.embassy.dev/embassy-rp/git/rp2040/gpio/struct.AnyPin.html) and blinking frequency parameters for the task. 
+    Use a different task instance for each LED. You can spawn multiple instances of the same task, however you need to specify the pool size with `#[embassy_executor::task(pool_size = 2)]`.
+    Use [`AnyPin`](https://docs.embassy.dev/embassy-stm32/git/stm32u545re/gpio/struct.AnyPin.html) and blinking frequency parameters for the task. 
     :::
     
 2. Fix the usage of busy waiting from exercise 1 and make the 4 LEDs (YELLOW, RED, GREEN, BLUE) blink at different frequencies. (**1p**)
@@ -396,9 +450,9 @@ Blink:
 1 Hz means once per second.
 :::
 
-3. Write a firmware that changes the RED LED's intensity, using switch **SW_4** and switch **SW_5**. Switch **SW_4** will increase the intensity, and switch **SW_5** will decrease it. You will implement this in three ways: (**3p**)
+3. Write a firmware that changes the RED LED's intensity, using switch **S1** and switch **S2**. Switch **S1** will increase the intensity, and switch **S2** will decrease it. You will implement this in three ways: (**3p**)
    
-   1. Use three tasks : one task will be the `main` to control the LED and another two tasks for each button (one for switch **SW_4**, one for switch **SW_5**). Use a [`Channel`](#channel) to send commands from each button task to the main task.
+   1. Use three tasks : one task will be the `main` to control the LED and another two tasks for each button (one for switch **S1**, one for switch **S2**). Use a [`Channel`](#channel) to send commands from each button task to the main task.
     :::tip
     Use an `enum` to define the LED Intensity change command for point i.
     :::
@@ -411,20 +465,20 @@ Blink:
 
 
 4. Simulates a traffic light using the GREEN, YELLOW and RED LEDs on the board. Normally the traffic light goes from one state based on the time elapsed (Green -> 5s , Yellow Blink (4 times) -> 1s , Red -> 2s ).
-However if the switch **SW4** is pressed the state of traffic light changes immediately as shown in the diagram bellow.(**2p**)
+However if the switch **S1** is pressed the state of traffic light changes immediately as shown in the diagram bellow.(**2p**)
 
     ```mermaid
     flowchart LR
         green(GREEN) -- Button pressed --> yellow(Yellow)
-        green(GREEN) -- 5s --> yellow(Yellow)
+        green(GREEN) -- 10s --> yellow(Yellow)
 
         
-        yellow(YELLOW - Blink 4 times/second) -- Button pressed --> red(RED)
+        yellow(YELLOW - Blink 4 times, once / second) -- Button pressed --> red(RED)
 
-        yellow(YELLOW - Blink 4 times/second) -- 1s --> red(RED)
+        yellow(YELLOW - Blink 4 times, once / second) -- 3s --> red(RED)
 
         red(RED) -- Button pressed --> red(RED)
-        red(RED) -- 2s --> green(GREEN)
+        red(RED) -- 5s --> green(GREEN)
 
         classDef red fill:#ff0000,stroke:#000000,color: #ffffff
         classDef yellow fill:#efa200,stroke:#000000
@@ -439,16 +493,16 @@ However if the switch **SW4** is pressed the state of traffic light changes imme
     For this exercise you only need one task. Define an `enum` to save the traffic light state (`Green`, `Yellow`,`Red`). Use `match` to check the current state of the traffic light. Then you need to wait for two futures, since the traffic light changes its color either because some time has elapsed or because the button was pressed. Use `select` to check which future completes first (`Timer` or button press).
     :::
 
-5.  Continue exercise 4: this time, instead of using only the switch **SW4** to change the state of traffic light, we will use the switches **SW4** and **SW7** pressed consecutively to trigger a state change of the traffic light. Use `join` to check that both switches were pressed. (**1p**)
+5.  Continue exercise 4: this time, instead of using only the switch **S1** to change the state of traffic light, we will use the switches **S1** and **S3** pressed consecutively to trigger a state change of the traffic light. Use `join` to check that both switches were pressed. (**1p**)
    :::note
     The switches don't need to be pressed at the same time, but one after the other. The order does not matter.
 
     The traffic light transitions between states either based on the elapsed time or through pressing the switches as described above.
    :::
 
-6. Continue exercise 5:
-   - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red (Use the [formula from Lab03](./03#calculating-the-top-value) to calculate the frequency) . (**1p**)
-   - add a new task for a servo motor. Set the motor position at 180° when the light is green, 90° the light is yellow, and 0° if its red. (**1p**)
+6. Improve exercise 4:
+   - add a new task to control the buzzer. The buzzer should make a continuous low frequency (200Hz) sound while the traffic light is green or yellow and should start beeping (at 400Hz) on and off while the traffic light is red. (**1p**)
+   - add a new task for a servo motor. Set the motor position at 90° when the light is green, 70° the light is yellow, and 0° if its red. (**1p**)
    :::tip
     Use a `PubSubChannel` to transmit the state of the traffic light from the LEDs task to both the buzzer and the servo motor tasks.
    :::
