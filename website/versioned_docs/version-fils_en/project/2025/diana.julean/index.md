@@ -70,7 +70,7 @@ Tested the buzzer, button and ST7735 screen. First, integrated the buzzer and th
  ![Top view](./hw1_ok.webp)
 
 ### Schematics
- ![KiCad Schematics](./circuits.svg)
+ ![KiCad Schematics](./schematic.svg)
 
 ### Bill of materials
 | [Device](link://to/device) | Usage | [Price](link://to/store) |
