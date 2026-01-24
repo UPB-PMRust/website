@@ -66,12 +66,11 @@ Implemented the whole hardware part of the project, including the ST7735 screen,
 Tested the buzzer, button and ST7735 screen. First, integrated the buzzer and the button in the project, making sure the whole alarm system worked with the rest of the project. Included the display in the project, showing values such as temperature, light and button status.  
 
 ## Hardware
- ![Top view](./hardware1.webp)
- ![Top view](./Hardware1_proj.webp)
- ![Top view](./Hardware2_proj.webp)
+ ![Top view](./hw11_ok.webp)
+ ![Top view](./hw1_ok.webp)
 
 ### Schematics
- ![KiCad Schematics](./circuits.webp)
+ ![KiCad Schematics](./circuits.svg)
 
 ### Bill of materials
 | [Device](link://to/device) | Usage | [Price](link://to/store) |
