@@ -20,6 +20,8 @@ ColorPicky is a compact, real-time color picking tool built in **Rust** using **
 - **Interactive UI**: Main screen with live color preview and History screen for saved colors
 - **Button Controls**: Hold for live sampling, tap to save, double tap to switch screens, long press to clear history
 
+<iframe width="315" height="560" src="https://www.youtube.com/embed/nf3QsNqSgGU" frameborder="0" allowfullscreen></iframe>
+
 ## Motivation
 
 This project was inspired by practical use-cases in graphic design, photo/video color grading, and UI branding, where it is useful to capture and reuse colors from physical objects. The second goal was to gain hands-on experience with embedded Rust on RP2350 using Embassy, integrating multiple peripherals (I2C + SPI + GPIO) in a responsive application.
@@ -109,7 +111,3 @@ The project uses a Raspberry Pi Pico 2W as the main microcontroller, communicati
 - Improve naming accuracy using perceptual distance (ex. CIE Lab / ΔE) and a larger palette
 - Design a compact enclosure (3D printed casing)
 - Add a web app
-
-```
-
-```
