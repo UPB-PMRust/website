@@ -25,6 +25,40 @@ The main architecture components and their interactions:
 - **Actuation Layer**: Servos in the robotic hand mimic the finger positions.
 ![Diagram](./diagram.webp)
 
+## Detailed Design
+
+The software is structured into modular asynchronous components, each handling a specific part of the system’s logic:
+
+### 1. Wi-Fi and TCP Communication
+- **Libraries used**: `cyw43`, `embassy-net`, `embedded-io-async`
+- **Responsibilities**:
+  - Starts a Wi-Fi Access Point on the Raspberry Pi Pico 2W.
+  - Opens a TCP socket that listens for incoming connections.
+  - Parses user gesture commands sent as text (e.g., `"1"` = Peace).
+  - Ensures reconnection and timeout handling.
+
+### 2. Servo Controller
+- **Libraries used**: `embassy-rp::pwm`, `fixed`
+- **Responsibilities**:
+  - Maps gestures to appropriate angles for each servo.
+  - Applies calibration ranges for individual servos.
+  - Uses PWM updates to move servos in real-time.
+
+### 3. Sensor Monitoring Task
+- **Libraries used**: `embassy-rp::gpio`, `embassy-time`
+- **Responsibilities**:
+  - Continuously reads five digital inputs from pressure sensors.
+  - Automatic local control in the absence of TCP input.
+  - Uses periodic 500ms polling for balancing speed and stability.
+
+### 4. Command Parser
+- **Libraries used**: `core::str`, `defmt`
+- **Responsibilities**:
+  - Parses TCP input as UTF-8 text.
+  - Maps string commands `"1"`–`"8"` to gestures.
+  - Logs activity and input validation using `defmt`.
+![Functional Diagram](./functionaldiagram.webp)
+
 ## Log
 
 ### Week 5 - 11 May
@@ -42,6 +76,10 @@ The main architecture components and their interactions:
 - Calibrated analog input readings from pressure sensors.
 
 ### Week 19 - 25 May
+- Mapped individual pressure sensor inputs to corresponding servo angles.
+- Fine-tuned servo movement ranges and logic based on physical orientation.
+- Integrated TCP networking for communication with the hand controller.
+- Calibrated pressure sensor thresholds to accurately detect low and high states for input handling.
 
 ## Hardware
 
@@ -86,9 +124,20 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy) | Async runtime for Raspberry Pi Pico | Used to control GPIO, ADC, and timers |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Common hardware interface | Standard traits for pins, ADC, PWM |
-| [defmt](https://github.com/knurling-rs/defmt) | Debug logging tool | Shows debug messages through RTT |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Async HAL for Raspberry Pi Pico microcontrollers | Used for GPIO control and driving PWM for servomotors |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Asynchronous task executor for embedded devices | Runs async tasks for sensor reading and servo control |
+| [embassy-futures](https://github.com/embassy-rs/embassy) | Utilities for `async/await` in no_std environments | Used to perform concurrent waiting via `select` between input and timer |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time management and delays | Used for non-blocking delays and timers |
+| [embassy-net](https://github.com/embassy-rs/embassy) | Async network stack for embedded systems | Used for handling TCP connections over Wi-Fi |
+| [cyw43](https://github.com/embassy-rs/embassy) | Driver for the CYW43 Wi-Fi chip | Connects the Pico 2W to a local network |
+| [cyw43-pio](https://github.com/embassy-rs/embassy) | PIO backend for the CYW43 driver | Provides SPI communication for the Wi-Fi module |
+| [embedded-io-async](https://github.com/embassy-rs/embedded-io) | Async traits for I/O | Used for TCP socket read/write operations |
+| [heapless](https://github.com/japaric/heapless) | Fixed-capacity data structures without heap allocation | Used for static IP configuration |
+| [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging crate for embedded systems | Used for structured debug messages and runtime logs |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT backend for defmt logging | Sends `defmt` logs to the host machine via USB RTT |
+| [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler for embedded systems | Reports panics via defmt and safely stops the application |
+| [static_cell](https://github.com/embassy-rs/static-cell) | Runtime-initialized static memory | Used to safely allocate static resources |
+| [fixed](https://github.com/aggieben/fixed) | Fixed-point math library | Used to define PWM duty cycles accurately |
 
 
 ## Links
