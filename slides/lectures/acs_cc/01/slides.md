@@ -58,7 +58,7 @@ to the *Proiectarea cu Microprocesoare* engineering class
 
 <v-click>
 
-### 2025 is an experiment - we will keep it chill
+### 2026 is an experiment - ieration V2 - we will keep it chill
 
 </v-click>
 
@@ -81,9 +81,7 @@ src: ./team.md
 layout: section
 ---
 
-
-
-# Outline
+# Outline & Rules
 
 ---
 
@@ -93,15 +91,15 @@ layout: section
 <div>
 
 ## Lectures
-  - 12 lectures
-  - 1 Q&A lecture for the project
+  - 18 lectures + 1 Q&A lecture for the project
 
 ## Labs
   - 12 labs
 
 ## Project
-- Build a hardware device running software written in Rust or C on a microcontroller-based board
-- The cost for the hardware is around 150 RON
+- Build a hardware device running software written in Rust on a microcontroller-based board
+- The cost for the hardware is around 100 RON
+- You can opt to receive a free dev board 
 - Presented at PM Fair during the last week of the semester
 
 </div>
@@ -116,20 +114,12 @@ layout: section
 
 
 ## 1 point for lab activity
-## 1 point for lab assignment (final lab exam)
-
-<br> 
-
+## 1 point for "colocviu laborator"
 ## 3 points PROJECT
-<br> 
+## 4 points @ Final Exam
+## 1 point - 2 quizes @ course
 
-## 2 points lectures activity (announced tests)
-
-<br> 
-
-## 3 points @ Final Exam
-
-<br> 
+*Note: the lab activity is for attendance; it is scaled in the end with the mark from the  colocviu laborator*
 
 <i>
 
@@ -138,8 +128,10 @@ layout: section
 
 ### +0.75 bonus for top 10 projects of the year
  
-
 </i>
+
+## Special...
+### 10 out of 10 for complex projects "POLIfest ready" by the 26th of March
 
 ---
 
@@ -173,6 +165,22 @@ layout: section
 
 > It can not be based on a 30 min youtube tutorial
 
+---
+
+# Project details
+
+## Available dev-boards (that you can borrow from us for the project):
+- [Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html)
+- [Raspberry Pi Pico-series microcontrollers documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-seri) //not recomended
+
+## Examples -  good projects 2025
+[PoliCube](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/project/2025/claudia.golaes)  
+[Money counting machine with coin and bill storage](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/project/2025/dragos.boncan)  
+[Bluetooth-Controlled Car](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/project/2025/emanuel.stiuj)  
+[RFID-Controlled Corporate Elevator System](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/project/2025/vicentiu.duta)
+
+## Special projects (for 10/10)
+[Requirements for projects for 10/ 10 without exam)](https://docs.google.com/document/d/1-AwPcxrguudlGGtgRMW9vTmyFyi_VfLY62IrPz1LJ-c/edit?usp=sharing)
 
 ---
 
@@ -214,7 +222,7 @@ Why join:
 
 👾 Summer Internship @ your own start-up
 
-🤖 8 - 9 March - the largest, coolest, most fun Hackathon in Romania
+🤖 21 - 22 March - the largest, coolest, most fun Hackathon in Romania (>110 teams)
 
 > PS: ⏱️ Is it a good time considering how the IT market looks?
 
@@ -281,31 +289,74 @@ src: ../../resources/agc/slides.md
 
 ---
 
-# Example Companies
+# Example Companies (Romania) - HW + Embedded
 
-<br> 
+<br>
 
-<div style="column-count: 3; column-gap: 20px; font-size: 24px;">
-    <p>NXP </p>
-    <p>Infineon </p>
-    <p>Microchip </p>
-    <p>EPG </p>
-    <p>Renault </p>
-    <p>Continental </p>
-    <p>Viavi </p>
-    <p>Siemens </p>
-    <p>Emerson </p>
-    <p>GE </p>
-    <p>Honeywell </p>
-    <p>Thales </p>
-   <p> Hella </p>
-   <p> Bosch </p>
- 
+<div style="column-count: 3; column-gap: 22px; font-size: 22px; line-height: 1.25;">
+
+  <p><b>Semiconductors </b></p>
+  <p><span style="color:#0F8F87; font-weight:700">NXP</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Infineon</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Microchip</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Synopsys</span></p>
+  <p><span style="color:#D97A00; font-weight:700">Analog Devices</span></p>
+
+<br>
+<br>
+
+
+  <p><b>Automotive Tier-1 </b></p>
+  <p><span style="color:#D97A00; font-weight:700">Continental</span></p>
+  <p><span style="color:#D97A00; font-weight:700">Bosch</span></p>
+  <p><span style="color:#D97A00; font-weight:700">FORVIA HELLA</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">HARMAN</span></p>
+
+  <p><b>Industrial / Energy / Automation</b></p>
+  <p><span style="color:#D97A00; font-weight:700">Emerson</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Siemens</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Honeywell</span></p>
+
+  <p><b>Networking / Test &amp; Measurement</b></p>
+  <p><span style="color:#0F8F87; font-weight:700">Nokia</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Ericsson</span></p>
+  <p><span style="color:#0F8F87; font-weight:700">Keysight</span></p>
+
+  <p><b>Aerospace </b></p>
+  <p><span style="color:#0F8F87; font-weight:700">Thales</span></p>
+
+</div>
+
+<br>
+
+<div style="font-size:18px;">
+  <b>Legend:</b>
+  <span style="color:#0F8F87; font-weight:700">Bucharest</span>
+  &nbsp;•&nbsp;
+  <span style="color:#1E5AA8; font-weight:700">Brasov, Constanta</span>
+  &nbsp;•&nbsp;
+  <span style="color:#D97A00; font-weight:700">Cluj, Timisoara, Sibiu</span>
 </div>
 
 <!--
 Processor
 -->
+
+---
+
+# Btw...
+
+<div style="font-size:80%">
+
+| # | Company | Market cap | What it does| # | Company | Market cap | What it does |
+|---:|---|---:|---|---:|---|---:|---|
+| 1 | NVIDIA | $4.450 T | <span style="color:#0F8F87; font-weight:700">AI GPUs and accelerator systems</span> | 6 | TSMC | $1.900 T | <span style="color:#0F8F87; font-weight:700">Foundry manufacturing for advanced chips</span> |
+| 2 | Apple | $3.759 T | <span style="color:#0F8F87; font-weight:700">Consumer devices with custom silicon</span> | 7 | Saudi Aramco | $1.643 T | Oil production and energy refining |
+| 3 | Alphabet (Google) | $3.701 T | Search, ads, YouTube, cloud | 8 | Meta Platforms | $1.618 T | Social networks and digital advertising |
+| 4 | Microsoft | $2.982 T | Software, cloud services, enterprise AI | 9 | Tesla | $1.566 T | <span style="color:#0F8F87; font-weight:700">EVs, batteries, onboard compute</span> |
+| 5 | Amazon | $2.133 T | E-commerce and AWS cloud platform | 10 | Broadcom | $1.541 T | <span style="color:#0F8F87; font-weight:700">Networking chips for data centers</span> |
+
+</div>
 
 ---
 src: ../../resources/processor/slides.md
@@ -431,7 +482,7 @@ src: ../../resources/mcu/slides.md
 <!-- RP2040 -->
 
 ---
-src: ../../resources/rp2350/slides.md
+src: ../../resources/stm32u545re/slides.md
 ---
 
 ---

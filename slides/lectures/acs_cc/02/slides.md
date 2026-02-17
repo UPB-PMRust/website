@@ -77,6 +77,10 @@ src: ../../resources/gpio_avr/slides.md
 src: ../../resources/sio/slides.md
 ---
 
+---
+src: ../../resources/gpio_stm32/slides.md
+---
+
 <!-- rust-embedded -->
 
 ---
@@ -115,6 +119,7 @@ we talked about
   - Single Cycle IO
   - IO Bank
   - Pad
+- STM32U5 GPIO
 - The Rust embedded standard stack
 - Bare metal Rust
 - The embassy-rs framework

@@ -1,7 +1,8 @@
 ---
 layout: section
 ---
-# Apollo Guidance Computer
+
+# Why Embedded & <br> Where it gets us
 
 ---
 layout: quote

@@ -246,8 +246,44 @@ Extras:
 
 [^1]: XIP = Execute in Place (without this, the code would need to be copied in RAM first)
 
+
 ---
-layout: two-cols
+
+# Memory on ARM - STM example - M33 based
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ccd8e6;
+    }
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #add8e6;
+        font-weight: bold;
+    }
+    td {
+        vertical-align: top;
+    }
+    em {
+        font-weight: bold;
+    }
+</style>
+
+## STM32U545RE-Q Memory Breakdown
+| Memory Type | Size | Purpose |
+|---|---:|---|
+| Embedded Flash | **512 KB** | Stores program code and non-volatile data in internal Flash. |
+| SRAM (on-chip) | **274 KB** | Stores stack, heap, variables, and runtime data. |
+| System Memory  | **64 KB** | Factory-programmed ST bootloader (“system memory”). |
+| OTP | **512 bytes** | One-time-programmable user data (e.g., IDs/keys). |
+| Peripheral Space | Varies | Memory-mapped I/O regions for GPIO, UART, SPI, DMA, etc. |
+| Registers | 16 + control registers | General purpose + program flow + special purpose |
+
 ---
 
 # Let's see some code
