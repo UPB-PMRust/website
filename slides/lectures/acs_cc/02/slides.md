@@ -33,6 +33,8 @@ Lecture 2
 - Embedded Rust Stack
 - embassy-rs
 
+//pt ca e mai simplu
+
 ---
 src: ../../resources/intro_rust/slides.md
 ---
