@@ -2,9 +2,8 @@
 layout: section
 ---
 
-# MPU for RP2350
+# MPU for RP2350 and STM32U5
 Protected Memory System Architecture v8 (PMSAv8)
-
 
 ---
 ---
