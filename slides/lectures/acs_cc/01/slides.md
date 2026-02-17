@@ -58,7 +58,7 @@ to the *Proiectarea cu Microprocesoare* engineering class
 
 <v-click>
 
-### 2026 is an experiment - ieration V2 - we will keep it chill
+### 2026 is an experiment - iteration V2 - we will keep it chill
 
 </v-click>
 

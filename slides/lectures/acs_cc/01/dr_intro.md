@@ -44,12 +44,6 @@
 
 ---
 
-# Abstract level 
-
-<img src="/img/abstract.png" class="w-full mx-auto block">
-
----
-
 # Why PM
 
 
@@ -69,6 +63,10 @@
 
 * Actual physical sensors
 * Lots of IoT custom hardware
+
+---
+
+# Extra questions
 
 ---
 
