@@ -48,7 +48,8 @@ A microprocessor is a computer central processing unit (CPU) on a single integra
 
 # Graphic representation
 
-<img src="/img/vs.png" class="w-full mx-auto block">
+<img src="/img/vs.png" class="w-[70%] mx-auto block">
+
 
 © https://www.electronicsforu.com/resources/difference-between-microprocessor-and-microcontroller
 
@@ -70,8 +71,9 @@ von Neumann, where memory contains both instructions and data.
 Harvard, where memory access is done on separate buses, one for data, one for instructions.	
 > AVR, PIC, DSPs and many microcontrollers are Harvard
 
-Note: ARM is von Neumann with some * 
-Note: GPUs (NVIDIA) are mixed arhitecture
+Note1: ARM is von Neumann with some *
+ 
+Note2: GPUs (NVIDIA) are mixed arhitecture
 
 ---
 

@@ -35,9 +35,10 @@ to the *Proiectarea cu Microprocesoare* engineering class
 ### You will learn
 
 - how hardware works
+- how to engineer a hardware system - while accounting for practical constraints
 - how to actually build your own hardware device
 - the Rust programming Language
-- a little bit of low level C
+- a little bit of low-level C
 
 </v-click>
 
@@ -46,7 +47,7 @@ to the *Proiectarea cu Microprocesoare* engineering class
 
 <br>
 
-### We expect
+### We expect you
 - to come to class
 - ask a lot of questions
 - maybe some work at home
@@ -90,13 +91,13 @@ layout: section
 <div grid="~ cols-2 gap-5">
 <div>
 
-## Lectures
-  - 18 lectures + 1 Q&A lecture for the project
+### Lectures
+  - 15 lectures + 2 Q&A lecture for the project + 2 lecutres with invetees from the industry
 
-## Labs
-  - 12 labs
+### Labs
+  - 7 labs + 6 project work slots + 1 test
 
-## Project
+### Project
 - Build a hardware device running software written in Rust on a microcontroller-based board
 - The cost for the hardware is around 100 RON
 - You can opt to receive a free dev board 
@@ -116,8 +117,8 @@ layout: section
 ## 1 point for lab activity
 ## 1 point for "colocviu laborator"
 ## 3 points PROJECT
-## 4 points @ Final Exam
 ## 1 point - 2 quizes @ course
+## 4 points @ Final Exam
 
 *Note: the lab activity is for attendance; it is scaled in the end with the mark from the  colocviu laborator*
 
@@ -130,8 +131,26 @@ layout: section
  
 </i>
 
-## Special...
+## Special
 ### 10 out of 10 for complex projects "POLIfest ready" by the 26th of March
+
+---
+
+# Exam
+
+4 points out of 10
+
+On paper
+
+Paper-based open book - you can print whatever you want - no phones/laptop/ tablet / smart watches allowed
+
+50% - multiple choice answers
+
+50% - an engineering problem (design a system that does X in Y scenario with Z constraints) with subpoints that might include:
+- hardware block diagram
+- argument design choices
+- software block diagram
+- calculate certain parameters
 
 ---
 
@@ -267,7 +286,7 @@ src: ../../resources/agc/slides.md
 
 # Example
 
-<img src="/img/car.png" class="w-full mx-auto block">
+<img src="/img/car.png" class="w-[70%] mx-auto block">
 
 ---
 
@@ -332,8 +351,6 @@ src: ../../resources/agc/slides.md
 <div style="font-size:18px;">
   <b>Legend:</b>
   <span style="color:#0F8F87; font-weight:700">Bucharest</span>
-  &nbsp;•&nbsp;
-  <span style="color:#1E5AA8; font-weight:700">Brasov, Constanta</span>
   &nbsp;•&nbsp;
   <span style="color:#D97A00; font-weight:700">Cluj, Timisoara, Sibiu</span>
 </div>

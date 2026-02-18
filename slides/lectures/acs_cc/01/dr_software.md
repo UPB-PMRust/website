@@ -6,6 +6,36 @@ layout: section
 
 ---
 
+# From bare metal to Linux
+
+<style>
+  table {
+    font-size: 0.9em;
+    border-collapse: collapse;
+  }
+  th {
+    font-weight: bold;
+  }
+  td, th {
+    padding: 4px; /* Reduce padding */
+  }
+</style>
+
+| Controller | RAM | Flash / storage | Runs | Example OS / framework |
+|---|---:|---:|---|---|
+| ATmega324 | 2 KB | 32 KB Flash | Bare metal | Superloop + ISR |
+| ATmega128 | 4 KB | 128 KB Flash | Bare metal | Superloop + timer tick |
+| Microchip SAMD21 | 32 KB | 256 KB Flash | Bare metal, RTOS | FreeRTOS |
+| STM32F103C8 | 20 KB | 64 KB Flash | Bare metal, RTOS | FreeRTOS |
+| Nordic nRF52832 | 64 KB | 512 KB Flash | Bare metal, RTOS | FreeRTOS + BLE stack |
+| ESP32-C3 | 400 KB | 4 MB | RTOS | FreeRTOS (ESP-IDF) |
+| RP2350 | 520 KB | 4 MB | BM, RTOS, async | Embassy, FreeRTOS |
+| STM32U545RE | 274k | 2 MB Flash | Bare metal, RTOS, async | Embassy, FreeRTOS, Zephyr |
+| STM32MP157 | 512 MB | eMMC / SD / NAND | Full OS | Linux (minimal/rootfs) |
+| Raspberry Pi | 1–8 GB | SD / eMMC / SSD | Full OS | Linux (Raspberry Pi OS, Ubuntu) |
+
+---
+
 # Why Embedded Software is Different
 
 <v-click>
@@ -34,6 +64,22 @@ layout: section
 * It must be designed in parallel with the hardware
 
 </v-click>
+
+---
+
+# Why Bare Metal / Async
+
+## Bare metal / async is often the better default
+* You control the whole exec model (superloop/interrupts or async tasks) => predictable latency and low jitter
+* Lower RAM, flash, & power, because there’s no kernel, scheduler overhead, or background services
+
+## An OS adds overhead and complexity you must “pay for”
+* Context switches, tick interrupts, stacks per task, drivers, IPC => CPU/RAM cost and extra failure modes
+* More moving parts (scheduler, priorities, locks) => deadlocks, priority inversion, starvation, timing surprises
+
+## Verification, robustness, and debugging are harder with an OS
+* Worst-case timing and system state become harder to reason about (more interleavings, shared state, nondeterminism)
+* When it fails, it can fail “system-wide” (scheduler stuck, heap fragmentation, task crash) and root cause is harder to reproduce
 
 ---
 
@@ -285,6 +331,12 @@ Extras:
 | Registers | 16 + control registers | General purpose + program flow + special purpose |
 
 ---
+layout: section
+---
+
+# Why Rust-lang
+
+---
 
 # Let's see some code
 
@@ -358,7 +410,6 @@ b = (uint32_t) a << 24;
 
 </v-click>
 
-
 ---
 
 # Variables in C
@@ -395,7 +446,33 @@ b's' // u8
 
 ---
 
-# Why Rust-lang
+# Lets see how C++ is doing
+
+| Link | Memory-safety issue | Why Rust prevents it |
+|---|---|---|
+| [ZDI-24-854](https://www.zerodayinitiative.com/advisories/ZDI-24-854) | Unchecked AES-key length copied into fixed stack buffer => overflow enables network-adjacent remote code execution. | Safe Rust enforces bounds checks; unchecked stack copies aren’t possible.| 
+| [Toyota: single bit flip](https://www.eetimes.com/toyota-case-single-bit-flip-that-killed/) | Stack overflow/memory corruption can kill RTOS task, bypass fail-safes => loss of throttle control (unintended acceleration). | Rust prevents overflows/races; hardware bit-flips and logic bugs remain possible. |
+| [CrowdStrike RCA (Channel File 291)](https://www.crowdstrike.com/wp-content/uploads/2024/08/Channel-File-291-Incident-Root-Cause-Analysis-08.06.2024.pdf) | Template field-count mismatch caused out-of-bounds input-array read in sensor, triggering Windows system crash/BSOD.|Rust bounds-checked indexing prevents OOB reads; you get an error instead. |
+
+---
+
+# How do we keep C++ code functional in safety-critical applications?
+
+Lots of tooling and processes
+
+Coding standards / restricted subsets: MISRA C/C++, AUTOSAR C++14, SEI CERT C/C++, JSF AV C++ (plus documented deviations/waivers).
+
+Static analysis & compliance checking: rule checkers + dataflow analyzers (e.g., Polyspace, Coverity/CodeSonar/Parasoft, clang-tidy) integrated in CI.
+
+Compiler hardening & build gates: warnings-as-errors, stack protection, fortified libc checks / hardening bundles (e.g., _FORTIFY_SOURCE, -fstack-protector-strong, -fhardened).
+
+Dynamic bug finding (test builds): sanitizers for memory/UB/races (ASan/UBSan/TSan), plus coverage-guided fuzzing (libFuzzer).
+
+Safety evidence overhead: mandated reviews + traceability + V&V activities (ISO 26262 / DO-178C / IEC 61508-style workflows).
+
+---
+
+# Why Rust-lang - some tech insights
 
 ### The tagline of Rust is No Undefined Behavior. 
 
@@ -406,7 +483,43 @@ this;
 - uses type states to move runtime checks to compile time and force
 developers to check;
 - clearly defined data types, unlike i8 or u128;
-- safe unions, that provide a discriminant to prevent wrong interpretation
+- safe unions, that provide a safeguard to prevent wrong interpretation
 of data;
 - clear code organization into crates and modules;
 - backward compatibility at crate level.
+
+---
+
+# Does Rust remove the need for tooling?
+
+No, but it sure makes code safer and dev faster 
+
+Rust’s advantage is biggest in safe Rust.
+
+As unsafe/FFI grows, assurance shifts back to: unsafe policy & reviews, FFI boundary correctness, sanitizers/fuzzing on risky edges, dependency/toolchain governance; plus the same ISO/DO-178 traceability & V&V.
+
+[Rust in Android: move fast and fix things](https://thehackernews.com/2025/11/rust-adoption-drives-android-memory.html) 
+
+- A 1000x reduction in memory safety vulnerability density compared to Android’s C and C++ code
+- With Rust changes having a 4x lower rollback rate and spending 25% less time in code review, the safer path is now also the faster one
+
+---
+
+# Who supports Rust-lang
+
+## Some links to read
+
+[the NSA: U.S. and International Partners Issue Recommendations to Secure Software Products Through Memory Safety](https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/3608324/us-and-international-partners-issue-recommendations-to-secure-software-products/)
+
+[The White House: Back to the building blocks: A path toward secure and measurable software](https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf)
+
+
+[How Rust went from a side project to the world’s most-loved programming language](https://www.technologyreview.com/2023/02/14/1067869/rust-worlds-fastest-growing-programming-language/)
+
+[On Rust-lang adoption based on git-hub adoption](https://innovationgraph.github.com/global-metrics/programming-languages)
+
+
+[Rust developers at Google are twice as productive as C++ teams](https://www.theregister.com/2024/03/31/rust_google_c/)
+
+## Some companies that are building up Rust teams in embedded:
+- Airbus, Ampere, Bae Systems, Boeing, Ford, General Dynamics, Hyundai, Northrop Grumman, NXP, Thales, Toyota, Volvo

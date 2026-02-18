@@ -18,7 +18,7 @@
 
 ---
 
-# ENG
+# Engineer
 
 <div grid="~ cols-2 gap-20">
 <div>
@@ -68,6 +68,10 @@
 
 # Extra questions
 
+| What else should we account for?                                                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - **How do we go from requirements to production?** *(process / gates)*<br>- **How do we design a maintainable product?** *(modularity / versioning)*<br>- **What documentation must we deliver for a hardware product?** *(HW+FW+test)*<br>- **What are the classic constraints & trade-offs?** *(power / cost / perf / time / risk)*<br>- **How do we make it robust?** *(watchdog / brownout / safe-state)* | - **How do we approach security?** *(threat model / secure boot / keys)*<br>- **How do we do remote updates?** *(OTA / signing / rollback)*<br>- **How do we do observability & real-world debugging?** *(logs / tracing / SWD)*<br>- **How do we design for test & manufacturing?** *(DFT/DFM / fixtures / calibration)* |
+
 ---
 
 # 2026 VS 2025 
@@ -89,6 +93,7 @@
 | **Modification**                                                                                                                 | **How it helps**                                                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Each student will receive one board for the project.                                                                         | Lower overall costs for students.                                              |
-| Add an introductory Rust lab. Increase the intro sequence to **3** labs (instead of **2**) before the GPIO lab.              | More time to get comfortable with Rust and embedded workflows before moving to hardware-facing labs (GPIO), reducing friction early in the semester. |
 | Lab grading becomes attendance-based: **10 points** for being present and successfully flashing/uploading code to the board. | Less “grade pressure” during lab sessions and less focus on chasing points; more focus on learning and experimenting.                                |
 | Publish lab solutions during the semester (for each lab, in the following week).                                             | Students get more code examples earlier, and can reuse patterns for the project while the semester is ongoing.
+
+**>> Solutions for all the lab works:** https://github.com/UPB-PMRust/lab-solutions/tree/main

@@ -84,7 +84,6 @@ have multiple functions
 <img src="./pins.png" class="rounded">
 
 ---
----
 
 # The Bus
 that interconnects the core with the peripherals
