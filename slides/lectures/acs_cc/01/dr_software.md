@@ -523,3 +523,15 @@ As unsafe/FFI grows, assurance shifts back to: unsafe policy & reviews, FFI boun
 
 ## Some companies that are building up Rust teams in embedded:
 - Airbus, Ampere, Bae Systems, Boeing, Ford, General Dynamics, Hyundai, Northrop Grumman, NXP, Thales, Toyota, Volvo
+
+---
+
+# Next time
+
+In short:
+
+Intro intro embedded
+
+Modern ucs capabilities
+
+GPIO

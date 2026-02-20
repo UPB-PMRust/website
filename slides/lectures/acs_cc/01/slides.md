@@ -92,7 +92,7 @@ layout: section
 <div>
 
 ### Lectures
-  - 15 lectures + 2 Q&A lecture for the project + 2 lecutres with invetees from the industry
+  - 15 lectures + 2 Q&A lectures for the project + 2 lectures with invitees from the industry
 
 ### Labs
   - 7 labs + 6 project work slots + 1 test
@@ -142,7 +142,7 @@ layout: section
 
 On paper
 
-Paper-based open book - you can print whatever you want - no phones/laptop/ tablet / smart watches allowed
+Paper-based open book - you can print whatever you want - no phones/laptops/tablets / smart watches allowed
 
 50% - multiple choice answers
 
@@ -253,7 +253,9 @@ Why join:
 <!--
 AGC
 -->
-
+---
+src: ../../resources/lab_board/slides.md
+---
 ---
 src: ../../resources/agc/slides.md
 ---
