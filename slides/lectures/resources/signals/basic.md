@@ -1,8 +1,9 @@
 ---
 layout: section
 ---
-# Signals
-Digital Signals - Recap 
+
+# Extra recap: Signals
+Digital Signals - Recap
 
 ---
 
@@ -64,5 +65,3 @@ Signal that what we actually generate
 ![Noise](./noise.svg)
 
 </div>
-
-

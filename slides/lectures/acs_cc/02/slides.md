@@ -26,14 +26,15 @@ Lecture 2
 
 ---
 
-# GPIO for RP2350
+# Summary
 
+- Rust intro
 - Memory Mapped I/O
   - GPIO Peripheral
+- The complexity behind modern ucs
 - Embedded Rust Stack
 - embassy-rs
-
-//pt ca e mai simplu
+- Signals
 
 ---
 src: ../../resources/intro_rust/slides.md
