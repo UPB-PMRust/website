@@ -35,7 +35,7 @@ Before modifying registers, you need to know how to target a specific bit. We do
 
 :::info
 
-`1010 << 1 = 0110` (In decimal: 3 multiplied by 2 becomes 6).
+`0011 << 1 = 0110` (In decimal: 3 multiplied by 2 becomes 6).
 
 :::
 
