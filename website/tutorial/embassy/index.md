@@ -6,7 +6,7 @@ description: How to install the prerequisites for embassy-rs
 
 # Embassy-rs Setup
 
-Here, we will cover the steps needed in order to be able to compile and flash Rust applications for **STM32U545** and **RP2**s, the MCU (Microcontroller Unit) found in our **STM32 Nucleo-U545RE-Q** and **Raspberry Pi Pico**s.
+Here, we will cover the steps needed in order to be able to compile and flash Rust applications for **STM32U545** and **RP2**s, the MCU (Microcontroller Unit) found in our **STM32 Nucleo-U545RE-Q** and **Raspberry Pi Pico** boards.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,7 +19,7 @@ In order to install the tools needed to compile Rust code, follow the next steps
 
 #### Linux
 
-Run the this command in terminal:
+Run this command in the terminal:
 
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -29,7 +29,8 @@ This downloads and runs `rustup-init.sh`, which in turn downloads and runs the c
 
 :::info 
 
-Before installing elf2uf2-rs, you need to install  `pkg-config` and `libudev`. You can get it by running the following in your terminal. 
+Before installing elf2uf2-rs, you need to install  `pkg-config` and `libudev`. You can install them by running the following command in your terminal:
+
 ```shell
 sudo apt-get install pkg-config libudev-dev
 ```
@@ -164,7 +165,7 @@ For the STM32U545, flashing is typically done through its built‑in **DFU (Devi
   </TabItem>
 
   <TabItem value="rp2350" label="Raspberry Pi Pico" default>
-To flash a program to the Raspberry Pi Pico via USB, it needs to be in *USB mass storage device mode*. To put it in this mode, you need to **hold the `BOOTSEL` button down**  while connecting it to your PC. Connecting and disconnecting the USB can lead to the port getting damaged, so we conveniently attached a reset button on the breadboard included on the **Pico Explorer Base**. Now, to make it reflashable again, just press the two buttons simultaneously.
+To flash a program to the Raspberry Pi Pico via USB, it needs to be in *USB mass storage device mode*. To put it in this mode, you need to **hold the `BOOTSEL` button down**  while connecting it to your PC. Frequently connecting and disconnecting the USB cable can damage the port, so we conveniently attached a reset button on the breadboard included on the **Pico Explorer Base**. Now, to make it reflashable again, just press the two buttons simultaneously.
 
 After connecting the board to your PC and compiling the program, locate the binary in the `target/thumbv6m-none-eabi/release/` folder then, run:
 
@@ -185,11 +186,11 @@ On `Windows`, you may need to run this command in a terminal that has **Admin Pr
 
 ## Debugging using Raspberry Pi Debug Probe
 
-In order to be able to debug the program running on the board, we will need to connect the **Raspberry Pi Debug Probe** to our **Raspberry Pi Pico W**. Below, you have a picture of the debug kit provided:
+In order to be able to debug the program running on the board, we will need to connect the **Raspberry Pi Debug Probe** to our **Raspberry Pi Pico W**. Below is a picture of the provided debug kit:
 
 ![Raspberry Pi Debug probe](assets/the-probe.png)
 
-To connect them, we will use the **3-pin debug to 0.1-inch header (female)** cable. First, carefully insert the **3-pin debug** head in the **right side** connector. Then you will also need to connect it to the Raspberry Pi Pico W. You will find attached the pinout, take a closer look at the bottom of the image:
+To connect them, we will use the **3-pin debug to 0.1-inch header (female)** cable. First, carefully insert the **3-pin debug** head in the **right side** connector. Then you will also need to connect it to the Raspberry Pi Pico W. You can find the pinout below, take a closer look at the bottom of the image:
 
 ![Raspberry Pi Pico W pinout](assets/picow-pinout.svg)
 
@@ -229,7 +230,7 @@ probe-rs run --chip RP2040 path/to/your/binary
 </Tabs>
 
 
-or you can use **Debug and Run** view in Visual Studio Code. You will need to modify the `programBinary` path in the `.vscode/launch.json` config file to point to your binary file.
+or you can use the **Run and Debug** view in Visual Studio Code. You will need to modify the `programBinary` path in the `.vscode/launch.json` config file to point to your binary file.
 
 ## Building your first Embassy-rs project
 
@@ -318,7 +319,7 @@ You can skip this step when the target is defined in `rust-toolchain.toml`.
 
 #### Memory layout
 
-We also need to take care of the memory layout of our program when writing code for a microcontroller. These can be found in the datasheet of all the microcontrollers. Bellow, you can find the memory layout for the **STM32U545** and **RP2**s:
+We also need to take care of the memory layout of our program when writing code for a microcontroller. These can be found in the datasheet of all the microcontrollers. Below, you can find the memory layout for the **STM32U545** and **RP2**s:
 
 ##### `memory.x`
 
@@ -337,8 +338,7 @@ MEMORY
 ```
 
 :::info
-You don’t need to provide a `memory.x` file when using **Embassy**,  
-because the `embassy-stm32` crate has a feature called `memory-x`
+You don’t need to provide a `memory.x` file when using **Embassy**, because the `embassy-stm32` crate has a feature called `memory-x`
 that already supplies the required linker script.
 :::
 
@@ -528,7 +528,7 @@ that already supplies the required linker script.
   </TabItem>
 </Tabs>
 
-To use the `memory.x` layout file, we will also need to use a build script. Rust facilitates that through the `build.rs` file. Bellow you will find an explained build script you can use.
+To use the `memory.x` layout file, we will also need to use a build script. Rust facilitates that through the `build.rs` file. Below you will find an explained build script you can use.
 
 ##### `build.rs`
 
@@ -594,7 +594,7 @@ If you are using the `memory.x` provided by `embassy-rs` comment this part:
 
 #### Adding the Dependencies
 
-At this step, we must add the dependencies we will use for our project. Bellow you will find the basics you will need for a minimal application, including an `usb_logger` to *"enable"* debugging over serial.
+At this step, we must add the dependencies we will use for our project. Below you will find the basics you will need for a minimal application, including an `usb_logger` to *"enable"* debugging over serial.
 
 ##### `embassy-executor`
 
@@ -610,7 +610,7 @@ cargo add embassy-executor --features arch-cortex-m,executor-thread,executor-int
 * `integrated-timers` - use the executor-integrated embassy-time timer queue.
 * `task-arena-size-X` - sets the task arena size
 
-We will also need to add the `cortex-m` and `cortex-m-rt` crates as dependencies, as the `#[executor::main]` attribute depends on the minimal startup code for the Cortex M microcontrollers found in this crates. To do that, run:
+We will also need to add the `cortex-m` and `cortex-m-rt` crates as dependencies, as the `#[executor::main]` attribute depends on the minimal startup code for the Cortex M microcontrollers found in these crates. To do that, run:
 
 ```shell
 cargo add cortex-m
@@ -625,16 +625,15 @@ This crate enables timekeeping, timeouts and delays. Add it by running:
 cargo add embassy-time
 ```
 
-#### `embassy-rp`
+#### `embassy-stm32`
 
-This crate is a **Hardware Abstraction Layer** for the **RP2040**. You can add it to your project like so:
+This crate is a **Hardware Abstraction Layer** for the **STM32U545**. You can add it to your project like so:
 
 ```shell
-cargo add embassy-rp --features time-driver,critical-section-impl
+cargo add embassy-stm32 --features time-driver-any
 ```
 
-* `time-driver` - enable the timer for use with `embassy-time` with a `1MHz` tick rate.
-* `critical-section-impl` - configure the critical section crate to use an implementation that is safe for multicore use on RP2040
+* `time-driver-any` - enable the timer for use with `embassy-time`.
 
 #### `embassy-usb-logger`
 
@@ -645,7 +644,7 @@ cargo add log
 cargo add embassy-usb-logger
 ```
 
-### `probe-panic`
+### `panic-probe`
 
 This crate adds a panic handler for the microchip that prints panic messages over **JTAG**, and in order to add it, run:
 
@@ -732,5 +731,3 @@ async fn main(spawner: Spawner) {
 </TabItem>
 
 </Tabs>
-
-
