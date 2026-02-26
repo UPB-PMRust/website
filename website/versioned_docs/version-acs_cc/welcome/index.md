@@ -10,11 +10,9 @@ Welcome to the *Microprocessor Programming (PM)* class.
 During the class you will learn how to design and implement a hardware device. 
 
 You takeaways from the course are:
-  - learning how a microprocessor (*MCU*) works, using as an example the RP2040 MCU from the [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/) as well as a Atmega328P;
-  - learning how to design your hardware schematics using [KiCad](https://www.kicad.org/) and how to create the bill of materials (*BOM*) for it;
+  - learning how a microprocessor (*MCU*) works, using as an example the STM32U5 MCU from the [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) 
   - building the hardware device either using a breadboard, a prototyping board or a printed circuit board (*PCB*);
   - learning how to develop the software that controls hardware in [Rust](https://www.rust-lang.org/);
-  - learning how to develop the software that controls hardware in C;
   - presenting the hardware device at the *PM Fair* show.
 
 
@@ -31,13 +29,70 @@ daniel.rosner@upb.ro
 </td>
 
 <td>
-**Irina Niță**
-![Irina Nita](images/irina_nita.jpg)
+**Teodor Dicu**
+![Teodor Dicu](images/teodor_dicu.jpg)
+ 
+Lab board developer \
+GitHub: [Teodor Dicu](https://github.com/DTeodor-Alexaandru) \
+teodor.dicu@upb.ro
+</td>
+
+<td>
+**Andrei Zamfir**
+![Andrei Zamfir](images/andrei_zamfir.jpg)
  
 Lab Professor \
-Responsible for software \
-GitHub: [irina-nita](https://github.com/irina-nita) \
-irina.nita@oxidos.io
+GitHub: [ZamfirAndreiPaul](https://github.com/ZamfirAndreiPaul) \
+andrei.zamfir@wyliodrin.com
+</td>
+</tr>
+
+<tr valign="top">
+<td>
+**Andrei Batasev**
+![Andrei Batasev](images/andrei_batasev.jpg)
+
+Lab Professor \
+GitHub: [Pfat8equalsD](https://github.com/Pfat8equalsD) \
+andrei.batasev@stud.acs.upb.ro
+</td>
+
+<td>
+**Cristiana Precup**
+![Cristiana Precup](images/cristiana_precup.jpg)
+
+Lab Professor \
+GitHub: [cristianaprecup](https://github.com/cristianaprecup) \
+cristiana.precup@wyliodrin.com
+</td>
+
+<td>
+**Dănuț Aldea**
+![Danut Aldea](images/danut_aldea.jpg)
+ 
+Lab Professor \
+GitHub: [danutaldea](https://github.com/danutaldea) \
+george_danut.aldea@stud.acs.upb.ro
+</td>
+</tr>
+
+<tr valign="top">
+<td>
+**Eva Cosma**
+![Eva Cosma](images/eva_cosma.jpg)
+ 
+Lab Professor \
+GitHub: [Eva Cosma](https://github.com/eva-cosma) \
+eva.cosma@wyliodrin.com
+</td>
+
+<td>
+**George Popa**
+![George Popa](images/george_popa.jpg)
+ 
+Lab Professor \
+GitHub: [George Popa](https://github.com/POPAGEORGEMATEI) \
+george_matei.popa@stud.acs.upb.ro
 </td>
 
 <td>
@@ -52,43 +107,12 @@ irina.bradu@wyliodrin.com
 
 <tr valign="top">
 <td>
-**Gabriel Păvăloiu**
-![Gabriel Păvăloiu](images/gabriel_pavaloiu.jpg)
+**Irina Niță**
+![Irina Nita](images/irina_nita.jpg)
  
 Lab Professor \
-GitHub: [GabrielPavaloiu](https://github.com/GabrielPavaloiu) \
-gabriel.pavaloiu@upb.ro
-</td>
-
-<td>
-**Andrei Zamfir**
-![Andrei Zamfir](images/andrei_zamfir.jpg)
- 
-Lab Professor \
-Responsible for hardware \
-GitHub: [ZamfirAndreiPaul](https://github.com/ZamfirAndreiPaul) \
-andrei.zamfir@wyliodrin.com
-</td>
-
-<td>
-**Teodor Dicu**
-![Teodor Dicu](images/teodor_dicu.jpg)
- 
-Lab Professor\
-Responsible for hardware\
-GitHub: [DTeodor-Alexaandru](https://github.com/DTeodor-Alexaandru) \
-teodor.dicu@wyliodrin.com
-</td>
-</tr>
-
-<tr valign="top">
-<td>
-**Alexandru Ungureanu**
-![Alexandru Ungureanu](images/alexandru_ungureanu.jpg)
-
-Lab Professor \
-GitHub: [AlexU01](https://github.com/AlexU01) \
-alexagungureanu@gmail.com
+GitHub: [irina-nita](https://github.com/irina-nita) \
+irina.nita@oxidos.io
 </td>
 
 </tr>
@@ -99,29 +123,28 @@ alexagungureanu@gmail.com
 
 | Activity | Group | Day | Hour | Room | Professor |
 |----------|-------|-----|------|-------|----------|
-| Lecture | *all students* | Wednesday | 08 - 10 | EC105 | Daniel Rosner|
 | Lecture | *all students* | Monday | 18 - 20 | PR001 | Daniel Rosner|
-| Lab | 331CC A | Tuesday | 12 - 14 | ED218 | Teodor Dicu |
-| Lab | 331CC B | Tuesday | 12 - 14 | ED217 | Alexandru Ungureanu |
-| Lab | 332CC A | Tuesday | 14 - 16 | ED218 | Irina Niță |
-| Lab | 332CC B | Tuesday | 14 - 16 | ED217 | Irina Bradu |
-| Lab | 333CC A | Wednesday | 16 - 18 | ED218 | Teodor Dicu |
-| Lab | 333CC B | Wednesday | 16 - 18 | ED217 | Alexandru Ungureanu |
-| Lab | 334CC A | Wednesday | 18 - 20 | ED218 | Andrei Zamfir |
-| Lab | 334CC B | Wednesday | 18 - 20 | ED217 | Irina Bradu |
-| Lab | 335CC A | Thursday | 18 - 20 | ED218 | Andrei Zamfir |
-| Lab | 335CC B | Thursday | 18 - 20 | ED217 | Gabriel Păvăloiu |
+| Lecture | *all students* | Wednesday | 08 - 10 | PROO1 | Daniel Rosner|
+| Lab | 331CC A | Tuesday | 12 - 14 | ED218 | Andrei Batasev |
+| Lab | 333CC B | Tuesday | 12 - 14 | ED217 | Irina Bradu |
+| Lab | 332CC A | Tuesday | 14 - 16 | ED218 | Andrei Batasev |
+| Lab | 332CC B | Tuesday | 14 - 16 | ED217 | Irina Bradu <br/> Cristiana Precup |
+| Lab | 331CC B | Wednesday | 12 - 14 | ED218 | George Popa |
+| Lab | 333CC A | Wednesday | 16 - 18 | ED218 | George Popa |
+| Lab | 335CC A | Wednesday | 16 - 18 | ED217 | Eva Cosma |
+| Lab | 334CC A | Wednesday | 18 - 20 | ED218 | Irina Niță |
+| Lab | 334CC B | Wednesday | 18 - 20 | ED217 | Andrei Zamfir |
 
 
 ## Grading
 
 | Part | Description | Points |
 |--------|-------------|--------|
-| [Lecture](./category/lecture) tests | You will have a test every few classes with subjects from the previous class (will be anounced). | 2p |
-| [Lab](./category/lab) | Your work at every lab will be graded. | 1p |
-| [Lab](./category/lab) | Final Lab Assigment (Final Lab Test) | 1p |
+| [Lecture](./category/lecture) Quizzes | Based on 2 quizzes held during the lecture. | 1p |
+| [Lab](./category/lab) | Based on attendance; scaled by the mark from the *Colocviu*. | 1p |
+| [Lab](./category/lab) Exam | *Colocviu Laborator* - Practical testing of lab skills. | 1p |
 | [Project](./project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
-| Exam | You will have to take an exam during the session. This will be in written format. | 3p |
+| Exam | You will have to take an exam during the session. This will be in written format. | 4p |
 | **Total** | *You will need at least 5 points to pass the subject.* | **10p** |
 
 ## Rules
@@ -136,18 +159,21 @@ alexagungureanu@gmail.com
  
 ## Bibliography
 
+### Theory
+1. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M23 and Cortex-M33 Processors* 
+
 ### Hardware
-1. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M0 and Cortex-M0+ Processors, 2nd Edition* 
-2. **Joseph Yiu**, *The Definitive Guide to ARM® Cortex®-M23 and Cortex-M33 Processors* 
+1. **STMicroelectronics**, *[STM32U5 ARM 32bit Series Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)
 2. **Charles Platt**, *Encyclopedia of Electronic Components*, Volumes 1, 2, 3 
 3. **Paul Scherz, Simon Monk**, *Practical Electronics for Inventors, 2nd edition*
-4. **Raspberry Pi Ltd**, *[RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)*
 
 ### Software
 1. **Steve Klabnik, Carol Nichols**, *[The Rust Programming Language](https://doc.rust-lang.org/stable/book/)*
 2. **Rust Team**, *[Rust Embedded, The Discovery book](https://docs.rust-embedded.org/discovery/microbit/)*
 3. **Raspberry Pi Ltd**, *[Getting started with Raspberry Pi Pico-series](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)*
-4. [embassy_rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) crate documentation
-5. [embassy_rp examples](https://github.com/embassy-rs/embassy/tree/main/examples/rp/src/bin)
-6. [Raspberry Pi Pico Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf)
-7. [Connecting to the Internet with Raspberry Pi Pico W](https://datasheets.raspberrypi.com/picow/connecting-to-the-internet-with-pico-w.pdf)
+
+### Crates
+
+1. [embassy_stm32](https://docs.embassy.dev/embassy-stm32/) crate documentation
+2. [embassy_stm32 examples `stm32u5`](https://github.com/embassy-rs/embassy/tree/main/examples/stm32u5/src/bin)
+3. [embassy_stm32 examples `stm32f4`](https://github.com/embassy-rs/embassy/tree/main/examples/stm32f4/src/bin)
