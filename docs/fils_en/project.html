@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-fils_en docs-doc-page docs-doc-id-project/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.1">
+<title data-rh="true">Description | Microprocessor Architecture</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pmrust.pages.upb.ro/img/docusaurus-social-card.png"><meta data-rh="true" name="twitter:image" content="https://pmrust.pages.upb.ro/img/docusaurus-social-card.png"><meta data-rh="true" property="og:url" content="https://pmrust.pages.upb.ro/docs/fils_en/project"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="fils_en"><meta data-rh="true" name="docusaurus_tag" content="docs-default-fils_en"><meta data-rh="true" name="docsearch:version" content="fils_en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-fils_en"><meta data-rh="true" property="og:title" content="Description | Microprocessor Architecture"><meta data-rh="true" name="description" content="The goal of the project is to showcase the knowledge gained throughout the semester by creating functional hardware that runs software written in Rust."><meta data-rh="true" property="og:description" content="The goal of the project is to showcase the knowledge gained throughout the semester by creating functional hardware that runs software written in Rust."><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pmrust.pages.upb.ro/docs/fils_en/project"><link data-rh="true" rel="alternate" href="https://pmrust.pages.upb.ro/docs/fils_en/project" hreflang="en"><link data-rh="true" rel="alternate" href="https://pmrust.pages.upb.ro/docs/fils_en/project" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Project","item":"https://pmrust.pages.upb.ro/docs/fils_en/category/project"},{"@type":"ListItem","position":2,"name":"Description","item":"https://pmrust.pages.upb.ro/docs/fils_en/project/"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.d370507e.css">
+<script src="/assets/js/runtime~main.767aba92.js" defer="defer"></script>
+<script src="/assets/js/main.a7fa16c9.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Microprocessor Architecture" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Microprocessor Architecture" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Microprocessor Architecture</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/fils_en/category/lecture">Lecture</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/fils_en/category/lab">Lab</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/fils_en/category/project">Project</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/fils_en/category/tutorials">Tutorials</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a aria-current="page" class="navbar__link active" aria-haspopup="true" aria-expanded="false" role="button" href="/docs/fils_en/project">FILS English</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/docs/acs_cc/project">ACS CC</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/docs/fils_en/project">FILS English</a></li></ul></div><a href="https://www.github.com/upb-pmrust/website" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fils_en/welcome"><span title="Welcome" class="linkLabel_WmDU">Welcome</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/fils_en/category/lecture"><span title="Lecture" class="categoryLinkLabel_W154">Lecture</span></a><button aria-label="Expand sidebar category &#x27;Lecture&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/fils_en/category/lab"><span title="Lab" class="categoryLinkLabel_W154">Lab</span></a><button aria-label="Expand sidebar category &#x27;Lab&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/docs/fils_en/category/project"><span title="Project" class="categoryLinkLabel_W154">Project</span></a><button aria-label="Collapse sidebar category &#x27;Project&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/fils_en/project"><span title="Description" class="linkLabel_WmDU">Description</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/fils_en/category/projects-2025"><span title="Projects 2025" class="categoryLinkLabel_W154">Projects 2025</span></a><button aria-label="Expand sidebar category &#x27;Projects 2025&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/fils_en/category/projects-2024"><span title="Projects 2024" class="categoryLinkLabel_W154">Projects 2024</span></a><button aria-label="Expand sidebar category &#x27;Projects 2024&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/fils_en/category/tutorials"><span title="Tutorials" class="categoryLinkLabel_W154">Tutorials</span></a><button aria-label="Expand sidebar category &#x27;Tutorials&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/fils_en/category/project"><span>Project</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Description</span></li></ul></nav><span class="theme-doc-version-badge badge badge--secondary">Version: FILS English</span><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Description</h1></header>
+<p>The goal of the project is to showcase the knowledge gained throughout the semester by creating functional hardware that runs software written in Rust.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="deliverables">Deliverables<a href="#deliverables" class="hash-link" aria-label="Direct link to Deliverables" title="Direct link to Deliverables" translate="no">​</a></h2>
+<p>The deliverables will be stored in two places:</p>
+<ul>
+<li>the <em>source code</em> will be stored on <a href="https://github.com/UPB-PMRust-Students" target="_blank" rel="noopener noreferrer">Github</a></li>
+<li>the project documentation will be stored on <a href="https://github.com/upb-pmrust/website" target="_blank" rel="noopener noreferrer">Github</a>, by creating a fork of the course&#x27;s website</li>
+</ul>
+<p>The <strong>documentation repository</strong> should contain:</p>
+<ul>
+<li>the full documentation of the project, in the <code>index.md</code> file<!-- -->
+<ul>
+<li>a description of the functionality</li>
+<li>the motivation for choosing the project</li>
+<li>the architecture<!-- -->
+<ul>
+<li>a description of all components and how they interconnect</li>
+<li>a diagram drawn in <a href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer">diagrams.net</a> or similar</li>
+</ul>
+</li>
+<li>a weekly log of the project status</li>
+<li>hardware design<!-- -->
+<ul>
+<li>a description of the hardware used</li>
+<li>a schematic drawn in <a href="https://www.kicad.org/" target="_blank" rel="noopener noreferrer">KiCad EDA</a> or similar</li>
+<li>photos of the device</li>
+</ul>
+</li>
+<li>software design<!-- -->
+<ul>
+<li>detailed design</li>
+<li>functional diagram</li>
+</ul>
+</li>
+<li>bill of materials (hardware and software)</li>
+</ul>
+</li>
+<li>the photos and other files required by the index.md file</li>
+</ul>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>You need to work in a fork of this <a href="https://github.com/upb-pmrust/website" target="_blank" rel="noopener noreferrer">website&#x27;s Github repository</a> and not in a blank one, in order to create a <em>merge request</em>, as described below.</p></div></div>
+<p>The <strong>source code repository</strong> should contain:</p>
+<ul>
+<li>a brief documentation - the repository&#x27;s <code>README.md</code> file<!-- -->
+<ul>
+<li>short description of the functionality</li>
+<li>requirements (hardware and software)</li>
+<li>brief hardware and software design, including diagrams</li>
+</ul>
+</li>
+<li>software source code</li>
+</ul>
+<p>The repositories will be checked by the lab assistant at during lab reserved for the project. Uploading code on the last day of the software milestone is not allowed. <strong>The assistant</strong> will check that students have <strong>submitted regular commits</strong> to the repository.</p>
+<p>Students will have to build and showcase the hardware with the running software at PM Fair. On the presentation day, <strong>students will upload the source code to the hardware</strong> and the demo will be done live in front of the committee.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="website-build-pre-requisites">Website build pre-requisites<a href="#website-build-pre-requisites" class="hash-link" aria-label="Direct link to Website build pre-requisites" title="Direct link to Website build pre-requisites" translate="no">​</a></h2>
+<div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>Windows support</div><div class="admonitionContent_BuS1"><p>If you are using Windows, you will either need to install WSL2, for which you will find a detailed tutorial <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener noreferrer">here</a>, or use a VM with Ubuntu, Debian or another Linux based OS.</p></div></div>
+<p>You will need to install <code>npm</code> and <code>node</code> and the simples way to do that can be found on <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener noreferrer">Node.js Official Website</a>.</p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>WSL2</div><div class="admonitionContent_BuS1"><p>If you are using WSL2, you should follow the instructions for installing on Linux.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-create-a-page-for-your-project">How to create a page for your project?<a href="#how-to-create-a-page-for-your-project" class="hash-link" aria-label="Direct link to How to create a page for your project?" title="Direct link to How to create a page for your project?" translate="no">​</a></h2>
+<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Windows Users</div><div class="admonitionContent_BuS1"><p>These steps should be performed on inside your <strong>VM</strong>, or in <strong>WSL2</strong>, <strong>not on your host machine</strong>.</p></div></div>
+<ol>
+<li>Please login with your UPB login to <a href="https://github.com" target="_blank" rel="noopener noreferrer">Github</a></li>
+<li>You will have to add an SSH Key to your Github account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS&#x27;s console: <code>ssh-keygen -t rsa -b 2048</code>. Press press ENTER until you exit the respective command prompts.</li>
+</ol>
+<ul>
+<li>If your command prompt <code>Overwrite (y/n)?</code> press <code>n</code> and run the above command again, changing the destination of the key.</li>
+<li>If the key was generated successfully, you will have the keys generated in the location indicated by the command <code>Enter file in which to save the key (/home/&quot;NAME&quot;/.ssh/id_rsa):</code></li>
+<li>Read the content of the file <code>id_rsa.pub</code> or the name you gave to the file and transfer it to Github.</li>
+<li>Login to <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a> and go to: <a href="https://github.com/settings/keys" target="_blank" rel="noopener noreferrer">SSH Keys</a>.</li>
+<li>Click on <em>Add new key</em> and insert into the <em>Key</em> textbox your key from <code>id_rsa.pub</code>.</li>
+<li>Be very careful about the expiration date of the ssh key, change the expiration date otherwise it is set to 30 days.</li>
+</ul>
+<ol start="3">
+<li>
+<p><a href="https://git-scm.com" target="_blank" rel="noopener noreferrer">Download Git</a> from the official website and access it in the command line using <code>git -v</code> to check if it was installed correctly. You might have to use <em>Git Bash</em>.</p>
+</li>
+<li>
+<p>Navigate to the <a href="https://github.com/upb-pmrust/website" target="_blank" rel="noopener noreferrer">website&#x27;s Github repository</a> and create a public fork by clicking on the button in the top right corner.</p>
+</li>
+<li>
+<p>Clone the newly created repository by running <code>git clone git@github.com:UPB-PMRust/website.git</code>.</p>
+</li>
+<li>
+<p>Now you have your own clone. You need to create a new branch. For this, follow the steps:</p>
+</li>
+</ol>
+<ul>
+<li>Navigate to your cloned repository</li>
+<li>Run the command: <code>git fetch</code> followed by the <code>git pull</code> command</li>
+<li>The branches have the following naming convention: <code>project/your_curs.upb.ro_username</code>. Example: <code>project/andrei_paul.zamfir</code></li>
+<li>To create a new branch:<!-- -->
+<ul>
+<li><code>git checkout -b &lt;branch_name&gt;</code></li>
+<li><code>git push --set-upstream origin project/your_curs.upb.ro_username</code></li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>
+<p>To start creating your page for the project, go to <code>website/versioned_docs/version-fils_en/project/2025</code> and create a new directory with your curs.upb.ro username. Example: <code>andrei_paul.zamfir</code>.</p>
+</li>
+<li>
+<p>In that directory you must create a file named <code>index.md</code> which will be your project page. This page must follow the project <a href="/docs/fils_en/project/2025/template">template page</a> You can take a look at the <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener noreferrer">Markdown</a> syntax. You can look at <a href="https://github.com/UPB-PMRust/website/tree/main/website/versioned_docs/version-fils_en/project" target="_blank" rel="noopener noreferrer">last years&#x27; projects</a>.</p>
+</li>
+<li>
+<p>To build and test the website, you can run the <code>./build_website.sh</code> in the project&#x27;s root folder, then run <code>cd ./website/ &amp;&amp; npm run serve</code>.</p>
+</li>
+</ol>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Development process</div><div class="admonitionContent_BuS1"><p>After running the script, you could run <code>npm run start</code> instead of <code>serve</code>. This would ensure that the changes you are making in your Markdown file reflect in the running build (without needing to rebuild the project over and over again). But make sure to re-run the build script when you are done, because some subtle bugs may not be caught by this method.</p></div></div>
+<ol start="10">
+<li>After finishing the project, make a <em>merge request</em> to the <a href="https://github.com/UPB-PMRust/website" target="_blank" rel="noopener noreferrer">upstream repository</a>. Do not forget to change the Merge Request Description template to <strong>project</strong>.</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="Merge Request Template" src="/assets/images/MR_template-85f69e4c0a66b268951aba6e88e7327b.webp" width="2404" height="1554" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Merge Request contents</div><div class="admonitionContent_BuS1"><p>The merge requests should contain only the Markdown page, and additional images in <code>svg</code> or <code>webp</code> format that must not exceed <strong>1024x768</strong> pixels.</p></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="hardware-rules">Hardware Rules<a href="#hardware-rules" class="hash-link" aria-label="Direct link to Hardware Rules" title="Direct link to Hardware Rules" translate="no">​</a></h2>
+<ol>
+<li>Projects have to use a microcontroller (MCU) that is capable of running Rust code. Examples of MCUs are <em>nRF52</em>, <em>RP2040</em>, <em>ESP32</em> (RISC-V version).</li>
+<li>Usage of a development board is encouraged, but not required, a custom PCB can be built. Example of development boards are:</li>
+</ol>
+<ul>
+<li><a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html" target="_blank" rel="noopener noreferrer">Raspberry Pi Pico 2</a> (RP2350) or <a href="https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html" target="_blank" rel="noopener noreferrer">Raspberry Pi Pico 2W</a> for WiFi (The version of Pico is not important, but we encourage the use of version 2.)</li>
+<li><a href="https://www.adafruit.com/product/5056" target="_blank" rel="noopener noreferrer">Adafruit Trinkey QT2040</a> (RP2040)</li>
+<li><a href="https://store.arduino.cc/products/arduino-nano-rp2040-connect" target="_blank" rel="noopener noreferrer">Arduino Nano RP2040 Connect</a> (RP2040) - ⚠️ <sup><a href="#user-content-fn-arduino_nano_rp2040_connect" id="user-content-fnref-arduino_nano_rp2040_connect" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">1</a></sup></li>
+<li><a href="https://microbit.org/" target="_blank" rel="noopener noreferrer">micro<!-- -->:bit<!-- --> v2</a> (nRF52833)</li>
+<li><a href="https://www.nordicsemi.com/Products/Development-hardware/nrf52-dk" target="_blank" rel="noopener noreferrer">nRF52 DK</a> (nRF52810)</li>
+<li><a href="https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F401RE?qs=sGAEpiMZZMuqBwn8WqcFUv%2FX0DKhApUpi46qP7WpjrffIid8Wo1rTg%3D%3D" target="_blank" rel="noopener noreferrer">STM32 NUCLEO-F401RE</a></li>
+<li><a href="https://www.espressif.com/en/dev-board/esp32-c3-devkit-rust-1-en" target="_blank" rel="noopener noreferrer">ESP32-C3-DevKit-RUST-1</a> (ESP32-C3) - ⚠️ <sup><a href="#user-content-fn-esp32_riscv" id="user-content-fnref-esp32_riscv" data-footnote-ref="true" aria-describedby="footnote-label" class="footnoteRefStickyNavbar_i6ta">2</a></sup></li>
+</ul>
+<ol start="3">
+<li>The hardware part may be designed either using a breadboard and jumper wires, a prototype board (solder breadboard) or a PCB. If you want to use prototyping boards, ask the lab coordinator for help with soldering during lab hours.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="software-rules">Software Rules<a href="#software-rules" class="hash-link" aria-label="Direct link to Software Rules" title="Direct link to Software Rules" translate="no">​</a></h2>
+<p>It has to run software written in Rust. Students can use:</p>
+<ul>
+<li><a href="https://embassy.dev/" target="_blank" rel="noopener noreferrer">embassy-rs</a></li>
+<li><a href="https://rtic.rs/2/book/en/" target="_blank" rel="noopener noreferrer">RTIC</a></li>
+<li><a href="https://docs.rs/cortex-m-rt/latest/cortex_m_rt" target="_blank" rel="noopener noreferrer">bare metal</a> - the cortex-r-rt crate</li>
+<li><a href="https://www.tockos.org" target="_blank" rel="noopener noreferrer">Tock</a></li>
+<li>any other software framework that is written in Rust</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="project-rules">Project Rules<a href="#project-rules" class="hash-link" aria-label="Direct link to Project Rules" title="Direct link to Project Rules" translate="no">​</a></h2>
+<ol>
+<li>Copying schematics or source code from the Internet is not allowed. Any attempt to copy the project will be accompanied by the corresponding repercussions.</li>
+<li>The project is individual, any attempt at collaborative work will be sanctioned, students can also carry out projects that interact, but the work must be separate.</li>
+<li>Any problem or blockage you have will be discussed with the lab assistant during project work hours.</li>
+<li>Students are strongly encouraged to ask the lab assistant questions about the project.</li>
+<li>The presentation of all the milestones is mandatory.</li>
+<li>The project topic must be established in week 4 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.</li>
+<li>The laboratory supervisor may modify the topic or propose another topic if it is not complex enough for this project.</li>
+<li>We encourage you not to use prebuilt kits, you may get less points for the hardware part.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="requirements">Requirements<a href="#requirements" class="hash-link" aria-label="Direct link to Requirements" title="Direct link to Requirements" translate="no">​</a></h2>
+<ol>
+<li><em>Complexity:</em> The project must reflect at least 40 hours of work and contain elements learned during the year.</li>
+<li><em>Documentation:</em> Complete documentation of the implementation for both hardware and software.</li>
+<li><em>Functionality:</em> The hardware device has to be fully functional.</li>
+</ol>
+<p>The <strong>IoT</strong> stream has to use the networking (<strong>WiFi</strong>, <strong>Bluetooth</strong> or <strong>Ethernet</strong>).</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="example-projects">Example Projects<a href="#example-projects" class="hash-link" aria-label="Direct link to Example Projects" title="Direct link to Example Projects" translate="no">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="examples-of-projects-from-past-years">Examples of projects from past years<a href="#examples-of-projects-from-past-years" class="hash-link" aria-label="Direct link to Examples of projects from past years" title="Direct link to Examples of projects from past years" translate="no">​</a></h3>
+<ol>
+<li><a href="/docs/fils_en/category/projects-2024">Projects from 2024</a></li>
+<li><a href="https://ocw.cs.pub.ro/courses/pm/prj2022" target="_blank" rel="noopener noreferrer">https://ocw.cs.pub.ro/courses/pm/prj2022</a></li>
+<li><a href="https://ocw.cs.pub.ro/courses/pm/prj2023" target="_blank" rel="noopener noreferrer">https://ocw.cs.pub.ro/courses/pm/prj2023</a></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="outstanding-projects">Outstanding Projects<a href="#outstanding-projects" class="hash-link" aria-label="Direct link to Outstanding Projects" title="Direct link to Outstanding Projects" translate="no">​</a></h3>
+<ol>
+<li><a href="https://ocw.cs.pub.ro/courses/pm/prj2023/gpatru/376" target="_blank" rel="noopener noreferrer">POV - DAVIC picTronics</a></li>
+<li><a href="https://ocw.cs.pub.ro/courses/pm/prj2023/gpatru/483" target="_blank" rel="noopener noreferrer">Ryobo - Computer Vision &amp; Object Following</a></li>
+<li><a href="https://ocw.cs.pub.ro/courses/pm/prj2023/ncaroi/plug" target="_blank" rel="noopener noreferrer">Plug &amp; Play ChatGPT</a></li>
+<li><a href="https://ocw.cs.pub.ro/courses/pm/prj2023/drtranca/vending.machine" target="_blank" rel="noopener noreferrer">VENDING MACHINE</a></li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="grading">Grading<a href="#grading" class="hash-link" aria-label="Direct link to Grading" title="Direct link to Grading" translate="no">​</a></h2>
+<table><thead><tr><th>Part</th><th>Deadline</th><th>Points</th></tr></thead><tbody><tr><td>Hardware Milestone</td><td>Week 12</td><td>0.75p</td></tr><tr><td>Software Milestone</td><td>Week 14</td><td>0.75p</td></tr><tr><td>PM Fair</td><td>Week 14</td><td>1.5p</td></tr><tr><td><strong>Total</strong></td><td></td><td><strong>3p</strong></td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="faq">F.A.Q<a href="#faq" class="hash-link" aria-label="Direct link to F.A.Q" title="Direct link to F.A.Q" translate="no">​</a></h2>
+<p><strong>Q:</strong> Can I use another programming language, not Rust?<br>
+<strong>A:</strong> No, the main focus of the project is to learn to work with microcontrollers using Rust.</p>
+<p><strong>Q:</strong> Can I use a different framework than <a href="https://github.com/embassy-rs/embassy" target="_blank" rel="noopener noreferrer">embassy-rs</a>?<br>
+<strong>A:</strong> Yes, we suggest taking a look at <a href="https://rtic.rs/2/book/en/" target="_blank" rel="noopener noreferrer">RTIC</a> or <a href="https://github.com/tock/tock" target="_blank" rel="noopener noreferrer">Tock</a>.</p>
+<p><strong>Q:</strong> What if the PCB arrives after the hardware milestone?<br>
+<strong>A:</strong> You will only present the diagram for the hardware part and if there is a prototype using breadboard, but at the end of the project you must necessarily have the PCB printed and functional.</p>
+<!-- -->
+<section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes" translate="no">​</a></h2>
+<ol>
+<li id="user-content-fn-arduino_nano_rp2040_connect">
+<p>Some function of this board, like WiFi, might not be supported in Rust. <a href="#user-content-fnref-arduino_nano_rp2040_connect" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-esp32_riscv">
+<p>ESP32 provides its own Rust SDK described in the <a href="https://docs.esp-rs.org/book/introduction.html" target="_blank" rel="noopener noreferrer">The Rust on ESP Book</a>. <a href="#user-content-fnref-esp32_riscv" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://www.github.com/upb-pmrust/website/edit/main/website/versioned_docs/version-fils_en/project/index.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/fils_en/category/project"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Project</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/fils_en/category/projects-2025"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Projects 2025</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#deliverables" class="table-of-contents__link toc-highlight">Deliverables</a></li><li><a href="#website-build-pre-requisites" class="table-of-contents__link toc-highlight">Website build pre-requisites</a></li><li><a href="#how-to-create-a-page-for-your-project" class="table-of-contents__link toc-highlight">How to create a page for your project?</a></li><li><a href="#hardware-rules" class="table-of-contents__link toc-highlight">Hardware Rules</a></li><li><a href="#software-rules" class="table-of-contents__link toc-highlight">Software Rules</a></li><li><a href="#project-rules" class="table-of-contents__link toc-highlight">Project Rules</a></li><li><a href="#requirements" class="table-of-contents__link toc-highlight">Requirements</a></li><li><a href="#example-projects" class="table-of-contents__link toc-highlight">Example Projects</a><ul><li><a href="#examples-of-projects-from-past-years" class="table-of-contents__link toc-highlight">Examples of projects from past years</a></li><li><a href="#outstanding-projects" class="table-of-contents__link toc-highlight">Outstanding Projects</a></li></ul></li><li><a href="#grading" class="table-of-contents__link toc-highlight">Grading</a></li><li><a href="#faq" class="table-of-contents__link toc-highlight">F.A.Q</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Politehnica Bucharest &amp; <a href="https://wyliodrin.com" target="_blank">Wyliodrin SRL</a>, licensed under CC BY-SA 4.0.</div></div></div></footer></div>
+</body>
+</html>
