@@ -93,6 +93,7 @@
 | **Modification**                                                                                                                 | **How it helps**                                                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Each student will receive one board for the project.                                                                         | Lower overall costs for students.                                              |
+| 3 intro into Rust-lang laboratories instead of 2.                                                                         | 50% more intro time to adjust to Rust-lang.                                              |
 | Lab grading becomes attendance-based: **10 points** for being present and successfully flashing/uploading code to the board. | Less “grade pressure” during lab sessions and less focus on chasing points; more focus on learning and experimenting.                                |
 | Publish lab solutions during the semester (for each lab, in the following week).                                             | Students get more code examples earlier, and can reuse patterns for the project while the semester is ongoing.
 

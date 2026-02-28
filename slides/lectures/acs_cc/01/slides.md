@@ -250,9 +250,26 @@ Why join:
 
 [Register now](HTTP://innovationlabs.ro)
 
+---
+
+# Timeline 
+Note: slight adjustments are possible during the semester
+
+- Week 1 & 2 - intro into Rust lang
+- Week 3 - intro into Rust & embedded tooling, debug and running programs in Rust on the STM board
+- Week 4 - 8 - embedded programming
+- Week 5 - 6 - Discuss Project at lab / lecture
+- Week 7 - Project Theme Milestone
+- Week 9 - Documentation Milestone
+- Week 10 / 11 - Lab Exam //TBD
+- Week 11 - Hardware Milestone
+- Week 13 - Software Milestone
+- Week 14 - PM fair
+
 <!--
 AGC
 -->
+
 ---
 src: ../../resources/lab_board/slides.md
 ---
