@@ -44,8 +44,9 @@ src: ../../resources/dr-03/intro_interupts.md
 <!-- Interrupts -->
 
 ---
-src: ../../resources/interrupts/slides.md
+src: ../../resources/dr-03/dr_exceptions.md
 ---
+
 
 <!-- Timers intro -->
 
