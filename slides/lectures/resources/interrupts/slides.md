@@ -150,4 +150,31 @@ uint64_t read_time_us_unsafe(void) {
 
 ---
 
-# Exemple
+# Exemple - input from GPIO trg, output on a GPIO
+
+```rust
+// #![no_std] #![no_main] use embassy... stm32 .. sync .. time etc
+use {defmt_rtt as _, panic_probe as _}; //NOTE >> BELOW - BAD FORMATING TO COMPRESS IN 1 SCREEN
+
+static SENSOR_EVENT: Signal<NoopRawMutex, ()> = Signal::new();
+bind_interrupts!(pub struct Irqs {EXTI15_10 => exti::InterruptHandler<interrupt::typelevel::EXTI15_10>; });
+
+#[embassy_executor::task]
+async fn sensor_task(mut sensor: ExtiInput<'static, Async>) {
+    loop { sensor.wait_for_rising_edge().await.unwrap();
+        SENSOR_EVENT.signal(()); }} //bad formating to save screen space ;) 
+
+#[embassy_executor::task]
+async fn command_task(mut cmd: Output<'static>) {loop { SENSOR_EVENT.wait().await;
+        cmd.set_high();
+        Timer::after_millis(50).await;
+        cmd.set_low(); }}
+
+#[embassy_executor::main]
+async fn main(spawner: Spawner) {
+    let p = embassy_stm32::init(Default::default());
+    let sensor = ExtiInput::new(p.PC13, p.EXTI13, Pull::Down, Irqs);
+    let cmd = Output::new(p.PA5, Level::Low, Speed::Low);
+    spawner.spawn(sensor_task(sensor)).unwrap();
+    spawner.spawn(command_task(cmd)).unwrap();  }
+```

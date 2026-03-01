@@ -154,10 +154,33 @@ Minutes, hours, etc., will be incremented in code.
 
 ---
 
+# Example on 328P - how to compute the settings
+
+**Goal:** increment `seconds++` once per second without `delay()` / busy-waiting.
+
+1) Use **Timer1 (16-bit)** so the compare value fits in range.
+2) Choose a prescaler to slow down the timer clock:
+   - `tick_rate = F_CPU / prescaler`
+   - With `F_CPU = 16,000,000 Hz` and prescaler `256`:
+     `tick_rate = 16,000,000 / 256 = 62,500 Hz`
+     => one timer tick every `1 / 62,500 = 16 µs`
+3) Use **CTC mode** (Clear Timer on Compare):
+   - Timer counts from `0` up to `OCR1A`
+   - On match, it resets to 0 and raises **Compare Match A**
+4) Make the compare event happen once per second:
+   - `OCR1A = tick_rate / 1Hz - 1 = 62,500 - 1 = 62,499`
+5) Enable the interrupt source:
+   - Set prescaler + CTC: `TCCR1B = (1<<CS12) | (1<<WGM12)`
+   - Enable Compare Match A interrupt: `TIMSK |= (1<<OCIE1A)`
+6) Enable global interrupts with `sei()`
+7) The ISR runs at 1 Hz: `ISR(TIMER1_COMPA_vect) { seconds++; }`
+
+---
+
 # The code
 
 ``` c
-#define F_CPU 12000000UL //the default f for 328P - we need this for the below computation
+#define F_CPU 16000000UL //the default f for 328P - we need this for the below computation
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -168,7 +191,7 @@ ISR(TIMER1_COMPA_vect) { seconds++; } //the actual handler
 int main()
 {
     // Calculate the value for OCR1A to get a 1-second period (the compare value)
-    OCR1A = (F_CPU / 256) - 1;  /* 46.875 for the dedefault 12 MHz clock */
+    OCR1A = (F_CPU / 256) - 1;  /* 62,500 for the default 16 MHz clock */
 
     // 1) Set prescaler to 256
     // 2) Set CTC mode with TOP = OCR1A (CTC means Clear Time on Compare)
@@ -178,7 +201,7 @@ int main()
     TIMSK = (1 << OCIE1A);
 
     sei();        // Enable global interrupts
-    while(1);     
+    while(1);
     return 0;
 }
 
@@ -202,10 +225,10 @@ We will assume we have a code that might freeze and can accept a maximum of 4 se
 
 ---
 
-# The code
+# Example code in AVR
 
 ``` c
-#define F_CPU 12000000UL
+#define F_CPU 16000000UL
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <avr/interrupt.h>
