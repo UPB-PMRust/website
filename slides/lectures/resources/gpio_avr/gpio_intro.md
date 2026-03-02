@@ -30,7 +30,7 @@ Atmega324P *Note: 2 - max 3 functions per output pin*
 For example?
 
 <p align="center">
-  <img src="img/anything.svg" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/anything.svg" style="width:90%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
@@ -202,11 +202,6 @@ Write one sentence success criteria for debugging.
   <img src="img/s1.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
----
-layout: two-cols
----
-
-# ???
 
 ---
 layout: two-cols
