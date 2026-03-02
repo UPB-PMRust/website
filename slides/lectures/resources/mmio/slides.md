@@ -195,6 +195,45 @@ let cpuid_value = unsafe { cpuid_reg.read() };
 
 ---
 
+# Notes (1)
+Why unsafe?
+
+> Because you’re telling the compiler: “treat this integer as a valid address and read from it.” (a kind off "trust me bro")
+
+> Rust can’t prove that’s safe at compile time, so it requires unsafe.
+
+**Problem 1 - dereferencing a raw pointer (*const u32)**: a raw pointer can be:  null / misaligned / pointing to invalid memory / pointing to a region where reads have side effects (MMIO)
+
+Rust can’t guarantee any of that, so any dereference / read_volatile on a raw pointer is unsafe.
+
+**Problem 2 - extended rules in MMIO**: For hardware registers, reads may have side effects and values can change “externally” (by hardware).
+
+
+**What you’re “promising” when you write unsafe:**
+- the address is correct for your target
+- it’s properly aligned for u32 (it is here)
+- you’re allowed to read from that region (hardware/MPU)
+- the MMIO read is intentional
+
+---
+
+# Notes (2)
+
+> In Rust, cpuid_reg.read() (or *cpuid_reg) performs a normal load, i.e. non-volatile.
+
+For MMIO (“memory-mapped I/O”) registers, a normal load has two problems:
+
+Compiler “optimize code”: if the result isn’t used in an observable way, the compiler may:
+- remove the read entirely,
+- perform it once and then reuse the value,
+- reorder reads/writes.
+
+It doesn’t match hardware semantics: with registers, every read/write can matter (e.g. flags that clear on read, FIFOs, status bits changing asynchronously).
+
+> Note: this is also valid in C/C++ and on any hardware platform
+
+---
+
 # Compiler Optimization
 compilers optimize code
 
@@ -383,6 +422,8 @@ Offset: 0xed0c
 
 ![AIRCR Register 1](./aircr_register_1.png)
 ![AIRCR Register 2](./aircr_register_2.png)
+
+> Note: might be overkill, but good practice
 
 ---
 layout: two-cols

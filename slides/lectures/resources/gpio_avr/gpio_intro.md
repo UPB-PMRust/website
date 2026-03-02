@@ -62,7 +62,7 @@ The “many registers” are just the control surface for a very capable on-chip
 *Note: this is 40% of the diagram*
 
 <p align="center">
-  <img src="img/lots_of_hardware.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/lots_of_hardware.png" style="width:73%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
@@ -72,7 +72,7 @@ The “many registers” are just the control surface for a very capable on-chip
 Lots of hardware blocks (e.g., DMA, WDT, SPI, etc) that must be **(1) configured**, **(2) clocked and interconnected/routed correctly** (bus, interrupts, req), and **(3) mapped to the outside world via properly configured pins** (AF, electrical characteristics such as mode, speed, pull-ups, drive strength, type).
 
 <p align="center">
-  <img src="img/lots_of_hardware_2.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/lots_of_hardware_2.png" style="width:73%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
@@ -81,7 +81,7 @@ Lots of hardware blocks (e.g., DMA, WDT, SPI, etc) that must be **(1) configured
 For example?
 
 <p align="center">
-  <img src="img/to_set.svg" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/to_set.svg" style="width:80%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
@@ -133,7 +133,7 @@ Also:
 Zoom in on the CPUID
 
 <p align="center">
-  <img src="img/cpuid_reg.png" style="width:100%; display:block; margin:0 auto;" alt="cpuid_reg">
+  <img src="img/cpuid_reg.png" style="width:90%; display:block; margin:0 auto;" alt="cpuid_reg">
 </p>
 
 ---
@@ -141,7 +141,7 @@ Zoom in on the CPUID
 # Super summary on how to set "a pin"
 (more details in the next slide)
 <p align="center">
-  <img src="img/33.png" style="width:100%; display:block; margin:0 auto;" alt="cpuid_reg">
+  <img src="img/33.png" style="width:90%; display:block; margin:0 auto;" alt="cpuid_reg">
 </p>
 
 ---
@@ -177,13 +177,6 @@ layout: two-cols
 
 # Step 1
 
-<style>
-.two-columns {
-    grid-template-columns: 6fr 4fr;
-}
-</style>
-
-
 Define the goal
 
 Choose a peripheral instance and pins from the board schematic or datasheet.
@@ -199,19 +192,12 @@ Write one sentence success criteria for debugging.
 :: right ::
 
 <p align="center">
-  <img src="img/s1.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/s1.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
 </p>
-
 
 ---
 layout: two-cols
 ---
-
-<style>
-.two-columns {
-    grid-template-columns: 6fr 4fr;
-}
-</style>
 
 # Step 2
 
@@ -230,19 +216,12 @@ Confirm clock source/divider matches desired peripheral frequency.
 :: right ::
 
 <p align="center">
-  <img src="img/s2.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/s2.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
 layout: two-cols
 ---
-
-<style>
-.two-columns {
-    grid-template-columns: 6fr 4fr;
-}
-</style>
-
 
 # Step 3
 
@@ -263,19 +242,12 @@ Verify pin conflicts: the same pin is used by another function / shared timers e
 :: right ::
 
 <p align="center">
-  <img src="img/s3.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/s3.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
 layout: two-cols
 ---
-
-<style>
-.two-columns {
-    grid-template-columns: 6fr 4fr;
-}
-</style>
-
 
 # Step 4
 
@@ -295,19 +267,12 @@ Clear status flags before starting.
 :: right ::
 
 <p align="center">
-  <img src="img/s4.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/s4.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
 layout: two-cols
 ---
-
-<style>
-.two-columns {
-    grid-template-columns: 6fr 4fr;
-}
-</style>
-
 
 # Step 5
 
@@ -327,18 +292,12 @@ Enable completion/error interrupts for IRQ or DMA.
 :: right ::
 
 <p align="center">
-  <img src="img/s5.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/s5.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
 layout: two-cols
 ---
-
-<style>
-.two-columns {
-    grid-template-columns: 6fr 4fr;
-}
-</style>
 
 # Step 6
 
@@ -360,7 +319,7 @@ Log a minimal status snapshot for debugging.
 :: right ::
 
 <p align="center">
-  <img src="img/s6.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/s6.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
