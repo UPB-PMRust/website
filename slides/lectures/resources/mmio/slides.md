@@ -6,7 +6,7 @@ layout: section
 Memory Mapped Input Output
 
 ---
----
+
 # Bibliography
 for this section
 
@@ -15,6 +15,28 @@ for this section
      - Section 6.1 - *Overview of the memory system*
      - Section 6.2 - *Memory map*
      - Section 6.11 - *Memory systems in microcontrollers*
+
+---
+
+# Intro in MMIO
+
+MMIO means hardware peripherals are controlled through normal memory addresses.
+Instead of special I/O instructions, the CPU uses regular loads/stores to read/write
+peripheral registers.
+
+Core idea:
+- A peripheral exposes **registers** at fixed addresses in the MCU memory map
+- The MCU accesses them like memory (read/ write), but the “memory” is hardware
+
+Typical operations: write a control register to enable/configure a peripheral /  read a status register to check flags (ready, error, IRQ pending) / write a data register to send/receive bytes/words
+
+> note: the same CPU instructions (`LDR/STR` on ARM) work for RAM, Flash-mapped regions, and peripherals
+
+> it enables a clean model: **memory map + registers + bitfields**
+
+Important rules:
+- use `volatile` for MMIO so reads/writes are not optimized away
+- register access is often **side-effectful** (reading clears flags; writing 1 clears bits, etc.)
 
 ---
 ---

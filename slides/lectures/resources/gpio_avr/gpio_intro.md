@@ -27,6 +27,15 @@ Atmega324P *Note: 2 - max 3 functions per output pin*
 ---
 
 # "It can do anything"
+For example?
+
+<p align="center">
+  <img src="img/anything.svg" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
+---
+
+# "It can do anything"
 
 The “many registers” are just the control surface for a very capable on-chip system.
 
@@ -64,6 +73,15 @@ Lots of hardware blocks (e.g., DMA, WDT, SPI, etc) that must be **(1) configured
 
 <p align="center">
   <img src="img/lots_of_hardware_2.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
+---
+
+# "A few settings"
+For example?
+
+<p align="center">
+  <img src="img/to_set.svg" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
 </p>
 
 ---
@@ -121,6 +139,14 @@ Zoom in on the CPUID
 ---
 
 # Super summary on how to set "a pin"
+(more details in the next slide)
+<p align="center">
+  <img src="img/33.png" style="width:100%; display:block; margin:0 auto;" alt="cpuid_reg">
+</p>
+
+---
+
+# Super summary on how to set "a pin"
 
 | Step / Layer | What it is (simple) | Typical things you configure | Quick sanity check |
 |---|---|---|---|
@@ -146,8 +172,17 @@ in 6 easy steps :)
 6. **Start operation:** enable peripheral, start transfer, verify with flags or callbacks, handle errors, and add recovery or timeout.
 
 ---
+layout: two-cols
+---
 
 # Step 1
+
+<style>
+.two-columns {
+    grid-template-columns: 6fr 4fr;
+}
+</style>
+
 
 Define the goal
 
@@ -161,7 +196,27 @@ List external requirements: pullups, termination, voltage levels.
 
 Write one sentence success criteria for debugging.
 
+:: right ::
+
+<p align="center">
+  <img src="img/s1.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
 ---
+layout: two-cols
+---
+
+# ???
+
+---
+layout: two-cols
+---
+
+<style>
+.two-columns {
+    grid-template-columns: 6fr 4fr;
+}
+</style>
 
 # Step 2
 
@@ -177,7 +232,22 @@ Optionally force reset and release reset for a clean start.
 
 Confirm clock source/divider matches desired peripheral frequency.
 
+:: right ::
+
+<p align="center">
+  <img src="img/s2.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
 ---
+layout: two-cols
+---
+
+<style>
+.two-columns {
+    grid-template-columns: 6fr 4fr;
+}
+</style>
+
 
 # Step 3
 
@@ -193,7 +263,24 @@ Configure pull-up/down and speed/ slew rate.
 
 Verify pin conflicts: the same pin is used by another function / shared timers etc.
 
+
+
+:: right ::
+
+<p align="center">
+  <img src="img/s3.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
 ---
+layout: two-cols
+---
+
+<style>
+.two-columns {
+    grid-template-columns: 6fr 4fr;
+}
+</style>
+
 
 # Step 4
 
@@ -203,13 +290,29 @@ Set operating mode: master/slave, TX/RX, PWM, sampling, etc.
 
 Program timing: baudrate, prescalers, sampling time, or protocol timing.
 
-Configure frame format, word length, parity, stop bits, addressing.
+Configure frame format, word length, parity, stop bits, and addressing.
 
 Configure FIFO thresholds, filters, and error behavior.
 
 Clear status flags before starting.
 
+
+:: right ::
+
+<p align="center">
+  <img src="img/s4.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
 ---
+layout: two-cols
+---
+
+<style>
+.two-columns {
+    grid-template-columns: 6fr 4fr;
+}
+</style>
+
 
 # Step 5
 
@@ -225,7 +328,22 @@ Set buffer addresses/length, transfer width, increment, priorities.
 
 Enable completion/error interrupts for IRQ or DMA.
 
+
+:: right ::
+
+<p align="center">
+  <img src="img/s5.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
 ---
+layout: two-cols
+---
+
+<style>
+.two-columns {
+    grid-template-columns: 6fr 4fr;
+}
+</style>
 
 # Step 6
 
@@ -242,6 +360,13 @@ Handle error flags: clear, retry, or reset peripheral.
 Add timeouts to avoid permanent blocking.
 
 Log a minimal status snapshot for debugging.
+
+
+:: right ::
+
+<p align="center">
+  <img src="img/s6.png" style="width:100%; display:block; margin:0 auto;" alt="pins_st">
+</p>
 
 ---
 
