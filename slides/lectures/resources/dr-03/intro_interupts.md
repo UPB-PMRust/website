@@ -425,7 +425,9 @@ Not set in stone :)
 
 "the simple version"
 
-![Exceptions](./interrupt_vectors_324p.png)
+<p align="center">
+  <img src="./interrupt_vectors_324p.png" style="width:90%; display:block; margin:0 auto;" alt="pins_st">
+</p>
 
 ---
 

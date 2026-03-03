@@ -174,5 +174,5 @@ async fn main(spawner: Spawner) {
 A few insights
 
 <p align="center">
-  <img src="img/e_exp.png" style="width:88%; display:block; margin:0 auto;" alt="pins_st">
+  <img src="img/e_exp.png" style="width:83%; display:block; margin:0 auto;" alt="pins_st">
 </p>

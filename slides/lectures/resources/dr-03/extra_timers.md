@@ -36,11 +36,10 @@ A few Examples:
 ---
 
 # General overview of a timer system
-
-<div align="center">
-<img src="./timer-overview.png" class="rounded w-800">
-
-</div>
+<br>
+<p align="center">
+  <img src="./timer-overview.png" style="width:83%; display:block; margin:0 auto;" alt="pins_st">
+</p>
 
 ---
 layout: two-cols
