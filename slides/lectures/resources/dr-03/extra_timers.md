@@ -34,7 +34,6 @@ A few Examples:
 - Timers for sleep modes (e.g., for putting a low power system in sleep for a defined period of time between sensor readings and data transmission intervals)Adic
 
 ---
----
 
 # General overview of a timer system
 
@@ -210,18 +209,22 @@ int main()
 ---
 
 # Time for watchdogs
+Why?
 
-## Why?
+A watchdog timer (WDT) is a hardware “last line of defense” that forces recovery if firmware stops making progress.
 
-Sometimes the code loops and that is bad - as it will typically result in a freezer system.
+Typical failures it covers:
+- deadlocks / infinite loops
+- memory corruption that breaks control flow
+- runaway interrupts or starvation
+- rare “stuck” states after EMC / brown-outs
 
-## Types of watchdogs
-- software, on the controller
-- hardware, outside the controller (actually hard + soft)
+How it works:
+- WDT runs from an (often) independent clock
+- software must periodically “refresh/kick” it before a timeout
+- if refresh does not happen in time → reset (sometimes an early-warning interrupt first)
 
-## Example
-
-We will assume we have a code that might freeze and can accept a maximum of 4 seconds for the system to be stuck.
+> Note: the watchdog should ensure “the system is healthy”, not just “some code is running”.
 
 ---
 
