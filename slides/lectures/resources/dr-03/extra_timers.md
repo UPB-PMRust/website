@@ -207,24 +207,84 @@ int main()
 ```
 
 ---
+layout: two-cols
+---
 
 # Time for watchdogs
-Why?
+A watchdog timer (WDT) is a hardware “last line of defense” that forces recovery if the firmware "blocks".
 
-A watchdog timer (WDT) is a hardware “last line of defense” that forces recovery if firmware stops making progress.
-
-Typical failures it covers:
-- deadlocks / infinite loops
+Typical failurereasons:
+- deadlocks / infinite loops 
 - memory corruption that breaks control flow
 - runaway interrupts or starvation
 - rare “stuck” states after EMC / brown-outs
 
 How it works:
-- WDT runs from an (often) independent clock
-- software must periodically “refresh/kick” it before a timeout
+- WDT runs from an independent clock / hw block
+- the main software must periodically “refresh/kick” it before a timeout
 - if refresh does not happen in time → reset (sometimes an early-warning interrupt first)
 
-> Note: the watchdog should ensure “the system is healthy”, not just “some code is running”.
+:: right ::
+
+<p align="center">
+  <img src="img/w_rocket.png" style="width:60%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
+---
+
+# Using watchdogs correctly
+
+What “refresh / kick / feed” means:
+- a deliberate action that tells the watchdog “the system is alive.”
+- typically: reset to 0 / write a specific value/ sequence to a WDT register (or toggle an external WDI pin)
+- effect: the watchdog timeout counter is reset/ restarted; if you don’t refresh in time =>system reset
+
+How it should be used (high level):
+- refresh should mean “the system is healthy”, not just “some code is running”
+- do the refresh from ONE place in the code (a single “watchdog service” point)
+- refresh only after the firmware has completed its expected work for that cycle
+
+Common safe patterns:
+- refresh at the end of the main loop / scheduler cycle (“progress proof”)
+- gate refresh on multiple health checks (e.g., control loop OK + comms OK + sensors OK)
+- avoid refreshing from a high-frequency ISR (it can keep the WDT happy while the app is deadlocked)
+
+---
+layout: two-cols
+---
+
+# “We need 99.999999999%”: 
+External supervision + advanced watchdog modes
+
+Internal WDT can fail to save you if: clock/ config is wrong, code refreshes too easily, or the MCU is in a weird lock-up state / the chip has faults. 
+
+=>High-reliability systems often add an **external supervisor / watchdog IC**:
+- separate chip with its own oscillator
+- MCU must toggle a WDI pin periodically; otherwise the chip asserts RESET
+- often also includes brown-out detection and reset pulse shaping
+
+::right::
+
+<p align="center">
+  <img src="img/w_ext.png" style="width:70%; display:block; margin:0 auto;" alt="pins_st">
+</p>
+
+---
+
+# Advanced
+When paranoia is in order
+
+External watchdog (windowed / pattern-based):
+- requires edges within a window, sometimes with a specific toggle pattern
+- reduces the chance that a runaway loop “accidentally” satisfies the watchdog
+
+Challenge–response (“keyed”) watchdog (advanced):
+- supervisor provides a changing challenge (counter/LFSR) over SPI/I2C
+- MCU must compute and return the correct response within the time window
+- a stuck program that just repeats a fixed refresh sequence will fail the check
+
+> In safety-critical designs, you commonly run both: internal WDT + external watchdog/supervisor,
+and you log the reset cause to diagnose whether the watchdog fired.
 
 ---
 

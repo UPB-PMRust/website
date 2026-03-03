@@ -167,3 +167,12 @@ async fn main(spawner: Spawner) {
     spawner.spawn(sensor_task(sensor)).unwrap();
     spawner.spawn(command_task(cmd)).unwrap();  }
 ```
+
+---
+
+# Summary
+A few insights
+
+<p align="center">
+  <img src="img/e_exp.png" style="width:88%; display:block; margin:0 auto;" alt="pins_st">
+</p>
