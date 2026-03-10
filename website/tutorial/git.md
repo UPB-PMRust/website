@@ -227,7 +227,6 @@ Think of a commit as taking a permanent snapshot of your project at a specific m
 - **Permanent Storage:** It takes the prepared files from the Staging Area and permanently stores that exact snapshot in the Repository (`.git` folder).
 - **A Point in History:** Git assigns a unique identifier (a "hash") to this snapshot, allowing you to go back to this exact state later if you make a mistake.
 - **Documentation:** The message you include creates a logbook of why changes were made, making it easier for you and your teammates to understand the project's evolution.
-- **Collaboration:** Commits are the fundamental unit of sharing. When you share work (e.g., pushing to GitHub), you aren't sending individual files—you are sending your commits.
 :::
 
 ### Working on an Existing Project (Remote-First)
