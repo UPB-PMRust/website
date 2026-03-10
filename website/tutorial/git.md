@@ -220,7 +220,7 @@ A commit requires a message (using the `-m` flag) to describe the change.
 You've just made your first commit! You can see your project's history by running `git log`.
 
 :::note
-What a commit does a commit do?
+What does a commit do?
 
 Think of a commit as taking a permanent snapshot of your project at a specific moment in time
 
