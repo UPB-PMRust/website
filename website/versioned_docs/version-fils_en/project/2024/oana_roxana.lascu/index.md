@@ -100,3 +100,4 @@ The format is
 2. [DIY Guide: Creating a Line Tracking Robot with Raspberry Pi Pico Board](https://srituhobby.com/how-to-make-a-line-tracking-robot-with-raspberry-pi-pico-board/)
 3. [Raspberry Pi Python Line Following Project: Complete Tutorial](https://projects.raspberrypi.org/en/projects/rpi-python-line-following/2)
 4. [Raspberry Pi Pico-based Line Follower Robot: GitHub Repository](https://github.com/devancakra/Raspberry-Pi-Pico-based-Line-Follower-Robot)
+5.[Step-by-Step: Build Your First Line Follower Robot](https://robocraze.com/blogs/post/step-by-step-build-your-first-line-follower-robot-no-overthinking-needed)
