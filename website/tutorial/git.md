@@ -272,6 +272,15 @@ If you started from a local repository, your project exists only locally. You ne
 
 ### Connect and Push Your Commits
 
+Before we link everything together, it helps to understand exactly where your code lives right now.
+
+:::note
+Local vs. Remote Repositories
+
+- **Local:** This is the repository sitting right on your own computer. All the `git add` and `git commit` commands you've run so far have only saved changes locally. If your computer were to break right now, that project history would be lost.
+- **Remote:** This is a version of your project hosted securely on the internet (like on GitHub). It acts as a backup and a central hub. When you want to share your work or collaborate with teammates, you upload (or "push") your local commits to this remote repository.
+:::
+
 GitHub will now show you a page with some commands. We want the "push an existing repository from the command line" section.
 
 1. **Add the remote**. This tells your local repo where `origin` (GitHub) is. Copy the command from GitHub (use the SSH version if you set it up).
