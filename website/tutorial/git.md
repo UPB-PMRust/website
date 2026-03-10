@@ -219,6 +219,17 @@ A commit requires a message (using the `-m` flag) to describe the change.
 
 You've just made your first commit! You can see your project's history by running `git log`.
 
+:::note
+What a commit does a commit do?
+
+Think of a commit as taking a permanent snapshot of your project at a specific moment in time
+
+- **Permanent Storage:** It takes the prepared files from the Staging Area and permanently stores that exact snapshot in the Repository (`.git` folder).
+- **A Point in History:** Git assigns a unique identifier (a "hash") to this snapshot, allowing you to go back to this exact state later if you make a mistake.
+- **Documentation:** The message you include creates a logbook of why changes were made, making it easier for you and your teammates to understand the project's evolution.
+- **Collaboration:** Commits are the fundamental unit of sharing. When you share work (e.g., pushing to GitHub), you aren't sending individual files—you are sending your commits.
+:::
+
 ### Working on an Existing Project (Remote-First)
 
 This is the most common scenario. You're joining a project that already exists on GitHub.
