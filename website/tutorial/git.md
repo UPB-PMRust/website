@@ -163,7 +163,7 @@ This creates a hidden `.git` folder in your directory. This is where Git stores 
 
 #### The Add & Commit Loop
 
-This is how you create "save points."
+This is how you create "save points".
 
 1. **Create a file**. Let's make a `README.md` file.
 
