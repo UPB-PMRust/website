@@ -101,7 +101,7 @@ george_matei.popa@stud.acs.upb.ro
  
 Lab Professor \
 GitHub: [Irina Bradu](https://github.com/irina-b-dev) \
-irina.bradu@wyliodrin.com
+irina.bradu@upb.com
 </td>
 </tr>
 
