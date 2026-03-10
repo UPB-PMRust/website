@@ -111,3 +111,4 @@ The format is
 
 1. [How to build a line follower](https://www.youtube.com/watch?v=wbrt2ClgZik&ab_channel=Maker101)
 2. [L298N - How it works](https://howtomechatronics.com/tutorials/arduino/arduino-dc-motor-control-tutorial-l298n-pwm-h-bridge/)
+3. [From Zero to Line Follower: My First Robotics Competition Journey](https://robocraze.com/blogs/post/build-a-line-follower-robot-using-robocraze-parts)
