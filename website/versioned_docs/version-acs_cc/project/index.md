@@ -60,6 +60,12 @@ If you are using WSL2, you should follow the instructions for installing on Linu
 
 ## How to create a page for your project?
 
+:::note
+This section is a work in progress.
+:::
+
+<!--
+
 :::important Windows Users
 These steps should be performed on inside your **VM**, or in **WSL2**, **not on your host machine**.
 :::
@@ -102,11 +108,12 @@ After running the script, you could run `npm run start` instead of `serve`. This
 :::info Merge Request contents
 The merge requests should contain only the Markdown page, and additional images in `svg` or `webp` format that must not exceed **1024x768** pixels.
 :::
+-->
 
 ## Hardware Rules
 
-1. Projects have to use a microcontroller (MCU) that is capable of running Rust code. Examples of MCUs are *nRF52*, *RP2040*, *ESP32* (RISC-V version). 
-2. Usage of a development board is encouraged, but not required, a custom PCB can be built. Example of development boards are:
+1. Each student will receive an [**STM32 Nucleo-U545RE-Q**](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) development board. **You are encouraged to use this board as the core of your project.**
+2. Projects have to use a microcontroller (MCU) that is capable of running Rust code. While the STM32U5 is the primary platform, you may use other MCUs if your project specifically requires it. Examples of supported MCUs/boards are:
   - [Raspberry Pi Pico 2](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) (RP2350) or [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) for WiFi (The version of Pico is not important, but we encourage the use of version 2.)
   - [Adafruit Trinkey QT2040](https://www.adafruit.com/product/5056) (RP2040)
   - [Arduino Nano RP2040 Connect](https://store.arduino.cc/products/arduino-nano-rp2040-connect) (RP2040) - ⚠️ [^arduino_nano_rp2040_connect]
@@ -154,14 +161,29 @@ It has to run software written in Rust. Students can use:
 3. [Plug & Play ChatGPT](https://ocw.cs.pub.ro/courses/pm/prj2023/ncaroi/plug)
 4. [VENDING MACHINE](https://ocw.cs.pub.ro/courses/pm/prj2023/drtranca/vending.machine)
 
+## Project Milestones
+*Note: Slight adjustments are possible during the semester.*
+
+- **Week 1 & 2:** Introduction to the Rust language.
+- **Week 3:** Intro to Rust & embedded tooling; debugging and running programs on the **STM32U5 (Nucleo-U545RE-Q)** board.
+- **Week 4 – 8:** Embedded programming fundamentals.
+- **Week 5 – 6:** Project brainstorming and discussion (Lab & Lecture).
+- **Week 7:** **Project Theme Milestone** (Theme approval).
+- **Week 9:** **Documentation Milestone**.
+- **Week 10 / 11:** **Lab Exam**
+- **Week 11:** **Hardware Milestone**.
+- **Week 13:** **Software Milestone**.
+- **Week 14:** **PM Fair** (Final presentation and live demo).
+
+
 ## Grading
 
 | Part | Deadline | Points |
 |--------|--------|--------|
-| Documentation Milestone | Lab 9 | 0.4p |
-| Hardware Milestone | Lab 11 | 0.8p |
-| Software Milestone | Lab 12 | 0.8p |
-| PM Fair | TBD | 1p |
+| Documentation Milestone | Week 9 | 0.4p |
+| Hardware Milestone | Week 11 | 0.8p |
+| Software Milestone | Week 13 | 0.8p |
+| PM Fair | Week 14 | 1p |
 | **Total** |  | **3p** |
 
 ## F.A.Q
