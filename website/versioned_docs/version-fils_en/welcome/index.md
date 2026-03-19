@@ -129,6 +129,15 @@ GitHub: [genan2003](https://github.com/genan2003) \
 genan.omer@stud.fils.upb.ro
 </td>
 
+<td>
+**Eva Cosma**
+![Eva Cosma](images/eva_cosma.jpg)
+ 
+Lab Professor \
+GitHub: [Eva Cosma](https://github.com/eva-cosma) \
+eva.cosma@wyliodrin.com
+</td>
+
 </tr>
 </table>
 
