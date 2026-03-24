@@ -795,9 +795,8 @@ Please make sure the lab professor verifies your circuit before it is powered up
 1. Write a program using Embassy that adjusts the brightness of an LED connected to GPIO pin by changing the PWM duty cycle. 
     - Light up the LED at 25% intensity. (**1p**)
     - Make the LED change intensity from 0% to 100% in 10% increments every 1 second. (**1p**)
-:::info
-You should use the lab skeleton provided in the [Lab Repository](https://github.com/UPB-PMRust/lab-2025) as a starting point for your implementation.
 
+:::info
 Embassy will reset all the peripherals when the `main` function exits, that means `PWM` and `ADC` will stop. Make sure the `main` function never exits so you can see how the circuit behaves.
 :::
 
