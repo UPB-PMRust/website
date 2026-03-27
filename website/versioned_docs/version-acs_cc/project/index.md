@@ -9,7 +9,7 @@ The goal of the project is to showcase the knowledge gained throughout the semes
 ## Deliverables
 The deliverables will be stored in two places: 
 - the *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students) 
-- the project documentation will be stored on [Gitlab](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro), by creating a fork of the course's website
+- the project documentation will be stored on [Github](https://github.com/upb-pmrust/website), by creating a fork of the course's website
 
 The **documentation repository** should contain:
 - the full documentation of the project, in the `index.md` file
