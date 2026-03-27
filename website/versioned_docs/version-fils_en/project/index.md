@@ -96,12 +96,10 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
 After running the script, you could run `npm run start` instead of `serve`. This would ensure that the changes you are making in your Markdown file reflect in the running build (without needing to rebuild the project over and over again). But make sure to re-run the build script when you are done, because some subtle bugs may not be caught by this method.
 :::
 
-10. After finishing the project, make a _merge request_ to the [upstream repository](https://github.com/UPB-PMRust/website). Do not forget to change the Merge Request Description template to **project**.
+10. After finishing the project, make a _pull request_ to the [upstream repository](https://github.com/UPB-PMRust/website). Do not forget to change the Pull Request Description template to **project**.
 
-![Merge Request Template](../../../static/img/MR_template.webp)
-
-:::info Merge Request contents
-The merge requests should contain only the Markdown page, and additional images in `svg` or `webp` format that must not exceed **1024x768** pixels.
+:::info Pull Request contents
+The pull requests should contain only the Markdown page, and additional images in `svg` or `webp` format that must not exceed **1024x768** pixels.
 :::
 
 ## Hardware Rules
@@ -133,7 +131,7 @@ It has to run software written in Rust. Students can use:
 3. Any problem or blockage you have will be discussed with the lab assistant during project work hours.
 4. Students are strongly encouraged to ask the lab assistant questions about the project.
 5. The presentation of all the milestones is mandatory.
-6. The project topic must be established in week 4 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.
+6. The project topic must be established in week 5 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.
 7. The laboratory supervisor may modify the topic or propose another topic if it is not complex enough for this project.
 8. We encourage you not to use prebuilt kits, you may get less points for the hardware part.
 
@@ -142,14 +140,13 @@ It has to run software written in Rust. Students can use:
 2. *Documentation:* Complete documentation of the implementation for both hardware and software.
 3. *Functionality:* The hardware device has to be fully functional.
 
-The **IoT** stream has to use the networking (**WiFi**, **Bluetooth** or **Ethernet**).
-
 ## Example Projects
 
 ### Examples of projects from past years
-1. [Projects from 2024](/docs/fils_en/category/projects-2024)
-1. https://ocw.cs.pub.ro/courses/pm/prj2022
-2. https://ocw.cs.pub.ro/courses/pm/prj2023
+1. [Projects from 2024](/docs/fils_en/category/projects-2025)
+2. [Projects from 2024](/docs/fils_en/category/projects-2024)
+3. https://ocw.cs.pub.ro/courses/pm/prj2022
+4. https://ocw.cs.pub.ro/courses/pm/prj2023
 
 ### Outstanding Projects
 1. [POV - DAVIC picTronics](https://ocw.cs.pub.ro/courses/pm/prj2023/gpatru/376)
@@ -161,9 +158,10 @@ The **IoT** stream has to use the networking (**WiFi**, **Bluetooth** or **Ether
 
 | Part | Deadline | Points |
 |--------|--------|--------|
-| Hardware Milestone | Week 12 | 0.75p |
-| Software Milestone | Week 14 | 0.75p |
-| PM Fair | Week 14 | 1.5p |
+| Documentation Milestone | Week 9 | 0.4p |
+| Hardware Milestone | Week 11 | 0.8p |
+| Software Milestone | Week 13 | 0.8p |
+| PM Fair | Week 14 | 1p |
 | **Total** |  | **3p** |
 
 ## F.A.Q
