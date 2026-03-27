@@ -131,8 +131,9 @@ It has to run software written in Rust. Students can use:
 3. Any problem or blockage you have will be discussed with the lab assistant during project work hours.
 4. Students are strongly encouraged to ask the lab assistant questions about the project.
 5. The presentation of all the milestones is mandatory.
-6. The laboratory supervisor may modify the topic or propose another topic if it is not complex enough for this project.
-7. We encourage you not to use prebuilt kits, you may get less points for the hardware part.
+6. The project topic must be established in week 5 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.
+7. The laboratory supervisor may modify the topic or propose another topic if it is not complex enough for this project.
+8. We encourage you not to use prebuilt kits, you may get less points for the hardware part.
 
 ## Requirements
 1. *Complexity:* The project must reflect at least 40 hours of work and contain elements learned during the year.
@@ -157,9 +158,10 @@ It has to run software written in Rust. Students can use:
 
 | Part | Deadline | Points |
 |--------|--------|--------|
-| Hardware Milestone | Week 12 | 0.75p |
-| Software Milestone | Week 14 | 0.75p |
-| PM Fair | Week 14 | 1.5p |
+| Documentation Milestone | Week 9 | 0.4p |
+| Hardware Milestone | Week 11 | 0.8p |
+| Software Milestone | Week 13 | 0.8p |
+| PM Fair | Week 14 | 1p |
 | **Total** |  | **3p** |
 
 ## F.A.Q
