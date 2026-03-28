@@ -3,14 +3,16 @@ name: Image Format & Resolution Check
 on:
   push:
     paths:
-      - 'project/**'
+      - 'versioned_docs/version-acs_cc/project/**'
+      - 'versioned_docs/version-fils_en/project/**'
   pull_request:
     paths:
-      - 'project/**'
+      - 'versioned_docs/version-acs_cc/project/**'
+      - 'versioned_docs/version-fils_en/project/**'
 
 jobs:
   check-images:
-    name: Validate Images in /project
+    name: Validate Images in versioned_docs project folders
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +26,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y imagemagick webp file
 
-      - name: Get changed image files in project/
+      - name: Get changed image files in versioned_docs project folders
         id: changed-files
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -41,10 +43,12 @@ jobs:
           fi
 
           if [ -z "$BASE" ]; then
-            # First commit: list all files in project/
-            FILES=$(git ls-files 'project/')
+            # First commit: list all files in the versioned project folders
+            FILES=$(git ls-files 'versioned_docs/version-acs_cc/project/' 'versioned_docs/version-fils_en/project/')
           else
-            FILES=$(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD" -- 'project/')
+            FILES=$(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD" -- \
+              'versioned_docs/version-acs_cc/project/' \
+              'versioned_docs/version-fils_en/project/')
           fi
 
           echo "files<<EOF" >> $GITHUB_OUTPUT
@@ -60,7 +64,7 @@ jobs:
           FILES="${{ steps.changed-files.outputs.files }}"
 
           if [ -z "$FILES" ]; then
-            echo "No changed files found in project/ – skipping checks."
+            echo "No changed files found in versioned_docs project folders – skipping checks."
             exit 0
           fi
 
