@@ -1,0 +1,119 @@
+name: Image Format & Resolution Check
+
+on:
+  push:
+    paths:
+      - 'project/**'
+  pull_request:
+    paths:
+      - 'project/**'
+
+jobs:
+  check-images:
+    name: Validate Images in /project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y imagemagick webp file
+
+      - name: Get changed image files in project/
+        id: changed-files
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE=${{ github.event.pull_request.base.sha }}
+            HEAD=${{ github.event.pull_request.head.sha }}
+          else
+            BASE=${{ github.event.before }}
+            HEAD=${{ github.event.after }}
+          fi
+
+          # Fall back to HEAD~1 if before is all zeros (first push)
+          if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
+          fi
+
+          if [ -z "$BASE" ]; then
+            # First commit: list all files in project/
+            FILES=$(git ls-files 'project/')
+          else
+            FILES=$(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD" -- 'project/')
+          fi
+
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Check image format and resolution
+        run: |
+          ERRORS=0
+          MAX_WIDTH=1024
+          MAX_HEIGHT=768
+
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No changed files found in project/ – skipping checks."
+            exit 0
+          fi
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            echo "──────────────────────────────"
+            echo "Checking: $FILE"
+
+            # ── 1. Format check ──────────────────────────────────────────
+            EXT="${FILE##*.}"
+            EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$EXT_LOWER" != "svg" ] && [ "$EXT_LOWER" != "webp" ]; then
+              echo "  FAIL – Invalid format: .$EXT_LOWER (only .svg and .webp are allowed)"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            echo "  Format OK (.$EXT_LOWER)"
+
+            # ── 2. Resolution check (skip for SVG – they are vector) ──────
+            if [ "$EXT_LOWER" = "svg" ]; then
+              echo "  SVG is vector – resolution check skipped"
+              continue
+            fi
+
+            # WebP resolution via imagemagick
+            DIMENSIONS=$(identify -format "%wx%h" "$FILE" 2>/dev/null)
+            if [ -z "$DIMENSIONS" ]; then
+              echo "  WARNING – Could not read dimensions for $FILE"
+              continue
+            fi
+
+            WIDTH=$(echo "$DIMENSIONS" | cut -d'x' -f1)
+            HEIGHT=$(echo "$DIMENSIONS" | cut -d'x' -f2)
+
+            echo "  Dimensions: ${WIDTH}x${HEIGHT}"
+
+            if [ "$WIDTH" -gt "$MAX_WIDTH" ] || [ "$HEIGHT" -gt "$MAX_HEIGHT" ]; then
+              echo "  FAIL – Resolution ${WIDTH}x${HEIGHT} exceeds limit of ${MAX_WIDTH}x${MAX_HEIGHT}"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  Resolution OK"
+            fi
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS image(s) failed validation."
+            exit 1
+          else
+            echo "All images passed validation."
+          fi
