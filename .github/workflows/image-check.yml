@@ -6,9 +6,6 @@ on:
       - 'versioned_docs/version-acs_cc/project/**'
       - 'versioned_docs/version-fils_en/project/**'
   pull_request:
-    paths:
-      - 'versioned_docs/version-acs_cc/project/**'
-      - 'versioned_docs/version-fils_en/project/**'
 
 jobs:
   check-images:
