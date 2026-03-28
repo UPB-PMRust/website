@@ -27,27 +27,28 @@ jobs:
         id: changed-files
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            BASE=${{ github.event.pull_request.base.sha }}
-            HEAD=${{ github.event.pull_request.head.sha }}
+            # Diff against the remote base branch – always available after fetch-depth: 0
+            FILES=$(git diff --name-only --diff-filter=ACM \
+              origin/${{ github.event.pull_request.base.ref }}...HEAD -- \
+              'versioned_docs/version-acs_cc/project/' \
+              'versioned_docs/version-fils_en/project/')
           else
             BASE=${{ github.event.before }}
-            HEAD=${{ github.event.after }}
             # Fall back to HEAD~1 on first push (before SHA is all zeros)
             if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
               BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
             fi
-          fi
 
-          if [ -z "$BASE" ]; then
-            # No base available – check everything tracked in both project trees
-            FILES=$(git ls-files \
-              'versioned_docs/version-acs_cc/project/' \
-              'versioned_docs/version-fils_en/project/')
-          else
-            # Only the files added/modified in this PR or push
-            FILES=$(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD" -- \
-              'versioned_docs/version-acs_cc/project/' \
-              'versioned_docs/version-fils_en/project/')
+            if [ -z "$BASE" ]; then
+              # No base available – check everything tracked in both project trees
+              FILES=$(git ls-files \
+                'versioned_docs/version-acs_cc/project/' \
+                'versioned_docs/version-fils_en/project/')
+            else
+              FILES=$(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- \
+                'versioned_docs/version-acs_cc/project/' \
+                'versioned_docs/version-fils_en/project/')
+            fi
           fi
 
           echo "files<<EOF" >> $GITHUB_OUTPUT
