@@ -134,6 +134,14 @@ Run the following command in your terminal:
 ssh -T git@github.com
 ```
 
+You may see a warning about the authenticity of the host that looks something like this:
+```shell
+The authenticity of host 'github.com (140.82.113.3)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
 You may see a warning about the authenticity of the host. Type `yes`. If everything worked, you'll see a message like: `Hi YourUsername! You've successfully authenticated...`
 
 From now on, when you clone a repository, make sure to use the SSH URL, not the HTTPS one. `git@github.com:YourUsername/existing-project.git`
@@ -510,6 +518,53 @@ git reset --hard HEAD~2
 :::warning
 Never use `git reset --hard` on a branch that has been pushed and shared with others, because it rewrites public history and removes commits!
 :::
+
+### Forking: Contributing to Other Projects
+
+So far, we've discussed working on repositories you own or have explicit permission to modify. But what if you want to contribute to an open-source project, or a repository where you don't have "write" access? That's where forking comes in.
+
+A fork is a personal copy of someone else's project that lives entirely on your own GitHub account.
+
+:::note
+
+What is the difference between **Cloning** and **Forking**?
+
+- **Cloning** downloads a repository directly to your local computer. If you don't have permission to the original GitHub repo, you won't be able to git push your changes back up.
+- **Forking** creates a copy of the repository on GitHub's servers under your account. Because you own this copy, you have full permission to push changes to it.
+
+:::
+
+#### The Forking Workflow
+
+Here is the standard process for contributing to a project using a fork:
+
+1. **Fork the Repository**:
+    - Go to the GitHub page of the project you want to contribute to.
+    - Click the **Fork** button in the top-right corner.
+    - Select your account as the destination. You now have a complete copy of the project at `github.com/YourUsername/the-project`.
+
+2. **Clone Your Fork** - Now, bring your personal copy down to your local computer to work on it.
+3. **Add the "Upstream" Remote** - Your local project knows about your fork on GitHub (which it calls `origin`). However, it also needs a connection to the original repository so you can pull in new updates that the maintainers make while you're working. We typically call this original remote `upstream`.
+```shell
+# Add the original repository as a remote named 'upstream'
+git remote add upstream git@github.com:OriginalOwner/the-project.git
+
+# Verify your remotes (you should see both origin and upstream)
+git remote -v
+```
+4. **Syncing with Upstream** - Before starting new work, always ensure your local copy is caught up with the original project.
+```shell
+# Fetch the latest changes from the original repo
+git fetch upstream
+
+# Make sure you are on your local main branch
+git checkout main
+
+# Merge the upstream changes into your local main branch
+git merge upstream/main
+```
+5. **Make Changes and Push**
+6. **Open a Pull Request** - Go to your fork's page on GitHub. You'll see a prompt suggesting you open a "Pull Request." This time, the PR will propose merging the code from your fork's branch into the original repository's main branch. Once submitted, the project maintainers can review your code, request changes, and ultimately merge your contribution!
 
 ### Pull Requests: The GitHub Workflow
 
