@@ -88,6 +88,12 @@ jobs:
             EXT="${FILE##*.}"
             EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
 
+            # Markdown files are allowed alongside images – skip all image checks
+            if [ "$EXT_LOWER" = "md" ]; then
+              echo "  Markdown file – skipping image checks"
+              continue
+            fi
+
             if [ "$EXT_LOWER" != "svg" ] && [ "$EXT_LOWER" != "webp" ]; then
               echo "  FAIL – Invalid format: .$EXT_LOWER (only .svg and .webp are allowed)"
               ERRORS=$((ERRORS + 1))
