@@ -1,0 +1,138 @@
+name: Image Format & Resolution Check
+
+on:
+  push:
+    paths:
+      - 'website/versioned_docs/version-acs_cc/project/**'
+      - 'website/versioned_docs/version-fils_en/project/**'
+  pull_request:
+
+jobs:
+  check-images:
+    name: Validate Images in versioned_docs project folders
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y imagemagick webp file
+
+      - name: Get changed files in versioned_docs project folders
+        id: changed-files
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Explicitly fetch the base branch so FETCH_HEAD is always available
+            git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
+
+            echo "=== DEBUG: all files changed in this PR ==="
+            git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD
+            echo "============================================"
+
+            FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD -- \
+              'website/versioned_docs/version-acs_cc/project/' \
+              'website/versioned_docs/version-fils_en/project/')
+          else
+            BASE=${{ github.event.before }}
+            # Fall back to HEAD~1 on first push (before SHA is all zeros)
+            if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+              BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
+            fi
+
+            if [ -z "$BASE" ]; then
+              # No base available – check everything tracked in both project trees
+              FILES=$(git ls-files \
+                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/version-fils_en/project/')
+            else
+              FILES=$(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- \
+                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/version-fils_en/project/')
+            fi
+          fi
+
+          echo "=== DEBUG: filtered files to check ==="
+          echo "$FILES"
+          echo "======================================="
+
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Check image format and resolution
+        run: |
+          ERRORS=0
+          MAX_WIDTH=1024
+          MAX_HEIGHT=768
+
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No files found in versioned_docs project folders – skipping checks."
+            exit 0
+          fi
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            echo "──────────────────────────────"
+            echo "Checking: $FILE"
+
+            # ── 1. Format check ──────────────────────────────────────────
+            EXT="${FILE##*.}"
+            EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+
+            # Markdown files are allowed alongside images – skip all image checks
+            if [ "$EXT_LOWER" = "md" ]; then
+              echo "  Markdown file – skipping image checks"
+              continue
+            fi
+
+            if [ "$EXT_LOWER" != "svg" ] && [ "$EXT_LOWER" != "webp" ]; then
+              echo "  FAIL – Invalid format: .$EXT_LOWER (only .svg and .webp are allowed)"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            echo "  Format OK (.$EXT_LOWER)"
+
+            # ── 2. Resolution check (skip for SVG – they are vector) ──────
+            if [ "$EXT_LOWER" = "svg" ]; then
+              echo "  SVG is vector – resolution check skipped"
+              continue
+            fi
+
+            # WebP resolution via imagemagick
+            DIMENSIONS=$(identify -format "%wx%h" "$FILE" 2>/dev/null)
+            if [ -z "$DIMENSIONS" ]; then
+              echo "  WARNING – Could not read dimensions for $FILE"
+              continue
+            fi
+
+            WIDTH=$(echo "$DIMENSIONS" | cut -d'x' -f1)
+            HEIGHT=$(echo "$DIMENSIONS" | cut -d'x' -f2)
+
+            echo "  Dimensions: ${WIDTH}x${HEIGHT}"
+
+            if [ "$WIDTH" -gt "$MAX_WIDTH" ] || [ "$HEIGHT" -gt "$MAX_HEIGHT" ]; then
+              echo "  FAIL – Resolution ${WIDTH}x${HEIGHT} exceeds limit of ${MAX_WIDTH}x${MAX_HEIGHT}"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  Resolution OK"
+            fi
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS image(s) failed validation."
+            exit 1
+          else
+            echo "All images passed validation."
+          fi
