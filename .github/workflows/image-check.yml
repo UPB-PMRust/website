@@ -23,7 +23,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y imagemagick webp file
 
-      - name: Get changed image files in versioned_docs project folders
+      - name: Get changed files in versioned_docs project folders
         id: changed-files
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -32,17 +32,19 @@ jobs:
           else
             BASE=${{ github.event.before }}
             HEAD=${{ github.event.after }}
-          fi
-
-          # Fall back to HEAD~1 if before is all zeros (first push)
-          if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
-            BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
+            # Fall back to HEAD~1 on first push (before SHA is all zeros)
+            if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+              BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
+            fi
           fi
 
           if [ -z "$BASE" ]; then
-            # First commit: list all files in the versioned project folders
-            FILES=$(git ls-files 'versioned_docs/version-acs_cc/project/' 'versioned_docs/version-fils_en/project/')
+            # No base available – check everything tracked in both project trees
+            FILES=$(git ls-files \
+              'versioned_docs/version-acs_cc/project/' \
+              'versioned_docs/version-fils_en/project/')
           else
+            # Only the files added/modified in this PR or push
             FILES=$(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD" -- \
               'versioned_docs/version-acs_cc/project/' \
               'versioned_docs/version-fils_en/project/')
@@ -61,7 +63,7 @@ jobs:
           FILES="${{ steps.changed-files.outputs.files }}"
 
           if [ -z "$FILES" ]; then
-            echo "No changed files found in versioned_docs project folders – skipping checks."
+            echo "No files found in versioned_docs project folders – skipping checks."
             exit 0
           fi
 
