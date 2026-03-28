@@ -3,8 +3,8 @@ name: Image Format & Resolution Check
 on:
   push:
     paths:
-      - 'versioned_docs/version-acs_cc/project/**'
-      - 'versioned_docs/version-fils_en/project/**'
+      - 'website/versioned_docs/version-acs_cc/project/**'
+      - 'website/versioned_docs/version-fils_en/project/**'
   pull_request:
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
             echo "============================================"
 
             FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD -- \
-              'versioned_docs/version-acs_cc/project/' \
-              'versioned_docs/version-fils_en/project/')
+              'website/versioned_docs/version-acs_cc/project/' \
+              'website/versioned_docs/version-fils_en/project/')
           else
             BASE=${{ github.event.before }}
             # Fall back to HEAD~1 on first push (before SHA is all zeros)
@@ -47,12 +47,12 @@ jobs:
             if [ -z "$BASE" ]; then
               # No base available – check everything tracked in both project trees
               FILES=$(git ls-files \
-                'versioned_docs/version-acs_cc/project/' \
-                'versioned_docs/version-fils_en/project/')
+                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/version-fils_en/project/')
             else
               FILES=$(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- \
-                'versioned_docs/version-acs_cc/project/' \
-                'versioned_docs/version-fils_en/project/')
+                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/version-fils_en/project/')
             fi
           fi
 
