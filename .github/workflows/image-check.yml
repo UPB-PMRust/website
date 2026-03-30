@@ -52,8 +52,8 @@ jobs:
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      # ── NEW STEP: Check for case-insensitive filename duplicates ──
-      - name: Check for case-insensitive filename duplicates
+      # ── UPDATED STEP: Check for both case-sensitive and case-insensitive duplicates ──
+      - name: Check for filename duplicates (case-sensitive and case-insensitive)
         id: check-duplicates
         run: |
           ERRORS=0
@@ -64,10 +64,11 @@ jobs:
             exit 0
           fi
 
+          declare -A EXACT_MAP
           declare -A LOWERCASE_MAP
 
           echo "══════════════════════════════"
-          echo "Checking for case-insensitive duplicates..."
+          echo "Checking for filename duplicates..."
           echo "══════════════════════════════"
 
           while IFS= read -r FILE; do
@@ -76,24 +77,37 @@ jobs:
 
             FILE_LOWER=$(echo "$FILE" | tr '[:upper:]' '[:lower:]')
 
+            # ── Check 1: Case-sensitive duplicate (exact same path) ──
+            if [ -n "${EXACT_MAP[$FILE]}" ]; then
+              echo "❌ DUPLICATE DETECTED (case-sensitive / exact match):"
+              echo "   - ${EXACT_MAP[$FILE]}"
+              echo "   - $FILE"
+              echo "   → Same file path appears multiple times in changes"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+            EXACT_MAP[$FILE]="$FILE"
+
+            # ── Check 2: Case-insensitive duplicate (differs only by case) ──
             if [ -n "${LOWERCASE_MAP[$FILE_LOWER]}" ]; then
               echo "❌ DUPLICATE DETECTED (case-insensitive conflict):"
               echo "   - ${LOWERCASE_MAP[$FILE_LOWER]}"
               echo "   - $FILE"
               echo "   → These files differ only by case and will conflict on Windows/macOS"
               ERRORS=$((ERRORS + 1))
-            else
-              LOWERCASE_MAP[$FILE_LOWER]="$FILE"
+              continue
             fi
+            LOWERCASE_MAP[$FILE_LOWER]="$FILE"
+
           done <<< "$FILES"
 
           echo "══════════════════════════════"
           if [ "$ERRORS" -gt 0 ]; then
-            echo "$ERRORS case-insensitive duplicate(s) found."
+            echo "$ERRORS duplicate(s) found."
             echo "duplicate_errors=$ERRORS" >> $GITHUB_OUTPUT
             exit 1
           else
-            echo "✅ No case-insensitive duplicates found."
+            echo "✅ No duplicates found (case-sensitive or case-insensitive)."
             echo "duplicate_errors=0" >> $GITHUB_OUTPUT
           fi
 
