@@ -27,21 +27,17 @@ jobs:
         id: changed-files
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            # Explicitly fetch the base branch so FETCH_HEAD is always available
             git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
-
             FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD -- \
               'website/versioned_docs/version-acs_cc/project/' \
               'website/versioned_docs/version-fils_en/project/')
           else
             BASE=${{ github.event.before }}
-            # Fall back to HEAD~1 on first push (before SHA is all zeros)
             if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
               BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
             fi
 
             if [ -z "$BASE" ]; then
-              # No base available – check everything tracked in both project trees
               FILES=$(git ls-files \
                 'website/versioned_docs/version-acs_cc/project/' \
                 'website/versioned_docs/version-fils_en/project/')
@@ -55,6 +51,51 @@ jobs:
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+
+      # ── NEW STEP: Check for case-insensitive filename duplicates ──
+      - name: Check for case-insensitive filename duplicates
+        id: check-duplicates
+        run: |
+          ERRORS=0
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No files to check for duplicates."
+            exit 0
+          fi
+
+          declare -A LOWERCASE_MAP
+
+          echo "══════════════════════════════"
+          echo "Checking for case-insensitive duplicates..."
+          echo "══════════════════════════════"
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            FILE_LOWER=$(echo "$FILE" | tr '[:upper:]' '[:lower:]')
+
+            if [ -n "${LOWERCASE_MAP[$FILE_LOWER]}" ]; then
+              echo "❌ DUPLICATE DETECTED (case-insensitive conflict):"
+              echo "   - ${LOWERCASE_MAP[$FILE_LOWER]}"
+              echo "   - $FILE"
+              echo "   → These files differ only by case and will conflict on Windows/macOS"
+              ERRORS=$((ERRORS + 1))
+            else
+              LOWERCASE_MAP[$FILE_LOWER]="$FILE"
+            fi
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS case-insensitive duplicate(s) found."
+            echo "duplicate_errors=$ERRORS" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "✅ No case-insensitive duplicates found."
+            echo "duplicate_errors=0" >> $GITHUB_OUTPUT
+          fi
 
       - name: Check image format and resolution
         run: |
@@ -76,11 +117,9 @@ jobs:
             echo "──────────────────────────────"
             echo "Checking: $FILE"
 
-            # ── 1. Extension Check ──────────────────────────────────────────
             EXT="${FILE##*.}"
             EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
 
-            # Markdown files are allowed alongside images – skip all image checks
             if [ "$EXT_LOWER" = "md" ]; then
               echo "  Markdown file – skipping image checks"
               continue
@@ -92,8 +131,6 @@ jobs:
               continue
             fi
 
-            # ── 2. Magic Number / MIME Type Check (Prevents Renaming Tricks) ──────────────────────────────────────────
-            # Use 'file' to detect the actual content type regardless of extension
             MIME_TYPE=$(file --mime-type -b "$FILE")
             echo "  Detected MIME type: $MIME_TYPE"
 
@@ -104,13 +141,11 @@ jobs:
                 continue
               fi
             elif [ "$EXT_LOWER" = "svg" ]; then
-              # SVG is usually detected as image/svg+xml, sometimes text/xml depending on 'file' version
               if [ "$MIME_TYPE" != "image/svg+xml" ] && [ "$MIME_TYPE" != "text/xml" ]; then
                 echo "  FAIL – Extension is .svg but file content is $MIME_TYPE"
                 ERRORS=$((ERRORS + 1))
                 continue
               fi
-              # Extra safety for SVG: ensure it actually contains <svg> tag if it was detected as generic XML
               if [ "$MIME_TYPE" = "text/xml" ]; then
                 if ! grep -q "<svg" "$FILE"; then
                    echo "  FAIL – File is XML but does not contain SVG tag"
@@ -122,13 +157,11 @@ jobs:
 
             echo "  Format & Content OK (.$EXT_LOWER)"
 
-            # ── 3. Resolution check (skip for SVG – they are vector) ──────
             if [ "$EXT_LOWER" = "svg" ]; then
               echo "  SVG is vector – resolution check skipped"
               continue
             fi
 
-            # WebP resolution via imagemagick
             DIMENSIONS=$(identify -format "%wx%h" "$FILE" 2>/dev/null)
             if [ -z "$DIMENSIONS" ]; then
               echo "  FAIL – Could not read dimensions (File might be corrupted)"
