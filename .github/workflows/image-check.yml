@@ -52,7 +52,7 @@ jobs:
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      # ── UPDATED STEP: Check for both case-sensitive and case-insensitive duplicates ──
+      # ── Check for both case-sensitive and case-insensitive duplicates ──
       - name: Check for filename duplicates (case-sensitive and case-insensitive)
         id: check-duplicates
         run: |
@@ -111,11 +111,12 @@ jobs:
             echo "duplicate_errors=0" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check image format and resolution
+      - name: Check image format, resolution, and file size
         run: |
           ERRORS=0
           MAX_WIDTH=1024
           MAX_HEIGHT=768
+          MAX_FILE_SIZE=307200  # 300KB in bytes (300 * 1024)
 
           FILES="${{ steps.changed-files.outputs.files }}"
 
@@ -171,6 +172,19 @@ jobs:
 
             echo "  Format & Content OK (.$EXT_LOWER)"
 
+            # ── File Size Check (applies to all images including SVG) ──
+            FILE_SIZE=$(stat -c%s "$FILE")
+            FILE_SIZE_KB=$((FILE_SIZE / 1024))
+            echo "  File size: ${FILE_SIZE_KB}KB (${FILE_SIZE} bytes)"
+
+            if [ "$FILE_SIZE" -gt "$MAX_FILE_SIZE" ]; then
+              echo "  FAIL – File size ${FILE_SIZE_KB}KB exceeds limit of 300KB"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  File size OK"
+            fi
+
+            # ── Resolution check (skip for SVG – they are vector) ──────
             if [ "$EXT_LOWER" = "svg" ]; then
               echo "  SVG is vector – resolution check skipped"
               continue
