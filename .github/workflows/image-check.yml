@@ -3,8 +3,8 @@ name: Image Format & Resolution Check
 on:
   push:
     paths:
-      - 'website/versioned_docs/version-acs_cc/project/**'
-      - 'website/versioned_docs/version-fils_en/project/**'
+      - "website/versioned_docs/version-acs_cc/project/**"
+      - "website/versioned_docs/version-fils_en/project/**"
   pull_request:
 
 jobs:
@@ -30,10 +30,6 @@ jobs:
             # Explicitly fetch the base branch so FETCH_HEAD is always available
             git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
 
-            echo "=== DEBUG: all files changed in this PR ==="
-            git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD
-            echo "============================================"
-
             FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD -- \
               'website/versioned_docs/version-acs_cc/project/' \
               'website/versioned_docs/version-fils_en/project/')
@@ -55,10 +51,6 @@ jobs:
                 'website/versioned_docs/version-fils_en/project/')
             fi
           fi
-
-          echo "=== DEBUG: filtered files to check ==="
-          echo "$FILES"
-          echo "======================================="
 
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
@@ -84,7 +76,7 @@ jobs:
             echo "──────────────────────────────"
             echo "Checking: $FILE"
 
-            # ── 1. Format check ──────────────────────────────────────────
+            # ── 1. Extension Check ──────────────────────────────────────────
             EXT="${FILE##*.}"
             EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
 
@@ -95,14 +87,42 @@ jobs:
             fi
 
             if [ "$EXT_LOWER" != "svg" ] && [ "$EXT_LOWER" != "webp" ]; then
-              echo "  FAIL – Invalid format: .$EXT_LOWER (only .svg and .webp are allowed)"
+              echo "  FAIL – Invalid extension: .$EXT_LOWER (only .svg and .webp are allowed)"
               ERRORS=$((ERRORS + 1))
               continue
             fi
 
-            echo "  Format OK (.$EXT_LOWER)"
+            # ── 2. Magic Number / MIME Type Check (Prevents Renaming Tricks) ──────────────────────────────────────────
+            # Use 'file' to detect the actual content type regardless of extension
+            MIME_TYPE=$(file --mime-type -b "$FILE")
+            echo "  Detected MIME type: $MIME_TYPE"
 
-            # ── 2. Resolution check (skip for SVG – they are vector) ──────
+            if [ "$EXT_LOWER" = "webp" ]; then
+              if [ "$MIME_TYPE" != "image/webp" ]; then
+                echo "  FAIL – Extension is .webp but file content is $MIME_TYPE (Possible renamed PNG/JPG)"
+                ERRORS=$((ERRORS + 1))
+                continue
+              fi
+            elif [ "$EXT_LOWER" = "svg" ]; then
+              # SVG is usually detected as image/svg+xml, sometimes text/xml depending on 'file' version
+              if [ "$MIME_TYPE" != "image/svg+xml" ] && [ "$MIME_TYPE" != "text/xml" ]; then
+                echo "  FAIL – Extension is .svg but file content is $MIME_TYPE"
+                ERRORS=$((ERRORS + 1))
+                continue
+              fi
+              # Extra safety for SVG: ensure it actually contains <svg> tag if it was detected as generic XML
+              if [ "$MIME_TYPE" = "text/xml" ]; then
+                if ! grep -q "<svg" "$FILE"; then
+                   echo "  FAIL – File is XML but does not contain SVG tag"
+                   ERRORS=$((ERRORS + 1))
+                   continue
+                fi
+              fi
+            fi
+
+            echo "  Format & Content OK (.$EXT_LOWER)"
+
+            # ── 3. Resolution check (skip for SVG – they are vector) ──────
             if [ "$EXT_LOWER" = "svg" ]; then
               echo "  SVG is vector – resolution check skipped"
               continue
@@ -111,7 +131,8 @@ jobs:
             # WebP resolution via imagemagick
             DIMENSIONS=$(identify -format "%wx%h" "$FILE" 2>/dev/null)
             if [ -z "$DIMENSIONS" ]; then
-              echo "  WARNING – Could not read dimensions for $FILE"
+              echo "  FAIL – Could not read dimensions (File might be corrupted)"
+              ERRORS=$((ERRORS + 1))
               continue
             fi
 
