@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
    - Chapter 12 - *Peripherals*
      - Chapter 12.3 - *SPI*
 
-4. **Invensense**, *[MPU-6500 Six-Axis (Gyro + Accelerometer) MEMS MotionTracking™ Device](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/#documentation)*
+4. **Invensense**, *[MPU-6000 Six-Axis (Gyro + Accelerometer) MEMS MotionTracking™ Device](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/#documentation)*
 
 5. **Paul Denisowski**, *[Understanding SPI](https://www.youtube.com/watch?v=0nVNwozXsIc)*
 
@@ -245,7 +245,9 @@ cs.set_high();
 
 The STM32 Nucleo-U545RE-Q has three SPI channels. Each channel has a multiple sets of pins that can be used for `CLK`, `MOSI` and `MISO`.
 
-![STM32 Nucleo-U545RE-Q pinout](images/stm32u5-pinout.jpeg)
+![STM32 Nucleo-U545RE-Q Arduino Headers Pinout](images/Arduino_Headers.svg)
+![STM32 Nucleo-U545RE-Q CN7 Pinout](images/CN7.svg)
+![STM32 Nucleo-U545RE-! CN10 Pinout](images/CN10.svg)
 
   </TabItem>
 
@@ -279,16 +281,16 @@ For this lab, we will be using a *digital sensor*, which is an *upgraded* versio
 
 ![Digital_Sensor](images/digital_sensor.svg)
 
-## MPU-6500 Inertial Measurement Unit
+## MPU-6000 Inertial Measurement Unit
 
-The **MPU-6500** is a *digital* gyroscope and accelerometer designed by InvenSense. It can be interfaced both with SPI and with I2C. This means that we can read the acceleration and angular velocity values directly from the registers of the MPU-6500 using SPI.
+The **MPU-6000** is a *digital* gyroscope and accelerometer designed by InvenSense. It can be interfaced both with SPI and with I2C. This means that we can read the acceleration and angular velocity values directly from the registers of the MPU-6000 using SPI.
 
 :::info
 **[DATASHEET](https://invensense.tdk.com/wp-content/uploads/2020/06/PS-MPU-6500A-01-v1.3.pdf)**: Describes the chip and its capabilities. \
 **[REGISTER MAP](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6500-Register-Map2.pdf)**: Describes how to configure and get values from the sensor.
 :::
 
-### MPU-6500 Memory Map
+### MPU-6000 Memory Map
 
 | address (HEX) | Name | Access
 |-|-|-|
@@ -313,7 +315,7 @@ The **MPU-6500** is a *digital* gyroscope and accelerometer designed by InvenSen
 
 #### Registers
 
-`WHO_AM_I` register - contains the ID of the MPU-6500
+`WHO_AM_I` register - contains the ID of the MPU-6000
 
 `GYRO_CONFIG` register - used for configuring the gyroscope
 
@@ -361,9 +363,9 @@ The values read from the sensor are 16-bit signed integers and must be interpret
 :::
 
 
-### MPU-6500 wiring
+### MPU-6000 wiring
 
-The MPU-6500 has 5 pins:
+The MPU-6000 has 5 pins:
 
 | Pin | Function |
 |-|-|
@@ -381,17 +383,17 @@ The MPU-6500 has 5 pins:
 ![mpu6500_wiring](images/mpu6500_wiring.png)
 
 :::note
-The MPU-6500 can also be interfaced through I2C, using the same pins but with different functions.
+The MPU-6000 can also be interfaced through I2C, using the same pins but with different functions.
 :::
 
 :::note
-The MPU-6500 can also act as an I2C master and communicate with external sensors. This functionality will be ignored.
+The MPU-6000 can also act as an I2C master and communicate with external sensors. This functionality will be ignored.
 :::
 
 
-### Reading data from the MPU-6500 sensor using Embassy
+### Reading data from the MPU-6000 sensor using Embassy
 
-To get the data we want from the digital sensor, we need to access its internal registers. The MPU-6500 has some rules when it comes to reading and writing to these registers, that must be extracted from the [datasheets](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/#documentation). Every sensor has different registers, and different ways of interfacing them, so reading the datasheet is usually required, especially when we don't have the leverage of using already existing libraries for these sensors.
+To get the data we want from the digital sensor, we need to access its internal registers. The MPU-6000 has some rules when it comes to reading and writing to these registers, that must be extracted from the [datasheets](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/#documentation). Every sensor has different registers, and different ways of interfacing them, so reading the datasheet is usually required, especially when we don't have the leverage of using already existing libraries for these sensors.
 
 First, we make sure our SPI is initialized correctly.
 
@@ -438,7 +440,7 @@ let mut cs = Output::new(p.PIN_N, Level::High);
 
 </Tabs>
 
-In section 6.5 of the [datasheet](https://invensense.tdk.com/wp-content/uploads/2020/06/PS-MPU-6500A-01-v1.3.pdf), we get the information we need in order to read/write to a register of the MPU-6500. 
+In section 6.5 of the [datasheet](https://invensense.tdk.com/wp-content/uploads/2020/06/PS-MPU-6500A-01-v1.3.pdf), we get the information we need in order to read/write to a register of the MPU-6000. 
 
 ![SPI_read_write_MPU6500](images/spi_read_write_mpu6500.png)
 
@@ -642,11 +644,11 @@ Make sure to check out the [documentation](https://docs.rs/embedded-graphics/lat
 
 ## Exercises
 
-1. Connect the MPU-6500 as described in the [wiring configuration](#mpu-6500-wiring) (**1p**)
-2. Read and create a debug log with the [WHO_AM_I](#mpu-6500-memory-map) register. Does the result match the [data sheet](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6500-Register-Map2.pdf)? (**1p**)
+1. Connect the MPU-6000 as described in the [wiring configuration](#mpu-6500-wiring) (**1p**)
+2. Read and create a debug log with the [WHO_AM_I](#mpu-6000-memory-map) register. Does the result match the [data sheet](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6500-Register-Map2.pdf)? (**1p**)
 
 :::tip
-Take a look at the [Reading data from the MPU-6500 sensor using Embassy](#reading-data-from-the-mpu-6500-sensor-using-embassy) section.
+Take a look at the [Reading data from the MPU-6000 sensor using Embassy](#reading-data-from-the-mpu-6500-sensor-using-embassy) section.
 :::
 
 3. Get the acceleration and angular velocity readings from the sensor.
