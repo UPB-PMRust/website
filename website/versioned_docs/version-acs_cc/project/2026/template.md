@@ -40,7 +40,7 @@ Detail in a few words the hardware used.
 
 ### Schematics
 
-Place your KiCAD or similar schematics here.
+Place your KiCAD or similar schematics here in SVG format.
 
 ### Bill of Materials
 
