@@ -38,7 +38,7 @@ Detail in a few words the hardware used.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+Place your KiCAD or similar schematics here.
 
 ### Bill of Materials
 
