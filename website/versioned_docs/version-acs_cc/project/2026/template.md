@@ -8,7 +8,8 @@ A one line project description
 
 :::
 
-<!-- do not delete the \ after your name-->
+<!-- do not delete the \ after your name -->
+
 ## Description
 
 Describe in a few words your project idea.
