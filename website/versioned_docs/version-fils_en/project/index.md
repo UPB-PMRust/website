@@ -8,10 +8,14 @@ The goal of the project is to showcase the knowledge gained throughout the semes
 
 ## Deliverables
 The deliverables will be stored in two places: 
-- the *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students) 
-- the project documentation will be stored on [Github](https://github.com/upb-pmrust/website), by creating a fork of the course's website
+- the project's *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students) using the [project assignment](https://classroom.github.com/a/sVB0pKHF)
+- the project's documentation page will be stored on the course's [Github](https://github.com/upb-pmrust/website)
 
-The **documentation repository** should contain:
+:::note
+To start writing your project's source code, please accept the [project assignment](https://classroom.github.com/a/sVB0pKHF). This will create the project's source code repository for you. We will only review this repository/
+:::
+
+The **project's documentation page** should contain:
 - the full documentation of the project, in the `index.md` file
   - a description of the functionality
   - the motivation for choosing the project
@@ -31,18 +35,18 @@ The **documentation repository** should contain:
 
 :::warning 
 
-You need to work in a fork of this [website's Github repository](https://github.com/upb-pmrust/website) and not in a blank one, in order to create a _merge request_, as described below.
+You need to work in a fork of the [website's Github repository](https://github.com/upb-pmrust/website)'s repository and not in a blank one, in order to create a _pull request_, as described below.
 
 :::
 
-The **source code repository** should contain:
+The **project's source code repository** should contain:
 - a brief documentation - the repository's `README.md` file
   - short description of the functionality
   - requirements (hardware and software)
   - brief hardware and software design, including diagrams
 - software source code
 
-The repositories will be checked by the lab assistant at during lab reserved for the project. Uploading code on the last day of the software milestone is not allowed. **The assistant** will check that students have **submitted regular commits** to the repository.
+The repositories will be checked by the lab assistant during the lab reserved for the project. Uploading code on the last day of the software milestone is not allowed. **The assistant** will check that students have **submitted regular commits** to the repository.
 
 Students will have to build and showcase the hardware with the running software at PM Fair. On the presentation day, **students will upload the source code to the hardware** and the demo will be done live in front of the committee.
 
@@ -64,7 +68,7 @@ If you are using WSL2, you should follow the instructions for installing on Linu
 These steps should be performed on inside your **VM**, or in **WSL2**, **not on your host machine**.
 :::
 
-1. Please login with your UPB login to [Github](https://github.com)
+1. Please login using your account to [Github](https://github.com)
 2. You will have to add an SSH Key to your Github account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS's console: `ssh-keygen -t rsa -b 2048`. Press press ENTER until you exit the respective command prompts.
  - If your command prompt `Overwrite (y/n)?` press `n` and run the above command again, changing the destination of the key.
  - If the key was generated successfully, you will have the keys generated in the location indicated by the command `Enter file in which to save the key (/home/"NAME"/.ssh/id_rsa):`
@@ -86,9 +90,9 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
     - `git checkout -b <branch_name>`
     - `git push --set-upstream origin project/your_curs.upb.ro_username`
 
-7. To start creating your page for the project, go to `website/versioned_docs/version-fils_en/project/2025` and create a new directory with your curs.upb.ro username. Example: `andrei_paul.zamfir`.
+7. To start creating your page for the project, go to `website/versioned_docs/version-fils_en/project/2026` and create a new directory with your curs.upb.ro username. Example: `andrei_paul.zamfir`.
 
-8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2025/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last years' projects](https://github.com/UPB-PMRust/website/tree/main/website/versioned_docs/version-fils_en/project).
+8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2026/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last years' projects](https://github.com/UPB-PMRust/website/tree/main/website/versioned_docs/version-fils_en/project).
 
 9. To build and test the website, you can run the `./build_website.sh` in the project's root folder, then run `cd ./website/ && npm run serve`.
 
@@ -176,4 +180,3 @@ It has to run software written in Rust. Students can use:
 
 [^arduino_nano_rp2040_connect]: Some function of this board, like WiFi, might not be supported in Rust.
 [^esp32_riscv]: ESP32 provides its own Rust SDK described in the [The Rust on ESP Book](https://docs.esp-rs.org/book/introduction.html).
-
