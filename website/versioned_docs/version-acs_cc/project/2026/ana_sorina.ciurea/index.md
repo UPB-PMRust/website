@@ -78,7 +78,7 @@ The system is built around an STM32 Nucleo board and integrates multiple sensors
 
 ### Schematics
 
-![Schematics](/img/schematic.svg)
+![Schematics](/img/schlast.svg)
 
 ## Bill of Materials
 
