@@ -1,0 +1,74 @@
+<svg width="1024" height="768" viewBox="0 0 1024 768" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+  
+  <text x="512" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#333">System Diagram: #Smart Recycling Bin</text>
+  <text x="512" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#666">Author: Ana-Sorina Ciurea</text>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+    </marker>
+  </defs>
+
+  <rect x="362" y="300" width="300" height="200" rx="10" fill="#e1f5fe" stroke="#01579b" stroke-width="2"/>
+  <text x="512" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#01579b">STM32 Nucleo</text>
+  <text x="512" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#333">(Programmed in Rust)</text>
+  <text x="512" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-style="italic" fill="#666">embedded-hal / stm32 HAL</text>
+
+  <rect x="50" y="250" width="220" height="80" rx="5" fill="#e8f5e9" stroke="#1b5e20" stroke-width="2"/>
+  <text x="160" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1b5e20">Proximity Sensor</text>
+  <text x="160" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">(Ultrasonic/IR)</text>
+  
+  <path d="M 270 290 L 362 350" stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="300" y="315" font-family="Arial, sans-serif" font-size="12" fill="#333">Hand</text>
+  <text x="300" y="330" font-family="Arial, sans-serif" font-size="12" fill="#333">Detection</text>
+
+  <rect x="50" y="420" width="220" height="80" rx="5" fill="#e8f5e9" stroke="#1b5e20" stroke-width="2"/>
+  <text x="160" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1b5e20">NFC Module (RC522)</text>
+  <text x="160" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">(NFC crate)</text>
+  
+  <path d="M 270 460 L 362 420" stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="290" y="435" font-family="Arial, sans-serif" font-size="12" fill="#333">Card/Tag Data</text>
+
+  <rect x="750" y="250" width="220" height="80" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="860" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#e65100">Servo Motor</text>
+  <text x="860" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">(Lid Control)</text>
+  
+  <path d="M 662 350 L 750 290" stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="690" y="315" font-family="Arial, sans-serif" font-size="12" fill="#333">PWM Control</text>
+
+  <rect x="750" y="420" width="220" height="80" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="860" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#e65100">LED Indicators</text>
+  <text x="860" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#333">(User Feedback)</text>
+  
+  <path d="M 662 420 L 750 460" stroke="#555" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="690" y="455" font-family="Arial, sans-serif" font-size="12" fill="#333">GPIO Status</text>
+
+  <g transform="translate(50, 600)">
+    <rect x="0" y="0" width="924" height="120" rx="5" fill="#fafafa" stroke="#ddd" stroke-width="1" />
+    <text x="20" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#555">Simplified Logic Flow:</text>
+    
+    <circle cx="50" cy="70" r="15" fill="#e8f5e9" stroke="#1b5e20"/>
+    <text x="50" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1b5e20">1</text>
+    <text x="75" y="75" font-family="Arial, sans-serif" font-size="14" fill="#333">User Approaches</text>
+    
+    <path d="M 200 70 L 230 70" stroke="#555" stroke-width="1" fill="none" marker-end="url(#arrowhead)"/>
+
+    <circle cx="260" cy="70" r="15" fill="#fff3e0" stroke="#e65100"/>
+    <text x="260" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#e65100">2</text>
+    <text x="285" y="75" font-family="Arial, sans-serif" font-size="14" fill="#333">Lid Opens (Servo)</text>
+    
+    <path d="M 430 70 L 460 70" stroke="#555" stroke-width="1" fill="none" marker-end="url(#arrowhead)"/>
+
+    <circle cx="490" cy="70" r="15" fill="#e8f5e9" stroke="#1b5e20"/>
+    <text x="490" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1b5e20">3</text>
+    <text x="515" y="75" font-family="Arial, sans-serif" font-size="14" fill="#333">Scan NFC Card</text>
+    
+    <path d="M 650 70 L 680 70" stroke="#555" stroke-width="1" fill="none" marker-end="url(#arrowhead)"/>
+
+    <circle cx="710" cy="70" r="15" fill="#fff3e0" stroke="#e65100"/>
+    <text x="710" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#e65100">4</text>
+    <text x="735" y="75" font-family="Arial, sans-serif" font-size="14" fill="#333">Reward / LED Feedback</text>
+  </g>
+
+</svg>
