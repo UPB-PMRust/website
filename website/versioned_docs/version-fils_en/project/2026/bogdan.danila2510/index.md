@@ -45,11 +45,14 @@ The firmware uses Embassy's async executor. The main loop polls touch input, det
 
 ## Log
 
-### Week 5 - 11 May
+# Week 2 - 4 
+ Documentation for both software and hardware part of the project.
 
-### Week 12 - 18 May
+# Week 5 - 6
+ Ordered all the hardware. Soldered the TSL2561 Sensor and the MQ135 Sensor. Debugged the STM32 Nucleo-U545RE-Q and prepared it for the project.
 
-### Week 19 - 25 May
+# Week 7
+ Connected the ST7789 Display to the STM32 Nucleo-U545RE-Q. Sorted out visual and touchscreen part. Tweaked the UI and swiping animations (between the sensor values) with static values before starting to add the sensors.
 
 ## Hardware
 
