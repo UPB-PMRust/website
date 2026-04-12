@@ -4,7 +4,7 @@ A touchscreen dashboard that monitors temperature, humidity, light and air quali
 :::info 
 
 **Author**: Bogdan Danila \
-**GitHub Project Link**: https://github.com/bgdanila/home-enviroment-system
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-2026-bgdanila-1
 
 :::
 
