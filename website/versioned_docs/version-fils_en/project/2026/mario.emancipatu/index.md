@@ -1,15 +1,10 @@
----
-title: Automated Drink Mixer
-description: An automated drink mixer housed in a custom chassis using STM32, relay modules, and asynchronous Rust.
----
-
 # Automated Drink Mixer
 
-A one line project description: An automated drink mixer that precisely measures and dispenses custom juice recipes.
+An automated drink mixer that precisely measures and dispenses custom juice recipes.
 
 :::info
 **Author:** Mario Emancipatu
-**GitHub Project Link:** github.com/mario.emancipatu
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/project-2026-marioemancipatu
 :::
 
 ## Description
@@ -72,11 +67,11 @@ Schematics in SVG format.
 
 | Library | Description | Usage |
 | :--- | :--- | :--- |
-| `embassy-stm32` | Hardware Abstraction Layer | Core hardware control |
-| `embassy-executor` | Async Executor | Running non-blocking tasks |
-| `ssd1306` | Display driver | Controlling the OLED screen |
-| `embedded-graphics` | 2D graphics library | Drawing text and shapes |
-| `rotary-encoder-hal` | Hardware driver | Decoding knob turns |
+| [`embassy-stm32`](https://crates.io/crates/embassy-stm32) | Hardware Abstraction Layer | Core hardware control |
+| [`embassy-executor`](https://crates.io/crates/embassy-executor) | Async Executor | Running non-blocking tasks |
+| [`ssd1306`](https://crates.io/crates/ssd1306) | Display driver | Controlling the OLED screen |
+| [`embedded-graphics`](https://crates.io/crates/embedded-graphics) | 2D graphics library | Drawing text and shapes |
+| [`rotary-encoder-hal`](https://crates.io/crates/rotary-encoder-hal) | Hardware driver | Decoding knob turns |
 
 
 ## Links
