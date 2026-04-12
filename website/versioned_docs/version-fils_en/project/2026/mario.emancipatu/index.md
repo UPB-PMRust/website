@@ -3,7 +3,7 @@
 An automated drink mixer that precisely measures and dispenses custom juice recipes.
 
 :::info
-**Author:** Mario Emancipatu
+**Author:** Mario Emancipatu \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/project-2026-marioemancipatu
 :::
 
