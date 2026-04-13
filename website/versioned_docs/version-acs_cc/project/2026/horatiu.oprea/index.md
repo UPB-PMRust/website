@@ -1,5 +1,5 @@
 # Project Name
-A one line project description
+Salut, sunt Horatiu!
 
 :::info 
 
