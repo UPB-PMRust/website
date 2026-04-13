@@ -20,9 +20,7 @@ Why did you choose this project?
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+The user would place a stack of banknotes into the dedicated compartment. Then they would input the value of one banknote. After pressing the start button, the motor would push the bottom banknote into a narrow slit, then, employing the gravity, the banknote would trigger the beam interrupt sensor, thus, increase the counter. If after a certain amount of time nothing triggers the sensor, the motor would stop. The front panel would feature the display, which would show the total sum along with the current value of one banknote; and a bunch of buttons, such as start, clear (set the counter and sum to 0), number inputs and preset banknote values (10/20/50/100 etc).
 
 ## Log
 
