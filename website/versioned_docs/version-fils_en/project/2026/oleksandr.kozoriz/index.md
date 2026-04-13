@@ -64,7 +64,25 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [STM32 Nucleo U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [~130 RON*]() |
+| [Mini Infrared Interruption Sensor Module](link://to/device) | Detection of the passing banknote | [6.99 RON](https://www.optimusdigital.ro/en/all-products/5826-mini-infrared-interruption-sensor-module.html?search_query=Mini+Infrared+Interruption+Sensor+Module&results=1) |
+| [1602 LCD with Blue Backlight 3.3 V](link://to/device) | The main display | [19.99 RON](https://www.optimusdigital.ro/en/lcds/868-modul-lcd-1602-cu-backlight-galben-verde-de-33-v.html?search_query=1602+LCD+with+Blue+Backlight+3.3+V&results=5) |
+| [DC Motor](link://to/device) | Pulling the banknotes into the slit | [3.99 RON](https://www.optimusdigital.ro/en/others/13612-dc-motor-f130-3v.html?search_query=DC+motor&results=736) |
+| [L293D Motor Driver](link://to/device) | The motor driver | [3 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/13613-driver-de-motoare-l293d.html?search_query=L293D&results=9) |
+| [18 mm Rubber Wheel](link://to/device) | The roller | [5 x 0.89 RON](https://www.optimusdigital.ro/en/gears/571-18-mm-rubber-wheel.html?search_query=18+mm+Rubber+Wheel&results=12) |
+| [2x150 mm Shaft](link://to/device) | The shaft for the roller | [1.95 RON](https://www.optimusdigital.ro/en/metal-axes/298-ax-metalic-2x150-mm.html?search_query=2x150+mm&results=1) |
+| [2x50 mm Shaft](link://to/device) | Shaft extention | [0.95 RON](https://www.optimusdigital.ro/en/metal-axes/312-ax-metalic-2x50-mm.html?search_query=2x50+mm&results=5) |
+| [2 mm to 2 mm Coupling Hub](link://to/device) | Shaft connections | [2 x 5.99 RON](https://www.optimusdigital.ro/en/coupling-hubs/451-2mm-to-2mm-coupling-hub.html?search_query=2+mm+to+2+mm+Coupling+Hub&results=31) |
+| [Miniature Ball Bearing (2 mm Internal Diameter)](link://to/device) | Shaft support | [2.89 RON](https://www.optimusdigital.ro/en/bearings/402-rulment-in-miniatura-cu-diametru-interior-2-mm.html?search_query=Miniature+Ball+Bearing+%282+mm+Internal+Diameter%29&results=4) |
+| [4x4 Push Button Keyboard Matrix](link://to/device) | User input | [3.99 RON](https://www.optimusdigital.ro/en/touch-sensors/2441-tastatura-matriceala-4x4-cu-butoane.html?search_query=4x4+Push+Button+Keyboard+Matrix&results=2) |
+| [Red Button with Round Cover](link://to/device) | Start / Reset buttons | [2 x 1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html?search_query=Red+Button+with+Round+Cover&results=8) |
+| [Breadboard HQ (830 points)](link://to/device) | Prototyping | [9.98 RON](link://to/store) |
+| [Breadboard Jumper Wires Set](link://to/device) | Wiring | [7.99 RON](link://to/store) |
+| [10 cm 10p Male-Female Wires](link://to/device) | Wiring | [8 x 2.99 RON](link://to/store) |
+| [Device](link://to/device) | This is used ... | [price](link://to/store) |
+| [Device](link://to/device) | This is used ... | [price](link://to/store) |
+
+*was borrowed from the class
 
 
 ## Software
