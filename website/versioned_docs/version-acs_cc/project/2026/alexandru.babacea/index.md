@@ -46,3 +46,4 @@ Miscarea corecta a pieselor: Programul calzuleaza coordonatele de plecare si des
 
 ## Bibliografie si Resurse
 - Tutorial de referinta Instructables: [Automated Chessboard by Greg06](https://www.instructables.com/Automated-Chessboard/?fbclid=PAVERTVgQkc31leHRuA2FlbQIxMABzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAaf3d5kjWfOXYe6eTNwDwONbe9yrm8rgNCHcAq2UOxQGzEu7HfhKyTgcw8Q93w_aem_8qWs7lUFjMI_7Cdr_kOIEA)
+- Link repository cod sursa: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandruBabacea-student
