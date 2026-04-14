@@ -45,11 +45,13 @@ To be continued...
 
 ## Hardware
 
-The "brain" of the system is **STM32 microcontroller** and the "eyes" of the system **IR beam interruption sensor**.
+The "brain" of the system is **STM32 microcontroller** and the "eyes" of the system is **IR beam interruption sensor**.
 
 The sensor has 3 terminals: *Vcc, GND* and *OUT*. *OUT* is high by default, and the sensor pulls it low only if there is something on the way of the beam (e.g. banknote)
 
 Other main components are the **LCD display**, that is used as the information output; **DC motor and driver**, for pushing the banknote on the way of the sensor's beam; and the buttons for user interaction.
+
+![Hardware schematic](hardware.webp)
 
 ### Schematics
 
