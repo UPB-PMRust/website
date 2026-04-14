@@ -95,8 +95,17 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer for STM32 microcontrollers | Controlling GPIOs and extrenal interrupts (EXTIs) |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives with async support | Mutexes and Watches for accessing the counter value |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Instant and Duration for embedded no-std systems, with async timer support | Debouncing and other timers |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | async/await executor | Spawning the processes |
+| [embassy-futures](https://github.com/embassy-rs/embassy) | Utilities for working with futures | Awaiting results from multiple processes |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for resource-constrained devices | Debug & Logging |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | defmt log messages over the RTT protocol | Debug & Logging |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler that exits with an error code | Addressing errors |
+| [cortex-m-rt](https://github.com/rust-embedded/cortex-m) | Minimal runtime / startup for Cortex-M microcontrollers | Embassy dependency |
+| [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | Driver HD44780 compliant displays | Displaying the output |
+| [embedded-hal](https://github.com/JohnDoneth/hd44780-driver) | Hardware Abstraction Layer for embedded systems | Display driver's dependency |
 
 ## Links
 
