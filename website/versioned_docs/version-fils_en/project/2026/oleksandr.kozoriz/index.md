@@ -4,7 +4,7 @@ A device that would count stack of banknotes and display the sum.
 :::info 
 
 **Author**: Oleksandr Kozoriz \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-2026-sanyaswee
 
 :::
 
@@ -111,6 +111,6 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Currency-counting machine](https://en.wikipedia.org/wiki/Currency-counting_machine)
+2. [The Rust Book](https://doc.rust-lang.org/stable/book/index.html)
+3. [Embassy](https://embassy.dev/)
