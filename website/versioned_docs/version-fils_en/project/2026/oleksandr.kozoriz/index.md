@@ -16,7 +16,7 @@ A simplified version of a cash counting machine, where the user would place a st
 
 ## Motivation
 
-Why did you choose this project?
+It is quite interesting for me to build something that brings code to a physical world. I had no prior experince in embedded development, and this subject was a discovery for me. Seeing your code being executed in a real world is something facinating, and I am quite sure this project won't be my last one. Regarding this idea - it was the first one that came to my mind and was not done before, so - that's it!
 
 ## Architecture 
 
