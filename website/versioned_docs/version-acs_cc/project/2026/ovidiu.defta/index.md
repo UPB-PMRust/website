@@ -1,4 +1,5 @@
-# AeroGuard - Monitor Solar de Poluare Atmosferica cu GPS
+# AeroGuard
+Monitor Solar de Poluare Atmosferica cu GPS
 
 :::info 
 
