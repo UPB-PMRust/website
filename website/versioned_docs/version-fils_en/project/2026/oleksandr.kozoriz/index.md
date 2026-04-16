@@ -4,7 +4,7 @@ A device that would count stack of banknotes and display the sum.
 :::info 
 
 **Author**: Oleksandr Kozoriz \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-2026-sanyaswee
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-sanyaswee
 
 :::
 
