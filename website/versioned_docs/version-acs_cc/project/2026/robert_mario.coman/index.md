@@ -1,4 +1,4 @@
-# Endless Motion:
+# Endless Motion
 A robot arm that cleans liquid around itself.
 
 ### Description
