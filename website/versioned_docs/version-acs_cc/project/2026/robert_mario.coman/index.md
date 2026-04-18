@@ -1,6 +1,13 @@
 # Endless Motion
 A robot arm that cleans liquid around itself.
 
+:::info
+
+**Author**: Robert-Mario Coman \
+**Github Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-robertcoman1
+
+:::
+
 ### Description
 **Endless Motion** is a robotic arm system that receives input from sensors placed in specific locations to detect the presence of a liquid. It processes these signals to determine the target area that requires intervention. Based on this data, it calculates control commands, moves to the detected zone, and executes a wiping action. The system continuously updates its movement, repeating the process based on newly received signals.
 
