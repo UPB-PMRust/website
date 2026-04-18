@@ -23,14 +23,14 @@ Here is the schematic of the project:
 
 ## Log
 
-# Week 5
+### Week 5
 
 Brainstormed the ideas for the project and searched for the required components.
-# Week 6
+### Week 6
 
 Discussed the idea of the project with lab assistant and ordered the components & other necessary supplies. 
 
-# Weeks 7-8
+### Weeks 7-8
 
 Started working on my project: 
 - soldered MAX30102 sensor(and 2 back-up ones)
@@ -46,7 +46,7 @@ The hardware architecture of PulseOx utilizes an STM32U5 microcontroller as its 
 
 Place your KiCAD or similar schematics here in SVG format(will be displayed once everything is connected together.)
 
-# Bill of Materials
+## Bill of Materials
 
 | Device | Usage | Price |
 | :--- | :--- | :--- |
