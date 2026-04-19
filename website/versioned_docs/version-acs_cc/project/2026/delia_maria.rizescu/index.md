@@ -34,7 +34,7 @@ Logic: Manages the mechanical release of products and the return of change.
 Components: 4x Stepper Motors and SG90 Servo (coin release).
 
 
-![alt text](image.png)
+![Architecture Diagram](arhitectura.svg)
 
 ## Log
 
