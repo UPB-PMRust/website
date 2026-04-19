@@ -1,5 +1,5 @@
 # Rusty Coffee
-A one line project description
+An automated coffee machine in which you can schedule your coffee and customize it to your heart's desire.
 
 :::info 
 
@@ -16,7 +16,7 @@ This smart coffee machine has lots of additional features and options when it co
 
 ## Motivation
 
-Because I love cofee. Of course, I'm not addicted. 
+Because I love coffee. Of course, I'm not addicted. 
 
 ## Architecture 
 
@@ -37,7 +37,11 @@ The main Stm32 arrived from mouser. Tested it, and everything works fine.
 
 ## Hardware
 
-Detail in a few words the hardware used.
+-STM32U545
+- Water pump 
+-pulse sensor
+- TFT LCD Touchscreen
+-heating element
 
 ### Schematics
 
