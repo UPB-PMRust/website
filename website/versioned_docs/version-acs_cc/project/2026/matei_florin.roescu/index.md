@@ -17,7 +17,7 @@ This project presents an automatic ping pong ball launcher designed for training
 
 The main idea for this project was inspired by my passion for ping pong. Since I play this sport regularly, I have always been interested in finding ways to improve my skills. This led me to the concept of designing a training machine that could simulate real gameplay situations. Building a ping pong ball launcher felt like a natural and exciting challenge, as it combines my interest in the sport with practical engineering and problem-solving.
 ## Architecture
-![Diagram](Architecture.drawio.png)
+![Diagram](Architecture.drawio.webp) 
 
 Main Components:
 - **Microcontroller (STM32 Nucleo)**: It's the brain of the project
