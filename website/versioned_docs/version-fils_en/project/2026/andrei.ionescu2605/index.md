@@ -3,7 +3,7 @@
 :::info
 **Author**: Ionescu Andrei \
 **Group**: 1221ED \
-**GitHub Project Link**: https://github.com/ionescuaandrei/andrei.ionescu2605
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-ionescuaandrei
 :::
 
 ## Description
@@ -44,14 +44,15 @@ Additionally, the project aims to replicate the functionality of a handheld ther
      v              v                      v
 +----------+   +------------+      +---------------+
 | TFT      |   | microSD    |      | WiFi Module   |
-| Display  |   | Storage    |      | (optional)    |
-+----------+   +------------+      +---------------+
-     |
-     v
-+-------------+
-| UI Control  |
-| (Joystick)  |
-+-------------+
+| Display  |   | Storage    |      | (ESP8266/ESP32)|
++----------+   +------------+      +-------+-------+
+     |                                      |
+     v                                      | WiFi (TCP/HTTP)
++-------------+                            v
+| UI Control  |                   +------------------+
+| (Joystick)  |                   |   Mobile App     |
++-------------+                   | (iOS / Android)  |
+                                   +------------------+
 ```
 
 ## Hardware Connections
@@ -81,6 +82,14 @@ SW  -> GPIO
 WiFi Module (optional)
 TX/RX -> UART
 ```
+
+## Mobile Application *(add on)*
+
+A companion app built with **React Native + Expo** (iOS / Android) connects to the device over WiFi. A lightweight **Node.js + Express** server runs on the same network, receives raw frames from the ESP32 over HTTP, and serves them to the app.
+
+**Features:** live thermal stream, captured image history, download to gallery, temperature overlay (min/max/center), device status.
+
+**API endpoints:** `GET /frame`, `GET /history`, `GET /image/<name>`, `POST /settings`, `GET /status`.
 
 ## Log
 
@@ -114,15 +123,17 @@ A microSD card module is used for storing captured frames. A joystick provides n
 |--------|------|------|
 | STM32 NUCLEO-U545RE-Q | Main controller | 125 RON |
 | MLX90640 | Thermal sensor | ~150 RON |
-| TFT Display | Visualization | ~40 RON |
+| TFT Display | Visualization | ~40 RON (already owned) |
 | microSD Module | Storage | ~15 RON |
 | Joystick | UI | ~10 RON |
-| WiFi Module | Communication | ~25 RON |
-| Power | Battery/Power bank | ~50 RON |
-| Misc | Wires etc | ~50 RON |
+| WiFi Module | Communication | ~25 RON (already owned)  |
+| Power | Battery/Power bank | ~50 RON (already owned) |
+| Misc | Wires etc | ~50 RON  (already owned) |
 | **Total** | | **~465 RON** |
 
 ## Software
+
+### Firmware (STM32 — Rust / Embassy)
 
 | Library | Description |
 |--------|-------------|
@@ -135,6 +146,16 @@ A microSD card module is used for storing captured frames. A joystick provides n
 | st7735-lcd / ili9341 | Display driver |
 | heapless | Memory-safe structures |
 | embedded-sdmmc | SD card |
+
+### Mobile Add-on (Node.js / Express + React Native / Expo)
+
+| Package | Description |
+|---------|-------------|
+| `express` | REST API server |
+| `multer` / `sharp` | Frame upload handling and JPEG encoding |
+| `expo-image`, `expo-media-library` | Image display and gallery save |
+| `axios` | API calls from the app |
+| `zustand` | State management |
 
 ## Links
 
