@@ -198,6 +198,6 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Embassy Book](https://embassy.dev/book/#_what_is_embassy)
+2. [BMP280 Data Sheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf)
+3. [ICM20948 Documentation](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000189-icm-20948-v1.5.pdf)
