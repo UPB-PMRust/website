@@ -4,7 +4,7 @@ An interactive system for learning Braille through visual, tactile and auditory 
 :::info 
 
 **Author**: Ciuperca Robert-Mihai \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-robert1724
+**GitHub Project Link**: [Project Repository](https://github.com/UPB-PMRust-Students/acs-project-2026-robert1724)
 
 :::
 
