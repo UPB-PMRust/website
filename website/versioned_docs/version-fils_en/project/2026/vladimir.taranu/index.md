@@ -67,7 +67,7 @@ Implemented on measurement device:
 - graphical gauge on the round LCD
 
 <center>
-![Gauge](gauge.png)
+![Gauge](gauge.webp)
 </center>
 
 ### Week 9
