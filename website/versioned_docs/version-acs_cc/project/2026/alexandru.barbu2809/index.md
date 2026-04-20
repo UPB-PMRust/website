@@ -4,7 +4,11 @@ A black box that logs data on an SD card if the RC car has been in an accident.
 :::info 
 
 **Author**: Barbu Alexandru Daniel \
+<<<<<<< HEAD
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandruDanielBarbu
+=======
+**GitHub Project Link**: TODO
+>>>>>>> 5a2ebf16 (I have added the project description.)
 
 :::
 
@@ -27,7 +31,11 @@ Add here the schematics with the architecture of your project. Make sure to incl
  - i will have to do some custom graphs to determine when an accident happened so another rust crate there
  - from what i understand i also need a filter that stabilizes the signal from the IMU sensor
 
+<<<<<<< HEAD
 <!-- TODO:
+=======
+TODO:
+>>>>>>> 5a2ebf16 (I have added the project description.)
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other -->
 
@@ -35,6 +43,7 @@ Add here the schematics with the architecture of your project. Make sure to incl
 
 <!-- write your progress here every week -->
 
+<<<<<<< HEAD
 ### Week 23 Feb - 29 Mar
 
 Looking for an idea, validating idea, idea is too simple so back to square 1.
@@ -52,6 +61,15 @@ Looking for components, finding components, ordering them, they get delivered to
 Doing small scale beginner project on the board to get the feel of how to program in rust on the STM board.
 
 Waiting for the rest of the components to be delivered.
+=======
+first 2 weeks: finding the idea
+
+week 3: validating idea
+
+week 4 to present day: mess around with the board, the labs, order parts, waiting for parts.
+
+### Week 5 - 11 May
+>>>>>>> 5a2ebf16 (I have added the project description.)
 
 ### Week 12 - 18 May
 
