@@ -1,11 +1,10 @@
-
 # Internal Combustion Engine Emulator
 An emulator that bring electric cars to life.
 
 :::info 
 
 **Author**: Eduard-Costin Ionescu \
-**GitHub Project Link**: UPB-PMRust-Students/fils-project-2026-edi10pro1
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-edi10pro1
 
 :::
 
@@ -110,6 +109,9 @@ Here is the complete software table using your exact template, covering the full
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [STM32 Datasheet](https://www.st.com/resource/en/datasheet/stm32g0b1re.pdf)
+2. [STM32 Reference Manual](https://www.st.com/resource/en/reference_manual/rm0444-stm32g0x1-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
+3. [ACS712 Current Sensor Datasheet](https://www.allegromicro.com/-/media/files/datasheets/acs712-datasheet.ashx)
+4. [Rust Embedded Manual](https://docs.rust-embedded.org/book/)
+5. [Dual Motor Driver Datasheet](https://cdn.sparkfun.com/assets/0/1/b/b/3/TB6612FNG.pdf)
+6. [JDY-18 BLE Module Manual](https://manuals.plus/bluetooth-module/bluetooth-jdy-18-4-2-ble-module-usage-manual)
