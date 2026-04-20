@@ -34,7 +34,7 @@ Logic: Manages the mechanical release of products and the return of change.
 Components: 4x Stepper Motors and SG90 Servo (coin release).
 
 
-![Architecture Diagram](images/arhitectura.svg)
+![Architecture Diagram](images/diagrama_arhitectura.svg)
 
 ## Log
 
@@ -80,8 +80,7 @@ The format is
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Hardware Ideas and Design](https://www.youtube.com/watch?v=DO3AciBz_-A&t=5s)
+2. [Lab Support](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab)
+3. [DIY Coin Dispenser](https://www.youtube.com/watch?v=V7L139xnTR0)
+4. [Vending Machine Mechanism](https://www.youtube.com/watch?v=-gdm71P1k9c&t=2s)
