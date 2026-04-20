@@ -1,164 +1,143 @@
 # Thermal Imaging Embedded System (STM32 + MLX90640)
+A portable handheld thermal camera that captures, processes, and displays live infrared data in real time.
 
 :::info
+
 **Author**: Ionescu Andrei \
-**Group**: 1221ED \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-ionescuaandrei
+
 :::
+
+<!-- do not delete the \ after your name -->
 
 ## Description
 
-This project consists of a portable embedded thermal imaging system built on an STM32 microcontroller. The system uses an MLX90640 infrared thermal sensor to capture temperature data as a 32x24 pixel frame, processes the data locally on the microcontroller, and renders a real-time thermal image on a color TFT display.
-
-The device is designed as a handheld unit, powered by a battery and enclosed in a 3D-printed case. It supports capturing and storing thermal frames on a microSD card, navigating a simple user interface using a joystick, and optionally transmitting captured images to a mobile application over WiFi.
+This project is a battery-powered embedded thermal imaging system built on STM32, using the MLX90640 (32x24 IR array) to capture temperature frames and render them on a TFT display.
 
 ## Motivation
 
-The goal of this project is to build a real-time embedded system that performs acquisition, processing, and visualization of sensor data directly on the microcontroller.
-
-Compared to simple IoT or game-based systems, this project focuses on:
-- handling large sensor datasets (thermal frames)
-- performing local data processing (temperature mapping, normalization)
-- rendering graphical output in real time
-- integrating multiple peripherals (display, storage, communication)
-
-Additionally, the project aims to replicate the functionality of a handheld thermal camera, providing both engineering complexity and a strong visual demonstration.
+I chose this project because it combines real-time data acquisition, embedded data processing, and graphical rendering in a single portable system. It is a practical and technically challenging alternative to simpler IoT projects.
 
 ## Architecture
 
-```
-        +----------------------+
-        |   MLX90640 Sensor    |
-        |   (32x24 IR Array)   |
-        +----------+-----------+
-                   |
-                   | I2C (fast)
-                   v
-        +---------------------------+
-        |   STM32 (Main Controller) |
-        |  (Processing Pipeline)    |
-        +-----------+---------------+
-                    |
-     +--------------+----------------------+
-     |              |                      |
-     v              v                      v
-+----------+   +------------+      +---------------+
-| TFT      |   | microSD    |      | WiFi Module   |
-| Display  |   | Storage    |      | (ESP8266/ESP32)|
-+----------+   +------------+      +-------+-------+
-     |                                      |
-     v                                      | WiFi (TCP/HTTP)
-+-------------+                            v
-| UI Control  |                   +------------------+
-| (Joystick)  |                   |   Mobile App     |
-+-------------+                   | (iOS / Android)  |
-                                   +------------------+
-```
+Main software and system components:
+- Sensor Acquisition Module: reads raw IR frames from MLX90640 over I2C.
+- Processing Pipeline: calibration, normalization, temperature-to-color mapping.
+- Rendering Engine: draws thermal image and overlays on TFT display.
+- Storage Manager: saves captured frames to microSD.
+- UI Controller: joystick-driven menus and capture actions.
+- Communication Module (optional): sends frames to mobile app via WiFi.
 
-## Hardware Connections
+How components connect:
 
 ```
-MLX90640 (I2C)
-SDA -> I2C SDA
-SCL -> I2C SCL
-
-TFT Display (SPI)
-MOSI -> SPI MOSI
-SCK  -> SPI CLK
-CS   -> GPIO
-DC   -> GPIO
-RST  -> GPIO
-
-microSD (SPI)
-MOSI -> SPI MOSI
-MISO -> SPI MISO
-SCK  -> SPI CLK
-CS   -> GPIO
-
-Joystick
-X/Y -> ADC inputs
-SW  -> GPIO
-
-WiFi Module (optional)
-TX/RX -> UART
+MLX90640 Sensor
+     |
+     | I2C
+     v
+Sensor Acquisition Module
+     |
+     v
+Processing Pipeline
+     |
+     +---------------------> Storage Manager (microSD)
+     |
+     +---------------------> Communication Module (WiFi -> Mobile App)
+     |
+     v
+Rendering Engine -> TFT Display
+     ^
+     |
+UI Controller (Joystick)
 ```
-
-## Mobile Application *(add on)*
-
-A companion app built with **React Native + Expo** (iOS / Android) connects to the device over WiFi. A lightweight **Node.js + Express** server runs on the same network, receives raw frames from the ESP32 over HTTP, and serves them to the app.
-
-**Features:** live thermal stream, captured image history, download to gallery, temperature overlay (min/max/center), device status.
-
-**API endpoints:** `GET /frame`, `GET /history`, `GET /image/<name>`, `POST /settings`, `GET /status`.
 
 ## Log
 
-### Week 4 (Idea Selection)
-- Initial idea was a reflex-based system
-- Pivoted to thermal imaging after feedback
-- Selected MLX90640 as core sensor
+<!-- write your progress here every week -->
 
-### Week 5 (Research)
-- Studied MLX90640 communication and data format
-- Researched display options
-- Planned processing pipeline
+### Week 5 - 11 May
+- Initial idea was a reflex-based system.
+- Pivoted to thermal imaging after feedback.
+- Selected MLX90640 as core sensor.
+- Studied MLX90640 communication and frame format.
 
-### Week 6 (Architecture Design)
-- Defined system blocks and data flow
-- Selected peripherals (SD, joystick, WiFi)
+### Week 12 - 18 May
+- Defined system blocks and data flow.
+- Selected peripherals: TFT display, microSD, joystick, optional WiFi.
+- Planned local processing pipeline (normalization and color mapping).
 
-### Week 7 (Planned Implementation)
-- Start hardware integration
-- Test I2C communication with sensor
+### Week 19 - 25 May
+- Planned hardware integration order.
+- Planned first bring-up tests for I2C communication with MLX90640.
+- Planned display pipeline validation with test frames.
 
 ## Hardware
 
-The system is built around an STM32 microcontroller (NUCLEO-U545RE-Q for development). The MLX90640 sensor provides a 32x24 array of temperature values via I2C. A TFT display is used for real-time visualization.
+The system uses an STM32 NUCLEO-U545RE-Q for development, an MLX90640 thermal sensor, a TFT display for visualization, a microSD module for storage, and a joystick for navigation. An ESP8266/ESP32 module can be added for WiFi transfer to a mobile app.
 
-A microSD card module is used for storing captured frames. A joystick provides navigation, while a WiFi module enables optional communication with a mobile application.
+### Schematics
 
-## Bill of Materials
+<svg width="820" height="260" viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project hardware schematic overview">
+  <rect x="10" y="20" width="170" height="70" fill="none" stroke="black"/>
+  <text x="95" y="60" text-anchor="middle" font-size="14">MLX90640 (I2C)</text>
+
+  <rect x="250" y="20" width="220" height="100" fill="none" stroke="black"/>
+  <text x="360" y="60" text-anchor="middle" font-size="14">STM32 NUCLEO-U545RE-Q</text>
+  <text x="360" y="82" text-anchor="middle" font-size="12">Main Controller</text>
+
+  <rect x="540" y="20" width="160" height="70" fill="none" stroke="black"/>
+  <text x="620" y="60" text-anchor="middle" font-size="14">TFT Display (SPI)</text>
+
+  <rect x="540" y="110" width="160" height="60" fill="none" stroke="black"/>
+  <text x="620" y="145" text-anchor="middle" font-size="14">microSD (SPI)</text>
+
+  <rect x="250" y="160" width="220" height="70" fill="none" stroke="black"/>
+  <text x="360" y="200" text-anchor="middle" font-size="14">Joystick + WiFi (UART)</text>
+
+  <line x1="180" y1="55" x2="250" y2="55" stroke="black"/>
+  <line x1="470" y1="55" x2="540" y2="55" stroke="black"/>
+  <line x1="470" y1="120" x2="540" y2="140" stroke="black"/>
+  <line x1="360" y1="120" x2="360" y2="160" stroke="black"/>
+</svg>
+
+### Bill of Materials
 
 | Device | Usage | Price |
-|--------|------|------|
-| STM32 NUCLEO-U545RE-Q | Main controller | 125 RON |
-| MLX90640 | Thermal sensor | ~150 RON |
-| TFT Display | Visualization | ~40 RON (already owned) |
-| microSD Module | Storage | ~15 RON |
-| Joystick | UI | ~10 RON |
-| WiFi Module | Communication | ~25 RON (already owned)  |
-| Power | Battery/Power bank | ~50 RON (already owned) |
-| Misc | Wires etc | ~50 RON  (already owned) |
-| **Total** | | **~465 RON** |
+|--------|--------|-------|
+| [STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main controller | [125 RON](https://ro.mouser.com/) |
+| [MLX90640](https://www.melexis.com/en/product/MLX90640) | Thermal sensor (32x24 IR array) | [~150 RON](https://www.optimusdigital.ro/) |
+| [TFT Display](https://www.adafruit.com/category/63) | Real-time thermal visualization | [~40 RON](https://www.optimusdigital.ro/) |
+| [microSD Module](https://components101.com/modules/microsd-card-module) | Frame storage | [~15 RON](https://www.optimusdigital.ro/) |
+| [Joystick Module](https://components101.com/modules/joystick-module) | Menu navigation and input | [~10 RON](https://www.optimusdigital.ro/) |
+| [ESP8266/ESP32](https://www.espressif.com/en/products) | Optional WiFi communication | [~25 RON](https://www.optimusdigital.ro/) |
+| [Battery / Power Bank](https://www.emag.ro/) | Portable power supply | [~50 RON](https://www.emag.ro/) |
+| [Misc. Wires and Connectors](https://www.emag.ro/) | Integration accessories | [~50 RON](https://www.emag.ro/) |
 
 ## Software
 
-### Firmware (STM32 — Rust / Embassy)
-
-| Library | Description |
-|--------|-------------|
-| embassy-stm32 | Async HAL |
-| embassy-executor | Task scheduler |
-| embassy-time | Timers |
-| embedded-hal | Hardware abstraction |
-| mlx9064x | Thermal sensor driver |
-| embedded-graphics | Rendering |
-| st7735-lcd / ili9341 | Display driver |
-| heapless | Memory-safe structures |
-| embedded-sdmmc | SD card |
-
-### Mobile Add-on (Node.js / Express + React Native / Expo)
-
-| Package | Description |
-|---------|-------------|
-| `express` | REST API server |
-| `multer` / `sharp` | Frame upload handling and JPEG encoding |
-| `expo-image`, `expo-media-library` | Image display and gallery save |
-| `axios` | API calls from the app |
-| `zustand` | State management |
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | Hardware access for I2C/SPI/UART/GPIO |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Schedules concurrent firmware tasks |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Embedded timers | Frame timing and periodic operations |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | HAL traits | Driver abstraction across peripherals |
+| [mlx9064x](https://docs.rs/mlx9064x) | MLX90640 driver | Sensor frame acquisition and temperature extraction |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D drawing library | Rendering thermal pixels and UI overlays |
+| [st7735-lcd](https://crates.io/crates/st7735-lcd) / [ili9341](https://crates.io/crates/ili9341) | TFT display drivers | Sending rendered buffers to the display |
+| [heapless](https://github.com/rust-embedded/heapless) | No-std data structures | Fixed-capacity buffers without allocator |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT filesystem support | Saving captured thermal frames |
+| [express](https://expressjs.com/) | Node.js web framework | Lightweight API backend for mobile add-on |
+| [multer](https://github.com/expressjs/multer) / [sharp](https://sharp.pixelplumbing.com/) | Upload and image processing | Frame upload handling and optional JPEG encoding |
+| [expo-image](https://docs.expo.dev/versions/latest/sdk/image/) / [expo-media-library](https://docs.expo.dev/versions/latest/sdk/media-library/) | React Native media tools | Display and save captured images on mobile |
+| [axios](https://axios-http.com/) | HTTP client | API communication from mobile app |
+| [zustand](https://github.com/pmndrs/zustand) | State management | Local app state for stream/history/settings |
 
 ## Links
 
-- https://roboticworx.io/blogs/projects/opentemp-thermal-imager-infrared-thermometer
-- https://docs.rs/mlx9064x
-- https://embassy.dev
+<!-- Add a few links that inspired you and that you think you will use for your project -->
+
+1. [OpenTemp Thermal Imager Project](https://roboticworx.io/blogs/projects/opentemp-thermal-imager-infrared-thermometer)
+2. [mlx9064x crate documentation](https://docs.rs/mlx9064x)
+3. [Embassy framework](https://embassy.dev)
+4. [MLX90640 Datasheet Page](https://www.melexis.com/en/product/MLX90640)
+5. [Project Inspo](https://youtu.be/2-_Wgspjkdw?si=q2qfbzEd-fa41ypF)
