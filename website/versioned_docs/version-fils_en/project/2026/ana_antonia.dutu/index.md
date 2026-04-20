@@ -19,19 +19,21 @@ I chose this project because it combines multiple areas that interest me, such a
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+The system is structured into several main components: the flight control unit, the communication module, the sensing subsystem, and the power management system. The flight control unit, running on the STM32 microcontroller, is responsible for processing sensor data and generating control signals for the motors using a control algorithm. The sensing subsystem includes the IMU and environmental sensors, which provide real-time data (orientation, altitude, temperature) to the flight controller.
 
-## Log
+The communication module, implemented using the ESP32, handles both Bluetooth and WiFi connectivity. It receives user input from a PS4/PS5 controller via Bluetooth and transmits video data from the camera to an external device over WiFi. Additionally, telemetry data can be sent back to the user device.
+
+All components are powered directly from the LiPo battery through the ESC and the step-down voltage regulator, which provides the necessary voltages for the STM32, ESP32, and sensors. The STM32 communicates with sensors via I2C and controls the ESC using PWM signals, while the ESP32 communicates with the STM32 through a serial interface (e.g., UART).
 
 <!-- write your progress here every week -->
+### Week 1-4
+Researched potential project ideas, focusing on my interest in embedded systems and understanding how drones work behind the scenes. Explored different types of drones and considered their design and manufacturing aspects before choosing a suitable direction.
 
-### Week 5 - 11 May
+### Week 5 - 6
+Started researching how drones work and selecting suitable components, including choosing the appropriate motors. Placed orders for the required hardware and began writing the project documentation.
 
-### Week 12 - 18 May
-
-### Week 19 - 25 May
+### Week 7-8
+Started working on the hardware by assembling the drone frame and mounting the motors. Continued by soldering the motors to the ESC and connecting the battery, while integrating the step-down voltage regulator into the power system. Also researched proper soldering techniques and component connections, and began considering different layouts for positioning the battery, STM32, ESP32, sensors, and IMU within the drone frame.
 
 ## Hardware
 
