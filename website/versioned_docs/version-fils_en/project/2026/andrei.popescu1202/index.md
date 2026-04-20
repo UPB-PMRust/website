@@ -6,8 +6,7 @@ A cyber-resilient autonomous rover system with a TLS-protected control dashboard
 
 **Author**: Andrei-Cristian Popescu \
 **Group**: 1221EC \
-**GitHub Project Link**: <https://github.com/UPB-PMRust-Students/project-2026-YouFoundTheDev>
-
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-2026-YouFoundTheDev
 :::
 
 <!-- do not delete the \ after your name -->
