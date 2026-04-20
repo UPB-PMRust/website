@@ -4,7 +4,7 @@ Variable speed ping pong ball launcher
 :::info
 
 **Author**: Roescu Matei Florin \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-matei78
 
 :::
 
