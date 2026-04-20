@@ -4,7 +4,7 @@ A compact freestyle drone powered by an STM32 and ESP32 that streams real-time v
 :::info 
 
 **Author**: DUTU Ana-Antonia \
-**GitHub Project Link**: https://github.com/anto987678](https://github.com/UPB-PMRust-Students/fils-project-2026-anto987678)
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-anto987678
 :::
 
 <!-- do not delete the \ after your name -->
