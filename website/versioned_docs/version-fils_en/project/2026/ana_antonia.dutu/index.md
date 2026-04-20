@@ -56,6 +56,17 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 Nucleo U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [~120 RON](https://www.digikey.ro/en/products/detail/stmicroelectronics/NUCLEO-U545RE-Q/22106570) |
+| [ESP32-CAM (WiFi + Bluetooth, OV2640, CH340)](https://sigmanortec.ro/placa-dezvoltare-esp32-cam-wifi-bluetooth-ch340-ov2640-2mp) | Video streaming and wireless communication | [~70 RON](https://sigmanortec.ro/placa-dezvoltare-esp32-cam-wifi-bluetooth-ch340-ov2640-2mp)|
+| [ESC HGLRC 60A V1, 4-in-1, 2-6S, 30x30mm](https://dronerion.ro/p/esc-hglrc-60a-v1-4-in-1-2-6s-30x30mm-7383/8ff70db9-71a0-45ef-ae46-98acc0c75cd7) | Controls the speed of the brushless motors | [~208 RON](https://dronerion.ro/p/esc-hglrc-60a-v1-4-in-1-2-6s-30x30mm-7383/8ff70db9-71a0-45ef-ae46-98acc0c75cd7)|
+| [SpeedyBee Mario 5 XH 04 Advanced Frame](https://dronerion.ro/p/frame-speedybee-mario-5-xh-04-advanced-version-9247/50e8a8c2-d1af-4d3f-ac56-b3bf9cc4f2b5) | Drone frame (structure and component mounting) | [~237 RON](https://dronerion.ro/p/frame-speedybee-mario-5-xh-04-advanced-version-9247/50e8a8c2-d1af-4d3f-ac56-b3bf9cc4f2b5)|
+| [Emax ECO II 2207 Brushless Motor (1700KV)](https://dronerion.ro/p/motor-drona-brushless-emax-eco-ii-2207-3778/02fd95ee-bfc9-4412-8673-9e82792ce21c) | Provides thrust for the drone (x4 motors) | [~4 x 80 RON](https://dronerion.ro/p/motor-drona-brushless-emax-eco-ii-2207-3778/02fd95ee-bfc9-4412-8673-9e82792ce21c)|
+| [GY-521 MPU6050 (3-axis Gyroscope + Accelerometer)](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326) | Measures orientation and motion (IMU) | [~22 RON](https://sigmanortec.ro/Modul-giroscopic-si-accelerometru-3-axe-GY-521-p126016326)|
+| [Tattu R-Line 6S 1550mAh 120C LiPo Battery (XT60)](https://sigmanortec.ro/baterie-lipo-tattu-r-line-6s1p-6s-1550mah-120c-version-30-222v-xt60) | Power supply for the drone | [~305 RON](https://sigmanortec.ro/baterie-lipo-tattu-r-line-6s1p-6s-1550mah-120c-version-30-222v-xt60)|
+| [LM2596 DC-DC Step-down Module (4.5–40V, 3A)](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) | Voltage regulation (steps down battery voltage for components) | [~7 RON](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509)|
+| [XT60 Male-Female Connector Pair with 10cm Wire](https://sigmanortec.ro/pereche-mufa-xt60-tata-si-mama-cu-fir-10cm) | Power connection between battery and ESC | [~24 RON](https://sigmanortec.ro/pereche-mufa-xt60-tata-si-mama-cu-fir-10cm)|
+| [Gemfan Hurricane 51433 Propellers (3-blade, 2 CW + 2 CCW)](https://electronicmarket.ro/gemfan-uragan-51433-elice-cu-3-pale-2-cw-2-ccw-4buc-roz) | Generates lift and thrust for the drone | [~33 RON](https://electronicmarket.ro/gemfan-uragan-51433-elice-cu-3-pale-2-cw-2-ccw-4buc-roz)|
+| [BMP280 Barometric Pressure Sensor](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) | Measures pressure and estimates altitude | Already owned |
+| [MAX6675 Temperature Sensor](https://www.analog.com/en/products/max6675.html) | Measures temperature using thermocouple | Already owned |
 
 
 ## Software
