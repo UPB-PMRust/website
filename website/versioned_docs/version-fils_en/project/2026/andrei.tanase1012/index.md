@@ -77,6 +77,7 @@ Place your KiCAD or similar schematics here in SVG format.
 | [Male to Female Jumper Wires PRT-12794](https://cdn.sparkfun.com/datasheets/Prototyping/ACCA-0268%20Model.pdf) | Component interconnects | [~11,92 RON](https://ro.mouser.com/ProductDetail/474-PRT-12794) |
 | [Male to Male Jumper Wires](https://sigmanortec.ro/40-Fire-Dupont-20cm-Tata-Tata-p210851325) | Component interconnects | [~8,97 RON](https://sigmanortec.ro/40-Fire-Dupont-20cm-Tata-Tata-p210851325) |
 
+
 ## Software
 
 | Library | Description | Usage |
