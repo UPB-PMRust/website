@@ -1,10 +1,15 @@
+---
+title: "Smart Air Purifier"
+description: "STM32-powered air filtration system"
+---
+
 # Smart Air Purifier
 An STM32-powered smart air purifier that monitors real-time PM2.5 levels and environmental conditions to automate a 12V HEPA filtration system.
 
 :::info
 
 **Author**: TANASE Andrei-Nicolae \
-**GitHub Project Link**: 
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Andrei-Tase
 
 :::
 
@@ -22,10 +27,10 @@ It’s an ideal challenge, forcing me to handle two very different types of hard
 
 The STM32 acts as the central hub, coordinating four main functional modules (Sensing, Processing, Actuation, and Display) through the following interfaces:
 
--**UART**: The Plantower PMS5003 air quality sensor sends real-time serial data packets containing PM2.5 concentrations.
--**I2C Bus**: The AHT20/BMP280 combo (temperature, humidity, and pressure) and the 0.96" OLED display share the same bus using different addresses for environmental data capture and visual feedback.
--**PWM**: Drives the IRLZ44N MOSFET gate in the custom control circuit to regulate the 12V fan's power through Pulse Width Modulation.
--**Custom Motor Control Stage**: Bridges the low-power MCU logic to the high-power 12V fan circuit, utilizing a 1N4007 flyback diode for inductive surge protection and a pull-down resistor for gate stability.
+- **UART**: The Plantower PMS5003 air quality sensor sends real-time serial data packets containing PM2.5 concentrations.
+- **I2C Bus**: The AHT20/BMP280 combo (temperature, humidity, and pressure) and the 0.96" OLED display share the same bus using different addresses for environmental data capture and visual feedback.
+- **PWM**: Drives the IRLZ44N MOSFET gate in the custom control circuit to regulate the 12V fan's power through Pulse Width Modulation.
+- **Custom Motor Control Stage**: Bridges the low-power MCU logic to the high-power 12V fan circuit, utilizing a 1N4007 flyback diode for inductive surge protection and a pull-down resistor for gate stability.
 
 The firmware logic manages a continuous cycle of data acquisition and responsive actuation. It parses incoming UART packets to monitor particle levels while concurrently polling I2C sensors for environmental context. The control algorithm then calculates the necessary fan intensity, updating the OLED UI and adjusting the PWM output to match the current air quality requirements.
 
@@ -49,7 +54,7 @@ I studied the technical documentation and datasheets for the PMS5003 UART sensor
 ### Week 7-8
 I began the hardware assembly phase by verifying each component's integrity upon arrival and setting up the initial breadboard prototype. This involved establishing the first communication links between the sensors and the STM32 via I2C and UART, while testing the MOSFET switching logic to ensure the high-power fan could be safely regulated by the microcontroller's PWM signal.
 
-##Hardware
+## Hardware
 
 The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which interfaces with a Plantower PMS5003 laser sensor via UART for high-precision PM2.5 monitoring. Environmental context is provided by an AHT20 + BMP280 combo breakout (temperature, humidity, and pressure) and a 0.96" OLED display (SSD1306), both communicating over a shared I2C bus. The filtration is handled by a 12V DC fan and a HEPA filter, controlled through a custom motor drive circuit featuring an IRLZ44N logic level MOSFET, a 1N4007 flyback diode, and a 10kΩ pull-down resistor. The entire setup is powered by a 12V DC adapter and integrated on a standard 830 point breadboard.
 
