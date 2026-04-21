@@ -17,7 +17,7 @@ A companion CLI tool handles account provisioning and time synchronisation over 
 ## Motivation
 
 The inspiration for this project came from a hardware security key (a YubiKey) sitting on my desk. Having used it regularly for two-factor authentication, I wanted to replicate its functionality as an embedded project.
-Initially I considered implmenting the WebAuthn/FIDO2 component, but that didn't require any external peripherals.
+Initially I considered implementing the WebAuthn/FIDO2 component, but that didn't require any external peripherals. I then decided to implement a TOTP authenticator device, which would require multiple external components.
 An additional goal is to use the device during the development. This allows for better testing of correctness and user experience, while also showing bugs and edge cases that might not be obvious during normal testing.
 
 ## Architecture
