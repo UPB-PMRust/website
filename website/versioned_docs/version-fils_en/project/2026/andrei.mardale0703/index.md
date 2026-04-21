@@ -74,6 +74,7 @@ The device is composed of the following physical components:
 - AT24C256 EEPROM (I2C): external non-volatile memory used to store account data.
 - TTP223 Capacitive Touch Sensors (x2): provide user input through touch interaction, supporting short and long presses.
 - Communication Interfaces: **UART** for provisioning and debugging; **USB** for USB-HID communication with a host computer.
+
 The device is powered by two series-connected 18650 lithium-ion cells (~7.4V combined), regulated down to 5V by an LM2596 step-down converter. The 5V output feeds the board's E5V pin, which bypasses the onboard voltage regulator.
 
 All peripheral components communicate with the microcontroller primarily over the shared I2C bus.
