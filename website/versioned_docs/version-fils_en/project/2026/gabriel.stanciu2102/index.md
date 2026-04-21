@@ -1,5 +1,5 @@
 # Overture | Automatic Perfusor
-*A precision medical-grade perfusor.*
+A precision medical-grade perfusor.
 
 :::info
 
@@ -18,7 +18,7 @@ Overture comes loaded with features designed for the real world:
 * **Drug Library:** A built-in database for rapid dosing reference.
 * **KVO (Keep Vein Open):** When the primary dose finishes, the pump continues to push just enough fluid to keep the patient's vein from closing.
 
-When you set out to build a better machine, you need a "gold standard" to dethrone. My target is the [B.Braun Space Plus Perfusor](https://catalogs.bbraun.com/en-01/p/PRID00011858/spaceplus-perfusor?bomUsage=marketingDocuments). It is the shiny newer generation of the exact device we used on the ambulance. In reality, they mostly just slapped a touchscreen on the old hardware, but it remains the industry heavyweight we are going up against.
+When you set out to build a better machine, you need a "gold standard" to dethrone. My target is the [B.Braun Space Plus Perfusor](https://catalogs.bbraun.com/en-01/p/PRID00011858/spaceplus-perfusor?bomUsage=marketingDocuments). It is the shiny newer generation of the exact device we used on the ambulance. In reality, they mostly just slapped a touchscreen on the old hardware, but it remains the industry standard we are going up against.
 
 ## Motivation
 While I was working as a paramedic on the SMURD ambulances, I was constantly working with automatic perfusors. While they are workhorses in the EMT field, and are reliable machines, their user interfaces often feel like relics. During critical interventions where administering vasopressors like noradrenaline must be instant, navigating through clunky menus and non intuitive interfaces felt literally dangerous. The inspiration for Overture came from the realization that we shouldn't have to choose between extreme precision and intuitive design.
