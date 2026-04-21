@@ -22,7 +22,7 @@ The STM32 communicates with all components through different interfaces:
 - **I2C:** LCD Display that is used for the cleaning status and runtime
 - **UART:** Communication with ESP32 for WiFi control and data exchange
 - **Timers:** Used for precise timing and task scheduling
-![Architecture Diagram](./images/Architecture.png)
+![Architecture Diagram](./images/architecture.drawio.svg)
 
 ## Log
 ### Week 2-4
