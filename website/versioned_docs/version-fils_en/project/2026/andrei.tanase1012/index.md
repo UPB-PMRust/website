@@ -1,8 +1,3 @@
----
-title: "Smart Air Purifier"
-description: "STM32-powered air filtration system"
----
-
 # Smart Air Purifier
 An STM32-powered smart air purifier that monitors real-time PM2.5 levels and environmental conditions to automate a 12V HEPA filtration system.
 
