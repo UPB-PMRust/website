@@ -3,8 +3,8 @@ A machine for iced cofee
 
 :::info 
 
-**Author**: Student Name \
-**GitHub Project Link**: link_to_github
+**Author**: Dumitrescu Teodora Cristina \
+**GitHub Project Link**: https://github.com/t3o27/website/tree/project/teodora.dumitrescu/website/versioned_docs/version-acs_cc/project/2026/teodora.dumitrescu
 
 :::
 
