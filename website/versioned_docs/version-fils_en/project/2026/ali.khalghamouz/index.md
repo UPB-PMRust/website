@@ -27,7 +27,7 @@ Choosing this project was a mix of my interest in mathematics and wanting to lea
 - **SPI TFT LCD Display:** Chose an SPI screen over a I2C screen because it handles video better than I2C. I2C is too slow for smooth video.
 
 
-![Architecture Diagram](./Architecture.drawio.svg)
+![Architecture Diagram](./architecture.svg)
 
 ## Log
 
