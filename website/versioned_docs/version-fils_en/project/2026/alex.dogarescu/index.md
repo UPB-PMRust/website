@@ -4,7 +4,7 @@ An instrument that plays without you ever touching it.
 :::info 
 
 **Author**: Dogărescu Alex \
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/fils-project-2026-alexdogarescu)
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-alexdogarescu](https://github.com/UPB-PMRust-Students/fils-project-2026-alexdogarescu)
 
 :::
 
