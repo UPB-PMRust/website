@@ -31,7 +31,7 @@ Main architecture components:
 - **Vehicle control module**: receives commands on the car and converts them into motor driver signals.
 - **Actuation module**: drives the two motors of the RC car.
 
-![Schematic](Schematic.svg)
+![Schematic](scheme.svg)
 
 ## Log
 
