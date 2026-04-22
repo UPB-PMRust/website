@@ -526,7 +526,7 @@ Our read/write task waits for a connection, reads data from the `read_ep`, waits
     // Task 1: Initialize the core USB driver's task.
     let usb_driver = usb.run();
 
-    // Task 2: The actual application logic
+    // Task 2: Define the actual application logic
     let usb_read_write = async {
         loop {
             read_ep.wait_enabled().await;
