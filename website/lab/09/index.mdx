@@ -572,7 +572,6 @@ Before running any USB device code, you must configure your lab board correctly:
 1. **Initialize the USB Peripheral (2p)**: Configure the USB builder on your microcontroller with a custom Vendor ID (`0xABCD`) and Product ID (`0x1234`). Set the manufacturer string to your name.
 2. **Create a Bulk Echo Device (3p)**: Using the `embassy-usb` library, create an interface with two Bulk endpoints (one `IN` and one `OUT`). Implement an asynchronous loop that waits for data on the `OUT` endpoint, reverses the received byte array, and sends it back to the host via the `IN` endpoint.
 3. **Host-side Rust Client (2p)**: Write a Rust script using nusb that:
-
     - Finds your custom device (VID=`0xABCD`, PID=`0x1234`).
     - Sends the string "PM USB Lab" to the OUT endpoint.
     - Reads the reversed string from the IN endpoint.
