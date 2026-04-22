@@ -574,11 +574,8 @@ Before running any USB device code, you must configure your lab board correctly:
 3. **Host-side Rust Client (2p)**: Write a Rust script using nusb that:
 
     - Finds your custom device (VID=`0xABCD`, PID=`0x1234`).
-    
     - Sends the string "PM USB Lab" to the OUT endpoint.
-    
     - Reads the reversed string from the IN endpoint.
-    
     - Prints the result to the console.
 4. **Device Disconnect Handling (1p)**: Modify your Rust microcontroller code to gracefully log `"Host disconnected"` using `defmt` when the cable is unplugged or the host releases the interface, and then safely return to waiting for a new connection.
 5. **Data Transformation: The "Shouting" Device (3p)**: Modify your microcontroller's `usb_read_write` task. Instead of just echoing the data exactly as it was received, modify the byte array so that any lowercase ASCII letters are converted to UPPERCASE before being sent back to the host.
