@@ -51,7 +51,27 @@ The software is organized as a state machine with the following states:
 
 ### Architecture Diagram
 
-TODO: add architecture diagram image (SVG/WebP) and reference it here.
+```text
+Input Block (3x4 Keypad, Admin Button, Mechanical Endstop)
+        |
+        | GPIO
+        v
+STM32 Nucleo (Main Control: PIN + State Machine)
+        |
+        | via small interface protoboard (female headers)
+        v
+Main Protoboard (distribution for components)
+   |                 |                    |
+   | I2C             | PWM                | GPIO/PWM
+   v                 v                    v
+LCD1602 + I2C     SG90 Servo         Passive Buzzer
+
+STM32 Nucleo
+        |
+        | UART / Serial
+        v
+ESP32 DevKitC (Logging + optional Admin PIN reset)
+```
 
 ## Log
 
