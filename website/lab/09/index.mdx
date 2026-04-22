@@ -481,7 +481,7 @@ We add a vendor-specific function (Class `0xFF`) and create our endpoints. We ne
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
   
 ```rust
-// Add a vendor-specific function (class 0xFF) and interface
+    // Add a vendor-specific function (class 0xFF) and interface
     let mut function = builder.function(0xFF, 0, 0);
     let mut interface = function.interface();
     let mut alt = interface.alt_setting(0xFF, 0, 0, None);
