@@ -4,7 +4,7 @@ Variable speed ping pong ball launcher
 :::info
 
 **Author**: Roescu Matei Florin \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-matei78
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/acs-project-2026-matei78](https://github.com/UPB-PMRust-Students/acs-project-2026-matei78)
 
 :::
 
@@ -30,6 +30,8 @@ Main Components:
 ## Log
 
 <!-- write your progress here every week -->
+### Week 20 - 26 April
+Created documentation and bill of materials
 
 ### Week 5 - 11 May
 
@@ -39,7 +41,13 @@ Main Components:
 
 ## Hardware
 
-Detail in a few words the hardware used.
+Hardware used:
+- **Microcontroller (STM32 Nucleo)**: Controls all the other components
+- **Buttons**: One is used to cycle through different predefined launching speeds and the other is used to launch the ball
+- **DC Motors**: 3V DC Motors used for spinning two wheels continuously
+- **Motor Driver**: Controls the speed and direction of the two motors
+- **Power Supply**: The board does not support enough power for high motor speeds, so a power supply is needed
+- **Servo Motor**: 90 degree Motor used for releasing the ball when launching button is pressed
 
 ### Schematics
 
@@ -47,23 +55,30 @@ Place your KiCAD or similar schematics here in SVG format.
 
 ### Bill of Materials
 
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
-
+| Device | Usage | Price |
+| ------------------------------------------ | -------------------------------------------------------- | ----------------|
+| STM32 | Microcontroller | [156 RON](https://ro.farnell.com/stmicroelectronics/nucleo-u545re-q/development-brd-32bit-arm-cortex/dp/4216396?CMP=e-email-sys-orderack-GLB) |
+| Motor driver L9110S | Controls DC Motors| [14,99 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/8246-modul-driver-de-motoare-cu-4-canale-l9110s.html) |
+| 30mm wheels | Launches balls | 2 x [3,90 RON](https://www.optimusdigital.ro/ro/mecanica-roti/347-roata-de-20-mm-cu-cauciuc-pentru-ax-de-2-mm.html) |
+| Motor DC F130 3V | Spins wheels | 2 x [3,99 RON](https://www.optimusdigital.ro/ro/motoare-altele/13612-motor-dc-f130-3v.html) |
+| Micro Servomotor SG90 90 | Deploys ball | [13,99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html) |
+| Buttons | Pressed for actions | 2 x [1,99 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html) |
+| Batteries, plastics, other | Building materials | 20 RON |
 
 
 ## Software
 
+| Library       | Description                                                                 | Usage                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/)          | Lightweight async executor for running embedded tasks                      | Runs tasks for motor and servo control without blocking         |
+| [embassy-time](https://docs.embassy.dev/embassy-time/)              | Time management                              | Creates delays for PWM or timing during launch           |
+| [embassy-stm32::pwm](https://docs.embassy.dev/embassy-stm32/git/stm32f4/pwm/index.html)        | PWM module for STM32                                           | Controls DC motor speed and servo position                |
+| [embassy-stm32::gpio](https://docs.embassy.dev/embassy-stm32/git/stm32f4/gpio/index.html)       | GPIO pin control                                                          | Reads buttons and controls digital signals                       |
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
+[https://www.reddit.com/r/arduino/comments/1oecjqm/help_with_ping_pong_ball_launcher/](https://www.reddit.com/r/arduino/comments/1oecjqm/help_with_ping_pong_ball_launcher/)
 
-...
+[https://www.youtube.com/watch?v=cs02VoRqgPg](https://www.youtube.com/watch?v=cs02VoRqgPg)
+
+[https://www.youtube.com/watch?v=-1ND3IfWjNY](https://www.youtube.com/watch?v=-1ND3IfWjNY)
