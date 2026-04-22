@@ -77,8 +77,6 @@ Place your KiCAD or similar schematics here in SVG format.
 
 ## Links
 
-[https://www.reddit.com/r/arduino/comments/1oecjqm/help_with_ping_pong_ball_launcher/](https://www.reddit.com/r/arduino/comments/1oecjqm/help_with_ping_pong_ball_launcher/)
-
-[https://www.youtube.com/watch?v=cs02VoRqgPg](https://www.youtube.com/watch?v=cs02VoRqgPg)
-
-[https://www.youtube.com/watch?v=-1ND3IfWjNY](https://www.youtube.com/watch?v=-1ND3IfWjNY)
+1. [Reddit ping pong launcher](https://www.reddit.com/r/arduino/comments/1oecjqm/help_with_ping_pong_ball_launcher/)
+2. [Youtube ball launcher](https://www.youtube.com/watch?v=cs02VoRqgPg)
+3. [Powerful ball launcher](https://www.youtube.com/watch?v=-1ND3IfWjNY)
