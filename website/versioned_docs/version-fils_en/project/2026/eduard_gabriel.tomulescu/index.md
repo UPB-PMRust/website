@@ -4,7 +4,7 @@ A compact embedded robotic arm system powered by an STM32 microcontroller, capab
 :::info 
 
 **Author**: Tomulescu Eduard Gabriel \
-**GitHub Project Link**: https://github.com/Edward11-boop/website
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Edward11-boop
 
 :::
 
