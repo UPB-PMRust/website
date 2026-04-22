@@ -481,13 +481,28 @@ We add a vendor-specific function (Class `0xFF`) and create our endpoints. We ne
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
   
 ```rust
-    // Add a vendor-specific function (class 0xFF) and interface
+    // Create a new USB Function.
+    // 0xFF means "Vendor Specific", meaning we aren't using a standard class 
+    // like Mass Storage (0x08) or HID (0x03). The OS will rely on our custom code.
     let mut function = builder.function(0xFF, 0, 0);
+
+    // Create an interface within this function. A USB function must have at least one interface.
     let mut interface = function.interface();
+
+    // Create an "alternate setting" for this interface.
+    // We create the default setting (index 0) with class 0xFF (Vendor Specific),
+    // subclass 0, protocol 0, and no specific string descriptor (None).
     let mut alt = interface.alt_setting(0xFF, 0, 0, None);
-    
+
+    // Create a Bulk OUT endpoint attached to this alternate setting.
+    // The `64` represents the maximum packet size in bytes.
     let mut read_ep = alt.endpoint_bulk_out(None, 64);
+
+    // Create a Bulk IN endpoint attached to this alternate setting.
+    // Also configured with a 64-byte maximum packet size.
     let mut write_ep = alt.endpoint_bulk_in(None, 64);
+
+    // Drop the function builder.
     drop(function);
 
     // Build the USB device handler
