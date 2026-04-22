@@ -3,7 +3,7 @@ description: Universal Serial Bus v2.0
 slug: /lab/09
 ---
 
-# 09 - Universal Serial Bus
+# 08 - Universal Serial Bus
 
 This lab will teach you how to configure and communicate with devices using the Universal Serial Bus (USB) protocol, specifically USB 2.0, using the Embassy framework.
 
@@ -13,19 +13,14 @@ import TabItem from '@theme/TabItem';
 ## Resources
 
 1. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
-
 2. **STMicroelectronics**, *[Nucleo STM32U545 User manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)*
-
-
 3. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
   - Chapter 12 - *Peripherals*
     - Chapter 12.7 - *I2C*
-
 4. **BeyondLogic** *[USB in a NutShell](https://www.beyondlogic.org/usbnutshell/usb1.shtml)*
-
 5. **Ben Eater** *[How does a USB keyboard work?](https://www.youtube.com/watch?v=wdgULBpRoXk)*
-
 6. **Ben Eater** *[How does USB device discovery work?](https://www.youtube.com/watch?v=N0O5Uwc3C0o)*
+7. *[USB Examples](https://github.com/UPB-PMRust/usb-examples)*
 
 ## Universal Serial Bus 2.0 (USB)
 
@@ -264,32 +259,67 @@ A USB device reports its capabilities to the host using a hierarchy of descripto
 1. **Imports and Interrupt Binding**
 First, we need to import the required Embassy modules and bind the USB interrupt. We also define a unique GUID that Windows will use to identify our device interface.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
+  ```rust
+  use defmt::info;
+  use defmt_rtt as _;
+  use embassy_executor::Spawner;
+  use embassy_futures::join::join;
+  use embassy_stm32::{
+      Config, bind_interrupts,
+      peripherals::USB,
+      usb::{Driver, InterruptHandler},
+  };
+  use embassy_time::Timer;
+  use embassy_usb::driver::{Endpoint, EndpointIn, EndpointOut};
+  use embassy_usb::{Builder, Config as UsbConfig, msos, msos::windows_version};
+  use panic_probe as _;
+  
+  // Randomly generated GUID to allow clients on Windows to find our device
+  const DEVICE_INTERFACE_GUIDS: &[&str] = &["{AFB9A6FB-30BA-44BC-9232-806CFC875321}"];
+  
+  bind_interrupts!(struct Irqs {
+      USB => InterruptHandler<USB>;
+  });
+  ```
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+
 ```rust
 use defmt::info;
 use defmt_rtt as _;
 use embassy_executor::Spawner;
 use embassy_futures::join::join;
-use embassy_stm32::{
-    Config, bind_interrupts,
-    peripherals::USB,
-    usb::{Driver, InterruptHandler},
-};
+use embassy_rp::bind_interrupts;
+use embassy_rp::peripherals::USB;
+use embassy_rp::usb::{Driver, InterruptHandler};
 use embassy_time::Timer;
 use embassy_usb::driver::{Endpoint, EndpointIn, EndpointOut};
 use embassy_usb::{Builder, Config as UsbConfig, msos, msos::windows_version};
 use panic_probe as _;
 
-// Randomly generated GUID to allow clients on Windows to find our device
+// This is a randomly generated GUID to allow clients on Windows to find our device
 const DEVICE_INTERFACE_GUIDS: &[&str] = &["{AFB9A6FB-30BA-44BC-9232-806CFC875321}"];
 
 bind_interrupts!(struct Irqs {
-    USB => InterruptHandler<USB>;
+    USBCTRL_IRQ => InterruptHandler<USB>;
 });
 ```
+
+  </TabItem>
+
+</Tabs>
+
 
 2. **Clock Configuration and Initialization**
 USB requires a precise 48 MHz clock to function. On the STM32U5, we configure the internal HSI48 oscillator specifically for this purpose before initializing the peripherals.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
 ```rust
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
@@ -315,10 +345,30 @@ async fn main(_spawner: Spawner) {
     // Initialize peripherals with the custom clock config
     let peripherals = embassy_stm32::init(config);
 ```
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+
+```rust
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    info!("Hello");
+
+    let peripherals = embassy_rp::init(Default::default());
+});
+```
+
+  </TabItem>
+
+</Tabs>
+
 
 3. **USB Driver and Configuration Setup**
 Next, we initialize the hardware-specific USB driver using the `PA12` (DP) and `PA11` (DM) pins. We also set up the `UsbConfig`, which defines the global properties of our device (like Vendor ID, Product ID, and manufacturer strings).
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
 ```rust
 let driver = Driver::new(peripherals.USB, Irqs, peripherals.PA12, peripherals.PA11);
 
@@ -330,11 +380,36 @@ let driver = Driver::new(peripherals.USB, Irqs, peripherals.PA12, peripherals.PA
     config.max_power = 100;
     config.max_packet_size_0 = 64;
 ```
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+
+```rust
+// Create the driver, from the HAL.
+let driver = Driver::new(peripherals.USB, Irqs);
+
+    // Create embassy-usb Config
+    let mut config = UsbConfig::new(0xc0de, 0xcafe);
+    config.manufacturer = Some("PMRust");
+    config.product = Some("USB Bulk Example");
+    config.serial_number = Some("0xcafe_c0de");
+    config.max_power = 100;
+    config.max_packet_size_0 = 64;
+```
+
+  </TabItem>
+
+</Tabs>
+
+
 
 4. **Descriptor Builder and Windows Compatibility**
 Embassy requires memory buffers to build the descriptor tree. We pass these to a `Builder`.
 We also add **Microsoft OS Descriptors (MSOS)**. By telling Windows our device is compatible with the "WINUSB" feature, Windows will automatically load the standard WinUSB driver.
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
 ```rust
 // Buffers for building the descriptors.
     let mut config_descriptor = [0; 256];
@@ -360,9 +435,47 @@ We also add **Microsoft OS Descriptors (MSOS)**. By telling Windows our device i
     ));
 ```
 
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+
+```rust
+    // Buffers for building the descriptors.
+    let mut config_descriptor = [0; 256];
+    let mut bos_descriptor = [0; 256];
+    let mut msos_descriptor = [0; 256];
+    let mut control_buf = [0; 64];
+    
+    let mut builder = Builder::new(
+        driver,
+        config,
+        &mut config_descriptor,
+        &mut bos_descriptor,
+        &mut msos_descriptor,
+        &mut control_buf,
+    );
+    
+    // Tell Windows to use the built-in WinUSB driver automatically
+    builder.msos_descriptor(windows_version::WIN8_1, 0);
+    builder.msos_feature(msos::CompatibleIdFeatureDescriptor::new("WINUSB", ""));
+    builder.msos_feature(msos::RegistryPropertyFeatureDescriptor::new(
+        "DeviceInterfaceGUIDs",
+        msos::PropertyData::RegMultiSz(DEVICE_INTERFACE_GUIDS),
+    ));
+```
+
+  </TabItem>
+
+</Tabs>
+
+
+
 5. **Interface and Endpoint Creation**
 We add a vendor-specific function (Class `0xFF`) and create our endpoints. We need two endpoints for our echo device: one Bulk OUT (host to device) and one Bulk IN (device to host).
 
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
 ```rust
 // Add a vendor-specific function (class 0xFF) and interface
     let mut function = builder.function(0xFF, 0, 0);
@@ -376,6 +489,29 @@ We add a vendor-specific function (Class `0xFF`) and create our endpoints. We ne
     // Build the USB device handler
     let mut usb = builder.build();
 ```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 2" default>
+
+```rust
+    // Add a vendor-specific function (class 0xFF), and corresponding interface,
+    // that uses our custom handler.
+    let mut function = builder.function(0xFF, 0, 0);
+    let mut interface = function.interface();
+    let mut alt = interface.alt_setting(0xFF, 0, 0, None);
+    let mut read_ep = alt.endpoint_bulk_out(None, 64);
+    let mut write_ep = alt.endpoint_bulk_in(None, 64);
+    drop(function);
+    
+    // Build the builder.
+    let mut usb = builder.build();
+```
+
+  </TabItem>
+
+</Tabs>
+
 
 6. **Running the Async Tasks**
 USB communication is inherently asynchronous. We need to run the core USB driver task, alongside our application task that handles reading and writing.
