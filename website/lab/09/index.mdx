@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 2. **STMicroelectronics**, *[Nucleo STM32U545 User manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)*
 3. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
   - Chapter 12 - *Peripherals*
-    - Chapter 12.7 - *I2C*
+    - Chapter 12.7 - *USB*
 4. **BeyondLogic** *[USB in a NutShell](https://www.beyondlogic.org/usbnutshell/usb1.shtml)*
 5. **Ben Eater** *[How does a USB keyboard work?](https://www.youtube.com/watch?v=wdgULBpRoXk)*
 6. **Ben Eater** *[How does USB device discovery work?](https://www.youtube.com/watch?v=N0O5Uwc3C0o)*
@@ -582,6 +582,8 @@ Before running any USB device code, you must configure your lab board correctly:
     - One to the `ST-LINK` port (for flashing the code and reading `defmt` logs).
 
     - One to the `USB USER` port (to connect your newly programmed USB device to the host).
+
+![JP3 Jumper](images/jp3.jpeg)
 :::
 
 1. **Initialize the USB Peripheral (2p)**: Configure the USB builder on your microcontroller with a custom Vendor ID (`0xABCD`) and Product ID (`0x1234`). Set the manufacturer string to your name.
