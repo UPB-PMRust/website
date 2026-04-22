@@ -5,7 +5,7 @@ A robotic hand that plays rock, paper, scissors using AI gesture recognition
 
 :::info
 
-    **Author:** Emilia Petre  
+    **Author:** Emilia Petre  \
     **Github Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-emilia1881
 
 :::
