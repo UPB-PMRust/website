@@ -588,10 +588,23 @@ Before running any USB device code, you must configure your lab board correctly:
 
 1. **Initialize the USB Peripheral (2p)**: Configure the USB builder on your microcontroller with a custom Vendor ID (`0xABCD`) and Product ID (`0x1234`). Set the manufacturer string to your name.
 2. **Create a Bulk Echo Device (3p)**: Using the `embassy-usb` library, create an interface with two Bulk endpoints (one `IN` and one `OUT`). Implement an asynchronous loop that waits for data on the `OUT` endpoint, reverses the received byte array, and sends it back to the host via the `IN` endpoint.
-3. **Host-side Rust Client (2p)**: Write a Rust script using nusb that:
+3. **Host-side Rust Client (2p)**: Write a Rust or Python command line application using `nusb` that:
     - Finds your custom device (VID=`0xABCD`, PID=`0x1234`).
     - Sends the string "PM USB Lab" to the OUT endpoint.
     - Reads the reversed string from the IN endpoint.
     - Prints the result to the console.
 4. **Device Disconnect Handling (1p)**: Modify your Rust microcontroller code to gracefully log `"Host disconnected"` using `defmt` when the cable is unplugged or the host releases the interface, and then safely return to waiting for a new connection.
 5. **Data Transformation: The "Shouting" Device (3p)**: Modify your microcontroller's `usb_read_write` task. Instead of just echoing the data exactly as it was received, modify the byte array so that any lowercase ASCII letters are converted to UPPERCASE before being sent back to the host.
+6. **USB GPIO Controller (LEDs & Buttons)** (2p)
+Transform your board into a PC-controlled I/O expander.
+
+    - **Device (Microcontroller)**: Write a task that reads the state of the **4 buttons** and packs them into a single byte. Send this byte to the host via the Bulk `IN` endpoint. Listen on the Bulk `OUT` endpoint for a 1-byte payload from the host and use its lower 5 bits to turn the **5 LEDs** on or off.
+
+    - **Host (PC)**: Write a Rust (`nusb`) or Python script that reads the button state and prints it to the console. Add a feature to send a user-inputted number (0-31) to control the LEDs on the board.
+
+7. **USB Environmental/Motion Dashboard (3p)** \
+**Device**: Listen on the Bulk `OUT` endpoint for specific ASCII commands from the host.
+      - If it receives `"T"`, read the temperature from the **BMP390** and send the formatted string (e.g., `"23.5 C"`) back over the Bulk `IN` endpoint.
+      - If it receives `"P"`, read the pressure from the **BMP390** and send it back.
+      - If it receives `"A"`, read the X, Y, Z acceleration from the **MPU-6000** and send it back. \
+**Host**: Create a simple script that asks the user which sensor they want to read, sends the corresponding letter, and prints the response.
