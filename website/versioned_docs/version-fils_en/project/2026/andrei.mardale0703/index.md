@@ -111,6 +111,7 @@ KiCAD schematics will be added here as soon as they're done.
 | [ssd1306](https://github.com/rust-embedded-community/ssd1306) | Display driver for SSD1306 | Used for the display, displays codes, accounts |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
 | [ds323x](https://github.com/eldruin/ds323x-rs) | DS3231 RTC Driver | Used for writing and reading the time |
+| [eeprom24x](https://github.com/eldruin/eeprom24x-rs) | Driver for 24x series I2C EEPROMs | Reading and writing TOTP records to the AT24C256 |
 | [chacha20poly1305](https://github.com/RustCrypto/AEADs/tree/master/chacha20poly1305) | XChaCha20-Poly1305 AEAD cipher | Encrypting and decrypting TOTP secrets |
 | [heapless](https://github.com/rust-embedded/heapless) | Static, fixed-capacity data structures | Strings and vecs without a heap allocator |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework for embedded targets | Structured debug logging over RTT |
