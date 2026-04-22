@@ -4,7 +4,7 @@ A machine for iced coffee
 :::info 
 
 **Author**: Dumitrescu Teodora Cristina \
-**GitHub Project Link**: https://github.com/t3o27/website/tree/project/teodora.dumitrescu/website/versioned_docs/version-acs_cc/project/2026/teodora.dumitrescu
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-t3o27-1
 
 :::
 
