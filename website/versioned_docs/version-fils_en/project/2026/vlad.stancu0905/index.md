@@ -4,7 +4,7 @@ A mobile, dual-axis targeting and navigation system that autonomously patrols an
 
 :::info
 
-**Author**: Stancu Vlad-Gabriel
+**Author**: Stancu Vlad-Gabriel \
 
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Vledituz
 
