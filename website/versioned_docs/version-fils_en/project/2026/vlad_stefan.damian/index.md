@@ -61,11 +61,7 @@ The robot frame is built using PLA 3D printed parts and metal brackets. 12 SG90 
 | 12 | Front Right Hip |
 | 13 | Front Right Ankle (remapped - ch10 damaged) |
 
-![Robot Photo]
-
 ### Schematics
-
-![KiCad Schematic]
 
 ### Bill of Materials
 
@@ -81,7 +77,7 @@ The robot frame is built using PLA 3D printed parts and metal brackets. 12 SG90 
 | [18650 Batteries Case](https://www.emag.ro/suport-acumulator-liion-format-18650-2-celule-in-serie-18650-2/pd/DN292RYBM/?ref=history-shopping_482223871_3410_1) | Used for conecting the batteries in series (7.4V) | [20 RON](https://www.emag.ro/suport-acumulator-liion-format-18650-2-celule-in-serie-18650-2/pd/DN292RYBM/?ref=history-shopping_482223871_3410_1) |
 | [DC-DC Step Down module LM2596](https://www.emag.ro/modul-dc-dc-step-down-lm2596-display-pentru-v-lm2596s-v-lcd/pd/DFFDSBMBM/) | Regulating the current to 5V for the microcontroller | [15 RON](https://www.emag.ro/modul-dc-dc-step-down-lm2596-display-pentru-v-lm2596s-v-lcd/pd/DFFDSBMBM/) |
 | [DC-DC Step Down module XL4005](https://www.emag.ro/modul-dc-dc-step-down-5a-xl4005/pd/DCFDSBMBM/) | Regulating the current to 6V for the servo driver | [15 RON](https://www.emag.ro/modul-dc-dc-step-down-5a-xl4005/pd/DCFDSBMBM/) |
-| Total | 559 RON
+| Total | | **559 RON** |
 
 ## Software
 
