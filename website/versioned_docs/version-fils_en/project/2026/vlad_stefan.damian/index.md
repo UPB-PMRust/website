@@ -4,7 +4,7 @@ A 4-legged spider robot controlled via Bluetooth, capable of walking in all dire
 
 :::info
 
-**Author**: Vlad-Ștefan DAMIAN  
+**Author**: Vlad-Ștefan DAMIAN \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-vladduu
 
 :::
