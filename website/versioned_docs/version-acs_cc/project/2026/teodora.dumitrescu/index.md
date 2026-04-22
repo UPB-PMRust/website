@@ -1,5 +1,5 @@
 # Automated Coffee Maker
-A machine for iced cofee
+A machine for iced coffee
 
 :::info 
 
