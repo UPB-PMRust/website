@@ -3,7 +3,7 @@ A hardware TOTP authenticator device with encrypted secret storage, USB-HID outp
 
 :::info
 
-**Author**: Andrei-Bogdan Mardale \
+**Author**: Mardale Andrei-Bogdan \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-bmardale
 
 :::
