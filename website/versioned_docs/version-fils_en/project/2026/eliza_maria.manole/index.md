@@ -3,6 +3,7 @@ A smart cleaning robot controlled via WiFi with obstacle detection and LCD feedb
 
 :::info
 **Author:** Manole Eliza-Maria    
+**Author:** Manole Eliza-Maria \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-elizamanole
 :::
 
