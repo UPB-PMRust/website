@@ -1,9 +1,3 @@
----
-id: alexandru.marioara
-title: DIY Embedded Music Player
-sidebar_label: DIY Embedded Music Player
----
-
 # DIY Embedded Music Player
 
 A hardware digital audio player built on STM32 using Rust and internal DAC audio processing.
