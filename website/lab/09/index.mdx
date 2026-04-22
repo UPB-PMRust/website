@@ -374,7 +374,7 @@ Next, we initialize the hardware-specific USB driver using the `PA12` (DP) and `
   <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
   
 ```rust
-let driver = Driver::new(peripherals.USB, Irqs, peripherals.PA12, peripherals.PA11);
+    let driver = Driver::new(peripherals.USB, Irqs, peripherals.PA12, peripherals.PA11);
 
     // Create embassy-usb Config
     let mut config = UsbConfig::new(0xc0de, 0xcafe);
