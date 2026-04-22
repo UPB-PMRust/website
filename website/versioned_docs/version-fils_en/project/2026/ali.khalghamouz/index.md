@@ -86,6 +86,16 @@ The format is
 | [mipidsi](https://crates.io/crates/mipidsi) | Display driver for MIPI DSI displays | Used as the hardware driver for the ILI9341 or ST7789 SPI TFT LCD. |
 | [microfft](https://crates.io/crates/microfft) | Fast Fourier Transform library for `no_std` | Used for calculating the frequency spectrum for the audio visualizer. |
 
-## Links
+
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
+## Links
+
+1. [Embassy-rs Official Book](https://embassy.dev/book/)
+2. [STM32 NUCLEO-U545RE Board Documentation](https://www.st.com/en/evaluation-tools/nucleo-u545re.html#documentation)
+3. [INMP441 I2S Digital Microphone Official Datasheet](https://invensense.tdk.com/wp-content/uploads/2015/02/INMP441.pdf)
+4. [Adafruit UDA1334A I2S DAC Guide](https://learn.adafruit.com/adafruit-i2s-stereo-decoder-uda1334a/overview)
+5. [embedded-graphics Rust Crate Documentation](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+6. [mipidsi Rust Crate Documentation](https://docs.rs/mipidsi/latest/mipidsi/)
+7. [microfft Rust Crate Documentation](https://docs.rs/microfft/latest/microfft/)
+8. [STM32U5 Series Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u575585-armbased-32bit-mcus-stmicroelectronics.pdf)
