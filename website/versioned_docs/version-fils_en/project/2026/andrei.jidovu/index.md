@@ -1,3 +1,9 @@
+---
+Self-balancing drone
+---
+
+
+
 # A Self‑Balancing Robot Using ESP32 and Rust
 An autonomous two‑wheel platform featuring real‑time stabilization and Rust‑based embedded control.
 
