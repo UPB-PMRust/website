@@ -549,7 +549,7 @@ Our read/write task waits for a connection, reads data from the `read_ep`, waits
         }
     };
 
-    // Run everything concurrently
+    // Run the USB driver task and the actual application logic task concurrently.
     join(usb_driver, usb_read_write).await;
 }
 ```
