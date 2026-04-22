@@ -73,7 +73,8 @@ The device is composed of the following physical components:
 - DS3231 RTC (I2C): provides accurate timekeeping required for TOTP generation and maintains time across power cycles using a CR2032 backup battery.
 - AT24C256 EEPROM (I2C): external non-volatile memory used to store account data.
 - TTP223 Capacitive Touch Sensors (x2): provide user input through touch interaction, supporting short and long presses.
-- Communication Interfaces: **UART** for provisioning and debugging; **USB** for USB-HID communication with a host computer.
+
+Communication Interfaces: **UART** for provisioning and debugging; **USB** for USB-HID communication with a host computer.
 
 The device is powered by two series-connected 18650 lithium-ion cells (~7.4V combined), regulated down to 5V by an LM2596 step-down converter. The 5V output feeds the board's E5V pin, which bypasses the onboard voltage regulator.
 
