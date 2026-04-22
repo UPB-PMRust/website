@@ -523,7 +523,7 @@ USB communication is inherently asynchronous. We need to run the core USB driver
 Our read/write task waits for a connection, reads data from the `read_ep`, waits for 1 second, and writes that exact data back to the `write_ep`. Finally, we use join to run both tasks concurrently.
 
 ```rust
-// Task 1: Run the core USB driver
+    // Task 1: Initialize the core USB driver's task.
     let usb_driver = usb.run();
 
     // Task 2: The actual application logic
