@@ -30,6 +30,8 @@ The system is organized into five functional layers, centered around the STM32 N
 4. **Communication:** An ESP-01S module establishes a Wi-Fi bridge, allowing the STM32 to receive remote control vectors from the custom joystick UI.
 5. **Feedback:** A 0.96" OLED display provides visual state information, while a passive buzzer emits variable-frequency acoustic warnings during reverse maneuvers.
 
+![Architecture Diagram](./architecture.svg)
+
 ## Log
 
 **Week 1 - 9**
