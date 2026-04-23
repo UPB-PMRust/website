@@ -3,7 +3,7 @@
 RC car that can jump on desks and inject usbs into laptops.
 
 
-**Author**: Carp Jianu-Novac-Mihail
+**Author**: Carp Jianu-Novac-Mihail \
 **GitHub Project Link**:  [https://github.com/UPB-PMRust-Students/fils-project-2026-novacLearnsCyber](https://github.com/UPB-PMRust-Students/fils-project-2026-novacLearnsCyber)
 
 ## Description
