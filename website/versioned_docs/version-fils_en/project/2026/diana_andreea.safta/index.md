@@ -112,3 +112,7 @@ The format is
 
 1. [MiMU Gloves](https://mimugloves.com/)
 ...
+<<<<<<< HEAD
+=======
+
+>>>>>>> b92c4ad7 (Project/diana andreea.safta (#792))
