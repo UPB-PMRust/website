@@ -82,7 +82,7 @@ I began the hardware assembly phase by verifying each component's integrity upon
 
 The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which interfaces with a Plantower PMS5003 laser sensor via UART for high-precision PM2.5 monitoring. Environmental context is provided by an AHT20 + BMP280 combo breakout (temperature, humidity, and pressure) and a 0.96" OLED display (SSD1306), both communicating over a shared I2C bus. The filtration is handled by a 12V DC fan and a HEPA filter, controlled through a custom motor drive circuit featuring an IRLZ44N logic level MOSFET, a 1N4007 flyback diode, and a 10kΩ pull-down resistor. The entire setup is powered by a 12V DC adapter and integrated on a standard 830 point breadboard.
 
-### Schematics
+## Schematics
 
 (KiCAD or similar schematics will be added here)
 
