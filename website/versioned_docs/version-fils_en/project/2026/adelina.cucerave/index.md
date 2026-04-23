@@ -4,7 +4,7 @@ A smart reaction-training station that uses lights and sensors to measure hit fo
 :::info 
 
 **Author**: Cucerave Adelina-Maria \
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/fils-project-2026-AdelinaMariaCucerave)
+**GitHub Project Link**: (https://github.com/UPB-PMRust-Students/fils-project-2026-AdelinaMariaCucerave)
 
 :::
 
@@ -72,14 +72,16 @@ By building a system that gives instant feedback through lights and sounds, user
 - Asked lab assistant about it, decided to improve it
 
 ### Week 6:
-- Started to look at components and decided on what i wanted to buy
+- Started to look at components 
+- Decided on what I wanted to buy
 
 ### Week 7: 
-- Waited for lab feedback and placed the order
+- Waited for lab feedback
+- Placed the order
 
 ### Week 8:
 - Some components came, started to look into Ubuntu 
-- 
+- Having problems with Rust but fixing them
 
 ## Hardware
 
