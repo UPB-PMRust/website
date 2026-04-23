@@ -24,7 +24,8 @@ The system architecture consists of a central Processing Unit (Raspberry Pi Pico
 - **Motor Controllers (Output)**: A dual motor driver module (e.g., L298N or TB6612FNG) that takes PWM signals to control the lift and thrust motors.
 - **Power Management**: A battery pack supplying appropriate voltage to both the motors and the logic board.
 
-*(You will need to replace this text with a diagram drawn in diagrams.net showing the connections between the Pico 2, Motor Driver, Motors, Sensors, and Battery).*
+### Schematics
+![Schematics](./im1.webp)
 
 ## Log
 
@@ -35,24 +36,21 @@ The system architecture consists of a central Processing Unit (Raspberry Pi Pico
 ### Week 12 - 18 May
 - *To be updated with hardware assembly progress*
 
-### Week 19 - 25 May
-- *To be updated with software implementation progress*
 
 ## Hardware
 
-The hardware is based on the Raspberry Pi Pico 2 microcontroller. The mechanical structure of the hovercraft will be built using lightweight materials (like foam board). Two DC motors are used: a central downward-facing motor for the lift cushion, and a rear-facing motor for thrust and steering (via a servo-controlled rudder or differential thrust).
+The hardware is based on the Raspberry Pi Pico 2 microcontroller. The mechanical structure of the hovercraft will be built using lightweight materials (like foam board). A powerful 2212 brushless motor is used for the lift cushion, alongside a rear-facing motor for thrust and steering (via a servo-controlled rudder or differential thrust).
 
-### Schematics
 
-*(Place your KiCAD or similar schematics here in SVG format. For example: `![Schematics](./schematics.svg)`)*
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2](https://www.optimusdigital.ro) | The main microcontroller running Rust | ~30 RON |
-| [DC Motors & Propellers](https://www.optimusdigital.ro) | For lift and thrust | ~50 RON |
-| [Motor Driver (L298N / TB6612FNG)](https://www.optimusdigital.ro) | Controls motor speed and direction | ~15 RON |
+| [2212 Brushless Motor & ESC](https://www.optimusdigital.ro) | For lift | ~50 RON |
+| [DC Motor & Propeller](https://www.optimusdigital.ro) | For thrust and steering | ~20 RON |
+| [Motor Driver (L298N / TB6612FNG)](https://www.optimusdigital.ro) | Controls DC motor speed and direction | ~15 RON |
 | [Ultrasonic Sensor HC-SR04](https://www.optimusdigital.ro) | Obstacle detection | ~10 RON |
 | [Battery Holder & Batteries](https://www.optimusdigital.ro) | Power supply for motors and Pico | ~25 RON |
 | [Foam Board/Chassis Materials](https://www.optimusdigital.ro) | Hovercraft body | ~20 RON |
