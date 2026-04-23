@@ -8,10 +8,10 @@ An embedded game where players catch Pokémon by solving math equations.
 
 ## Description 
 
-MiniMath Pocket Monsters is an embedded game in which the player explores a virtual enviroment and and ecounters
+MiniMath Pocket Monsters is an embedded game in which the player explores a virtual enviroment and ecounters 
 Pokémon that can only be caught by solving mathematical equations. The player can move within the game either by using
 physical buttons or by using motion input from an accelerometer. When a Pokémon randomly appears, the player is prompted 
-with a simple mathematical equation that needs to be solved in a limited time. If the correct answer is given, the creature
+with a mathematical equation that needs to be solved in a limited time. If the correct answer is given, the creature
 is successfully captured, otherwise, it escapes. The difficulty of the mathematical challenges varies depending on the rarity of the encountered Pokémon.
 There is also a score that shows how many Pokémon you caught, if u get one answer wrong, the score goes back to 0. 
 The game provides visual feedback from a TFT display, where the game environment and interactions are rendered, an additional display for auxilliary information such as score or status, as well as LEDs. 
@@ -19,7 +19,7 @@ Audio feedback is given through a passive buzzer which provides sound effects du
 
 ## Motivation 
 
-The motivation behind this project personal, as well as educational. I chose this topic because i am interested in the Pokémon franchise and i like video games.
+The motivation behind this project is personal, as well as educational. I chose this topic because i am interested in the Pokémon franchise and i like video games.
 I wanted to bring my interests to life by making my own version of the popular Pokémon games. At the same time, this project gives me the opportunity to learn
 and explore how interactive applications can be implemented on microcontrollers.The inspiration for this project comes from classic Pokémon games, which provide an engaging experience through simple mechanics.
 Another source of inspiration is represented by the modern game Pokémon Go, where real world actions influence the behvior in the game. 
@@ -32,7 +32,7 @@ as it encourages quick thinking and problem solving through time-limited mathema
 
 ## Log
 
-## Week 1-6: I Started brainstorming for my project idea and getting approval from my professors.
+## Week 1-6: I started brainstorming for my project idea and getting approval from my professors.
 
 ## Week 6-9: I purchased all the needed components, doing tests to make sure everything works right and working on the documentation milestone.
 
