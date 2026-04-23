@@ -3,7 +3,7 @@
 A hardware digital audio player built on STM32 using Rust and internal DAC audio processing.
 
 :::info
-**Author:** Alexandru Marioara <br />
+**Author:** Alexandru Marioara \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-StrumfoAlex
 :::
 
