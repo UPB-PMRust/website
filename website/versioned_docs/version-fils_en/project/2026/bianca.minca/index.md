@@ -1,8 +1,3 @@
----
-title: SmartPark - Automated Parking System
-sidebar_label: SmartPark
----
-
 # SmartPark
 
 An intelligent parking management system based on STM32, utilizing ultrasonic sensors for detection and an LCD for real-time monitoring.
