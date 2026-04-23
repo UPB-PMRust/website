@@ -30,8 +30,6 @@ The system is organized into five functional layers, centered around the STM32 N
 4. **Communication:** An ESP-01S module establishes a Wi-Fi bridge, allowing the STM32 to receive remote control vectors from the custom joystick UI.
 5. **Feedback:** A 0.96" OLED display provides visual state information, while a passive buzzer emits variable-frequency acoustic warnings during reverse maneuvers.
 
-![Architecture Diagram](./architecture.svg)
-
 ## Log
 
 **Week 1 - 9**
@@ -39,16 +37,14 @@ The system is organized into five functional layers, centered around the STM32 N
 * Throughout the weeks I have gathered the materials needed to assemble the hardware of the kit and its adjacent components needed for the behaviour of the rover.
 
 **Week 12 - 18 May**
-* 
-
-**Week 19 - 25 May**
-* 
-
-## Hardware
+* **Week 19 - 25 May**
+* ## Hardware
 
 The project relies on an STM32 Nucleo board as the main controller, communicating with an ESP8266 for remote commands. The chassis has been modified to support 4 independent DC motors and mecanum wheels for complex kinematics. Three ultrasonic sensors handle spatial awareness, while power is regulated via a buck converter to safely power the logic systems from the Li-ion batteries.
 
 ### Schematics
+
+![Architecture Diagram](./architecture.svg)
 
 ### Bill of Materials
 
@@ -87,5 +83,5 @@ The project relies on an STM32 Nucleo board as the main controller, communicatin
 
 ## Links
 
-1. [STM32 Nucleo-U545RE-Q Documentation](link_here)
+1. [STM32 Nucleo-U545RE-Q Documentation](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html)
 2. [Embassy framework documentation](https://embassy.dev/)
