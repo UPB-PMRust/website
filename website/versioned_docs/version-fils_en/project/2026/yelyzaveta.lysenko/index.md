@@ -4,7 +4,7 @@ An RFID-based gate system that controls school access, displays student info and
 :::info 
 
 **Author**: Yelyzaveta Lysenko \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-elysenkko
 
 :::
 
