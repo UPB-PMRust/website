@@ -90,7 +90,7 @@ For user feedback, the STM32 controls RGB LED rings to provide instant visual cu
 ### Schematics
 
 <center>
-![Diagram](./diagram.svg)
+![Diagram](diagram.svg)
 </center>
 
 ### Bill of Materials
