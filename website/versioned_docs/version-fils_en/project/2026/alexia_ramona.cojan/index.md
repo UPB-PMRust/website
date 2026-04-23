@@ -75,8 +75,8 @@ Place your KiCAD schematics here.
 | [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the TFT display |
 | [ssd1306](https://github.com/ssd1306-rs/ssd1306) | OLED display driver | Used for the OLED display |
 
-## LINKS
+## Links
 
-[Understanding how accelerometer works](https://youtu.be/KuekQ-m9xpw?si=_hHmB_l6pxTLukfG)
-[Accelerometer datasheet](https://www.ultralibrarian.com/2025/12/16/mpu9250-datasheet-explained-ulc/)
+1. [Understanding how accelerometer works](https://youtu.be/KuekQ-m9xpw?si=_hHmB_l6pxTLukfG)
+2. [Accelerometer datasheet](https://www.ultralibrarian.com/2025/12/16/mpu9250-datasheet-explained-ulc/)
 
