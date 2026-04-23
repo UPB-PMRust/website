@@ -1,11 +1,4 @@
-
----
-title: "Self-balancing drone"
----
-
-
-
-# A Self‑Balancing Robot Using ESP32 and Rust
+# Self-Balancing drone
 An autonomous two‑wheel platform featuring real‑time stabilization and Rust‑based embedded control.
 
 **Author:** Jidovu Andrei‑Bogdan  
