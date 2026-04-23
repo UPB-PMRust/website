@@ -1,7 +1,3 @@
----
-title: 4-DOF Desktop Robot Arm
----
-
 # 4-DOF Desktop Robot Arm
 
 Open-source educational desktop robot arm prototype for K12 electronics and hardware introduction.
@@ -9,7 +5,7 @@ Open-source educational desktop robot arm prototype for K12 electronics and hard
 :::info
 
 **Author**: Cimpoiasu Mihail  
-**GitHub Project Link**: [plexcodes/MA-Robot-Arm](https://github.com/plexcodes/MA-Robot-Arm)
+**GitHub Project Link**: [UPB-PMRust-Students/fils-project-2026-plexcodes](https://github.com/UPB-PMRust-Students/fils-project-2026-plexcodes)
 
 :::
 
@@ -55,11 +51,11 @@ The arm is built around an STM32 F446RE (NUCLEO-F446RE) as the central controlle
 
 ### Schematics
 
-![Wiring Schematic](./schematic.png)
+![Wiring Schematic](./schematic.webp)
 
-![System Workflow Diagram](./workflow.png)
+![System Workflow Diagram](./workflow.webp)
 
-![CAD Model](./CAD.png)
+![CAD Model](./CAD.webp)
 
 
 ### Bill of Materials
