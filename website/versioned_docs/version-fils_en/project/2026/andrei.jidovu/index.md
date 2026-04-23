@@ -8,7 +8,7 @@ Self-balancing drone
 An autonomous two‑wheel platform featuring real‑time stabilization and Rust‑based embedded control.
 
 **Author:** Jidovu Andrei‑Bogdan  
-**GitHub Project Link:** https://github.com/Moti452/website/pull/new/project/andrei.jidovu
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-Moti452
 
 ---
 
