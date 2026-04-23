@@ -1,5 +1,5 @@
 # Internal Combustion Engine Emulator
-An emulator that bring electric cars to life.
+An emulator that brings electric cars to life.
 
 :::info 
 
