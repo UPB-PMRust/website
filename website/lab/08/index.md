@@ -1,6 +1,6 @@
 ---
 descriptions: Exceptions and Interrupts Requests Handling
-slug: /lab/09
+slug: /lab/08
 unlisted: true
 ---
 
