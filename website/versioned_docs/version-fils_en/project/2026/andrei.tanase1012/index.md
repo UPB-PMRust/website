@@ -30,13 +30,42 @@ The STM32 acts as the central hub, coordinating four main functional modules (Se
 The firmware logic manages a continuous cycle of data acquisition and responsive actuation. It parses incoming UART packets to monitor particle levels while concurrently polling I2C sensors for environmental context. The control algorithm then calculates the necessary fan intensity, updating the OLED UI and adjusting the PWM output to match the current air quality requirements.
 
 **Component Connections:**
+```
+[POWER SECTION]                         [CONTROL & SENSING SECTION]
 
-| Component | Interface | STM32 Pins |
-|-----------|-----------|------------|
-| Plantower PMS5003 | UART | TX / RX (TBD) |
-| AHT20 & BMP280 | I2C | SDA / SCL (TBD) |
-| 0.96" OLED Display | I2C (shared) | SDA / SCL (shared with sensors) |
-| 12V PC Case Fan | PWM | PWM Output / Gate Control (TBD) |
++-------------------------+                 +----------------------------+
+|  12V DC Wall Adapter    |                 |          HOST PC           |
+| (Main System Power)     |                 |       (Flash/Debug)        |
++-----------+-------------+                 +-------------+--------------+
+            |                                             ^
+    [DC Barrel Jack Adapter]                            [USB]
+            |                                             |
+            | (12V Rail)                                  v
+            +------------------+           +----------------------------+
+            |                  |           |    NUCLEO STM32U545RE-Q    |
+            v                  |           |   (Main Microcontroller)   |
++--------------+               |           +---+--------+--------+------+
+| 12V DC Fan   |               |               |        |        |
+| (Purifier)   |               |               |        |        |
++------+-------+               |               |      [I2C]   [UART]
+       |                       |               |      (Bus)   (Point)
+       | [Fan Negative Path]   |               |        |        |
+       v                       | [12V to VIN]  |        v        v
++--------------+               +-------------->|    +-------+ +---------+
+|Custom MOSFET |                               |    |SSD1306| | PMS5003 |
+|Stage(IRLZ44N)|<--- [PWM Signal from STM32] --|    | OLED  | | PM2.5   |
++--------------+                               |    +-------+ +---------+
+       |                                       |        ^
+       |                                       |        | [5V or 3.3V]
+       v                                       |        | (Power from 
+ [Common Ground] <-----------------------------+--------+  Nucleo pins)
+                                               |        |
+                                               |        v
+                                               |    +-----------+
+                                               +--> | AHT20/BMP |
+                                                    | Combo Brk |
+                                                    +-----------+
+```
 
 ## Development Log
 
@@ -55,7 +84,7 @@ The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which inter
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+(KiCAD or similar schematics will be added here)
 
 
 ## Bill of Materials
