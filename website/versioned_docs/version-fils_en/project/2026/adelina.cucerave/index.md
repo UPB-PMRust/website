@@ -82,6 +82,7 @@ By building a system that gives instant feedback through lights and sounds, user
 ### Week 8:
 - Some components came, started to look into Ubuntu 
 - Having problems with Rust but fixing them
+- Received help with soldering some wires to my piezo sensors and RGB LED rings
 
 ## Hardware
 
@@ -105,7 +106,9 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [STM32STM32U545RE](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [107 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
+| [4 * 35mm Piezoelectric Diaphragm Sensor](https://www.piezoelements.com/piezo-diaphragm/external-drive-piezo-diaphram/35mm-2600-hz-piezoelec-diaphragm.html) | The microcontroller | [47 RON](https://ro.mouser.com/ProductDetail/490-CEB-35FD29) |
+| [4 * 35mm Piezoelectric Diaphragm Sensor](https://ro.mouser.com/ProductDetail/490-CEB-35FD29) | The microcontroller | [47 RON](https://ro.mouser.com/ProductDetail/78-BAT41) |
 
 
 ## Software
