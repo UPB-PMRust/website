@@ -4,7 +4,7 @@ A wearable music device
 :::info 
 
 **Author**: Safta Diana-Andreea \
-**Group**:1221ED\
+**Group**:1221ED \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-dianulle
 
 :::
