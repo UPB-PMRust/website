@@ -55,7 +55,7 @@ The mechanical cuckoo system is driven by a servo motor controlled through PWM. 
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic](schematic.svg)
 
 ### Bill of Materials
 
