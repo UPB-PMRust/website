@@ -2,9 +2,9 @@
 
 An intelligent parking management system based on STM32, utilizing ultrasonic sensors for detection and an LCD for real-time monitoring.
 
-:::info [INFO]
-**Author:** Minca Bianca-Mihaela\
-**Group:** 1221EA\
+:::info 
+**Author:** Minca Bianca-Mihaela \
+**Group:** 1221EA \
 **GitHub Project Link:** [https://github.com/UPB-PMRust-Students/fils-project-2026-biancamnc](https://github.com/UPB-PMRust-Students/fils-project-2026-biancamnc)
 :::
 
