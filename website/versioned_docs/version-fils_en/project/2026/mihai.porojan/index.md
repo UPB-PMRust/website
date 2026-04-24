@@ -20,7 +20,7 @@ with Kociemba's algorithm on my laptop to allow for a much faster solve (< 20 mo
 I chose this project because I was fascinated by the MIT robot that managed to solve a scrambled cube in 0.38 seconds and decided to create my own version using a more budget friendly approach with servomotors
 instead of stepper motors and a manual color sensing module instead of cameras.
 ## Architecture 
-![Architecture](Architecture.svg)
+![Architecture](architecture.svg)
 ## Log
 
 <!-- write your progress here every week -->
