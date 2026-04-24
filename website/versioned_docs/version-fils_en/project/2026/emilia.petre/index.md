@@ -11,7 +11,7 @@ A robotic hand that plays rock, paper, scissors using AI gesture recognition
 :::
 
 ## Description
-
+website/versioned_docs/version-fils_en/project/2026
 The purpose of this project is to build an interactive robotic arm that plays Rock, Paper, Scissors using a STM32 Nucleo microcontroller and the Rust programming language. It utilizes a Python-based MediaPipe AI model for real-time gesture recognition via webcam and communicates the results to the hardware via UART. The robotic hand is 3D-printed and uses servo motors to physically mimic the 3 possibilities - rock, paper or scissors. An OLED display tracks the score. The system integrates asynchronous Rust (Embassy) for hardware control and an ESP module to enable remote scoreboard access via WiFi.
 
 ## Motivation
