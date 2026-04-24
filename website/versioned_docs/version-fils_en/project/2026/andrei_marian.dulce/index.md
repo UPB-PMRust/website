@@ -1,10 +1,11 @@
 # Smart 2D LiDAR Radar & Advanced Security Hub
 A comprehensive bare-metal 2D scanning system and multi-sensor security alarm built with Rust and Embassy on the STM32.
 
-:::info
+:::info 
 
 **Author**: DULCE Andrei-Marian \
-**GitHub Project Link**: [https://classroom.github.com/a/sVB0pKHF](https://classroom.github.com/a/sVB0pKHF)
+**GitHub Source Code**: [https://github.com/andrrei509/stm32-lidar-radar](https://github.com/andrrei509/stm32-lidar-radar) \
+**GitHub Classroom Link**: [https://classroom.github.com/a/sVB0pKHF](https://classroom.github.com/a/sVB0pKHF)
 
 :::
 
