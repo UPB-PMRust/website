@@ -4,7 +4,7 @@ A comprehensive bare-metal 2D scanning system and multi-sensor security alarm bu
 :::info 
 
 **Author**: DULCE Andrei-Marian \
-**GitHub Project Link**: [https://classroom.github.com/a/sVB0pKHF](https://classroom.github.com/a/sVB0pKHF)
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-andrrei509](https://github.com/UPB-PMRust-Students/fils-project-2026-andrrei509)
 
 :::
 ## Description
