@@ -92,7 +92,6 @@ Worked on the documentation.
 
 # Hardware
 
-///unsure — Add schematic or photo here when hardware assembly is complete.
 
 The physical setup consists of:
 - Raspberry Pi Pico 2W as the central controller on a breadboard
