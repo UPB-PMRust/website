@@ -13,7 +13,7 @@ A DIY USB force feedback flight simulator joystick built around a printable gimb
 
 ## Motivation
 
-Flight simulators are significantly more immersive with force feedback — the stick pushes back when you pull too hard, buffets during a stall, and centers itself realistically. Commercial force feedback joysticks are either discontinued, extremely expensive, or both. The VPforce Rhino is an open-source community project that proves this is buildable at home, but it uses brushless motors and a proprietary driver ecosystem. This project recreates the concept using stepper motors and fully open hardware and software, with the added goal of running the entire control stack in Rust on an RP2350 microcontroller.
+Flight simulators are significantly more immersive with force feedback — the stick pushes back when you pull too hard, buffets during a stall, and centers itself realistically. Commercial force feedback joysticks are either discontinued, extremely expensive, or both. The VPforce Rhino is an open-source community project that proves this is buildable at home, but it uses brushless motors and a proprietary driver ecosystem. This project recreates the concept us.ing stepper motors and fully open hardware and software, with the added goal of running the entire control stack in Rust on an RP2350 microcontroller.
 
 ## Architecture
 
