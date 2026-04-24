@@ -3,7 +3,8 @@ A web-managed, dual-architecture smart clock that features asynchronous timekeep
 
 :::info
 
-**Student:** Stuparu Alessia-Ștefania **Username:** alessia.stuparu **GitHub Repository:** [https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu](https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu)
+**Student:** Stuparu Alessia-Ștefania \
+**GitHub Repository:** [https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu](https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu)
 
 :::
 
