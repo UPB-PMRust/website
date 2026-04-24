@@ -32,11 +32,13 @@ as it encourages quick thinking and problem solving through time-limited mathema
 
 ## Log
 
-## Week 1-6: I started brainstorming for my project idea and getting approval from my professors.
+### Week 1-6: 
+I started brainstorming for my project idea and getting approval from my professors.
 
-## Week 6-9: I purchased all the needed components, doing tests to make sure everything works right and working on the documentation milestone.
+### Week 6-9: 
+I purchased all the needed components, doing tests to make sure everything works right and working on the documentation milestone.
 
-## Week 9-14: 
+### Week 9-14: 
 
 ## Hardware
 
