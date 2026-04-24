@@ -32,6 +32,8 @@ The actuation system includes the servo motor used for the cuckoo mechanism and 
 
 All components are powered by a 5V USB power supply, with voltage stabilization ensured by capacitors. The STM32 interfaces with peripherals using SPI, I2C, UART, ADC, and PWM depending on the device.
 
+![Architecture](architecture.svg)
+
 ## Log
 
 <!-- write your progress here every week -->
