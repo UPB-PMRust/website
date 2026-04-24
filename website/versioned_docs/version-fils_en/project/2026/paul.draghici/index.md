@@ -1,8 +1,9 @@
 # Hardware password vault
 A secure password manager that stores credentials on-chip and acts as a physical USB keyboard to inject them.
+
 :::info
-**Author**: Draghici Paul Adrian\
-**Group:** 1221EA\
+**Author**: Draghici Paul Adrian \
+**Group:** 1221EA \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-UserT101
 :::
 
