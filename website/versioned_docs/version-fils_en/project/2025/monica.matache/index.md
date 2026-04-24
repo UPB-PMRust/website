@@ -1,4 +1,7 @@
 # Weather&Humidity Clock
+
+Weather Clock with Humidity Sensor
+
 A one line project description
 
 :::info 
@@ -10,6 +13,27 @@ A one line project description
 
 ## Description
 
+
+An interactive monitoring system using Raspberry Pi Pico. It displays the current time, date, temperature, and humidity on an ST7735S LCD. Data is updated in real-time whenever motion is detected by the PIR sensor
+
+## Motivation
+
+To create a smart, real-time environmental monitor that responds to human presence. It combines timekeeping, weather, and motion detection in one compact system. The project aims to enhance awareness of surroundings efficiently.
+
+## Architecture 
+
+![photo](Screenshot%202025-09-07%20190017.webp)
+
+Raspberry Pi Pico – Microcontroller that coordinates sensors, display, and logic.
+
+RTC DS3231 – Real-time clock module providing accurate date and time.
+
+DHT22 – Temperature and humidity sensor for environmental monitoring.
+
+ST7735S LCD – Small color display to show time, date, weather, and humidity.
+
+PIR HC-SR505 – Motion sensor that triggers updates when movement is detected.
+=======
 Describe in a few words your project idea.
 
 ## Motivation
@@ -21,6 +45,7 @@ Why did you choose this project?
 Add here the schematics with the architecture of your project. Make sure to include:
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other
+
 
 ## Log
 

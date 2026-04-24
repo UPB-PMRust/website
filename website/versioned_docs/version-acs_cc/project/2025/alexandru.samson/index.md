@@ -10,7 +10,8 @@ A multifunctional device which serves as a custom alarm clock, equipped with env
 
 ## Description
 
-A device that has the main functionality of a digital clock displayed on a screen with an alarm function, operated by physical buttons. The alarm has a snooze option and would emit sound via the buzzer. The product is also equipped with a pressure and temperature sensor to observe the environmental conditions surrounding it. Aditionally, a light sensor is used in order to automatically adjust the brightness of the display.
+A device that has the main functionality of a digital clock displayed on a screen with an alarm function, operated by physical buttons. The alarm is manually set by the user and would emit sound via the buzzer. The product is also equipped with a pressure and temperature sensor to observe the environmental conditions surrounding it. Aditionally, a photoresistor is used in order to automatically adjust the brightness of the display.
+
 
 ## Motivation
 
@@ -34,11 +35,11 @@ Wired the pieces to the raspberry pi pico, started working on the software, wrot
 
 ### Week 19 - 25 May
 
-TODO
+Completed the code, soldered all of the hardware on a perfo board and built the case for the clock.
 
 ## Hardware
 
-The main hardware is the Raspberry Pi Pico 2W microcontroller, which provides processing and Wi-Fi connectivity. A DS3231 RTC module is used for precise timekeeping. Environmental sensors include a BMP280 (temperature, pressure) and a BH1750 (ambient light, for automatic display adjustment). The user interface consists of an ILI9341 (2.4 inch) color LCD for display and touch buttons for control. The audio alarm is handled by a buzzer. The components are interconnected on a breadboard using jumper wires and well powered.
+The main hardware is the Raspberry Pi Pico 2W microcontroller, which provides processing and Wi-Fi connectivity. A DS3231 RTC module is used for precise timekeeping. Environmental sensors include a BMP280 (temperature, pressure) and a photoresistor (ambient light, for automatic display adjustment). The user interface consists of an ILI9341 (2.4 inch) color LCD for display and touch buttons for control. The audio alarm is handled by a buzzer. The components are interconnected on a perfo board using jumper wires and well powered.
 
 ![hardware1](hardware1.webp)
 ![hardware2](hardware2.webp)
@@ -46,7 +47,7 @@ The main hardware is the Raspberry Pi Pico 2W microcontroller, which provides pr
 
 ### Schematics
 
-![KiCad](KiCad.svg)
+![KiCad](kicad.svg)
 
 ### Bill of Materials
 
@@ -66,7 +67,7 @@ The format is
 | [ILI9341](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | Display | [67 RON](https://www.bitmi.ro/module-electronice/ecran-lcd-ili9341-cu-touch-si-slot-pentru-card-sd-2-4-10797-bitmi-ro.html) |
 | [DS3231](https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf) | RTC module | [19 RON](https://www.optimusdigital.ro/ro/altele/1102-modul-cu-ceas-in-timp-real-ds3231.html?search_query=ds3231&results=6) |
 | [BMP280](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp280/) | Pressure and temperature sensor | [8.5 RON](https://www.optimusdigital.ro/en/pressure-sensors/1666-modul-senzor-de-presiune-barometric-bmp280.html) |
-| [BH1750](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-bh1750-ambient-light-sensor.pdf) | Light intensity sensor | [10.4 RON](https://sigmanortec.ro/Senzor-intensitate-lumina-GY-302-BH1750-p137584524) |
+| Photoresistor | Photoresistor (type 5528) | [1.49 RON](https://www.optimusdigital.ro/en/others/1863-fotorezistor-tip-5528.html?search_query=photoresistor&results=19) |
 | Buzzer | Active buzzer | [1 RON](https://www.optimusdigital.ro/en/buzzers/635-3v-active-buzzer.html) |
 | Button | 12x12x7.3 button | [1.31 RON x 4](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) |
 | Button Cap | 12x12x7.3 button cap, multiple colors | [0.4 RON x 4](https://sigmanortec.ro/capac-buton-12x12x73-albastru) |
@@ -80,24 +81,32 @@ The format is
 
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [rp-pico-hal](https://crates.io/crates/rp-pico-hal) / [embassy-rp](https://crates.io/crates/embassy-rp) | Hardware Abstraction Layer (HAL) for RP2040 microcontroller.         | Provides fundamental access to peripherals: GPIO, I2C, SPI, UART, PWM, Timers etc. |
-| [embassy-executor](https://crates.io/crates/embassy-executor) | Asynchronous runtime executor for embassy.                           | Managing concurrent tasks (e.g., reading sensors, updating display). |
-| [panic-probe](https://crates.io/crates/panic-probe) / [panic-halt](https://crates.io/crates/panic-halt) | Panic handler implementation.                                          | Defines behavior on program panic.                      |
-| [defmt](https://crates.io/crates/defmt) / [defmt-rtt](https://crates.io/crates/defmt-rtt) | Efficient logging framework for embedded systems.                    | Useful for debugging output over a debug probe.                                    |
-| [ds3231](https://crates.io/crates/ds3231)         | Driver for DS3231 Real-Time Clock module.                              | Reading/setting current time and date via I2C.                                     |
-| [bmp280](https://crates.io/crates/bmp280)         | Driver for BMP280 Pressure & Temperature sensor.                     | Reading temperature and pressure values via I2C.                                   |
-| [bh1750](https://crates.io/crates/bh1750)         | Driver for BH1750 Ambient Light sensor.                              | Reading ambient light level (Lux) via I2C.                                         |
-| [ili9341](https://crates.io/crates/ili9341)       | Display driver for ILI9341 LCD controller.                           | Sending commands and pixel data to the LCD display via SPI.                        |
-| (HAL UART)                                         | UART communication capability provided by the HAL.                     | Sending serial commands to the DFPlayer Mini module. |
-| (HAL GPIO)                                         | GPIO input capability provided by the HAL.                           | Reading the state of the physical buttons.                                         |
-| (HAL PWM)                                          | PWM output capability provided by the HAL.                           | Controlling the brightness of the LCD backlight.                                   |                                                      |
-| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library for embedded displays.                             | Drawing shapes, text, and UI elements onto the ILI9341 display.                    |
-| [embedded-graphics-text](https://crates.io/crates/embedded-graphics-text) | Text rendering capabilities and font data.                             | Displaying time, date, sensor data, and menu text.                               |
-| [debouncr](https://crates.io/crates/debouncr) | Utility for debouncing digital inputs (buttons).                   | Preventing multiple triggers from a single button press.                           |
-| [embedded-hal](https://crates.io/crates/embedded-hal) / [embedded-io](https://crates.io/crates/embedded-io) | Traits defining hardware abstraction interfaces.                     | Used by most drivers to ensure portability across different HALs.                  |
-| [heapless](https://crates.io/crates/heapless)       | Static data structures without dynamic memory allocation.              | Useful for buffers, queues, etc., in no_std environments.                      |
+| Library (Crate)                                                              | Description                                                                                                | Usage in Project                                                                                                                               |
+| :--------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Core Embassy & HAL**                                                       |                                                                                                            |                                                                                                                                                |
+| [`embassy-rp`](https://github.com/embassy-rs/embassy/tree/main/embassy-rp)     | Asynchronous Hardware Abstraction Layer (HAL) for the RP2350 microcontroller (Pico W).                      | Provides fundamental access to peripherals: GPIO (Buttons, Buzzer, Display Control), I2C (RTC, BMP280), SPI (Display), ADC (LDR), DMA, Timers. |
+| [`embassy-executor`](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Asynchronous runtime executor for the Embassy framework.                                                     | Managing and running concurrent asynchronous tasks (`main` task, `button_and_buzzer_task`).                                                    |
+| [`embassy-time`](https://github.com/embassy-rs/embassy/tree/main/embassy-time)   | Timekeeping utilities, timers, and delays for asynchronous tasks within the Embassy framework.             | Used for `Timer::after()` for periodic operations, and `EmbassyDelay` for blocking delays needed by display initialization.                    |
+| [`embassy-sync`](https://github.com/embassy-rs/embassy/tree/main/embassy-sync)   | Synchronization primitives (like Mutex) for safe concurrent access to shared data in async environments. | Used for `Mutex<NoopRawMutex, _>` to share the SPI bus for the display and potentially other SPI devices (though IMU part was commented out). |
+| [`embassy-embedded-hal`](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Provides adapter types to use `embedded-hal` blocking traits with Embassy's async SPI/I2C.         | Used for `SpiDevice` to wrap the shared SPI bus for the display, providing a blocking-like interface.                                        |
+| **Low-Level & Panic Handling**                                               |                                                                                                            |                                                                                                                                                |
+| [`cortex-m`](https://crates.io/crates/cortex-m)                              | Low-level access to ARM Cortex-M processor core peripherals and intrinsics.                                | (Often used indirectly by HALs and runtime, e.g., for critical sections). Not explicitly used for peripherals in your `main` but foundational.   |
+| [`cortex-m-rt`](https://crates.io/crates/cortex-m-rt)                          | Minimal runtime for Cortex-M microcontrollers, handles startup and interrupt vector setup.                 | Provides the `#[entry]` macro for the main function (though `#[embassy_executor::main]` is used now). Foundational.                             |
+| [`panic-probe`](https://crates.io/crates/panic-probe)                          | A panic handler that prints panic messages via a debug probe (e.g., RTT using `probe-rs`).                 | Defines the behavior when the program panics, sending details to the debugger.                                                                 |
+| **Logging**                                                                  |                                                                                                            |                                                                                                                                                |
+| [`defmt`](https://crates.io/crates/defmt)                                    | Highly efficient deferred formatting logger for embedded systems.                                          | Used for all logging output (`info!`, `error!`, `warn!`).                                                                                        |
+| [`defmt-rtt`](https://crates.io/crates/defmt-rtt)                              | Implements a `defmt` global logger that sends log data over RTT (Real-Time Transfer) to a debug probe.     | Enables viewing `defmt` logs via `probe-rs`.                                                                                                   |
+| **Display & Graphics**                                                       |                                                                                                            |                                                                                                                                                |
+| [`mipidsi`](https://crates.io/crates/mipidsi)                                  | Generic driver for MIPI Display Serial Interface (DSI) compatible displays, including ILI9341.            | Used to initialize and control the ILI9341 display (clear, set orientation).                                                                   |
+| [`display-interface-spi`](https://crates.io/crates/display-interface-spi)      | Provides an SPI-based communication interface for display drivers like `mipidsi`.                          | Bridges the `mipidsi` driver with the underlying SPI HAL.                                                                                        |
+| [`display-interface`](https://crates.io/crates/display-interface)              | Defines traits for display communication interfaces.                                                       | (Dependency of `display-interface-spi`).                                                                                                       |
+| [`embedded-graphics`](https://crates.io/crates/embedded-graphics)              | A 2D graphics library for drawing shapes, text, and images on embedded displays.                           | Used for defining text styles, drawing text (`Text`), and shapes (`Rectangle`) on the ILI9341 display.                                      |
+| **Utilities**                                                                |                                                                                                            |                                                                                                                                                |
+| [`heapless`](https://crates.io/crates/heapless)                                | Provides data structures (like `String`) that do not require dynamic memory allocation (`std`'s `alloc`).    | Used for `HString` to create fixed-size string buffers for formatting text to be shown on the display.                                       |
+| [`embedded-hal-async`](https://crates.io/crates/embedded-hal-async)            | Asynchronous hardware abstraction traits for embedded systems (e.g., async I2C).                           | The `I2c` trait from this is used to enable methods like `.read()`, `.write()`, `.write_read()` on `embassy_rp::i2c::I2c`.                    |
+| `core::fmt::Write`                                                           | Standard library trait for formatting into a writer (available in `no_std` through `core`).              | Used with `heapless::String` and the `write!` macro to format variables into displayable strings.                                             |
+
+![Functional Diagram](functional_diagram.svg)
 
 ## Links
 
@@ -106,3 +115,4 @@ The format is
 1. [Raspberry Pi Pico - Alarm Clock Project](https://www.youtube.com/watch?v=EOMcPAKL6RM)
 2. [pico-alarm-clock](https://github.com/wahlencraft/pico-alarm-clock)
 3. [Raspberry Pi Pico - Alarm Clock](https://www.instructables.com/Raspberry-Pi-Pico-Alarm-Clock/)
+

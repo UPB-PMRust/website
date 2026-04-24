@@ -1,0 +1,220 @@
+name: Image Format & Resolution Check
+
+on:
+  push:
+    paths:
+      - "website/versioned_docs/version-acs_cc/project/**"
+      - "website/versioned_docs/version-fils_en/project/**"
+  pull_request:
+
+jobs:
+  check-images:
+    name: Validate Images in versioned_docs project folders
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y imagemagick webp file
+
+      - name: Get changed files in versioned_docs project folders
+        id: changed-files
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
+            FILES=$(git diff --name-only --diff-filter=ACM FETCH_HEAD HEAD -- \
+              'website/versioned_docs/version-acs_cc/project/' \
+              'website/versioned_docs/version-fils_en/project/')
+          else
+            BASE=${{ github.event.before }}
+            if [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+              BASE=$(git rev-parse HEAD~1 2>/dev/null || echo "")
+            fi
+
+            if [ -z "$BASE" ]; then
+              FILES=$(git ls-files \
+                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/version-fils_en/project/')
+            else
+              FILES=$(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- \
+                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/version-fils_en/project/')
+            fi
+          fi
+
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # ── Check for both case-sensitive and case-insensitive duplicates ──
+      - name: Check for filename duplicates (case-sensitive and case-insensitive)
+        id: check-duplicates
+        run: |
+          ERRORS=0
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No files to check for duplicates."
+            exit 0
+          fi
+
+          declare -A EXACT_MAP
+          declare -A LOWERCASE_MAP
+
+          echo "══════════════════════════════"
+          echo "Checking for filename duplicates..."
+          echo "══════════════════════════════"
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            FILE_LOWER=$(echo "$FILE" | tr '[:upper:]' '[:lower:]')
+
+            # ── Check 1: Case-sensitive duplicate (exact same path) ──
+            if [ -n "${EXACT_MAP[$FILE]}" ]; then
+              echo "❌ DUPLICATE DETECTED (case-sensitive / exact match):"
+              echo "   - ${EXACT_MAP[$FILE]}"
+              echo "   - $FILE"
+              echo "   → Same file path appears multiple times in changes"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+            EXACT_MAP[$FILE]="$FILE"
+
+            # ── Check 2: Case-insensitive duplicate (differs only by case) ──
+            if [ -n "${LOWERCASE_MAP[$FILE_LOWER]}" ]; then
+              echo "❌ DUPLICATE DETECTED (case-insensitive conflict):"
+              echo "   - ${LOWERCASE_MAP[$FILE_LOWER]}"
+              echo "   - $FILE"
+              echo "   → These files differ only by case and will conflict on Windows/macOS"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+            LOWERCASE_MAP[$FILE_LOWER]="$FILE"
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS duplicate(s) found."
+            echo "duplicate_errors=$ERRORS" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "✅ No duplicates found (case-sensitive or case-insensitive)."
+            echo "duplicate_errors=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check image format, resolution, and file size
+        run: |
+          ERRORS=0
+          MAX_WIDTH=1024
+          MAX_HEIGHT=768
+          MAX_FILE_SIZE=307200  # 300KB in bytes (300 * 1024)
+
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No files found in versioned_docs project folders – skipping checks."
+            exit 0
+          fi
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            echo "──────────────────────────────"
+            echo "Checking: $FILE"
+
+            EXT="${FILE##*.}"
+            EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$EXT_LOWER" = "md" ]; then
+              echo "  Markdown file – skipping image checks"
+              continue
+            fi
+
+            if [ "$EXT_LOWER" != "svg" ] && [ "$EXT_LOWER" != "webp" ]; then
+              echo "  FAIL – Invalid extension: .$EXT_LOWER (only .svg and .webp are allowed)"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            MIME_TYPE=$(file --mime-type -b "$FILE")
+            echo "  Detected MIME type: $MIME_TYPE"
+
+            if [ "$EXT_LOWER" = "webp" ]; then
+              if [ "$MIME_TYPE" != "image/webp" ]; then
+                echo "  FAIL – Extension is .webp but file content is $MIME_TYPE (Possible renamed PNG/JPG)"
+                ERRORS=$((ERRORS + 1))
+                continue
+              fi
+            elif [ "$EXT_LOWER" = "svg" ]; then
+              if [ "$MIME_TYPE" != "image/svg+xml" ] && [ "$MIME_TYPE" != "text/xml" ]; then
+                echo "  FAIL – Extension is .svg but file content is $MIME_TYPE"
+                ERRORS=$((ERRORS + 1))
+                continue
+              fi
+              if [ "$MIME_TYPE" = "text/xml" ]; then
+                if ! grep -q "<svg" "$FILE"; then
+                   echo "  FAIL – File is XML but does not contain SVG tag"
+                   ERRORS=$((ERRORS + 1))
+                   continue
+                fi
+              fi
+            fi
+
+            echo "  Format & Content OK (.$EXT_LOWER)"
+
+            # ── File Size Check (applies to all images including SVG) ──
+            FILE_SIZE=$(stat -c%s "$FILE")
+            FILE_SIZE_KB=$((FILE_SIZE / 1024))
+            echo "  File size: ${FILE_SIZE_KB}KB (${FILE_SIZE} bytes)"
+
+            if [ "$FILE_SIZE" -gt "$MAX_FILE_SIZE" ]; then
+              echo "  FAIL – File size ${FILE_SIZE_KB}KB exceeds limit of 300KB"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  File size OK"
+            fi
+
+            # ── Resolution check (skip for SVG – they are vector) ──────
+            if [ "$EXT_LOWER" = "svg" ]; then
+              echo "  SVG is vector – resolution check skipped"
+              continue
+            fi
+
+            DIMENSIONS=$(identify -format "%wx%h" "$FILE" 2>/dev/null)
+            if [ -z "$DIMENSIONS" ]; then
+              echo "  FAIL – Could not read dimensions (File might be corrupted)"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            WIDTH=$(echo "$DIMENSIONS" | cut -d'x' -f1)
+            HEIGHT=$(echo "$DIMENSIONS" | cut -d'x' -f2)
+
+            echo "  Dimensions: ${WIDTH}x${HEIGHT}"
+
+            if [ "$WIDTH" -gt "$MAX_WIDTH" ] || [ "$HEIGHT" -gt "$MAX_HEIGHT" ]; then
+              echo "  FAIL – Resolution ${WIDTH}x${HEIGHT} exceeds limit of ${MAX_WIDTH}x${MAX_HEIGHT}"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  Resolution OK"
+            fi
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS image(s) failed validation."
+            exit 1
+          else
+            echo "All images passed validation."
+          fi

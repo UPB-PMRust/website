@@ -60,7 +60,9 @@ The joysticks seemed the most difficult to implement, and since I hadn't yet fin
 
 ![](software1.webp)
 ### Week 19 - 25 May
-
+I worked on the game mechanics and managed to implement the movement of both the ball and the paddles simultaneously, even though the joysticks weren’t connected yet. I also wrote the task logic for the two joysticks and continued adding additional elements to the code, such as an end screen (which displays the winning player) and individual scores for each player that count how many times they've hit the ball.
+I added a more challenging aspect to the game: when a player reaches a score of 5, the ball speed increases, and this process repeats every 5 points.
+I disassembled the project and reassembled it into the case, which I successfully 3D-printed. My little console is now complete and ready for people to play a game of Pong.
 
 ## Hardware
 The hardware setup consists of a Raspberry Pi Pico 2W microcontroller as the core unit, interfacing with multiple peripherals.

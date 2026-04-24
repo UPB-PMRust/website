@@ -49,6 +49,14 @@ Connected the components on the breadboards.
 
 ### Week 19 - 25 May
 
+Wrote the code for the peripherals (encountered issues with delay timing between them, so I created separate tasks for each to run them in parallel)
+
+Built the parking prototype and mounted the peripherals on it
+
+Painted the parking prototype to be more aesthetic
+
+Purchased replacement sensors after some of the original ones stopped working, as well as longer cables
+
 ## Hardware
 
 ### Schematics
@@ -57,7 +65,20 @@ Connected the components on the breadboards.
 
 ### Photos
 
+Before assembly
 ![alt text](ProjectPhoto.webp)
+
+Pico in the box
+![alt text](Pi_Pico_Cables.webp)
+
+Front face
+![alt text](Front_face_parking.webp)
+
+Side
+![alt text](Side_face_parking.webp)
+
+LCD
+![alt text](LCD_no_space_free.webp)
 
 ### Bill of materials
 
@@ -67,8 +88,9 @@ Connected the components on the breadboards.
 | [Rapspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-1-family) | Debugger | [22.49 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12024-raspberry-pi-pico-728886755172.html?srsltid=AfmBOopzfbrSkCAOiZWVeX2qe2_Jwcdpe1hIj6UWpEmNRnZYO2zb_Jat) |
 |[Modul Led RGB](https://arduinomodules.info/ky-009-rgb-full-color-led-smd-module/)| Led RGB | [4.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/737-modul-cu-led-rgb.html?search_query=modul+cu+led&results=338)|
 |[Micro Servomotor SG90 180°](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf)| Micro Servomotor | [11.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/2261-micro-servo-motor-sg90-180.html)|
-| [Male to male jumper wires](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Wires | [4.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire&results=429) |
-| [Male to female jumper wires](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Wires | [7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html) |
+| [Male to male jumper wires 10cm](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Wires | [4.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=fire&results=429) |
+| [Male to female jumper wires 20cm](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Wires | [7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html) |
+| [Male to female jumper wires 40cm](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Wires | [22.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/12466-fire-colorate-mama-tata-40p-40-cm.html?search_query=mama+tata&results=89) |
 | [Infrared Sensor ](https://studylib.net/doc/25541782/arduino-ir-infrared-obstacle-avoidance-sensor-module) | Infrared Sensor | [3.49 RON](https://www.optimusdigital.ro/ro/senzori-senzori-optici/4514-senzor-infrarosu-de-obstacole.html) |
 | [Ultrasonic Sensor ](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | Ultrasonic Sensor | [6.49 RON](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/12897-senzor-ultrasonic-hc-sr04-.html?search_query=senzor+ultrasunet&results=7) |
 | [LCD 1602 ](https://handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) | LCD | [14.99 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/62-lcd-1602-cu-interfata-i2c-si-backlight-galben-verde.html?search_query=ecran+16+2&results=192) |
@@ -88,6 +110,11 @@ Connected the components on the breadboards.
 | [lcd1602-diver](https://docs.rs/lcd1602-diver/latest/lcd1602_diver/)| LCD driver over I2C| Used to control the LCD1602 screen using Embassy I2C|
 | [heapless](https://docs.rs/heapless/0.8.0/heapless/)| Fixed-capacity data structures| Used for memory-safe strings in no_std environments|
 
+The software uses asynchronous tasks to independently monitor ultrasonic and infrared sensors, managing entrance and exit barriers while tracking parking spot availability. Sensor data updates an atomic counter for free spots, and the LCD displays the current status. Using Embassy’s async executor on a Raspberry Pi Pico, the design ensures responsive, non-blocking handling of all inputs and outputs in a safe, efficient manner.
+
+### Functional Diagram
+
+![alt text](Flow_Chart.drawio.svg)
 
 ## Links
 

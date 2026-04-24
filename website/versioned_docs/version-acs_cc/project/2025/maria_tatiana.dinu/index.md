@@ -69,7 +69,16 @@ Expressive Responses:
 * Tested all hardware components with various simulated flower states (happy, thirsty, low light) to ensure coordinated movement, sound, and display responses
 
 ### Week 19 - 25 May
-* will do
+* Finalized software implementation with all emotion states and coordinated responses
+* Integrated servo control with smooth easing functions for natural movements
+* Implemented concurrent audio-visual-mechanical responses using Embassy's async framework
+* Completed display interface with all facial expressions (happy, sad, angry, thirsty, hot, neutral)
+* Redesigned 3D models with minor improvements for better component fit and assembly
+* Performed final system testing with all hardware components integrated
+
+New stem design (without petals and leaves) 
+
+![poza4](stem.webp)
 
 ## Hardware
 
@@ -110,35 +119,71 @@ Expressive Responses:
 
 ## Software
 
-**1. Sensor Module**
+   The system implements a state machine pattern for emotion processing with concurrent sensor monitoring and output control.
 
-* Light Sensing: ADC input processing from photoresistor
-* Moisture Detection: DHT22 sensor communication
-* Motion Detection: Digital input handling from PIR sensor
+**1. Main Control Loop (main.rs)**
 
-**2. Emotion Engine**
+* Sensor Reading: Continuous ADC sampling for light and humidity sensors, plus digital PIR input
+* Async Runtime Management: Built on Embassy-rs framework
+* State Machine Engine: Determines plant emotions by comparing sensor values to preset thresholds
+* Concurrent Output Control: Synchronizes audio, visual, and movement responses simultaneously
 
-* State Management: Defines emotional states based on sensor thresholds
-* Transition Logic: Smooth transitions between emotional states
-* Emotion Mapping: Converts sensor data combinations to appropriate emotions
+**2. Plant State Management (plant_states.rs)**
 
-**3. Expression Controller**
+The system defines six distinct emotional states for the plant:
 
-* Movement System: PWM signal generation for servo control
-* Visual Feedback: Display interface for facial animations
-* Audio Generation: Sound pattern creation via PWM
+* Happy: Triggered when motion is detected, creates interactive response
+* Thirsty: Activated when humidity drops below 30%, indicates need for water
+* Angry: Occurs when light levels fall below 20%, shows insufficient illumination
+* TooWet: Triggered when humidity exceeds 80%, indicates overwatering
+* Hot: Activated when light exceeds 85%, shows excessive light or heat
+* Relaxed: Default state when all conditions are optimal
+
+The PlantStatus struct tracks the current and previous emotional states, stores real-time sensor data, and determines when to trigger new 
+responses based on sensor thresholds.
+
+**3. Hardware Control Modules**
+
+*Servo Control (servo.rs)*
+PWM signal generation with precise timing control
+Smooth movement interpolation using easing functions
+Position tracking for coordinated multi-servo movements
+
+Creates specific movement patterns for different emotions:
+* dance_plant(): Happy dancing sequence with different positions
+* bow_head(): Sad head drooping from 30° to 70°
+* search_for_light(): Looking upward when seeking light
+
+*Audio System (buzzer.rs)*
+Generates different melodies asynchronously for each emotion using GPIO frequency control: happy, thirsty, angry, too hot, neutral, too wet.
+
+*Display Interface (display.rs)*
+ST7735 SPI display driver with embedded-graphics integration
+Pixel-level facial expression rendering using geometric primitives
+Emotion-specific elements:
+* Eye expressions: Normal circles vs. X-patterns for anger
+* Mouth curves: Mathematical functions for smile/frown generation
+* Special effects: Tear drops (blue circles), tongue
+
+![poza3](software_d.webp)
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| embassy-rs | Embedded async runtime | Core framework |
-| embassy-time | Time management functions | Timing control |
+| embassy-executor | Async task executor | Core framework |
 | embassy-rp | Hardware abstraction | Raspberry Pi Pico support |
-| embedded-hal | Hardware abstraction layer | Device interfaces |
-| embedded-hal-async | Asynchronous interface versions | Async communication |
-| rp-pico | HAL for Raspberry Pi Pico | Hardware control |
-| dht-sensor | DHT22 sensor communication | Humidity reading |
-| defmt | Logging and debugging | Development support |
+| embassy-time | Time management functions | Timing control |
+| embassy-sync | Synchronization primitives | Shared resource management |
+| embassy-embedded-hal | HAL integration layer | Device interfaces |
+| embassy-futures | Async utilities | Async communication |
+| display-interface-spi | SPI display interface | Display communication |
+| mipidsi | Display driver library | Display control |
 | embedded-graphics | Graphics library | Display support |
+| defmt | Logging and debugging | Development support |
+| defmt-rtt | RTT logging backend | Debug output |
+| panic-probe | Panic handler | Error handling |
+| fixed | Fixed-point arithmetic | Mathematical operations |
+| core | Rust core library | Memory management |
+
 
 ## Links
 

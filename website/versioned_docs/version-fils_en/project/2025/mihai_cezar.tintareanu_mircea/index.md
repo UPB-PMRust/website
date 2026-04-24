@@ -113,6 +113,24 @@ A wooden plate was also added to the side, in order to accommodate the two bread
 
 ### Week 20 - 26 May
 
+**Finally...** After assembling everything and making sure the hardware worked, I finally began working on the software part of the project. This is where the magic happens.
+
+There were plenty of questions:
+
+- How should I store the positions?
+
+- How can I track where each piece is on the board, especially considering that my sensors can't identify specific pieces—they only detect whether a square is occupied?
+
+- What's up with the lack of documentation? The Espressif team is hard at work putting together a solid framework for integrating the ESP32 into Rust development. But, as of now, there's still a lack of clear documentation explaining how things work.
+
+I feel like this is where the real fun of the project began. Although really frustrating at times, I started making progress: experimenting with I2C, Bluetooth, multi-tasking, and more.
+
+Then came the challenge of designing the actual data structures and algorithms that would bring the chessboard to life.
+
+At first, I thought I had a good idea: assigning a number to each type of piece and using positive numbers for white and negative for black, then storing everything in a simple array. While functional, there's actually a better way to handle this: bitboards.
+
+Long story short, you can make the whole process more elegant by representing the position of each piece type using bits inside 64-bit integers and then a "mask" that acts a secondary layer for detecting the occupied squares. You can read more about it on my project's GitHub page.
+
 ## Hardware
 
 Arduino Nano ESP32: Acts as the brain of the operation, running the Rust firmware

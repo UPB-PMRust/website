@@ -3,7 +3,7 @@ layout: two-cols
 ---
 
 # Lab Board
-[Schematics and PCB](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb)
+<!-- [Schematics and PCB](https://gitlab.cs.pub.ro/pmrust/pm-ma-pcb) -->
 
 <style>
 .two-columns {
@@ -13,19 +13,19 @@ layout: two-cols
 
 <v-clicks>
 
-- Raspberry Pi Pico/2 Slot
-- RP2040 Debugger
+- Nucleo U545RE-Q Slot / Board
 - 4 buttons
 - 5 LEDs
 - potentiometer
 - buzzer
 - photoresistor
 - I2C EEPROM
-- BMP280 Pressure & Temp. sensor
+- MPU-6500 accelerometer & Gyro
+- BMP 390 Pressure sensor
 - SPI LCD Display
 - SD Card Reader
-- USB-C connector
 - servo connectors
+- stepper motor
 
 </v-clicks>
 
@@ -37,52 +37,52 @@ layout: two-cols
 </template>
 
 <template #0>
-<Arrow x1="900" y1="20" x2="780" y2="55" width="3" color="red"/>
+<Arrow x1="950" y1="20" x2="880" y2="140" width="3" color="red"/>
 </template>
 
 <template #-1>
-<Arrow x1="950" y1="350" x2="850" y2="350" width="3" color="red"/>
+<Arrow x1="890" y1="530" x2="890" y2="430" width="3" color="red"/>
 </template>
 
 <template #-2>
-<Arrow x1="300" y1="360" x2="375" y2="360" width="3" color="red"/>
+<Arrow x1="330" y1="140" x2="390" y2="140" width="3" color="red"/>
 </template>
 
 <template #-3>
-<Arrow x1="300" y1="330" x2="500" y2="330" width="3" color="red"/>
+<Arrow x1="300" y1="130" x2="450" y2="130" width="3" color="red"/>
 </template>
 
 <template #-4>
-<Arrow x1="300" y1="160" x2="430" y2="160" width="3" color="red"/>
+<Arrow x1="300" y1="310" x2="440" y2="310" width="3" color="red"/>
 </template>
 
 <template #-5>
-<Arrow x1="300" y1="200" x2="430" y2="200" width="3" color="red"/>
+<Arrow x1="300" y1="250" x2="430" y2="250" width="3" color="red"/>
 </template>
 
 <template #-6>
-<Arrow x1="900" y1="430" x2="600" y2="430" width="3" color="red"/>
+<Arrow x1="300" y1="240" x2="500" y2="240" width="3" color="red"/>
 </template>
 
 <template #-7>
-<Arrow x1="900" y1="390" x2="600" y2="390" width="3" color="red"/>
+<Arrow x1="730" y1="530" x2="730" y2="360" width="3" color="red"/>
 </template>
 
 <template #-8>
-<Arrow x1="900" y1="470" x2="680" y2="470" width="3" color="red"/>
+<Arrow x1="800" y1="500" x2="600" y2="360" width="3" color="red"/>
 </template>
 
 <template #-9>
-<Arrow x1="300" y1="120" x2="470" y2="120" width="3" color="red"/>
-<Arrow x1="900" y1="470" x2="600" y2="470" width="3" color="red"/>
+<Arrow x1="700" y1="500" x2="550" y2="390" width="3" color="red"/>
 </template>
 
 <template #-10>
-<Arrow x1="300" y1="60" x2="430" y2="60" width="3" color="red"/>
+<Arrow x1="300" y1="355" x2="650" y2="355" width="3" color="red"/>
+<Arrow x1="900" y1="470" x2="800" y2="390" width="3" color="red"/>
 </template>
 
 <template #-11>
-<Arrow x1="870" y1="220" x2="720" y2="350" width="3" color="red"/>
+<Arrow x1="750" y1="500" x2="680" y2="395" width="3" color="red"/>
 </template>
 
 <template #-12>
@@ -91,7 +91,7 @@ layout: two-cols
 
 </v-switch>
 
-<img src="./lab_board.png" class="w-120 rounded">
+<img src="./lab_board.jpg" class="w-140 rounded">
 
 ---
 ---
@@ -99,7 +99,8 @@ layout: two-cols
 suggested hardware
 
 - the hardware should not cost more than 150 RON
-- we suggest having a Raspberry Pi Pico with a debugger
+- STM32 [Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html) or [Nucleo U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) board (include debuggers)
+- Raspberry Pi Pico with a debugger
 
 <div grid="~ cols-2 gap-20">
 

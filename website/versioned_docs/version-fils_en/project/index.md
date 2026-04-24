@@ -8,10 +8,14 @@ The goal of the project is to showcase the knowledge gained throughout the semes
 
 ## Deliverables
 The deliverables will be stored in two places: 
-- the *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students) 
-- the project documentation will be stored on [Gitlab](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro), by creating a fork of the course's website
+- the project's *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students) using the [project assignment](https://classroom.github.com/a/sVB0pKHF)
+- the project's documentation page will be stored on the course's [Github](https://github.com/upb-pmrust/website)
 
-The **documentation repository** should contain:
+:::note
+To start writing your project's source code, please accept the [project assignment](https://classroom.github.com/a/sVB0pKHF). This will create the project's source code repository for you. We will only review this repository/
+:::
+
+The **project's documentation page** should contain:
 - the full documentation of the project, in the `index.md` file
   - a description of the functionality
   - the motivation for choosing the project
@@ -31,18 +35,18 @@ The **documentation repository** should contain:
 
 :::warning 
 
-You need to work in a fork of this website's Gitlab repository and not in a blank one, in order to create a _merge request_, as described below.
+You need to work in a fork of the [website's Github repository](https://github.com/upb-pmrust/website)'s repository and not in a blank one, in order to create a _pull request_, as described below.
 
 :::
 
-The **source code repository** should contain:
+The **project's source code repository** should contain:
 - a brief documentation - the repository's `README.md` file
   - short description of the functionality
   - requirements (hardware and software)
   - brief hardware and software design, including diagrams
 - software source code
 
-The repositories will be checked by the lab assistant at during lab reserved for the project. Uploading code on the last day of the software milestone is not allowed. **The assistant** will check that students have **submitted regular commits** to the repository.
+The repositories will be checked by the lab assistant during the lab reserved for the project. Uploading code on the last day of the software milestone is not allowed. **The assistant** will check that students have **submitted regular commits** to the repository.
 
 Students will have to build and showcase the hardware with the running software at PM Fair. On the presentation day, **students will upload the source code to the hardware** and the demo will be done live in front of the committee.
 
@@ -64,19 +68,19 @@ If you are using WSL2, you should follow the instructions for installing on Linu
 These steps should be performed on inside your **VM**, or in **WSL2**, **not on your host machine**.
 :::
 
-1. Please login with your UPB login to [Gitlab](https://gitlab.cs.pub.ro)
-2. You will have to add an SSH Key to your Gitlab account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS's console: `ssh-keygen -t rsa -b 2048`. Press press ENTER until you exit the respective command prompts.
+1. Please login using your account to [Github](https://github.com)
+2. You will have to add an SSH Key to your Github account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS's console: `ssh-keygen -t rsa -b 2048`. Press press ENTER until you exit the respective command prompts.
  - If your command prompt `Overwrite (y/n)?` press `n` and run the above command again, changing the destination of the key.
  - If the key was generated successfully, you will have the keys generated in the location indicated by the command `Enter file in which to save the key (/home/"NAME"/.ssh/id_rsa):`
  - Read the content of the file `id_rsa.pub` or the name you gave to the file and transfer it to Github.
- - Login to [Gitlab](https://gitlab.cs.pub.ro/) and go to: [SSH Keys](https://gitlab.cs.pub.ro/-/user_settings/ssh_keys).
+ - Login to [Github](https://github.com/) and go to: [SSH Keys](https://github.com/settings/keys).
  - Click on *Add new key* and insert into the *Key* textbox your key from `id_rsa.pub`.
  - Be very careful about the expiration date of the ssh key, change the expiration date otherwise it is set to 30 days.
 
 3. [Download Git](https://git-scm.com) from the official website and access it in the command line using `git -v` to check if it was installed correctly. You might have to use *Git Bash*.
-4. Navigate to the [website's Gitlab repository](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro) and create a public fork by clicking on the button in the top right corner.
+4. Navigate to the [website's Github repository](https://github.com/upb-pmrust/website) and create a public fork by clicking on the button in the top right corner.
 
-5. Clone the newly created repository by running `git clone git@gitlab.cs.pub.ro:<gitlab_username>/pmrust.pages.upb.ro.git`, where `<gitlab_username>` is replaced by your gitlab username.
+5. Clone the newly created repository by running `git clone git@github.com:<your_github_username>/website.git`.
 
 6. Now you have your own clone. You need to create a new branch. For this, follow the steps:
   - Navigate to your cloned repository 
@@ -86,9 +90,9 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
     - `git checkout -b <branch_name>`
     - `git push --set-upstream origin project/your_curs.upb.ro_username`
 
-7. To start creating your page for the project, go to `website/versioned_docs/version-fils_en/project/2025` and create a new directory with your curs.upb.ro username. Example: `andrei_paul.zamfir`.
+7. To start creating your page for the project, go to `website/versioned_docs/version-fils_en/project/2026` and create a new directory with your curs.upb.ro username. Example: `andrei_paul.zamfir`.
 
-8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2025/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last year's projects](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro/-/tree/main/website/versioned_docs/version-fils_en/project/2024).
+8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2026/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last years' projects](https://github.com/UPB-PMRust/website/tree/main/website/versioned_docs/version-fils_en/project).
 
 9. To build and test the website, you can run the `./build_website.sh` in the project's root folder, then run `cd ./website/ && npm run serve`.
 
@@ -96,12 +100,10 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
 After running the script, you could run `npm run start` instead of `serve`. This would ensure that the changes you are making in your Markdown file reflect in the running build (without needing to rebuild the project over and over again). But make sure to re-run the build script when you are done, because some subtle bugs may not be caught by this method.
 :::
 
-10. After finishing the project, make a _merge request_ to the [upstream repository](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro). Do not forget to change the Merge Request Description template to **project**.
+10. After finishing the project, make a _pull request_ to the [upstream repository](https://github.com/UPB-PMRust/website). Do not forget to change the Pull Request Description template to **project**.
 
-![Merge Request Template](../../../static/img/MR_template.webp)
-
-:::info Merge Request contents
-The merge requests should contain only the Markdown page, and additional images in `svg` or `webp` format that must not exceed **1024x768** pixels.
+:::info Pull Request contents
+The pull requests should contain only the Markdown page, and additional images in `svg` or `webp` format that must not exceed **1024x768** pixels.
 :::
 
 ## Hardware Rules
@@ -133,7 +135,7 @@ It has to run software written in Rust. Students can use:
 3. Any problem or blockage you have will be discussed with the lab assistant during project work hours.
 4. Students are strongly encouraged to ask the lab assistant questions about the project.
 5. The presentation of all the milestones is mandatory.
-6. The project topic must be established in week 4 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.
+6. The project topic must be established in week 5 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.
 7. The laboratory supervisor may modify the topic or propose another topic if it is not complex enough for this project.
 8. We encourage you not to use prebuilt kits, you may get less points for the hardware part.
 
@@ -142,14 +144,13 @@ It has to run software written in Rust. Students can use:
 2. *Documentation:* Complete documentation of the implementation for both hardware and software.
 3. *Functionality:* The hardware device has to be fully functional.
 
-The **IoT** stream has to use the networking (**WiFi**, **Bluetooth** or **Ethernet**).
-
 ## Example Projects
 
 ### Examples of projects from past years
-1. [Projects from 2024](/docs/fils_en/category/projects-2024)
-1. https://ocw.cs.pub.ro/courses/pm/prj2022
-2. https://ocw.cs.pub.ro/courses/pm/prj2023
+1. [Projects from 2024](/docs/fils_en/category/projects-2025)
+2. [Projects from 2024](/docs/fils_en/category/projects-2024)
+3. https://ocw.cs.pub.ro/courses/pm/prj2022
+4. https://ocw.cs.pub.ro/courses/pm/prj2023
 
 ### Outstanding Projects
 1. [POV - DAVIC picTronics](https://ocw.cs.pub.ro/courses/pm/prj2023/gpatru/376)
@@ -161,10 +162,10 @@ The **IoT** stream has to use the networking (**WiFi**, **Bluetooth** or **Ether
 
 | Part | Deadline | Points |
 |--------|--------|--------|
-| Documentation Milestone | Lab 9 | 0.5p |
-| Hardware Milestone | Lab 11 | 0.5p |
-| Software Milestone | Lab 12 | 0.5p |
-| PM Fair | TBD | 1.5p |
+| Documentation Milestone | Week 9 | 0.4p |
+| Hardware Milestone | Week 11 | 0.8p |
+| Software Milestone | Week 13 | 0.8p |
+| PM Fair | Week 14 | 1p |
 | **Total** |  | **3p** |
 
 ## F.A.Q
@@ -179,4 +180,3 @@ The **IoT** stream has to use the networking (**WiFi**, **Bluetooth** or **Ether
 
 [^arduino_nano_rp2040_connect]: Some function of this board, like WiFi, might not be supported in Rust.
 [^esp32_riscv]: ESP32 provides its own Rust SDK described in the [The Rust on ESP Book](https://docs.esp-rs.org/book/introduction.html).
-

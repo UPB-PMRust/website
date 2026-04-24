@@ -39,6 +39,7 @@ I bought the hardware pieces needed for the prototype and then drew the circuit 
 I connected all the pieces on the breadboard exactly as in the KiCad diagram, flashed a simple main to verify that every module powers up, confirming the wiring is ready for real firmware.
 
 ### Week 19 - 25 May
+I started by initializing the buttons, RTC and LCD display, then implemented the basic functionality of reading the current time from the RTC and displaying it on the LCD. After that, I continued with the buttons, allowing the user to switch between modes (clock, set alarm, set timer, set clock & date) and modify the values (hours, minutes, etc.). I also added the buzzer and LED for audible and visual feedback when the alarm is active. Finally, I implemented the countdown timer functionality, allowing the user to set a timer that counts down from a specified duration.
 
 ## Hardware
 The hardware used in this project includes the following essential components:
@@ -79,13 +80,16 @@ The hardware used in this project includes the following essential components:
 
 ## Software
 
-| Library                                                                 | Description                            | Usage                                                  |
-|-------------------------------------------------------------------------|----------------------------------------|--------------------------------------------------------|
-| [ds323x](https://lib.rs/crates/ds323x)                                  | DS3231 RTC Rust library                | For reading/writing time over I2C                      |
-| [ag-lcd](https://crates.io/crates/ag-lcd)                               | LCD driver library                     | To control LCD via I2C                                 |
-| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Peripheral access library	           | Access to GPIOs, I2C, PWM, clocks, etc.                |
-| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/)       | Async timers and delays                | Used for delays, alarms, and countdown logic           |
+| Library                                                                       | Description                            | Usage                                                     |
+|-------------------------------------------------------------------------------|----------------------------------------|-----------------------------------------------------------|
+| [ds323x](https://lib.rs/crates/ds323x)                                        | DS3231 RTC Rust library                | For reading/writing time over I2C                         |
+| [lcd1602-diver](https://docs.rs/lcd1602-diver/0.1.1/lcd1602_diver/)           | LCD driver library                     | To control LCD via I2C                                    |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)       | Peripheral access library	             | Access to GPIOs, I2C, PWM, clocks, etc.                   |
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/)             | Async timers and delays                | Used for delays, alarms, and countdown logic              |
+| [embassy-executor](https://docs.rs/embassy-executor/latest/embassy_executor/) | Async task executor                    | Manages async tasks for button handling and alarms        |
+| [core](https://doc.rust-lang.org/core/)                                       | Library for no_std environments        | Provides atomic types used for shared state between tasks |
 
 ## Links
 
 1. [Raspberry Pi Pico - Alarm Clock Project](https://www.youtube.com/watch?v=EOMcPAKL6RM)
+2. [Raspberry Pi Pico Pinout Diagram](https://pmrust.pages.upb.ro/docs/acs_cc/lab/02#configuring-gpio-pins)

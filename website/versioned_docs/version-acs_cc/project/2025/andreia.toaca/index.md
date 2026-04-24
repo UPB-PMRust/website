@@ -52,7 +52,7 @@ This week I created the circuit schematic in KiCad, connecting all the component
 
 
 ### Week 8 – 26 May  
-
+During this week, I finalized the software implementation of the project. This included completing all game logic for level progression, input validation, sequence generation, and score tracking using atomic operations. I ensured the OLED display renders all game states - home screen, loading animation, level info, error messages, and win/lose outcomes, using the embedded-graphics library. I also integrated buzzer melodies via PWM for win/lose feedback and configured LED and button interaction through GPIO. Full system testing was conducted to confirm proper behavior across all peripherals. Lastly, I reviewed and updated the documentation to match the final project implementation.
 
 
 ## Hardware
@@ -78,9 +78,8 @@ The hardware setup consists of the following components:
 ## Schematics
 
 ![Schematics ](./project_schematics.svg)
-![image1 ](./image1.webp)
-![image2 ](./image2.webp)
-![image3 ](./image3.webp)
+![picture1 ](./picture1.webp)
+![picture2 ](./picture2.webp)
 
 ## Bill of Materials
 
@@ -104,15 +103,20 @@ The hardware setup consists of the following components:
 
 | Library               | Description                                                    | Usage                        |
 |-----------------------|----------------------------------------------------------------|------------------------------|
-| [embassy-rs](https://github.com/embassy-rs/embassy)               | HAL for RP2040 with async support    | Core hardware abstraction    |
+| [embassy-rp](https://github.com/embassy-rs/embassy)              | HAL for RP2350 with async support    | Core hardware abstraction    |
+|  [embassy_executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Lightweight async task executor for `no_std` targets  | Schedules and runs the async tasks, `main` and `button_task` are driven by this executor  |
+|  [embassy_time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Asynchronous timers and delays  | Provides Timer::after and Instant, which are used to time LED blinks, progress bars, and overall time-outs  |
+| [embassy_sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync)  | Lock-free channels and mutexes  | Supplies `Channel` and `CriticalSectionRawMutex`, the channel passes `BtnEvent` messages from `button_task` to the main game loop.  |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)            | Drawing library for OLED             | Displaying messages          |
 | [ssd1306](https://github.com/rust-embedded-community/ssd1306)                          | Display driver                       | OLED control                 |
-| [rand](https://docs.rs/rand/latest/rand/)                                              | Random generation                    | Generate random LED sequences|
-
+| [rand](https://docs.rs/rand/latest/rand/)                                              | Random generation                    | Generate random LED sequences |
+| [rand_core](https://github.com/rust-random/rand/blob/master/rand_core/src/lib.rs)  | Random generation | Generate random LED sequences |
+| [heapless](https://github.com/rust-embedded/heapless)            | Fixed-capacity data structures that do not allocate |  Provides the `String<…>` buffer used when composing on-screen text |
+| [static_cell](https://github.com/embassy-rs/static-cell) | Safe and unique initialization of static data | Stores the `Input<'static>` instance for the Start/Stop button so the async task can borrow it for the entire program lifetime  |
 
 ## Links
 
 - [Simon Says Game logic – classic version](https://en.wikipedia.org/wiki/Simon_(game))
-- [Embassy-rs documentation](https://embassy.dev)
+- [GPIO](https://pmrust.pages.upb.ro/docs/acs_cc/lab/02)
 - [Simon Game on Raspberrypi Pico](https://www.youtube.com/watch?v=wOGWu2v-Wgc)
 

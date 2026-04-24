@@ -73,6 +73,7 @@ flowchart TD
 ### Week 12 - 18 May
   During this week I acquired all the remaining parts, decided to switch from 4x1.5V batteries to a single 9V battery in case my DC motor needed more voltage to spin faster. I put all my hardware in the safe for the first time and came up with a rough idea for the launching mechanism for the "projectiles". 
 ### Week 19 - 25 May
+  Started writing the code for the safe. First made the LEDs blink and the buzzer sound, then I made the servomotor twist. After a brief pause, I continued with the PN532. I initially forgot to connect the RESET pin and did not know why I had to disconnect the PN532 every time i wanted to run the code. After that I struggled a little with an issue that would make the module not read keycards after about 1 minute.
 
 ## Hardware
   For my safe, I used a Raspberry Pi Pico 2W as my MCU. With the help of a PN532 module I am able to scan any access keys with NFC/RFID. My locking mechanism is a SG90 servomotor. I have also installed two LEDs, one blue and one red, and an active buzzer, meant to resemble an alarm. The "projectiles" are fired with the help of a DC motor that is spinning a wheel. Below is a photo with the hardware outside the box:
@@ -84,6 +85,8 @@ flowchart TD
 
 ![Kicad](kicad.svg)
 
+### YouTube Demo
+[SafePi Demo](https://youtube.com/shorts/JDA9XmK4RdE?feature=share)
 
 
 ### Bill of Materials
@@ -104,7 +107,7 @@ The format is
 | Red LED | Blinking when the alarm goes off | [0.39 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/696-led-rou-de-3-mm-cu-lentile-difuze.html) |
 | Blue LED | Blinking when the alarm goes off | [0.29 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/12237-led-albastru-de-5-mm.html) |
 | Buzzer | Used when the alarm goes off | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/635-buzzer-activ-de-3-v.html) |
-| [PN532 RFID Module](https://www.nxp.com/docs/en/nxp/data-sheets/PN532_C1.pdf) | Used for  opening the safe | 30 RON |
+| [PN532 RFID Module](https://www.nxp.com/docs/en/nxp/data-sheets/PN532_C1.pdf) | Used for  opening the safe | [50 RON](https://www.optimusdigital.ro/ro/altele/1590-modul-nfc-pn532.html) |
 | 9V Battery | Used for powering the motors and the RFID Module | 10 RON |
 | Battery Support | Connecting the battery to the breadboard | [1.29 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/20-conector-pentru-baterie-de-9-v.html) |
 | Breadboard | Connecting all the components | [4.56 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html) |
@@ -121,11 +124,14 @@ The format is
 | [embassy](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for handling async tasks |
 | [embassy-rp](https://github.com/embassy-rs/embassy) | RP2350 support for Embassy | Provides access to GPIO, I2C, and timers for Raspberry Pi Pico 2 |
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded Rust | Debugging tool |
+| [embedded-hal-async](https://crates.io/crates/embedded-hal-async) | asynchronous traits for embedded hardware access using async | asynchronous I2C |
+| Own PN532 crate | a lightweight pn532 implementation | wrote it to be able to use with async with better logging |
 
-\*Not Final
 
 
 ## Links
+[1. PWM](https://pmrust.pages.upb.ro/docs/acs_cc/lab/03)
 
+[2. I2C](https://pmrust.pages.upb.ro/docs/acs_cc/lab/06)
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 

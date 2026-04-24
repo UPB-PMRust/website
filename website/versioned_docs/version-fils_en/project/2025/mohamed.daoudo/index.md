@@ -49,6 +49,13 @@ I also got to update my KiCad schematic and obtain one final version that suits 
  
 Without further ado, I began contemplating the software part more deeply and committed what I had written initially. 
 ### Week 19-25 May
+This week marked the successful completion of the software for my Car-go. With all hardware components assembled, I focused entirely on finalizing the embedded Rust firmware.
+
+The software is designed to continuously read sensor data in real time and adjust motor behavior accordingly. Depending on the detected position of the black line, the system dynamically regulates motor speed and direction using PWM signals, enabling the car to follow gentle curves and turns smoothly and accurately.
+
+I implemented a responsive control mechanism that interprets various sensor combinations to determine the appropriate motion, such as moving forward, turning left or right, or stopping when the line is lost. All control logic is handled asynchronously to ensure fast reaction times and reliable performance.
+
+After extensive testing and calibration, including adjusting sensor thresholds and motor speeds, the car now tracks the line. With the final version of the code committed and functioning as intended, this week concludes the full integration of software into a working robotic system.
 
 ## Hardware
 
@@ -99,6 +106,9 @@ Without further ado, I began contemplating the software part more deeply and com
 | [embassy_rp::gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html)   | Pico GPIO control pins            |configuring digital input/output pins |
 | [embassy_rp::pwm](https://docs.embassy.dev/embassy-rp/git/rp2040/pwm/index.html)    | Pulse width modulation           | to mainly control motor speed and direction|
 | [embassy_time](https://docs.embassy.dev/embassy-time/)       | Time and delay handling in asynchronous Rust     | adds delays or wait for a specific duration in tasks |
+| [panic_probe](https://lib.rs/crates/panic-probe) | Panic handling                         | Sends panic messages through `defmt`                                        |
+| [embassy_sync::blocking_mutex::raw::ThreadModeRawMutex](https://docs.rs/embassy-sync/latest/embassy_sync/blocking_mutex/raw/struct.CriticalSectionRawMutex.html) | blocking thread mutex | Provides safe access to shared data across async tasks                      |
+| [embassy_sync::channel](https://docs.embassy.dev/embassy-sync/git/default/pubsub/index.html) | Channel messaging system         | Allows async message passing between producers and consumers                |
 
 ## Links
 

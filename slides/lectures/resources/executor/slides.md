@@ -114,8 +114,57 @@ async fn main(spawner: Spawner) {
 ---
 layout: two-cols
 ---
+# Priority Tasks
 
-## Priority Tasks
+<style>
+.two-columns {
+    grid-template-columns: 3fr 5fr;
+}
+</style>
+
+<v-clicks>
+
+- the tasks run in separate *executors*
+- triggered from **interrupts**
+- will **interrupt any task** running in the **main executor**
+
+</v-clicks>
+
+<br>
+
+<v-after>
+
+> ⚠️ Tasks that share data between executors require synchronization.
+
+<br>
+
+</v-after>
+
+<v-click>
+
+### RP2
+- use `SWI_IRQ_01` and `SWI_IRQ_01`
+
+</v-click>
+
+<v-click>
+
+### STM32U545RE
+- use any interrupt (`UART`, `SPI`, ...) not used anywhere else
+
+</v-click>
+
+:: right ::
+
+<div align="center">
+<img src="./isr_executor.svg" class="rounded">
+</div>
+
+---
+layout: two-cols
+---
+
+# Priority Tasks
 
 <style>
 .two-columns {
@@ -127,6 +176,32 @@ layout: two-cols
 <img src="./isr_executor.svg" class="rounded">
 </div>
 
+<v-switch>
+
+<template #3>
+
+```rust {*}{lines: false}
+#[interrupt]
+unsafe fn SWI_IRQ_1() {
+    EXECUTOR_HIGH.on_interrupt()
+}
+```
+
+</template>
+
+<template #4>
+
+```rust {*}{lines: false}
+#[interrupt]
+unsafe fn SWI_IRQ_0() {
+    EXECUTOR_MEDIUM.on_interrupt()
+}
+```
+
+</template>
+
+<template #5>
+
 ```rust {*}{lines: false}
 #[interrupt]
 unsafe fn SWI_IRQ_1() {
@@ -134,15 +209,38 @@ unsafe fn SWI_IRQ_1() {
 }
 #[interrupt]
 unsafe fn SWI_IRQ_0() {
-    EXECUTOR_MED.on_interrupt()
+    EXECUTOR_MEDIUM.on_interrupt()
 }
 ```
 
+</template>
+
+<template #6>
+
+```rust {*}{lines: false}
+#[interrupt]
+unsafe fn UART4() {
+    EXECUTOR_HIGH.on_interrupt()
+}
+#[interrupt]
+unsafe fn UART5() {
+    EXECUTOR_MEDIUM.on_interrupt()
+}
+```
+
+</template>
+
+</v-switch>
+
 :: right ::
 
-```rust {5,6,22|1,7-10|2,12-15|3,17-21|all}
+````md magic-move {at: '1'}
+
+```rust {none|7,8,24|5,7,8,19-23,24|3,9-12|4,14-17|all}
+// RP2
+
 static EXECUTOR_HIGH: InterruptExecutor = InterruptExecutor::new();
-static EXECUTOR_MED: InterruptExecutor = InterruptExecutor::new();
+static EXECUTOR_MEDIUM: InterruptExecutor = InterruptExecutor::new();
 static EXECUTOR_LOW: StaticCell<Executor> = StaticCell::new();
 
 #[entry]
@@ -154,7 +252,7 @@ fn main() -> ! {
 
     // Medium-priority executor: SWI_IRQ_0, priority level 3
     interrupt::SWI_IRQ_0.set_priority(Priority::P3);
-    let spawner = EXECUTOR_MED.start(interrupt::SWI_IRQ_0);
+    let spawner = EXECUTOR_MEDIUM.start(interrupt::SWI_IRQ_0);
     spawner.spawn(run_med()).unwrap();
 
     // Low priority executor: runs in thread mode, using WFE/SEV
@@ -165,4 +263,37 @@ fn main() -> ! {
 }
 ```
 
-priority executors run in ISRs, lower priority tasks are interrupted
+```rust
+// STM32U545RE
+
+static EXECUTOR_HIGH: InterruptExecutor = InterruptExecutor::new();
+static EXECUTOR_MEDIUM: InterruptExecutor = InterruptExecutor::new();
+static EXECUTOR_LOW: StaticCell<Executor> = StaticCell::new();
+
+#[entry]
+fn main() -> ! {
+    // High-priority executor: UART4, priority level 2
+    interrupt::SWI_IRQ_1.set_priority(Priority::P2);
+    let spawner = EXECUTOR_HIGH.start(interrupt::UART4);
+    spawner.spawn(run_high()).unwrap();
+
+    // Medium-priority executor: UART5, priority level 3
+    interrupt::SWI_IRQ_0.set_priority(Priority::P3);
+    let spawner = EXECUTOR_MEDIUM.start(interrupt::UART5);
+    spawner.spawn(run_med()).unwrap();
+
+    // Low priority executor: runs in thread mode, using WFE/SEV
+    let executor = EXECUTOR_LOW.init(Executor::new());
+    executor.run(|spawner| {
+        unwrap!(spawner.spawn(run_low()));
+    });
+}
+```
+
+````
+
+<div v-click="3">
+
+💡 priority executors run in ISRs, lower priority tasks are interrupted
+
+</div>

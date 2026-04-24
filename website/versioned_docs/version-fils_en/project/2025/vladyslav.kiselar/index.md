@@ -69,6 +69,8 @@ Additionally, I installed a locking mechanism for the coin collection compartmen
 
 ### Week 19 - 25 May
 
+During this week, I worked on the software side, implementing multitasking using the Embassy async framework in Rust to run multiple tasks concurrently — specifically handling coin sorting and NFC-based door control. I also made efforts to reinforce the LEGO structure of the enclosure to improve mechanical stability and durability during operation.
+
 ## Hardware
 
 The control logic of Coins Keeper is implemented on Raspberry Pi Pico 2W boards. One Pico serves as the main controller,  which manages all coin detection, sorting, and feedback components, while a second Pico is optionally used as a debugging probe during development. Coins are inserted into a commercial coin selector, powered via a 12V DC jack. Upon detection, a servo motor acts as a stopper to briefly hold the coin while a stepper motor rotates the sorting platform to align the correct compartment underneath. The coin is then released into the bin.
@@ -92,41 +94,37 @@ The system is now powered from a single 12V input through a voltage regulator th
 | [2 x Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | Microcontroller (2 units: main + debugging) | [79.32 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
 | [Multi-coin selector module (626 model)](https://probots.co.in/technical_data/Probots616CoinAcceptorModuleDatasheet.pdf) | Detects and identifies coins | [165 RON](https://www.emag.ro/acceptor-monede-616-1463/pd/DXDZFRMBM/) |
 | [Stepper motor (28BYJ-48 5VDC)](https://www.datasheetcafe.com/28byj-48-datasheet-5v-stepper-motor/) | Rotates mechanism to direct coins | [19.16 RON](https://www.emag.ro/motor-pas-cu-pas-angrenaj-5v-sistem-de-control-uln2003-multicolor-2-a-007/pd/DGD5NLMBM/) |
-| [2 x Servo motor SG90 180°](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | For "keeping" coin mechanism / locker mechanism | [23.98 RON](https://www.optimusdigital.ro/en/servomotors/2261-micro-servo-motor-sg90-180.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=EAIaIQobChMI3a_E8rSHjQMV_4KDBx1AbxVoEAQYASABEgKduPD_BwE) |
+| [2 x Servo motor SG90 180°](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) | For "blocking" coin mechanism / door-locker mechanism | [23.98 RON](https://www.optimusdigital.ro/en/servomotors/2261-micro-servo-motor-sg90-180.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=EAIaIQobChMI3a_E8rSHjQMV_4KDBx1AbxVoEAQYASABEgKduPD_BwE) |
 | [16X2 LCD Display](https://www.vishay.com/docs/37484/lcd016n002bcfhet.pdf) | Displays coin balance and status | [16.34 RON](https://www.vishay.com/docs/37484/lcd016n002bcfhet.pdf) |
 | [Passive Buzzer](https://product.tdk.com/en/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf) | Audio feedback for coin detection | [0.99 RON](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html?search_query=buzzer&results=87) |
 | [NFC module (PN532)](https://www.elechouse.com/elechouse/images/product/PN532_module_V3/PN532_%20Manual_V3.pdf) | Secure access to stored coins | [33.19 RON](https://www.emag.ro/cititor-rfid-nfc-pn532-13-56-mhz-i2c-spi-card-si-breloc-42-x-42-mm-multicolor-2-m-058/pd/DN3XKLMBM/) |
-| 12V Universal Power Supply Adapter | Adapter for powering coin selector | [15 RON](https://www.emag.ro/sursa-alimentare-universala-xtech-12-v-2-a-ac-negru-1055452582/pd/D847MWMBM/) |
-| DC Socket Module | Socket for adapter for powering the coin selector | [4.99 RON](https://www.optimusdigital.ro/en/connectors/177-dc-socket-module.html) |
-| Battery 9V (Duracell) | Voltage supply for most components | [15.14 RON](https://www.emag.ro/baterie-duracell-bsc-9v-dl-5000394077225/pd/DP5KQ3BBM/?cmpid=146119&utm_source=google&utm_medium=cpc&utm_content=82270117088&utm_campaign=(RO:Whoop!)_3P-Y_%3e_Aparate_foto_and_accesorii_order_test&gad_source=1&gbraid=0AAAAACvmxQhtLRNIPdiBQCKdqoLIqQFlF&gclid=EAIaIQobChMIp8yD7K6HjQMV1KKDBx1zfwulEAQYAiABEgIxSfD_BwE) |
-| 9 V Battery Connector with DC Jack | Powering the breadboard using 9V battery| [1.49 RON](https://www.optimusdigital.ro/en/wires-with-connectors/896-9v-battery-connector-with-dc-jack.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=EAIaIQobChMImrDgmbGHjQMViICDBx2QsDiZEAQYASABEgKEuPD_BwE)|
-| [Low-Voltage Source Module](https://www.ti.com/lit/ds/symlink/tlvm23625.pdf) | For future using 12V adapter as single voltage supply for all components (instead of battery) | [24.99 RON](https://www.optimusdigital.ro/ro/surse-coboratoare/8401-modul-sursa-de-tensiune-coboratoare-6-a-intrare-9-36-v-ieire-5-v.html?srsltid=AfmBOor_MjVUrlZnqttY73JEdgAcJYqvx72AYVLDsM-dxcLz_eKeyaZS) |
-| Breadboard Power Supply | For giving 3.3V/5V powering via battery | [4.69 RON](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DST91rElLA-XfsBRapIVDc8&gclid=EAIaIQobChMI9onavc2HjQMVe4-DBx1WZgqwEAQYASABEgIAivD_BwE) |
+| 12V Universal Power Supply Adapter | Adapter for powering coin selector + other components | [15 RON](https://www.emag.ro/sursa-alimentare-universala-xtech-12-v-2-a-ac-negru-1055452582/pd/D847MWMBM/) |
+| [Low-Voltage Source Module](https://www.ti.com/lit/ds/symlink/tlvm23625.pdf) | For using 12V adapter as single voltage supply for all components | [24.99 RON](https://www.optimusdigital.ro/ro/surse-coboratoare/8401-modul-sursa-de-tensiune-coboratoare-6-a-intrare-9-36-v-ieire-5-v.html?srsltid=AfmBOor_MjVUrlZnqttY73JEdgAcJYqvx72AYVLDsM-dxcLz_eKeyaZS) |
 | Wiring and misc. | Jumper wires, breadboards, connectors | - |
-| Custom coin compartments | Store sorted coins (LEGO) | - |
+| Whole construction + custom coin compartments | Skeleton of the project / Store sorted coins (LEGO) | - |
 
 
 ## Software
+
 
 | Library | Description | Usage |
 |--------|-------------|-------|
 | [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xa/index.html) | HAL for Raspberry Pi Pico | Access to GPIO, I2C, PWM, and other peripherals |
 | [embassy-executor](https://docs.embassy.dev/embassy-executor/git/cortex-m/index.html) | Embedded async/await runtime | Runs non-blocking async tasks |
 | [embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Timekeeping and timers | Used for debounce logic, delays, and timed feedback |
-| [embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Async-safe synchronization | Future inter-task communication (channels, mutexes) |
-| [embassy-embedded-hal](https://docs.embassy.dev/embassy-embedded-hal/git/default/index.html) | HAL adapter for Embassy | Bridges Embassy drivers with `embedded-hal` traits |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Embedded Hardware Abstraction Layer | Unified interfaces for drivers (SPI, I2C, GPIO, etc.) |
-| [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | Driver for HD44780 LCD over I2C | Displays messages and coin balance |
-| [heapless](https://github.com/japaric/heapless) | Fixed-size collections for no_std | String construction and buffer-safe operations |
-| [fixed](https://docs.rs/fixed) | Fixed-point arithmetic | Used for PWM servo pulse calculations |
+| [embedded-hal-async](https://docs.rs/embedded-hal-async) | Async traits for embedded drivers | Enables async SPI/I2C access |
 | [defmt](https://github.com/knurling-rs/defmt) | Lightweight logger for embedded systems | Real-time logging via RTT |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for defmt logs | Sends debug logs to host via RTT |
+| [cortex-m-rt](https://docs.rs/cortex-m-rt) | Runtime support for Cortex-M | Sets up entry point and interrupt vectors |
+| [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | Driver for HD44780 LCD over I2C | Displays messages and coin balance |
+| [heapless](https://github.com/japaric/heapless) | Fixed-size collections for no_std | Used for string formatting and buffer storage |
 | [panic-probe](https://docs.rs/panic-probe) | Minimal panic handler with defmt support | Shows panic info in debug output |
-| [pn532](https://crates.io/crates/pn532) | NFC reader driver | For secure card/tag authentication |
-| [stepper](https://docs.rs/stepper) | Stepper motor driver | To control the rotating sorting mechanism |
-| [embedded-hal-async](https://docs.rs/embedded-hal-async) | Async traits for embedded drivers | If future peripherals need async SPI/I2C access |
+| [fixed](https://docs.rs/fixed) | Fixed-point arithmetic | Used for PWM pulse calculations |
+
+> **Note:** `pn532` for NFC module was implemented manually, so we don't use the `pn532` crate.
 
 ## Links
 
 1. [How to use CH-926 Coin Acceptor](https://www.youtube.com/watch?v=sfE7yqtd8TA)
 2. [Embedded Rust Book](https://docs.rust-embedded.org/book/)
-
+3. [Door Mechanism Idea](https://www.youtube.com/shorts/XmlGo6bJwKw)

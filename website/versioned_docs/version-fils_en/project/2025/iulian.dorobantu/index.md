@@ -62,6 +62,7 @@ I began to search for all of the neccesary components, in order to start putting
 In this week I started to assemble my project, step by step. I also decided to implement a new functionality into my project, a seatbelt warning system. I have managed to reach a completion rate of about 85%, with the only tasks left to do being connecting and programming the cooling system and playing around with the interface of the digital dashboard.
 
 ### Week 19 - 25 May
+The project has been completed succesfully and is ready for the PMFair, for the project's design I ended up making a cardboard case, which can be seen in the photos below.
 
 ## Hardware
 
@@ -75,9 +76,15 @@ In this week I started to assemble my project, step by step. I also decided to i
 - **SPI LCD Display**: Acts as a digital dashboard for real-time data visualization.
 - **Breadboard & Jumper Wires**: For prototyping and interconnecting components.
 
-### Project Photo
+
+### Project Photo, Week 12 - 18 May
 
 ![Project photo](project_photo.webp)
+
+### Project Photo, Week 19 - 25 May 
+
+![Project final photo](project_final.webp)
+![Project final photo 2](project_final2.webp)
 
 ### Schematics
 

@@ -75,7 +75,7 @@ Setting up the framework to run a Raspberry Pi Pico 2W with another MCU as the d
 Connected all the components and tested that the buttons can controll the passive buzzer. Also connected the LCD and started working on the menu options and wrote the software in order to controll the buzzer and the LCD. Started working on the software to receive Bluetooth signals.
 
 ### Week 19 - 25 May
-TODO
+Added all the necessary code to make the menu work correctly but and created more tasks for the Bluetooth RSSI measure. When trying to integrate the trouble_host crate into my project, I faced some problems regarding the compatibility. This is because the various crates used in my project used different versions of bt_hci crate. And so I decided to use a Bluetooth module as a last resort.
 
 ## Hardware
 

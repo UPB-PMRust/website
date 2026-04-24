@@ -58,6 +58,13 @@ After several attempts using only a slow low-pass filter and a tuned Kalman filt
 
 ### Week 19 - 25 May
 
+After more than 100 code iterations, I’ve finally achieved a solid filter calibration—now with adaptive capabilities. The new setup features an adaptive Kalman filter and a biquad filter. The results are very promising. However, I encountered an issue: residual noise persists even when I'm not speaking. To address this, I implemented a voice activity detection (VAD) system to suppress the noise whenever no speech is detected.
+
+### Week 26 - 29 May
+
+This week, I focused more on noise reduction. I added a noise gate to eliminate additional background noise, but I eventually reached a point where software alone wasn’t enough. To improve the results, I experimented with advanced signal processing techniques, such as spectral analysis and component-level filtering. These approaches improved performance—but only for about two seconds, which isn’t sufficient for my goals.
+To push further, I experimented with amplification using integrated circuits, specifically the TDA2822M. However, since it’s designed for stereo audio, it didn’t suit my needs. As a result, I began building my own amplifier using discrete components: the 2N2222 for general-purpose amplification and the A1015 for low-noise audio amplification. I also added a low-pass filter to reduce noise. With this setup, I managed to lower the noise floor from a constant 80mV to around 60mV, as measured with an oscilloscope.
+
 ## Hardware
 
 ![Hardware](InitialHardware.webp)
@@ -66,8 +73,9 @@ After several attempts using only a slow low-pass filter and a tuned Kalman filt
 - **MAX4466** will act as the sensor from which audio signals will be received.
 - **Red Button** will be used to trigger the raw recording.
 - **Blue Button** will be used to trigger the processed recording.
-- **Blue LED** will provide visual feedback for the timer during the processed recording
-- **Red LED** will provide visual feedback for the timer during the raw recording
+- **Blue LED** will provide visual feedback for the timer during the processed recording.
+- **Red LED** will provide visual feedback for the timer during the raw recording.
+- **Amplifying Circuit with a low-pass filter** used to boost the MAX4466 microphone signal for improved sound clarity, while the added low-pass filter helps reduce high-frequency noise at the output.
 
 ### Schematics
 
@@ -85,24 +93,34 @@ The format is
 
 -->
 
-| Device                                                                                                                                                                                     | Usage                       | Price                                                                                                                                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [NUCLEO-STM32F767ZI](https://www.st.com/en/microcontrollers-microprocessors/stm32f7-series/documentation.html)                                                                             | The microcontroller         | [113.26 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F767ZI?qs=7UaJ5Mrpeu0%2F%252BMRranB3%2Fw%3D%3D)                                                        |
-| [MAX4466](https://cdn-shop.adafruit.com/datasheets/MAX4465-MAX4469.pdf)                                                                                                                    | Microphone                  | [8.54 RON](https://sigmanortec.ro/modul-microfon-max4466-cu-amplificare-castig-reglabil-23-5vdc)                                                                                  |
-| [Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html)                                                                                      | Controlling the recording   | [1.99 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html)                                                                            |
-| [LEDs and resistors](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html?search_query=leduri&results=59) | Indicator for the recording | [26.99 RON](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html?search_query=leduri&results=59) |
-| [Wires female-male](https://www.optimusdigital.ro/ro/fire-fire-mufate/878-set-fire-mama-tata-40p-30-cm.html?search_query=fire&results=429)                                                 | Connecting the components   | [9.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/878-set-fire-mama-tata-40p-30-cm.html?search_query=fire&results=429)                                                 |
+| Device                                                                                                                                                                                                                                                                                                                                                                | Usage                                   | Price                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [NUCLEO-STM32F767ZI](https://www.st.com/en/microcontrollers-microprocessors/stm32f7-series/documentation.html)                                                                                                                                                                                                                                                        | The microcontroller                     | [113.26 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F767ZI?qs=7UaJ5Mrpeu0%2F%252BMRranB3%2Fw%3D%3D)                                                        |
+| [MAX4466](https://cdn-shop.adafruit.com/datasheets/MAX4465-MAX4469.pdf)                                                                                                                                                                                                                                                                                               | Microphone                              | [8.54 RON](https://sigmanortec.ro/modul-microfon-max4466-cu-amplificare-castig-reglabil-23-5vdc)                                                                                  |
+| [Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html)                                                                                                                                                                                                                                                                 | Controlling the recording               | [1.99 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html)                                                                            |
+| [LEDs and resistors](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html?search_query=leduri&results=59)                                                                                                                                                                            | Indicator for the recording             | [26.99 RON](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html?search_query=leduri&results=59) |
+| [Wires female-male](https://www.optimusdigital.ro/ro/fire-fire-mufate/878-set-fire-mama-tata-40p-30-cm.html?search_query=fire&results=429)                                                                                                                                                                                                                            | Connecting the components               | [9.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/878-set-fire-mama-tata-40p-30-cm.html?search_query=fire&results=429)                                                 |
+| [Transistors](https://ro.mouser.com/c/ds/semiconductors/discrete-semiconductors/transistors/)                                                                                                                                                                                                                                                                         | Amplifying the singnal from the MAX4466 | [24.99 RON](https://www.optimusdigital.ro/en/kits/10953-plusivo-kit-de-tranzistoare-bipolare-asortate-cu-rezistoare-bonus-210-buc.html)                                           |
+| [Ceramic capacitors](https://eu.mouser.com/c/passive-components/capacitors/ceramic-capacitors/?utm_id=22426705326&utm_source=google&utm_medium=cpc&utm_marketing_tactic=emeacorp&gad_source=1&gad_campaignid=22433169554&gbraid=0AAAAADn_wf0ZdyyOcICh8MDr1BPW5FBY9&gclid=CjwKCAjw6NrBBhB6EiwAvnT_roMnQes1ckYiYxQ1MKr5j1SimwMA3g9fs6aEU6PBeOfNkT-0ojqwmRoCid8QAvD_BwE) | Making the analog fiter                 | [19.99 RON](https://www.optimusdigital.ro/en/capacitors/12632-ceramic-capacitor-assorted-kit-30-kinds-from-2pf-01uf.html?search_query=capacitor&results=265)                      |
 
 ## Software
 
-| Library                                                | Description                                     | Usage                                     |
-| ------------------------------------------------------ | ----------------------------------------------- | ----------------------------------------- |
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async Rust embedded framework                   | Used for interacting with the peripherals |
-| [bytemuck](https://crates.io/crates/bytemuck)          | A crate for mucking around with piles of bytes. | Used for safe casting                     |
-| [libm](https://crates.io/crates/libm)                  | A Rust implementations of the C math library.   | Used in the computations in filtering     |
+| Library                                                | Description                                                                                                                                                | Usage                                       |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async Rust embedded framework                                                                                                                              | Used for interacting with the peripherals   |
+| [bytemuck](https://crates.io/crates/bytemuck)          | A crate for mucking around with piles of bytes.                                                                                                            | Used for safe casting                       |
+| [libm](https://crates.io/crates/libm)                  | A Rust implementations of the C math library.                                                                                                              | Used in the computations in filtering       |
+| [defmt](https://crates.io/crates/defmt)                | Highly efficient logging framework that targets resource-constrained devices, like microcontrollers.                                                       | Used in displaying on screen and debugging. |
+| [static-cell](https://crates.io/crates/static_cell)    | Provides a no-std-compatible, no-alloc way to reserve memory at compile time for a value, but initialize it at runtime, and get a 'static reference to it. | Used for saving memory.                     |
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [NUCLEO-F767ZI pinout](https://os.mbed.com/platforms/ST-Nucleo-F767ZI/)
+2. [Kalman filter](https://web.mit.edu/kirtley/kirtley/binlustuff/literature/control/Kalman%20filter.pdf)
+3. [Biquad filter in Matlab](https://www.mathworks.com/help/dsphdl/ref/biquadfilter.html)
+4. [Control Theory Tutorial Basic Concepts Illustrated by Software Examples](https://library.oapen.org/bitstream/id/ca08ee4d-3639-43d0-81b7-f53ebdfd1e03/1002170.pdf)
+5. [Digital Signal Processing](https://www-elec.inaoep.mx/~jmram/Digital_Signal_Processing__LI_TAN.pdf)
+6. [How does an Amplifier Work? (Class-A)](https://www.youtube.com/watch?v=dKTbrZMscpM)
+7. [The Embedded Rust Book](https://docs.rust-embedded.org/book/)

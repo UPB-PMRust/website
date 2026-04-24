@@ -53,9 +53,10 @@ Purchased all the necessary components and set up the Rust development environme
 ### Week 12 - 18 May
 Completed the hardware assembly of the car, including wiring and soldering the electronic components. Continued software development by implementing Wi-Fi connectivity and setting up PWM control for the motors.
 ### Week 19 - 25 May
+Integrated Wi-Fi command handling with motor control and tested remote operation via HTTP requests sent from a browser interface. Additionally fixed minor bugs to improve stability and recorded a short demo.
 
 ## Hardware
-The Octane project is built around an ESP32-S2 Mini, which handles both Wi-Fi communication and motor control. User commands (WASD) are received via Wi-Fi and translated into PWM signals sent to a ZKBM1 motor driver. The ZKBM1 controls two DC motors, enabling movement through GPIO pins. Power is supplied by two battery packs: one powers the motor driver, and the other powers the ESP32-S2 Mini. Thus, the setup allows for wireless control using a microcontroller.
+The Octane project is built around an ESP32-S2 Mini, which handles both Wi-Fi communication and motor control. User commands (WASD) are received via Wi-Fi and translated into PWM signals sent to a ZKBM1 motor driver. The ZKBM1 controls two DC motors, enabling movement through GPIO pins. Power is supplied by two battery packs: one powers the motor driver, and the other powers the ESP32-S2 Mini. Thus, the setup allows for wireless control using a microcontroller. You can watch a [demo of the project on YouTube](https://youtu.be/3dMxoPGCX78).
 
 ![Car Hardware](car.webp)
 
