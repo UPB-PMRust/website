@@ -4,7 +4,7 @@ An autonomous two‑wheel platform featuring real‑time stabilization and Rust�
 
 :::info
 
-**Author:** Jidovu Andrei‑Bogdan   
+**Author:** Jidovu Andrei‑Bogdan  \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-Moti452
 
 :::
