@@ -2,8 +2,12 @@
 
 A circcular device that, when prompted from a keypad, will spin to a preloaded chamber like a tank autoloader and push out the product selected, in this prototype case, a cigarette.
 
-**Author:** Bîrgu Bogdan-Andrei
+:::info
+
+**Author:** Bîrgu Bogdan-Andrei \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-bogdan-3301
+
+:::
 
 ---
 
