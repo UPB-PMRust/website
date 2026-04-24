@@ -30,7 +30,7 @@ This project's architecture revolves around the STM32 Nucleo-U545RE-Q microcontr
 - **1 RGB LED**: this LED will turn green when the player catches and apple, red when an apple falls on the ground and when the player loses the game, and yellow for a 3-seconds countdown before the game starts.
 - **2 Passive Buzzers**: one of these buzzers will make a sound each time the player loses one life. The other buzzer will make different sounds when the game starts and when it ends.
 
-![hardware scheme](Architecture.svg)
+![hardware scheme](architecture.svg)
 
 ## Log
 
