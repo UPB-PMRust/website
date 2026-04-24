@@ -28,7 +28,7 @@ The system has three main functional blocks:
 ## Weekly Log
 
 ### Week 6 - 12 May
-Project topic approved. Initial research into VPforce Rhino gimbal design (Printables #841190). Decided on stepper motor substitution for brushless motors. Parts list finalized and ordered from Romanian suppliers (eMAG, electronicmarket.ro, sigmanortec, rulmentika).
+Project topic approved. Initial research into VPforce Rhino gimbal design (Printables #841190). Decided on stepper motor substitution for brushless motors. Parts list finalized and ordered from Romanian suppliers (eMAG, electronicmarket.ro, sigmanortec, rulmentika.).
 
 ### Week 7 - 19 May
 Parts arrived. Started KiCad schematic. Component research and pinout verification for TMC2208, AS5600, and Pico 2W.
