@@ -4,8 +4,7 @@ A modular security system for a miniature house with multi-sensor detection, con
 
 :::info
 
-**Author**: Cranganu Claudia
-
+**Author**: Cranganu Claudia \
 **GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-clufluturas](https://github.com/UPB-PMRust-Students/fils-project-2026-clufluturas)
 
 :::
