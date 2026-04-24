@@ -5,7 +5,7 @@ A system that helps users structure their study time by automatically managing f
 
 **Author**: Scarlat Andra-Nicole \
 **Group**: 1221EA \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Nykole25
 
 :::
 
