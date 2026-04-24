@@ -4,11 +4,9 @@ A comprehensive bare-metal 2D scanning system and multi-sensor security alarm bu
 :::info 
 
 **Author**: DULCE Andrei-Marian \
-**GitHub Source Code**: [https://github.com/andrrei509/stm32-lidar-radar](https://github.com/andrrei509/stm32-lidar-radar) \
-**GitHub Classroom Link**: [https://classroom.github.com/a/sVB0pKHF](https://classroom.github.com/a/sVB0pKHF)
+**GitHub Project Link**: [https://classroom.github.com/a/sVB0pKHF](https://classroom.github.com/a/sVB0pKHF)
 
 :::
-
 ## Description
 
 This project is an advanced, multi-layered active security and environmental monitoring hub built on the STM32. The core feature is a 2D scanning system using a VL53L0X Time-of-Flight (ToF) sensor mounted on a 28BYJ-48 stepper motor, which streams Cartesian coordinate data to a laptop via USB Bulk transfers to render a real-time radar map. Additional sensors provide intrusion detection and environmental telemetry.
