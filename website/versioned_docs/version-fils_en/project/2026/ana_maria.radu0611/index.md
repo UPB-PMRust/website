@@ -65,6 +65,19 @@ I continued the testing, wrote the page of the website and started writing the a
 | [Passive Buzzers](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=44) | Audio cues | 2 RON |
 
 
+## Software
+| Library/Crate | Description | Usage in project |
+| ------------- | ----------- | ---------------- |
+| [`embassy-stm32`](https://github.com/embassy-rs/embassy) | Hardware abstraction layer for STM32 | Provides type-safe access to peripherals (SPI, GPIO, PWM, ADC, timers) |
+| [`embassy-sync`](https://github.com/embassy-rs/embassy) | Provider of synchronization primitives | Allows tasks to communicate without blocking each other |
+| [`embassy-futures`](https://github.com/embassy-rs/embassy) | Collection of utilities for working with Futures | Makes sure the game does not freeze and keeps running |
+| [`embassy-executor`](https://github.com/embassy-rs/embassy) | The async runtime | Runs main game loop |
+| [`embassy-time`](https://github.com/embassy-rs/embassy) | Efficient for async embedded applications | Controls falling speed timing, delays and time durations |
+| [`defmt`](https://github.com/knurling-rs/defmt) | Efficient embedded logging framework | Debugs and tracks game changes |
+| [`embedded-graphics`](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for `no_std` embedded devices | Draws the apples, basket and score text |
+| [`embedded-hal`](https://github.com/rust-embedded/embedded-hal) | Traits for reading analog values and digital pins | Reads joystick axis and converts raw ADC values to screen positions |
+| [`st7735-lcd-rs`](https://github.com/sajattack/st7735-lcd-rs?tab=readme-ov-file) | Driver for ST7735-based TFT displays | Initializes the display, handles display commands |
+
 ## Links
 1. [Rust Embassy Book](https://embassy.dev/book/)
 2. [Screen connection documentation](https://emalliab.wordpress.com/2020/10/10/arduino-and-a-cheap-tft-display/) - explains what each pin of the screen is used for and how to connect them.
