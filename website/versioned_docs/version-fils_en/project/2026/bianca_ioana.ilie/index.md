@@ -2,7 +2,7 @@
 An interactive, IoT-enabled smart cube that is inspired by the classic Magic 8-Ball.
 
 **Author**: Ilie Bianca-Ioana \
-**GitHub Project Link**: https://github.com/biancaioana-ilie/auracube
+**GitHub Project Link**: https://github.com/UPB-PMRust/fils-project-2026-biancaioana-ilie
 
 :::
 
