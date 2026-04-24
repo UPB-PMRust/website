@@ -8,7 +8,6 @@ An interactive, IoT-enabled smart cube that is inspired by the classic Magic 8-B
 
 :::
 
-<!-- do not delete the \ after your name -->
 
 ## Description
 
