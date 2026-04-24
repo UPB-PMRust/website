@@ -1,4 +1,6 @@
-## MiniMath Pocket Monsters
+---
+title: MiniMath Pocket Monsters
+---
 An embedded game where players catch Pokémon by solving math equations.
 
 :::info
