@@ -91,7 +91,7 @@ The hardware setup is built around the ESP32-C3 microcontroller, which acts as t
 
 ### Schematics
 
-![Schematics](./KiCADCarBot-C3.svg)
+![Schematics](./kicadcarbotc3.svg)
 
 ### Bill of Materials
 
