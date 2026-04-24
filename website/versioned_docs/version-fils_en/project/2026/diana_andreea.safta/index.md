@@ -111,8 +111,3 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [MiMU Gloves](https://mimugloves.com/)
-...
-<<<<<<< HEAD
-=======
-
->>>>>>> b92c4ad7 (Project/diana andreea.safta (#792))
