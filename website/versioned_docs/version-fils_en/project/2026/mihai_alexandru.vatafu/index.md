@@ -1,6 +1,4 @@
----
-title: Smartwatch IoT cu monitorizare de sănătate
----
+--- title: Smartwatch IoT cu monitorizare de sănătate ---
 
 
 
