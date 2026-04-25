@@ -51,35 +51,7 @@ The system architecture is divided into two main hardware-software modules:
 The hardware architecture features two STM32F401RE Nucleo-64 boards configured in a Master-Slave setup for synchronized control. The Remote Controller acts as the Master, reading analog joystick positions via ADC and transmitting serial commands through an HC-05 Bluetooth module. The Mobile Car serves as the Slave, parsing UART strings to drive two DC motors via an L298N H-Bridge using PWM signals. Additionally, the system integrates an SG90 servomotor to sweep a VL53L0X ToF sensor for distance monitoring, providing real-time visual feedback on an SSD1306 OLED display via the I2C bus.
 
 ### Schematics
-
-```mermaid
-graph TD
-    %% Unit 1: Remote Controller
-    subgraph Remote_Controller_Master
-        J[Joystick] -- Analog ADC --> N1[STM32 Nucleo Master]
-        N1 -- UART Commands --> BT1[HC-05 Bluetooth Master]
-    end
-
-    %% Wireless Link
-    BT1 -. Wireless Bluetooth Link .-> BT2[HC-05 Bluetooth Slave]
-    %% Unit 2: Mobile Car
-    subgraph Mobile_Car_Slave
-        BT2 -- UART Data --> N2[STM32 Nucleo Slave]
-        
-        N2 -- PWM --> MD[L298N Motor Driver]
-        MD -- Power --> M[2x DC Motors]
-        
-        N2 -- PWM --> S[SG90 Servo]
-        S -. Mechanical Sweep .-> ToF[VL53L0X ToF Sensor]
-        ToF -- I2C Data --> N2
-        
-        N2 -- I2C Telemetry --> O[SSD1306 OLED Display]
-    end
-    %% Power
-    P1[Battery Pack 4xAA] --> MD
-    P1 --> N2
-```
-    
+![System Architecture](./architecture_diagram.svg)
 
 ### Bill of Materials
 
