@@ -1,8 +1,3 @@
----
-sidebar_label: 'The Lie Detector'
-sidebar_position: 1
----
-
 # The Lie Detector
 
 A biometric analyzer powered by an STM32 that correlates real-time heart rate and skin conductivity via ADC to detect deception markers.
