@@ -1,7 +1,10 @@
 # Mood Blooms: Interactive Ambient Flowers
-## Info
-* **Author:** Sandru Cristina Victoria \
-* **GitHub Project Link:** [CristinaVSandru/website](https://github.com/CristinaVSandru/website)
+:::info
+
+**Author:** Sandru Cristina Victoria \
+**GitHub Project Link:** [CristinaVSandru/website](https://github.com/CristinaVSandru/website)
+
+:::
 
 ## Description
 This project is an interactive installation consisting of three mechanical flowers. The project uses a Raspberry Pi Pico 2W and the Rust Embassy framework to create a non-blocking, async system. The flowers react to user input via BLE (mood selection) and environmental light levels.
