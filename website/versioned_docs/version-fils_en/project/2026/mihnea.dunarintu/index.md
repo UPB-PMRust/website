@@ -3,8 +3,8 @@
 A 4WD smart robotic rover powered by an STM32 Nucleo board, featuring mecanum wheels for lateral parking and Wi-Fi teleoperation.
 
 :::info
-**Author:** Dunărinţu Mihnea-Rafael
-**Group:** 1221ED
+**Author:** Dunărinţu Mihnea-Rafael \
+**Group:** 1221ED \
 **GitHub Project Link:** [https://github.com/UPB-PMRust-Students/fils-project-2026-mihnearafael](https://github.com/UPB-PMRust-Students/fils-project-2026-mihnearafael)
 :::
 
