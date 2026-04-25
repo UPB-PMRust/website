@@ -4,7 +4,7 @@ A small interactive robot that lives on your desk and reacts to the world around
 
 :::info
 
-**Author:** Ion Mihai-Codruț  
+**Author:** Ion Mihai-Codruț  \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/project-justiMpuls3
 
 :::
