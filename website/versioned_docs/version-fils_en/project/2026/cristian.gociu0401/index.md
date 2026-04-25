@@ -81,3 +81,5 @@ The system uses a Raspberry Pi Pico W (RP2040) as the main controller and for Wi
 | defmt-rtt | RTT transport for defmt logs| The transporter that sends defmt logs from the Pico W to the host PC |
 | panic-probe | Panic handler for probe-rs | Panic handler that catches code failures and prints the file and line number where the error occurred |
 
+## Links
+
