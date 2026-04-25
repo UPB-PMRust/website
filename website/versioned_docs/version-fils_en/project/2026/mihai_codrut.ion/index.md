@@ -1,394 +1,180 @@
----
-sidebar_position: 1
-slug: /project/2026/mihai_codrut.ion
----
+# Desk Pet
 
-# Desk Pet - Robot Interactiv de Birou
+A small interactive robot that lives on your desk and reacts to the world around it, built on Raspberry Pi Pico (RP2040) and written in Rust.
 
-**Student:** Ion Mihai-Codruț (1221EA)
+:::info
 
-:::tip
-
-Acesta este un proiect realizat în cadrul cursului de Microprocesoare pentru anul universitar 2025-2026.
+**Author:** Ion Mihai-Codruț  
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/project-justiMpuls3
 
 :::
 
-## Descriere
+## Description
 
-Robotul "Desk Pet" este un companion interactiv de birou bazat pe Raspberry Pi Pico (RP2040) și programat în Rust. Proiectul implementează o Mașină de Stări Finite (FSM) pentru a gestiona diferite comportamente ale robotului în funcție de interacțiunile utilizatorului și mediul înconjurător.
+Desk Pet is a 2WD robot designed to sit on a desk and behave like a simple companion. It has five moods managed by a Finite State Machine: it wanders around when idle, gets excited when you touch it, reacts to RFID cards that act as "food", turns sad if you ignore it for too long, and can be driven manually over Bluetooth. The HC-SR04 ultrasonic sensor keeps it from falling off the edge of the desk.
 
-### Caracteristici principale:
-- **Interacțiune tactilă**: Folosește senzor TTP223 pentru detectarea "mângâierilor"
-- **Sistem de hrănire**: Module RFID MFRC522 pentru identificarea "mâncării"
-- **Mișcare autonomă**: Șasiu 2WD cu evitarea obstacolelor prin HC-SR04
-- **Feedback vizual/audio**: LCD I2C 1602 și buzzer pentru comunicarea stării robotului
-- **Control remote**: Modul Bluetooth HC-05 pentru telecomandă
+Everything runs asynchronously using the Embassy framework — each sensor and actuator has its own task, and they communicate through shared channels without blocking each other.
 
----
+## Motivation
 
-## Motivație
+I wanted to build something that felt alive, not just functional. The idea of a robot with moods that change based on real input, touch, proximity, RFID; made the project interesting to design. Using Rust for embedded also appealed to me because the compiler forces you to think carefully about every resource you use, which is a good habit for hardware projects.
 
-### De ce am ales acest proiect?
+## Architecture
 
-Am ales să construiesc acest robot deoarece îmbină perfect:
-1. **Aspectul educativ**: Învățarea limbajului Rust într-un context embedded
-2. **Design interactiv**: Crearea unui obiect cu "personalitate" prin FSM
-3. **Provocare tehnică**: Integrarea mai multor senzori și actuatori pe RP2040
-4. **Utilitate practică**: Un companion de birou care "învață" preferințele utilizatorului
+The system is built around a central FSM task. Sensor tasks detect events and send them over Embassy channels to the FSM, which decides the next state and commands the actuator tasks.
 
-### Relevanța pentru cursul de Microprocesoare
-
-Proiectul demonstrează:
-- Programare asincronă cu Embassy framework
-- Gestionarea multiplelor periferice (I2C, SPI, UART, PWM, GPIO)
-- Implementarea pattern-ului FSM în Rust
-- Optimizarea consumului de memorie și putere de procesare
-
----
-
-## Arhitectură
-
-### Diagrama bloc a sistemului
-┌─────────────────────────────────────────────────────┐
-│              Raspberry Pi Pico (RP2040)              │
-│                                                      │
-│  ┌────────────────────────────────────────────┐    │
-│  │         Embassy Async Runtime              │    │
-│  │  ┌──────────────────────────────────┐      │    │
-│  │  │    Finite State Machine (FSM)    │      │    │
-│  │  │  • IDLE                          │      │    │
-│  │  │  • FERICIT (Happy)               │      │    │
-│  │  │  • HRĂNIT (Fed)                  │      │    │
-│  │  │  • TRIST (Sad)                   │      │    │
-│  │  │  • TELECOMANDĂ (Remote Control)  │      │    │
-│  │  └──────────────────────────────────┘      │    │
-│  └────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────┘
-│           │           │           │
-┌────┴────┐ ┌───┴───┐  ┌───┴────┐ ┌───┴────┐
-│ Senzori │ │Display│  │ Motoare│ │Bluetooth│
-└─────────┘ └───────┘  └────────┘ └────────┘
-
-### Stări FSM și tranziții
-
-| Stare | Condiții de Intrare | Comportament | Tranziție Următoare |
-|-------|---------------------|--------------|----------------------|
-| **IDLE** | Power-on / Timeout | LED slow blink, display "Zzz..." | Touch → FERICIT<br/>RFID → HRĂNIT<br/>No interaction (30s) → TRIST |
-| **FERICIT** | Touch detectat | LED verde rapid, afișare ":)", mișcare aleatorie | Timeout (15s) → IDLE<br/>RFID → HRĂNIT |
-| **HRĂNIT** | RFID tag citit | Buzzer melody, afișare "Yum!", animație LED | Timeout (10s) → IDLE |
-| **TRIST** | Nicio interacțiune prelungită | LED roșu, afișare ":(", sunet trist | Touch → FERICIT<br/>RFID → HRĂNIT |
-| **TELECOMANDĂ** | Comandă Bluetooth primită | Control manual motoare | Comandă STOP → IDLE |
-
----
-
-## Design Hardware
-
-### Componente Utilizate
-
-| Componentă | Model/Specificație | Cantitate | Scop |
-|------------|-------------------|-----------|------|
-| Microcontroler | Raspberry Pi Pico (RP2040) | 1 | Procesare centrală |
-| Șasiu Robot | 2WD Car Chassis Kit | 1 | Platformă mobilă |
-| Driver Motoare | L298N Dual H-Bridge | 1 | Controlul motoarelor DC |
-| Display | LCD 1602 I2C (Albastru) | 1 | Afișare stare/mesaje |
-| Senzor RFID | MFRC522 (13.56 MHz) | 1 | Identificare "hrană" |
-| Senzor Touch | TTP223 Capacitiv | 1 | Detectare "mângâiere" |
-| Senzor Distanță | HC-SR04 Ultrasonic | 1 | Evitare obstacole |
-| Modul Bluetooth | HC-05 UART | 1 | Control remote |
-| Buzzer | Buzzer Activ 5V | 1 | Feedback audio |
-| LED-uri | LED-uri roșu/verde/galben 5mm | 3 | Indicare stare |
-| Alimentare | Suport baterii 4xAA (6V) | 1 | Sursă motoare |
-| Regulator Tensiune | AMS1117-3.3V | 1 | Alimentare Pico |
-| Rezistoare | 220Ω, 1kΩ, 10kΩ | - | Limitare curent LED, pull-up |
-| Breadboard | 400 puncte | 1 | Prototipare |
-| Cabluri Jumper | M-M, M-F | 40 | Interconectare |
-
-### Schema de Conexiuni (Pinout)
-Raspberry Pi Pico (RP2040)
-┌─────────────────────────┐
-│                         │
-│  GP0  ────── Motor1 ENA (PWM) [L298N]
-│  GP1  ────── Motor1 IN1 [L298N]
-│  GP2  ────── Motor1 IN2 [L298N]
-│  GP3  ────── Motor2 ENB (PWM) [L298N]
-│  GP4  ────── Motor2 IN3 [L298N]
-│  GP5  ────── Motor2 IN4 [L298N]
-│                         │
-│  GP6  ────── HC-SR04 Trigger
-│  GP7  ────── HC-SR04 Echo
-│                         │
-│  GP8  ────── UART1 TX (Bluetooth HC-05 RX)
-│  GP9  ────── UART1 RX (Bluetooth HC-05 TX)
-│                         │
-│  GP10 ────── TTP223 OUT (Touch)
-│                         │
-│  GP12 ────── SPI1 MISO [MFRC522 MISO]
-│  GP13 ────── SPI1 CS   [MFRC522 SDA]
-│  GP14 ────── SPI1 SCK  [MFRC522 SCK]
-│  GP15 ────── SPI1 MOSI [MFRC522 MOSI]
-│  GP16 ────── MFRC522 RST
-│                         │
-│  GP18 ────── I2C1 SDA  [LCD 1602]
-│  GP19 ────── I2C1 SCL  [LCD 1602]
-│                         │
-│  GP20 ────── Buzzer (PWM)
-│  GP21 ────── LED RGB (WS2812) sau LED simplu
-│                         │
-│  3V3  ────── Alimentare logică (senzori)
-│  VSYS ────── Alimentare de la regulator 3.3V
-│  GND  ────── Masă comună
-│                         │
-└─────────────────────────┘
-Notă: L298N se alimentează separat de la baterii 6V
-### Considerații Alimentare
-
-- **Logică (3.3V)**: Pico, senzori RFID/Touch/Ultrasonic, LCD
-- **Motoare (6V)**: Alimentare separată prin L298N din baterii 4xAA
-- **Izolare**: Condensatori de decuplare 100nF pe liniile VCC ale senzorilor
-- **Protecție**: Diode flyback pe motoare pentru spike-uri de tensiune
-
-### Schema Fizică (Layout)
-[HC-SR04]       [LCD Display]
-    │                │
-┌───┴────────────────┴────┐
-│   Breadboard (frontal)   │
-│  [RFID Reader]           │
-│  [TTP223 Touch]          │
-└─────────────┬────────────┘
-              │
-     ┌────────┴────────┐
-     │  Raspberry Pi   │
-     │      Pico       │
-     └────────┬────────┘
-              │
-     ┌────────┴────────┐
-     │   L298N Driver  │
-     └────┬──────┬─────┘
-          │      │
-     [Motor1] [Motor2]
-          │      │
-     ┌────┴──────┴─────┐
-     │   2WD Chassis    │
-     │   [Baterii 4xAA] │
-     └──────────────────┘
----
-
-## Design Software
-
-### Arhitectura Rust Embassy
-
-```rust
-// Structura principală a proiectului
-#![no_std]
-#![no_main]
-
-use embassy_executor::Spawner;
-use embassy_rp::gpio;
-use embassy_time::{Duration, Timer};
-
-// Stările FSM
-#[derive(Debug, Clone, Copy, PartialEq)]
-enum RobotState {
-    Idle,
-    Fericit,
-    Hranit,
-    Trist,
-    Telecomanda,
-}
-
-// Task-uri asincrone pentru fiecare modul
-#[embassy_executor::task]
-async fn touch_sensor_task(/* parametri */) { /* ... */ }
-
-#[embassy_executor::task]
-async fn rfid_reader_task(/* parametri */) { /* ... */ }
-
-#[embassy_executor::task]
-async fn ultrasonic_task(/* parametri */) { /* ... */ }
-
-#[embassy_executor::task]
-async fn motor_control_task(/* parametri */) { /* ... */ }
-
-#[embassy_executor::task]
-async fn display_task(/* parametri */) { /* ... */ }
-
-#[embassy_executor::main]
-async fn main(spawner: Spawner) {
-    // Inițializare periferice
-    // Spawn task-uri
-    // Loop principal FSM
-}
+```
+┌──────────────────────────────────────────────────────────┐
+│                    Raspberry Pi Pico (RP2040)            │
+│                                                          │
+│  [touch_task]      ──┐                                  │
+│  [rfid_task]       ──┤──► [fsm_task] ──► [motor_task]  │
+│  [ultrasonic_task] ──┤              ├──► [lcd_task]     │
+│  [bluetooth_task]  ──┘              └──► [buzzer_task]  │
+└──────────────────────────────────────────────────────────┘
 ```
 
-### Biblioteci Rust (Cargo.toml)
+### Power Architecture
+
+The batteries feed the L298N motor driver directly. The LM2596 buck converter steps the battery voltage down to a stable 5V, which goes into the Pico's VSYS pin (Pin 39). The Pico's internal regulator then produces 3.3V on Pin 36, which powers all sensors (RFID, touch, LCD). This keeps the noisy motor power completely separated from the logic supply.
+
+```
+[4xAA Batteries ~6V]
+        |
+        |-------------------------------------------> L298N motor power (direct)
+        |
+        +--> [LM2596 Buck Converter -> 5V] --> Pico VSYS (Pin 39)
+                                                       |
+                                                Pico 3V3_OUT (Pin 36)
+                                                       |
+                                          .------------+------------.
+                                       MFRC522        LCD        TTP223
+```
+
+### FSM State Table
+
+| State | Entry Trigger | Motors | LCD | Buzzer |
+|---|---|---|---|---|
+| `Idle` | Startup / timeout reset | Slow wander | "Hello! :)" | Silent |
+| `Happy` | Touch sensor (GP22) | Spin in place | "Yay! ^_^" | Happy tone |
+| `Fed` | RFID tag detected (GP10-14) | Short dance | "Yum! Nom nom" | Jingle |
+| `Sad` | No input for 30 s | Slow drift | "Feed me... :(" | Low tone |
+| `RemoteControl` | BT command via GP0/1 | Follows commands | "Remote mode" | Silent |
+
+### Schematic
+
+![Schematic](desk_pet.svg)
+
+## Hardware
+
+### Bill of Materials
+
+| # | Component | Qty | Shop | Price |
+|---|---|---|---|---|
+| 1 | Raspberry Pi Pico (RP2040) | 1 | [Optimus Digital](https://www.optimusdigital.ro/ro/placi-raspberry-pi/12024-raspberry-pi-pico-728886755172.html?srsltid=AfmBOorpPzvNPuwFdCTWcdtTJYVHecubgZsXgqlxiSDFFIw_ij9PCpwD) | ~23 RON |
+| 2 | 2WD Robot Car Chassis + DC motors | 1 | [Optimus Digital](https://www.emag.ro/sasiu-arduino-car-3874783591904/pd/D37L8DYBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | ~45 RON |
+| 3 | L298N Dual Motor Driver | 1 | [Optimus Digital](https://www.emag.ro/modul-driver-motoare-l298n-compatibil-arduino-ai016-s190/pd/DXK3ZQBBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | ~23 RON |
+| 4 | MFRC522 RFID Module + 2 tags | 1 | [Optimus Digital](https://www.emag.ro/modul-rfid-rc522-card-si-tag-ai0007-s50/pd/DHYQ1GMBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | ~23 RON |
+| 5 | TTP223 Capacitive Touch Sensor | 1 | [Optimus Digital](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/861-modul-cu-senzor-capacitiv-ttp223.html?search_query=Modul+cu+Senzor+Capacitiv+TTP223&results=2) | ~2 RON |
+| 6 | HC-SR04 Ultrasonic Sensor | 1 | [Optimus Digital](https://www.optimusdigital.ro/en/optical-sensors/4514-infrared-obstacle-sensor.html?srsltid=AfmBOoqMvtFoXd0UfkgUX3G8U8qwIl8qWRQxpK1hzNdWWJpUS7vd94eX) | ~4 RON |
+| 7 | LCD 1602 with I2C backpack | 1 | [Optimus Digital](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html?search_query=LCD+1602+&results=14) | ~16 RON |
+| 8 | Passie Buzzer | 1 | [Optimus Digital](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html?search_query=passive+buzzer+&results=10) | ~1 RON |
+| 9 | HC-05 Bluetooth Module | 1 | [Optimus Digital](https://www.emag.ro/modul-bluetooth-hc-05-3874784221244/pd/DMZGZKYBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | ~35 RON |
+| 10 | LM2596 Buck Converter | 1 | [Optimus Digital](https://www.optimusdigital.ro/ro/surse-coboratoare-de-5-v/13597-sursa-coboratoare-de-tensiune-lm2596-cu-iesire-fixa-de-5v.html) | ~13 RON |
+| 11 | Breadboard 400p | 1 | [Optimus Digital](https://www.emag.ro/placa-test-breadboard-830-bb830/pd/D6SCSBMBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | ~13 RON |
+**Total: ~198 RON**
+
+### Pin Mapping
+
+| GPIO | Pico Pin | Peripheral | Signal | Notes |
+|---|---|---|---|---|
+| GP0 | 1 | HC-05 Bluetooth | UART0 TX | Connects to HC-05 RX |
+| GP1 | 2 | HC-05 Bluetooth | UART0 RX | Connects to HC-05 TX |
+| GP2 | 4 | L298N | IN1 | Motor A direction |
+| GP3 | 5 | L298N | IN2 | Motor A direction |
+| GP4 | 6 | L298N | IN3 | Motor B direction |
+| GP5 | 7 | L298N | IN4 | Motor B direction |
+| GP6 | 9 | L298N | ENB | Motor B speed (PWM) |
+| GP8 | 11 | LCD 1602 | I2C0 SDA | Data line |
+| GP9 | 12 | LCD 1602 | I2C0 SCL | Clock line |
+| GP10 | 14 | MFRC522 | SPI1 SCK | SPI clock |
+| GP11 | 15 | MFRC522 | SPI1 MOSI | SPI data out |
+| GP12 | 16 | MFRC522 | SPI1 MISO | SPI data in |
+| GP13 | 17 | MFRC522 | SPI1 CS | Chip select |
+| GP14 | 19 | MFRC522 | RST | Reset pin |
+| GP16 | 21 | L298N | ENA | Motor A speed (PWM) |
+| GP19 | 25 | Buzzer | PWM out | PWM SLICE1 B |
+| GP22 | 29 | TTP223 | GPIO in | Touch signal |
+| GP27 | 32 | HC-SR04 | ECHO in | Via 1kΩ/2kΩ voltage divider (5V→3.3V) |
+| GP28 | 34 | HC-SR04 | TRIG out | Trigger pulse |
+| VSYS | 39 | LM2596 | Power in | 5V from buck converter |
+| 3V3_OUT | 36 | Sensors | Power out | 3.3V to RFID, LCD, Touch |
+| GND | 3, 38 | All modules | Common ground | Shared with LM2596 GND |
+
+:::note
+
+The HC-SR04 ECHO pin outputs 5V logic but the RP2040 GPIO is 3.3V tolerant only. A voltage divider (1kΩ in series + 2kΩ to GND) brings the signal down to ~3.3V before it enters GP27.
+
+:::
+
+## Software
+
+The firmware is written in Rust using the **Embassy** async executor on `thumbv6m-none-eabi` (Cortex-M0+).
+
+### Project Structure
+
+```
+desk_pet/
+├── Cargo.toml
+├── memory.x
+├── build.rs
+└── src/
+    ├── main.rs          # Entrypoint, bind_interrupts!, task spawning
+    ├── fsm.rs           # PetState + PetEvent enums, transition logic
+    ├── motors.rs        # L298N via GPIO + PWM (GP2-6, GP16)
+    ├── lcd.rs           # I2C0 LCD 1602 (GP8/GP9)
+    ├── rfid.rs          # SPI1 MFRC522 (GP10-14)
+    ├── ultrasonic.rs    # HC-SR04 (GP28 trig, GP27 echo)
+    ├── touch.rs         # TTP223 (GP22)
+    ├── buzzer.rs        # PWM buzzer (GP19)
+    └── bluetooth.rs     # UART0 HC-05 (GP0/GP1), parses W/A/S/D/X
+```
+
+### Key Crates
 
 ```toml
 [dependencies]
-embassy-rp = { version = "0.2", features = ["time-driver"] }
-embassy-executor = { version = "0.6", features = ["arch-cortex-m", "executor-thread"] }
-embassy-time = "0.3"
-embedded-hal = "1.0"
+embassy-rp         = { version = "0.2", features = ["rp2040", "time-driver"] }
+embassy-executor   = { version = "0.5", features = ["arch-cortex-m", "executor-thread"] }
+embassy-time       = { version = "0.3" }
+embassy-sync       = { version = "0.6" }
+embedded-hal       = "1.0"
 embedded-hal-async = "1.0"
-mfrc522 = "0.6"
-hd44780-driver = "0.4"
-static_cell = "2.0"
-panic-probe = { version = "0.3", features = ["print-defmt"] }
-defmt = "0.3"
-defmt-rtt = "0.4"
+mfrc522            = "0.8"
+hd44780-driver     = "0.4"
+static_cell        = "2.1"
+heapless           = "0.8"
+defmt              = "=0.3.10"
+defmt-rtt          = "=0.4.1"
+panic-halt         = "0.2"
 ```
 
-### Logica FSM - Pseudocod
-LOOP principal:
-match stare_curenta {
-IDLE:
-IF touch_detectat() THEN
-stare_curenta = FERICIT
-porneste_timer(15s)
-ELSE IF rfid_detectat() THEN
-stare_curenta = HRANIT
-porneste_timer(10s)
-ELSE IF timer_idle > 30s THEN
-stare_curenta = TRIST
+## Results
 
-FERICIT:
-        afiseaza_lcd(":)")
-        led_verde_blink_rapid()
-        IF timer_expirat() THEN
-            stare_curenta = IDLE
-    
-    HRANIT:
-        canta_melodie()
-        afiseaza_lcd("Yum!")
-        IF timer_expirat() THEN
-            stare_curenta = IDLE
-    
-    TRIST:
-        afiseaza_lcd(":(")
-        led_rosu_on()
-        IF touch_detectat() OR rfid_detectat() THEN
-            stare_curenta = FERICIT
-    
-    TELECOMANDA:
-        controleaza_motoare(comanda_bluetooth)
-        IF comanda == STOP THEN
-            stare_curenta = IDLE
-}
+- Firmware compiles with `cargo build --release` targeting `thumbv6m-none-eabi`.
+- All five FSM states work correctly on hardware.
+- LCD shows the right message for each state in real time.
+- RFID tag detection is reliable and correctly triggers the `Fed` state.
+- HC-SR04 stops the robot before it reaches the desk edge (~10 cm threshold).
+- TTP223 touch response is immediate with no debounce issues.
+- HC-05 Bluetooth responds to W/A/S/D/X serial commands from a phone terminal.
+- Motor PWM control gives smooth speed transitions.
 
-// Task-uri de fundal
-verifica_obstacole_async()
-actualizeaza_display_async()
-### Gestionarea Memoriei
+## Resources
 
-- Folosire `static_cell` pentru resurse partajate între task-uri
-- Evitarea alocărilor dinamice (no `alloc`)
-- Buffer-e fixe pentru UART/SPI/I2C
-- Stack sizing conform `memory.x`
-
----
-
-## Jurnal de Progres
-
-### Săptămâna 1 (31 Mar - 6 Apr 2026)
-- [x] Definirea specificației proiectului
-- [x] Achiziționarea componentelor hardware
-- [x] Configurare mediu dezvoltare Rust (probe-rs, flip-link)
-- [ ] Testare blink LED pe Pico
-
-### Săptămâna 2 (7 - 13 Apr 2026)
-- [ ] Implementare driver I2C pentru LCD 1602
-- [ ] Test senzor TTP223 (GPIO interrupt)
-- [ ] Schematic hardware în Fritzing/KiCad
-
-### Săptămâna 3 (14 - 20 Apr 2026)
-- [ ] Implementare SPI pentru MFRC522
-- [ ] Testare citire tag-uri RFID
-- [ ] Integrare modul Bluetooth HC-05 (UART)
-
-### Săptămâna 4 (21 - 27 Apr 2026)
-- [ ] Control motoare prin L298N (PWM)
-- [ ] Testare HC-SR04 (distanță ultrasonică)
-- [ ] Asamblare mecanică șasiu
-
-### Săptămâna 5 (28 Apr - 4 Mai 2026)
-- [ ] Implementare FSM în Rust
-- [ ] Integrare toate modulele hardware
-- [ ] Debugging și optimizări
-
-### Săptămâna 6 (5 - 11 Mai 2026)
-- [ ] Testare finală sistem complet
-- [ ] Documentație finalizată
-- [ ] Video demonstrație proiect
-
----
-
-## BOM (Bill of Materials)
-
-### Componente Principale
-
-| Nr. | Componentă | Specificație | Cantitate | Preț Unitar (RON) | Total (RON) | Link Furnizor |
-|-----|-----------|--------------|-----------|-------------------|-------------|---------------|
-| 1 | Raspberry Pi Pico | RP2040, 264KB RAM | 1 | 25 | 25 | [ardushop.ro](https://www.ardushop.ro) |
-| 2 | 2WD Robot Chassis | Kit complet cu motoare | 1 | 35 | 35 | [robofun.ro](https://www.robofun.ro) |
-| 3 | L298N Motor Driver | Dual H-Bridge | 1 | 12 | 12 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-| 4 | LCD 1602 I2C | Display 16x2 albastru | 1 | 18 | 18 | [ardushop.ro](https://www.ardushop.ro) |
-| 5 | MFRC522 RFID | 13.56 MHz + 2 tag-uri | 1 | 15 | 15 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-| 6 | TTP223 Touch Sensor | Capacitiv digital | 1 | 5 | 5 | [sigmanortec.ro](https://www.sigmanortec.ro) |
-| 7 | HC-SR04 Ultrasonic | Senzor distanță 2-400cm | 1 | 8 | 8 | [robofun.ro](https://www.robofun.ro) |
-| 8 | HC-05 Bluetooth | Modul UART | 1 | 20 | 20 | [ardushop.ro](https://www.ardushop.ro) |
-| 9 | Buzzer Activ 5V | 12mm | 1 | 3 | 3 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-| 10 | LED-uri | Roșu/Verde/Galben 5mm | 3 | 1 | 3 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-| 11 | Suport Baterii 4xAA | Cu switch ON/OFF | 1 | 4 | 4 | [sigmanortec.ro](https://www.sigmanortec.ro) |
-| 12 | Regulator AMS1117-3.3V | SOT-223 | 1 | 2 | 2 | [tme.eu](https://www.tme.eu) |
-| 13 | Breadboard 400 puncte | - | 1 | 6 | 6 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-| 14 | Cabluri Jumper M-M | 40 buc | 1 set | 8 | 8 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-| 15 | Cabluri Jumper M-F | 40 buc | 1 set | 8 | 8 | [optimusdigital.ro](https://www.optimusdigital.ro) |
-
-### Componente Auxiliare
-
-| Nr. | Componentă | Specificație | Cantitate | Preț Unitar (RON) | Total (RON) |
-|-----|-----------|--------------|-----------|-------------------|-------------|
-| 16 | Rezistoare 220Ω | 1/4W | 5 | 0.1 | 0.5 |
-| 17 | Rezistoare 1kΩ | 1/4W | 5 | 0.1 | 0.5 |
-| 18 | Rezistoare 10kΩ | 1/4W | 5 | 0.1 | 0.5 |
-| 19 | Condensatori 100nF | Ceramic | 5 | 0.5 | 2.5 |
-| 20 | Diode 1N4007 | Flyback motoare | 2 | 0.5 | 1 |
-| 21 | Baterii AA | Alcaline | 4 | 3 | 12 |
-| 22 | Cablu Micro-USB | Pentru programare Pico | 1 | 5 | 5 |
-
-### **TOTAL COST: ~194 RON**
-
----
-
-## Resurse și Referințe
-
-### Documentație Oficială
-- [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf)
-- [Embassy Framework Docs](https://embassy.dev/)
-- [MFRC522 RFID Datasheet](https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf)
-- [L298N Motor Driver Guide](https://www.st.com/resource/en/datasheet/l298.pdf)
-
-### Tutorial-uri Relevante
-- [Rust on Raspberry Pi Pico](https://reltech.substack.com/p/getting-started-with-rust-on-a-raspberry)
-- [Embassy RP2040 Examples](https://github.com/embassy-rs/embassy/tree/main/examples/rp)
-- [FSM Design Patterns in Rust](https://hoverbear.org/blog/rust-state-machine-pattern/)
-
-### Cod Sursă
-- Repository GitHub: `https://github.com/UPB-PMRust/proiect-mihai_codrut.ion` *(de completat)*
-
----
-
-## Video Demonstrație
-
-*(Link YouTube de adăugat după finalizare)*
-
----
-
-## Concluzii
-
-*(Secțiune de completat la finalul proiectului - lecții învățate, dificultăți întâmpinate, îmbunătățiri viitoare)*
-
----
-
-**Ultima actualizare:** 15 Aprilie 2026  
-**Status:** 🟡 În Dezvoltare
-
+1. [Embassy RP2040 Documentation](https://embassy.dev/book/)
+2. [Raspberry Pi Pico Datasheet](https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf)
+3. [RP2040 Technical Reference Manual](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)
+4. [`mfrc522` crate on crates.io](https://crates.io/crates/mfrc522)
+5. [`hd44780-driver` crate on crates.io](https://crates.io/crates/hd44780-driver)
+7. [PMRust Lab 00 — Rust setup for RP2040](https://pmrust.pages.upb.ro/docs/fils_en/lab/00)
