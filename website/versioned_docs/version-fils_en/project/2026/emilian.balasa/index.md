@@ -14,9 +14,9 @@ sidebar\_label: Telemetry Dashboard
 
 
 
-\*\*Student:\*\* Balasa Emilian-Valentin  
+\*\*Student:\*\* Balasa Emilian-Valentin
 
-\*\*Group:\*\* 1221ED  
+\*\*Group:\*\* 1221ED
 
 \*\*Lab Assistant:\*\* Eva Cosma
 
@@ -38,7 +38,7 @@ On the front panel, two SG90 servo motors act as analog needles constantly displ
 
 
 
-The dashboard also features an active hardware alarm. If the CPU or GPU temperature exceeds a hardcoded threshold (e.g., 85°C), the STM32 triggers a piezo buzzer and a coin vibration motor for acoustic and haptic feedback. Additionally, pressing the encoder button utilizes the USB HID connection to send multimedia keyboard commands (like Mute or Volume Up/Down) directly to the PC.
+The dashboard also features an active hardware alarm with multi-sensory feedback. If the CPU or GPU temperature exceeds a hardcoded threshold (e.g., 85°C), the STM32 triggers a piezo buzzer, activates a coin vibration motor, and shifts the WS2812B RGB LED lighting to a flashing red state, providing immediate acoustic, haptic, and visual warnings. Additionally, pressing the encoder button utilizes the USB HID connection to send multimedia keyboard commands (like Mute or Volume Up/Down) directly to the PC.
 
 
 
@@ -50,7 +50,7 @@ I chose this project because I wanted to build something I would actually use ev
 
 
 
-From a technical perspective, I wanted a project that forces me to dive deep into Embedded Rust and the `embassy-rs` framework. Managing two separate communication interfaces (UART and USB), driving PWM servos, reading an I2C display, and handling external interrupts for the encoder at the same time is the perfect scenario to learn and apply asynchronous programming and safe task synchronization in Rust.
+From a technical perspective, I wanted a project that forces me to dive deep into Embedded Rust and the `embassy-rs` framework. Managing two separate communication interfaces (UART and USB), driving PWM servos, reading an I2C display, controlling Neopixel LEDs, and handling external interrupts for the encoder at the same time is the perfect scenario to learn and apply asynchronous programming and safe task synchronization in Rust.
 
 
 
@@ -74,11 +74,13 @@ The project revolves around the \*\*STM32 NUCLEO-U545RE-Q\*\* microcontroller ac
 
 &#x20; \* It triggers GPIO pins for the buzzer and the transistor controlling the vibration motor.
 
+&#x20; \* It updates the WS2812B RGB LEDs using a dedicated PWM/Timer stream.
+
 &#x20; \* It sends standard USB HID keyboard reports over the USB CDC line.
 
 
 
-\*(Note for myself: Insert the system architecture diagram here after creating it in diagrams.net)\*
+!\[Project System Architecture](./architecture.png)
 
 
 
@@ -88,7 +90,7 @@ The project revolves around the \*\*STM32 NUCLEO-U545RE-Q\*\* microcontroller ac
 
 \### 4.1. Hardware Description
 
-The logic runs on 3.3V and 5V. Most components (Bluetooth, OLED, Encoder, Buzzer) interface directly with the STM32 pins. However, the 3V coin vibration motor draws too much current for a standard GPIO pin. To fix this, I designed a simple driving circuit: the GPIO pin switches an NPN transistor (2N2222) via a 1k Ohm base resistor, allowing external current to power the motor. A 1N4007 flyback diode is placed parallel to the motor to protect the microcontroller from voltage spikes when the motor stops.
+The logic runs on 3.3V and 5V. Most components (Bluetooth, OLED, Encoder, Buzzer, LEDs) interface directly with the STM32 pins. However, the 3V coin vibration motor draws too much current for a standard GPIO pin. To fix this, I designed a simple driving circuit: the GPIO pin switches an NPN transistor (2N2222) via a 1k Ohm base resistor, allowing external current to power the motor. A 1N4007 flyback diode is placed parallel to the motor to protect the microcontroller from voltage spikes when the motor stops.
 
 
 
