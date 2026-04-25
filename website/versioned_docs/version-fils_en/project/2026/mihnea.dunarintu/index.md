@@ -32,13 +32,14 @@ The system is organized into five functional layers, centered around the STM32 N
 
 ## Log
 
-**Week 1 - 9**
-* Started with a 2WD Rover idea and eventually moved to 4WD and more complex features like parallel parking after receiving feedback.
-* Throughout the weeks I have gathered the materials needed to assemble the hardware of the kit and its adjacent components needed for the behaviour of the rover.
+### Week 1 - 9
+- Started with a 2WD Rover idea and eventually moved to 4WD and more complex features like parallel parking after receiving feedback.
+- Throughout the weeks I have gathered the materials needed to assemble the hardware of the kit and its adjacent components needed for the behaviour of the rover.
 
-**Week 12 - 18 May**
-* **Week 19 - 25 May**
-* ## Hardware
+### Week 12 - 18 May
+### Week 19 - 25 May
+
+## Hardware
 
 The project relies on an STM32 Nucleo board as the main controller, communicating with an ESP8266 for remote commands. The chassis has been modified to support 4 independent DC motors and mecanum wheels for complex kinematics. Three ultrasonic sensors handle spatial awareness, while power is regulated via a buck converter to safely power the logic systems from the Li-ion batteries.
 
