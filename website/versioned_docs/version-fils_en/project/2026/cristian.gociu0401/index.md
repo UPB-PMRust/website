@@ -44,6 +44,7 @@ The system uses a Raspberry Pi Pico W (RP2040) as the main controller and for Wi
 ## Bill of Materials
 
 | Device | Usage | Price |
+|--------|-------|-------|
 | Raspberry Pi Pico W | Main controller | 64 RON |
 | Pca9685 Servo Driver | 16 channel PWM I2C servo driver |
 | MG90S Servo Motor | 3 DOF movement for walking, rotating and stabilizing | 
@@ -55,11 +56,12 @@ The system uses a Raspberry Pi Pico W (RP2040) as the main controller and for Wi
 | Pin Headers (male+female) | To help soldering the board and components |
 | 3D Printing Filament | Used for the custom design of my project |
 | Wires, heat shrinks | Soldering on the board and power insulation |
-| Total | | 
+| Total | 
 
 ## Software
 
 | Library | Description | Usage |
+|---------|-------------|-------|
 | embassy-executor | Async task executor | Runs concurent tasks |
 | embassy-rp | RP2040 HAL (GPIO, I2C, PIO) | Provides low level interface for the RP2040 GPIO, I2C buses and PIO state machines |
 | embassy-time | Async timers and delays | Handles timing fot servo PWM updates and delays |
