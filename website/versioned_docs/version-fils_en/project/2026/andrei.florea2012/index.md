@@ -205,79 +205,11 @@ The watering actuator is a 5V mini water pump controlled through a logic-level N
 
 ### Schematics
 
-<svg width="1000" height="560" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PlantGuard Node Wi-Fi hardware schematic overview">
-  <rect x="390" y="190" width="230" height="145" fill="none" stroke="black"/>
-  <text x="505" y="235" text-anchor="middle" font-size="15">STM32 NUCLEO-U545RE-Q</text>
-  <text x="505" y="258" text-anchor="middle" font-size="12">Main Controller</text>
-  <text x="505" y="280" text-anchor="middle" font-size="12">Rust + Embassy</text>
+![PlantGuard Node schematic](./PlantGuardNode.svg)
 
-  <rect x="40" y="60" width="200" height="65" fill="none" stroke="black"/>
-  <text x="140" y="90" text-anchor="middle" font-size="13">Capacitive Soil</text>
-  <text x="140" y="108" text-anchor="middle" font-size="13">Moisture Sensor</text>
-  <line x1="240" y1="92" x2="390" y2="215" stroke="black"/>
-  <text x="295" y="140" font-size="12">ADC</text>
+### Hardware Pictures
 
-  <rect x="40" y="160" width="200" height="65" fill="none" stroke="black"/>
-  <text x="140" y="188" text-anchor="middle" font-size="13">BME280</text>
-  <text x="140" y="206" text-anchor="middle" font-size="13">Temp / Hum / Pressure</text>
-  <line x1="240" y1="192" x2="390" y2="240" stroke="black"/>
-  <text x="295" y="205" font-size="12">I2C</text>
-
-  <rect x="40" y="260" width="200" height="65" fill="none" stroke="black"/>
-  <text x="140" y="288" text-anchor="middle" font-size="13">SSD1306 OLED</text>
-  <text x="140" y="306" text-anchor="middle" font-size="13">Local Display</text>
-  <line x1="240" y1="292" x2="390" y2="265" stroke="black"/>
-  <text x="295" y="285" font-size="12">I2C</text>
-
-  <rect x="40" y="360" width="200" height="65" fill="none" stroke="black"/>
-  <text x="140" y="388" text-anchor="middle" font-size="13">Tank Level Sensor</text>
-  <text x="140" y="406" text-anchor="middle" font-size="13">Float Switch</text>
-  <line x1="240" y1="392" x2="390" y2="305" stroke="black"/>
-  <text x="285" y="360" font-size="12">GPIO IN</text>
-
-  <rect x="720" y="55" width="210" height="80" fill="none" stroke="black"/>
-  <text x="825" y="85" text-anchor="middle" font-size="13">ESP32 Wi-Fi Module</text>
-  <text x="825" y="105" text-anchor="middle" font-size="12">AP / Station Mode</text>
-  <text x="825" y="122" text-anchor="middle" font-size="12">Web UI / Serial Bridge</text>
-  <line x1="620" y1="220" x2="720" y2="95" stroke="black"/>
-  <text x="655" y="145" font-size="12">UART TX/RX</text>
-
-  <rect x="730" y="155" width="190" height="55" fill="none" stroke="black"/>
-  <text x="825" y="178" text-anchor="middle" font-size="13">Phone / Laptop</text>
-  <text x="825" y="196" text-anchor="middle" font-size="13">Browser Interface</text>
-  <line x1="825" y1="135" x2="825" y2="155" stroke="black"/>
-  <text x="842" y="149" font-size="12">Wi-Fi</text>
-
-  <rect x="720" y="255" width="210" height="55" fill="none" stroke="black"/>
-  <text x="825" y="288" text-anchor="middle" font-size="13">Status LED + Buzzer</text>
-  <line x1="620" y1="270" x2="720" y2="282" stroke="black"/>
-  <text x="650" y="265" font-size="12">GPIO OUT</text>
-
-  <rect x="720" y="355" width="210" height="65" fill="none" stroke="black"/>
-  <text x="825" y="383" text-anchor="middle" font-size="13">Logic-Level</text>
-  <text x="825" y="401" text-anchor="middle" font-size="13">N-MOSFET Driver</text>
-  <line x1="620" y1="305" x2="720" y2="387" stroke="black"/>
-  <text x="650" y="340" font-size="12">GPIO OUT</text>
-
-  <rect x="720" y="455" width="210" height="50" fill="none" stroke="black"/>
-  <text x="825" y="485" text-anchor="middle" font-size="13">5V Mini Water Pump</text>
-  <line x1="825" y1="420" x2="825" y2="455" stroke="black"/>
-  <text x="840" y="443" font-size="12">switched 5V</text>
-
-  <rect x="430" y="440" width="170" height="55" fill="none" stroke="black"/>
-  <text x="515" y="464" text-anchor="middle" font-size="13">External 5V PSU</text>
-  <text x="515" y="482" text-anchor="middle" font-size="12">Pump Power</text>
-  <line x1="600" y1="468" x2="720" y2="480" stroke="black"/>
-  <text x="625" y="462" font-size="12">5V + GND</text>
-
-  <rect x="720" y="520" width="210" height="20" fill="none" stroke="black"/>
-  <text x="825" y="534" text-anchor="middle" font-size="11">Flyback diode across pump</text>
-
-  <rect x="40" y="465" width="200" height="45" fill="none" stroke="black"/>
-  <text x="140" y="492" text-anchor="middle" font-size="13">Local Button Optional</text>
-  <line x1="240" y1="487" x2="390" y2="320" stroke="black"/>
-  <text x="285" y="460" font-size="12">GPIO IN</text>
-</svg>
+![PlantGuard Node hardware prototype](./prototip.webp)
 
 ### Bill of Materials
 
