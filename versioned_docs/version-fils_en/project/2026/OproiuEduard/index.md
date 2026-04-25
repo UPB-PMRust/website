@@ -49,7 +49,7 @@ The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight ta
 
 ### Schematics
 
-<!-- Add KiCad schematic exported as SVG here -->
+<!-- KiCad schematic will be added here -->
 
 ### Bill of Materials
 
@@ -58,10 +58,10 @@ The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight ta
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | provided by lab |
 | [Passive Buzzer 3.3V](https://www.optimusdigital.ro/en/buzzers/635-3-v-or-33v-passive-buzzer.html) | Play tones via PWM | [0.99 RON × 3 = 2.97 RON](https://www.optimusdigital.ro) |
 | [Tactile Button 6x6x6](https://www.optimusdigital.ro/en/buttons-switches/97-6x6x6-push-button.html) | Note input (8) + mode/octave (2) | [0.36 RON × 16 = 5.76 RON](https://www.optimusdigital.ro) |
-| LCD Display (lab) | Show note and mode info | provided by lab |
-| Breadboard | Wiring components | provided by lab |
-| Jumper wires | Connections | provided by lab |
-| Resistors 220Ω | Current limiting for buttons | provided by lab |
+| LCD Display | Show note and mode info | ~15 RON |
+| Breadboard | Wiring components | ~10 RON |
+| Jumper wires | Connections | ~8 RON |
+| Resistors 220Ω | Current limiting for buttons | ~3 RON |
 
 ## Software
 
