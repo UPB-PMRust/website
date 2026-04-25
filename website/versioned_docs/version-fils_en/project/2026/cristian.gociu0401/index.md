@@ -1,9 +1,3 @@
-```markdown
----
-sidebar_position: 1
-description: WiFi-Controlled Spider Robot with Rust Firmware
----
-
 # WidowMaker-Pico
 A 4 legged 3 degrees of freedom per leg spider robot controlled via WiFi, phone app control, capable of walking in all directions and stabilizing itself.
 
