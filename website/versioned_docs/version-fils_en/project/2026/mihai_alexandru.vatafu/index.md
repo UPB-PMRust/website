@@ -9,7 +9,12 @@ Acest proiect vizează realizarea unui smartwatch de tip IoT, construit de la ze
 
 ## 2. Hardware Design
 Proiectul integrează componente de joasă putere pentru a asigura o autonomie ridicată.
-
+![Smartwatch Components](./images2/C:\Users\Dell\Downloads\duracell-ezgif.com-png-to-webp-converter.jpg)
+![Smartwatch Components](./images2/C:\Users\Dell\Downloads\vvvv-ezgif.com-png-to-webp-converter.jpg)
+![Smartwatch Components](./images2/C:\Users\Dell\Downloads\ddddd-ezgif.com-png-to-webp-converter.jpg)
+![Smartwatch Components](./images2/C:\Users\Dell\Downloads\ccccc-ezgif.com-png-to-webp-converter.jpg)
+![Smartwatch Components](./images2/C:\Users\Dell\Downloads\bbb-ezgif.com-png-to-webp-converter.jpg)
+![Smartwatch Components](./images2/C:\Users\Dell\Downloads\aaaaaaa-ezgif.com-png-to-webp-converter.jpg)
 ### Componente Principale:
 * **Microcontroler:** Raspberry Pi Pico W (RP2040).
 * **Display:** Ecran circular IPS 1.28 inch (Driver GC9A01, SPI).
