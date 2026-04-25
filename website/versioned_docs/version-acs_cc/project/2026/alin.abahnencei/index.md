@@ -23,24 +23,24 @@ The motivation for this project is to combat oversleeping by replacing the easil
 ## Architecture 
 
 Main Architectural Components:
- 1. User and Obstacle Detection (Input Data):
-  - Role: Monitors surroundings to detect the user of pottential obstacles it may find in its way.
-  - Components: 2x HC-SR04 Ultrasonic Sensors. One is towards the user (rear side of the robot) and the other is towards the front.
-  - Logic: Signals are passed through a voltage divider (2K/1K resistors) to translate the 5V echo pin into 3V3 signals the board can accept.
- 2. The Central Logic Controller (Processing):
-  - Role: The board executes the code logic, manages real-time interrupts from the sensors and calculates movement directions.
-  - Async Task Manager: Uses asynchronous programming to simultaniously handle the alarm timing, sensor signals and motor adjustments without blocking the CPU.
- 3. Escape System (Output):
-  - Role: Responsible for the physical movement of the clock.
-  - Components: L298N Driver and 2x DC Motors.
-  - Control Logic: The board sends PWM signals to the EnA/EnB pins to control the speed and digital signals to pins IN1-IN4 to set the direction.
- 4. Audio System (Output):
-  - Role: Provides an alarm sound that forces the user to interact with the device.
-  - Components: Passive Buzzer.
-  - Logic: It is triggered by GPIO pins when the internal RTC matches the set alarm time.
- 5. Power Network:
-  - Role: Power the circuit accordingly to each component's needs.
-  - Logic: 1x external battery power the STM32 board and 4x AA batteries power the motors.
+1. User and Obstacle Detection (Input Data):
+   - Role: Monitors surroundings to detect the user of pottential obstacles it may find in its way.
+   - Components: 2x HC-SR04 Ultrasonic Sensors. One is towards the user (rear side of the robot) and the other is towards the front.
+   - Logic: Signals are passed through a voltage divider (2K/1K resistors) to translate the 5V echo pin into 3V3 signals the board can accept.
+2. The Central Logic Controller (Processing):
+   - Role: The board executes the code logic, manages real-time interrupts from the sensors and calculates movement directions.
+   - Async Task Manager: Uses asynchronous programming to simultaniously handle the alarm timing, sensor signals and motor adjustments without blocking the CPU.
+3. Escape System (Output):
+   - Role: Responsible for the physical movement of the clock.
+   - Components: L298N Driver and 2x DC Motors.
+   - Control Logic: The board sends PWM signals to the EnA/EnB pins to control the speed and digital signals to pins IN1-IN4 to set the direction.
+4. Audio System (Output):
+   - Role: Provides an alarm sound that forces the user to interact with the device.
+   - Components: Passive Buzzer.
+   - Logic: It is triggered by GPIO pins when the internal RTC matches the set alarm time.
+5. Power Network:
+   - Role: Power the circuit accordingly to each component's needs.
+   - Logic: 1x external battery power the STM32 board and 4x AA batteries power the motors.
 
 ![Architecture Diagram](./images/DiagramaPM.drawio.svg)
 
