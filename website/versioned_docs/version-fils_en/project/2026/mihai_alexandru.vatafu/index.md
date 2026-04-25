@@ -1,38 +1,37 @@
-# Smartwatch IoT cu monitorizare de sănătate în Rust
+--- title: Smartwatch IoT cu monitorizare de sănătate ---
 
-**Student:** Mihai Alexandru Vătafu  
-**Curs:** Proiectarea Microprocesoarelor în Rust  
-**Repository Proiect:** [https://classroom.github.com/a/sVB0pKHF](https://classroom.github.com/a/sVB0pKHF)
 
-## 1. Descriere Proiect
-Acest proiect vizează realizarea unui smartwatch de tip IoT, construit de la zero, folosind limbajul Rust. Dispozitivul utilizează un ecran circular IPS pentru interfața grafică și senzori pentru monitorizarea parametrilor vitali. Obiectivul este demonstrarea capabilităților asincrone ale framework-ului **Embassy** în gestionarea eficientă a energiei și a perifericelor.
 
-## 2. Hardware Design
-Proiectul integrează componente de joasă putere pentru a asigura o autonomie ridicată.
-![Smartwatch Components](./images2/C:\Users\Dell\Downloads\duracell-ezgif.com-png-to-webp-converter.jpg)
-![Smartwatch Components](./images2/C:\Users\Dell\Downloads\vvvv-ezgif.com-png-to-webp-converter.jpg)
-![Smartwatch Components](./images2/C:\Users\Dell\Downloads\ddddd-ezgif.com-png-to-webp-converter.jpg)
-![Smartwatch Components](./images2/C:\Users\Dell\Downloads\ccccc-ezgif.com-png-to-webp-converter.jpg)
-![Smartwatch Components](./images2/C:\Users\Dell\Downloads\bbb-ezgif.com-png-to-webp-converter.jpg)
-![Smartwatch Components](./images2/C:\Users\Dell\Downloads\aaaaaaa-ezgif.com-png-to-webp-converter.jpg)
-### Componente Principale:
-* **Microcontroler:** Raspberry Pi Pico W (RP2040).
-* **Display:** Ecran circular IPS 1.28 inch (Driver GC9A01, SPI).
-* **Timp Real (RTC):** Modul DS3231 pentru precizie temporală.
-* **Energie:** Baterie Li-Po 250mAh cu încărcător TP4056 USB-C.
-* **Stabilizare:** Regulator LDO HT7333-A (3.3V).
-* **Interacțiune:** Butoane SMD cu rezistențe de pull-down (10kΩ).
+**Student:** Mihai Alexandru Vătafu
+**Link Repository:** [https://github.com/UPB-PMRust-Students/fils-project-2026-Alex22-ai]
 
-## 3. Software Design
-Codul este bazat pe **Embassy**, framework-ul asincron pentru Rust embedded.
+## Descriere Proiect
+Proiectul vizează realizarea unui smartwatch de tip IoT bazat pe microcontrolerul RP2040 (Raspberry Pi Pico W), utilizâ>
+<img width="506" height="471" alt="aaaaaaa-ezgif com-png-to-webp-converter" src="https://github.com/user-attachments/assets/67724275-c07b-4d35-a024-a5dbd421b232" />
+<img width="1009" height="996" alt="bbb-ezgif com-png-to-webp-converter" src="https://github.com/user-attachments/assets/e796d13b-fefa-49a8-8f0a-6a05f2ce76d5" />
+<img width="632" height="758" alt="ccccc-ezgif com-png-to-webp-converter" src="https://github.com/user-attachments/assets/a7abc413-9f55-41af-bf1e-40b5f3f4bdce" />
+<img width="768" height="1406" alt="ddddd-ezgif com-png-to-webp-converter" src="https://github.com/user-attachments/assets/bb779c4d-22e8-4fdf-ab07-1069ff5133aa" />
+<img width="638" height="507" alt="vvvv-ezgif com-png-to-webp-converter" src="https://github.com/user-attachments/assets/318113d7-60ec-4e0b-8879-ebffe940e280" />
+<img width="544" height="1489" alt="duracell-ezgif com-png-to-webp-converter" src="https://github.com/user-attachments/assets/160b8118-6f9e-48c6-a12a-689b7e5029ee" />
 
-### Caracteristici Software:
-* **Multitasking:** Gestionarea ecranului și a butoanelor prin `tasks` asincrone.
-* **Power Management:** Utilizarea modurilor de sleep pentru conservarea bateriei.
-* **Grafică:** Randare watchface circular folosind `embedded-graphics`.
 
-## 4. Progres și Implementare
-- [x] Achiziție componente și curele silicon 20mm.
-- [x] Configurare mediu de dezvoltare (Ubuntu/Rust).
-- [ ] Implementare driver afișaj.
-- [ ] Asamblare mecanică.
+## Hardware
+* **Microcontroler:** Raspberry Pi Pico W (RP2040)
+* **Ecran:** 1.28" TFT LCD circular (Driver GC9A01)
+* **Baterie:** Li-Po 3.7V 250mAh
+* **Modul Încărcare:** TP4056 USB-C
+* **RTC:** Modul DS3231 cu baterii de backup CR2032
+
+## Software
+Utilizarea framework-ului asincron **Embassy** pentru gestionarea eficientă a energiei și a perifericelor SPI/I2C.
+
+## Progres
+- [x] Achiziție componente hardware
+- [x] Configurare mediu dezvoltare (WSL2)
+- [ ] Implementare driver afișaj
+Project Pull Request
+ - [x] I have followed the directory structure: versioned_docs/version-fils_en/project/2026/mihai_alexandru.vatafu/
+ - [x]  The file is named exactly index.md.
+ - [x] I have included the mandatory classroom repository link.
+ - [x] All images are in .webp format and under 1024x768 pixels.
+ - [x] I have used the ---title: ...--- header in index.md.
