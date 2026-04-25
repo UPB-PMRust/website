@@ -28,8 +28,7 @@ After the recording is done, the Pico uses its integrated **Wi-Fi** to send the 
 
 ### System Data Flow
 
-<img src="./diagram.svg" style="width: 100%; height: 100%; object-fit: contain; min-height: 400px;" alt="System Architecture">
-
+![Diagram](./diagram.webp)
 
 
 ## Log
