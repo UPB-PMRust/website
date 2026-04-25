@@ -1,6 +1,6 @@
 
 # Automatic Music Player and Advertising System
-An automated audio solution that blends background music with scheduled announcements using the RP2040 and Rust.
+An automated audio solution that blends background music with scheduled announcements using the RP2350 and Rust.
 
 :::info 
 
