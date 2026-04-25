@@ -159,5 +159,3 @@ The KiCad schematic will be added here.
 3. [SSD1306 OLED Display Driver Documentation](https://docs.rs/ssd1306/latest/ssd1306/)
 4. [Embedded Graphics Library](https://github.com/embedded-graphics/embedded-graphics)
 5. [Embedded HAL](https://docs.rs/embedded-hal/latest/embedded_hal/)
-
-
