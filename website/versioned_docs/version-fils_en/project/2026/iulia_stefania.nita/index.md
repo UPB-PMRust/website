@@ -41,7 +41,7 @@ Most of the components started to arrive, among the STM32 NUCLEO-U545RE-Q. Still
 ### Week 9 - 20 April
 Waiting on the left components to arrive.
 
-### Week 19 - 25 May
+
 
 ## Hardware
 
@@ -108,6 +108,7 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [Reference Manual STSTM32U5](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-32bit-arm-based-mcus-stmicroelectronics.pdf)
+2. [Fish Feeder Machine Architecture Idea](https://www.youtube.com/watch?v=1Kkkap2-C5E&t=57s)
+3. [Embassy framework](https://embassy.dev/)
 ...
