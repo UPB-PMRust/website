@@ -1,8 +1,3 @@
----
-layout: page
-title: Smart Access Control System
----
-
 # Smart Access Control System
 
 :::info
@@ -108,4 +103,4 @@ The system operates as a state machine with the following states:
 2. [STM32U545RE Reference Manual](https://www.st.com/en/microcontrollers-microprocessors/stm32u545re.html)
 3. [ssd1306 crate documentation](https://docs.rs/ssd1306)
 4. [mfrc522 crate documentation](https://docs.rs/mfrc522)
-5. [Inspiration: Analog Laser Security Alarm (YouTube)](https://www.youtube.com/watch?v=analog-laser-alarm)
+5. [Inspiration: Analog Laser Security Alarm (YouTube)](https://www.youtube.com/watch?v=RnR_K6qvaa8)
