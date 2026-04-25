@@ -4,7 +4,7 @@ A playable mini piano with multiple modes built on the STM32 Nucleo-U545RE-Q.
 
 :::info
 
-**Author**: Oproiu Eduard  
+**Author**: Oproiu Eduard  \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-OproiuEduard
 
 :::
