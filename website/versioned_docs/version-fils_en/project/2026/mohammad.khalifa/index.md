@@ -52,12 +52,6 @@ These components represent the local warning system.
 
 The ESP32-CAM functions as an independent imaging component when the third attempt fails it activates.
 
-
-
-
-
-
-
 ## Log
 
 <!-- write your progress here every week -->
