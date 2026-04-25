@@ -4,7 +4,7 @@ A mobile robot controlled in real time using an analog joystick and Rust firmwar
 
 :::info
 **Author:** Costin Chiriac \
-**GitHub Project Link:** https://github.com/CostinZXC/website
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-CostinZXC
 :::
 
 ## Description
