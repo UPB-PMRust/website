@@ -2,9 +2,13 @@
 
 An embedded project that simulates a real-life parking, using a barrier to allow cars to enter and exit a parking lot
 
-*Author:* Tzikas Alexandros
+:::info
+
+*Author:* Tzikas Alexandros \
 
 *GitHub Project Link:* https://github.com/UPB-PMRust-Students/fils-project-2026-AlexTzikas
+
+:::
 
 ## Description
 This project is designed to be a model of a real-life parking; it uses two ultrasonic sensor to detect cars approaching a barrier (operated by a SG90 servomotor), both entering and exiting the parking, opening the barrier for exiting cars and opening the barrier for entering cars if they are authorized to enter, witch is ascertained by an ESP32-CAM. If the parking is full, the barrier will not open for any cars attempting to enter. The computations and processing are all done by the microcontroller (STM32-NUCLEO-U545RE-Q).
@@ -14,7 +18,7 @@ I chose this project because it is a real-life application witch can help me lea
 
 ## Architecture
 
-![System Architecture](./MAarchbun.svg)
+![System Architecture](./maarchbun.svg)
 
 Input: 
 
