@@ -2,7 +2,7 @@
 title: Smartwatch IoT cu monitorizare de sănătate
 ---
 
-# Smartwatch IoT cu monitorizare de sănătate
+
 
 **Student:** Mihai Alexandru Vătafu
 **Link Repository:** [https://github.com/UPB-PMRust-Students/fils-project-2026-Alex22-ai]
