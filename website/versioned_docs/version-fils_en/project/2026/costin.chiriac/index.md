@@ -1,6 +1,6 @@
 # Joystick Controlled Remote Car
 
-A mobile robot controlled in real time using an analog joystick and Rust firmware. TEST!@#4
+A mobile robot controlled in real time using an analog joystick and Rust firmware.
 
 :::info
 **Author:** Costin Chiriac \
