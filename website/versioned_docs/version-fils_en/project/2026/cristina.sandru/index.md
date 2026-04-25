@@ -2,7 +2,9 @@
 :::info
 
 **Author:** Sandru Cristina Victoria \
-**GitHub Project Link:** [CristinaVSandru/website](https://github.com/CristinaVSandru/website)
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-CristinaVSandru
+
+
 
 :::
 
