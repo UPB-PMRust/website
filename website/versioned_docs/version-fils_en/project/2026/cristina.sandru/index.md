@@ -1,6 +1,6 @@
 # Mood Blooms: Interactive Ambient Flowers
 ## Info
-* **Author:** Sandru Cristina Victoria
+* **Author:** Sandru Cristina Victoria \
 * **GitHub Project Link:** [CristinaVSandru/website](https://github.com/CristinaVSandru/website)
 
 ## Description
