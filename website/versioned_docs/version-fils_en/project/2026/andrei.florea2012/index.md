@@ -303,7 +303,7 @@ The watering actuator is a 5V mini water pump controlled through a logic-level N
 
 Estimated total: ~338 RON
 
-The prices are approximate component estimates and will be updated until project will be finalized.
+The prices are approximate component estimates and will be updated until the project is finalized.
 
 ## Software
 
