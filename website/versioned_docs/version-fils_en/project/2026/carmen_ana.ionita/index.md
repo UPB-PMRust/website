@@ -33,8 +33,7 @@ The STM32 Nucleo-U545RE-Q is the central component of the system. It reads data 
 The STM32 NUCLEO-U545RE-Q and the first batch of components arrived. After checking what was missing, placed another order for the remaining parts.
 
 ### Week 20 - 26 April
-Started putting the project documentation together. Created the architecture diagram showing how all the components connect to the microcontroller. Also began working on 
-the KiCad schematic.
+Started putting the project documentation together. Created the architecture diagram showing how all the components connect to the microcontroller. Also began working on the KiCad schematic.
 
 
 
@@ -60,14 +59,14 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32 Nucleo-U545RE-Q](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.farnell.com/datasheets/3927507.pdf) | The microcontroller | [106.59 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
+| [STM32 Nucleo-U545RE-Q](https://www.farnell.com/datasheets/3927507.pdf) | The microcontroller | [106.59 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
 | [IR Flame Sensor (×3)](https://www.optimusdigital.ro/en/optical-sensors/110-ir-flame-sensor.html?srsltid=AfmBOop8VjL629drvlz1A7VhuRbYEV0Yz_4w77LuM5maQuD1TsU7SeaP) | Detects fire direction (left, front, right) | [7.47 RON](https://www.optimusdigital.ro/en/optical-sensors/110-ir-flame-sensor.html?srsltid=AfmBOop8VjL629drvlz1A7VhuRbYEV0Yz_4w77LuM5maQuD1TsU7SeaP) |
-| [MQ-2 Smoke Sensor](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.pololu.com/file/0j309/mq2.pdf) | Detects smoke | [15.67 RON](https://www.aliexpress.com/item/1005007204353237.html?spm=a2g0o.order_list.order_list_main.47.c53218027nnulr) |
+| [MQ-2 Smoke Sensor](https://www.pololu.com/file/0j309/mq2.pdf) | Detects smoke | [15.67 RON](https://www.aliexpress.com/item/1005007204353237.html?spm=a2g0o.order_list.order_list_main.47.c53218027nnulr) |
 | [HC-SR04 Ultrasonic Sensor](https://www.osepp.com/electronic-modules/sensor-modules/62-osepp-ultrasonic-sensor-module) | Measures distance to obstacles | [14.99 RON](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3A-Myib66m9-wzJ7txMYhxqL&gclid=CjwKCAjwhqfPBhBWEiwAZo196t4sCRam1sz4-fqibm6c7sdeu7xWMxo6oqlce_P_9HwfoUP9Nv2_shoCmWkQAvD_BwE) |
-| [OLED Display SSD1306](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Displays system state in real time | [13.34 RON](https://www.aliexpress.com/item/1005007389730469.html?spm=a2g0o.order_list.order_list_main.53.c53218027nnulr) |
-| [LM2596 Step Down DC-DC Power Supply Module](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.ti.com/lit/ds/symlink/lm2596.pdf) | Converts battery voltage to 5V | [12.99 RON](https://www.optimusdigital.ro/en/5-v-step-down-power-supplies/13597-lm2596-step-down-dc-dc-power-supply-module-fixed-5v-output.html) |
+| [OLED Display SSD1306](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Displays system state in real time | [13.34 RON](https://www.aliexpress.com/item/1005007389730469.html?spm=a2g0o.order_list.order_list_main.53.c53218027nnulr) |
+| [LM2596 Step Down DC-DC Power Supply Module](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | Converts battery voltage to 5V | [12.99 RON](https://www.optimusdigital.ro/en/5-v-step-down-power-supplies/13597-lm2596-step-down-dc-dc-power-supply-module-fixed-5v-output.html) |
 | [BO Motors + Wheels (×4)](https://electronicmarket.ro/6v-250-rpm-motor-si-roti?gad_source=1&gad_campaignid=21513542058&gbraid=0AAAAA-D1O9acEsStbymViBOmpPcXLDBAR&gclid=CjwKCAjwhqfPBhBWEiwAZo196gfH81pOcZK2Ucz2cZz5h4i5FypfZGwJO9qDQHNNiiOXzqlKI0m4phoCEn8QAvD_BwE) | Robot locomotion | [62.56 RON](https://electronicmarket.ro/6v-250-rpm-motor-si-roti?gad_source=1&gad_campaignid=21513542058&gbraid=0AAAAA-D1O9acEsStbymViBOmpPcXLDBAR&gclid=CjwKCAjwhqfPBhBWEiwAZo196gfH81pOcZK2Ucz2cZz5h4i5FypfZGwJO9qDQHNNiiOXzqlKI0m4phoCEn8QAvD_BwE) |
-| [L298N Motor Driver](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf) | Controls the DC motors | [10.35 RON](https://electronicmarket.ro/l298n-placa-driver-dual-motor-cu-regulator-de-tensiune?gad_source=1&gad_campaignid=21513542058&gbraid=0AAAAA-D1O9acEsStbymViBOmpPcXLDBAR&gclid=CjwKCAjwhqfPBhBWEiwAZo196jJmXlLhnGvgmvTCj1WHthxlxGtnW-f4dHO3jvC_7y_tAVBwz5JH_BoCs5kQAvD_BwE) |
+| [L298N Motor Driver](https://www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf) | Controls the DC motors | [10.35 RON](https://electronicmarket.ro/l298n-placa-driver-dual-motor-cu-regulator-de-tensiune?gad_source=1&gad_campaignid=21513542058&gbraid=0AAAAA-D1O9acEsStbymViBOmpPcXLDBAR&gclid=CjwKCAjwhqfPBhBWEiwAZo196jJmXlLhnGvgmvTCj1WHthxlxGtnW-f4dHO3jvC_7y_tAVBwz5JH_BoCs5kQAvD_BwE) |
 | [5V DC Water Pump + pipe](https://www.aliexpress.com/item/1005009549206702.html?spm=a2g0o.order_list.order_list_main.17.c53218027nnulr) | Extinguishes the fire | [14.83 RON](https://www.aliexpress.com/item/1005009549206702.html?spm=a2g0o.order_list.order_list_main.17.c53218027nnulr) |
 | [Water tank / bottle] | Water reservoir for the pump | [N/A] |
 | [Passive Buzzer](https://www.aliexpress.com/item/1005007274812383.html?spm=a2g0o.order_list.order_list_main.5.c53218027nnulr) | Emits siren sound | [1.34 RON](https://www.aliexpress.com/item/1005007274812383.html?spm=a2g0o.order_list.order_list_main.5.c53218027nnulr) |
@@ -102,6 +101,9 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [The Rust Programming Language](https://doc.rust-lang.org/book/)
+2. [The Embedded Rust Book](https://docs.rust-embedded.org/book/)
+3. [Embassy-rs Documentation](https://embassy.dev/)
+4. [STM32 datasheet](https://www.farnell.com/datasheets/3927507.pdf)
+5. [Electric RC Car - Basic Concepts](https://www.tamiya.co.th/blog-detail/basic-knowledge-of-electric-rc-cars-tamiya-rc-start-guide)
+6. [Hardware inspiration](https://www.youtube.com/results?search_query=automatic+fire+truck+project)
