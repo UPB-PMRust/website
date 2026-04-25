@@ -2,8 +2,10 @@
 Simulator de curse asincron cu control de precizie pe 4 axe liniare.
 
 :::info
-**Author:** Petru Ruse <br/>
+
+**Author:** Petru Ruse \
 **GitHub Project Link:** [https://github.com/UPB-PMRust-Students/acs-project-2026-PetruRuse](https://github.com/UPB-PMRust-Students/acs-project-2026-PetruRuse)
+
 :::
 
 ## Description
