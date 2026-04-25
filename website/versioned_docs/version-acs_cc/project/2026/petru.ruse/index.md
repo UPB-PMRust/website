@@ -1,9 +1,3 @@
----
-id: index
-title: Derby Predictor
-sidebar_label: Derby Predictor
----
-
 # Derby Predictor
 Simulator de curse asincron cu control de precizie pe 4 axe liniare.
 
