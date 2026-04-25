@@ -107,7 +107,7 @@ The hardware components are selected to ensure a compact and efficient design fo
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing the UI, fonts, and icons on the screen. |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework | Structured debug logging for real-time monitoring. |
 
-#### Links
+## Links
 1. https://www.raspberrypi.com/documentation/microcontrollers/
 2. https://github.com/embassy-rs/embassy
 3. https://doc.rust-lang.org/stable/book/index.html
