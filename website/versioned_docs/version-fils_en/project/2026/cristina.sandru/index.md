@@ -28,11 +28,11 @@ It follows a multi-tasking approach, splitting responsibilities between the MCU'
 
 ## Hardware
 The project uses:
-**Raspberry Pi Pico 2W**
-**3xSG90 micro servos** 
-**WS2812B LED strip**
-**LDR**  
-**SSD1306 OLED**
+- **Raspberry Pi Pico 2W**
+- **3xSG90 micro servos** 
+- **WS2812B LED strip**
+- **LDR**  
+- **SSD1306 OLED**
 
 ## Schematics
 ![Project Schematic](./schematica.svg)
