@@ -4,7 +4,7 @@ This project is a smart security system built on the Raspberry Pi Pico 2W by usi
 :::info 
 
 **Author**: Petrescu Alexandra-Maria \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-alexteap
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-alexandra.petrescu
 
 :::
 
@@ -23,7 +23,7 @@ with a Raspberry Pi Pico and see for myself the way it performs and can handle a
 
 ## Architecture 
 
-![Software Architecture](arhitectura.webp)
+![Software Architecture](./arhitectura.webp)
 
 ## Log
 
@@ -49,7 +49,7 @@ with a Raspberry Pi Pico and see for myself the way it performs and can handle a
 
 ### Schematics
 
-![Electric Scheme](smartkicad.svg)
+![Schema Electrica](./smartkicad.svg)
 
 
 ### Bill of Materials

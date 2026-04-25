@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=https://cloudconvert.com/
-HostUrl=https://eu-central.storage.cloudconvert.com/tasks/30c1cda2-454b-425f-8685-9b7134863d9b/arhitectura.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20260425%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20260425T113400Z&X-Amz-Expires=86400&X-Amz-Signature=4f5fcb6cca0a8f7db3762f0dcc6e3d7f8b57f36ce7b1372fdba900bab5369705&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22arhitectura.webp%22&response-content-type=image%2Fwebp&x-id=GetObject
