@@ -26,7 +26,7 @@ Main software and system components:
 * **Audible Alert Module**: Drives the passive buzzer using PWM to emit alarms that vary in pitch as deception scores rise.
 * **Logging and Debug Module**: Sends real-time sensor data and system status to a PC via USB for graphing and monitoring.
 
-![Architecture Diagram](./LIE_DETECTOR.svg)
+![Architecture Diagram](./lie_detector.svg)
 
 ## Log
 
