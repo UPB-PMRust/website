@@ -65,21 +65,6 @@ Overall, this project allows me to explore the intersection between embedded sys
 
 ### Schematics
 
-
-### Bill of Materials
-
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
-
-| Device | Usage | Price |
-|--------|--------|-------|
 ### Bill of Materials
 
 | Device | Usage | Price |
