@@ -25,7 +25,7 @@ I chose this project because I always was interested in the design and mechanica
 
 ## Architecture
 
-*Here goes the architecture diagram*
+![Arachne Architecture](./Architecture%20Schematic.svg)
 
 The system consists of three main components:
 
