@@ -1,72 +1,154 @@
----
-Audio Spectrum Analyzer on STM32 by Mykyta Troinych
----
+# Audio Spectrum Analyzer on STM32
+
+Real-time audio spectrum visualization using FFT on embedded hardware
+
+:::info
+
+**Author**: Mykyta Troinych
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23
+:::
+
 ## Description
-   This project implements a real-time audio spectrum analyzer on an embedded system.  
-The device captures audio input through a 3.5 mm jack, converts it into a digital signal using an external ADC, processes it using Fast Fourier Transform (FFT), and displays the frequency spectrum on an SPI-connected TFT screen.
 
-   The purpose of the project is to provide a visual tool for analyzing audio signals in real time, useful for sound engineering and signal analysis.
+This project implements a real-time audio spectrum analyzer using an STM32 microcontroller.  
+Audio signals are captured via a 3.5 mm jack, digitized using an external ADC, processed using Fast Fourier Transform (FFT), and displayed on a TFT screen.
+
+The system provides real-time visualization of frequency components in audio signals.
+
 ---
-## System Architecture
-   The signal processing pipeline is structured as follows:
-- Audio Input (3.5 mm jack)  
-- External ADC (PCM1808 – I2S output)  
-- I2S Interface + DMA (STM32)  
-- Double Buffering  
-- FFT Processing  
-- SPI Display Output  
+
+## Motivation
+
+The motivation behind this project is to better understand real-time digital signal processing on embedded systems and to build a practical tool for audio analysis.
+
+It combines multiple important concepts:
+
+- Embedded Rust development
+- Digital Signal Processing (DSP)
+- Real-time data acquisition using DMA
+- Hardware-software integration
+
 ---
+
+## Architecture
+
+The system is composed of the following main components:
+
+- **Audio Input Module** – captures analog audio signal
+- **ADC Module (PCM1808)** – converts analog signal to digital (I2S)
+- **Data Acquisition Module (I2S + DMA)** – streams data into memory
+- **Processing Module (FFT)** – transforms signal into frequency domain
+- **Display Module (SPI TFT)** – renders frequency spectrum
+
+                    [POWER & DEBUGGING SECTION]
+
++-----------------------+ +--------------------------+
+| Host PC | | Host PC |
+| (USB Power 5V) | | (Debug / Logging) |
++-----------+-----------+ +------------+-------------+
+| ^
+| (5V via USB) | [USB / UART]
+v v
++----------------------------------------------------------------+
+| |
+| NUCLEO STM32U545RE-Q |
+| (Main Microcontroller) |
+| |
+| - I2S + DMA (Audio Input) |
+| - Double Buffering |
+| - FFT Processing |
+| - Spectrum Rendering |
+| |
++--------+-------------------+-------------------+---------------+
+| | |
+[I2S] [SPI] [GPIO]
+| | |
+v v v
+
++------------------+ +-------------------+ +------------------+
+| | | | | |
+| PCM1808 | | 2.4" TFT Display | | Buttons / |
+| Audio ADC | | ST7789V | | Controls |
+| (Analog → I2S) | | (240x320, SPI) | | (optional) |
++--------+---------+ +---------+---------+ +------------------+
+|
+| [Analog Audio]
+v
++------------------+
+| |
+| 3.5 mm Jack |
+| (Audio Input) |
++------------------+
+
+### Data Flow
+
+Audio → ADC → I2S + DMA → Buffer → FFT → Display
+
+---
+
+## Log
+
+### Week 4-5
+
+- Project idea defined
+- Research on FFT and embedded DSP
+
+### Week 6-7
+
+- PC prototype implemented for FFT visualization
+- Basic signal processing pipeline tested
+
+### Week 8
+
+- SPI display connected and tested
+- Initial hardware setup completed
+
+### Week 9
+
+- Working on the documentation.
+
+---
+
 ## Hardware
-- Microcontroller: STM32 Nucleo-U545RE-Q  
-- Audio ADC: PCM1808 (24-bit stereo ADC, I2S interface)  
-- Display: 2.4" TFT SPI (ST7789V, 240x320)  
-- Input: 3.5 mm audio jack  
-## Current Status
-- SPI display initialized and tested  
-- Hardware connections completed  
-- ADC integration in progress  
----
-## Software
-   The firmware is developed in Rust for embedded systems.
-   Main components:
-- I2S interface for audio data acquisition  
-- DMA for continuous data streaming  
-- Double buffering for real-time processing  
-- FFT algorithm for spectral analysis  
-- SPI driver for display rendering  
----
-## Signal Processing
-- Sampling rate: 48 kHz  
-- Input mode: Mono (single channel extracted from stereo stream)  
-   Processing steps:
-1. Continuous sampling using I2S + DMA  
-2. Buffer filling using double buffering  
-3. Windowing function (planned: Hann/Hamming)  
-4. FFT computation  
-5. Magnitude spectrum visualization  
-FFT size will be determined experimentally (initial target: 256–1024 samples), depending on performance constraints.
----
-## Prototype
-   A PC-based prototype was implemented to validate the DSP pipeline before porting to embedded hardware.
-prototype.webp
-   The prototype demonstrates:
-- Frequency spectrum visualization  
-- Real-time signal analysis  
----
-## Device Concept
-device.webp
-   The final device is designed as a compact standalone spectrum analyzer with an integrated display.
----
-## Challenges
-- Real-time FFT on a constrained microcontroller  
-- Efficient use of DMA and buffering  
-- Trade-off between latency and frequency resolution  
-- SPI bandwidth limitations for smooth rendering  
----
-## Future Work
-- Optimize FFT using DSP libraries (e.g. CMSIS-DSP)  
-- Improve graphical interface  
-- Add user controls (gain, scaling)  
-- Implement logarithmic frequency scaling  
+
+- STM32 Nucleo-U545RE-Q (main microcontroller)
+- PCM1808 external ADC (audio input via I2S)
+- 2.4" TFT SPI display (ST7789V, 240x320)
+- 3.5 mm audio jack
+
 ---
 
+### Schematics
+
+![Schematics](./schematic.svg)
+
+---
+
+### Bill of Materials
+
+| Device                | Usage                                   | Price |
+| --------------------- | --------------------------------------- | ----- |
+| STM32 Nucleo-U545RE-Q | Main microcontroller                    | -     |
+| PCM1808               | Audio ADC (analog → digital conversion) | -     |
+| ST7789V TFT Display   | Frequency spectrum visualization        | -     |
+| 3.5 mm Jack           | Audio input                             | -     |
+
+---
+
+## Software
+
+| Library             | Description                | Usage                       |
+| ------------------- | -------------------------- | --------------------------- |
+| embedded-hal        | Hardware abstraction layer | Used for peripheral control |
+| stm32-hal           | MCU-specific HAL           | Used for STM32 peripherals  |
+| embedded-graphics   | 2D graphics library        | Rendering spectrum          |
+| CMSIS-DSP (planned) | DSP optimized library      | FFT acceleration            |
+
+---
+
+## Links
+
+1. https://en.wikipedia.org/wiki/Fast_Fourier_transform
+2. https://www.analog.com/en/products/pcm1808.html
+3. https://docs.rust-embedded.org/book/
+4. https://github.com/embedded-graphics/embedded-graphics
