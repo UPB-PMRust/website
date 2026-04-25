@@ -12,7 +12,7 @@ A one line project description
 
 ## Description
 
-My Project Idea: A sonar radar using a Time-of-Flight (ToF) laser sensor to detect foreign objects in an area, when an object enters the sonar's radius, an alert sound queue will occur, the sonar measures accross an area with both manual (using buttons) and automatic movements (using a button to switch modes).
+My Project Idea: A sonar radar using a Time-of-Flight (ToF) distance sensor to detect foreign objects in an area, when an object enters the sonar's radius, an alert sound queue will occur, the sonar measures accross an area with both manual (using buttons) and automatic movements (using a button to switch modes).
 
 ## Motivation
 
@@ -23,11 +23,11 @@ I chose to make this because I'm very passionate about Intel-gathering gadgets a
 Control Layer: NUCLEO-U545RE-Q microcontroller running Rust with Embassy.
 Handles servo control (PWM), reads distance data via I2C from the sensor, processes button inputs, manages automatic/manual scanning logic, generates buzzer signals/sound queues, and streams radar data (angle + distance) to the laptop over USB.
 
-Sensing Layer: VL53L0X Time-of-Flight (ToF) Distance Sensor Module mounted on a custom rotating platform.
-Measures distance in real time at the current angle using laser time-of-flight (ToF) technology, providing precise range data for radar visualization via laptop.
+Sensing Layer: VL53L0X Time-of-Flight (ToF) distance sensor mounted on a custom rotating platform.
+it measures distance in real time at the current angle using time-of-flight (ToF) technology, providing precise range data for radar visualization via laptop.
 
 Actuation Layer: SG90 Micro Servo Motor driven by PWM signals from the MCU.
-Rotates the sensor across a 0°–180° sweep, allowing spatial scanning of the environment. Movement supports both automatic scan and manual directional control via user input using buttons, when in manual mode and inactive for ~3 seconds, the system returns back to automatic sweeping mode.
+Rotates the sensor across a 0°–180° sweep, allowing spatial scanning of the environment. movement supports both automatic scan and manual directional control via user input using buttons, when in manual mode and inactive for ~3 seconds, the system returns back to automatic sweeping mode.
 
 ## Log
 
@@ -72,15 +72,32 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| STM32 Development Board | The microcontroller | 105 RON |
+| VL53L0X Time-of-Flight Distance Sensor | Distance Sensor | 25 RON |
+| USB Cable | Cable for data transfer | 5 RON |
+| SG90 Servo Motor | Sensor movement | 15 RON |
+| Passive buzzer x3 | Sound queues | 2 RON |
+| LEDs x4 | Visual queues | 4 RON |
+| Buttons x3 | Manual controls | 5 RON |
+| Resistors + Jumpers + breadboards | Supporting the circuit | 30 RON |
+
 
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| embassy-stm32 | Embassy HAL for STM32 microcontrollers | GPIO, timers, UART, sensor integration |
+| embassy-executor | Async task executor | Running concurrent tasks (sensor read, servo control, USB streaming) |
+| embassy-time | Async timers and delays | Servo sweep timing, debounce, 3s timeout logic |
+| embassy-sync | Synchronization primitives | Sharing data between tasks (angle, distance, mode) |
+| embassy-futures | Async utilities | Task coordination and control flow |
+| embassy-usb | USB device stack (CDC ACM) | Sending radar data to laptop via USB |
+| embedded-hal | Hardware abstraction traits | Generic interfaces for I2C, PWM, GPIO |
+| vl53l0x custom drivers | Driver for VL53L0X sensor | Reading distance measurements over I2C |
+| cortex-m | ARM Cortex-M support crate | Low-level MCU access |
+| cortex-m-rt | Runtime for Cortex-M devices | Startup, interrupt vectors |
+| heapless | Fixed-capacity data structures | Buffers for USB data (angle + distance) |
 
 ## Links
 
