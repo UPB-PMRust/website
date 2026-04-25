@@ -4,7 +4,7 @@ A simple, autonomous hovercraft controlled by a Raspberry Pi Pico 2 and Rust.
 :::info 
 
 **Author**: David-Andrei Dinu \
-**GitHub Project Link**: https://github.com/UPB-PMRust/project-david-andrei-dinu
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-DinuDavidAndrei
 
 :::
 
