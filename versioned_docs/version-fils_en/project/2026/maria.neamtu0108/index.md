@@ -1,7 +1,7 @@
 # Listenus - Music Recognizer
 Standalone song identification device
 
-::: info
+:::info
 
 **Author**: Neamtu Maria-Melissa \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-melissamaria1825
