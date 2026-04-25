@@ -1,5 +1,5 @@
 # Project Name
-A one line project description
+Sonar using ToF Distance Sensors 
 
 :::info 
 
