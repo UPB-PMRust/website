@@ -68,6 +68,10 @@ This project gave me the perfect excuse to finally design my own PCB. Since this
 ### PCB
 I wanted a dedicated chapter for the PCB to really go in-depth on the design process. I have to admit that KiCad had an unexpectedly moderate learning curve. As it turns out, a lot of the logic from AutoCAD and my past experience with general electronics transferred quite well to this software. 
 
+:::info PCB Design Repository
+To follow updates to the PCB design check out the dedicated [GitHub Repo.](https://github.com/stanciugabriel/overture-pcb)
+:::
+
 I started by mapping out the schematics for the USB-C Power Delivery Module. I chose the [STUSB4500](https://www.st.com/resource/en/datasheet/stusb4500.pdf) from STMicroelectronics. I picked it because it seemed relatively easy to work with, was incredibly robust, and could negotiate power contracts up to 100W, which is absolute overkill for this project but great for headroom. 
 
 That PD module feeds into a buck converter that steps the 20V line down to 3.3V to power the MCU, the display, and the other peripherals. I went with Texas Instruments for this section specifically so I could use [TI Power Designer](https://webench.ti.com/power-designer/). It is an amazing tool that helps you design a power supply circuit based on your exact specs, assists with component selection, and even runs simulations. I settled on the [TPS54308DDCT](https://www.ti.com/lit/ds/symlink/tps54308.pdf), which handles up to 28V and 3A. To guarantee the buck converter worked properly, I paid special attention to properly derating the capacitors and resistors for the power supply segment of the board.
@@ -81,24 +85,21 @@ For a first attempt in KiCad, I think they turned out perfectly fine. I knew I w
 
 Once the schematic is done, you reach the moment of truth: pressing F8 in the PCB editor and praying to whatever higher power will listen that your ratsnest doesn't look like a plate of spaghetti. Ultimately, it doesn't matter how the traces look as long as the board works, but getting it to work is the hard part. The vast majority of my routing time was dedicated to the power supply, while routing the rest of the logic signals was pretty trivial. 
 
-It was during this layout phase that I realized trying to fit a standard Raspberry Pi Pico 2W, the custom power supply, a TMC2208 stepper driver, and all the peripheral headers onto a tiny PCB was going to be a nightmare. I pivoted the design to use Seeed Studio's XIAO RP2325 MCU purely because of its incredibly small footprint. 
+It was exactly during this layout phase that I realized trying to fit a bulky Raspberry Pi Pico 2W, the custom power supply, a TMC2208 stepper driver, and all the peripheral headers onto a tiny PCB was going to be a nightmare. I needed a serious footprint reduction, so I pivoted the entire design to use the [ESP32-C6-WROOM-N8](https://www.lcsc.com/product-detail/C5366877.html?s_z=n_q_ESP-32-C6&spm=wm.ssy.bg.6.xh&lcsc_vid=RVNeBAAERVBaU1ZTT1cNUlRXQ1dYUQIFQFRWUl1WQ1kxVlNRQFFYVlBXQFRdUDsOAxUeFF5JWBYZEEoKFBINSQcJGk4%3D). Moving away from a pre-built dev board to a raw, highly capable module freed up massive amounts of board real estate, gave me all the wireless connectivity I could ever need, and kept the final layout incredibly tight.
 
 With all of that settled, here is the final completed PCB design.
 
 ![PCB 3D Viewer 45deg](pcb_3d.webp)
 ![PCB Front Layer](pcb_f.cu.webp)
-![PCB Back Layer](pcb_b.cu.webp)
 ![PCB 3D Viewer Front](pcb_fr.webp)
 ![PCB 3D Viewer Back](pcb_bk.webp)
 
-
-To be continued...
 
 ## Hardware
 
 | Device | Comment | Price |
 |--------|--------|-------|
-|Seeed Studio XIAO RP2325| Microcontroller | 35 RON|
+|ESP-32-C6-N8| Microcontroller | 35 RON|
 |ST7789 Display|Visual interface|0 RON (had it on hand)|
 |NEMA 17 Stepper|Drives the syringe mechanism|	60 RON|
 |TMC2208 Driver	|used to drive the stepper|30 RON|
@@ -108,3 +109,14 @@ To be continued...
 |Lead Screw|8mm x 315mm, 2mm pitch |20RON |
 |Misc Hardware| Screws, bolts, nuts|10 RON|
 |PCB|with assembly|Living on the breadline for the next 2 months|
+
+
+## Software
+
+| Crate / Framework | Role |
+| :--- | :--- |
+| `esp-hal` | Hardware Abstraction Layer. The critical bridge between Rust and the raw ESP32-C6 silicon. |
+| `embassy` | Async runtime for embedded systems. Keeps the UI perfectly responsive while the stepper motor ticks away concurrently. |
+| `embedded-graphics` | Core graphics library used to draw the UI grid, text, and primitive shapes directly on the screen. |
+| `slint` | A declarative UI toolkit explored as a powerful alternative for building complex screen layouts. |
+| `st7789` | The dedicated driver crate responsible for pushing those carefully calculated pixels to the physical display. |
