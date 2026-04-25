@@ -107,7 +107,7 @@ Place your KiCAD or similar schematics here in SVG format.
 |---------|-------------|-------|
 | cortex-m | Low-level access to Cortex-M processors | Used to handle interrupts(NVIC) |
 | cortex-m-rt | Runtime support for Cortex-M processors | Starts the vending machine program when the NUCLEO powers on |
-| embedded-hal | A Hardware Abstraction Layer (HAL) for embedded systems |  hardware communicationUsed by the keypad, IR sensors, LCD, servo motors and RFID drivers |
+| embedded-hal | A Hardware Abstraction Layer (HAL) for embedded systems | Used by the keypad, IR sensors, LCD, servo motors and RFID drivers |
 | embassy-executor | Async executor for embedded systems | Runs keypad scanning, coin detection, RFID reading, LCD updating and servo control at the same time |
 | embassy-time | Time management for embassy | Delays, timeouts and timers |
 | embassy-stm32 | STM32 HAL for embassy | Configures GPIO for keypad and IR sensors, I2C for LCD, SPI for RFID and PWM for servo motors |
@@ -121,5 +121,6 @@ Place your KiCAD or similar schematics here in SVG format.
 
 ## Links
 
-1. link
-2. link
+1. https://www.youtube.com/watch?v=BHQBsswUeT0&t=378s
+2. https://www.youtube.com/watch?v=C7CYOOfb10s
+3. https://embassy.dev
