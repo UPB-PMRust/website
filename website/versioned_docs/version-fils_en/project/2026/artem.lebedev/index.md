@@ -3,7 +3,7 @@ Coffee vending machine with drinks selection options, based on ESP-32-C6 chip.
 
 :::info
 
-**Author:** Artem Lebedev (group 1221EB, FILS)\
+**Author:** Artem Lebedev (group 1221EB, FILS) \
 **GitHub Project Link:** [Ali coffee](https://github.com/UPB-PMRust-Students/fils-project-2026-artemlebedev)
 
 :::
