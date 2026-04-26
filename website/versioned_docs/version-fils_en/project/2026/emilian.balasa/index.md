@@ -16,7 +16,7 @@ An interactive, physical desktop dashboard that monitors PC hardware telemetry i
 
 
 
-:::info 
+:::info
 
 
 
@@ -62,7 +62,7 @@ From a technical perspective, I wanted a project that forces me to dive deep int
 
 
 
-\## Architecture 
+\## Architecture
 
 
 
@@ -134,7 +134,7 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 \*(Initial architecture block diagram. Full KiCAD schematic to follow after breadboard prototyping).\*
 
-!\[Project System Architecture](./architecture.png)
+!\[Project System Architecture](./architecture.svg)
 
 
 
@@ -170,7 +170,7 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 
 
-The firmware is developed in `#!\[no\_std]` Rust using the asynchronous Embassy framework.
+The firmware is developed in `#!\\\[no\\\_std]` Rust using the asynchronous Embassy framework.
 
 
 
