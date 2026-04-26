@@ -1,9 +1,12 @@
 # Rust-Grow
 An intelligent greenhouse automation system that monitors and controls the growing environment automatically.
 
-info
-**Author:** Yehor Zaplishnyi  
+:::info
+
+**Author:** Yehor Zaplishnyi  \
 **GitHub Project:** [rust-grow](https://github.com/UPB-PMRust-Students/fils-project-2026-yehorzaplishnyi)
+
+:::
 ## Description
 
 This project focuses on building an intelligent greenhouse automation system using an STM32 Nucleo-64 microcontroller as the central controller. The goal is to design a comprehensive environmental monitoring and control solution that maintains optimal growing conditions through real-time sensor data collection, processing, and automated actuator control.
