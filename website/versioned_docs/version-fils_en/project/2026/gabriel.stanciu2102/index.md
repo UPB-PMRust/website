@@ -3,7 +3,7 @@ A precision medical-grade perfusor.
 
 :::info
 
-**Author**: Gabriel Stanciu\
+**Author**: Gabriel Stanciu \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-stanciugabriel
 
 ::::
