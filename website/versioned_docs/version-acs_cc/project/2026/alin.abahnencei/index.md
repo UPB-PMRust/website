@@ -68,7 +68,7 @@ Main Architectural Components:
 
 ### Schematics
 
-![Schematic](./images/Project%20Architecture.webp)
+![Schematic](./images/Project%20Architecture%20resized.webp)
 
 ### Bill of Materials
 
