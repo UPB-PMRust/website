@@ -41,7 +41,7 @@ The project is divided into 4 main components: Input, Processing, Output, and Po
 * Ordered the Pan-Tilt bracket, SG90 servos, LDRs, and required electronic components.
 * Finalized documentation draft.
 
-### Week 27 - 4 April-May
+### Week 27 April - 4 May
 
 ### Week 5 - 11 May
 
