@@ -5,7 +5,7 @@ A custom wired game controller inspired by Xbox/PlayStation designs, built on ST
 :::info
 
 **Author**: Țopa Mihai-Sebastian \
-**Github Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-topa-mihai-sebastian
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-topa-mihai-sebastian
 
 :::
 
