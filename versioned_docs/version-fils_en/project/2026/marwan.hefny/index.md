@@ -1,78 +1,133 @@
 # Thermo-Tracking Smart Fan
-Source Code Repository:https://github.com/UPB-PMRust-Students/fils-project-2026-Marwan-010
-## 1. Description of the Functionality
-The **Thermo-Tracking Smart Fan** is an autonomous, closed-loop environmental control system. Unlike a standard desk fan that blows air in a fixed direction at a fixed speed, this system actively tracks the user's position in real-time and dynamically adjusts its cooling power based on the ambient room temperature. 
 
-It features two primary modes of operation:
-* **Spatial Tracking:** Using an array of three Passive Infrared (PIR) sensors, the system detects user movement and drives a servo motor to orient the fan directly toward the user.
-* **Thermal Regulation:** A DHT22 sensor continuously monitors the environment. As the temperature rises, the microcontroller uses Pulse Width Modulation (PWM) to increase the DC motor's fan speed. 
+## Description
 
-Additionally, the system acts as a desktop telemetry dashboard, featuring an I2C OLED display to show live temperature and fan speed data, along with a piezoelectric buzzer that sounds an alarm if the temperature exceeds a critical threshold.
+This project implements an autonomous, closed-loop environmental control system using the STM32F103C8T6 (Blue Pill) microcontroller. It functions as a smart desk fan that actively tracks the user's position and adjusts its cooling power based on ambient temperature. Using an array of three PIR sensors, the system detects movement and drives a servo motor to orient the fan towards the user. Simultaneously, a DHT22 sensor monitors the room temperature, increasing the DC motor's fan speed via PWM as the heat rises. The system also features an OLED display to show live telemetry (temperature and fan speed) and an active buzzer that sounds an alarm if the temperature exceeds a critical threshold. The firmware is written entirely in Embedded Rust, ensuring memory safety and reliable hardware control.
 
-## 2. Motivation
-The motivation behind this project is to create a highly practical desk accessory while demonstrating mastery over multiple embedded systems concepts. I wanted to build a project that bridges the gap between digital inputs (motion sensing), digital communication protocols (I2C and 1-Wire), and analog-like actuation (PWM motor control). Writing the firmware in Embedded Rust ensures memory safety and high reliability, making this not just a toy, but a robust hardware appliance.
+## Motivation
 
-## 3. Architecture
-The system architecture revolves around a centralized microcontroller (STM32) acting as the brain, gathering data from environmental sensors, and sending control signals to mechanical actuators and the user interface.
+Standard desk fans are inefficient, blowing air in fixed directions at constant speeds regardless of where the user is or how hot the room actually is. This project aims to create a highly practical, responsive desk accessory while demonstrating mastery over multiple embedded systems concepts. By combining digital inputs (motion sensing), digital communication protocols (I2C, 1-Wire), and analog-like actuation (PWM motor control), this project bridges the gap between environmental sensing and physical actuation. Utilizing Embedded Rust ensures that the device operates securely and consistently without runtime crashes, making it a robust hardware appliance rather than a simple prototype.
 
-* **Inputs:** PIR motion sensors (Digital GPIO), DHT22 Temperature Sensor (1-Wire).
-* **Processing:** STM32F103C8T6 evaluating spatial logic and thermal mapping.
-* **Outputs:** SG90 Servo (PWM), DC Motor via L9110S Driver (PWM), OLED Display (I2C), Active Buzzer (Digital GPIO).
+## Architecture
 
-*(image here later)*
-## 4. Hardware Design
-### Description of Hardware Used
-* **STM32F103C8T6 (Blue Pill):** An ARM Cortex-M3 microcontroller that provides the necessary GPIO pins, hardware timers for PWM, and I2C peripherals.
-* **HC-SR501 PIR Sensors:** Infrared sensors used to divide the desk area into "Left", "Center", and "Right" zones.
-* **DHT22 Sensor:** A highly accurate digital sensor for reading ambient room temperature and humidity.
-* **SG90 Servo:** A 180-degree micro servo used to pan the fan assembly.
-* **DC Motor & L9110S Driver:** The driver safely isolates the high-current DC motor from the STM32's logic pins while allowing speed control via PWM.
-* **SSD1306 OLED Display (0.96"):** A small screen used to display the system's current telemetry.
-* **Piezo Buzzer:** Provides auditory alerts for thermal warnings.
+**STM32F103C8T6 (Blue Pill)**
+* **Role:** Acts as the "brain" of the system — it controls all components: evaluates spatial logic from the PIR sensors, maps temperature data from the DHT22 to fan speeds, updates the OLED display, drives the servo and DC motor via PWM, and triggers the buzzer.
+* **Connections:**
+  * I2C to OLED Display
+  * GPIO Inputs to HC-SR501 PIR Sensors
+  * GPIO Input to DHT22 Sensor
+  * PWM to SG90 Servo
+  * PWM to L9110S Motor Driver
+  * GPIO Output to Active Buzzer
 
-*(KiCad schematic and device photos here later)*
-## 5. Software Design
-The software is written in **Embedded Rust** using a `no_std` environment. It utilizes the `stm32f1xx-hal` (Hardware Abstraction Layer) to safely interact with the chip's registers.
+**SSD1306 OLED Display (0.96")**
+* **Interface:** I2C
+* **Role:** Displays live telemetry including ambient temperature, current fan speed percentage, and tracking status.
+* **Connections:**
+  * SDA to STM32 SDA
+  * SCL to STM32 SCL
+  * VCC to 3.3V
+  * GND to GND
 
-The logic operates in a continuous control loop:
-1. **Sensor Polling:** The system checks the state of the three PIR sensors and updates the target angle for the servo motor.
-2. **Thermal Mapping:** The DHT22 is polled. The temperature float value is mapped to a PWM duty cycle range (e.g., 24°C = 50% duty, 30°C = 100% duty).
-3. **UI Update:** The `embedded-graphics` library buffers the new temperature and speed data and flushes it to the OLED via I2C.
-4. **Safety Check:** If the temperature exceeds 30°C, the GPIO pin attached to the buzzer is pulled HIGH to trigger the alarm.
+**HC-SR501 PIR Sensors (x3)**
+* **Interface:** GPIO
+* **Role:** Detects infrared motion to divide the desk area into "Left", "Center", and "Right" zones for spatial tracking.
+* **Connections:**
+  * OUT signals to STM32 GPIO Inputs
+  * VCC to 5V
+  * GND to GND
 
-*(software functional diagram here later)*
-## 6. Materials (BOM)
+**DHT22 Temperature Sensor**
+* **Interface:** 1-Wire / GPIO
+* **Role:** Continuously reads the ambient room temperature to dictate the required fan speed.
+* **Connections:**
+  * DATA to STM32 GPIO Input
+  * VCC to 3.3V
+  * GND to GND
 
-### Hardware
-| Component | Quantity | 
-| :--- | :--- | 
-| STM32F103C8T6 (Blue Pill) | 1 | 
-| ST-Link V2 Debugger | 1 |
-| HC-SR501 PIR Sensor | 3 | 
-| DHT22 Temperature Sensor | 1 |
-| SG90 Micro Servo | 1 | 
-| 5V DC Motor + Fan Blade | 1 |
-| L9110S Motor Driver | 1 |
-| 0.96" I2C OLED Display | 1 | 
-| Active Piezo Buzzer | 1 |
-| Breadboard & Wires | 1 | 
+**SG90 Servo Motor**
+* **Interface:** PWM
+* **Role:** Pans the fan assembly left and right to physically aim the airflow at the user.
+* **Connections:**
+  * Signal to STM32 PWM Output
+  * VCC to 5V
+  * GND to Shared GND
 
+**DC Motor & L9110S Driver**
+* **Interface:** PWM
+* **Role:** The driver isolates the high-current DC fan motor from the microcontroller, allowing safe variable speed control.
+* **Connections:**
+  * IN-A (Signal) to STM32 PWM Output
+  * VCC to External 5V Battery/Supply
+  * GND to Shared GND
 
-### Software (Rust Crates)
-* `cortex-m-rt`: ARM Cortex-M runtime.
-* `stm32f1xx-hal`: Hardware abstraction layer.
-* `dht-sensor`: DHT22 protocol driver.
-* `ssd1306`: OLED display driver.
-* `embedded-graphics`: 2D drawing library for the display.
-* `panic-halt`: Panic handler.
+**Active Piezo Buzzer**
+* **Interface:** GPIO
+* **Role:** Emits a continuous warning tone if the room temperature exceeds a safe maximum threshold (e.g., 30°C).
+* **Connections:**
+  * Signal to STM32 GPIO Output
+  * GND to GND
 
-## 7. Weekly Log
-| Week | Task Description | Status |
+## Log
+
+**Week 7 - 14 April**
+Project selection, requirements gathering, and initial GitHub repository setup. Finalized the system architecture, selected the STM32F103C8T6 as the primary microcontroller, and mapped out the required peripheral interfaces. 
+
+**Week 8 - 21 April**
+*(Planned)* Acquire all hardware components. Begin initial breadboard testing by setting up the basic GPIO inputs for the three PIR sensors and configuring the digital output for the active buzzer.
+
+**Week 9 - 28 April**
+*(Planned)* Implement hardware timers in Rust to generate precise PWM signals. Test the physical actuation of the SG90 Servo motor for panning, and the L9110S driver for variable DC fan speed control.
+
+**Week 10 - 5 May**
+*(Planned)* Integrate the communication protocols. Implement I2C to initialize and draw text to the SSD1306 OLED display, and write the polling logic for the DHT22 temperature sensor.
+
+**Week 11 - 12 May**
+*(Planned)* Combine all subsystems into the main control loop. Finalize the spatial tracking logic and thermal regulation thresholds. Begin creating the official hardware schematic in KiCad.
+
+**Week 12 - 19 May**
+*(Planned)* Final debugging of the system. Assemble the hardware onto a permanent mount/chassis. Finalize all project documentation and prepare for the live PM Fair demonstration.
+
+## Hardware
+
+* **STM32F103C8T6 (Blue Pill)** → Acts as the central controller, evaluating sensor data and driving actuators.
+* **HC-SR501 PIR Sensors (x3)** → Detects user position to guide the fan's orientation.
+* **DHT22 Temperature Sensor** → Measures room temperature to dynamically adjust fan speed.
+* **SG90 Servo Motor** → Physically rotates the fan to aim at the user.
+* **DC Motor & Fan Blade** → Provides the actual cooling airflow.
+* **L9110S Motor Driver** → Safely powers the DC motor and allows for PWM speed control.
+* **SSD1306 OLED Display (I2C)** → Serves as a dashboard to display current temperature and fan status.
+* **Active Piezo Buzzer** → Provides an auditory alarm if temperatures get too high.
+
+## Schematics
+
+*(KiCad schematic images here later)*
+## Bill of Materials
+
+| Device | Usage | Price |
 | :--- | :--- | :--- |
-| **Week 7** | Project selection, requirements gathering, and initial GitHub repository setup. | Completed |
-| **Week 8** | Hardware acquisition and initial breadboard testing of basic GPIO (Buzzer, PIR sensors). | Pending |
-| **Week 9** | Implementation of PWM control for the Servo and DC Motor. | Pending |
-| **Week 10** | Integration of I2C OLED display and DHT22 sensor logic. | Pending |
-| **Week 11** | System assembly, final code integration, and KiCad schematic generation. | Pending |
-| **Week 12** | Final debugging and documentation review. | Pending |
-| **Week 13/14** | PM Fair presentation and live hardware demo prep. | Pending |
+| STM32F103C8T6 | The main microcontroller board | 20 LEI |
+| ST-Link V2 | Used as a debug probe to flash code | 20 LEI |
+| HC-SR501 PIR (x3) | Senses user movement for tracking | 30 LEI |
+| DHT22 Sensor | Reads ambient temperature | 15 LEI |
+| SG90 Servo Motor | Pans the fan left and right | 12 LEI |
+| 5V DC Motor + Fan | Provides cooling airflow | 10 LEI |
+| L9110S Driver | Controls the DC motor speed safely | 10 LEI |
+| SSD1306 OLED | Displays telemetry and status via I2C | 15 LEI |
+| Active Buzzer | Emits warning tone for high heat | 3 LEI |
+| Breadboard & Wires | Prototyping and connecting components | 35 LEI |
+
+## Software
+
+| Library | Description | Usage |
+| :--- | :--- | :--- |
+| `cortex-m-rt` | ARM Cortex-M runtime | Handles the startup code and minimal runtime for the STM32 |
+| `stm32f1xx-hal` | Hardware abstraction layer for STM32F1 | Interfaces with peripherals like PWM (Motors), I2C (OLED), and GPIO (Sensors) |
+| `ssd1306` | Driver for SSD1306 OLEDs | Initializes and communicates with the display screen over I2C |
+| `embedded-graphics` | 2D graphics library | Used to draw text, numbers, and UI elements on the OLED screen |
+| `dht-sensor` | Driver for DHT sensors | Reads and parses temperature and humidity data from the DHT22 |
+| `panic-halt` | Panic handler | Ensures the microcontroller stops safely if the code encounters a fatal error |
+
+## Links
+
+[Source Code Repository](https://github.com/UPB-PMRust-Students/fils-project-2026-Marwan-010)
