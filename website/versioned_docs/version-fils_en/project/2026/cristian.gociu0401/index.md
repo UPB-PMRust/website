@@ -79,3 +79,6 @@ The system uses a Raspberry Pi Pico W (RP2040) as the main controller and for Wi
 
 ## Links
 
+[Embassy](https://embassy.dev)
+[PCA9685 product data sheet](https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf)
+[Project inspiration](https://www.youtube.com/watch?v=xd8dKY6Ozrg)
