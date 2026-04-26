@@ -1,12 +1,74 @@
----
-sidebar_label: 'Mara-Andreea Damoc'
-title: 'RustArcade: High-Performance Embedded Gaming Console'
----
+# Project Name
 
-# RustArcade: High-Performance Embedded Gaming Console
+
+:::info 
+
+**Author**: Dămoc Mara - Andreea \
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-DamocMara)
+
+:::
+
 
 ## Description
-This project implements a standalone handheld gaming console that executes real-time game logic on an STM32 microcontroller using a bare-metal Rust environment. The system operates by continuously polling four digital input lines connected to tactile switches, translating physical presses into directional movement vectors. These inputs are processed through a deterministic game loop that manages coordinate-based state updates, monitors collision detection between active entities, and enforces game rules such as health depletion and scoring. Based on this processing, the system produces synchronized outputs: it renders a dynamic 128x160 graphical interface for gameplay and UI feedback, manages a hardware-level life counter by toggling three discrete LEDs, and synthesizes specific auditory alerts through pulse-width modulation in response to game events. Additionally, the system ensures data persistence by verifying and writing high-score values to non-volatile memory upon the conclusion of each session.
 
-## Technical Risks and Difficulties
-Implementing the project presents technical risks primarily related to the strict resource management enforced by the Rust ownership model, which can complicate concurrent access to peripherals like timers or GPIO pins. A major difficulty is optimizing data transmission via the SPI protocol to the TFT LCD screen to maintain a fluid frame rate, as well as rigorously managing the limited Flash memory for storing graphics and scores. Furthermore, implementing a precise debouncing algorithm for the buttons in a non-OS environment represents a challenge for control stability. In this context, I will require specific guidance for the correct configuration of clock registers and interrupt vectors, the efficient abstraction of peripherals using `embedded-hal` traits, and the safe handling of memory addresses for persistent data saving in the internal flash.
+This arcade game is built on STM32 using bare-metal Rust. It polls four buttons for real-time movement on a TFT LCD. The system tracks gameplay logic, including collision detection and scoring. Feedback is provided via three LEDs for lives and a PWM buzzer for sound effects. The project demonstrates full hardware-software integration—combining digital inputs, visual rendering, and sensory feedback in a memory-safe environment.
+
+
+## Motivation
+
+The motivation behind this project stems from a nostalgic passion for classic arcade games. By building a mini-console from scratch, I wanted to take a fun and engaging approach to learning embedded systems. This project merges my interest in gaming with technical skill-building, providing a hands-on way to understand how hardware and software interact to create a real-time interactive experience.
+
+
+## Architecture 
+
+The STM32 microcontroller serves as the central control unit, directing and managing all hardware components and executing the game logic developed in Rust.
+The four directional buttons are tactile switches connected directly to the STM32 GPIO pins to control the player's movement (Up, Down, Left, Right).
+OLED Display (SSD1306) is connected via SPI (or I2C) for real-time rendering of the game world, player character, and status messages.
+Life Indicator LEDs show the remaining player lives.
+Passive Buzzer: Connected to a pin for dynamic tone generation. It provides auditory cues for game events, such as losing a life.
+
+
+## Log
+
+
+### Week 5 - 11 May
+
+### Week 12 - 18 May
+
+### Week 19 - 25 May
+
+## Hardware
+
+The system is powered by an STM32 microcontroller (ARM Cortex-M), utilizing its SPI, GPIO, and PWM peripherals to interface with external components.
+
+### Schematics
+
+![Project Schematic](./schematics.svg)
+
+### Bill of Materials
+
+
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| [Display LCD](https://www.display-lcd.com/product_details/155.html) | Game screen | [35 RON](https://www.emag.ro/display-tft-lcd-1-77-128x160-rgb-65k-culori-cog-st7735s-compatibil-arduino-bmx644/pd/D8G20R3BM/) |
+| [Breadboard](https://atl.aim.gov.in/ATL-Equipment-Manual/jumper-cable/) | Connecting the components | [7 RON](https://www.emag.ro/breadboard-400-puncte-ai059-s69/pd/DRJ66JBBM/) |
+| [NPN transistors](https://www.st.com/resource/en/datasheet/bd241c.pdf) | Electronic switch | [3 x 1.5 RON](https://www.emag.ro/tranzistor-npn-to-92-bc547-ai1495/pd/DVWV0WMBM/) |
+| [Buttons](https://docs.arduino.cc/built-in-examples/digital/Button/)| User input | [6 x 2.5 RON](https://docs.arduino.cc/built-in-examples/digital/Button/) |
+| [Buzzer](https://docs.arduino.cc/libraries/buzzer/)| Auditory feedback | [12,5 RON](https://www.emag.ro/buzzer-pasiv-pe-pcb-elektroweb-fara-generator-convertor-5-v-3-d-012/pd/DSLMTMYBM/)|
+
+
+
+## Software
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [st7735-lcd](https://github.com/almindor/st7735-lcd) | Display driver for ST7735 | Used for the 1.77" TFT display |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing sprites and text |
+| [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Startup code and runtime | Bare-metal execution for STM32 |
+
+## Links
+
+
+1. [link](https://example.com)
+
