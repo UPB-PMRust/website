@@ -4,7 +4,7 @@ An intelligent trash bin that encourages recycling through automation and reward
 :::info 
 
 **Author**: Ana-Sorina Ciurea \
-**GitHub Project Link**: https://github.com/anaciurea/your-project
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-anaciurea
 
 :::
 
