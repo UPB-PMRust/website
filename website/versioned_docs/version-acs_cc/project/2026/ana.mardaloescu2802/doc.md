@@ -32,7 +32,7 @@ What motivated me specifically to chose this project was the gap between what ex
 
 - **Bluetooth module** transmits measurement data wirelessly to an **Android device** for **long-term trend visualization**.
 
-![Architecture diagram](docs/architecture.png)
+![Architecture diagram](architecture.svg)
 
 ## Log
 
