@@ -56,11 +56,9 @@ From a technical perspective, I wanted a project that forces me to dive deep int
 
 The project revolves around the **STM32 NUCLEO-U545RE-Q** microcontroller acting as the central state machine.
 
-**Inputs:** The HC-05 module receives serial data strings from a Python script on the PC. The Rotary Encoder sends EXTI signals to navigate the menu.
-
-**Processing:** Using *embassy-executor*, independent tasks run concurrently. Data is passed safely between these tasks using *embassy-sync* Channels.
-
-**Outputs:** The STM32 calculates PWM duty cycles to move the servo needles, formats text to the OLED via I2C, triggers GPIO pins for the buzzer and vibration motor, updates the RGB LEDs, and sends standard USB HID keyboard reports.
+* **Inputs:** The HC-05 module receives serial data strings from a Python script on the PC. The Rotary Encoder sends EXTI signals to navigate the menu.
+* **Processing:** Using *embassy-executor*, independent tasks run concurrently. Data is passed safely between these tasks using *embassy-sync* Channels.
+* **Outputs:** The STM32 calculates PWM duty cycles to move the servo needles, formats text to the OLED via I2C, triggers GPIO pins for the buzzer and vibration motor, updates the RGB LEDs, and sends standard USB HID keyboard reports.
 
 
 
@@ -113,12 +111,12 @@ Place your KiCAD or similar schematics here in SVG format.
 |[SSD1306 OLED Display (0.96")](https://www.adafruit.com/product/3296)|Digital data readout via I2C|16.30 RON|
 |[2x SG90 Micro Servo Motors](https://components101.com/motors/servo-motor-basics-pinout-datasheet)|Analog temperature gauges via PWM|23.61 RON|
 |[KY-040 Rotary Encoder](https://components101.com/sensors/ky-040-rotary-encoder-module)|Menu navigation and HID button|14.68 RON|
-|[Active Piezo Buzzer](https://www.adafruit.com/product/1201)|Acoustic alarm system|10.49 RON|
-|3V Coin Vibration Motor|Haptic alarm system|18.51 RON|
+|[Active Piezo Buzzer](https://components101.com/misc/buzzer-pinout-working-datasheet)|Acoustic alarm system|10.49 RON|
+|[3V Coin Vibration Motor](https://www.adafruit.com/product/1201)|Haptic alarm system|18.51 RON|
 |[WS2812B RGB LED Stick](https://www.adafruit.com/product/1426)|Visual alarm system|14.18 RON|
 |[Breadboard (Large)](https://www.optimusdigital.ro/)|Prototyping base|19.52 RON|
-|Dupont Cables (M-M \& M-F)|Interconnections|38.33 RON|
-|2N2222, 1k Resistor, 1N4007|Motor driving circuit components|36.55 RON|
+|[Dupont Cables (M-M \& M-F)](https://www.optimusdigital.ro/)|Interconnections|38.33 RON|
+|[2N2222, 1k Resistor, 1N4007](https://www.optimusdigital.ro/)|Motor driving circuit components|36.55 RON|
 
 
 
