@@ -4,8 +4,8 @@ A remote controled fixed wing drone
 
 :::info
 
-    **Author:** Vlad Buruleanu \
-    **Github Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-vladburuleanu
+**Author:** Vlad Buruleanu  \
+**Github Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-vladburuleanu
 
 :::
 
