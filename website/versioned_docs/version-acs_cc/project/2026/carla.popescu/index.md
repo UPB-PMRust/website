@@ -70,20 +70,20 @@ The system operates as a state machine with the following states:
 |--------|-------|-------|
 | Nucleo-STM32U545RE-Q | Microcontroller | (owned) |
 | KY-008 Laser Module | Laser emitter | 3.15 RON |
-| LDR Photoresistor 5528 (set 5) | Light sensor | 14.14 RON |
+| LDR Photoresistor 5528 (set of 5) | Light sensor | 14.14 RON |
 | RC522 RFID Module + card + tag | Access control | 20.75 RON |
 | MIFARE Classic 1K Cards (x3) | Access cards | 15.00 RON |
 | SSD1306 OLED 0.96" I2C | Status display | 31.99 RON |
 | Active Buzzer 5V | Alarm sound | 14.96 RON |
 | BC547 NPN Transistor (x3) | Buzzer driver | 11.10 RON |
-| LED Kit 200 buc (roșu + verde) | Visual indicators | 30.25 RON |
-| Tactile Push Buttons (set 25) | Manual reset | 37.50 RON |
-| Rezistoare 220Ω (set 10) | LED protection | ~5.00 RON |
-| Rezistoare 1kΩ (set 10) | Transistor base | ~5.00 RON |
-| Rezistoare 10kΩ (set 20) | LDR divider | ~5.00 RON |
-| Breadboard 830 puncte | Prototyping | 10.00 RON |
-| Fire jumper 65 buc | Connections | 10.16 RON |
-| Set cabluri 40x10cm | Connections | 24.90 RON |
+| LED Kit 200 pcs (red + green) | Visual indicators | 30.25 RON |
+| Tactile Push Buttons (set of 25) | Manual reset | 37.50 RON |
+| 220Ω Resistors (set of 10) | LED protection | ~5.00 RON |
+| 1kΩ Resistors (set of 10) | Transistor base | ~5.00 RON |
+| 10kΩ Resistors (set of 20) | LDR voltage divider | ~5.00 RON |
+| Breadboard 830 points | Prototyping | 10.00 RON |
+| Jumper wires 65 pcs | Connections | 10.16 RON |
+| Cable set 40x10cm | Connections | 24.90 RON |
 
 ## Software
 
