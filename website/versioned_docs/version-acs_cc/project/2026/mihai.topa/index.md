@@ -128,7 +128,7 @@ The board is powered via USB-C (5V from the USB bus). The Nucleo's onboard regul
 
 ![Diagrama controller](./diagrama.svg)
 
-![Schematic](./Schematic.svg)
+![Schematic](./schematic.svg)
 
 The schematic covers the following connections:
 
