@@ -41,26 +41,31 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 <!-- write every week your progress here -->
 
-### Week 5 - 30 March: decided the project theme and searched for informations.
+### Week 5 - 30 March 
+Decided the project theme and searched for informations.
 
 
-
-### Week 6 - 6 April: bought all the components and soldered the raspberry pi and started creating the prototype.
-
-
-### Week 7 - 13 April: started on the documentation. 
+### Week 6 - 6 April
+Bought all the components and soldered the raspberry pi and started creating the prototype.
 
 
-### Week 8 - 20 April: started on the hardware and software milestones of the project. 
+### Week 7 - 13 April 
+Started on the documentation. 
 
 
-### Week 9 - 27 April: edited the documentation to submit the first milestone. 
+### Week 8 - 20 April
+Started on the hardware and software milestones of the project. 
 
-### Week 10 - 4 May: I submitted the documentation and made the necessary changes.
 
-### Week 11 - 11 May:
+### Week 9 - 27 April 
+Edited the documentation to submit the first milestone. 
 
-### Week 12 - 18 May:
+### Week 10 - 4 May
+Submitted the documentation and made the necessary changes.
+
+### Week 11 - 11 May
+
+### Week 12 - 18 May
 
 
 ## Hardware
