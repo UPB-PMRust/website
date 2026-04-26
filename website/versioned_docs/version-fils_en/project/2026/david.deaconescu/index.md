@@ -5,7 +5,7 @@ A renewable energy project utilizing adaptive mirrors and a Stirling engine to g
 :::info 
 **Author** Deaconescu David Mihai\
 
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: https://github.com/UPB-PMRust/fils-project-2026-david.deaconescu
 
 :::
 
