@@ -17,7 +17,7 @@ I was inspired by a YouTube video of an analog laser alarm circuit and wanted to
 
 ## Architecture
 
-![Arhitectura sistemului](images/Diagrama_PM.drawio.svg)
+![Arhitectura sistemului](images/diagrama_pm.drawio.svg)
 
 The **Nucleo-STM32U545RE-Q** is the central control unit, coordinating all components through an async state machine implemented in Embassy:
 
