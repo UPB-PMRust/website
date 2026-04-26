@@ -29,7 +29,7 @@ The system is composed of several logical components:
 - **Signal Module**: controls LED and buzzer for user prompt
 - **Random Delay Generator**: creates unpredictable wait times before signal
 
-
+![Schema arhitectura](scheme.drawio.svg)
 
 ## Log
 
