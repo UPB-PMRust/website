@@ -9,15 +9,18 @@ An Intelligent Storage Container for dry ingredients featuring dynamic weighing,
 
 :::
 
-<!-- do not delete the \ after your name -->
-
 ## Description
 
 The Smart Pantry Bin is an active kitchen tool designed to manage and preserve dry ingredients like coffee, sugar, or flour. Unlike a passive container, this system uses a load cell to function as a real-time kitchen scale, detecting exact amounts removed, and continuously monitors inventory levels. It also tracks environmental humidity to ensure ingredient quality, sending all data and alerts to a mobile application via Bluetooth.
 
 ## Motivation
 
-Why did you choose this project?
+I chose to build the **Smart Pantry Bin** because food waste and inefficient kitchen organization are common household problems. Often, we forget about basic ingredients (like flour, sugar, or rice) until we run out or they expire.
+
+By integrating a weighing system and environmental sensors, this project aim to:
+- *Automate Inventory:* Monitor the exact amount of remaining stock without manual checks.
+- *Ensure Food Safety:* Track humidity and temperature levels to prevent spoilage.
+- *Smart Integration:* Provide real-time data via Bluetooth, turning a simple storage container into an intelligent kitchen assistant.
 
 ## Architecture 
 
