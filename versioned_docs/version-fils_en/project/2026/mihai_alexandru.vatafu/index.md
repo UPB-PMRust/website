@@ -8,7 +8,7 @@ A smartwatch based on RP2040 developed in Rust using the Embassy framework.
 
 :::info
 
-**Author**: Mihai Alexandru Vătafu \\
+**Author**: Mihai Alexandru Vătafu \
 **GitHub Project Link**: [https://github.com/upb-pmrust/project-mihai_alexandru_vatafu](https://github.com/upb-pmrust/project-mihai_alexandru_vatafu)
 
 :::
