@@ -42,7 +42,7 @@ Main Architectural Components:
    - Role: Power the circuit accordingly to each component's needs.
    - Logic: 1x external battery power the STM32 board and 4x AA batteries power the motors.
 
-![Architecture Diagram](./images/DiagramaPM.drawio.svg)
+![Architecture Diagram](./images/diagramapm.drawio.svg)
 
 ## Log
 
@@ -68,7 +68,7 @@ Main Architectural Components:
 
 ### Schematics
 
-![Schematic](./images/Project%20Architecture%20resized.webp)
+![Schematic](./images/project%20architecture%20resized.webp)
 
 ### Bill of Materials
 
