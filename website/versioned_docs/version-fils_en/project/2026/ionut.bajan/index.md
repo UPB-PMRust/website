@@ -74,6 +74,6 @@ Place your KiCAD or similar schematics here in SVG format.
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [link](https://www.instagram.com/reels/DJ1TKzJMeLl/)
+2. [link](https://www.youtube.com/watch?v=bZIKVaD3dRk)
 ...
