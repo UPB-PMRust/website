@@ -83,4 +83,4 @@ The format is
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
-[link](https://m.youtube.com/watch?v=fQhsgUEnV2w)
+[Video Inspiration](https://m.youtube.com/watch?v=fQhsgUEnV2w)
