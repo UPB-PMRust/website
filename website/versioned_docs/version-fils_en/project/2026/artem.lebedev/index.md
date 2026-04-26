@@ -37,7 +37,7 @@ The system is organized into three functional layers:
 All components share a common ground. The 12V rail powers the solenoid valve and is supplied by an external 12V 2A DC adapter. The ESP32-C6 is powered via USB.
 
 ## Diagram
-![Ali_coffee_schematics](Ali_coffee_schematics.webp)
+![Ali_coffee_schematics](ali_coffee_schematics.webp)
 
 ## Log
 
