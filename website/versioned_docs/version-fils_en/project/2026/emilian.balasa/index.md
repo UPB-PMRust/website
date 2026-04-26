@@ -22,7 +22,7 @@ An interactive, physical desktop dashboard that monitors PC hardware telemetry i
 
 \*\*Author\*\*: Balasa Emilian-Valentin \\
 
-\*\*GitHub Project Link\*\*: #
+\*\*GitHub Project Link\*\*: https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
 
 
 
@@ -76,7 +76,7 @@ The project revolves around the \*\*STM32 NUCLEO-U545RE-Q\*\* microcontroller ac
 
 
 
-!\[Project System Architecture](./architecture.png)
+!\[Project System Architecture](./architecture.svg)
 
 
 
@@ -146,23 +146,27 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 |--------|--------|-------|
 
-| \[STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The central microcontroller | N/A |
+| \[STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The central microcontroller | 125 RON |
 
-| HC-05 Bluetooth Module | Wireless telemetry reception via UART | \~30 RON |
+| HC-06 Bluetooth Module | Wireless telemetry reception via UART | 20.85 RON |
 
-| SSD1306 OLED Display (0.96") | Digital data readout via I2C | \~15 RON |
+| SSD1306 OLED Display (0.96") | Digital data readout via I2C | 16.30 RON |
 
-| 2x SG90 Micro Servo Motors | Analog temperature gauges via PWM | \~20 RON |
+| 2x SG90 Micro Servo Motors | Analog temperature gauges via PWM | 23.61 RON |
 
-| KY-040 Rotary Encoder | Menu navigation and HID button | \~10 RON |
+| KY-040 Rotary Encoder | Menu navigation and HID button | 14.68 RON |
 
-| Active Piezo Buzzer | Acoustic alarm system | \~5 RON |
+| Active Piezo Buzzer | Acoustic alarm system | 10.49 RON |
 
-| 3V Coin Vibration Motor | Haptic alarm system | \~5 RON |
+| 3V Coin Vibration Motor (DC 3V-3.7V) | Haptic alarm system | 18.51 RON |
 
-| WS2812B RGB LED Module | Visual alarm system | \~10 RON |
+| WS2812B RGB LED Stick | Visual alarm system | 14.18 RON |
 
-| 2N2222, 1k Resistor, 1N4007 | Motor driving circuit | \~5 RON |
+| Breadboard (Large) | Prototyping base | 19.52 RON |
+
+| Dupont Cables (M-M \& M-F) | Interconnections | 38.33 RON |
+
+| 2N2222, 1k Resistor, 1N4007 | Motor driving circuit components | 36.55 RON |
 
 
 
@@ -170,7 +174,7 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 
 
-The firmware is developed in `#!\\\[no\\\_std]` Rust using the asynchronous Embassy framework.
+The firmware is developed in #!\[no\_std] Rust using the asynchronous Embassy framework.
 
 
 
