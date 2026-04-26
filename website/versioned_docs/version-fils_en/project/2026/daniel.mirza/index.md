@@ -144,6 +144,6 @@ _*to be ordered..._
 
 ## Links
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Battleship - Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)): General rules and history of the classic board game.
+2. [Sea Battle (App Store)](https://apps.apple.com/ro/app/sea-battle-online/id884947296?l=ro): A popular mobile version that inspired the digital UI and special mechanics.
+3. [Embassy - Async Rust for Embedded](https://embassy.dev/): Documentation for the framework powering the game's concurrency.
