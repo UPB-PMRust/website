@@ -46,7 +46,7 @@ Proiectul este structurat pe un flux de date continuu, împărțit în patru eta
 
 Am stabilit ideea de proiect și am primit aprobarea că este ok.
 
-### Week 7
+### Week 7-8
 
 Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs și să fac un prototip de case pt tot proiectul in Fusion360.
 
