@@ -1,5 +1,5 @@
 # Thermo-Tracking Smart Fan
-https://classroom.github.com/assignment-invitations/3e9a02c01ddb7f9598b960dadadefcfa/status
+Source Code Repository:https://github.com/UPB-PMRust-Students/fils-project-2026-Marwan-010
 ## 1. Description of the Functionality
 The **Thermo-Tracking Smart Fan** is an autonomous, closed-loop environmental control system. Unlike a standard desk fan that blows air in a fixed direction at a fixed speed, this system actively tracks the user's position in real-time and dynamically adjusts its cooling power based on the ambient room temperature. 
 
