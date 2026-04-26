@@ -71,9 +71,28 @@ first 2 weeks: finding the idea
 week 3: validating idea
 
 week 4 to present day: mess around with the board, the labs, order parts, waiting for parts.
+### Week 23 Feb - 29 Mar
 
+<<<<<<< HEAD
 ### Week 5 - 11 May
 >>>>>>> 5a2ebf16 (I have added the project description.)
+=======
+Looking for an idea, validating idea, idea is too simple so back to square 1.
+
+Asking people for problems that my project could solve, I am not satisfied with the ideas.
+
+Finding out about back boxes and how they record data for a plane crash, adapting the idea for a smaller scope so i chose a car instead of a plane.
+
+Validating idea with the course staff, idea is good.
+
+Looking for components, finding components, ordering them, they get delivered to the wrong address, waiting for components some more time.
+
+### Week 30 Mar - 26 Apr
+
+Doing small scale beginner project on the board to get the feel of how to program in rust on the STM board.
+
+Waiting for the rest of the components to be delivered.
+>>>>>>> f27d442f (Added some more details as requested in the PR.)
 
 ### Week 12 - 18 May
 
