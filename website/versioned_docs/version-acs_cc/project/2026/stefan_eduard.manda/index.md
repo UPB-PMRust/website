@@ -50,7 +50,7 @@ Am stabilit ideea de proiect și am primit aprobarea că este ok.
 
 ### Week 7-8
 
-Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs și să fac un prototip de case pt tot proiectul in Fusion360.
+Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs.
 
 ### Week 9
 
@@ -58,8 +58,11 @@ Mi-au venit piesele și m am apucat să scriu documentația.
 
 ### Week 11
 
-Am termiant circuitul si mai urmeaza sa i fac un case printat 3d sau un prototip de cutie pt a fi ergonomic
+Am terminat montajul pe breadboard și am făcut schema în KiCad (microfoane, DAC, OLED).
 
+### Week 12–13
+
+Am scris cod de test în Rust: mai întâi un singur microfon + căști, apoi OLED, apoi două microfoane cu afișare pe ecran. Încă lucrez la al treilea/al patrulea canal ca să ajung la array-ul complet de 4.
 
 ## Hardware
 
