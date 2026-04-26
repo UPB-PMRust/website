@@ -5,7 +5,7 @@ A real-time embedded system that keeps a ball balanced in the center of a moving
 :::info
 
 **Author**: Dmytro Chumakov \
-**GitHub Project Link**: https://github.com/cchumak/website/tree/main/website/versioned_docs/version-fils_en/project/2026/dmytro.chumakov
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-cchumak
 
 :::
 
