@@ -17,7 +17,7 @@ An autonomous mobile platform designed to optimize the growth environment for in
 The inspiration for the S.O.L.A.R. Rover comes from a recent personal interest in keeping indoor plants and a rather frustrating failure. Despite my best efforts and constant care, a basil plant I tried to grow simply wouldn't survive. That experience made me realize just how difficult it can be to maintain the perfect lighting for a plant to thrive indoors. At the same time, I was looking for a serious technical challenge. I had never built a robot before, and I specifically wanted to push myself to program a physical system that could actually move and navigate its surroundings. This project was born as a way to learn about locomotion and hardware, while finally solving the exact problem that doomed my basil.
 ## Architecture 
 
-![System Architecture](./images/SOLAR.svg)
+![System Architecture](./images/solar.svg)
 
 ## Log
 
