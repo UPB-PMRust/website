@@ -4,7 +4,7 @@ Real-time audio spectrum visualization using FFT on embedded hardware
 
 :::info
 
-**Author**: Mykyta Troinych
+**Author**: Mykyta Troinych \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23
 :::
 
