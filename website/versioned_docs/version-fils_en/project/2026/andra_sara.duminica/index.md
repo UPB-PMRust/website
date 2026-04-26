@@ -72,7 +72,7 @@ The system uses the following hardware components:
 
 ## Schematics
 
-
+![System Diagram](final_diag.svg)
 
 
 ---
