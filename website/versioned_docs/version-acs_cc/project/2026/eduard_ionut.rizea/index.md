@@ -4,7 +4,7 @@ A radio controled drone capable of pith roll and yaw.
 :::info 
 
 **Author**: Rizea Eduard-Ionut \
-**GitHub Project Link**: https://github.com/Edy1298/website
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-Edy1298
 
 :::
 
