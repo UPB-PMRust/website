@@ -69,5 +69,6 @@ The system is powered by an STM32 microcontroller (ARM Cortex-M), utilizing its 
 ## Links
 
 
-1. [link](https://example.com)
+1. [The Embedded Rust Book](https://docs.rust-embedded.org/book/)
+2. [Cortex-M Guide](https://ferrous-systems.com/blog/rust-on-stm32/)
 
