@@ -3,7 +3,7 @@
 A robotic flower that reacts to user presence and sound through dynamic movement.
 
 **Author:** Ilie Irina-Elena  
-**Project GitHub Link:** https://github.com/ilieirina9990-creator/interactive-flower  
+**Project GitHub Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-ilieirina9990-creator
 
 ---
 
