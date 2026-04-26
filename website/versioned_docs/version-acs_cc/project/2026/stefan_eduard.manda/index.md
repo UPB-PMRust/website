@@ -4,7 +4,7 @@ Sistem de captură audio direcțională bazat pe un array de microfoane PDM și 
 :::info
 
 **Author**: Manda Stefan-Eduard \
-**GitHub Project Link**: https://github.com/N1mbusul/website/tree/project/stefan_eduard.manda
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-N1mbusul
 
 :::
 
