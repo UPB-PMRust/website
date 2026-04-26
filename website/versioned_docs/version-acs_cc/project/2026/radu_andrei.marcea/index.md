@@ -63,8 +63,8 @@ Place your KiCAD or similar schematics here in SVG format.
 |--------|--------|-------|
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The main microcontroller unit | Provided by faculty |
 | [Pan-Tilt Bracket with 2x SG90 Servos](https://sigmanortec.ro/montura-servomotor-suport-camera-2-axe-pt-antivibratii-ptz-pentru-sg90-mg90s) | Mechanical 2-axis movement | 8.46 RON |
-[4x Photoresistor (5537) 5mm](https://sigmanortec.ro/Fotorezistor-5537-5mm-p160378607) | Light intensity detection (LDRs) | 6.76|
-| [Resistor kit](https://sigmanortec.ro/kit-rezistori-30-valori-20-bucati) | Contains the 4x 10kΩ resistors needed for the voltage dividers | 15.16 RON | |
+| [4x Photoresistor (5537) 5mm](https://sigmanortec.ro/Fotorezistor-5537-5mm-p160378607) | Light intensity detection (LDRs) | 6.76 RON |
+| [Resistor kit](https://sigmanortec.ro/kit-rezistori-30-valori-20-bucati) | Contains the 4x 10kΩ resistors needed for the voltage dividers | 15.16 RON |
 | [Breadboard 400 points](https://sigmanortec.ro/Breadboard-400-puncte-p129872825#) | Prototyping electronic circuits | 6.62 RON |
 | [Set of Jumper Wires](https://sigmanortec.ro/Set-Jumper-breadboard-140-p136286416) | Connecting components | 11.72 RON |
 
