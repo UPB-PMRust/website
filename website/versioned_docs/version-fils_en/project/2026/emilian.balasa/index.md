@@ -12,17 +12,25 @@ sidebar\_label: Telemetry Dashboard
 
 \# Dual-Interface Hybrid Telemetry Dashboard
 
-
-
-\*\*Student:\*\* Balasa Emilian-Valentin
-
-\*\*Group:\*\* 1221ED
-
-\*\*Lab Assistant:\*\* Eva Cosma
+An interactive, physical desktop dashboard that monitors PC hardware telemetry in real-time.
 
 
 
-\## 1. Description of the Functionality
+:::info 
+
+
+
+\*\*Author\*\*: Balasa Emilian-Valentin \\
+
+\*\*GitHub Project Link\*\*: #
+
+
+
+:::
+
+
+
+\## Description
 
 
 
@@ -38,11 +46,11 @@ On the front panel, two SG90 servo motors act as analog needles constantly displ
 
 
 
-The dashboard also features an active hardware alarm with multi-sensory feedback. If the CPU or GPU temperature exceeds a hardcoded threshold (e.g., 85°C), the STM32 triggers a piezo buzzer, activates a coin vibration motor, and shifts the WS2812B RGB LED lighting to a flashing red state, providing immediate acoustic, haptic, and visual warnings. Additionally, pressing the encoder button utilizes the USB HID connection to send multimedia keyboard commands (like Mute or Volume Up/Down) directly to the PC.
+The dashboard also features an active hardware alarm with multi-sensory feedback. If the CPU or GPU temperature exceeds a hardcoded threshold (e.g., 85°C), the STM32 triggers a piezo buzzer, activates a coin vibration motor, and shifts the WS2812B RGB LED lighting to a flashing red state. Additionally, pressing the encoder button utilizes the USB HID connection to send multimedia keyboard commands (like Mute or Volume Up/Down) directly to the PC.
 
 
 
-\## 2. Motivation for Choosing the Project
+\## Motivation
 
 
 
@@ -54,29 +62,17 @@ From a technical perspective, I wanted a project that forces me to dive deep int
 
 
 
-\## 3. Architecture \& Component Interconnection
+\## Architecture 
 
 
 
 The project revolves around the \*\*STM32 NUCLEO-U545RE-Q\*\* microcontroller acting as the central state machine.
 
+\* \*\*Inputs:\*\* The HC-05 module receives serial data strings from a Python script on the PC. The Rotary Encoder sends EXTI signals to navigate the menu.
 
+\* \*\*Processing:\*\* Using `embassy-executor`, independent tasks run concurrently. Data is passed safely between these tasks using `embassy-sync` Channels.
 
-\* \*\*Inputs:\*\* \* The HC-05 module receives serial data strings (e.g., "C:75 G:80") from a Python script running on the PC.
-
-&#x20; \* The Rotary Encoder sends EXTI signals to navigate the menu and trigger HID commands.
-
-\* \*\*Processing:\*\* Using `embassy-executor`, independent tasks run concurrently (e.g., reading Bluetooth data, updating the UI). Data is passed safely between these tasks using `embassy-sync` Channels without blocking the execution.
-
-\* \*\*Outputs:\*\* \* The STM32 calculates PWM duty cycles to move the servo needles.
-
-&#x20; \* It formats and sends text to the OLED via I2C.
-
-&#x20; \* It triggers GPIO pins for the buzzer and the transistor controlling the vibration motor.
-
-&#x20; \* It updates the WS2812B RGB LEDs using a dedicated PWM/Timer stream.
-
-&#x20; \* It sends standard USB HID keyboard reports over the USB CDC line.
+\* \*\*Outputs:\*\* The STM32 calculates PWM duty cycles to move the servo needles, formats text to the OLED via I2C, triggers GPIO pins for the buzzer and vibration motor, updates the RGB LEDs, and sends standard USB HID keyboard reports.
 
 
 
@@ -84,71 +80,121 @@ The project revolves around the \*\*STM32 NUCLEO-U545RE-Q\*\* microcontroller ac
 
 
 
-\## 4. Hardware Design
+\## Log
 
 
 
-\### 4.1. Hardware Description
+\### Week 9
 
-The logic runs on 3.3V and 5V. Most components (Bluetooth, OLED, Encoder, Buzzer, LEDs) interface directly with the STM32 pins. However, the 3V coin vibration motor draws too much current for a standard GPIO pin. To fix this, I designed a simple driving circuit: the GPIO pin switches an NPN transistor (2N2222) via a 1k Ohm base resistor, allowing external current to power the motor. A 1N4007 flyback diode is placed parallel to the motor to protect the microcontroller from voltage spikes when the motor stops.
-
-
-
-\### 4.2. Bill of Materials (Hardware)
-
-\* 1x STM32 NUCLEO-U545RE-Q
-
-\* 1x HC-05 Bluetooth Module
-
-\* 1x SSD1306 OLED Display (0.96", I2C)
-
-\* 2x SG90 Micro Servo Motors
-
-\* 1x KY-040 Rotary Encoder (with push-button)
-
-\* 1x Active Piezo Buzzer
-
-\* 1x 3V Coin Vibration Motor
-
-\* 1x WS2812B RGB LED Module (Neopixel)
-
-\* 1x NPN Transistor (2N2222), 1x 1k Resistor, 1x 1N4007 Diode
-
-\* Custom 3D-printed enclosure, Breadboard, Dupont wires
+Researched requirements, finalized the hardware component list, placed the order, and configured the GitHub repository documentation.
 
 
 
-\## 5. Software Design
+\### Week 10
+
+Breadboard testing of individual components (OLED, Servos, Bluetooth).
 
 
 
-The firmware is developed in `#!\[no\_std]` Rust.
+\### Week 11
 
-\* \*\*`embassy-stm32`\*\*: The main HAL for configuring UART, USB, PWM, I2C, and GPIO.
-
-\* \*\*`embassy-usb`\*\*: To implement the USB HID multimedia keyboard class.
-
-\* \*\*`ssd1306` \& `embedded-graphics`\*\*: For formatting and pushing pixels to the OLED.
-
-\* \*\*`rotary-encoder-hal`\*\*: For hardware-agnostic, non-blocking quadrature decoding.
-
-\* \*\*`heapless`\*\*: For buffering and parsing the incoming Bluetooth telemetry strings safely without dynamic memory allocation.
+Hardware Milestone presentation and final circuit assembly.
 
 
 
-\## 6. Weekly Log
+\### Week 12
+
+3D Enclosure design and printing.
 
 
 
-\* \*\*Week 9:\*\* Researched requirements, finalized the hardware component list, placed the order, and configured the GitHub repository documentation.
+\### Week 13
 
-\* \*\*Week 10:\*\* (To be updated - Breadboard testing of individual components)
+Software Milestone presentation.
 
-\* \*\*Week 11:\*\* (To be updated - Hardware Milestone presentation)
 
-\* \*\*Week 12:\*\* (To be updated - 3D Enclosure design and printing)
 
-\* \*\*Week 13:\*\* (To be updated - Software Milestone presentation)
+\### Week 14
 
-\* \*\*Week 14:\*\* (To be updated - PM Fair final demo)
+PM Fair final demo.
+
+
+
+\## Hardware
+
+
+
+The logic runs on 3.3V and 5V. Most components interface directly with the STM32 pins. However, the 3V coin vibration motor draws too much current for a standard GPIO pin. To fix this, I designed a simple driving circuit: the GPIO pin switches an NPN transistor (2N2222) via a 1k Ohm base resistor, allowing external current to power the motor. A 1N4007 flyback diode is placed parallel to the motor to protect the microcontroller.
+
+
+
+\### Schematics
+
+
+
+\*(Initial architecture block diagram. Full KiCAD schematic to follow after breadboard prototyping).\*
+
+!\[Project System Architecture](./architecture.png)
+
+
+
+\### Bill of Materials
+
+
+
+| Device | Usage | Price |
+
+|--------|--------|-------|
+
+| \[STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The central microcontroller | N/A |
+
+| HC-05 Bluetooth Module | Wireless telemetry reception via UART | \~30 RON |
+
+| SSD1306 OLED Display (0.96") | Digital data readout via I2C | \~15 RON |
+
+| 2x SG90 Micro Servo Motors | Analog temperature gauges via PWM | \~20 RON |
+
+| KY-040 Rotary Encoder | Menu navigation and HID button | \~10 RON |
+
+| Active Piezo Buzzer | Acoustic alarm system | \~5 RON |
+
+| 3V Coin Vibration Motor | Haptic alarm system | \~5 RON |
+
+| WS2812B RGB LED Module | Visual alarm system | \~10 RON |
+
+| 2N2222, 1k Resistor, 1N4007 | Motor driving circuit | \~5 RON |
+
+
+
+\## Software
+
+
+
+The firmware is developed in `#!\[no\_std]` Rust using the asynchronous Embassy framework.
+
+
+
+| Library | Description | Usage |
+
+|---------|-------------|-------|
+
+| \[embassy-stm32](https://github.com/embassy-rs/embassy) | STM32 Hardware Abstraction Layer | Configuring UART, USB, PWM, I2C, and GPIO |
+
+| \[embassy-usb](https://github.com/embassy-rs/embassy) | USB device stack | Implementing the USB HID multimedia keyboard class |
+
+| \[ssd1306](https://crates.io/crates/ssd1306) | Display driver | Formatting and pushing pixels to the OLED |
+
+| \[rotary-encoder-hal](https://crates.io/crates/rotary-encoder-hal) | Encoder driver | Non-blocking quadrature decoding |
+
+| \[heapless](https://crates.io/crates/heapless) | Data structures | Buffering and parsing Bluetooth strings without dynamic memory allocation |
+
+
+
+\## Links
+
+
+
+1\. \[Embassy-rs Documentation](https://embassy.dev/)
+
+2\. \[Rust on Embedded Devices](https://docs.rust-embedded.org/)
 
