@@ -10,13 +10,12 @@ Self balancing two wheeled pendulum robot.
 
 ## Description
 
-A robot that is using an accelerometer and gyroscope to sense when it is falling and revert to a vertical position, that is parallel to the weight vector. The user can connect to it via bluetooth and give him commands to move: front, back, turn right, turn left. Gyroscope and acceleromenter sensor information are fed into a feedback-based control loop stabilization algorithm. The output of this program is fed directly into the stepper motor controller. 
+A robot that uses an accelerometer and a gyroscope to sense when it is falling and revert to a vertical position, which is parallel to the weight vector. The user can connect to it via Bluetooth and give it commands to move: front, back, turn right, and turn left. Gyroscope and accelerometer sensor data are fed into a feedback-based control loop stabilization algorithm. The output of this program is fed directly into the stepper motor controller.
 
-From the research I have done, I learned that there are multiple control algorithms with PID being the easiest to implement and understand. As a bonus I will provide the use with the possibility to select what control algorithm the robot uses.
-
+From the research I have done, I learned that there are multiple control algorithms, with PID being the easiest to implement and understand. As a bonus, I will provide the use with the possibility to select what control algorithm the robot uses.
 ## Motivation
 
-This is a project I had on my radar for a long time. Having no experience with Control Systems, i though it was a great idea to start with this project. I also like the fact that this is a hardware inclined task, because my experience in university is software heavy.
+This is a project I had on my radar for a long time. Having no experience with Control Systems, I thought it was a great idea to start with this project. I also like the fact that this is a hardware-inclined task, because my experience in university is software-heavy.
 
 ## Architecture 
 
