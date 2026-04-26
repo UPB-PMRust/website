@@ -70,13 +70,13 @@ Configuratia fizica include:
 
 ### Bill of Materials
 
-| Device | Usage | Price |
-|--------|--------|-------|
+| Device | Price |
+|--------|--------|
 | [Nucleo-U545RE-Q](primita)
 | [4x PDM MEMS Mic (MP34DT01)](https://a.aliexpress.com/_EIQWrs6) | ~ 120 de lei |
 | [I2S DAC PCM5102](https://a.aliexpress.com/_EHXVHhy) | ~ 30 de lei |
 | [OLED 0.96" I2C](https://a.aliexpress.com/_EygJIYq) | ~ 20 de lei |
-| [Breadboard & Jumpers](deja le am) | ~ 30 de lei |
+| [Breadboard & Jumpers] | ~ 30 de lei |
 
 ## Software
 
