@@ -28,7 +28,7 @@ I chose this project because I am currently learning videography and cinematogra
 
 This is the initial diagram, subject to change as I develop the project, regarding how I think my project should be organized/work:
 
-![Architecture diagram](./SteadyFrame2.svg)
+![Architecture diagram](./steadyframe.svg)
 
 ## Main components:
 
