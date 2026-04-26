@@ -8,7 +8,7 @@ An interactive, physical desktop dashboard that monitors PC hardware telemetry i
 
 
 
-**Author:** Balasa Emilian-Valentin
+**Author:** Balasa Emilian-Valentin \
 
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
 
