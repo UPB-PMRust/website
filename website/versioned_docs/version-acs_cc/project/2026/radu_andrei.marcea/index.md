@@ -29,7 +29,7 @@ The project is divided into 4 main components: Input, Processing, Output, and Po
 * **Input:** The four Light Dependent Resistors (LDRs) send analog voltage signals to the processing unit via the ADC (Analog-to-Digital Converter), and the UI Button sends calibration or reset signals via GPIO.
 * **Processing:** The STM32 Nucleo board reads these signals asynchronously, calculates the horizontal and vertical light differentials, and determines the necessary angle adjustments. It then translates these actions into control signals (PWM) and sends them directly to the servo motors.
 * **Output:** The Pan and Tilt servo motors receive the PWM commands and execute the mechanical motion to physically align the solar tracker. Additionally, a Status LED receives GPIO signals to provide visual feedback on the system's state.
-* **Power:** There is a 5V power supply  for the Processing Unit and the sensor array, and an external power source  to safely provide the higher current required by the servo motors.
+* **Power:** There is a 5V power supply for the Processing Unit and the sensor array, and an external power source to safely provide the higher current required by the servo motors.
 
 ## Log
 
