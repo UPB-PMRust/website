@@ -64,11 +64,11 @@ Configuratia fizica include:
 - **Sistemul de ieșire**: Un modul DAC I2S  dotat cu mufă jack de 3.5mm, care îmi permite să ascult în timp real sunetul procesat prin orice pereche de căști standard.
 - **Interfața vizuală**: Un ecran OLED de 0.96" pe bus-ul I2C, pe care voi afișa starea filtrelor și un indicator vizual pentru intensitatea sunetului captat.
 
-### Schematics
+## Schematics
 
 - TODO: schematica KiCad de adăugat la Milestone Hardware(week 11). 
 
-### Bill of Materials
+## Bill of Materials
 
 | Device | Price |
 |--------|--------|
