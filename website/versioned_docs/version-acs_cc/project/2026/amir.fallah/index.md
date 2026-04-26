@@ -50,7 +50,8 @@ TBD
 
 | Library | Description | Usage |
 |---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Hardware Interface | Base library for project. |
 
 ## Links
 
-TBD
+1. https://www.youtube.com/watch?v=IYOxj6VyC8s&pp=ygUXaW52ZXJ0ZWQgcGVuZHVsdW0gcm9ib3Q%3D
