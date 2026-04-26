@@ -76,7 +76,7 @@ KiCad schematic completed. All components placed and wired: Pico 2W, two TMC2208
 
 ### Schematic
 
-![KiCad Schematic](kikadschematic.png)
+![KiCad Schematic](kikadschematic.svg)
 
 ### Photos
 
