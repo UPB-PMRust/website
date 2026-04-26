@@ -82,7 +82,7 @@ The format is
 | [LM2596S](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | DC-DC Buck Step Down Convertor LM2596S 4.0~40V to 1.25-37V - for supplying correct voltage to STM32 board| [48 RON](https://www.emag.ro/modul-dc-dc-buck-step-down-lm2596s-dc-dc-4-0-40v-la-1-25-37v-regulator-de-tensiune-reglabil-cu-voltmetru-led-stlxy-741050522578/pd/DKNQT83BM/?ref=sponsored_products_search_f_b_1_5&recid=recads_1_b90d01a332c40f582acfccf6bf3bca72edcfc042cd11701d2d49ef94121cef69_1777211422&aid=549a3d7e-f438-11f0-801c-06eaf0d4245d&oid=302862900&scenario_ID=1) |
 | [Gens Ace iMars mini G-Tech](https://gensace.de/products/gens-ace-imars-mini-g-tech-usb-c-2-4s-60w-rc-battery-charger-with-power-supply-adapter-and-adpter-cable-eu) | The battery charger - charges the battery when needed | [245 RON](https://www.autorc.ro/incarcatoare-acumulatori/10560-incarcator-acumulatori-gens-ace-imars-mini-g-tech-usb-c-2-4s-60w.html) |
 | [2 Axis Joystick](https://www.laskakit.cz/user/related_files/joystick_module.pdf) | The joystick - human input to "move" (point) the camera in a specified direction | [6 RON](https://sigmanortec.ro/Modul-joystick-doua-axe-XY-p126458908#) |
-| []() | Total: | [~1800 RON]() |
+| []() | Total: | [~1850 RON]() |
 NOT CONFIRMED YET:
 | [ILI9341](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | The LCD 3.2 inch touch display - would be used for observing information displayed by the microcontroller regarding position and rotation, plus would help navigate a menu for parameters - lots of stuff to do here, not all figured out *yet* | [117 RON](https://sigmanortec.ro/display-lcd-32-inch-240x320-touch-ili9341-sd-mega) |
 | [Wires]() | No exact count, still figuring out | []() |
