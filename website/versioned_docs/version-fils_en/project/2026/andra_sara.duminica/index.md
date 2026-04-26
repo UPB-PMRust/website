@@ -2,8 +2,12 @@
 
 A real-time embedded rhythm game where the user must press buttons in sync with LED cues and music.
 
-**Author:** Andra-Sara-Maria Duminica  
+:::info
+
+**Author:** Andra-Sara-Maria Duminica  \
 **Project GitHub Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-Asmd-44  
+
+:::
 
 ---
 
