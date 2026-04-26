@@ -20,7 +20,7 @@ I chose this project because conveyor belts are used in many real-life applicati
 
 ## Architecture 
 
-![Schematic](Schematic.svg)
+![schematic](schematic.svg)
 
 ## Log
 
