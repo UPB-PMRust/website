@@ -28,11 +28,13 @@ The system consists of four main functional blocks:
 
 - *Precision Sensing Engine*: Interfaces with the HX711 24-bit ADC to process raw signals from the load cell into stable weight measurements, calculating deltas for "Kitchen Scale Mode".
 
-- *Environmental Monitor*: Reads data from the AHT21 sensor via I2C and compares current humidity against product-specific thresholds (e.g., <50% for sugar).
+- *Environmental Monitor*: Reads data from the AHT21 sensor via I2C and compares current humidity against product-specific thresholds.
 
 - *Communication Hub*: Serializes weight, humidity, and alert status into data packets sent via UART to the HC-05 Bluetooth module for mobile synchronization.
 
 - *Local Interface*: Manages the 0.96" OLED display using the ssd1306 crate to provide immediate visual feedback without needing a phone.
+
+![System Architecture Diagram](./architecture.svg)
 
 ## Log
 
@@ -60,25 +62,25 @@ TODO
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32U575RE-Q (Nucleo-64)]() | Main Microcontroller | [Borrowed (University)]() |
-| [HX711 Weight Sensor Module](https://ardushop.ro/ro/electronica/2323-modul-citire-senzor-greutate-hx711-6427854004611.html) | Load cell amplifier / ADC | [7.00 RON]() |
-| [AHT21 Humidity & Temp Sensor](https://ardushop.ro/ro/groundstudio/1598-modul-senzor-umiditate-si-temperatura-aht21-groundstudio-6427854000439.html) | Environmental monitoring | [7.00 RON]() |
-| [5kg Load Cell](https://ardushop.ro/ro/electronica/2418-senzor-greutate.html) | Weight sensing | [10.00 RON]() |
-| [HC-05 Bluetooth Module](https://ardushop.ro/ro/comunicatie/1582-modul-bluetooth-hc-05-transciever-serial-6427854023520.html) | Wireless data transmission | [30.00 RON]() |
-| [0.96" OLED I2C Display](https://ardushop.ro/ro/display-uri-si-led-uri/818-display-oled-096-i2c-iic-albastru-6427854010636.html) | Local UI feedback | [22.00 RON]() |
-| [6xAA Battery Holder](https://ardushop.ro/ro/electronica/564-suport-baterii-6xaa-mufa-6427854006677.html) | Portable power supply | [6.00 RON]() |
-| [Breadboard + Jumper Wires](https://ardushop.ro/ro/electronica/2297-breadboard-830-puncte-mb-102-6427854012265.html) | Prototyping | [25.00 RON]() |
+| STM32U575RE-Q (Nucleo-64) | Main Microcontroller | Borrowed (University) |
+| [HX711 Weight Sensor Module](https://ardushop.ro/ro/electronica/2323-modul-citire-senzor-greutate-hx711-6427854004611.html) | Load cell amplifier / ADC | 7.00 RON |
+| [AHT21 Humidity & Temp Sensor](https://ardushop.ro/ro/groundstudio/1598-modul-senzor-umiditate-si-temperatura-aht21-groundstudio-6427854000439.html) | Environmental monitoring | 7.00 RON |
+| [5kg Load Cell](https://ardushop.ro/ro/electronica/2418-senzor-greutate.html) | Weight sensing | 10.00 RON |
+| [HC-05 Bluetooth Module](https://ardushop.ro/ro/comunicatie/1582-modul-bluetooth-hc-05-transciever-serial-6427854023520.html) | Wireless data transmission | 30.00 RON |
+| [0.96" OLED I2C Display](https://ardushop.ro/ro/display-uri-si-led-uri/818-display-oled-096-i2c-iic-albastru-6427854010636.html) | Local UI feedback | 22.00 RON |
+| [6xAA Battery Holder](https://ardushop.ro/ro/electronica/564-suport-baterii-6xaa-mufa-6427854006677.html) | Portable power supply | 6.00 RON |
+| [Breadboard + Jumper Wires](https://ardushop.ro/ro/electronica/2297-breadboard-830-puncte-mb-102-6427854012265.html) | Prototyping | 25.00 RON |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [stm32u5xx-hal]() | Hardware Abstraction Layer | GPIO, I2C, UART and Power management |
-| [hx711]() | 24-bit ADC Driver | Reading weight data from the load cell |
-| [aht20]() | AHT20/21 Sensor Driver | Reading humidity and temperature data |
-| [ssd1306]() | OLED Display Driver | Rendering text and graphics to the I2C display |
-| [embedded-graphics]() | 2D graphics library | Drawing icons and status bars on the OLED |
-| [nb]() | Non-blocking I/O | Managing asynchronous UART for Bluetooth |
+| stm32u5xx-hal | Hardware Abstraction Layer | GPIO, I2C, UART and Power management |
+| hx711 | 24-bit ADC Driver | Reading weight data from the load cell |
+| aht20 | AHT20/21 Sensor Driver | Reading humidity and temperature data |
+| ssd1306 | OLED Display Driver | Rendering text and graphics to the I2C display |
+| embedded-graphics | 2D graphics library | Drawing icons and status bars on the OLED |
+| nb | Non-blocking I/O | Managing asynchronous UART for Bluetooth |
 
 ## Links
 
