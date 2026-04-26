@@ -1,13 +1,10 @@
----
-sidebar_label: 'Autonomous Catapult Vehicle'
----
 
 # Autonomous Catapult Vehicle
 
 An autonomous vehicle which has a catapult attached to it.
 
 :::info
-**Author:** Robert Marian Albu  
+**Author:** Robert Marian Albu \
 **GitHub Project Link:** [https://github.com/UPB-PMRust-Students/acs-project-2026-ARobertM44](https://github.com/UPB-PMRust-Students/acs-project-2026-ARobertM44)
 
 :::
@@ -22,7 +19,7 @@ I chose this project because I wanted to test myself by implementing a machine c
 
 ## Architecture
 
-![Architecture Diagram](./Architecture.svg)
+![Architecture Diagram](./architecture.svg)
 
 ## Log
 
@@ -56,6 +53,13 @@ To be continued..
 
 ## Software
 
-To be continued..
+| Library | Description | Usage |
+|---|---|---|
+| **embassy-stm32** | Hardware Abstraction | Used to configure PWM for the catapult's servo motor and GPIOs for the driving motors. |
+| **embassy-time** | Time management | Used to create precise delays between moving and firing to ensure system stability. |
+| **defmt** | Logging tool | Used to print status messages like "Target reached" or "Initiating launch" to the terminal for debugging. |
+| **embassy-executor** | Task scheduler | Used to manage the system's execution and handle the state transitions (Move, Stop, Fire). |
 
 ## Links
+
+[Embassy Framework Documentation](https://embassy.dev/book/index.html)
