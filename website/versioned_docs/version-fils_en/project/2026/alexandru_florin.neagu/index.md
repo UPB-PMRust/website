@@ -3,9 +3,9 @@ A handheld 3-axis camera stabilizer controlled by an STM32 board and programmed 
 
 :::info 
 
-**Author**: Neagu Alexandru-FLorin 
+**Author**: Neagu Alexandru-FLorin  \
 
-**Group**: 1222EEB 
+**Group**: 1222EEB \
 
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-ithinktoomuch05
 
