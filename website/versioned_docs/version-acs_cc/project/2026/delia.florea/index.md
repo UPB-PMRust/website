@@ -1,5 +1,5 @@
 Project Name
-STM32 Rust Smart Car
+Spy Video Car
 :::
 Author: Florea Delia Cristina
 GitHub Project Link: https://github.com/UPB-PMRust-Students/acs-project-2026-Deliutz
