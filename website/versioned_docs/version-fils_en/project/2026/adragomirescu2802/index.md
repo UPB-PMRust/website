@@ -4,7 +4,7 @@ A smart parking system with real-time spot monitoring and web-based reservation.
 
 :::info
 
-**Author**: Dragomirescu Alexandru  
+**Author**: Dragomirescu Alexandru  \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-alexdragomirescu06
 
 :::
