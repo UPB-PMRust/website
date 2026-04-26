@@ -3,7 +3,7 @@ Sonar using ToF Distance Sensors
 
 :::info 
 
-**Author**: Abdulqader Albaidhani\
+**Author**: Abdulqader Albaidhani \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Albaidany
 
 :::
