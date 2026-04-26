@@ -19,7 +19,7 @@ I chose this project because it combines multiple hardware components and commun
 
 ## Architecture
 
-![Architecture Diagram](MA_diag.svg)
+![Architecture Diagram](architecture.svg)
 
 The system is built around the Raspberry Pi Pico W as the central controller, running software written in Rust using the embassy-rp async framework.
 
