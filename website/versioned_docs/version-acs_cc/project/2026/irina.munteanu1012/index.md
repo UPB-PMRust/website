@@ -49,7 +49,7 @@ animal's ability.
   the gate and the ball drops into the flywheel zone.
 - **UI & Logging Module** — A 128x64 I2C OLED display shows the current state (Idle, Searching,
   Ready, Launching, Error/Sleep). Buttons allow mode selection. Statistics (throw count, average
-  return time) are stored in STM32U5 Flash and streamed over UART using defmt.
+  return time) are stored in STM32U5 Flash and streamed over UART using defmt .
 
 
 ## Log
