@@ -20,7 +20,7 @@ Seeing so many people just throwing away trash where they can without looking in
 ## Architecture 
 
 The architecture consists of an Edge Controller (STM32) managing local sensors and actuators, a Wireless Bridge (ESP32-CAM) for image relay, and a PC Intelligence Hub for Python-based AI processing, all interconnected through a hybrid UART and Wi-Fi communication pipeline.
-![Hardware Architecture Schematic](./arhitecture.svg")
+![Hardware Architecture Schematic](./arhitecture.svg)
 
 ## Log
 
