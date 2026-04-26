@@ -1,7 +1,7 @@
 # Reaction Timer Game
 
 **Author:** Matei Zamfir  
-**GitHub Project Link:** [Link to be added]
+**GitHub Project Link:** https://github.com/matinator1510-igtm/website
 
 ## Description
 
