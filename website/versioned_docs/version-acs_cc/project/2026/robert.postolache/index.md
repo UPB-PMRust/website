@@ -1,13 +1,8 @@
----
-title: Smart Bin
-description: An automatic waste sorting system that classifies waste into wet, dry, or metal categories using sensors and a rotating turntable.
----
-
 # Smart Bin
 
 :::info
 
-**Author:** Robert Postolache \
+**Author:** Robert Postolache 
 **GitHub Project Link:** https://github.com/RobertP1021/website/tree/project/robert.postolache
 
 :::
@@ -42,7 +37,7 @@ Smart Bin is built around an STM32U545RE-Q Nucleo board that coordinates all sen
 - GPIO: stepper motor, metal sensor, infrared reflective sensors × 3
 - ADC: humidity sensor
 
-![Architecture Diagram](./FInal_Arhitecture.svg)
+![Architecture Diagram](./final_arhitecture.svg)
 
 ## Log
 This will be updated as I continue developing the project
