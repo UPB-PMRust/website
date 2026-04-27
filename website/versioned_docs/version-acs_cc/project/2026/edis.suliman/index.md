@@ -53,7 +53,7 @@ Architecture Overview:
 ## Hardware
 The project is built on a Raspberry Pi Pico platform with peripheral components for input, output, and storage. The display provides visual feedback while the keypad serves as the main input method.
 ### Schematics
-![KiCAD Schematic](kicad_img.svg)
+<!-- ![KiCAD Schematic](kicad_img.svg) -->
 
 ### Bill of Materials
 
