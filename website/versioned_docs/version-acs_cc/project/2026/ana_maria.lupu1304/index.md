@@ -1,3 +1,4 @@
+# Self-Balancing Cube
 
 A self-balancing cube controlled by an STM32 microcontroller, using IMU feedback and internal reaction wheels to balance on an edge or corner.
 
@@ -101,5 +102,4 @@ The hardware platform is built around an STM32 microcontroller, an MPU6050 IMU f
 
 
 ## Links
-
 
