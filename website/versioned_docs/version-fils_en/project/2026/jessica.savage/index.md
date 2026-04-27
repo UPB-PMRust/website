@@ -21,7 +21,10 @@ I chose this project idea beacause i wanted to make something that accesses a CD
 
 The whole system is built around an STM32 microcontroller. It receives commands either from the joystick-based local interface or through the Bluetooth module connected to a phone.
 
-![alt text](imagejs-1.webp)
+A 1.44-inch LCD display is connected to the microcontroller using an SPI or I2C communication interface, allowing the board to send data for visual output. 
+The joystick is connected through an ADC input, enabling the microcontroller to read analog position signals.
+A servo motor is controlled by the microcontroller via a PWM signal, which determines its position. Similarly, an RGB LED and a buzzer are connected through GPIO pins, with PWM used to control brightness and sound output.
+The microcontroller also interfaces with a stepper motor driver using GPIO pins. This driver then controls the stepper motor itself, handling the higher power and precise stepping required by the motor.
 
 ## Schematics
 
