@@ -71,5 +71,5 @@ I received the components and started testing them to see if everything works.
 
 ## Links
 1. [Embedded Rust 101 course labs](https://embedded-rust-101.wyliodrin.com/docs/fils_en/lab/01)
-2. [STM32U5 Reference Manual](https://www.st.com/resource/en/reference_manual rm0456-stm32u5-series-32bit-arm-based-mcus-stmicroelectronics.pdf)
+2. [STM32U5 Reference Manual](https://www.st.com/resource/en/reference_manualrm0456-stm32u5-series-32bit-arm-based-mcus-stmicroelectronics.pdf)
 
