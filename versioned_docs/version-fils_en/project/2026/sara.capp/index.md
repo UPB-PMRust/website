@@ -1,6 +1,6 @@
 Robotic Bloom – Interactive Flower
 
-Description
+Description:
 This project consists of an artificial flower that opens when a person approaches it. The system uses an ultrasonic sensor (HC-SR04) to measure the distance and multiple servomotors to control the movement of the petals.
 The entire system is controlled by an STM32 microcontroller, which reads data from the sensor and sends commands to the servos using a PCA9685 PWM driver.
 
@@ -92,7 +92,6 @@ It is responsible for:
 
 Detailed design
 The program runs in a loop:
-
 - measure distance
 - compare with a threshold
 - open or close the flower
@@ -120,5 +119,4 @@ Bill of materials
 - level shifter – 1  
 - capacitors – multiple  
 - wires – multiple   
-- schematic  
-- project photos  
+ 
