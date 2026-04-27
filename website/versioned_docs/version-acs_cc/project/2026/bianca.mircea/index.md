@@ -3,7 +3,7 @@
 :::info
 
 **Author**: Bianca Mircea \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: https://github.com/biancaamircea/website.git
 
 :::
 
@@ -20,6 +20,8 @@ I chose this project because I wanted to combine embedded systems with real-worl
 A fishing assistant boat is a practical and fun application of microcontrollers, motor control, and mechanical actuation.
 
 ## Architecture
+
+![Architecture Diagram](./diagrama.svg)
 
 The system is composed of the following main components:
 
@@ -57,7 +59,7 @@ The project uses embedded hardware components for movement and bait delivery.
 
 ### Schematics
 
-(Add KiCAD / circuit diagrams here in SVG format)
+![Hardware Schematic](./proiect-schematic.svg)
 
 ### Bill of Materials
 
