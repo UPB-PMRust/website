@@ -39,5 +39,39 @@ Acționează ca unitatea de control de înaltă performanță. Procesează intr�
 
    ![Schematic](schematic_mana_robotica.png)
 
+## Log
+### Week 14-20 april
+Finalized project idea, name, details and features, including code and hardware concepts.
+### Week 20-27 april
+Ordered hardware components.
+### Week 27-1 may
+Realized the documentation and sent 3D hand model to print.
+
+## Hardware
+
+### Bill Of Materials
+| Componentă | Pret | Cantitate |
+| :--- | :--- | :---: |
+| STM32 | Din dotarea facultatii | 1 |
+| Servomotor SG90 | 13.00 | 5 |
+| Flex Sensor | 35.00 | 5 |
+| Fire mama-tata | 10.00 | 10 |
+| Fire tata-tata | 10.00 | 10 |
+| 10k Resitors | 1.23 | 10 |
+| Breadboard | 9.99 | 1 |
+| 3D model | - | - |
+| (optional) EMG sensor | 100.00 | 1 |
+
+## Software
+## Software Stack
+
+| Library / Module | Description | Usage |
+| :--- | :--- | :--- |
+| **embassy-stm32** | Hardware Abstraction Layer (HAL) | Provides async support for handling I2C, SPI, ADC, and PWM peripherals. |
+| **HAL / LL Drivers** | Low-Level Drivers | Direct hardware access for managing ADC (flex sensors) and PWM (servos). |
+| **Servo Control Logic** | Custom PWM Mapper | Algorithmic mapping of flex sensor resistance values to 0°-180° servo angles. |
+| **Median Filter** | Signal Processing Module | Digital filtering to remove noise and jitter from analog signals for smooth movement. |
+| **Embassy Executor** | Real-time Task Scheduler | Handling concurrent asynchronous tasks for sensor polling and motor updates. |
+
 
 
