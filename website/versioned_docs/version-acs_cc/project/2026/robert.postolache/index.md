@@ -37,7 +37,7 @@ Smart Bin is built around an STM32U545RE-Q Nucleo board that coordinates all sen
 - GPIO: stepper motor, metal sensor, infrared reflective sensors × 3
 - ADC: humidity sensor
 
-![Architecture Diagram](./final_arhitecture.svg)
+![Architecture Diagram](./arhitecture_final.webp)
 
 ## Log
 This will be updated as I continue developing the project
