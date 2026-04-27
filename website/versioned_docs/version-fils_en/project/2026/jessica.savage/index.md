@@ -3,8 +3,8 @@ An STM32 system-based Cd storage that selects and ejects Cds using servo mechani
 
 :::info
 
-**Student:** Savage Jessica-Andreea
-**GitHub Repository 
+**Student:** Savage Jessica-Andreea \
+**GitHub Repository**: https://github.com/UPB-PMRust-Students/fils-project-2026-jessicasavage24
 
 :::
 
@@ -21,9 +21,13 @@ I chose this project idea beacause i wanted to make something that accesses a CD
 
 The whole system is built around an STM32 microcontroller. It receives commands either from the joystick-based local interface or through the Bluetooth module connected to a phone.
 
+![alt text](imagej-1.webp)
 
+## Schematics
 
-## 4. Log
+KitCAD schematics
+
+## Log
 
 ### Week 6
 
@@ -33,7 +37,7 @@ I came with the project idea and recieved a feedback.
 
  According to the feedback i tried to improve my project and I ordered the components.
 
- ### Week 9
+### Week 9
 
 I received the components and started testing them to see if everything works.
 
