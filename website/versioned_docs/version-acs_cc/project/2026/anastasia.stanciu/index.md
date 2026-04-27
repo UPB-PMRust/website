@@ -74,4 +74,5 @@ Realized the documentation and sent 3D hand model to print.
 | **Embassy Executor** | Real-time Task Scheduler | Handling concurrent asynchronous tasks for sensor polling and motor updates. |
 
 
-
+## Link to 3D model
+https://www.thingiverse.com/thing:1294517
