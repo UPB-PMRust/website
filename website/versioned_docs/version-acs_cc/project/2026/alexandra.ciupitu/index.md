@@ -24,7 +24,7 @@ I chose this project because of a deep conviction that mood and mental well-bein
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other-->
 
-![Shematic](arhitectura.svg) 
+![Shematic](Images/arhitectura.svg) 
 
 ## Log
 
