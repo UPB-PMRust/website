@@ -98,6 +98,10 @@ The program runs in a loop:
 - open or close the flower
 - repeat
 
+Diagram
+
+![Diagram](./diagram.png)
+
 Functional diagram
 START  
 Initialize system  
