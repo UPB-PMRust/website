@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#f5f5f5" stroke="#ccc"/>
+  <text x="400" y="200" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#999">KiCad Schematic - Coming Soon</text>
+</svg>
