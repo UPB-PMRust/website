@@ -3,6 +3,7 @@
 :::info
 
 **Author**: Oprea Horatiu Alexandru \
+**Group**: 332CC \
 **GitHub Project Link**: https://github.com/horatiuoprea/website.git
 
 :::
@@ -29,24 +30,9 @@ The system is structured around four main architectural components that form a c
 
 **User Interface** — Four potentiometers provide analog inputs via ADC: one sets the target height, and three adjust Kp, Ki, Kd in Manual mode. A 1602 I2C LCD displays system state. A toggle switch selects between Auto and Manual mode.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    CLOSED CONTROL LOOP                  │
-│                                                         │
-│  [Potentiometer] ──► target r(t)                        │
-│                          │                              │
-│                         (+)──► [PID / STM32] ──► [PWM] │
-│                         (-)         │                   │
-│                          │          ▼                   │
-│                          │     [Fan 12V]                │
-│                          │          │                   │
-│                          │     [Wind Tube]              │
-│                          │          │                   │
-│                          └──[VL53L0X]◄── ball y(t)      │
-│                                                         │
-│  [LCD] ◄── STM32 (displays height + PID constants)      │
-└─────────────────────────────────────────────────────────┘
-```
+## Closed Control Loop
+
+![Closed Loop Diagram](Documentatie.drawio.svg)
 
 ## Log
 
@@ -103,3 +89,4 @@ _KiCad schematic to be added here in SVG format._
 4. [PID Controller — Wikipedia](https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller)
 5. [Ball in tube levitation — reference project](https://example.com)
 6. [STM32U5 Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
+7. [Source Code Repository](https://github.com/UPB-PMRust-Students/acs-project-2026-horatiuoprea.git)
