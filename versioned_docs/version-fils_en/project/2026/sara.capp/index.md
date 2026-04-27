@@ -79,7 +79,8 @@ PCA9685 generates PWM signals for controlling the servos.
 The level shifter is used to adapt voltage levels.
 Capacitors help stabilize the power supply.
 Schematic
-The schematic will be added here after it is created in KiCad.
+
+![Schematic](./robotic_bloom.svg)
 
 Software design
 The software is written in Rust and runs on the STM32.
