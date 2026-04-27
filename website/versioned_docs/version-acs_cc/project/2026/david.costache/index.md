@@ -36,6 +36,7 @@ Data flow: Sensors → Acquisition Tasks → (Embassy Channel) → Fusion Task �
 
 ## Log
 ### Week 5 - 11 May
+
 ### Week 12 - 18 May
 ### Week 19 - 25 May
 
@@ -50,18 +51,18 @@ Three digital sensors share a single I²C bus: **BME680** (VOC + humidity + temp
 ### Bill of Materials
 | Device | Usage | Price |
 |--------|-------|-------|
-| [NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main MCU board (STM32U545RE, Cortex-M33 @ 160 MHz, ST-Link V3 onboard) | already owned |
-| [BME680 I²C Module](https://www.optimusdigital.ro/en/others/9949-modul-senzor-bme680-i2c-33v.html) | Aroma measurement (VOC + humidity + temperature + pressure) | [82.62 RON](https://www.optimusdigital.ro/en/others/9949-modul-senzor-bme680-i2c-33v.html) |
-| [VL53L0X ToF Module](https://www.optimusdigital.ro/en/others/22150-modul-vl53l0x-timp-de-zbor.html) | Laser distance sensor — baseline + deformation measurement, height/volume estimation | [17.04 RON](https://www.optimusdigital.ro/en/others/22150-modul-vl53l0x-timp-de-zbor.html) |
-| [Load Cell 1 kg](https://www.optimusdigital.ro/en/others/33159-modul-cantar-electronic-senzor-1kg.html) | Weight + controlled-force measurement during firmness test | [12.80 RON](https://www.optimusdigital.ro/en/others/33159-modul-cantar-electronic-senzor-1kg.html) |
-| [HX711 24-bit ADC](https://www.optimusdigital.ro/en/others/9302-modul-citire-greutate-hx711-24ad-2-canale-3-5v.html) | Load cell amplifier and ADC | [4.57 RON](https://www.optimusdigital.ro/en/others/9302-modul-citire-greutate-hx711-24ad-2-canale-3-5v.html) |
-| [SSD1306 OLED 0.96" I²C](https://www.optimusdigital.ro/en/others/33090-display-oled-096-i2c-iic-albastru.html) | Local display of per-channel and overall scores | [16.96 RON](https://www.optimusdigital.ro/en/others/33090-display-oled-096-i2c-iic-albastru.html) |
-| [RGB LED 5 mm common cathode](https://www.optimusdigital.ro/en/others/22102-led-rgb-5mm-4-pini-catod-comun-opac.html) | Quality indicator (green / yellow / red via PWM) | [1.51 RON × 3](https://www.optimusdigital.ro/en/others/22102-led-rgb-5mm-4-pini-catod-comun-opac.html) |
-| [Passive buzzer 5 V](https://www.optimusdigital.ro/en/others/33442-buzzer-pasiv-5v.html) | Audible signal at measurement completion | [1.45 RON](https://www.optimusdigital.ro/en/others/33442-buzzer-pasiv-5v.html) |
+| NUCLEO-U545RE-Q | Main MCU board (STM32U545RE, Cortex-M33 @ 160 MHz, ST-Link V3 onboard) | already owned |
+| [BME680 I²C Module](https://sigmanortec.ro/modul-senzor-bme680-i2c-33v) | Aroma measurement (VOC + humidity + temperature + pressure) | 82.62 RON
+| [VL53L0X ToF Module](https://sigmanortec.ro/Modul-VL53L0X-timp-de-zbor-p126182383) | Laser distance sensor — baseline + deformation measurement, height/volume estimation | 17.04 RON |
+| [Load Cell 1 kg](https://sigmanortec.ro/Senzor-cantar-1Kg-p136259733) | Weight + controlled-force measurement during firmness test | 12.80 RON
+| [HX711 24-bit ADC](https://sigmanortec.ro/modul-citire-greutate-hx711-24ad-2-canale-3-5v) | Load cell amplifier and ADC | 4.57 RON
+| [SSD1306 OLED 0.96" I²C](https://sigmanortec.ro/Display-OLED-0-96-I2C-IIC-Albastru-p135055705) | Local display of per-channel and overall scores | 16.96 RON |
+| [RGB LED 5 mm common cathode](https://sigmanortec.ro/LED-RGB-5mm-4-pini-Catod-comun-p136284849) | Quality indicator (green / yellow / red via PWM) | 1.51 RON × 3 |
+| [Passive buzzer 5 V](https://sigmanortec.ro/module/ambjolisearch/jolisearch?s=Buzzer+pasiv+5v%09) | Audible signal at measurement completion | 1.45 RON |
 | 2× Stainless steel screws M3/M4 | DIY conductivity electrodes | ~2 RON |
-| Resistor 10 kΩ 1% metal film | Voltage divider reference for conductivity ADC channel | [3.20 RON / 20 pcs](https://www.optimusdigital.ro/) |
-| Resistor 220 Ω 1% metal film | Current limiting for RGB LED | [3.20 RON / 20 pcs](https://www.optimusdigital.ro/) |
-| Breadboard 400 points | Prototyping | [6.62 RON × 2](https://www.optimusdigital.ro/) |
+| Resistor 10 kΩ 1% metal film | Voltage divider reference for conductivity ADC channel | 3.20 RON / 20 pcs |
+| Resistor 220 Ω 1% metal film | Current limiting for RGB LED | 3.20 RON / 20 pcs |
+| Breadboard 400 points | Prototyping | 6.62 RON × 2 |
 | Dupont wires 30 cm M-M and M-F | Interconnects | ~16 RON |
 
 ## Software
