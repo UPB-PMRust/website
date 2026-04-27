@@ -25,13 +25,16 @@ This project allows me to work with different types of inputs and outputs, such 
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+In progress
 
-## Log
+## Log 21 - 27 April
+I looked for the components I needed
+
+## Log 28 April - 4 May
+I received the components ordered from Drot and Bitmi
 
 <!-- write your progress here every week -->
+### Week 5 - 11 May
 
 ### Week 5 - 11 May
 
@@ -55,7 +58,7 @@ Main parts:
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+In progress
 
 ### Bill of Materials
 
@@ -71,7 +74,17 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | Provided by university |
+| [LED](https://www.drot.ro/platforma-arduino/1031-led-dioda-ro-ie-5-mm.html) | Stimulus | 0,44 RON |
+| [Potentiometer](https://www.drot.ro/platforma-arduino/7597-potentiometru-liniar-10k-ohm.html) | Response | 3,92 RON |
+| [Servomotor sg90](https://www.bitmi.ro/electronica/servomotor-sg90-180-grade-9g-10496.html#resp-tab2) | Stimulus | 9,99 RON |
+| [Photoresistor](https://www.drot.ro/platforma-arduino/1073-fotorezistor-gl5539-5-mm.html) | Response | 0,65 RON |
+| [Pasive buzzer](https://www.bitmi.ro/electronica/modul-buzzer-pasiv-ky-006-10678.html#resp-tab2) | Stimulus | 2,99 RON |
+
+
+
+
+
 
 
 ## Software
