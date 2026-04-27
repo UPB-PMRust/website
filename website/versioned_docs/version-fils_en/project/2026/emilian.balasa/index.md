@@ -6,13 +6,8 @@ An interactive, physical desktop dashboard that monitors PC hardware telemetry i
 
 :::info
 
-
-
-**Author:** Balasa Emilian-Valentin \\
-
-**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
-
-
+**Author**: Balasa Emilian-Valentin \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
 
 :::
 
@@ -97,7 +92,7 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 ## Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+(KiCad schematics pending breadboard validation).
 
 
 
