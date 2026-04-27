@@ -37,7 +37,7 @@ Acționează ca unitatea de control de înaltă performanță. Procesează intr�
 
 6. Sursa de alimentare (baterii reincarcabile)
 
-   ![Schematic](URL-ul_imaginii)
+   ![Schematic](schematic_mana_robotica.png)
 
 
 
