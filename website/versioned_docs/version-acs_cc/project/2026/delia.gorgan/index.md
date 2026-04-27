@@ -22,7 +22,7 @@ Recently, I repurposed that old piggy bank as a unique gift wrap for a friend. T
 
 ## Architecture 
 
-![Architecture Diagram](diagrama_arhitectura_pm.svg)
+![Architecture Diagram](diagrama_arhitectura.svg)
 
 ## Log
 
