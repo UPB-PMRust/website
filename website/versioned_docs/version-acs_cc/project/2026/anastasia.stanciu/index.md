@@ -1,6 +1,6 @@
 
 ---
-title: Proiect Anastasia Stanciu
+title: Robotic Hand
 ---
 
 # Proiect Anastasia Stanciu
