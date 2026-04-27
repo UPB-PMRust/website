@@ -21,7 +21,7 @@ I chose this project idea beacause i wanted to make something that accesses a CD
 
 The whole system is built around an STM32 microcontroller. It receives commands either from the joystick-based local interface or through the Bluetooth module connected to a phone.
 
-![alt text](imagejs-1.webp)
+![Scheme](imagejs.webp)
 
 ## Schematics
 
