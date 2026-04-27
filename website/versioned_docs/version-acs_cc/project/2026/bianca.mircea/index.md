@@ -7,7 +7,6 @@
 
 :::
 
-<!-- do not delete the \ after your name -->
 
 ## Description
 
@@ -85,4 +84,3 @@ The project uses embedded hardware components for movement and bait delivery.
 1. https://docs.rust-embedded.org/book/
 2. https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html
 3. https://github.com/rust-embedded/embedded-hal
-4. Inspiration: bait-casting fishing boats (like the one in the image)
