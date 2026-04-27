@@ -3,7 +3,7 @@
 A renewable energy project utilizing adaptive mirrors and a Stirling engine to generate electricity from solar heat. 
 
 :::info 
-**Author** Deaconescu David Mihai\
+**Author** Deaconescu David Mihai \
 
 **GitHub Project Link**: https://github.com/UPB-PMRust/fils-project-2026-david.deaconescu
 
@@ -42,7 +42,7 @@ The hardware setup includes an STM32 for motor and sensor control, an ESP32 for 
 
 ### Schematics
 
-![alt text](<Picture 1.svg>)
+![alt text](<image.svg>)
 
 ### Bill of Materials
 
