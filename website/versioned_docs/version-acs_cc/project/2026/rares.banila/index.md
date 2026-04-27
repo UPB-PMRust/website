@@ -20,7 +20,7 @@ I chose this project as it provides a challenging combination of analog electron
 
 ## Architecture 
 
-![Diagram](./images/architecture.drawio.svg)
+![Diagram](./images/architecture.svg)
 
 ## Log
 
