@@ -11,14 +11,11 @@ Real-time audio fingerprint recognition on an STM32 Nucleo microcontroller.
 
 ## Description
 
-
-The system captures audio input through a microphone when triggered by a user action. The analog signal is amplified by the MAX9814 module and digitized using the MCU ADC before processing. The audio is sampled in fixed time windows and processed on the microcontroller. For each window, a Fast Fourier Transform (FFT) is applied to extract frequency-domain features.
-
-These features are compared against a set of precomputed audio fingerprints stored on the device. The system identifies the closest match and outputs the recognized result on a display module. The system is designed to operate in real time under constrained embedded resources.
+The system captures audio through a microphone triggered by a button press. The analog signal is amplified by a MAX9814 module before being digitized by the STM32's ADC. Each fixed-length audio window is processed with FFT to extract frequency-domain features, which are then compared against precomputed fingerprints stored on the device. The closest match is displayed on the TFT screen in real time.
 
 ## Motivation
 
-The project was chosen to explore practical digital signal processing on embedded systems. Audio recognition combines concepts from signal analysis, embedded programming, and real-time constraints, making it a suitable challenge for learning how to implement non-trivial algorithms on microcontrollers with limited memory and compute power.
+I chose this project because it combines signal processing and embedded programming in a way that felt more challenging than a typical sensor project. Through university coursework I have worked with algorithms and low-level programming, and this project is a natural next step (applying those concepts under real hardware constraints). I also listen to a lot of music, so building something that can actually recognize songs made it a more personal goal.
 
 ## Architecture
 
@@ -94,7 +91,7 @@ Completed initial documentation. Hardware components ordered and received.
 | Device | Usage | Price |
 |--------|-------|-------|
 | STM32 Nucleo-U545RE-Q | Main microcontroller | Provided by university |
-| [Electret microphone capsulecd we](https://sigmanortec.ro/Microfon-electret-capsula-p126469106) | Audio capture | ~5 RON |
+| [Electret microphone capsule](https://sigmanortec.ro/Microfon-electret-capsula-p126469106) | Audio capture | ~5 RON |
 | [MAX9814 amplifier module](https://www.emag.ro/amplificator-microfon-max9814-ai1095/pd/DJGRKFMBM/) | Microphone amplifier | ~24 RON |
 | [ST7735 TFT Display (1.8")](https://sigmanortec.ro/Display-Color-1-8-TFT-LCD-p130546947) | Result display | ~41 RON |
 | [MicroSD Card module](https://sigmanortec.ro/Modul-MicroSD-p126079625) | Feature logging | ~5 RON |
@@ -103,7 +100,7 @@ Completed initial documentation. Hardware components ordered and received.
 | [Jumper wires M-M](https://sigmanortec.ro/40-Fire-Dupont-30cm-Tata-Tata-p210849599) | Component interconnections | ~7 RON |
 | [Jumper wires M-F](https://sigmanortec.ro/40-Fire-Dupont-30cm-Tata-Mama-p210854349) | Component interconnections | ~7 RON |
 | [Jumper wires F-F](https://sigmanortec.ro/40-Fire-Dupont-30cm-Mama-Mama-p126421578) | Component interconnections | ~7 RON |
-| [Ceramic Capacitor Kit]() | Decoupling, filtering, and signal stabilization | ~13 RON |
+| [Ceramic Capacitor Kit](https://sigmanortec.ro/Set-condensatori-ceramici-300-bucati-p136306101) | Decoupling, filtering, and signal stabilization | ~13 RON |
 | [Resistor Kit](https://sigmanortec.ro/kit-rezistori-30-valori-20-bucati) | Biasing, current limiting, and voltage division | ~15 RON |
 
 **Estimated total**: ~136 RON
@@ -120,6 +117,3 @@ Completed initial documentation. Hardware components ordered and received.
 ## Links
 
 1. [Shazam algorithm overview](https://www.toptal.com/algorithms/shazam-it-music-processing-fingerprinting-and-recognition)
-
-
-
