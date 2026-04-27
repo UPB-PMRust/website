@@ -42,7 +42,7 @@ The project uses a modular design where different parts work together to control
 * **User Controls**
   * Arcade Buttons: High-quality buttons that players use to move and shoot. They are designed for fast and repeated use.
 
-![Diagram](images/ArhDiag.svg)
+![Diagram](images/architecture.svg)
 
 ## Log
 
@@ -70,7 +70,7 @@ The project uses a modular design where different parts work together to control
 
 The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary boards (Raspberry Pi Pico H) to handle the game smoothly.
 
-* **Main Controller (STM32 Nucleo-U545RE-Q)**: This is the brain of the project. It runs the game logic and tells the motors how to move. It communicates with the player boards using Serial communication via USB-C modules and sends signals to the motor drivers.
+* **Main Controller (STM32 Nucleo-U545RE-Q)**: This is the brain of the project. It runs the game logic and tells the motors how to move. It communicates with the player boards using UART (Serial) communication via physical USB-C connectors and sends signals to the motor drivers.
 
 * **Player Boards (Raspberry Pi Pico)**: Each player has a Pico board. Its job is to read the Arcade Buttons and show the score on the OLED screens.
 
