@@ -37,7 +37,7 @@ Acționează ca unitatea de control de înaltă performanță. Procesează intr�
 
 6. Sursa de alimentare (baterii reincarcabile)
 
-   ![Schematic](schematic_mana_robotica.svg)
+   ![Schematic](schematic_mana_robotica.webp)
 
 ## Log
 ### Week 14-20 april
