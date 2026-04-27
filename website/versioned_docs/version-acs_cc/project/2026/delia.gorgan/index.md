@@ -22,7 +22,7 @@ Recently, I repurposed that old piggy bank as a unique gift wrap for a friend. T
 
 ## Architecture 
 
-![Architecture Diagram](diagrama_arhitectura_PM.svg)
+![Architecture Diagram](diagrama_arhitectura_pm.svg)
 
 ## Log
 
@@ -70,6 +70,4 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Animated LED send](https://learn.adafruit.com/animated-led-sand): My reference project demonstrating the use of inertial sensors for real-time physics simulation in an embedded environment.
