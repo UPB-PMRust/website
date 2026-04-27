@@ -1,9 +1,12 @@
 # AutoNav
 Autonomous Robot with Mapping and Simplified SLAM
 
-**Author**: Anca Stefania Maxim \
-**GitHub Project Link**: 
+:::info
 
+**Author**: Anca Stefania Maxim \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-ancamaxim
+
+:::
 
 ## Description
 
@@ -27,6 +30,84 @@ The system is structured in four functional layers:
 - **Localization Layer**: odometry from encoders, fused with the IMU gyroscope through a complementary filter — estimates the robot's position and orientation in space
 - **Mapping Layer**: 32x32 occupancy grid updated through Bresenham ray casting — builds the probabilistic obstacle map
 - **Planning Layer**: frontier-based exploration + PID on heading — decides the next destination and controls movement
+
+```mermaid
+flowchart TB
+    subgraph PERCEPTION["1. Perception layer — acquires environment and motion data"]
+        direction LR
+        US["3x HC-SR04<br/>front, left, right<br/>TIM3 input capture<br/>60 ms between reads"]
+        SERVO["SG90 servo<br/>scans front sensor<br/>5 angles: -60°..+60°<br/>PWM 50 Hz, 1-2 ms pulse"]
+        IMU["MPU-6050<br/>gyro Z + accel<br/>I2C1 at 400 kHz<br/>addr 0x68"]
+        ENC["2x Hall encoders<br/>TIM2 + TIM5<br/>quadrature mode<br/>80 counts/rev"]
+        IR["2x IR sensors<br/>edge detection<br/>ADC1 channels 11+12"]
+    end
+ 
+    subgraph LOCALIZATION["2. Localization layer — estimates pose (x, y, theta)"]
+        direction LR
+        ODOM_CALC["Wheel odometry<br/>delta_s = (left + right) / 2<br/>delta_theta = (right - left) / wheelbase<br/>x += delta_s * cos(theta)<br/>y += delta_s * sin(theta)"]
+        COMP_FILTER["Complementary filter<br/>theta = 0.98 * (theta + gyro * dt)<br/>+ 0.02 * theta_odom<br/>reduces drift"]
+    end
+ 
+    subgraph MAPPING["3. Mapping layer — builds 32x32 occupancy grid"]
+        direction LR
+        WORLD2GRID["World to grid<br/>cell_x = (world_x + 80) / 5<br/>cell_y = (world_y + 80) / 5<br/>5 cm per cell"]
+        BRESENHAM["Bresenham ray casting<br/>from robot to obstacle<br/>marks free cells along ray<br/>marks obstacle at endpoint"]
+        BAYES_UPDATE["Bayesian update<br/>log-odds per cell<br/>l = l + l_obs - l_prior<br/>clamp [0, 255]"]
+    end
+ 
+    subgraph PLANNING["4. Planning layer — selects goal and drives motors"]
+        direction LR
+        FRONTIER_DETECT["Frontier detection<br/>find free cells adjacent<br/>to unknown cells<br/>Manhattan distance to closest"]
+        PID_CTRL["PID heading controller<br/>error = goal_theta - theta<br/>output = Kp*err + Ki*int + Kd*der<br/>anti-windup on integral"]
+        MOTOR_CMD["Motor commands<br/>L298N H-bridge<br/>PWM duty 0-100%<br/>direction via IN1-IN4"]
+    end
+ 
+    subgraph OUTPUT["5. Output layer — visual feedback and PC telemetry"]
+        direction LR
+        LCD_RENDER["ST7735 LCD render<br/>SPI1 at 8 MHz<br/>128x160 px, 16-bit color<br/>grid + robot position"]
+        WIFI_TX["ESP-01 WiFi<br/>USART3 at 115200 baud<br/>RLE-compressed grid<br/>2 Hz to PC"]
+        STATUS_OUT["RGB LEDs + buzzer<br/>state indication<br/>event audio cues"]
+    end
+ 
+    %% Perception flows into localization
+    ENC ==> ODOM_CALC
+    IMU ==> COMP_FILTER
+    ODOM_CALC ==> COMP_FILTER
+ 
+    %% Perception flows into mapping
+    SERVO -.->|sweep angle| US
+    US ==> WORLD2GRID
+    COMP_FILTER ==>|robot pose| WORLD2GRID
+    WORLD2GRID ==> BRESENHAM
+    BRESENHAM ==> BAYES_UPDATE
+ 
+    %% Mapping flows into planning
+    BAYES_UPDATE ==>|grid state| FRONTIER_DETECT
+    COMP_FILTER ==>|current pose| FRONTIER_DETECT
+    FRONTIER_DETECT ==>|target heading| PID_CTRL
+    COMP_FILTER ==>|current heading| PID_CTRL
+    PID_CTRL ==> MOTOR_CMD
+ 
+    %% Output consumers
+    BAYES_UPDATE ==> LCD_RENDER
+    COMP_FILTER ==>|robot pose| LCD_RENDER
+    BAYES_UPDATE ==> WIFI_TX
+    IR ==> STATUS_OUT
+    FRONTIER_DETECT ==>|exploration done?| STATUS_OUT
+ 
+    classDef perceptionStyle fill:#E6F1FB,stroke:#185FA5,stroke-width:1px,color:#042C53
+    classDef localizationStyle fill:#FBEAF0,stroke:#993556,stroke-width:1px,color:#4B1528
+    classDef mappingStyle fill:#FAECE7,stroke:#993C1D,stroke-width:1px,color:#4A1B0C
+    classDef planningStyle fill:#FAEEDA,stroke:#854F0B,stroke-width:1px,color:#412402
+    classDef outputStyle fill:#EAF3DE,stroke:#3B6D11,stroke-width:1px,color:#173404
+ 
+    class US,SERVO,IMU,ENC,IR perceptionStyle
+    class ODOM_CALC,COMP_FILTER localizationStyle
+    class WORLD2GRID,BRESENHAM,BAYES_UPDATE mappingStyle
+    class FRONTIER_DETECT,PID_CTRL,MOTOR_CMD planningStyle
+    class LCD_RENDER,WIFI_TX,STATUS_OUT outputStyle
+```
+
 
 ### Processing Pipeline
 
