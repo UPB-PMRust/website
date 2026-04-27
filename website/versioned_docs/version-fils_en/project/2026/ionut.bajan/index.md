@@ -1,5 +1,4 @@
-# Project Name
-Smart TrashHD
+# Smart TrashHD
 
 :::info 
 
