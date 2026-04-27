@@ -1,10 +1,10 @@
 # CargoBot
-Autonomous cargo robot with Bluetooth telemetry
+Remote-controlled cargo robot with Bluetooth telemetry
 
 :::info
 
 **Author**: Andrei Rusanescu \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-andreirusanescu)
 
 :::
 
@@ -12,66 +12,200 @@ Autonomous cargo robot with Bluetooth telemetry
 
 ## Description
 
-CargoBot is an autonomous 4 wheeled robot that carries cargo and navigates surfaces with imperfections (bumps, ramps, carpet). It uses an STM32 Nucleo-U545RE-Q microcontroller programmed in Rust with Embassy-rs and sends real-time telemetry data to a PC dashboard via Bluetooth, while simultaneously displaying information on an onboard OLED.
+CargoBot is a remote-controlled four-wheeled robot that carries cargo and navigates surfaces with imperfections (bumps, ramps, carpet). It is controlled from a laptop keyboard via Bluetooth and uses an STM32 Nucleo-U545RE-Q microcontroller programmed in Rust with Embassy-rs. It sends real-time telemetry data to a PC dashboard via Bluetooth, while simultaneously displaying information on an onboard OLED.
 
 The central idea of the project is measuring and visualizing the impact of cargo load on motor performance: when the robot carries something heavy, the PID controller automatically increases the PWM duty cycle to maintain a constant speed. This compensation is observable live on the robot's OLED, on the PC dashboard, and through 3 LEDs (green/yellow/red) that visually indicate the effort level.
 
 ## Motivation
-I am particularly interested in cars and networking. This project combines multiple peripherals studied in the lab (PWM, GPIO, I2C, UART, Bluetooth) into a functional system. It clearly demonstrates a measurable technical behavior, which is the difference in motor effort with and without cargo. The wireless telemetry component aligns with my personal interests in networking and systems. The software runs on Rust with Embassy-rs.
 
-## Architecture 
+I am particularly interested in cars and networking. This project combines multiple peripherals studied in the lab (PWM, GPIO, I2C, UART, Bluetooth) into a functional system. It clearly demonstrates a measurable technical behavior - the difference in motor effort with and without cargo. The wireless telemetry component aligns with my personal interests in networking and systems. The software runs on Rust with Embassy-rs, a modern async embedded framework with cooperative concurrency.
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+## Architecture
+
+```
+                                   ┌─────────────────────────┐
+                                   │        Laptop           │ 
+                                   │   Dashboard + Keyboard  │
+                                   └────────────┬────────────┘
+                                                │ Bluetooth SPP
+                                   ┌────────────▼────────────┐
+                                   │          HC-06           │
+                                   │     Bluetooth Module     │
+                                   └────────────┬────────────┘
+                                                │ UART (TX/RX)
+  ┌───────────────────────┐         ┌───────────▼─────────────────────────────────┐
+  │   18650 2S Battery    │         │                                             │
+  │   7.4V / 6800mAh      │         │         STM32 Nucleo-U545RE-Q               │
+  └───────────┬───────────┘         │         ARM Cortex-M33 @ 160MHz             │
+              │ 7.4V                │                                             │
+  ┌───────────▼────────────┐ 5V reg │  ┌────────────────────────────────────────┐ │
+  │         L298N          ├───────►   │  Embassy-rs Async Tasks:               │ │
+  │     Dual H-Bridge      │        │  │   sensor_task     (20 Hz)              │ │
+  └──────┬──────┬──────────┘        │  │   motor_task      (50 Hz)              │ │
+         │      │◄──────────────────┤  │   navigation_task (10 Hz)              │ │
+    PWM  │      │  PWM + GPIO       │  │   telemetry_task   (5 Hz)              │ │
+  (L/R)  │      │  (IN1–IN4, speed) │  │   display_task     (4 Hz)              │ │
+         │      │                   │  └────────────────────────────────────────┘ │
+  ┌──────┴──────┴───────┐           │                                             │
+  │      DC Motors      │           │  ┌────────────────────────────────────────┐ │
+  │  Left ×2│ Right ×2  │           │  │  Interfaces:                           │ │
+  │  3–6V, skid steer.  │           │  │   PWM  -> L298N (motor speed 0–100%)   │ │
+  └─────────────────────┘           │  │           Passive Buzzer (horn/melody) │ │
+                                    │  │   I2C  -> MPU-6500 (0x68)              │ │
+                                    │  │           SSD1306 OLED (0x3C)          │ │
+                                    │  │   UART -> HC-06 (cmds in, JSON out)    │ │
+                                    │  │   GPIO -> HC-SR04 ×2 (trigger+echo)    │ │
+                                    │  │           LM393 ×2 (interrupt pulses)  │ │
+                                    │  │           L298N IN1–IN4 (direction)    │ │
+                                    │  │           LEDs R/Y/G (effort level)    │ │
+                                    │  └────────────────────────────────────────┘ │
+                                    │                                             │
+                                    └────┬──────────────┬──────────────┬──────────┘
+                                         │              │              │
+                                   I2C (shared)      GPIO          GPIO interrupt
+                                         │          (trig/echo)      (pulses)
+                                  ┌──────┴──────┐       │              │
+                               ┌──▼───────┐     │  ┌────▼──────┐   ┌───▼───────────┐
+                               │ MPU-6500 │     │  │  HC-SR04  │   │  LM393        │
+                               │   IMU    │     │  │  Front    │   │  Encoders     │
+                               │  (0x68)  │     │  ├───────────┤   │  Left + Right │
+                               │accel+gyro│     │  │  HC-SR04  │   └───────────────┘
+                               └──────────┘     │  │  Rear     │
+                               ┌────────────────▼─┐└───────────┘
+                               │    SSD1306       │
+                               │    OLED 128×64   │    ┌───────────────────────────┐
+                               │    (0x3C)        │    │  LEDs R/Y/G    (GPIO)     │
+                               └──────────────────┘    │  Green  PWM < 35%         │
+                                                       │  Yellow PWM  35–65%       │
+                                                       │  Red    PWM > 65%         │
+                                                       ├───────────────────────────┤
+                                                       │  Passive Buzzer  (PWM)    │
+                                                       │  Horn + audio feedback    │
+                                                       └───────────────────────────┘
+```
+
+The system is organized around five main subsystems:
+
+**1. MCU (STM32 Nucleo-U545RE-Q)**
+The central unit running all Embassy-rs async tasks. Coordinates all subsystems and shared state protected by Mutex.
+
+**2. Motor Subsystem**
+The L298N dual H-bridge receives PWM signals from the STM32 and drives 4 DC motors (2 per channel, left/right side in parallel - skid steering). The two IR LM393 optical sensors read encoder disc pulses on GPIO interrupts and compute RPM per side.
+
+**3. Sensing Subsystem**
+- MPU-6500 (I2C, address 0x68): reads accelerometer + gyroscope data, combined via complementary filter to get a stable tilt angle
+- 2x HC-SR04 (GPIO trigger/echo): front and rear obstacle detection
+- 2x IR LM393 encoders: RPM feedback for PID
+
+**4. Communication Subsystem**
+HC-06 Bluetooth module connected to STM32 via UART. Bidirectional: laptop sends movement commands (forward/backward/left/right + speed), robot sends back JSON telemetry at 5Hz.
+
+**5. Display & Indicators Subsystem**
+- OLED SSD1306 128x64 (I2C, address 0x3C, shared bus with IMU): displays RPM, tilt angle, obstacle distance, state, load level
+- 3x LEDs (green/yellow/red) on GPIO: visual indicator of motor effort based on PWM duty cycle
+- Passive buzzer on PWM: horn and audio feedback
+
+**Embassy-rs Async Tasks:**
+
+| Task | Frequency | Responsibility |
+|------|-----------|----------------|
+| sensor_task | 20 Hz | Read IMU (I2C) + ultrasonic sensors |
+| motor_task | 50 Hz | Apply PWM to L298N, read encoders |
+| navigation_task | 10 Hz | State machine: FORWARD / COMPENSATE / AVOID / STOP |
+| telemetry_task | 5 Hz | Serialize JSON and send over UART to HC-06 |
+| display_task | 4 Hz | Update OLED + LED indicators |
+
+**Navigation State Machine:**
+
+| State | Entry Condition | Action |
+|-------|----------------|--------|
+| FORWARD | No obstacle, pitch < 5° | Move at target speed, PID active |
+| COMPENSATE | Pitch > 5° (ramp) | Increase PWM proportional to tilt angle |
+| AVOID | Obstacle < 30cm | Stop, rotate, resume forward |
+| STOP | Manual command / error | Motors off, telemetry continues |
+
+**Peripheral Usage:**
+
+| Peripheral | Component | Usage |
+|-----------|-----------|-------|
+| PWM | STM32 -> L298N | Motor speed control (0–100% duty cycle) |
+| PWM | STM32 -> Buzzer | Horn and melody generation |
+| GPIO Output | STM32 -> HC-SR04 trigger | 10μs pulse to trigger ultrasonic |
+| GPIO Input Interrupt | HC-SR04 echo -> STM32 | Measure echo duration -> distance |
+| GPIO Input Interrupt | LM393 encoders -> STM32 | Count pulses -> compute RPM |
+| GPIO Output | STM32 -> LEDs R/Y/G | Load indicator: green (<35%), yellow (35–65%), red (>65%) |
+| GPIO Output | STM32 -> L298N IN1-IN4 | Motor direction control |
+| I2C (shared bus) | STM32 -> MPU-6500 (0x68) | Accelerometer + gyroscope for tilt angle |
+| I2C (shared bus) | STM32 -> SSD1306 (0x3C) | OLED telemetry display |
+| UART | STM32 -> HC-06 | Bidirectional Bluetooth: commands in, telemetry out |
 
 ## Log
 
 <!-- write your progress here every week -->
 
-### Week 5 - 11 May
+### Week 6 - 12 Apr
+Ordered all of the components needed.
 
-### Week 12 - 18 May
+### Week 13 - 19 Apr
+Assembled the mechanical parts (wheels, motors, car platform).
 
-### Week 19 - 25 May
+### Week 20 - 26 Apr
+Working on the Schematic in KiCad.
+
+### Week 27 Apr - 3 May
+
+### Week 4 - 10 May
+
+### Week 11 - 17 May
 
 ## Hardware
 
-Detail in a few words the hardware used.
+The robot is built on a 4WD chassis with 4 DC motors (3–6V) driven through an L298N dual H-bridge using skid steering (left/right side in parallel). Speed and direction are controlled via PWM from the STM32. Two IR optical sensors read encoder discs on the motors to compute RPM. An MPU-6500 IMU over I2C measures tilt angle using a complementary filter. Two HC-SR04 ultrasonic sensors handle obstacle detection front and rear. An SSD1306 OLED displays live telemetry. An HC-06 Bluetooth module provides bidirectional communication with the laptop. Three LEDs and a passive buzzer provide visual and audio feedback.
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+Place your KiCAD schematics here in SVG format.
+
+
 
 ### Bill of Materials
 
-<!-- Fill out this table with all the hardware components that you might need.
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
-
-```
-
--->
-
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller (Cortex-M33), runs all Embassy-rs tasks | 0 RON (provided by university) |
+| [4x DC motors (3-6V), encoder discs, wheels](https://www.bitmi.ro/set-motor-dc-3v-6v-cu-reductor-si-roata-11227.html) | Wheels and motors for the CargoBot | [40 RON](https://www.bitmi.ro/set-motor-dc-3v-6v-cu-reductor-si-roata-11227.html)
+| [2x IR Speed Sensor LM393](https://sigmanortec.ro/Senzor-viteza-IR-LM393-p125686023) x2 | Optical encoder reading, counts pulses from encoder discs to compute RPM | [16.22 RON](https://sigmanortec.ro/Senzor-viteza-IR-LM393-p125686023) |
+| [L298N Dual H-Bridge](https://sigmanortec.ro/Punte-H-Dubla-L298N-p125423236) | Motor driver, controls speed (PWM) and direction of both motor sides | [8.96 RON](https://sigmanortec.ro/Punte-H-Dubla-L298N-p125423236) |
+| [MPU-6500 Accelerometer & Gyroscope](https://sigmanortec.ro/Modul-Accelerometru-Giroscop-I2C-MPU-6500-6-axe-p136248782) | 6-axis IMU, measures tilt angle via complementary filter (I2C, 0x68) | [9.92 RON](https://sigmanortec.ro/Modul-Accelerometru-Giroscop-I2C-MPU-6500-6-axe-p136248782) |
+| [HC-06 Bluetooth Module](https://sigmanortec.ro/Modul-bluetooth-HC-06-p125923853) | Bidirectional wireless UART, receives keyboard commands, sends telemetry JSON | [25.13 RON](https://sigmanortec.ro/Modul-bluetooth-HC-06-p125923853) |
+| [OLED SSD1306 0.96" I2C](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) | On-board display, shows RPM, tilt, obstacle distance, state, load level (I2C, 0x3C) | [14.01 RON](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) |
+| [2x HC-SR04 Ultrasonic Sensor](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) x2 | Obstacle detection, front and rear, GPIO trigger/echo | [18.80 RON](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) |
+| [18650 Battery Holder 2S](https://sigmanortec.ro/suport-acumulatori-18650-2s) | Holds 2x 18650 cells in series, 7.4V output for L298N and STM32 | [5.74 RON](https://sigmanortec.ro/suport-acumulatori-18650-2s) |
+| Passive Buzzer | Horn and audio feedback via PWM, from Plusivo kit | 0 RON (owned) |
+| 3x LED (red/yellow/green) + resistors | Visual motor effort indicator | 0 RON (owned) |
+| Breadboard + jumper wires | For connections | 0 RON (owned) |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32U5 | PWM, I2C, UART, GPIO, Timer drivers |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Spawning and running concurrent tasks |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Async timers and delays | Task scheduling at fixed frequencies |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives | Mutex and Channel for inter-task shared state |
+| [ssd1306](https://github.com/rust-embedded-community/ssd1306) | OLED SSD1306 driver | I2C display rendering |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing text and shapes on OLED |
+| [heapless](https://github.com/rust-embedded/heapless) | No-alloc data structures | String/Vec without heap allocation |
+| [defmt](https://github.com/knurling-rs/defmt) + defmt-rtt | Logging framework | Debug output via probe |
+| [libm](https://github.com/rust-lang/libm) | Math functions (no_std) | atan2, sqrt for complementary filter |
+| Python pyserial | Serial communication | PC-side script to receive telemetry and send commands over Bluetooth |
+| Python matplotlib / Flask | Data visualization | Live dashboard with RPM, PWM, tilt, distance graphs |
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
-
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
-
+1. [Embassy-rs documentation](https://embassy.dev)
+2. [STM32 Nucleo-U545RE-Q user manual](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html)
+3. [MPU-6500 datasheet](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6500/)
+4. [SSD1306 OLED driver crate](https://github.com/rust-embedded-community/ssd1306)
+5. [L298N datasheet](https://www.st.com/resource/en/datasheet/l298.pdf)
+6. [HC-SR04 ultrasonic sensor guide](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
