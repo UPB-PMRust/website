@@ -27,6 +27,27 @@ The project's architecture is built around the **STM32 NUCLEO-U545RE-Q** as the 
 * **Power & Output:** The relays act as electronic switches, closing the circuit between the **external battery pack** and the **Mini Submersible Pumps**.
 * **Flow:** Each pump draws liquid from a container through **Silicone Tubing** and dispenses it into a common cup.
 
+The workflow is as follows:
+
+```text
+Rotary Encoder
+     |
+     | Digital (GPIO)
+     v
+Input Acquisition Module
+     |
+     v
+Processing Pipeline (STM32U545)
+     |
+     +--[ GPIO ]-----------> 4-Channel Relay Module
+     |                              |
+     |                              +--[ Power ]<-- External Battery Pack
+     |                              |
+     |                              v
+     |                       Mini Submersible Pumps
+     v
+Rendering Engine -> [ I2C ] -> 0.96" OLED Screen
+```
 
 
 ## Log
@@ -39,6 +60,10 @@ The project's architecture is built around the **STM32 NUCLEO-U545RE-Q** as the 
 * Tested each water pump individually using an external power source to ensure they are functional.
 * Verified the relay switching logic to ensure safe operation with the microcontroller.
 
+### Week 8 - 9
+* Soldered the components.
+* Built the initial physical circuit, wiring the STM32, relay module, and OLED screen.
+* Tested all the components on their own.
 
 ## Hardware
 
@@ -48,7 +73,35 @@ The fluid control system consists of **three 5V DC mini submersible pumps**, eac
 
 ## Schematics
 
-Schematics in SVG format.
+<svg width="820" height="300" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smart Dispenser project hardware schematic overview">
+  <rect x="20" y="115" width="200" height="70" fill="none" stroke="black"/>
+  <text x="120" y="145" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fontWeight="bold">Rotary Encoder</text>
+  <text x="120" y="165" textAnchor="middle" fontFamily="sans-serif" fontSize="12">(CLK, DT, SW - GPIO)</text>
+
+  <rect x="290" y="100" width="220" height="100" fill="none" stroke="black"/>
+  <text x="400" y="145" textAnchor="middle" fontFamily="sans-serif" fontSize="16" fontWeight="bold">STM32 NUCLEO-U545RE-Q</text>
+  <text x="400" y="165" textAnchor="middle" fontFamily="sans-serif" fontSize="12">Main Controller</text>
+
+  <rect x="580" y="30" width="200" height="70" fill="none" stroke="black"/>
+  <text x="680" y="60" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fontWeight="bold">0.96" OLED Screen</text>
+  <text x="680" y="80" textAnchor="middle" fontFamily="sans-serif" fontSize="12">(I2C - SDA, SCL)</text>
+
+  <rect x="580" y="115" width="200" height="70" fill="none" stroke="black"/>
+  <text x="680" y="145" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fontWeight="bold">Relay Module</text>
+  <text x="680" y="165" textAnchor="middle" fontFamily="sans-serif" fontSize="12">(Digital / GPIO)</text>
+
+  <rect x="580" y="200" width="200" height="70" fill="none" stroke="black"/>
+  <text x="680" y="230" textAnchor="middle" fontFamily="sans-serif" fontSize="14" fontWeight="bold">Water Pumps</text>
+  <text x="680" y="250" textAnchor="middle" fontFamily="sans-serif" fontSize="12">(Ext. Battery Powered)</text>
+
+  <line x1="220" y1="150" x2="290" y2="150" stroke="black" strokeWidth="1.5"/>
+  
+  <line x1="510" y1="150" x2="580" y2="65" stroke="black" strokeWidth="1.5"/>
+  
+  <line x1="510" y1="150" x2="580" y2="150" stroke="black" strokeWidth="1.5"/>
+  
+  <line x1="680" y1="185" x2="680" y2="200" stroke="black" strokeWidth="1.5"/>
+</svg>
 
 ## Bill of Materials
 
