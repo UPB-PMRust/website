@@ -1,5 +1,5 @@
 # CD Storage and Retrieval System
-An STM32 system-based Cd storage that selects and ejects Cds using servo mechanisms.
+An STM32 system-based CD storage that selects and ejects CDs using servo mechanisms.
 
 :::info
 
@@ -21,7 +21,7 @@ I chose this project idea beacause i wanted to make something that accesses a CD
 
 The whole system is built around an STM32 microcontroller. It receives commands either from the joystick-based local interface or through the Bluetooth module connected to a phone.
 
-![alt text](imagej-1.webp)
+![alt text](imagejs-1.webp)
 
 ## Schematics
 
