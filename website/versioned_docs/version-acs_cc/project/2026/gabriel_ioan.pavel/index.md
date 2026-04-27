@@ -68,8 +68,8 @@ condensatori și rezostori.
 
 ### Schematics
 
-![nod-tx](./img/nod1.svg)
-![nod-rx](./img/nod2.svg)
+![nod-tx](./images/nod1.svg)
+![nod-rx](./images/nod2.svg)
 
 ### Bill of Materials
 
