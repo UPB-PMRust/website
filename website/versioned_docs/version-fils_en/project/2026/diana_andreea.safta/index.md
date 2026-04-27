@@ -112,4 +112,3 @@ The format is
 
 1. [MiMU Gloves](https://mimugloves.com/)
 ...
-
