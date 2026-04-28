@@ -26,7 +26,6 @@ The system is divided into four main subsystems coordinated by the RP2350 microc
 3. **Transport & Detection System:** A 28BYJ-48 stepper motor (with ULN2003 driver) for moving the banknote, and a TCST1103 optocoupler to detect when a note is inserted.
 4. **Acquisition & Output System:** A TCS34725 RGB sensor for color reading, and a DFR0954 audio module with a Visaton speaker for vocal announcements.
 
-*(Note: Insert your diagrams.net architecture diagram here)*
 
 ## Log
 
@@ -73,6 +72,6 @@ The hardware consists of a main RP2350 processing unit handling I2C communicatio
 
 ## Links
 
-1.-
-2.-
+1.-https://www.youtube.com/watch?v=Fy4IUyWjFX4
+2.-https://www.youtube.com/watch?v=zByu_-Q0F7E
 3.-
