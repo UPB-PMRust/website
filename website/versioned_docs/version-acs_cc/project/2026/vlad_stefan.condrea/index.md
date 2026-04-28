@@ -73,8 +73,3 @@ I chose this project because it perfectly combines complex hardware architecture
 | **UART** | Universal Asynchronous Rx/Tx | Handling the communication between the PC and STM32 for the semi-auto mode. |
 | **EXTI** | External Interrupts | Triggering immediate actions based on specific sensor inputs or button presses. |
 
-## Links
-
-1. [STM32 Timer and PWM Tutorial](https://controllerstech.com/pwm-in-stm32/)
-2. [Interfacing HC-SR04 with STM32](https://controllerstech.com/interface-ultrasonic-sensor-hc-sr04-with-stm32/)
-3. [Managing Servomotor Current Spikes](https://forum.arduino.cc/t/servo-motor-causing-reset/)
