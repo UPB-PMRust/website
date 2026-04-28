@@ -17,31 +17,34 @@ The inspiration for this project stems from the desire to create technology that
 
 ## Architecture 
 
-The *hardware system* is centered around the STM32 microcontroller, which processes sensor inputs to drive physical actuators and log data.
+The *hardware system* is centered around the STM32 microcontroller, which processes user inputs to drive physical actuators and generate audio-visual feedback.
 
-**Processing**: The STM32 Nucleo-U545RE-Q handles all logic and signal generation. It connects to a PC via USB-C for flashing and debugging.
+**Processing**: The STM32 Nucleo-U545RE-Q handles all logic and signal generation. It connects to a PC via USB-C for flashing and debugging using ST-LINK/V3.
 
-**Power Management**: A 5V power supply provides a stable power rail, independently feeding the STM32, sensors and servos to prevent voltage drops.
+**Power Management**: A 9V 5A adapter feeds an XL4015 step-down converter which provides a stable 5V rail for servo power, and an AMS1117 regulator which provides 3.3V for the STM32 and digital logic.
 
 **Inputs**: 
-    -- MPU-6050 (IMU): Captures user tilt data and sends it to the STM32 via I2C.
+    - A wired console with tactile buttons connects to the STM32 via GPIO, allowing the user to trigger individual limb movements and predefined animation routines.
 
-**IR Sensor**: Acts as a finish-line detector, connected via a digital GPIO pin.
+**Outputs**: 
+    - *PCA9685 PWM Driver*: Receives commands from the STM32 via I2C and generates PWM signals for all 8 servos simultaneously.
+    - *MG996R Servos ×4*: Control shoulder and hip joints via PWM.
+    - *SG90 Servos ×4*: Control elbow and knee joints via PWM.
+    - *DFPlayer Mini*: Receives UART commands from the STM32 and plays pre-recorded audio files stored on a MicroSD card through an 8Ω 1W speaker.
+    - *Red LED 10mm*: Driven by a PWM signal to simulate a heartbeat pulse effect in the chest of the teddy bear.
 
-**Outputs & Storage**: 
-    -- SG90 Servos (X/Y axes): Driven by PWM signals to tilt the physical labyrinth board.
-
-**MicroSD Module**: Uses the SPI protocol to save and log player high scores.
-
- ![Diagrama](animatronic_architecture.svg)
+ ![Diagrama](architectural.svg)
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 14 - 20 April
--- Finalized project theme and received approval
--- Researched and ordered all hardware components
+- Finalized project theme and received approval
+- Researched all hardware components
+
+### Week 27 April - 4 May
+- Ordered all hardware components
 
 ### Week 4 - 8 May
 
@@ -71,19 +74,21 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 Nucleo Board](https://www.st.com/) | Main Controller | Lab provided |
-| [MG996R Servomotors](https://sigmanortec.ro/servomotor-mg996r-180-13kg) | Main limb actuators | - |
-| [SG90 Servomotors](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotoare&results=97) | Small extremity actuators | - |
-| [PCA9685 I2C Driver](https://sigmanortec.ro/Modul-PCA9685-interfata-I2C-16-CH-servo-motor-p126016016) | PWM servo expansion | - |
-| [DFPlayer Mini](https://www.emag.ro/dfplayer-mini-modul-mp3-player-arduino-3-1-5/pd/DK58GGMBM/) | Audio playback module | - |
+| [MG996R Servomotor x4](https://sigmanortec.ro/servomotor-mg996r-180-13kg) | Main limb actuators | - |
+| [SG90 Servomotor x4](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotoare&results=97) | Small extremity actuators | - |
+| [PCA9685 PWM Board](https://www.emag.ro/placa-dezvoltare-general-pca9685-16-canale-pwm-12-biti-interfata-iic-alimentare-dc5-10v-gd-0015/pd/DDPYV8YBM/?ref=similar_products_7_5&provider=rec&recid=rec_4_ff0477b68916b5adffb79fd9f03ce155866497b263fd7e49fc427ea94a142352_1777327178&scenario_ID=4) | 16-channel I2C PWM driver for all servos | - |
+| [DFPlayer Mini](https://ro.farnell.com/dfrobot/dfr0299/dfplayer-mini-mp3-player-arduino/dp/3517866?srsltid=AfmBOorCmEjdT1ScIzEKmsDw2p3tjdh19xxks5S0iNV1yu7DXDjW-9BY) | UART-controlled MP3 player module | - |
 | [MicroSD Card](https://www.emag.ro/card-de-memorie-mediarange-micro-sdhc-4gb-clasa-10-cu-adaptor-sd-mr956/pd/DHJWRLMBM/) | Audio file storage | - |
-| [10mm Red LED](https://www.optimusdigital.ro/en/leds/950-10x10-mm-red-led.html?srsltid=AfmBOoq14qgdMscniAdjqzy9HZMP2RshjHvYCZdgrUY_g9ixo1Gz1tTl) | Heartbeat visual effect | - |
-| [220/330 Ohm Resistor](https://sigmanortec.ro/en/resistants-and-potentiometers) | LED current limiter | - |
-| [LM2596 / XL4015 Step-Down](https://sigmanortec.ro/en/step-down-modules) | Power regulator for servos | - |
-| [9V 3A Power / LiPo](https://www.optimusdigital.ro/en/289-power-supplies?srsltid=AfmBOoq3f-KrvqiBN6oDQnpXyE9FK3CV40c7X1dXbdmYt1nsYyCw-U9-) | Main power source | - |
-| [2x NRF24L01 Modules](https://sigmanortec.ro/en/nrf24l01-24ghz-wireless-transceiver-module) | Wireless communication | - |
-| [Secondary MCU](https://www.optimusdigital.ro/en/?srsltid=AfmBOorgNMK-8EYwWnG-F8riLxQWjm3cwY6i07jMs1itOrzb46B99JIZ) | Remote control | - |
-| [Buttons / Joysticks](https://sigmanortec.ro/en/buttons-and-interruptors) | Remote user inputs | - |
-| [Breadboard Kit + MB102 Power](https://www.emag.ro/kit-breadboard-830-gauri-65-fire-modul-tensiune-alimentare-mb102-jh027/pd/DY1YP6BBM/) | Prototyping and power rail | - |
+| [10mm Red LED](https://sigmanortec.ro/led-rgb-10mm-catod-comun) | Heartbeat visual effect | - |
+| [1W 8-Ohm Speaker](https://ardushop.ro/ro/difuzoare-si-buzzere/1084-difuzor-1w-8ohm-50mm-6427854014900.html) | Audio output for DFPlayer Mini | - |
+| [10x Tactile Push Buttons](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) | Wired console input for limb control | - |
+| [2x XL4015 Step-Down](https://sigmanortec.ro/en/voltage-lowering-module-xl4015-5-36vdc-5a-75w-with-display) | Power regulator for servos | - |
+| [12V 5A Power Supply](https://www.optimusdigital.ro/en/search?controller=search&orderby=position&orderway=desc&search_query=%090104110000039088%09+&submit_search=) | Main power source via barrel jack | - |
+| [AMS1117 3.3V Regulator](https://ardushop.ro/ro/regulatoare-tensiune-smd/1927-regulator-de-tensiune-ams1117-33v-6427854029300.html) | Provides 3.3V rail for STM32 and logic | - |
+| [ON/OFF Switch](https://www.emag.ro/intrerupator-on-off-rosu-prk0002b/pd/D87229MBM/) | Main power cutoff for the system | - |
+| [MB-102 Breadboard](https://sigmanortec.ro/Breadboard-830-puncte-MB-102-p125923983) | Prototyping platform for all connections | - |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html?srsltid=AfmBOoqlQHNAoC4v6awvvkiXtXCXTNmnI55AzQYZUKZm0con7M3yU4R7) | Power rail for breadboard | - |
+| [50 cm Teddy Bear](https://www.emag.ro/jucarie-de-plus-urs-wepzsxo-50cm-cu-papion-maro-deschis-pentru-baieti-casas00572/pd/DFV9XN3BM/) | Main body and physical casing of the robot | - |
 
 
 ## Software
