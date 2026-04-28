@@ -4,18 +4,18 @@ Description:
 This project consists of an artificial flower that opens when a person approaches it. The system uses an ultrasonic sensor (HC-SR04) to measure the distance and multiple servomotors to control the movement of the petals.
 The entire system is controlled by an STM32 microcontroller, which reads data from the sensor and sends commands to the servos using a PCA9685 PWM driver.
 
-Motivation
+Motivation:
 I chose this project because I wanted to build something interactive, not just theoretical. It combines several concepts learned during the course, such as working with sensors, controlling motors and using communication protocols like I2C.
 Also, I liked the idea of creating something visual that reacts to people.
 
-Functionality
+Functionality:
 The flower has two main states:
 - closed – when no object is nearby
 - open – when an object is detected close to the sensor
 The system continuously measures the distance. If the distance is smaller than a certain threshold, the flower opens. When the object moves away, the flower closes.
 Eight servomotors are used to simulate the movement of the petals.
 
-Architecture
+Architecture:
 The system is composed of the following components:
 - STM32 microcontroller
 - HC-SR04 ultrasonic sensor
@@ -40,7 +40,7 @@ Connections:
 - external power supply is used for servos
 - all grounds are connected together
 
-Weekly log
+Weekly log:
 
 Week 1  
 Project idea and components selection
@@ -67,12 +67,12 @@ Week 8
 Final testing and documentation
 
 
-Hardware design
+Hardware design:
 Servomotors require a high current, so they are powered using an external power supply.
 The PCA9685 module is used to generate PWM signals for all servos, reducing the load on the STM32.
 All components share a common ground to ensure proper operation.
 
-Hardware description
+Hardware description:
 HC-SR04 is used to measure the distance.
 MG996R servos are used to move the petals.
 PCA9685 generates PWM signals for controlling the servos.
@@ -82,7 +82,7 @@ Schematic
 
 ![Schematic](./robotic_bloom.svg)
 
-Software design
+Software design:
 The software is written in Rust and runs on the STM32.
 It is responsible for:
 - initializing GPIO and I2C
@@ -90,14 +90,14 @@ It is responsible for:
 - controlling the servos
 - making decisions based on distance
 
-Detailed design
+Detailed design:
 The program runs in a loop:
 - measure distance
 - compare with a threshold
 - open or close the flower
 - repeat
 
-Diagram
+Diagram:
 
 ![Diagram](./diagram.png)
 
@@ -110,7 +110,7 @@ YES → Open flower
 NO → Close flower  
 Repeat
 
-Bill of materials
+Bill of materials:
 - STM32 board – 1  
 - HC-SR04 – 1  
 - MG996R – 8  
