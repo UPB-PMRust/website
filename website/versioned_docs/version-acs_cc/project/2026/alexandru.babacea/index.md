@@ -42,7 +42,7 @@ The hardware setup includes an STM32 microcontroller, 64 magnetic Reed sensors f
 
 ### Schematics
 
-![block_diagram](./assets/block_diagram.svg)
+![block_diagram](./assets/block_diagram.webp)
 
 ### Photo
 
