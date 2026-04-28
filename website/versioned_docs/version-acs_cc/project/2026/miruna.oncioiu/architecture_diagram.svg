@@ -1,0 +1,133 @@
+<svg width="680" height="445" viewBox="0 0 680 445" role="img" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif; background: white;">
+<title>Bluetooth Car &amp; Remote Controller – system architecture</title>
+<desc>Two-unit system: Remote Controller on the left with joystick, Nucleo master, HC-05 Bluetooth master; Mobile Car on the right with HC-05 slave, Nucleo slave, motor driver, DC motors, OLED display, and Servo with ToF sensor. Connected via a Bluetooth wireless link.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <style>
+    .container { fill: none; stroke: #aaa; stroke-dasharray: 6 4; stroke-width: 1; }
+    .title { font-size: 12px; fill: #555; font-weight: 600; }
+    .lbl { font-size: 11px; fill: #666; }
+    .node-title { font-size: 13px; font-weight: 600; }
+    .node-sub { font-size: 11px; }
+    .arr { fill: none; stroke: #666; stroke-width: 1.5; }
+
+    .teal rect  { fill: #E1F5EE; stroke: #0F6E56; }
+    .teal .node-title { fill: #085041; }
+    .teal .node-sub   { fill: #0F6E56; }
+
+    .blue rect  { fill: #E6F1FB; stroke: #185FA5; }
+    .blue .node-title { fill: #0C447C; }
+    .blue .node-sub   { fill: #185FA5; }
+
+    .purple rect { fill: #EEEDFE; stroke: #534AB7; }
+    .purple .node-title { fill: #3C3489; }
+    .purple .node-sub   { fill: #534AB7; }
+
+    .coral rect  { fill: #FAECE7; stroke: #993C1D; }
+    .coral .node-title { fill: #712B13; }
+    .coral .node-sub   { fill: #993C1D; }
+
+    .amber rect  { fill: #FAEEDA; stroke: #854F0B; }
+    .amber .node-title { fill: #633806; }
+    .amber .node-sub   { fill: #854F0B; }
+  </style>
+</defs>
+
+<!-- Remote Controller container -->
+<rect class="container" x="10" y="40" width="225" height="282" rx="14"/>
+<text class="title" x="122" y="60" text-anchor="middle">Remote controller</text>
+
+<!-- Joystick -->
+<g class="teal">
+  <rect x="32" y="78" width="180" height="52" rx="8"/>
+  <text class="node-title" x="122" y="100" text-anchor="middle" dominant-baseline="central">Joystick</text>
+  <text class="node-sub" x="122" y="118" text-anchor="middle" dominant-baseline="central">Analog X/Y input</text>
+</g>
+
+<line x1="122" y1="130" x2="122" y2="163" class="arr" marker-end="url(#arrow)" stroke="#666"/>
+<text class="lbl" x="132" y="149" dominant-baseline="central">ADC</text>
+
+<!-- Nucleo Master -->
+<g class="blue">
+  <rect x="32" y="163" width="180" height="52" rx="8"/>
+  <text class="node-title" x="122" y="184" text-anchor="middle" dominant-baseline="central">Nucleo (master)</text>
+  <text class="node-sub" x="122" y="202" text-anchor="middle" dominant-baseline="central">ADC · packet TX</text>
+</g>
+
+<line x1="122" y1="215" x2="122" y2="248" class="arr" marker-end="url(#arrow)" stroke="#666"/>
+<text class="lbl" x="132" y="234" dominant-baseline="central">UART</text>
+
+<!-- HC-05 Master -->
+<g class="purple">
+  <rect x="32" y="248" width="180" height="52" rx="8"/>
+  <text class="node-title" x="122" y="269" text-anchor="middle" dominant-baseline="central">HC-05 module</text>
+  <text class="node-sub" x="122" y="287" text-anchor="middle" dominant-baseline="central">BT master, TX</text>
+</g>
+
+<!-- Bluetooth wireless link (L-bend dashed) -->
+<path d="M212 274 L270 274 L270 104 L352 104" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arrow)"/>
+<text class="lbl" x="282" y="192" text-anchor="start">Bluetooth</text>
+
+<!-- Mobile Car container -->
+<rect class="container" x="337" y="40" width="333" height="382" rx="14"/>
+<text class="title" x="503" y="60" text-anchor="middle">Mobile car</text>
+
+<!-- HC-05 Slave -->
+<g class="purple">
+  <rect x="352" y="78" width="140" height="52" rx="8"/>
+  <text class="node-title" x="422" y="99" text-anchor="middle" dominant-baseline="central">HC-05 module</text>
+  <text class="node-sub" x="422" y="117" text-anchor="middle" dominant-baseline="central">BT slave, RX</text>
+</g>
+
+<line x1="422" y1="130" x2="422" y2="163" class="arr" marker-end="url(#arrow)" stroke="#666"/>
+<text class="lbl" x="432" y="149" dominant-baseline="central">UART</text>
+
+<!-- Nucleo Slave -->
+<g class="blue">
+  <rect x="352" y="163" width="140" height="52" rx="8"/>
+  <text class="node-title" x="422" y="184" text-anchor="middle" dominant-baseline="central">Nucleo (slave)</text>
+  <text class="node-sub" x="422" y="202" text-anchor="middle" dominant-baseline="central">UART · PWM · I2C</text>
+</g>
+
+<!-- Nucleo → Motor Driver -->
+<line x1="492" y1="184" x2="505" y2="184" class="arr" marker-end="url(#arrow)" stroke="#666"/>
+
+<!-- Nucleo → Servo+ToF (L-bend, dashed PWM) -->
+<path d="M475 215 L475 238 L500 238 L500 368 L505 368" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrow)"/>
+
+<!-- Nucleo → OLED -->
+<line x1="422" y1="215" x2="422" y2="250" class="arr" marker-end="url(#arrow)" stroke="#666"/>
+<text class="lbl" x="432" y="235" dominant-baseline="central">I2C</text>
+
+<!-- Motor Driver -->
+<g class="coral">
+  <rect x="505" y="163" width="150" height="52" rx="8"/>
+  <text class="node-title" x="580" y="184" text-anchor="middle" dominant-baseline="central">Motor driver</text>
+  <text class="node-sub" x="580" y="202" text-anchor="middle" dominant-baseline="central">L298N H-Bridge</text>
+</g>
+
+<line x1="580" y1="215" x2="580" y2="250" class="arr" marker-end="url(#arrow)" stroke="#666"/>
+
+<!-- DC Motors -->
+<g class="coral">
+  <rect x="505" y="250" width="150" height="52" rx="8"/>
+  <text class="node-title" x="580" y="271" text-anchor="middle" dominant-baseline="central">DC motors ×2</text>
+  <text class="node-sub" x="580" y="289" text-anchor="middle" dominant-baseline="central">Drive wheels</text>
+</g>
+
+<!-- OLED Display -->
+<g class="amber">
+  <rect x="352" y="250" width="140" height="52" rx="8"/>
+  <text class="node-title" x="422" y="271" text-anchor="middle" dominant-baseline="central">OLED display</text>
+  <text class="node-sub" x="422" y="289" text-anchor="middle" dominant-baseline="central">SSD1306, I2C</text>
+</g>
+
+<!-- Servo + ToF -->
+<g class="teal">
+  <rect x="505" y="342" width="150" height="52" rx="8"/>
+  <text class="node-title" x="580" y="363" text-anchor="middle" dominant-baseline="central">Servo + ToF</text>
+  <text class="node-sub" x="580" y="381" text-anchor="middle" dominant-baseline="central">VL53L0X radar</text>
+</g>
+</svg>
