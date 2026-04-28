@@ -4,112 +4,98 @@ A smart cash register with product scanning, real-time alerts, and business moni
 
 ---
 
-## ℹ️ Info
+## info
 
 - **Author:** David Adrian-Mario  
 - **Group:** 331 CC  
-- **Project Type:** Embedded System + Retail Automation  
 - **GitHub Project Link:** (you can add later)
 
 ---
 
-## 📖 Description
+## Description
 
 SmartCash is an intelligent cash register system designed to modernize small retail operations by integrating product scanning, real-time alerts, and smart monitoring features.
 
 The system runs on a microcontroller platform and connects to a barcode scanner, display interface, and alert modules. It allows fast product identification, automatic price calculation, and detection of unusual events such as suspicious transactions, missing products, or system errors.
 
-The device features a display interface for the cashier, a buzzer and LED alert system for notifications, and optional connectivity to a computer for data logging and analytics.
+---
 
-SmartCash is designed to improve efficiency, reduce human error, and provide better control over retail operations.
+## Motivation
+
+I chose this project because I am familiar with how markets and small shops operate, and I noticed that many systems are outdated and rely heavily on manual work. This leads to mistakes, slow service, and lack of control.
+
+The goal is to build a smarter cash register that improves efficiency, reduces errors, and provides real-time alerts.
 
 ---
 
-## 🎯 Motivation
+## Architecture
 
-As someone familiar with how markets and small shops operate, I noticed that many systems are outdated and rely heavily on manual work. This can lead to mistakes, slow service, and lack of control over sales and stock.
+The system is composed of the following main components:
 
-The goal of this project is to create a smarter and more automated cash register that:
-- speeds up transactions  
-- reduces errors  
-- provides alerts for important situations  
-- improves overall shop management  
+- **Main Controller** – handles product processing, scanning logic, and alerts  
+- **Scanning Module** – reads barcode data and sends it to the controller  
+- **Display Module** – shows product information and total price  
+- **Alert Module** – buzzer and LEDs for notifications  
 
-Additionally, the project helps explore embedded systems, hardware integration, and real-world applications of programming.
-
----
-
-## 🏗️ Architecture
-
-### Main Controller
-A microcontroller (STM32 / Arduino / Raspberry Pi Pico) handles:
-- product processing  
-- scanning logic  
-- alert system  
-- communication between modules  
+All components communicate through the microcontroller, which acts as the central processing unit.
 
 ---
 
-### Scanning Subsystem
-- Barcode scanner (USB / UART)  
-- Reads product codes  
-- Sends data to microcontroller  
-- Matches products from database  
+## Log
+
+### Week 5 – 11 May
+Defined the project idea and overall architecture.
+
+### Week 12 – 18 May
+Started hardware setup and tested barcode scanner and display.
+
+### Week 19 – 25 May
+Implemented scanning logic and alert system.
 
 ---
 
-### Display Subsystem
-- LCD / TFT screen  
-- Shows product, price, and total  
+## Hardware
 
----
-
-### Alert Subsystem
-- Buzzer (audio alerts)  
-- LEDs (visual alerts)  
-
-Used for:
-- invalid scan  
-- suspicious activity  
-- system errors  
-
----
-
-## 📅 Log
-
-### Week 5
-Defined project idea and received approval. Designed the overall system architecture and selected components.
-
-### Week 7
-Started hardware setup. Tested barcode scanner and basic communication with the microcontroller. Began experimenting with display output.
-
-### Week 8
-Worked on documentation structure and project planning. Improved hardware connections and testing.
-
-### Week 9
-Implemented core functionality: product scanning, basic processing, and alert system logic.
-
-### Week 10+
-Planned improvements: UI enhancement, data logging, and optimization of system performance.
-
----
-
-## 🔌 Hardware
-
+The project uses:
 - Microcontroller (STM32 / Arduino / Raspberry Pi Pico)  
-- Barcode Scanner  
-- Display (LCD / TFT)  
+- Barcode scanner  
+- LCD / TFT display  
 - Buzzer  
 - LEDs  
 - Buttons  
-- Wires & Breadboard  
+- Breadboard and wires  
 
 ---
 
-## 🚀 Future Improvements
+## Schematics
 
-- Inventory management system  
-- Mobile app integration  
-- Cloud synchronization  
-- Receipt printing  
-- Advanced fraud detection  
+TODO: Will be added later (KiCAD schematic in SVG format).
+
+---
+
+## Bill of Materials
+
+| Device | Usage | Price |
+|------|------|------|
+| Microcontroller | Main processing unit | ~50 RON |
+| Barcode Scanner | Product scanning | ~70 RON |
+| Display | User interface | ~80 RON |
+| Buzzer | Audio alerts | ~10 RON |
+| LEDs | Visual alerts | ~10 RON |
+
+---
+
+## Software
+
+| Library | Description | Usage |
+|--------|------------|------|
+| embedded-hal | Hardware abstraction | Communication with peripherals |
+| display driver | Display control | UI rendering |
+| serial library | UART communication | Barcode input |
+
+---
+
+## Links
+
+- https://github.com/your-project (optional)  
+- Datasheets and documentation (to be added)
