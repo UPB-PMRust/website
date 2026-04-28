@@ -59,7 +59,7 @@ Main parts:
 
 ### Schematics
 
-In progress
+In progress.
 
 ### Bill of Materials
 
