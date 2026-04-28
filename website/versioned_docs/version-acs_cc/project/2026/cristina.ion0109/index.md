@@ -25,7 +25,7 @@ This project allows me to work with different types of inputs and outputs, such 
 
 ## Architecture 
 
-In progress
+![Schema Block](./schem_bloc.svg)
 
 ## Log 21 - 27 April
 I looked for the components I needed
