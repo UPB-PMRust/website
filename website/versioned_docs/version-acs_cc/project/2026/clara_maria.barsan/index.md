@@ -4,7 +4,7 @@ An engineered-from-scratch 3D printer powered by a 32-bit STM32 board, featuring
 :::info 
 
 **Author**: Bârsan Clara Maria \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: [link_to_github](https://github.com/clarabarsan/pm-rust-3d-printer/tree/project/clara_maria.barsan)
 
 :::
 
@@ -37,13 +37,8 @@ Add here the schematics with the architecture of your project. Make sure to incl
 ### Weeks 23 March - 12 April
 Chose the project idea, researched components, and ordered hardware.
 
-### Week 13 - 19 April
+### Week 13 - 26 April
 Assembled the frame and the Y axis.
-
-### Week 20 - 26 April
-Finished the setup for X and Z axis.
-
-### Week 19 - 25 May
 
 ## Hardware
 
