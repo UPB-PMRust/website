@@ -42,7 +42,7 @@ The project uses a modular design where different parts work together to control
 * **User Controls**
   * Arcade Buttons: High-quality buttons that players use to move and shoot. They are designed for fast and repeated use.
 
-![Diagram](images/diaggarch.svg)
+![Diagram](images/archhhdiag.svg)
 
 ## Log
 
