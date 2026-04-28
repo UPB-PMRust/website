@@ -37,7 +37,7 @@ Main Components:
 * **The Trigger**: A Solenoid Piston handles the mechanical firing. It is controlled via a MOSFET, which allows the microcontroller to safely switch the high-current 6V load.
 * **The Display**: A TFT Screen provides a real-time interface, showing target distance, system telemetry and operational status.
 
-![Diagram](images/architecturediag.svg)
+![Diagram](images/architecturediag.webp)
 
 
 ## Log
