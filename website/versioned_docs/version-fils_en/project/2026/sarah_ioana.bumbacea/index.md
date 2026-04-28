@@ -1,5 +1,5 @@
-# Project Name
-A multifunctional lamp
+# Sakura Desk Lamp
+A Desk Lamp
 
 :::info 
 
@@ -21,6 +21,7 @@ The idea for this project started from the desire to create a unique and visuall
 ## Architecture 
 
 The system is structured into several main functional components that interact with each other to provide the final behavior.
+ ```
                 +----------------------+
                 |     Input Module     |
                 |----------------------|
@@ -47,6 +48,7 @@ The system is structured into several main functional components that interact w
 | - Effects (rainbow,  |         | - Show time/date     |
 |   blinking, etc.)    |         | - Buzzer control     |
 +----------------------+         +----------------------+
+ ```
 
 ## Log
 
@@ -76,6 +78,8 @@ Boost converter (XL6009) – steps voltage up to 12V
 Step-down converter (LM2596) – regulates voltage to 5V
 18650 batteries + holder + charger – portable power supply
 The hardware schematics is saved in the .svg file
+
+![Hardware Schematic](hardware.svg)
 
 ### Schematics
 
