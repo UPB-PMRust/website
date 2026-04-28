@@ -31,7 +31,7 @@ animal's ability.
 
 ## Architecture
 
-![Architecture Diagram](images/architecture_diagram.svg)
+![Architecture Diagram](images/diagram_architecture.svg)
 
 - **Detection Module** — The HC-SR501 PIR sensor wakes the MCU from STOP mode via an external
   interrupt (EXTI) when motion is detected. It acts as the entry trigger for the entire launch
