@@ -20,12 +20,6 @@ I chose this project because it is based on a console I had when I was little. I
 
 ## Architecture 
 
-<!-- 
- Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
---->
-
 The software architecture of the console is modular, divided into distinct layers that separate the core game logic from direct hardware interaction. The main components are:
 
 - **Game Engine**: This is the software "brain" of the application. It manages the internal state of the 8-puzzle game (a 3x3 matrix), tracks the position of the empty space and validates allowed moves. It also evaluates the win condition (checking if the tiles are in the correct order) and keeps track of the move count or elapsed time.
@@ -35,6 +29,11 @@ The software architecture of the console is modular, divided into distinct layer
 - **Graphics & Display Subsystem**: It is responsible for rendering the visual representation of the game state to the screen. This includes drawing the 3x3 grid, updating the positions of the numbered tiles, and rendering user interface elements (such as the move counter or timer). 
 
 - **Audio Subsystem**: It translates specific game events triggered by the Game Engine into corresponding sound effects, such as a mechanical click when a tile successfully slides, an error tone for invalid moves, or a victory jingle when the puzzle is solved.
+
+
+### Architecture Diagram
+![Architecture Diagram](./architecture_diagram.svg)
+
 
 ## Log
 
