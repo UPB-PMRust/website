@@ -1,53 +1,47 @@
 ---
 id: ariana.sadeghi
-title: Sistem Automat de Sortare Optica
+title: Automated Optical Sorting System
+sidebar_label: Automated Optical Sorting System
 ---
 
-# Sistem Automat de Sortare Optica
+# Automated Optical Sorting System
 
-## 1. Descriere Generala
-Sistemul automat de sortare simuleaza o linie industriala de control al calitatii. Acesta deplaseaza obiecte fizice pe un traseu mecanic si citeste proprietatile lor optice (opacitate/culoare) folosind un senzor de lumina. 
+## 1. General Description
+The Automated Optical Sorting System is an embedded project designed to identify and sort objects based on their optical properties. Using an STM32 microcontroller, the system moves items along a conveyor belt and uses a light sensor to trigger a sorting arm.
 
-Software-ul proceseaza aceste date analogice, comparandu-le cu un prag presetat (threshold) pentru a clasifica fiecare obiect ca fiind "acceptat" sau "respins". Ca iesiri, sistemul comanda un motor pas cu pas pentru avansul continuu al pieselor, declanseaza un brat mecanic (servomotor) care ejecteaza fizic piesele defecte directionandu-le in containere separate si actualizeaza o interfata vizuala (LCD) cu statistici in timp real privind numarul total de piese procesate, acceptate si respinse.
+## 2. Hardware Design
+The system is currently in the **hardware assembly and mechanical prototyping phase**.
 
-## 2. Design Hardware
+### Components:
+* **STM32 Nucleo-U545RE-Q** (Processing Unit)
+* **PMIMA V2.0 Shield** (Photoresistor, LCD, Buttons)
+* **28BYJ-48 Stepper Motor** (Conveyor Drive)
+* **SG90 Micro Servomotor** (Sorting Arm)
 
-Designul hardware presupune o constructie pe doua niveluri ("etaje"). La nivelul inferior se afla placa de dezvoltare protejata, iar la nivelul superior se afla mecanismul de sortare (discul rotativ) prevazut cu un orificiu care se aliniaza perfect cu fotorezistorul de pe shield.
+### Block Diagram
+The following diagram represents the planned connections and communication protocols:
 
-### Lista de componente:
-* Placa de dezvoltare **STM32 Nucleo-U545RE-Q** (unitatea de procesare principala)
-* **Shield PMIMA V2.0** din care se utilizeaza:
-  * Fotorezistorul (senzor ADC pentru citirea opacitatii pieselor)
-  * Display-ul LCD SPI (pentru afisarea interfetei cu utilizatorul)
-  * Butoanele si potentiometrul (pentru calibrarea sensibilitatii la lumina)
-* **Motor pas cu pas 28BYJ-48** cu driver ULN2003 (actioneaza banda/discul de avans al pieselor)
-* **Micro Servomotor SG90** (actioneaza macazul/bratul de sortare)
+![Hardware Block Diagram](./schema_bloc.svg)
 
-### Schema Bloc
-*(Aici vei adauga imaginea cu schema ta bloc. Asigura-te ca fisierul este in acelasi folder cu index.md)*
+## 3. Software Logic (Preliminary)
+The software is currently being developed. The high-level logic follows these main stages:
+1. **Idle/Movement:** The stepper motor runs at a constant speed to move the conveyor.
+2. **Object Detection:** The system continuously polls the ADC value from the photoresistor.
+3. **Decision Making:** If the light intensity drops below a certain threshold, the system identifies an object and determines its category.
+4. **Action:** The servomotor is activated via PWM to move the arm and sort the object.
 
-![Schema Bloc Hardware](./schema_bloc.svg)
+## 4. Current Results
+* **Hardware:** The mechanical structure and the conveyor belt are currently being assembled.
+* **Software:** Initial tests for motor control and sensor reading have been performed successfully in isolation.
+* **Integration:** System integration is pending completion of the mechanical assembly.
 
-## 3. Design Software
+## 5. Future Work & Conclusions
+The next steps involve:
+* Finalizing the mechanical alignment between the sensor and the sorting arm.
+* Tuning the threshold values for different types of objects.
+* Implementing the final state machine in the control software.
 
-Sistemul este implementat in limbajul **Rust**, utilizand un mediu de executie asincron (ex. framework-ul Embassy) sau intreruperi hardware (bare-metal) pentru a permite controlul simultan al celor doua motoare si citirea senzorului fara a bloca executia principala a procesorului.
-
-Logica centrala este modelata sub forma unei **Masini de Stari (State Machine)**, avand urmatoarele stari principale:
-1. **AVANS (IDLE/MOVING):** Motorul pas cu pas avanseaza piesele prin generarea de secvente precise pe pinii GPIO. In paralel, se citeste continuu valoarea convertorului analog-digital (ADC) de la fotorezistor.
-2. **DETECTIE (DETECTED):** Cand nivelul de lumina scade brusc, inseamna ca o piesa se afla deasupra senzorului. Avansul este oprit temporar, iar valoarea luminii este comparata cu pragul de calibrare.
-3. **EJECTARE (SORTING):** Se genereaza un semnal PWM specific catre servomotor: 
-   * Unghi de 0° pentru piesele catalogate ca "Defecte".
-   * Unghi de 180° pentru piesele catalogate ca "Bune".
-4. **ACTUALIZARE (UPDATING):** Se actualizeaza contoarele interne si se trimit noile statistici catre LCD prin magistrala SPI. Bratul servomotorului revine la pozitia neutra (90°).
-
-## 4. Rezultate
-
-In prezent, proiectul se afla in faza de asamblare a componentelor mecanice si prototipare a codului de control pentru motoare.
-
-## 5. Concluzii
-
-
-## 6. Bibliografie / Resurse
+## 6. Resources
 * [Rust Embedded Book](https://docs.rust-embedded.org/book/)
-* Laboratoarele cursului de Proiectarea cu Microprocesoare (UPB)
-* Datasheet STM32U545RE si documentatia senzorilor folositi.
+* Microprocessor Architecture course labs (UPB)
+* STM32U545RE Datasheet.
