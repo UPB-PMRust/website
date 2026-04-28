@@ -218,3 +218,55 @@ jobs:
           else
             echo "All images passed validation."
           fi
+
+      # ── Check for embedded base64 images in SVG files ──
+      - name: Check for embedded base64 images in SVG files
+        run: |
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No files to check."
+            exit 0
+          fi
+
+          ERRORS=0
+
+          echo "══════════════════════════════"
+          echo "Checking for embedded base64 images in SVG files..."
+          echo "══════════════════════════════"
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            EXT="${FILE##*.}"
+            EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$EXT_LOWER" != "svg" ]; then
+              continue
+            fi
+
+            echo "──────────────────────────────"
+            echo "Checking for embedded images: $FILE"
+
+            MATCHES=$(grep -o 'data:image/[^;]*' "$FILE")
+
+            if [ -n "$MATCHES" ]; then
+              echo "  FAIL – Embedded base64 image(s) found:"
+              echo "$MATCHES" | while read -r MATCH; do
+                echo "    → $MATCH"
+              done
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  OK – No embedded base64 images"
+            fi
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS SVG file(s) contain embedded base64 images."
+            exit 1
+          else
+            echo "✅ All SVG files are clean – no embedded base64 images found."
+          fi
