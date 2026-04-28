@@ -4,7 +4,7 @@ A two-device embedded system that uses Bluetooth to detect when a wearable brace
 :::info 
 
 **Author**: Ioan-Vlad Moise \
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-ioan_vlad.moise])
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-ioan_vlad.moise)
 
 :::
 
@@ -49,7 +49,7 @@ Researched project requirements and finalized the hardware component list. Order
 
 ## Hardware
 
-The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units. Each board is connected to an HM-10 BLE 4.0 module via UART for Bluetooth communication. Both devices include a passive 3.3V buzzer for audio alerts and a physical button for alarm reset. The base station additionally drives an SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank for portability.
+The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: one for the base station and one for the bracelet. Each board is connected to one HM-10 BLE 4.0 module via UART for Bluetooth communication. Each of the two devices includes one passive 3.3V buzzer for audio alerts and one physical button for alarm reset, for a total of 2 buzzers and 2 buttons in the full system. The base station additionally drives one SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank for portability.
 
 
 ### Schematics
@@ -83,13 +83,13 @@ The format is
 
 ## Software
 
-| Library | Usage |
-|---------|-------|
-| [embassy-rs](https://github.com/embassy-rs/embassy) | Async embedded framework for STM32 |
-| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | STM32 HAL — UART, I2C, GPIO, PWM |
-| [ssd1306](https://github.com/jamwaffles/ssd1306) | OLED display driver over I2C |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Text and graphics rendering on OLED |
-| [heapless](https://github.com/rust-embedded/heapless) | Fixed-size buffers for UART parsing |
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-rs](https://github.com/embassy-rs/embassy) | Async embedded framework for STM32 | Task scheduling and async execution |
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | STM32 HAL | UART, I2C, GPIO, and PWM peripheral access |
+| [ssd1306](https://github.com/jamwaffles/ssd1306) | OLED display driver over I2C | Displaying the estimated distance |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Text and graphics rendering on OLED | Drawing text and UI elements on the display |
+| [heapless](https://github.com/rust-embedded/heapless) | Fixed-size data structures for embedded systems | UART parsing buffers without dynamic allocation |
 | [embedded-kalman](https://crates.io/crates/embedded-kalman) | Kalman filter | RSSI smoothing for stable distance estimation |
 
 
