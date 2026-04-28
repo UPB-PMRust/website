@@ -251,6 +251,7 @@ jobs:
 
             if grep -o 'data:image/[^;]*' "$FILE"; then
               echo "$FILE -> has embedded images"
+              ERRORS=$((ERRORS + 1))
             fi
 
           done <<< "$FILES"
