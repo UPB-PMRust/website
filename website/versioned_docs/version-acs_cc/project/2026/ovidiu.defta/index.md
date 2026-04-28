@@ -18,11 +18,25 @@ Statiile de monitorizare a calitatii aerului sunt rare si costisitoare, iar date
 
 ## Architecture
 
-<!-- TODO: Add architecture diagram -->
+### Diagrama functionala
+
+![Arhitectura functionala AeroGuard](architecture.png)
+
+### Diagrama de alimentare
+
+![Arhitectura de alimentare AeroGuard](power.png)
+
+Monitorizare baterie: voltage divider 2× 100kΩ → ADC STM32, raportat prin `/api/battery`. Protectii: diode Schottky 1N5819 pe BATT+ si SOLAR+ (reverse polarity), PCB Seiko S-8261 integrat in celula protejata (overcurrent / short / overcharge / overdischarge), condensator bulk 470µF pe iesirea MP1584.
 
 ## Log
 
 ### Week 5 - 11 May
+
+Stabilita arhitectura finala: STM32 Nucleo-U545RE-Q ca MCU principal + Seeed XIAO ESP32-C6 (RISC-V, WiFi 6, BLE 5.3) ca co-procesor de conectivitate, ambele in Rust stable cu framework-ul async embassy. Comunicatia STM32 ↔ ESP pe UART la 115200 baud, protocol JSON line-based.
+
+Audit driver Rust: `bme280-rs`, `sgp40`, `pmsx003`, `nmea`, `embedded-sdmmc`, `picoserve` — toate disponibile pe crates.io. Pentru MiCS-4514 voi face port custom din DFRobot_MICS Arduino lib.
+
+Inventariate toate piesele existente si plasate comenzile pentru piesele lipsa (panou 9V → MP1584 → CN3065 → baterie protejata → MT3608 5V single rail). Total comandat ~565 RON.
 
 ### Week 12 - 18 May
 
