@@ -2,8 +2,14 @@
 
 A self-balancing cube controlled by an STM32 microcontroller, using IMU feedback and internal reaction wheels to balance on an edge or corner.
 
-Author: Ana-Maria-Raluca Lupu
-GitHub Project Link: https://github.com/UPB-PMRust-Students/acs-project-2026-lupuana
+:::info 
+
+**Author**: Ana-Maria-Raluca Lupu \
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-lupuana)
+
+:::
+
+<!-- do not delete the \ after your name -->
 
 ## Description
 
@@ -39,39 +45,13 @@ The main architecture components of the project are:
 
 ### Architecture Diagram
 
-    +-------------------+
-    |   MPU6050 IMU     |
-    +-------------------+
-              |
-              v
-    +-------------------+
-    |  STM32 Firmware   |
-    | - sensor reading  |
-    | - filtering       |
-    | - control loop    |
-    | - calibration     |
-    +-------------------+
-         |        |
-         |        +------------------+
-         v                           v
-    +-----------+              +-------------+
-    |  Motors   |              |  HC-05 BT   |
-    | + wheels  |              | tuning link |
-    +-----------+              +-------------+
-         |
-         v
-    +-------------------+
-    |  Cube balancing   |
-    +-------------------+
+  ![Architecture diagram](./images/diagram.svg)
 
 ## Log
 
 ### Weak 14 - 29 April
 
 - Finalized project theme and received approval.
-
-### Week 13 - 19 May
-
 - Researched and ordered components.
 
 ## Hardware
