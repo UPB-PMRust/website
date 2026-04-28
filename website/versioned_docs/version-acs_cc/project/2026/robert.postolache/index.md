@@ -3,7 +3,7 @@
 :::info
 
 **Author:** Robert Postolache 
-**GitHub Project Link:** https://github.com/RobertP1021/website/tree/project/robert.postolache
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-RobertP1021
 
 :::
 
