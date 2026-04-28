@@ -26,6 +26,8 @@ Having a tailor-made machine will give me the freedom to bring complex ideas to 
 
 ## Architecture 
 
+<!-- ![Sistem arhitecture](images/diagram.drawio.svg) -->
+
 Add here the schematics with the architecture of your project. Make sure to include:
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other
