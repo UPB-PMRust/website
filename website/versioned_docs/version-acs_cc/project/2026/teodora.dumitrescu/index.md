@@ -88,7 +88,6 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | Async Rust framework | Main hardware abstraction |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing UI on the LCD |
 | [panic-halt](https://crates.io/crates/panic-halt) | Panic handler | Basic error management |
 
 ## Links
