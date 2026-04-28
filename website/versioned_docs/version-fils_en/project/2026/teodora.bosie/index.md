@@ -80,3 +80,5 @@ Place your KiCAD or similar schematics here in SVG format.
 2. [GPIOs and Interrupts](https://www.youtube.com/watch?v=F6tI-qjXv_s)
 3. [Embassy Bible](https://embassy.dev/book/#_what_is_embassy)
 
+
+
