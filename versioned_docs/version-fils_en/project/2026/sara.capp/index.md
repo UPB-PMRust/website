@@ -4,7 +4,7 @@ An artificial flower that opens when a person approaches and rotates towards the
 
 :::info 
 
-**Author**: Sara Capp \
+**Author**: Sara-Cristiana Capp \
 **GitHub Project Link**: https://github.com/SaraCapp/acs-project-2026-SaraCapp
 
 :::
@@ -79,7 +79,7 @@ All components share a common ground to ensure proper operation.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| embassy-stm32 | Embedded framework for STM32 | GPIO, I2C, ADC |
+
 | embedded-hal | Hardware abstraction | Interface control |
 | pca9685 driver | PWM driver | Control servomotors |
 
