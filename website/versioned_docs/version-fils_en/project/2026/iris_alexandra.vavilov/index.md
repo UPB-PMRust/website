@@ -27,8 +27,8 @@ The main business function that the B Children will perform is described through
 ![Application Layer](./application.webp)
 The application Layer is split into two components: the Frontend :  "A Feedback Provision Module". This module role is to trigger the "Backend" processing of the sensor data, syntax analysis, and sound playing and TTS synthesis. All the modules in the backend component are decoupled and provide their interfaces as well as realise their services. This ensures hardware and conversely software agnosticism. Further, the software will interface with hardware through APIs and the Embedded HAL APIs
 
-![Technology Layer](./technology.webp)
-We will have a single node, represented through the "T Tacticode" Node which hosts the single dev board - an ESP32S3. Further details in the picture.
+
+For the Technology Layer, we will have a single node, represented through the "T Tacticode" Node which hosts the single dev board - an ESP32S3. Further details in the picture.
 
 
 * **Smart Reading Track:** Acts as a physical 3D-printed staging board and custom PCB housing, featuring multiple integrated RFID reader coils spaced along the track.
