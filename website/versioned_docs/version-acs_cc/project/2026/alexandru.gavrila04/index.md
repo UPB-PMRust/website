@@ -35,3 +35,15 @@ Ordered all of the components.
 
 ### Week 19 - 25 May
 
+# Bill of Materials (BOM)
+
+| Produs | Cantitate | U.M. | Preț unitar | Preț total |
+| :--- | :---: | :---: | :---: | :---: |
+| [Modul RFID RC522 13.59MHz cu card si tag](https://www.google.com/search?q=Modul+RFID+RC522+13.59MHz+cu+card+si+tag) | 2 | Buc | 14,99 RON | 29,98 RON |
+| [Ecran OLED 0.96" cu interfata IIC/I2C](https://www.google.com/search?q=Ecran+OLED+0.96+inch+cu+interfata+IIC/I2C) | 1 | Buc | 18,98 RON | 18,98 RON |
+| [Breadboard 830 puncte MB-102](https://www.google.com/search?q=Breadboard+830+puncte+MB-102) | 1 | Buc | 13,99 RON | 13,99 RON |
+| [Modul buzzer activ, compatibil Arduino](https://www.google.com/search?q=Modul+buzzer+activ+compatibil+Arduino) | 1 | Buc | 3,24 RON | 3,24 RON |
+| [40 x Fire Dupont tata-mama 20cm](https://www.google.com/search?q=40+x+Fire+Dupont+tata-mama+20cm) | 1 | Buc | 6,99 RON | 6,99 RON |
+| [40 x Fire Dupont tata-tata 20cm](https://www.google.com/search?q=40+x+Fire+Dupont+tata-tata+20cm) | 1 | Buc | 8,99 RON | 8,99 RON |
+| **TOTAL PRODUSE** | | | | **82,17 RON** |
+
