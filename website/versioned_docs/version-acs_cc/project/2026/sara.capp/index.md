@@ -79,7 +79,6 @@ All components share a common ground to ensure proper operation.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-
 | embedded-hal | Hardware abstraction | Interface control |
 | pca9685 driver | PWM driver | Control servomotors |
 
