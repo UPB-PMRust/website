@@ -46,6 +46,7 @@ I received the components ordered from Drot and Bitmi
 The system is based on an STM32 Nucleo board, which acts as the main controller. It handles the generation of stimuli, reads user inputs from various sensors and components, and measures the reaction time with high precision
 
 Main parts:
+
 - STM32 Nucleo Board - This is the main controller of the device. It generates stimuli, reads inputs from buttons and sensors, measures reaction time, and manages the game logic, including scoring, error detection and game mode selection
 - LEDs - These are used as visual stimuli. When a specific LED lights up, the user must press the corresponding button as quickly as possible. They provide a simple and fast way to test reaction to visual signals
 - Buttons - These are the main input devices for the user. Each button corresponds to a specific action or stimulus. The system detects button presses and checks whether the response is correct and within the allowed time
