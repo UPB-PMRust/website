@@ -12,7 +12,7 @@ Remote-controlled cargo robot with Bluetooth telemetry
 
 ## Description
 
-CargoBot is a remote-controlled four-wheeled robot that carries cargo and navigates surfaces with imperfections (bumps, ramps, carpet). It is controlled from a laptop keyboard via Bluetooth and uses an STM32 Nucleo-U545RE-Q microcontroller programmed in Rust with Embassy-rs. It sends real-time telemetry data to a PC dashboard via Bluetooth, while simultaneously displaying information on an onboard OLED.
+CargoBot is a remote-controlled four-wheeled robot that carries cargo and navigates surfaces with imperfections. It is controlled from a laptop keyboard via Bluetooth and uses an STM32 Nucleo-U545RE-Q microcontroller programmed in Rust with Embassy-rs. It sends real-time telemetry data to a PC dashboard via Bluetooth, while simultaneously displaying information on an onboard OLED.
 
 The central idea of the project is measuring and visualizing the impact of cargo load on motor performance: when the robot carries something heavy, the PID controller automatically increases the PWM duty cycle to maintain a constant speed. This compensation is observable live on the robot's OLED, on the PC dashboard, and through 3 LEDs (green/yellow/red) that visually indicate the effort level.
 
@@ -22,67 +22,7 @@ I am particularly interested in cars and networking. This project combines multi
 
 ## Architecture
 
-```
-                                   ┌─────────────────────────┐
-                                   │        Laptop           │ 
-                                   │   Dashboard + Keyboard  │
-                                   └────────────┬────────────┘
-                                                │ Bluetooth SPP
-                                   ┌────────────▼────────────┐
-                                   │          HC-06           │
-                                   │     Bluetooth Module     │
-                                   └────────────┬────────────┘
-                                                │ UART (TX/RX)
-  ┌───────────────────────┐         ┌───────────▼─────────────────────────────────┐
-  │   18650 2S Battery    │         │                                             │
-  │   7.4V / 6800mAh      │         │         STM32 Nucleo-U545RE-Q               │
-  └───────────┬───────────┘         │         ARM Cortex-M33 @ 160MHz             │
-              │ 7.4V                │                                             │
-  ┌───────────▼────────────┐ 5V reg │  ┌────────────────────────────────────────┐ │
-  │         L298N          ├───────►   │  Embassy-rs Async Tasks:               │ │
-  │     Dual H-Bridge      │        │  │   sensor_task     (20 Hz)              │ │
-  └──────┬──────┬──────────┘        │  │   motor_task      (50 Hz)              │ │
-         │      │◄──────────────────┤  │   navigation_task (10 Hz)              │ │
-    PWM  │      │  PWM + GPIO       │  │   telemetry_task   (5 Hz)              │ │
-  (L/R)  │      │  (IN1–IN4, speed) │  │   display_task     (4 Hz)              │ │
-         │      │                   │  └────────────────────────────────────────┘ │
-  ┌──────┴──────┴───────┐           │                                             │
-  │      DC Motors      │           │  ┌────────────────────────────────────────┐ │
-  │  Left ×2│ Right ×2  │           │  │  Interfaces:                           │ │
-  │  3–6V, skid steer.  │           │  │   PWM  -> L298N (motor speed 0–100%)   │ │
-  └─────────────────────┘           │  │           Passive Buzzer (horn/melody) │ │
-                                    │  │   I2C  -> MPU-6500 (0x68)              │ │
-                                    │  │           SSD1306 OLED (0x3C)          │ │
-                                    │  │   UART -> HC-06 (cmds in, JSON out)    │ │
-                                    │  │   GPIO -> HC-SR04 ×2 (trigger+echo)    │ │
-                                    │  │           LM393 ×2 (interrupt pulses)  │ │
-                                    │  │           L298N IN1–IN4 (direction)    │ │
-                                    │  │           LEDs R/Y/G (effort level)    │ │
-                                    │  └────────────────────────────────────────┘ │
-                                    │                                             │
-                                    └────┬──────────────┬──────────────┬──────────┘
-                                         │              │              │
-                                   I2C (shared)      GPIO          GPIO interrupt
-                                         │          (trig/echo)      (pulses)
-                                  ┌──────┴──────┐       │              │
-                               ┌──▼───────┐     │  ┌────▼──────┐   ┌───▼───────────┐
-                               │ MPU-6500 │     │  │  HC-SR04  │   │  LM393        │
-                               │   IMU    │     │  │  Front    │   │  Encoders     │
-                               │  (0x68)  │     │  ├───────────┤   │  Left + Right │
-                               │accel+gyro│     │  │  HC-SR04  │   └───────────────┘
-                               └──────────┘     │  │  Rear     │
-                               ┌────────────────▼─┐└───────────┘
-                               │    SSD1306       │
-                               │    OLED 128×64   │    ┌───────────────────────────┐
-                               │    (0x3C)        │    │  LEDs R/Y/G    (GPIO)     │
-                               └──────────────────┘    │  Green  PWM < 35%         │
-                                                       │  Yellow PWM  35–65%       │
-                                                       │  Red    PWM > 65%         │
-                                                       ├───────────────────────────┤
-                                                       │  Passive Buzzer  (PWM)    │
-                                                       │  Horn + audio feedback    │
-                                                       └───────────────────────────┘
-```
+![Architecture](schema_bloc.svg)
 
 The system is organized around five main subsystems:
 
@@ -113,14 +53,14 @@ HC-06 Bluetooth module connected to STM32 via UART. Bidirectional: laptop sends 
 | motor_task | 50 Hz | Apply PWM to L298N, read encoders |
 | navigation_task | 10 Hz | State machine: FORWARD / COMPENSATE / AVOID / STOP |
 | telemetry_task | 5 Hz | Serialize JSON and send over UART to HC-06 |
-| display_task | 4 Hz | Update OLED + LED indicators |
+| display_task | 4 Hz | Update OLED |
 
 **Navigation State Machine:**
 
 | State | Entry Condition | Action |
 |-------|----------------|--------|
-| FORWARD | No obstacle, pitch < 5° | Move at target speed, PID active |
-| COMPENSATE | Pitch > 5° (ramp) | Increase PWM proportional to tilt angle |
+| FORWARD | No obstacle | Move at target speed, PID active |
+| COMPENSATE | Pitch > 5 deg (ramp) | Increase PWM proportional to tilt angle |
 | AVOID | Obstacle < 30cm | Stop, rotate, resume forward |
 | STOP | Manual command / error | Motors off, telemetry continues |
 
@@ -129,11 +69,11 @@ HC-06 Bluetooth module connected to STM32 via UART. Bidirectional: laptop sends 
 | Peripheral | Component | Usage |
 |-----------|-----------|-------|
 | PWM | STM32 -> L298N | Motor speed control (0–100% duty cycle) |
-| PWM | STM32 -> Buzzer | Horn and melody generation |
-| GPIO Output | STM32 -> HC-SR04 trigger | 10μs pulse to trigger ultrasonic |
+| PWM | STM32 -> Buzzer | Horn |
+| GPIO Output | STM32 -> HC-SR04 trigger | 10 micro-s pulse to trigger ultrasonic |
 | GPIO Input Interrupt | HC-SR04 echo -> STM32 | Measure echo duration -> distance |
 | GPIO Input Interrupt | LM393 encoders -> STM32 | Count pulses -> compute RPM |
-| GPIO Output | STM32 -> LEDs R/Y/G | Load indicator: green (<35%), yellow (35–65%), red (>65%) |
+| GPIO Output | STM32 -> LEDs R/Y/G | Load indicator: green (&lt;35%), yellow (35–65%), red (>65%) |
 | GPIO Output | STM32 -> L298N IN1-IN4 | Motor direction control |
 | I2C (shared bus) | STM32 -> MPU-6500 (0x68) | Accelerometer + gyroscope for tilt angle |
 | I2C (shared bus) | STM32 -> SSD1306 (0x3C) | OLED telemetry display |
@@ -160,7 +100,7 @@ Working on the Schematic in KiCad.
 
 ## Hardware
 
-The robot is built on a 4WD chassis with 4 DC motors (3–6V) driven through an L298N dual H-bridge using skid steering (left/right side in parallel). Speed and direction are controlled via PWM from the STM32. Two IR optical sensors read encoder discs on the motors to compute RPM. An MPU-6500 IMU over I2C measures tilt angle using a complementary filter. Two HC-SR04 ultrasonic sensors handle obstacle detection front and rear. An SSD1306 OLED displays live telemetry. An HC-06 Bluetooth module provides bidirectional communication with the laptop. Three LEDs and a passive buzzer provide visual and audio feedback.
+The robot is built on a 4WD chassis with 4 DC motors (3–6V) driven through an L298N dual H-bridge using skid steering (left/right side in parallel). Speed and direction are controlled via PWM from the STM32. Two IR optical sensors read encoder discs on the motors to compute RPM. An MPU-6500 IMU over I2C measures tilt angle using a complementary filter. Two HC-SR04 ultrasonic sensors handle obstacle detection front and rear. An SSD1306 OLED displays live telemetry. An HC-06 Bluetooth module provides bidirectional communication with the laptop.
 
 ### Schematics
 
@@ -181,7 +121,7 @@ Place your KiCAD schematics here in SVG format.
 | [OLED SSD1306 0.96" I2C](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) | On-board display, shows RPM, tilt, obstacle distance, state, load level (I2C, 0x3C) | [14.01 RON](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) |
 | [2x HC-SR04 Ultrasonic Sensor](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) x2 | Obstacle detection, front and rear, GPIO trigger/echo | [18.80 RON](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) |
 | [18650 Battery Holder 2S](https://sigmanortec.ro/suport-acumulatori-18650-2s) | Holds 2x 18650 cells in series, 7.4V output for L298N and STM32 | [5.74 RON](https://sigmanortec.ro/suport-acumulatori-18650-2s) |
-| Passive Buzzer | Horn and audio feedback via PWM, from Plusivo kit | 0 RON (owned) |
+| Passive Buzzer | Horn and audio feedback via PWM | 0 RON (owned) |
 | 3x LED (red/yellow/green) + resistors | Visual motor effort indicator | 0 RON (owned) |
 | Breadboard + jumper wires | For connections | 0 RON (owned) |
 
