@@ -20,9 +20,9 @@ Orion is a robotic guide designed to assist visually impaired users with navigat
 I chose this project because I wanted to make guidance more accessible to visually impaired people. While real guide dogs offer incredible emotional support, they aren't a realistic option for everyone due to the high costs involved. A trained guide dog can cost upwards of $50,000, and that’s before you factor in years of food, water, healthcare, and daily care, such as skill maintenance, grooming, and even playing with it. Plus, a dog’s lifespan is limited, so the process and expenses eventually have to start over. Orion is much more accessible. At a much cheaper total build cost, it provides a technical alternative that doesn't need food or vet visits. It has a virtually unlimited lifespan, as long as the hardware is powered and not faulty. While a robot might occasionally need a cheap spare part if something breaks, it’s nothing compared to the ongoing costs of a living animal.
 
 ## Architecture 
-<div align="center">
-  <img src="images/OrionArchitecture.svg" alt="Orion Architecture" style={{width: '60%'}} />
-</div>
+
+![Orion Architecture](./images/OrionArchitecture.svg)
+
 The system follows a decentralized command structure, where high-level strategy is handled by a mobile device and real-time safety is handled locally by the robot.
 
 ### Main Components
@@ -79,9 +79,7 @@ For movement, the system uses a 4WD motor and wheel set adapted into a "walker-s
 The power system is split into two distinct rails for stability: the 4WD motors are powered directly from the Li-ion batteries to handle high current spikes, while a buck converter steps the voltage down to a stable 5V for the breadboard-mounted logic circuits, protecting the microcontrollers from electrical interference.
 
 ### Schematics
-<div align="center">
-  <img src="images/OrionSchematics.svg" alt="Orion Schematics" style={{width: '60%'}} />
-</div>
+![Orion Schematics](./images/OrionSchematics.svg)
 
 ### Bill of Materials
 
