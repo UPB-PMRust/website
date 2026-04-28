@@ -116,7 +116,7 @@ The program runs in a continuous loop with the following steps:
 
 Diagram
 
-![Diagram](./diagram.png)
+![Diagram](/img/diagram.png)
 
 Functional diagram
 START  
