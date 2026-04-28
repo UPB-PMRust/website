@@ -5,11 +5,9 @@ Slot Machine
 :::info
 
 **author**: Teodor Adrian Miron \
-**github project link**: <https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann>
+**github project link**: [https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann](https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann)
 
 :::
-
-<!-- do not delete the \ after your name -->
 
 ## description
 
@@ -65,25 +63,19 @@ The software architecture is based on a Finite State Machine (FSM) managing the 
 
 ### bill of materials
 
-| [STM32U545](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo6
-     │ 4-boards-mb1841-stmicroelectronics.pdf) | The microcontroller | [113 RON](https:/
-     │ /ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3T
-     │ n45zRmFA%3D%3D&utm_id=6470900573&utm_source=google&utm_medium=cpc&utm_marketing_t
-     │ actic=emeacorp&gad_source=1&gad_campaignid=6470900573&gbraid=0AAAAADn_wf1J6XpRotk
-     │ oYj96_ZbUSaPnH&gclid=Cj0KCQjw77bPBhC_ARIsAGAjjV9JETny_HVaRTMCWUsjLF5mX_nrK4cA6P9V
-     │ X1bEVQVYmCTCGeIwhOAaAlZUEALw_wcB) |
-| [LCD SCREEN ST7735] | the LCD screen |[30 RON] (https://www.optimusdigital.ro/3552-product.html?srsltid=AfmBOopp67lzqCZ7T_DR6YnhEBwDIGTLK8uCoqZD5m0lgkEWTWpdVfM4nRY) |
-| [Load cell 1KG] | the scale sensor | [10 RON] (https://ardushop.ro/ro/electronica/2418-1349-senzor-greutate.html#/246-greutate_maxima-1_kg) |
-| [HX711] | the module used for the scale sensor | [10 RON] (https://ardushop.ro/ro/groundstudio/2207-modul-citire-senzor-greutate-hx711-groundstudio-6427854000040.html?gad_source=1&gad_campaignid=22754477260&gbraid=0AAAAADlKU-6QHMrkSVTgV241TleXIcI-C&gclid=CjwKCAjwtcHPBhADEiwAWo3sJoBfO8J8w3qFYCemQZUormi9YI9ilQwZ0zKJknHe1SkJzx7VMAtgqhoCXBQQAvD_BwE) |
-| [BUZZER] | used for simulating sounds of slots machines | [0 RON] (i already have it) |
-| [BUTTONS] | used for changing the bet amount and spin | [0 RON] (i already have them) |
-| [3 x stepper motors 28BYJ-48] | used to mechanically roll the fruits | [51 RON] | (https://www.optimusdigital.ro/en/stepper-motors/101-stepper-motor-with-uln2003-driver.html?srsltid=AfmBOorUKni1yD_YYXRTQgqF-rjSHZ0HEU2HpU3gzw1ZqjGqzmR1vzVG) |
-| [Servomotor MG995] | used to push the coins out | [26 RON] | (https://ardushop.ro/ro/motoare-si-drivere/634-servomotor-mg995-semi-metal-6427854007889.html?gad_source=1&gad_campaignid=22754477260&gbraid=0AAAAADlKU-6QHMrkSVTgV241TleXIcI-C&gclid=CjwKCAjwtcHPBhADEiwAWo3sJlwwpDWevqCBxs13KsIEl0T27ylMq7OlqNeF3xs4FVvrZJOAKRNVKhoCd8sQAvD_BwE) |
-| [Servomotor SG90] | lower power servo used to push the coins out | [14 RON] (https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?srsltid=AfmBOorClWoXwrom-q33BAmiiWIUdIYcjXWfMSiZkf2jk47dvALOriBd) |
-| [DC in adaptor ] | used to power the mg995 | [1.5 RON] (https://www.optimusdigital.ro/en/connectors/12499-dc-jack-connector-female-21mm-x-55mm.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3Cz1siGkpFCn1jGQsIxVBLKc&gclid=CjwKCAjwtcHPBhADEiwAWo3sJpG_ylBdkBYkXAC_SQfJffAGcoK7aAQkbxlyicz7EjdWXw9SDNrSORoCLf8QAvD_BwE) |
-| [Power supply 5V 3A] | used to power the mg995 | [? RON] (nu gasesc niciuna potrivita la momentul actual)
-
-## software
+| Component | Description | Price / Link |
+|---|---|---|
+| [STM32U545](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf) | The microcontroller | [113 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q) |
+| [LCD SCREEN ST7735] | the LCD screen | [30 RON](https://www.optimusdigital.ro/3552-product.html) |
+| [Load cell 1KG] | the scale sensor | [10 RON](https://ardushop.ro/ro/electronica/2418-1349-senzor-greutate.html) |
+| [HX711] | the module used for the scale sensor | [10 RON](https://ardushop.ro/ro/groundstudio/2207-modul-citire-senzor-greutate-hx711-groundstudio-6427854000040.html) |
+| [BUZZER] | used for simulating sounds of slots machines | [0 RON](i already have it) |
+| [BUTTONS] | used for changing the bet amount and spin | [0 RON](i already have them) |
+| [3 x stepper motors 28BYJ-48] | used to mechanically roll the fruits | [51 RON](https://www.optimusdigital.ro/en/stepper-motors/101-stepper-motor-with-uln2003-driver.html) |
+| [Servomotor MG995] | used to push the coins out | [26 RON](https://ardushop.ro/ro/motoare-si-drivere/634-servomotor-mg995-semi-metal-6427854007889.html) |
+| [Servomotor SG90] | lower power servo used to push the coins out | [14 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html) |
+| [DC in adaptor] | used to power the mg995 | [1.5 RON](https://www.optimusdigital.ro/en/connectors/12499-dc-jack-connector-female-21mm-x-55mm.html) |
+| [Power supply 5V 3A] | used to power the mg995 | [? RON](nu gasesc niciuna potrivita la momentul actual) |
 
 ## software
 
@@ -104,4 +96,4 @@ The software architecture is based on a Finite State Machine (FSM) managing the 
 
 ## links
 
-https://youtu.be/ihVHIpEZ-Pw?is=S4FJ2DUwAJGDrWJH
+[Video Link](https://youtu.be/ihVHIpEZ-Pw?is=S4FJ2DUwAJGDrWJH)
