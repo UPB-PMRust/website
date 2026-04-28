@@ -4,7 +4,7 @@ An automated system that guides a pen along an A4 sheet of paper in order to dra
 
 :::info
 
-Author: Necula Ioan Cristian
+Author: Necula Ioan Cristian \
 
 GitHub Project Link: https://github.com/UPB-PMRust-Students/acs-project-2026-nchristiann
 
