@@ -1,5 +1,5 @@
 # Digital Fairy Companion
-A one line project description
+An embedded fairy companion that reacts to light, sound, touch, and color with animated expressions, synchronized audio, and mood-driven lighting.
 
 :::info 
 
@@ -23,8 +23,24 @@ I chose this project because of a deep conviction that mood and mental well-bein
 <!--Add here the schematics with the architecture of your project. Make sure to include:
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other-->
+![SchemaBlock](./arhitectura.svg)
 
-<!-- ![Shematic](Images/arhitectura.svg)  -->
+### Components and Interconnection
+The Digital Fairy Companion is structured into three primary functional modules that work in tandem to create an interactive experience:
+* **Sensory Module**
+
+  This layer is responsible for environmental data acquisition. It utilizes a TCS34725 for color identification, an MPU 6050 for motion and rhythm detection, a photoresistor for light intensity, an analog microphone for sound levels, and a TTP223 capacitive sensor for touch interaction. These sensors are connected to the central unit using a mix of I2C, SPI, and ADC interfaces.
+
+* **Processing & Logic Module**
+
+  At the core of the system sits the NUCLEO-U545RE-Q microcontroller, which implements a Finite State Machine (FSM) to manage over 17 distinct emotional states. It evaluates incoming sensor data to determine the appropriate behavior, such as switching from "Sleepy" to "Scared" based on sudden light and sound changes.
+
+* **Feedback & Enclosure Module**
+
+  The system produces outputs through a 2.4-inch ILI9341 LCD for pixel-art animations, a PAM8403 amplifier paired with a 1W speaker for audio, and WS2812 RGB LEDs for status-based lighting. The entire system is integrated into a thematic "Fairy House" enclosure, where the screen acts as a window and sensors are strategically hidden in decorative elements like an entrance flower or the roof.
+
+### Data & Logic Flow
+Data enters the system through various protocols: I2C for complex sensory modules (Color and IMU) and SPI for high-speed communication with the LCD and SD card. The microcontroller performs real-time analysis of these inputs to trigger state transitions. Once a state is identified, the MCU retrieves corresponding graphical frames and audio clips from the microSD card and updates the visual and auditory outputs simultaneously.
 
 ## Log
 
