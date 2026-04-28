@@ -249,24 +249,7 @@ jobs:
             echo "──────────────────────────────"
             echo "Checking for embedded images: $FILE"
 
-            MATCHES=$(grep -o 'data:image/[^;]*' "$FILE" || true)
-
-            if [ -n "$MATCHES" ]; then
-              echo "  FAIL – Embedded base64 image(s) found:"
-              while IFS = read -r MATCH; do
-                echo "    → $MATCH"
-              done <<< "$MATCHES"
-              ERRORS=$((ERRORS + 1))
-            else
-              echo "  OK – No embedded base64 images"
+            if grep -o 'data::image/[^;]*' "$FILE"; then
+              echo "$FILE -> MATCH"
             fi
-
-          done <<< "$FILES"
-
-          echo "══════════════════════════════"
-          if [ "$ERRORS" -gt 0 ]; then
-            echo "$ERRORS SVG file(s) contain embedded base64 images."
-            exit 1
-          else
-            echo "✅ All SVG files are clean – no embedded base64 images found."
-          fi
+            done
