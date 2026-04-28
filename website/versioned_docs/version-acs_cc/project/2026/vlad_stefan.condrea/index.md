@@ -24,8 +24,7 @@ I chose this project because it perfectly combines complex hardware architecture
 
 ## Architecture 
 
-![Architecture](./architecture.webp)
-
+![Architecture](./images/gemini-svg.svg)
 ## Log
 
 ### Week 20 - 27 May
@@ -44,13 +43,6 @@ I chose this project because it perfectly combines complex hardware architecture
 * **Step-down Buck Converter (LM2596)** – Regulates a separate, stable power supply for the motors to prevent STM32 brown-out resets.
 * **External Power Supply (LiPo Battery)** – Provides sufficient current for the entire system.
 
-![Hardware](image1.webp)
-![Hardware](image2.webp)
-![Hardware](image3.webp)
-
-### Schematics
-
-![Schematic](schematic.svg)
 
 ### Bill of Materials
 
