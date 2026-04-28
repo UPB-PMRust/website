@@ -1,47 +1,71 @@
 ---
 id: ariana.sadeghi
 title: Automated Optical Sorting System
-sidebar_label: Automated Optical Sorting System
 ---
 
 # Automated Optical Sorting System
 
-## 1. General Description
-The Automated Optical Sorting System is an embedded project designed to identify and sort objects based on their optical properties. Using an STM32 microcontroller, the system moves items along a conveyor belt and uses a light sensor to trigger a sorting arm.
+An automated system designed to identify and sort objects based on their optical properties using an STM32 microcontroller.
 
-## 2. Hardware Design
-The system is currently in the **hardware assembly and mechanical prototyping phase**.
+## Info
+* **Author:** Ariana Sadeghi
+* **GitHub Project Link:** [Link to your repository]
 
-### Components:
-* **STM32 Nucleo-U545RE-Q** (Processing Unit)
-* **PMIMA V2.0 Shield** (Photoresistor, LCD, Buttons)
-* **28BYJ-48 Stepper Motor** (Conveyor Drive)
-* **SG90 Micro Servomotor** (Sorting Arm)
+## Description
+The project consists of an industrial-style sorting line that uses a photoresistor to detect the opacity/reflection of objects. Based on the sensor data, a mechanical arm (servomotor) sorts the items, while a stepper motor drives the conveyor belt.
 
-### Block Diagram
-The following diagram represents the planned connections and communication protocols:
+## Motivation
+I chose this project to explore the integration of analog sensors (ADC) with precise motor control (PWM and Stepper sequences) in a real-time automation scenario.
 
+## Architecture
+### Main Components
+* **Sensing Module:** Photoresistor and ADC processing.
+* **Control Logic:** Decision-making state machine.
+* **Actuation Module:** Stepper motor driver and Servomotor control.
+* **User Interface:** LCD display via SPI.
+
+### Connection Diagram
 ![Hardware Block Diagram](./schema_bloc.svg)
 
-## 3. Software Logic (Preliminary)
-The software is currently being developed. The high-level logic follows these main stages:
-1. **Idle/Movement:** The stepper motor runs at a constant speed to move the conveyor.
-2. **Object Detection:** The system continuously polls the ADC value from the photoresistor.
-3. **Decision Making:** If the light intensity drops below a certain threshold, the system identifies an object and determines its category.
-4. **Action:** The servomotor is activated via PWM to move the arm and sort the object.
+## Log
+### Week 5 - 11 May
+* Project idea selection and hardware requirements gathering.
+* Basic component testing (Stepper and Servo motors).
 
-## 4. Current Results
-* **Hardware:** The mechanical structure and the conveyor belt are currently being assembled.
-* **Software:** Initial tests for motor control and sensor reading have been performed successfully in isolation.
-* **Integration:** System integration is pending completion of the mechanical assembly.
+### Week 12 - 18 May
+* [To be completed]
 
-## 5. Future Work & Conclusions
-The next steps involve:
-* Finalizing the mechanical alignment between the sensor and the sorting arm.
-* Tuning the threshold values for different types of objects.
-* Implementing the final state machine in the control software.
+### Week 19 - 25 May
+* [To be completed]
 
-## 6. Resources
-* [Rust Embedded Book](https://docs.rust-embedded.org/book/)
-* Microprocessor Architecture course labs (UPB)
-* STM32U545RE Datasheet.
+## Hardware
+The system is built on an **STM32 Nucleo-U545RE-Q** board. It uses a **PMIMA V2.0 Shield** for the photoresistor and LCD. The movement is handled by a **28BYJ-48 Stepper Motor** (with ULN2003) and an **SG90 Servomotor**.
+
+## Schematics
+*[To be added upon finalization of the electronic circuit detailed design]*
+
+## Bill of Materials
+| Device | Usage | Price |
+|:--- |:--- |:--- |
+| **STM32 Nucleo-U545RE-Q** | Main Microcontroller | - |
+| **PMIMA V2.0 Shield** | UI & Sensors | - |
+| **28BYJ-48 Stepper** | Conveyor movement | - |
+| **SG90 Servomotor** | Sorting Arm | - |
+
+## Software
+### High-Level Logic
+The software is currently in the prototyping phase, following these stages:
+1. **Movement:** Stepper motor runs at constant speed (GPIO sequences).
+2. **Detection:** Continuous polling of the **ADC** value from the photoresistor.
+3. **Decision:** Comparing ADC values against a preset **threshold** to identify objects.
+4. **Action:** Activating the **PWM** signal to move the Servo arm based on the detection result.
+
+### Libraries and Drivers
+| Library | Description | Usage |
+|:--- |:--- |:--- |
+| **STM32 HAL / Rust PAC** | Hardware Abstraction | Peripheral control (ADC, PWM, SPI) |
+| **Embedded-Graphics** | Graphics Library | Drawing UI elements on the LCD |
+
+## Links
+* [STM32 Documentation](https://www.st.com/)
+* [Lab Materials](https://pmi.acs.pub.ro/)
