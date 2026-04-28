@@ -103,6 +103,6 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [Visual of a Sonar](https://www.teledynemarine.com/products/product-line/sonar)
+2. [Different types of Sonars](https://www.deeptrekker.com/news/sonar-systems)
 ...
