@@ -22,18 +22,6 @@ I believe more stors could benefit from a system like this.
 
 The Nucleo Board is conected to two RFID sensors and a display.
 ![Architecture Diagram](diagrama.svg)
-## Log
-
-<!-- write your progress here every week -->
-### Week 20 - 26 April
-Got approval and researched the components. 
-Ordered all of the components.
-
-### Week 5 - 11 May
-
-### Week 12 - 18 May
-
-### Week 19 - 25 May
 
 # Bill of Materials (BOM)
 
@@ -46,4 +34,17 @@ Ordered all of the components.
 | [40 x Fire Dupont tata-mama 20cm](https://www.google.com/search?q=40+x+Fire+Dupont+tata-mama+20cm) | 1 | 6,99 RON | 6,99 RON |
 | [40 x Fire Dupont tata-tata 20cm](https://www.google.com/search?q=40+x+Fire+Dupont+tata-tata+20cm) | 1 | 8,99 RON | 8,99 RON |
 | **TOTAL PRODUSE** | | | **82,17 RON** |
+
+## Log
+
+<!-- write your progress here every week -->
+### Week 20 - 26 April
+Got approval and researched the components. 
+Ordered all of the components.
+
+### Week 5 - 11 May
+
+### Week 12 - 18 May
+
+### Week 19 - 25 May
 
