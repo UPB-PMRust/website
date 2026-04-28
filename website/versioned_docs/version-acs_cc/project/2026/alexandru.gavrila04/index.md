@@ -48,3 +48,8 @@ Ordered all of the components.
 
 ### Week 19 - 25 May
 
+## Software
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer | Handling I2C, SPI, and PWM peripherals |    
