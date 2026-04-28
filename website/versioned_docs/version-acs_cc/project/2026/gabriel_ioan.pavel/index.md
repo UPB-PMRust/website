@@ -102,9 +102,9 @@ The format is
 | [1.44'' SPI LCD](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2167-lcd-de-144-pentru-stc-stm32-i-arduino.html) | Ecran pentru output | 43 RON |
 | Potențiometru rotativ | Selectare de litere | ~10 RON |
 | [2x Placă de testare 70x90](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/232-cablaj-de-test.html) | Plăci pentru cele două noduri | 2x 3 RON |
-| Fire de cupru (? posibil altceva) | Antene | ? |
-| Condensatoare 100nF | Filtre trece-jos | ? |
-| Rezistențe 1k, 2k | Divizor de tensiune | ? |
+| Fire de cupru (? posibil altceva) | Antene | ~2 RON / metru |
+| Condensatoare 100nF | Filtre trece-jos | ~0.2 RON / buc. |
+| Rezistențe 1k, 2k | Divizor de tensiune | ~ 0.15 RON / buc. |
 
 ## Software
 
