@@ -249,13 +249,13 @@ jobs:
             echo "──────────────────────────────"
             echo "Checking for embedded images: $FILE"
 
-            MATCHES=$(grep -o 'data:image/[^;]*' "$FILE")
+            MATCHES=$(grep -o 'data:image/[^;]*' "$FILE" || true)
 
             if [ -n "$MATCHES" ]; then
               echo "  FAIL – Embedded base64 image(s) found:"
-              echo "$MATCHES" | while read -r MATCH; do
+              while IFS = read -r MATCH; do
                 echo "    → $MATCH"
-              done
+              done <<< "$MATCHES"
               ERRORS=$((ERRORS + 1))
             else
               echo "  OK – No embedded base64 images"
