@@ -31,12 +31,15 @@ The project is divided into a few main parts that work together.
 
 **Rapid-Prototyping Framework**: Uses an MB-102 Breadboard and Kapton tape for a screwless, modular assembly that is easy to modify and repair.
 
-
+![Diagram](./images/diagrama.svg)
 
 ## Log
 
 ### Week 20 - 24 April
-Bought the hardware components and started the documentation process.
+Ordered the hardware components.
+
+### Week 27 - 30 April
+Picked up the hardware components and started the documentation process.
 
 
 ## Hardware
@@ -46,9 +49,9 @@ Bought the hardware components and started the documentation process.
 
 ### Bill of Materials
 
-| Device| Usage 
-| :--- | :--- | 
-| **STM32 Blue Pill** | Central Processing Unit | 
+| Device| Usage |
+| :---- | :---- |
+| **STM32 Blue Pill** | Central Processing Unit |
 | **Motor NEMA 17** | Stepper motor for the orbital motion of the arm | 
 | **Driver A4988** | Current and step control for the motor | 
 | **OLED 0.96" I2C** | Real-time telemetry display and menu | 
