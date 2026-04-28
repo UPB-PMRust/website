@@ -8,7 +8,7 @@ A smart cash register with product scanning, real-time alerts, and business moni
 
 - **Author:** David Adrian-Mario  
 - **Group:** 331 CC  
-- **GitHub Project Link:** (you can add later)
+- **GitHub Project Link:** 
 
 ---
 
@@ -69,7 +69,7 @@ The project uses:
 
 ## Schematics
 
-TODO: Will be added later (KiCAD schematic in SVG format).
+
 
 ---
 
@@ -97,5 +97,3 @@ TODO: Will be added later (KiCAD schematic in SVG format).
 
 ## Links
 
-- https://github.com/your-project (optional)  
-- Datasheets and documentation (to be added)
