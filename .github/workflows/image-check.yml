@@ -43,11 +43,7 @@ jobs:
                 'website/versioned_docs/version-fils_en/project/')
             else
               FILES=$(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- \
-                'website/versioned_docs/ve(grep -o 'data:image/[^;]*' "$FILE")
-￼
-￼
-252	+
-            MATCHES=$(grep -o 'data:image/[rsion-acs_cc/project/' \
+                'website/versioned_docs/version-acs_cc/project/' \
                 'website/versioned_docs/version-fils_en/project/')
             fi
           fi
@@ -256,4 +252,13 @@ jobs:
             if grep -o 'data:image/[^;]*' "$FILE"; then
               echo "$FILE -> has embedded images"
             fi
-            done
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS SVG file(s) contain embedded base64 images."
+            exit 1
+          else
+            echo "✅ All SVG files are clean – no embedded base64 images found."
+          fi
