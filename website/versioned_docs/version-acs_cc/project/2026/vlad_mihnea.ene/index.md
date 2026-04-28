@@ -45,8 +45,6 @@ making the controller recognised by any game with gamepad support.
 **Output Layer** — An SSD1306 OLED display shows Bluetooth connection status and battery level
 over I²C. A coin vibration motor driven via PWM through an N-MOSFET provides haptic feedback.
 
-![Architecture Diagram](architecture.svg)
-
 ## Log
 
 ### Week 5 - 11 May
