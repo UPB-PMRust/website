@@ -20,11 +20,11 @@ Statiile de monitorizare a calitatii aerului sunt rare si costisitoare, iar date
 
 ### Diagrama functionala
 
-![Arhitectura functionala AeroGuard](architecture.png)
+![Arhitectura functionala AeroGuard](architecture.svg)
 
 ### Diagrama de alimentare
 
-![Arhitectura de alimentare AeroGuard](power.png)
+![Arhitectura de alimentare AeroGuard](power.svg)
 
 Monitorizare baterie: voltage divider 2× 100kΩ → ADC STM32, raportat prin `/api/battery`. Protectii: diode Schottky 1N5819 pe BATT+ si SOLAR+ (reverse polarity), PCB Seiko S-8261 integrat in celula protejata (overcurrent / short / overcharge / overdischarge), condensator bulk 470µF pe iesirea MP1584.
 
