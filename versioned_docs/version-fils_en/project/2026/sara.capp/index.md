@@ -114,7 +114,7 @@ The program runs in a continuous loop with the following steps:
 - rotate the flower towards that direction
 - repeat
 
-Diagram:
+Diagram
 
 ![Diagram](./diagram.png)
 
