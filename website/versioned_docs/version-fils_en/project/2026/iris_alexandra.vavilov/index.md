@@ -4,7 +4,7 @@ A physical programming interface allowing visually impaired children to learn al
 :::info 
 
 **Author**: Iris-Alexandra Vavilov \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/fils-project-2026-unirisel)
 
 :::
 
@@ -18,7 +18,7 @@ As a part-time teacher, I faced the challenge of making classroom lessons intera
 
 ## Architecture 
 
-[Full Architecture](./Architecture.pdf)
+![Entire Architecture](./Tacticode%20Enterprise%20Architecture.svg)
 
 ![Business Layer](./business.webp) 
 The Archimate Business Layer describes the main interaction of the actors: the Children and the Teachers.
@@ -27,7 +27,7 @@ The main business function that the B Children will perform is described through
 ![Application Layer](./application.webp)
 The application Layer is split into two components: the Frontend :  "A Feedback Provision Module". This module role is to trigger the "Backend" processing of the sensor data, syntax analysis, and sound playing and TTS synthesis. All the modules in the backend component are decoupled and provide their interfaces as well as realise their services. This ensures hardware and conversely software agnosticism. Further, the software will interface with hardware through APIs and the Embedded HAL APIs
 
-![Technology Layer](./teknologia.webp)
+![Technology Layer](./technology.webp)
 We will have a single node, represented through the "T Tacticode" Node which hosts the single dev board - an ESP32S3. Further details in the picture.
 
 
@@ -78,5 +78,6 @@ The physical components involve a custom PCB reading track, 3D-printed interlock
 
 ## Links
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [Scratch Foundation Inspo](https://www.scratchfoundation.org/learn/learning-library/physical-computing-with-scratch-makey-makey)
+2. [Google Research for making code physical](https://research.google/blog/project-bloks-making-code-physical-for-kids/)
+3. [Ghana introduces physical coding lego blocks](https://www.physical3dscratchblocks.org/)
