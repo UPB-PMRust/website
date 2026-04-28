@@ -111,7 +111,7 @@ The format is
 | 40x Dupont Wires Male-Male 20cm | Breadboard connections | 8,99 RON |
 | Mini Speaker 1W 8Ω | Audio output | ? RON |
 | MicroSD Card | Storing graphical frames and audio clips | ? RON |
-| 3xTactile Push Button 6x6mm | Reset and color detection triggers | 0.65 RON |
+| Tactile Push Button 6x6mm | Reset and color detection triggers | 0.65 RON x 3 |
 | 1x40 Pin Header 2.54mm | Connecting PAM8403 to breadboard | ? RON |
 | NUCLEO-U545RE-Q | Main microcontroller running the FSM logic | - RON |
 
