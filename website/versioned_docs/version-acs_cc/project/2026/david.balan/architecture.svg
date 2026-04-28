@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 720 920" role="img">
+  <title>Altitude-Hold Drone — Complete Architecture</title>
+  <desc>Architecture diagram showing all hardware components (Pico 2W, MPU-6050, HC-SR04P, ESCs, motors, battery, frame) and the data flow between them through Kalman filter and PID controllers</desc>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowSmall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .t { font-family: Arial, sans-serif; font-size: 13px; fill: #2C2C2A; }
+      .ts { font-family: Arial, sans-serif; font-size: 11px; fill: #5F5E5A; }
+      .th { font-family: Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #2C2C2A; }
+      .section-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: 600; fill: #888780; letter-spacing: 1px; }
+      .arr-data { stroke: #185FA5; stroke-width: 1.5; fill: none; }
+      .arr-control { stroke: #993C1D; stroke-width: 1.5; fill: none; }
+      .arr-power { stroke: #A32D2D; stroke-width: 1.8; fill: none; stroke-dasharray: 5 3; }
+      .arr-pwm { stroke: #534AB7; stroke-width: 1.5; fill: none; }
+      .pico-container { fill: none; stroke: #0F6E56; stroke-width: 1.5; stroke-dasharray: 6 3; }
+    </style>
+  </defs>
+  
+  <!-- ============= TIER 1: REMOTE CONTROL ============= -->
+  <text class="section-title" x="40" y="30">REMOTE CONTROL</text>
+  <line x1="40" y1="37" x2="680" y2="37" stroke="#D3D1C7" stroke-width="0.5"/>
+  
+  <!-- Android Phone -->
+  <rect x="280" y="50" width="160" height="55" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="th" x="360" y="73" text-anchor="middle">Android phone</text>
+  <text class="ts" x="360" y="90" text-anchor="middle" fill="#534AB7">Rust app — UDP control</text>
+  
+  <line x1="360" y1="105" x2="360" y2="155" class="arr-control" marker-end="url(#arrow)"/>
+  <text class="ts" x="372" y="135" fill="#993C1D">WiFi UDP — throttle, pitch, roll, yaw</text>
+  
+  <!-- ============= TIER 2: SENSORS ============= -->
+  <text class="section-title" x="40" y="178">SENSORS &amp; INPUT</text>
+  <line x1="40" y1="185" x2="680" y2="185" stroke="#D3D1C7" stroke-width="0.5"/>
+  
+  <rect x="40" y="200" width="180" height="80" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text class="th" x="130" y="222" text-anchor="middle">MPU-6050 (GY-521)</text>
+  <text class="ts" x="130" y="240" text-anchor="middle" fill="#854F0B">3-axis gyroscope</text>
+  <text class="ts" x="130" y="255" text-anchor="middle" fill="#854F0B">3-axis accelerometer</text>
+  <text class="ts" x="130" y="270" text-anchor="middle" fill="#888780">I2C @ 200 Hz</text>
+  
+  <rect x="250" y="200" width="180" height="80" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text class="th" x="340" y="222" text-anchor="middle">HC-SR04P</text>
+  <text class="ts" x="340" y="240" text-anchor="middle" fill="#854F0B">Ultrasonic distance</text>
+  <text class="ts" x="340" y="255" text-anchor="middle" fill="#854F0B">3.3V (Pico-safe)</text>
+  <text class="ts" x="340" y="270" text-anchor="middle" fill="#888780">GPIO @ 50 Hz</text>
+  
+  <rect x="460" y="200" width="180" height="80" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text class="th" x="550" y="222" text-anchor="middle">WiFi (CYW43439)</text>
+  <text class="ts" x="550" y="240" text-anchor="middle" fill="#534AB7">Built into Pico 2W</text>
+  <text class="ts" x="550" y="255" text-anchor="middle" fill="#534AB7">UDP socket</text>
+  <text class="ts" x="550" y="270" text-anchor="middle" fill="#888780">2.4 GHz access point</text>
+  
+  <line x1="360" y1="155" x2="550" y2="200" class="arr-control" fill="none" marker-end="url(#arrow)"/>
+  
+  <!-- ============= TIER 3: PICO 2W ============= -->
+  <text class="section-title" x="40" y="305">FLIGHT CONTROLLER (Raspberry Pi Pico 2W)</text>
+  <line x1="40" y1="312" x2="680" y2="312" stroke="#D3D1C7" stroke-width="0.5"/>
+  
+  <rect x="35" y="320" width="650" height="225" rx="12" class="pico-container"/>
+  <text class="ts" x="50" y="338" fill="#0F6E56">Pico 2W — Rust firmware (embassy-rp)</text>
+  
+  <rect x="60" y="350" width="280" height="65" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+  <text class="th" x="200" y="372" text-anchor="middle">Kalman Filter</text>
+  <text class="ts" x="200" y="390" text-anchor="middle" fill="#0F6E56">accel + gyro → stable θ (pitch), φ (roll)</text>
+  <text class="ts" x="200" y="405" text-anchor="middle" fill="#888780">Predict → Update → State estimate</text>
+  
+  <rect x="370" y="350" width="295" height="65" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="th" x="517" y="372" text-anchor="middle">Setpoint Manager</text>
+  <text class="ts" x="517" y="390" text-anchor="middle" fill="#5F5E5A">Target: throttle, pitch, roll, yaw, altitude</text>
+  <text class="ts" x="517" y="405" text-anchor="middle" fill="#888780">Lock altitude when throttle released</text>
+  
+  <rect x="60" y="445" width="135" height="80" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="th" x="127" y="465" text-anchor="middle">PID — Pitch</text>
+  <text class="ts" x="127" y="482" text-anchor="middle" fill="#993C1D">In: θ vs θ_target</text>
+  <text class="ts" x="127" y="497" text-anchor="middle" fill="#993C1D">Out: pitch_cmd</text>
+  <text class="ts" x="127" y="514" text-anchor="middle" fill="#888780">Kp, Ki, Kd</text>
+  
+  <rect x="205" y="445" width="135" height="80" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="th" x="272" y="465" text-anchor="middle">PID — Roll</text>
+  <text class="ts" x="272" y="482" text-anchor="middle" fill="#993C1D">In: φ vs φ_target</text>
+  <text class="ts" x="272" y="497" text-anchor="middle" fill="#993C1D">Out: roll_cmd</text>
+  <text class="ts" x="272" y="514" text-anchor="middle" fill="#888780">Kp, Ki, Kd</text>
+  
+  <rect x="385" y="445" width="135" height="80" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="th" x="452" y="465" text-anchor="middle">PID — Yaw</text>
+  <text class="ts" x="452" y="482" text-anchor="middle" fill="#993C1D">In: ωz vs ωz_target</text>
+  <text class="ts" x="452" y="497" text-anchor="middle" fill="#993C1D">Out: yaw_cmd</text>
+  <text class="ts" x="452" y="514" text-anchor="middle" fill="#888780">Kp, Ki, Kd</text>
+  
+  <rect x="530" y="445" width="135" height="80" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="th" x="597" y="465" text-anchor="middle">PID — Altitude</text>
+  <text class="ts" x="597" y="482" text-anchor="middle" fill="#993C1D">In: h vs h_target</text>
+  <text class="ts" x="597" y="497" text-anchor="middle" fill="#993C1D">Out: throttle_cmd</text>
+  <text class="ts" x="597" y="514" text-anchor="middle" fill="#888780">Kp, Ki, Kd</text>
+  
+  <line x1="130" y1="280" x2="130" y2="350" class="arr-data" marker-end="url(#arrowSmall)"/>
+  <text class="ts" x="138" y="305" fill="#185FA5">accel + gyro</text>
+  
+  <path d="M 340 280 L 340 305 L 600 305 L 600 445" class="arr-data" fill="none" marker-end="url(#arrowSmall)"/>
+  <text class="ts" x="430" y="298" fill="#185FA5">altitude h</text>
+  
+  <line x1="550" y1="280" x2="550" y2="350" class="arr-control" marker-end="url(#arrowSmall)"/>
+  <text class="ts" x="557" y="305" fill="#993C1D">setpoints</text>
+  
+  <line x1="127" y1="415" x2="127" y2="445" class="arr-data" marker-end="url(#arrowSmall)"/>
+  <line x1="272" y1="415" x2="272" y2="445" class="arr-data" marker-end="url(#arrowSmall)"/>
+  
+  <path d="M 517 415 L 517 430 L 130 430 L 127 445" class="arr-control" fill="none" marker-end="url(#arrowSmall)"/>
+  <line x1="452" y1="415" x2="452" y2="445" class="arr-control" marker-end="url(#arrowSmall)"/>
+  <line x1="597" y1="415" x2="597" y2="445" class="arr-control" marker-end="url(#arrowSmall)"/>
+  
+  <!-- ============= TIER 4: MIXER + ESCs ============= -->
+  <text class="section-title" x="40" y="572">MOTOR MIXING &amp; DRIVERS</text>
+  <line x1="40" y1="579" x2="680" y2="579" stroke="#D3D1C7" stroke-width="0.5"/>
+  
+  <rect x="200" y="595" width="320" height="50" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="360" y="617" text-anchor="middle">Motor Mixer</text>
+  <text class="ts" x="360" y="633" text-anchor="middle" fill="#185FA5">4 PID outputs → 4 motor speeds (M1..M4)</text>
+  
+  <line x1="127" y1="525" x2="240" y2="595" class="arr-data" marker-end="url(#arrowSmall)"/>
+  <line x1="272" y1="525" x2="320" y2="595" class="arr-data" marker-end="url(#arrowSmall)"/>
+  <line x1="452" y1="525" x2="400" y2="595" class="arr-data" marker-end="url(#arrowSmall)"/>
+  <line x1="597" y1="525" x2="480" y2="595" class="arr-data" marker-end="url(#arrowSmall)"/>
+  
+  <rect x="40" y="660" width="155" height="40" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="117" y="678" text-anchor="middle">ESC 1 — 30A BLHeli</text>
+  <text class="ts" x="117" y="691" text-anchor="middle" fill="#185FA5">PWM in → 3-phase out</text>
+  
+  <rect x="205" y="660" width="155" height="40" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="282" y="678" text-anchor="middle">ESC 2 — 30A BLHeli</text>
+  <text class="ts" x="282" y="691" text-anchor="middle" fill="#185FA5">PWM in → 3-phase out</text>
+  
+  <rect x="370" y="660" width="155" height="40" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="447" y="678" text-anchor="middle">ESC 3 — 30A BLHeli</text>
+  <text class="ts" x="447" y="691" text-anchor="middle" fill="#185FA5">PWM in → 3-phase out</text>
+  
+  <rect x="535" y="660" width="155" height="40" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="612" y="678" text-anchor="middle">ESC 4 — 30A BLHeli</text>
+  <text class="ts" x="612" y="691" text-anchor="middle" fill="#185FA5">PWM in → 3-phase out</text>
+  
+  <line x1="240" y1="645" x2="120" y2="660" class="arr-pwm" marker-end="url(#arrowSmall)"/>
+  <line x1="320" y1="645" x2="282" y2="660" class="arr-pwm" marker-end="url(#arrowSmall)"/>
+  <line x1="400" y1="645" x2="447" y2="660" class="arr-pwm" marker-end="url(#arrowSmall)"/>
+  <line x1="480" y1="645" x2="612" y2="660" class="arr-pwm" marker-end="url(#arrowSmall)"/>
+  
+  <!-- ============= TIER 5: MOTORS ============= -->
+  <text class="section-title" x="40" y="725">PROPULSION</text>
+  <line x1="40" y1="732" x2="680" y2="732" stroke="#D3D1C7" stroke-width="0.5"/>
+  
+  <rect x="40" y="745" width="155" height="55" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+  <text class="th" x="117" y="765" text-anchor="middle">M1 — A2212 1000KV</text>
+  <text class="ts" x="117" y="780" text-anchor="middle" fill="#3B6D11">CW — Front-left</text>
+  <text class="ts" x="117" y="794" text-anchor="middle" fill="#888780">Prop 1045 (10×4.5")</text>
+  
+  <rect x="205" y="745" width="155" height="55" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+  <text class="th" x="282" y="765" text-anchor="middle">M2 — A2212 1000KV</text>
+  <text class="ts" x="282" y="780" text-anchor="middle" fill="#3B6D11">CCW — Front-right</text>
+  <text class="ts" x="282" y="794" text-anchor="middle" fill="#888780">Prop 1045 (10×4.5")</text>
+  
+  <rect x="370" y="745" width="155" height="55" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+  <text class="th" x="447" y="765" text-anchor="middle">M3 — A2212 1000KV</text>
+  <text class="ts" x="447" y="780" text-anchor="middle" fill="#3B6D11">CW — Rear-right</text>
+  <text class="ts" x="447" y="794" text-anchor="middle" fill="#888780">Prop 1045 (10×4.5")</text>
+  
+  <rect x="535" y="745" width="155" height="55" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+  <text class="th" x="612" y="765" text-anchor="middle">M4 — A2212 1000KV</text>
+  <text class="ts" x="612" y="780" text-anchor="middle" fill="#3B6D11">CCW — Rear-left</text>
+  <text class="ts" x="612" y="794" text-anchor="middle" fill="#888780">Prop 1045 (10×4.5")</text>
+  
+  <line x1="117" y1="700" x2="117" y2="745" stroke="#3B6D11" stroke-width="1" fill="none" marker-end="url(#arrowSmall)"/>
+  <line x1="282" y1="700" x2="282" y2="745" stroke="#3B6D11" stroke-width="1" fill="none" marker-end="url(#arrowSmall)"/>
+  <line x1="447" y1="700" x2="447" y2="745" stroke="#3B6D11" stroke-width="1" fill="none" marker-end="url(#arrowSmall)"/>
+  <line x1="612" y1="700" x2="612" y2="745" stroke="#3B6D11" stroke-width="1" fill="none" marker-end="url(#arrowSmall)"/>
+  
+  <!-- ============= TIER 6: POWER ============= -->
+  <text class="section-title" x="40" y="825">POWER (F450 frame with integrated PDB)</text>
+  <line x1="40" y1="832" x2="680" y2="832" stroke="#D3D1C7" stroke-width="0.5"/>
+  
+  <rect x="40" y="845" width="200" height="60" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+  <text class="th" x="140" y="867" text-anchor="middle">3S LiPo battery</text>
+  <text class="ts" x="140" y="884" text-anchor="middle" fill="#A32D2D">11.1V, 2200mAh, 30C</text>
+  <text class="ts" x="140" y="898" text-anchor="middle" fill="#888780">XT60 connector</text>
+  
+  <rect x="280" y="845" width="200" height="60" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="th" x="380" y="867" text-anchor="middle">PDB (in F450 frame)</text>
+  <text class="ts" x="380" y="884" text-anchor="middle" fill="#5F5E5A">Distributes 11.1V to 4 ESCs</text>
+  <text class="ts" x="380" y="898" text-anchor="middle" fill="#888780">Up to 100A capacity</text>
+  
+  <rect x="520" y="845" width="170" height="60" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text class="th" x="605" y="867" text-anchor="middle">BEC (in ESC 1)</text>
+  <text class="ts" x="605" y="884" text-anchor="middle" fill="#5F5E5A">5V / 2A regulator</text>
+  <text class="ts" x="605" y="898" text-anchor="middle" fill="#888780">Powers Pico + sensors</text>
+  
+  <line x1="240" y1="875" x2="280" y2="875" class="arr-power" marker-end="url(#arrow)"/>
+  <text class="ts" x="260" y="867" text-anchor="middle" fill="#A32D2D">11.1V</text>
+  
+  <path d="M 380 845 L 380 715 L 117 715 L 117 700" class="arr-power" fill="none" marker-end="url(#arrowSmall)"/>
+  <path d="M 380 845 L 380 715 L 282 715 L 282 700" class="arr-power" fill="none" marker-end="url(#arrowSmall)"/>
+  <path d="M 380 845 L 380 715 L 447 715 L 447 700" class="arr-power" fill="none" marker-end="url(#arrowSmall)"/>
+  <path d="M 380 845 L 380 715 L 612 715 L 612 700" class="arr-power" fill="none" marker-end="url(#arrowSmall)"/>
+  
+  <path d="M 605 845 L 605 555 L 360 555 L 360 545" class="arr-power" fill="none" marker-end="url(#arrowSmall)"/>
+  <text class="ts" x="615" y="700" fill="#A32D2D">5V to Pico</text>
+</svg>
