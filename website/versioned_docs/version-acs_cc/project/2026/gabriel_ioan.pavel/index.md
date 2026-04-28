@@ -13,21 +13,32 @@ Transmițător care emite un caracter în cod Morse și un receptor ce îl prime
 
 ## Description
 
-Ideea proiectului este comunicarea unidirecțională prin cod Morse. Sunt prezente două noduri:
+Ideea proiectului este comunicarea unidirecțională prin cod Morse, implementată la nivel bare-metal.
+Arhitectura este separată în două noduri complet izolate fizic comunicarea realizându-se exclusiv prin
+intermediul frecvenței de 433MHz folosind modularea OOK (On-Off Keying).
 
-1. Nod emițător - Raspberry Pi Pico. Acesta citește valoarea dată de un potențiometru pentru
-a selecta o literă din alfabetul englez, o traduce în cod Morse și o transmite la apăsarea unui
-buton în eter prin intermediul unui modul RF 433MHz.
-2. Nod receptor - STM32. Acesta captează semnalul, filtrează zgomotul, îl decodifică și
-afișează caracterul pe un ecran LCD de 1.44\'\'.
+1. Nod emițător - Raspberry Pi Pico: Gestionează interfața cu utilizatorul Microcontrollerul folosește
+un pin ADC pentru a citi tensiunea unui potențiometru, mapând valoarea citită pe un index corespunzător
+unei litere din alfabetul englez. La declanșarea unei întreruperi externe (apăsarea butonului), litera
+selectată este codificată în semnale Morse (puncte și linii) și transmisă în eter prin pinul de date
+al modulului RF.
+2. Nod receptor - STM32: Gestionează captarea, filtrarea și afișarea datelor. Deoarece receptoarele RF
+de 433MHz generează zgomot alb în absența unui semnal, nodul receptor folosește detecția fronturilor
+și filtre software bazate pe praguri de timp pentru a izola semnalul util. Odată ce o secvență Morse
+validă este identificată, aceasta este decodificată și trimisă via SPI către un ecran LCD de 1.44''
+pentru afișare.
 
 Logica este realizată cu ajutorul frameworkul `embassy` pentru a facilita execuția de cod
-asincron.
+asincron. permițând procesarea non-blocantă a semnalelor radio și actualizarea ecranului
+fără a recurge la un sistem de operare în timp real complex.
 
 ## Motivation
 
 Am ales acest proiect din interesul pentru transmiterea semnalelor prin unde radio
-folosind sisteme integrate.
+folosind sisteme integrate, vizând înțelegerea la nivel fizic a comunicațiilor wireless
+nesecurizate și neprotocolate. Din pasiunea pentru protocoalele de comunicații, am
+luat decizia de a nu folosi module cu protocoale integrate (precum cele Bluetooth),
+implementând astfel manual logica de timing, sincronizare și filtrare necesară.
 
 ## Architecture 
 
