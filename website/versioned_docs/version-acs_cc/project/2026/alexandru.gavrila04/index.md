@@ -21,7 +21,7 @@ I believe more stors could benefit from a system like this.
 ## Architecture 
 
 The Nucleo Board is conected to two RFID sensors and a display.
-
+![Architecture Diagram](diagrama.svg)
 ## Log
 
 <!-- write your progress here every week -->
