@@ -37,6 +37,8 @@ Input system: RC522 RFID module for scanning the access card, and an IR receiver
 
 Indicators: RGB LED module (for ambient lighting and status) and an active buzzer (for audio alarms).
 
+![SchemaBlock](./schema_pm.svg)
+
 ## Log
 
 <!-- write your progress here every week -->
