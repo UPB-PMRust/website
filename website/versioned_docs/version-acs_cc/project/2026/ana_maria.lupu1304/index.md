@@ -45,7 +45,7 @@ The main architecture components of the project are:
 
 ### Architecture Diagram
 
-  ![Architecture diagram](./images/diagram.svg)
+  ![Architecture diagram](./images/diagram.webp)
 
 ## Log
 
