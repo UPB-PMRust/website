@@ -43,7 +43,11 @@ jobs:
                 'website/versioned_docs/version-fils_en/project/')
             else
               FILES=$(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- \
-                'website/versioned_docs/version-acs_cc/project/' \
+                'website/versioned_docs/ve(grep -o 'data:image/[^;]*' "$FILE")
+￼
+￼
+252	+
+            MATCHES=$(grep -o 'data:image/[rsion-acs_cc/project/' \
                 'website/versioned_docs/version-fils_en/project/')
             fi
           fi
@@ -249,7 +253,7 @@ jobs:
             echo "──────────────────────────────"
             echo "Checking for embedded images: $FILE"
 
-            if grep -o 'data::image/[^;]*' "$FILE"; then
-              echo "$FILE -> MATCH"
+            if grep -o 'data:image/[^;]*' "$FILE"; then
+              echo "$FILE -> has embedded images"
             fi
             done
