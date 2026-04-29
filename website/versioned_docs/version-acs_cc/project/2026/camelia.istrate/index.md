@@ -50,7 +50,7 @@ The system is divided into the following main components:
   - consists of multiple servo motors (base, shoulder, elbow, wrist, gripper)
   - executes movements based on PWM signals
 
-![Architecture Diagram](./images/architecture.svg)
+![Architecture Diagram](./images/architecture_diag.webp)
 
 ## Log
 
