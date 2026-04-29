@@ -28,9 +28,19 @@ Having a tailor-made machine will give me the freedom to bring complex ideas to 
 
 <!-- ![Sistem arhitecture](images/diagram.drawio.svg) -->
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+The architecture of this custom 3D printer controller is designed as a standalone, state-machine-driven embedded system. To ensure safety, signal integrity, and a strict separation of concerns, the system is logically divided into distinct architectural subsystems. This design isolates low-voltage processing logic from high-voltage mechanical and thermal actuation.
+
+**Core Processing Unit (MCU):** The central "brain" of the system is the STM32 Nucleo microcontroller. It is responsible for parsing G-code, executing the internal state machine, and orchestrating asynchronous tasks (Motion, Thermal, and I/O management).
+
+**Data Storage Subsystem:** A Micro SD Card Module acts as the local repository for G-code files, allowing the printer to operate fully standalone.
+
+**Sensory & Feedback Subsystem:** The input layer continuously gathers physical data from the machine's environment (temperatures and physical axis limits) and feeds it back to the processing unit to close the control loop.
+
+**Motion Subsystem:** The kinematic layer translates digital movement commands into physical steps, driving the printer's axes and the extruder mechanism.
+
+**Thermal Subsystem:** The high-current heating layer manages the rapid heating of the print bed and the hotend nozzle based on PID calculations from the Core Processing Unit.
+
+**Cooling Subsystem:** The thermal management layer controls the hotend heatsink ventilation to prevent heat creep and maintain hardware integrity.
 
 ## Log
 
