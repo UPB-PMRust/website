@@ -75,7 +75,7 @@ microphone sensitivity to the environment without any additional circuitry.
 
 ### Schematics
 
-Will add Kicad schematic 
+![KiCad Schematic](./kikadPOP.webp)
 
 ### Bill of Materials
 
