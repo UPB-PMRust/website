@@ -68,14 +68,32 @@ The project uses:
 ---
 
 ## Schematics
-Current system architecture:
-
-- Barcode Scanner → sends product code to the microcontroller
-- Microcontroller → processes the scanned product
-- Microcontroller → sends product name, price and total to the display
-- Microcontroller → activates buzzer and LEDs when an alert appears
-- Buttons → allow the user to confirm, reset or stop alerts
-- PC/Laptop → can store product database and transaction logs
++--------------------+        +----------------------+
+|  Barcode Scanner   | -----> |                      |
+|   (USB / UART)     |        |                      |
++--------------------+        |                      |
+                              |                      |
+                              |   Microcontroller    |
++--------------------+        |   (STM32 / Pico)     |
+|     Buttons        | -----> |                      |
+|     (GPIO)         |        |                      |
++--------------------+        |                      |
+                              |                      |
+                              |                      |
++--------------------+        |                      | -----> +------------------+
+|        PC          | <----> |                      |        |      Display     |
+| (Database / Logs)  |        |                      |        |   (LCD / TFT)    |
++--------------------+        |                      |        +------------------+
+                              |                      |
+                              |                      | -----> +------------------+
+                              |                      |        |      Buzzer      |
+                              |                      |        |      (PWM)       |
+                              |                      |        +------------------+
+                              |                      |
+                              |                      | -----> +------------------+
+                              |                      |        |       LEDs       |
+                              |                      |        |      (GPIO)      |
+                              +----------------------+
 
 
 ---
