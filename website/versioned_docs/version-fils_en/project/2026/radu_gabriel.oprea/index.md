@@ -59,18 +59,30 @@ INMP441 I2S Digital Microphone
 
 KiCAD schematics will be added here as soon as it's done.
 
-## Bill of Materials
-Device	Usage	Price
-ESP32 DevKit1	Main microcontroller	42 RON
-INMP441 I2S Microphone	Audio input for pitch detection	20 RON
-1.3” TFT Display (ST7789)	Displays tuning feedback	40 RON
+### Bill of Materials
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| [ESP32 DevKit V1](https://sigmanortec.ro/placa-dezvoltare-esp32-cu-wifi-si-bluetooth?SubmitCurrency=1&id_currency=2&srsltid=AfmBOoqsWrsP--au7FCZ8bSrXUsl5neEnXNTZ6X_o2jJOZFMJI9ANC0hGgE) | Main microcontroller | [42 RON](https://sigmanortec.ro/placa-dezvoltare-esp32-cu-wifi-si-bluetooth?SubmitCurrency=1&id_currency=2&srsltid=AfmBOoqsWrsP--au7FCZ8bSrXUsl5neEnXNTZ6X_o2jJOZFMJI9ANC0hGgE) |
+| [INMP441 I2S Microphone](https://www.optimusdigital.ro/en/others/12548-inmp441-mems-high-precision-omnidirectional-microphone-module-i2s.html?srsltid=AfmBOoorwAe9erzXWIhca8h9l2gHLA-k6hmzWy75FjUOStzRLvaQ1qG6) | Audio input for pitch detection | [20 RON](https://www.optimusdigital.ro/en/others/12548-inmp441-mems-high-precision-omnidirectional-microphone-module-i2s.html?srsltid=AfmBOoorwAe9erzXWIhca8h9l2gHLA-k6hmzWy75FjUOStzRLvaQ1qG6) |
+| [1.3” TFT Display (ST7789)](https://sigmanortec.ro/display-tft-13-ips-spi-65k-culori-lcd-st7789v-240x240-7p) | Displays tuning feedback | [31 RON](https://sigmanortec.ro/display-tft-13-ips-spi-65k-culori-lcd-st7789v-240x240-7p) |
+
+---
 
 ## Software
-Library	Description	Usage
-embedded-hal	Hardware abstraction layer	Used for interfacing with ESP32 peripherals
-microfft / rustfft	FFT libraries	Used for pitch detection
-embedded-graphics	2D graphics library	Used for drawing to the display
-esp_idf_hal::i2s	I2S module	Used for audio input processing
-espup	ESP Rust tooling	Used for setting up and building the project
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer | Used for interfacing with ESP32 peripherals |
+| [rustfft](https://github.com/ejmahler/RustFFT) | FFT libraries | Used for pitch detection |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [esp-idf-hal](https://github.com/esp-rs/esp-idf-hal) | I2S module | Used for audio input processing |
+| [espup](https://github.com/esp-rs/espup) | ESP Rust tooling | Used for setting up and building the project |
+
+---
 
 ## Links
+
+1. [ESP32 INMP441 - audio](https://github.com/ZioTester/ESP32-MMB-MAX98357A-INMP441-audio)
+2. [embedded-graphics examples](https://github.com/embedded-graphics/embedded-graphics/tree/master)
+3. [rustfft documentation](https://github.com/ejmahler/RustFFT)
