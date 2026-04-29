@@ -141,7 +141,7 @@ The project uses:
 | GPIO library | Digital input/output control | Buttons and LEDs |
 | PWM library | Pulse-width modulation | Buzzer control |
 | SPI library | Serial Peripheral Interface | Communication with display |
-| I2C library (optional) | Sensor communication | Future extensions (sensors) |
+| I2C library | Sensor communication | Future extensions (sensors) |
 
 ---
 
