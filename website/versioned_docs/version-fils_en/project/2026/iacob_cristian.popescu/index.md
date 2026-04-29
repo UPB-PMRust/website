@@ -4,7 +4,7 @@ A real-time audio spectrum visualizer that captures sound via a microphone, proc
 
 :::info
 
-**Author**: Popescu Iacob Cristian  
+**Author**: Popescu Iacob Cristian  \
 **GitHub Project Link**:  https://github.com/UPB-PMRust-Students/fils-project-2026-PopescuIacob 
 
 :::
