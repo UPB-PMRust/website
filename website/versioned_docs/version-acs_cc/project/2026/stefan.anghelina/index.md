@@ -16,10 +16,7 @@ A hybrid USB HID controller and standalone reflex game for streamers and gamers.
 
 ## Motivation
 
-I chose this project to explore the integration of high-performance embedded systems with desktop environments:
-* **Complex Interfacing:** Implementing bidirectional communication using USB HID (Keyboard/Media keys) and Serial protocols.
-* **High-Speed Peripherals:** Utilizing DMA (Direct Memory Access) to drive WS2812B addressable LEDs and I2C for fluid OLED UI rendering.
-* **Asynchronous Logic:** Building a robust system in **Rust** to handle concurrent tasks like debouncing, display updates, and USB communication without blocking the CPU.
+I chose this project to explore the idea of building an embedded project that could also be linked to areas that i have an interest in like streaming. 
 
 ## Architecture 
 
