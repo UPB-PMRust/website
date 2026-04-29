@@ -2,11 +2,8 @@
 
 A fast autonomous line-following car
 
-:::info
 **Author:** *(Sorana-Ioana Ulmeanu)*
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-soranaulm
-
-:::
 
 ## Description
 
