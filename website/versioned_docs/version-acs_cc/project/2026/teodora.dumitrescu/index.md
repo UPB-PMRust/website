@@ -88,7 +88,7 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | Async Rust framework | Main hardware abstraction |
-| [panic-halt](https://crates.io/crates/panic-halt) | Panic handler | Basic error management |
+
 
 ## Links
 
