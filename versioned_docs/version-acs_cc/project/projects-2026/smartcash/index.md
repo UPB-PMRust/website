@@ -30,6 +30,11 @@ Overall, SmartCash improves efficiency, reduces human error, and provides a more
 I chose this project because I am familiar with how markets and small shops operate, and I noticed that many systems are outdated and rely heavily on manual work. This leads to mistakes, slow service, and lack of control.
 
 The goal is to build a smarter cash register that improves efficiency, reduces errors, and provides real-time alerts.
+Additionally, this project allowed me to explore the practical side of embedded systems development by integrating both hardware and software components into a single functional system. Working with peripherals such as barcode scanners, displays, and communication interfaces helped me better understand how real-world devices operate.
+
+Another important motivation was the possibility to design a system that can be extended in the future. SmartCash can evolve into a more complex solution by adding features such as inventory management, cloud connectivity, or mobile integration.
+
+Overall, this project combines a real-world problem with a technical challenge, making it both useful and educational.
 
 ---
 
