@@ -17,7 +17,7 @@ An autonomous mobile platform designed to optimize the growth environment for in
 The inspiration for the S.O.L.A.R. Rover comes from a recent personal interest in keeping indoor plants and a rather frustrating failure. Despite my best efforts and constant care, a basil plant I tried to grow simply wouldn't survive. That experience made me realize just how difficult it can be to maintain the perfect lighting for a plant to thrive indoors. At the same time, I was looking for a serious technical challenge. I had never built a robot before, and I specifically wanted to push myself to program a physical system that could actually move and navigate its surroundings. This project was born as a way to learn about locomotion and hardware, while finally solving the exact problem that doomed my basil.
 ## Architecture 
 
-![System Architecture](./images/solar.svg)
+![System Architecture](./images/solar1.webp)
 
 ## Log
 
@@ -29,6 +29,8 @@ I finalized my idea and came to the conclusion that I want to include a solar pa
 I ordered the components and started to figure out how I wanted the 3D chassis to look in order for it to be as professional as possbile. 
 # Week 9
 My components arrived and I started to look into the photoresistors functionality and sensitivity to the light intesity of the sun. I also struggled with using a soldering iron for the first time.
+# Week 10
+I started my rover design and decided to have some floors inside the internal structure in order to have a better organization of the jumpers. The first level will be for the battery and breadboard whereas the second one will be for the STM32 microprocessor and the  L98N module with a 5.5 cm distance between them. Also, I want to update my hardware complexity for which I have ordered a OLED I2C(SSD1306), giving more personality to my robot.
 
 ## Hardware
 The hardware platform of the project is centered around the STM32 Nucleo-U545RE-Q development board, which acts as the main MCU of the rover. Two 3V-6V DC gear motors are used for the differential drive propulsion, paired with a ball caster for stability, and are interfaced with the MCU via an L298N Dual H-Bridge motor driver. An array of four LDR photoresistors is utilized for 360-degree directional light tracking, alongside a GUVA-S12SD UV sensor for detecting high-intensity radiation and an HC-SR04 ultrasonic sensor for obstacle avoidance. Wireless connectivity for remote telemetry is provided by an ESP32 WiFi module.Energy harvesting and power management are handled by a 5V photovoltaic panel that trickle-charges an onboard 18650 Li-Ion battery via a TP4056 charger and an MT3608 step-up regulator. The mechanical structure of the rover itself is manufactured using a custom 3D-printed modular frame, featuring a two-tier chassis that houses the electronics and powertrain on the lower deck and a conical universal pot holder on the upper deck.
