@@ -26,7 +26,7 @@ Having a tailor-made machine will give me the freedom to bring complex ideas to 
 
 ## Architecture 
 
-<!-- ![Sistem arhitecture](images/diagram.drawio.svg) -->
+[Sistem arhitecture](images/diagram.drawio.svg)
 
 The architecture of this custom 3D printer controller is designed as a standalone, state-machine-driven embedded system. To ensure safety, signal integrity, and a strict separation of concerns, the system is logically divided into distinct architectural subsystems. This design isolates low-voltage processing logic from high-voltage mechanical and thermal actuation.
 
