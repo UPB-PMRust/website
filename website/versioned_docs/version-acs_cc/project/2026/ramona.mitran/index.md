@@ -1,12 +1,10 @@
 # IoT Weather-Station: Meteo and Air Quality Monitor
 A smart IoT station for monitoring weather and air quality, featuring acoustic alerts and a live cloud dashboard.
 
-:::info 
 
 **Author**: Mitran Ramona Luminița \
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-mnoramona)
+**GitHub Project Link**: [UPB-PMRust-Students/acs-project-2026-mnoramona](https://github.com/UPB-PMRust-Students/acs-project-2026-mnoramona)
 
-:::
 
 ## Description
 
@@ -52,13 +50,13 @@ The project utilizes an ESP32 microcontroller due to its native Wi-Fi capabiliti
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [ESP32 DevKit V1]([https://www.optimusdigital.ro](https://www.optimusdigital.ro/ro/placi-cu-esp32/12933-placa-de-dezvoltare-plusivo-wireless-compatibila-cu-esp32-si-ble.html?search_query=esp32+si+ble&results=11)) | Main microcontroller for processing and Wi-Fi connectivity. | ~30 RON |
-| [BME280 Sensor Module]([https://www.emag.ro](https://www.emag.ro/modul-senzor-temperatura-umiditate-presiune-bme280-ai0002-s34/pd/DR7HCZBBM/?cmpid=148774&utm_source=google&utm_medium=cpc&utm_campaign=(RO:eMAG!)_3P_NO_SALES_>_Jucarii_hobby&utm_content=111476631565&gad_source=1&gad_campaignid=11606684347&gclid=Cj0KCQjw2MbPBhCSARIsAP3jP9yjHltoyqtVCIfcGIuRuK0H9Ia6tYC9mUdQIgVO9Fbke33v-HH3gbEaAkwjEALw_wcB)) | Measures temperature, humidity, and atmospheric pressure (I2C). | ~34 RON |
-| [ML8511 UV Sensor]([https://www.optimusdigital.ro](https://www.optimusdigital.ro/ro/senzori-senzori-optici/2944-senzor-de-lumina-uv-ml8511.html?search_query=ML8511&results=1)) | Detects ultraviolet light intensity (ADC). | ~33 RON |
-| [MQ-135 Air Quality Sensor]([https://www.emag.ro](https://www.emag.ro/mq-135-modul-senzor-calitate-aer-haxmya-mq-135/pd/D7HMPD2BM/)) | Detects gas levels (CO2, ammonia, benzene, smoke) (ADC/Digital). | ~22 RON |
-| [5V Passive/Active Buzzer]([https://www.optimusdigital.ro](https://www.optimusdigital.ro/ro/audio-buzzere/634-buzzer-pasiv-de-5-v.html?search_query=buzzer&results=44)) | Acoustic warning module for exceeded safety thresholds. | ~2 RON |
-| [THT Push Button](https://www.optimusdigital.ro) | Trigger for the hardware interrupt (Force Data Upload). | ~2 RON |
-| [Breadboard & Jumper Wires](https://www.optimusdigital.ro) | For rapid prototyping and circuit connections. | ~20 RON |
+| ESP32 DevKit V1 | Main microcontroller for processing and Wi-Fi connectivity. | [30 RON](https://www.optimusdigital.ro/ro/placi-cu-esp32/12933-placa-de-dezvoltare-plusivo-wireless-compatibila-cu-esp32-si-ble.html?search_query=esp32+si+ble&results=11) |
+| BME280 Sensor Module | Measures temperature, humidity, and atmospheric pressure (I2C). | [34 RON](https://www.emag.ro/modul-senzor-temperatura-umiditate-presiune-bme280-ai0002-s34/pd/DR7HCZBBM/?cmpid=148774&utm_source=google&utm_medium=cpc&utm_campaign=(RO:eMAG!)_3P_NO_SALES_>_Jucarii_hobby&utm_content=111476631565&gad_source=1&gad_campaignid=11606684347&gclid=Cj0KCQjw2MbPBhCSARIsAP3jP9yjHltoyqtVCIfcGIuRuK0H9Ia6tYC9mUdQIgVO9Fbke33v-HH3gbEaAkwjEALw_wcB) |
+| ML8511 UV Sensor | Detects ultraviolet light intensity (ADC). | [33 RON](https://www.optimusdigital.ro/ro/senzori-senzori-optici/2944-senzor-de-lumina-uv-ml8511.html?search_query=ML8511&results=1) |
+| MQ-135 Air Quality Sensor | Detects gas levels (CO2, ammonia, benzene, smoke) (ADC/Digital). | [22 RON](https://www.emag.ro/mq-135-modul-senzor-calitate-aer-haxmya-mq-135/pd/D7HMPD2BM/)
+| 5V Passive/Active Buzzer | Acoustic warning module for exceeded safety thresholds. | [2 RON](https://www.optimusdigital.ro/ro/audio-buzzere/634-buzzer-pasiv-de-5-v.html?search_query=buzzer&results=44) |
+| Button | Trigger for the hardware interrupt (Force Data Upload). | 2 RON |
+| Breadboard & Jumper Wires | For rapid prototyping and circuit connections. | 20 RON |
 
 
 ## Software
