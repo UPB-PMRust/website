@@ -13,11 +13,11 @@ A machine for iced coffee
 
 ## Description
 
-The project is an automated coffee machine that allows the user to choose exactly how much sugar and coffee they want. The process is simple: you turn on the device with a button, select your desired quantities from the menu, and then press a start button. The system then pours the sugar, coffee, and water in the correct order and mixes them together. The result is a finished iced coffee, ready to be served.
+The project is an automated coffee machine that allows the user to choose exactly how much sugar and coffee they want. The process is simple: you turn on the device with a button, select your desired quantities from the menu, and then press a start button. The system then pours the sugar, coffee, and water in the correct order and mixes them together. The result is a finished iced coffee.
 
 ## Motivation
 
-I chose this project because I wanted to build something functional that I can actually use at home after the course is finished. I also find it very interesting to take a common object that you can normally buy in a store and try to recreate it from scratch. This helps me understand the mechanics and logic behind everyday appliances.
+I chose this project because I wanted to build something functional that I can actually use at home after the course is finished. I also find it very interesting to take a common object that you can normally buy in a store and try to recreate it from scratch.
 
 ## Architecture 
 
@@ -25,11 +25,11 @@ I chose this project because I wanted to build something functional that I can a
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other -->
 
-Input: Consists of push-buttons used to select the desired quantities of coffee and sugar, and an LCD display that provides real-time feedback to the user. Additionally, the user must place the cup in the designated spot for the machine to start.
+Input: Consists of push-buttons used to select the quantities of coffee and sugar, and an LCD display that provides feedback to the user. Additionally, the user must place the cup in the designated spot for the machine to start.
 
-Processing: The STM32 Nucleo acts as the central controller. It processes the signals from the buttons and coordinates the other components, managing the timing and quantities required for the recipe. It also verifies that the cup is properly placed and resets the system once the process is finished.
+Processing: The STM32 Nucleo processes the signals from the buttons and coordinates the other components, managing the timing and quantities required for the recipe. It also verifies that the cup is properly placed and resets the system once the process is finished.  
 
-Output: The water pump, servo dispenser, and mixer work together to prepare and deliver the final mixed iced coffee.
+Output: The water pump, servo dispenser, and mixer prepare the drink in order and deliver the final mixed iced coffee.
 
 ![Architecture Diagram](./images/PM_schema_arhitectura.svg)
 
@@ -87,7 +87,12 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async Rust framework | Main hardware abstraction |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware abstraction layer for the microcontroller | The interface for GPIO, PWM, and I2C peripherals|
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Task executor for async tasks | Managing parallel tasks for the pump, servos, and sensors |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time management library | Handling delays  |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework | Used for printing status  |
+| [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler | Used for handling errors |
 
 
 ## Links
