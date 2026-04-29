@@ -29,7 +29,6 @@ The system is structured around 4 main components running in parallel:
 - **SD Task** — writes data to the CSV file on the SD card once per second
 
 All tasks communicate through Mutex and Channel mechanisms to avoid data conflicts.
-ls
 
 ## Log
 
