@@ -38,7 +38,7 @@ The architecture of this custom 3D printer controller is designed as a standalon
 
 **Motion Subsystem:** The kinematic layer translates digital movement commands into physical steps, driving the printer's axes and the extruder mechanism.
 
-**Thermal Subsystem:** The high-current heating layer manages the rapid heating of the print bed and the hotend nozzle based on PID calculations from the Core Processing Unit.
+**Thermal Subsystem:** The high-current heating layer manages the rapid heating of the print bed and the hotend nozzle based on PWM duty cycles received from the Core Processing Unit.
 
 **Cooling Subsystem:** The thermal management layer controls the hotend heatsink ventilation to prevent heat creep and maintain hardware integrity.
 
