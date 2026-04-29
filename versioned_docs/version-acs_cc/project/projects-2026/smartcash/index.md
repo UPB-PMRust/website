@@ -135,9 +135,13 @@ The project uses:
 
 | Library | Description | Usage |
 |--------|------------|------|
-| embedded-hal | Hardware abstraction | Communication with peripherals |
-| display driver | Display control | UI rendering |
-| serial library | UART communication | Barcode input |
+| embedded-hal | Hardware abstraction layer | Communication with peripherals |
+| display driver (ILI9341 / ST7789) | Display control | UI rendering |
+| serial / UART library | Serial communication | Barcode scanner input |
+| GPIO library | Digital input/output control | Buttons and LEDs |
+| PWM library | Pulse-width modulation | Buzzer control |
+| SPI library | Serial Peripheral Interface | Communication with display |
+| I2C library (optional) | Sensor communication | Future extensions (sensors) |
 
 ---
 
