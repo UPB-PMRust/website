@@ -1,83 +1,200 @@
-# GPS Datalogger for Bicycle
+---
+sidebar_position: 1
+---
 
-A embedded system for recording and monitoring bicycle ride data, with real-time display and event detection.
+# Description
 
-:::info
+The goal of the project is to showcase the knowledge gained throughout the semester by creating functional hardware that runs software written in Rust.
 
-**Author**: Dorneanu Stefan Cristian \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-stefandorneanu
+## Deliverables
+The deliverables will be stored in two places:
+- the *source code* will be stored on [Github](https://github.com/UPB-PMRust-Students)
+- the project documentation will be stored on [Github](https://github.com/upb-pmrust/website), by creating a fork of the course's website
+
+The **documentation repository** should contain:
+- the full documentation of the project, in the `index.md` file
+  - a description of the functionality
+  - the motivation for choosing the project
+  - the architecture
+    - a description of all components and how they interconnect
+    - a diagram drawn in [diagrams.net](https://app.diagrams.net/) or similar
+  - a weekly log of the project status
+  - hardware design
+    - a description of the hardware used
+    - a schematic drawn in [KiCad EDA](https://www.kicad.org/) or similar
+    - photos of the device
+  - software design
+    - detailed design
+    - functional diagram
+  - bill of materials (hardware and software)
+- the photos and other files required by the index.md file
+
+:::warning
+
+You need to work in a fork of this website's Gitlab repository and not in a blank one, in order to create a _merge request_, as described below.
 
 :::
 
-<!-- do not delete the \ after your name -->
+The **source code repository** should contain:
+- a brief documentation - the repository's `README.md` file
+  - short description of the functionality
+  - requirements (hardware and software)
+  - brief hardware and software design, including diagrams
+- software source code
 
-## Description
+The repositories will be checked by the lab assistant at during lab reserved for the project. Uploading code on the last day of the software milestone is not allowed. **The assistant** will check that students have **submitted regular commits** to the repository.
 
-The system acquires data from a GPS module (position, speed, altitude), an accelerometer and gyroscope (sudden braking and cornering detection) and a barometric sensor (precise altitude). Data is displayed in real time on a display and saved persistently on an SD card in CSV format. The software runs multiple parallel async tasks: GPS acquisition with data decoding, event detection from the accelerometer and gyroscope with filtering on the magnitude of the acceleration vector, live display and SD card writing. Sensor fusion combines GPS altitude with barometric altitude for improved accuracy.
+Students will have to build and showcase the hardware with the running software at PM Fair. On the presentation day, **students will upload the source code to the hardware** and the demo will be done live in front of the committee.
 
-## Motivation
+## Website build pre-requisites
 
-I have been cycling regularly for the past few years and always wanted a deeper understanding of my rides beyond what a simple phone app can offer. Most commercial solutions are either too expensive or too closed to customize. Building this system from scratch on a microcontroller gives me full control over what data is collected and how it is processed. I also wanted to explore how sudden braking and cornering events can be detected in real time using an IMU, which has practical applications in cyclist safety. The project strikes a good balance between hardware integration and software complexity, making it an ideal fit for this project.
+:::danger Windows support
+If you are using Windows, you will either need to install WSL2, for which you will find a detailed tutorial [here](https://learn.microsoft.com/en-us/windows/wsl/install), or use a VM with Ubuntu, Debian or another Linux based OS.
+:::
 
-## Architecture
+You will need to install `npm` and `node` and the simples way to do that can be found on [Node.js Official Website](https://nodejs.org/en/download/).
 
-The system is structured around 4 main components running in parallel:
+:::note WSL2
+If you are using WSL2, you should follow the instructions for installing on Linux.
+:::
 
-- **GPS Task** — reads position and speed data at 10Hz and calculates distance traveled
-- **IMU Task** — reads the accelerometer and gyroscope and detects sudden braking events
-- **Display Task** — updates the OLED screen with current data
-- **SD Task** — writes data to the CSV file on the SD card once per second
+## How to create a page for your project?
 
-All tasks communicate through Mutex and Channel mechanisms to avoid data conflicts.
+:::note
+This section is a work in progress.
+:::
 
-## Log
+<!--
 
-<!-- write your progress here every week -->
+:::important Windows Users
+These steps should be performed on inside your **VM**, or in **WSL2**, **not on your host machine**.
+:::
 
-### Week 5 - 11 May
+1. Please login with your UPB login to [Gitlab](https://gitlab.cs.pub.ro)
+2. You will have to add an SSH Key to your Gitlab account. This will allow you to push code without entering you username and password every time. For this, run the following command in the Windows/Linux/macOS's console: `ssh-keygen -t rsa -b 2048`. Press press ENTER until you exit the respective command prompts.
+ - If your command prompt `Overwrite (y/n)?` press `n` and run the above command again, changing the destination of the key.
+ - If the key was generated successfully, you will have the keys generated in the location indicated by the command `Enter file in which to save the key (/home/"NAME"/.ssh/id_rsa):`
+ - Read the content of the file `id_rsa.pub` or the name you gave to the file and transfer it to Github.
+ - Login to [Gitlab](https://gitlab.cs.pub.ro/) and go to: [SSH Keys](https://gitlab.cs.pub.ro/-/user_settings/ssh_keys).
+ - Click on *Add new key* and insert into the *Key* textbox your key from `id_rsa.pub`.
+ - Be very careful about the expiration date of the ssh key, change the expiration date otherwise it is set to 30 days.
 
-### Week 12 - 18 May
+3. [Download Git](https://git-scm.com) from the official website and access it in the command line using `git -v` to check if it was installed correctly. You might have to use *Git Bash*.
+4. Navigate to the [website's Gitlab repository](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro) and create a public fork by clicking on the button in the top right corner.
 
-### Week 19 - 25 May
+5. Clone the newly created repository by running `git clone git@gitlab.cs.pub.ro:<gitlab_username>/pmrust.pages.upb.ro.git`, where `<gitlab_username>` is replaced by your gitlab username.
 
-## Hardware
+6. Now you have your own clone. You need to create a new branch. For this, follow the steps:
+  - Run the command: `git fetch` followed by the `git pull` command
+  - The branches have the following naming convention: `project/your_curs.upb.ro_username`. Example: `project/andrei_paul.zamfir`
+  - To create a new branch:
+    - `git checkout -b <branch_name>`
+    - `git push --set-upstream origin project/your_curs.upb.ro_username`
 
-The system uses the NUCLEO-U545RE-Q board as the main microcontroller. The GPS module provides position and speed data via UART. The accelerometer and gyroscope (IMU) are connected via I2C and detect sudden movements. The barometric sensor, also on I2C, measures atmospheric pressure to calculate altitude. An OLED display shows data in real time, while an SD card module saves all data in CSV format. The RGB LED and buzzer signal detected events such as sudden braking and sharp cornering.
+7. To start creating your page for the project, go to `website/versioned_docs/version-acs_cc/project/2025` and create a new directory with your curs.upb.ro username. Example: `andrei_paul.zamfir`.
 
-### Schematics
+8. In that directory you must create a file named `index.md` which will be your project page. This page must follow the project [template page](./2025/template.md) You can take a look at the [Markdown](https://www.markdownguide.org/cheat-sheet/) syntax. You can look at [last year's projects](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro/-/tree/main/website/versioned_docs/version-fils_en/project/2024).
 
-Place your KiCAD or similar schematics here in SVG format.
+9. To build and test the website, you can run the `./build_website.sh` in the project's root folder, then run `cd ./website/ && npm run serve`.
 
-### Bill of Materials
+:::note Development process
+After running the script, you could run `npm run start` instead of `serve`. This would ensure that the changes you are making in your Markdown file reflect in the running build (without needing to rebuild the project over and over again). But make sure to re-run the build script when you are done, because some subtle bugs may not be caught by this method.
+:::
 
-| Device | Usage | Price |
-|--------|--------|-------|
-| [NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | ~ 130 RON |
-| [GPS Module NEO-6M](https://www.optimusdigital.ro/en/gps/2137-gyneo6mv2-gps-module-with-miniature-antenna.html) | Position, speed, GPS altitude | ~ 35 RON |
-| [Accelerometer and Gyroscope MPU-6050](https://www.optimusdigital.ro/en/inertial-sensors/96-mpu6050-accelerometer-and-gyroscope-module.html) | Sudden braking and cornering detection | ~ 10 RON |
-| [Barometric Sensor BMP280](https://www.optimusdigital.ro/en/pressure-sensors/1777-bmp280-barometric-pressure-sensor-module.html) | Temperature and barometric altitude | ~ 8 RON |
-| [OLED Display 128x64 I2C](https://www.optimusdigital.ro/en/lcds/2894-096-i2c-oled-module.html) | Real-time data display | ~ 15 RON |
-| [MicroSD Card Module](https://www.optimusdigital.ro/en/memories/1516-microsd-card-slot-module.html) | Data logging in CSV format | ~ 5 RON |
-| MicroSD Card 8GB | CSV file storage | ~ 15 RON |
-| RGB LED | Visual event indicator | ~ 2 RON |
-| Passive Buzzer | Audio alert for sudden braking | ~ 3 RON |
-| LiPo Battery 3.7V + TP4056 module | Mobile power supply and charging | ~ 20 RON |
-| Wires, breadboard, resistors | Component connections | ~ 10 RON |
+10. After finishing the project, make a _merge request_ to the [upstream repository](https://gitlab.cs.pub.ro/pmrust/pmrust.pages.upb.ro). Do not forget to change the Merge Request Description template to **project**.
 
-## Software
+![Merge Request Template](../../../static/img/MR_template.webp)
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async framework for embedded Rust | Parallel tasks, peripheral drivers |
-| [embassy-time](https://github.com/embassy-rs/embassy) | Time management in Embassy | Async timers and delays |
-| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT32 file system for SD | CSV writing on SD card |
-| [mpu6050](https://github.com/juliangaal/mpu6050) | Driver for accelerometer/gyroscope | IMU data reading via I2C |
-| [bmp280-ehal](https://github.com/uber-foo/bmp280) | Driver for barometric sensor | Temperature and pressure reading |
-| [ssd1306](https://github.com/jamwaffles/ssd1306) | OLED display driver | Real-time data display |
-| [libm](https://github.com/rust-lang/libm) | Math functions for no_std | Haversine formula, sqrt |
+:::info Merge Request contents
+The merge requests should contain only the Markdown page, and additional images in `svg` or `webp` format that must not exceed **1024x768** pixels.
+:::
+-->
 
-## Links
+## Hardware Rules
 
-1. [Embassy Rust Framework](https://embassy.dev)
-2. [STM32U545 Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)
-3. [Embedded Rust Programming](https://docs.rust-embedded.org/book/)
+1. Each student will receive an [**STM32 Nucleo-U545RE-Q**](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) development board. **You are encouraged to use this board as the core of your project.**
+2. Projects have to use a microcontroller (MCU) that is capable of running Rust code. While the STM32U5 is the primary platform, you may use other MCUs if your project specifically requires it. Examples of supported MCUs/boards are:
+  - [Raspberry Pi Pico 2](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) (RP2350) or [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) for WiFi (The version of Pico is not important, but we encourage the use of version 2.)
+  - [Adafruit Trinkey QT2040](https://www.adafruit.com/product/5056) (RP2040)
+  - [Arduino Nano RP2040 Connect](https://store.arduino.cc/products/arduino-nano-rp2040-connect) (RP2040) - ⚠️ [^arduino_nano_rp2040_connect]
+  - [micro:bit v2](https://microbit.org/) (nRF52833)
+  - [nRF52 DK](https://www.nordicsemi.com/Products/Development-hardware/nrf52-dk) (nRF52810)
+  - [STM32 NUCLEO-F401RE](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-F401RE?qs=sGAEpiMZZMuqBwn8WqcFUv%2FX0DKhApUpi46qP7WpjrffIid8Wo1rTg%3D%3D)
+  - [ESP32-C3-DevKit-RUST-1](https://www.espressif.com/en/dev-board/esp32-c3-devkit-rust-1-en) (ESP32-C3) - ⚠️ [^esp32_riscv]
+3. The hardware part may be designed either using a breadboard and jumper wires, a prototype board (solder breadboard) or a PCB. If you want to use prototyping boards, ask the lab coordinator for help with soldering during lab hours.
+
+## Software Rules
+It has to run software written in Rust. Students can use:
+- [embassy-rs](https://embassy.dev/)
+- [RTIC](https://rtic.rs/2/book/en/)
+- [bare metal](https://docs.rs/cortex-m-rt/latest/cortex_m_rt) - the cortex-r-rt crate
+- [Tock](https://www.tockos.org)
+- any other software framework that is written in Rust
+
+
+## Project Rules
+
+1. Copying schematics or source code from the Internet is not allowed. Any attempt to copy the project will be accompanied by the corresponding repercussions.
+2. The project is individual, any attempt at collaborative work will be sanctioned, students can also carry out projects that interact, but the work must be separate.
+3. Any problem or blockage you have will be discussed with the lab assistant during project work hours.
+4. Students are strongly encouraged to ask the lab assistant questions about the project.
+5. The presentation of all the milestones is mandatory.
+6. The project topic must be established in week 4 and approved by the lab coordinator by week 6. After week 6, the topic cannot be changed.
+7. The laboratory supervisor may modify the topic or propose another topic if it is not complex enough for this project.
+8. We encourage you not to use prebuilt kits, you may get less points for the hardware part.
+
+## Requirements
+1. *Complexity:* The project must reflect at least 40 hours of work and contain elements learned during the year.
+2. *Documentation:* Complete documentation of the implementation for both hardware and software.
+3. *Functionality:* The hardware device has to be fully functional.
+
+## Example Projects
+
+### Examples of projects from past years
+1. [Projects from 2024](/docs/fils_en/category/projects-2024)
+1. https://ocw.cs.pub.ro/courses/pm/prj2022
+2. https://ocw.cs.pub.ro/courses/pm/prj2023
+
+### Outstanding Projects
+1. [POV - DAVIC picTronics](https://ocw.cs.pub.ro/courses/pm/prj2023/gpatru/376)
+2. [Ryobo - Computer Vision & Object Following](https://ocw.cs.pub.ro/courses/pm/prj2023/gpatru/483)
+3. [Plug & Play ChatGPT](https://ocw.cs.pub.ro/courses/pm/prj2023/ncaroi/plug)
+4. [VENDING MACHINE](https://ocw.cs.pub.ro/courses/pm/prj2023/drtranca/vending.machine)
+
+## Project Milestones
+*Note: Slight adjustments are possible during the semester.*
+
+- **Week 1 & 2:** Introduction to the Rust language.
+- **Week 3:** Intro to Rust & embedded tooling; debugging and running programs on the **STM32U5 (Nucleo-U545RE-Q)** board.
+- **Week 4 – 8:** Embedded programming fundamentals.
+- **Week 5 – 6:** Project brainstorming and discussion (Lab & Lecture).
+- **Week 7:** **Project Theme Milestone** (Theme approval).
+- **Week 9:** **Documentation Milestone**.
+- **Week 10 / 11:** **Lab Exam**
+- **Week 11:** **Hardware Milestone**.
+- **Week 13:** **Software Milestone**.
+- **Week 14:** **PM Fair** (Final presentation and live demo).
+
+
+## Grading
+
+| Part | Deadline | Points |
+|--------|--------|--------|
+| Documentation Milestone | Week 9 | 0.4p |
+| Hardware Milestone | Week 11 | 0.8p |
+| Software Milestone | Week 13 | 0.8p |
+| PM Fair | Week 14 | 1p |
+| **Total** |  | **3p** |
+
+## F.A.Q
+**Q:** Can I use another programming language, not Rust?\
+**A:** No, the main focus of the project is to learn to work with microcontrollers using Rust.
+
+**Q:** Can I use a different framework than [embassy-rs](https://github.com/embassy-rs/embassy)?\
+**A:** Yes, we suggest taking a look at [RTIC](https://rtic.rs/2/book/en/) or [Tock](https://github.com/tock/tock).
+
+**Q:** What if the PCB arrives after the hardware milestone?\
+**A:** You will only present the diagram for the hardware part and if there is a prototype using breadboard, but at the end of the project you must necessarily have the PCB printed and functional.
+
+[^arduino_nano_rp2040_connect]: Some function of this board, like WiFi, might not be supported in Rust.
+[^esp32_riscv]: ESP32 provides its own Rust SDK described in the [The Rust on ESP Book](https://docs.esp-rs.org/book/introduction.html).
