@@ -109,11 +109,15 @@ The project uses:
 
 | Device | Usage | Price |
 |------|------|------|
-| Microcontroller | Main processing unit | ~50 RON |
+| Microcontroller (STM32 / Pico / Arduino) | Main processing unit | ~50 RON |
 | Barcode Scanner | Product scanning | ~70 RON |
-| Display | User interface | ~80 RON |
-| Buzzer | Audio alerts | ~10 RON |
+| LCD / TFT Display | User interface | ~80 RON |
+| Passive Buzzer | Audio alerts | ~10 RON |
 | LEDs | Visual alerts | ~10 RON |
+| Buttons | User interaction | ~5 RON |
+| Jumper Wires (M-F, F-F) | Connections between components | ~20 RON |
+| Breadboard | Prototyping connections | ~10 RON |
+| USB Cable | Power and communication with PC | ~15 RON |
 
 ---
 
