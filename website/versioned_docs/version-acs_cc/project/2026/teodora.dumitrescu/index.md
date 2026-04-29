@@ -31,7 +31,7 @@ Processing: The STM32 Nucleo acts as the central controller. It processes the si
 
 Output: The water pump, servo dispenser, and mixer work together to prepare and deliver the final mixed iced coffee.
 
-![Architecture Diagram](./images/architecture_diagram.png)
+![Architecture Diagram](./images/PM_schema_arhitectura.svg)
 
 ## Log
 
