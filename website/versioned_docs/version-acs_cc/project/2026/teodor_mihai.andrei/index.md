@@ -1,10 +1,10 @@
 # Inteligent Vault
-A one line project description
+A smart safe box with PIN access, tamper detection, alarm, event logging and a local web admin interface.
 
 :::info 
 
 **Author**: Andrei Teodor-Mihai \
-**GitHub Project Link**: [link_to_github](https://github.com/Teodor04/website#)
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-Teodor04)
 
 :::
 
@@ -114,18 +114,18 @@ The format is
 | Device                                                                                                                                              | Usage                                               | Price               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------------- |
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html)                                                                | Main microcontroller board, provided by the teacher | Provided by teacher |
-| [MG90S Servo Motor](https://www.optimusdigital.ro/motoare-servomotoare/271-servomotor-mg90s.html)                                                   | Controls the physical lock mechanism                | Check store price   |
-| [Reed Switch Module](https://www.optimusdigital.ro/en/buttons-and-switches/12717-reed-switch-module.html)                                           | Detects if the safe door is opened/forced           | Check store price   |
-| [4x4 Matrix Keypad](https://www.optimusdigital.ro/senzori-senzori-de-atingere/2441-tastatura-matriceala-4x4-cu-butoane.html)                        | Used for PIN input                                  | Check store price   |
-| [1.8 inch SPI LCD ST7735](https://www.optimusdigital.ro/optoelectronice-lcd-uri/3554-modul-lcd-de-18-cu-spi-i-controller-st7735-128x160-px.html)    | Displays system state and messages                  | Check store price   |
-| [MPU6050 Accelerometer and Gyroscope](https://www.optimusdigital.ro/senzori-senzori-inertiali/96-modul-senzor-triaxial-mpu-6050.html)               | Detects movement, shaking and tamper attempts       | Check store price   |
-| [Active Buzzer Module](https://www.optimusdigital.ro/audio-buzzere/10-modul-cu-buzzer-activ.html)                                                   | Alarm output                                        | Check store price   |
-| [MicroSD Card Module](https://www.optimusdigital.ro/memorii/1516-modul-slot-card-microsd.html)                                                      | Stores event logs                                   | Check store price   |
-| [Female-Male Wires](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html)                                       | Used for connecting modules to the board            | Check store price   |
-| [Female-Female Wires](https://www.optimusdigital.ro/en/wires-with-connectors/90-20-cm-40p-female-female-wire.html)                                  | Used for connecting modules and headers             | Check store price   |
-| [Breadboard](https://www.optimusdigital.ro/prototipare-breadboard-uri/8-breadboard-830-points.html)                                                 | Used for prototyping connections                    | Check store price   |
-| [Breadboard Power Supply](https://www.optimusdigital.ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) | Provides external 5V for the servo motor            | Check store price   |
-| [1000 uF Capacitor](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/7822-condensator-electrolitic-1000-uf-16-v.html)          | Stabilizes servo power supply                       | Check store price   |
+| [MG90S Servo Motor](https://www.optimusdigital.ro/motoare-servomotoare/271-servomotor-mg90s.html)                                                   | Controls the physical lock mechanism                | 19.33 RON   |
+| [Reed Switch Module](https://www.optimusdigital.ro/en/buttons-and-switches/12717-reed-switch-module.html)                                           | Detects if the safe door is opened/forced           | 5.99 RON  |
+| [4x4 Matrix Keypad](https://www.optimusdigital.ro/senzori-senzori-de-atingere/2441-tastatura-matriceala-4x4-cu-butoane.html)                        | Used for PIN input                                  | 3.99 RON  |
+| [1.8 inch SPI LCD ST7735](https://www.optimusdigital.ro/optoelectronice-lcd-uri/3554-modul-lcd-de-18-cu-spi-i-controller-st7735-128x160-px.html)    | Displays system state and messages                  | 29.99 RON   |
+| [MPU6050 Accelerometer and Gyroscope](https://www.optimusdigital.ro/senzori-senzori-inertiali/96-modul-senzor-triaxial-mpu-6050.html)               | Detects movement, shaking and tamper attempts       | 15.49 RON   |
+| [Active Buzzer Module](https://www.optimusdigital.ro/audio-buzzere/10-modul-cu-buzzer-activ.html)                                                   | Alarm output                                        | 2.99 RON  |
+| [MicroSD Card Module](https://www.optimusdigital.ro/memorii/1516-modul-slot-card-microsd.html)                                                      | Stores event logs                                   | 4.39 RON   |
+| [Female-Male Wires](https://www.optimusdigital.ro/en/wires-with-connectors/92-female-male-wire40p-20-cm.html)                                       | Used for connecting modules to the board            | 7.99 RON   |
+| [Female-Female Wires](https://www.optimusdigital.ro/en/wires-with-connectors/90-20-cm-40p-female-female-wire.html)                                  | Used for connecting modules and headers             | 7.99 RON   |
+| [Breadboard](https://www.optimusdigital.ro/prototipare-breadboard-uri/8-breadboard-830-points.html)                                                 | Used for prototyping connections                    | 10.99 RON   |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) | Provides external 5V for the servo motor            | 4.69 RON   |
+| [1000 uF Capacitor](https://www.optimusdigital.ro/ro/componente-electronice-condensatoare/7822-condensator-electrolitic-1000-uf-16-v.html)          | Stabilizes servo power supply                       | 0.59 RON   |
 
 
 
