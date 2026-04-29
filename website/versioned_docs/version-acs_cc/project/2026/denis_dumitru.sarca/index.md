@@ -49,9 +49,8 @@ convertor buck
 ### Schematics
 ![Schematics](./images/schematic.svg)
 ### Bill of Materials
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
-| [Device](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) | Used for tension adjustment | [price](6.69ron) |
+| [Device](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) | Used for tension adjustment | [price](7 ron) |
 | [Device](https://sigmanortec.ro/Motor-DC-mini-angrenaje-metal-N20-100RPM-p125711198) | The motors | [price](46 ron) |
 | [Device](https://sigmanortec.ro/shield-motoare-pentru-wemos-d1-mini-i2c-dual-motor-tb6612fng) | Motor driver | [price](47 ron) |
 | [Device](https://sigmanortec.ro/servomotor-sg90-360-continuu) | Servomotor | [price](13 ron) |
