@@ -30,7 +30,7 @@ The system is built around five concurrent Embassy-RS tasks running on the STM32
 
 The ESP-01 connects to the local WiFi network and exposes a WebSocket server. The browser dashboard connects to it and uses the Web Audio API to synthesise sound in real time.
 
-![Architecture Diagram](architecture_diagram.drawio.svg)
+![Architecture Diagram](architecture_diagram.svg)
 
 ## Log
 
