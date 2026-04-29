@@ -69,6 +69,25 @@ The project uses:
 
 ## Schematics
 
+The following diagram shows the main connections between the components of the SmartCash system.
+
+```mermaid
+flowchart TD
+    MCU[Microcontroller<br/>STM32 / Raspberry Pi Pico / Arduino]
+
+    SCAN[Barcode Scanner<br/>USB / UART]
+    DISPLAY[LCD / TFT Display<br/>SPI / I2C]
+    BUZZER[Passive Buzzer<br/>PWM]
+    LEDS[Status LEDs<br/>GPIO]
+    BUTTONS[Control Buttons<br/>GPIO]
+    PC[PC / Laptop<br/>Serial Monitor / Database]
+
+    SCAN -->|Product code| MCU
+    MCU -->|Product name, price, total| DISPLAY
+    MCU -->|Alert signal| BUZZER
+    MCU -->|Visual status| LEDS
+    BUTTONS -->|Confirm / Reset / Alert stop| MCU
+    MCU <-->|Transaction logs / product database| PC
 
 
 ---
