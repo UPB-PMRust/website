@@ -17,6 +17,11 @@ A smart cash register with product scanning, real-time alerts, and business moni
 SmartCash is an intelligent cash register system designed to modernize small retail operations by integrating product scanning, real-time alerts, and smart monitoring features.
 
 The system runs on a microcontroller platform and connects to a barcode scanner, display interface, and alert modules. It allows fast product identification, automatic price calculation, and detection of unusual events such as suspicious transactions, missing products, or system errors.
+The device features a display interface that provides clear and real-time information to the user, including product name, price, and total cost. Additionally, the system includes a buzzer and LED-based alert mechanism that notifies the operator in case of errors, invalid scans, or unusual activities.
+
+To enhance functionality, SmartCash can optionally communicate with a computer, allowing storage of transaction logs and management of product databases. This makes the system scalable and adaptable for more advanced retail applications.
+
+Overall, SmartCash improves efficiency, reduces human error, and provides a more reliable and user-friendly solution for handling transactions in small retail environments.
 
 ---
 
