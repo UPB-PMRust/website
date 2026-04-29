@@ -10,7 +10,7 @@ A hybrid USB HID controller and standalone reflex game for streamers and gamers.
 
 ## Description
 
-**Nexus Deck** is a dual-mode hardware peripheral designed to enhance the streaming and gaming experience. The device operates in two distinct modes, toggleable via a physical switch:
+**Stream Deck and Fun** is a dual-mode hardware peripheral designed to enhance the streaming and gaming experience. The device operates in two distinct modes, toggleable via a physical switch:
 1. **Stream Deck Mode (Control):** Acts as a customizable HID interface that sends macro commands to the PC. It features a bi-directional data flow, receiving real-time system feedback such as audio levels, microphone mute status, or live stream alerts.
 2. **"Loading Screen" Mode (Physical Game):** A standalone reflex-based game ("Whack-a-Button") that runs 100% on the local hardware. It is designed to keep the user engaged during long matchmaking queues or lobby wait times without needing to alt-tab from the game.
 
