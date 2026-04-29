@@ -58,7 +58,7 @@ Place your KiCAD or similar schematics here in SVG format.
 
 ### Bill of Materials
 
-<!-- Fill out this table with all the hardware components that you might need.
+<!-- Fill out this table with all the hardware components that you might need .
 
 The format is 
 ```
