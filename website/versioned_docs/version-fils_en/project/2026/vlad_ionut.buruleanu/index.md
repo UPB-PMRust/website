@@ -12,7 +12,7 @@ A remote controled fixed wing drone
 ## Description
 The aim of this project is to build a reliable UAV system that includes:
 - The drone itself
-- a flight controller that actuates control surfaces and sends over telemetry
+- A flight controller that actuates control surfaces and sends over telemetry
 - The ground station that is used to pilot the drone remotely
 
 ## Motivation
@@ -42,7 +42,6 @@ The flight controller is designed around a Raspberry pi pico 2W microcontroller 
 
 The Ground Station is centered around a Raspberry pi Zero 2W, who's main purpose is to take input from an XBOX360 controller and transmit it over to the drone. It also displays some telemetry data on the OLED display.
 
-
 ### Schematics
 
 ### Bill of materials
@@ -60,6 +59,20 @@ The Ground Station is centered around a Raspberry pi Zero 2W, who's main purpose
 | 11 x 4.7 inch propeller | propeller | _ RON |
 
 ## Software
+
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor for embedded systems | Runs concurrent tasks |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time management and timers | Handles scheduling, delays |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | HAL for RP2350 chip | GPIO, SPI, I2C, UART, PWM |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Async synchronization primitives | Switches between RF receive task and servo task |
+| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async hardware abstraction traits | Common interface for SPI, I2C |
+| [embedded-nrf24l01](https://github.com/astro/embedded-nrf24l01) | nRF24L01+ radio driver | Receiving/sending data |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Low level ARM Cortex-M support | Required for Rust on RP2350 |
+| [cortex-m-rt](https://github.com/rust-embedded/cortex-m-rt) | Startup and reset handler | Entry point for firmware |
+| [defmt](https://github.com/knurling-rs/defmt) | logging framework | Debug output during development |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler | Readable panic messages |
 
 ## Links
 
