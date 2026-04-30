@@ -57,7 +57,8 @@ The system relies on an STM32 Nucleo board as the central processing unit, expan
 
 ### Schematics
 *(Replace the text below with your exported KiCAD schematic)*
-![Schematics](path_to_your_svg.svg)
+*![Schematics](path_to_your_svg.svg)
+*I will add it later
 
 ### Bill of Materials
 | Device | Usage | Price |
