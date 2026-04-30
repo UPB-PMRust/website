@@ -5,7 +5,7 @@ A smart reaction time testing system that uses multi-sensory feedback (visual vi
 :::info
 
 **Author**: Dalbuz Heorhii \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-heorhiiDalbuz
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Heorhii78
 
 :::
 
