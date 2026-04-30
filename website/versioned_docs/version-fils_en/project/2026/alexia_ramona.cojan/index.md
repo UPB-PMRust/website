@@ -28,7 +28,7 @@ as it encourages quick thinking and problem solving through time-limited mathema
 
  ## Architecture
 
-![Architecture Diagram](architecture.svg)
+![Architecture](architecture.webp)
 
 ## Log
 
