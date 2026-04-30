@@ -10,7 +10,8 @@ AWARE-GUIN is an intelligent desktop companion designed to react to its environm
 ## Motivation
 The primary motivation for this project was to transition from classic, sequential embedded programming (C/C++) to the modern, memory-safe, and asynchronous ecosystem provided by Rust. AWARE-GUIN served as the perfect sandbox to explore advanced concepts such as cooperative multitasking on bare-metal hardware, direct hardware abstraction layer (HAL) manipulation, and real-world debugging of communication protocols (high-speed SPI and I2C).
 
-## Architecture 
+## Architecture
+ ```test
                [ DATA & TIME ]                          [ VISUAL DISPLAY ]
                 .-------------.                         .---------------.
                 |  RTC Module |                         | Displays (SPI)|
