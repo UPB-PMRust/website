@@ -97,7 +97,7 @@ The board is connected to a PC/laptop through USB serial. A local Python web ser
 
 The following schematic shows the main connections between the STM32 Nucleo board and the external modules used by the Intelligent Vault project.
 
-<img src="./schema.svg" alt="Schema conexiuni Intelligent Vault" width="800"/>
+![Project Schematic](./schema.svg)
 
 ### Bill of Materials
 
