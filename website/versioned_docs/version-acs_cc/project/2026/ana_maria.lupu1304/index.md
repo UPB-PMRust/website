@@ -2,10 +2,10 @@
 
 A self-balancing cube controlled by an STM32 microcontroller, using IMU feedback and internal reaction wheels to balance on an edge or corner.
 
-:::info 
+:::info
 
 **Author**: Ana-Maria-Raluca Lupu \
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-lupuana)
+**GitHub Project Link**: [acs-project-2026-lupuana](https://github.com/UPB-PMRust-Students/acs-project-2026-lupuana)
 
 :::
 
@@ -41,11 +41,59 @@ The main architecture components of the project are:
 - **Power layer**  
   Supplies the motors directly from the battery and powers the logic through a regulated 5V rail.
 
-
-
 ### Architecture Diagram
 
-  ![Architecture diagram](./images/diagram.webp)
+```mermaid
+flowchart LR
+    subgraph PWR["Power Layer"]
+        BATT["3S LiPo Battery 11.1V, 500mAh"]
+        REG["5V Regulator"]
+        BUZ["5V Buzzer"]
+    end
+
+    subgraph SENS["Sensing Layer"]
+        IMU["MPU6050 IMU"]
+    end
+
+    subgraph PROC["Processing and Control"]
+        STM["STM32 Microcontroller"]
+        STATE["State Estimation"]
+        CTRL["Control Algorithm"]
+        CAL["Calibration and Parameter Tuning"]
+    end
+
+    subgraph COMM["Communication Layer"]
+        BT["HC-05 Bluetooth Module"]
+        USER["User / Serial Commands"]
+    end
+
+    subgraph ACT["Actuation Layer"]
+        MOT["3x Brushless Motors / Reaction Wheels"]
+    end
+
+    subgraph PHY["Physical System"]
+        CUBE["Self-Balancing Cube"]
+    end
+
+    IMU -->|Motion data| STM
+    STM --> STATE
+    STATE --> CTRL
+    CTRL -->|Motor commands| MOT
+    MOT -->|Stabilizing torque| CUBE
+    CUBE -->|Motion/orientation changes| IMU
+
+    USER -->|Bluetooth commands| BT
+    BT --> CAL
+    CAL --> STM
+
+    BATT -->|11.1V| MOT
+    BATT --> REG
+    REG -->|5V| STM
+    REG -->|5V| IMU
+    REG -->|5V| BT
+    REG -->|5V| BUZ
+
+```
 
 ## Log
 
