@@ -28,7 +28,7 @@ Beyond the security aspect, this project offered a challenging opportunity to in
 - **Authentication FSM Task**: The central coordinator. It consumes events from the NFC, keypad, and fingerprint tasks in order. Each level has a configurable timeout; failure or timeout at any level resets the system to the idle state. On full success it drives the servo to the open position, waits 10 seconds, then closes and returns to idle. It also controls the buzzer and LEDs for acoustic and visual feedback.
 ### Architecture Diagram
  
-![Architecture Diagram](./architecture.svg)
+![Architecture Diagram](./architecture.png)
  
 ## Log
  
@@ -44,7 +44,6 @@ The project is built around the STM32 Nucleo-U545RE-Q (ARM Cortex-M33, 160 MHz) 
  
 ### Schematics
  
-![Schematic](./schematic.png)
  
 ### Bill of Materials
  
