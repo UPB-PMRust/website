@@ -16,7 +16,6 @@ The project involves designing and implementing a device based on an STM32 micro
 The system measures the time between the appearance of a stimulus and the user’s response, detects incorrect actions, false starts, or delayed reactions, and applies penalties when necessary. After each round, the user receives immediate feedback on their performance, including the reaction time, while at the end of a session, the device displays overall statistics such as the best time, average time and total number of errors.
 
 
-
 ## Motivation
 The main source of inspiration was the set of project ideas proposed by the professor, which I found both interesting and suitable for an embedded systems application. Additionally, I was particularly drawn to the concept of measuring reaction time, as I have always been curious to understand, beyond simple numbers, how quickly we can process visual or auditory stimuli.
 
