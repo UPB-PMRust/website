@@ -71,7 +71,7 @@ The robot frame is built using PLA and AMS 3D printed parts and metal brackets. 
 
 ### Schematics
 
-![KiCad Schematic](Spider.svg)
+![KiCad Schematic](spider.svg)
 
 ### Bill of Materials
 
