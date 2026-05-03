@@ -32,7 +32,7 @@ The idea came to me because I have previously studied architecture and have alwa
 
 ## Log
 
-### Week 27 - 31 April
+### Week 27 - 30 April
 
 Wrote initial documentation and made the first diagram while ordering the parts. Decided to use preexisting software for transforming drawings into lists of instructions.
 
