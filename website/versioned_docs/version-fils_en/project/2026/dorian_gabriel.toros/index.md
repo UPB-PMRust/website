@@ -66,7 +66,10 @@ Started working on hardware
 ![Orion Hardware 2/x](./images/MA2.webp)
 ![Orion Hardware 3/x](./images/MA3.webp)
 ### Week 27 April - 3 May
-
+Continued working on hardware
+![Orion Hardware 4/x](./images/MA4.webp)
+![Orion Hardware 5/x](./images/MA5.webp)
+![Orion Hardware 6/x](./images/MA6.webp)
 ### Week 4 - 10 May
 
 ### Week 11 - 17 May
