@@ -18,7 +18,7 @@ The central idea of the project is measuring and visualizing the impact of cargo
 
 ## Motivation
 
-I am particularly interested in cars and networking. This project combines multiple peripherals studied in the lab (PWM, GPIO, I2C, UART, Bluetooth) into a functional system. It clearly demonstrates a measurable technical behavior - the difference in motor effort with and without cargo. The wireless telemetry component aligns with my personal interests in networking and systems. The software runs on Rust with Embassy-rs, a modern async embedded framework with cooperative concurrency.
+I am particularly interested in cars and networking. This project combines multiple peripherals studied in the lab (PWM, GPIO, I2C, UART, Bluetooth) into a functional system. It is a challenge that clearly demonstrates technical effort - the difference in motor effort with and without cargo, and how to compensate for the load.
 
 ## Architecture
 
