@@ -61,7 +61,10 @@ All ordered materials arrived. I started doing small functionality tests to make
 ### Week 13 - 19 April
 Worked on the website for the project.
 ### Week 20 - 26 April
-
+Started working on hardware
+![Orion Hardware 1/x](./images/MA1.webp)
+![Orion Hardware 2/x](./images/MA2.webp)
+![Orion Hardware 3/x](./images/MA3.webp)
 ### Week 27 April - 3 May
 
 ### Week 4 - 10 May
