@@ -26,7 +26,7 @@ The system is composed of four main components that interact as follows:
 - **Input Handler**: reads either Wi-Fi UDP packets from the phone controller app or physical button GPIO states, and feeds movement/action commands into the game loop.
 - **Feedback Peripherals**: the RGB LED and buzzer respond to game events (damage, shooting, etc.) via PWM signals, managed as async Embassy tasks.
 
-    ![Schema arhitectura](schematic.drawio.svg)
+    ![Schema arhitectura](schemaArchitecture.webp)
 
 ## Log
 
