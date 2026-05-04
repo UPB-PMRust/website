@@ -77,7 +77,7 @@ The system uses an STM32 NUCLEO-U545RE-Q for development, an MLX90640 thermal se
 
 ### Schematics
 
-![Thermal camera hardware schematic](./assets/thermal_cam.svg)
+![Thermal camera hardware schematic](./assets/thermal_cam_good%20resolution.svg)
 
 
 ### Bill of Materials
