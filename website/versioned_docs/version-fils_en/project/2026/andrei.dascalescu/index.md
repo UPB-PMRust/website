@@ -55,10 +55,7 @@ The primary motivation for this project was to transition from classic, sequenti
 ## Hardware
 The system relies on an STM32 Nucleo board as the central processing unit, expanded with peripheral modules connected directly to the exposed header pins.
 
-### Schematics
-*(Replace the text below with your exported KiCAD schematic)*
-*![Schematics](path_to_your_svg.svg)
-*I will add it later
+##Schematics
 
 ### Bill of Materials
 | Device | Usage | Price |
