@@ -62,7 +62,7 @@ Built around the STM32 Nucleo G0B1RE, iCEE uses an array of six passive buzzers 
 
 ### Schematics
 
-![iCEE System Schematic](./MA.svg)
+![iCEE System Schematic](./MA5.svg)
 
 ### Bill of Materials
 
