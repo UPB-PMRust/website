@@ -60,11 +60,15 @@ The system relies on an STM32 Nucleo board as the central processing unit, expan
 ### Bill of Materials
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32U545RE Nucleo](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The main microcontroller running the Rust logic | [~110 RON](#) |
-| [SPI TFT Display (ST7789/ILI9341)](https://www.optimusdigital.ro/) | The screen used to render the robot's face | [~40 RON](#) |
-| [7-LED WS2812 Ring](https://www.optimusdigital.ro/) | Luminous feedback / Mood lighting | [~15 RON](#) |
-| [I2C Sensor Module](https://www.optimusdigital.ro/) | Gathering environmental data | [~20 RON](#) |
-| Dupont Wires & Breadboard | Physical connections between components | [~25 RON](#) |
+| [STM32U545RE Nucleo]| The main microcontroller running the Rust logic | [borrowed](#) |
+| [SPI TFT Display (ST7789/ILI9341)](https://www.emag.ro/display-tft-lcd-3-2-inch-320x240-spi-driver-ili9341-fara-touch-compatibil-arduino-bmx654/pd/DV5CTY2BM/?ref=history-shopping_484726532_221614_1) | The screen used to render the telemetric data | [~70 RON](#) |
+| [7-LED WS2812 Ring]([https://www.optimusdigital.ro/](https://www.drot.ro/platforma-arduino/7684-modul-led-rgb-7-x-neopixel-ws2812.html)) | Luminous feedback / Mood lighting | [~15 RON](#) |
+| [TTP223](https://www.optimusdigital.ro/ro/senzori-senzori-de-atingere/861-modul-cu-senzor-capacitiv-ttp223.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3DU4JKHkK5bfyzGYBRLoTdYx&gclid=CjwKCAjwqubPBhBOEiwAzgZX2iCeXwLEUxkYExgVLjRFnRTwgJz31Hll3oXMP39Iu_cHb7k0dCuHOxoCt7gQAvD_BwE) | Touch sensor for interaction | [2 RON](#) |
+| [BME280](https://www.emag.ro/modul-senzor-temperatura-umiditate-presiune-bme280-ai0002-s34/pd/DR7HCZBBM/?ref=history-shopping_484726532_50435_1) | Telemetric sensor for temperature, humidity and pression| [~45 RON](#) |
+| [I2C SPI DISPLAY 0.96" SH1106](https://www.emag.ro/display-oled-128-x-64-px-0-96-interfata-i2c-spi-sh1106-3-3-v-multicolor-5904162801497/pd/DJL6KLMBM/?ref=history-shopping_484726532_116388_1) | Here we have two displays that will be used as eyes for the AWARE-GUIN and they will display the emotions of it or different eyes if you interact. | [2x 32RON](#) |
+| [Servomotor 90](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotoare+sg90&results=2) | They are supposed to move the arms if the Penguin it's angry. | [2x 14 RON](#) |
+
+| Dupont Wires & Breadboard | Physical connections between components | [65 RON](#) |
 
 ## Software
 | Library | Description | Usage |
