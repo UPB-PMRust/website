@@ -3,9 +3,10 @@
 An automated miniature turret system that monitors the environment via ultrasonic scanning and engages detected targets using automated or semi-automated firing modes.
 
 :::info 
-**Author**: Vlad-Ştefan CONDREA  
-**Laboratory Assistant**: Irina Bradu  
+
+**Author**: Vlad-Ştefan CONDREA  \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-CondreaVladStefan
+
 :::
 
 ## Description
