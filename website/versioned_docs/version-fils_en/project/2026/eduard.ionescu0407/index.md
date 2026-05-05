@@ -89,7 +89,7 @@ The format is
 | [TB6612FNG Motor Driver](https://ardushop.ro/ro/motoare-si-drivere/517-modul-diver-de-motoare-dual-tb6612fng-6427854006028.html) | DC Motor power management | [26.45 RON](https://ardushop.ro/ro/motoare-si-drivere/517-modul-diver-de-motoare-dual-tb6612fng-6427854006028.html) |
 | [2x DC Motor 3-6V](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html) | Drivetrain powertrain simulation | [7.20 RON](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html) |
 | [MG90S Servo](https://sigmanortec.ro/servomotor-mg90s-angrenaje-aluminiu?SubmitCurrency=1&id_currency=2&srsltid=AfmBOopUyBd_iW5poJ3Q4mwor-S4SfekIXNHqTUcPEHa6mvhV8qMQUNfjog) | Steering System | [20.00 RON](https://sigmanortec.ro/servomotor-mg90s-angrenaje-aluminiu?SubmitCurrency=1&id_currency=2&srsltid=AfmBOopUyBd_iW5poJ3Q4mwor-S4SfekIXNHqTUcPEHa6mvhV8qMQUNfjog) |
-| [Proto Boards](https://sigmanortec.ro/servomotor-mg90s-angrenaje-aluminiu?SubmitCurrency=1&id_currency=2&srsltid=AfmBOopUyBd_iW5poJ3Q4mwor-S4SfekIXNHqTUcPEHa6mvhV8qMQUNfjog) | Steering System | [20.00 RON](https://sigmanortec.ro/servomotor-mg90s-angrenaje-aluminiu?SubmitCurrency=1&id_currency=2&srsltid=AfmBOopUyBd_iW5poJ3Q4mwor-S4SfekIXNHqTUcPEHa6mvhV8qMQUNfjog) |
+| [3x Proto Board](https://ardushop.ro/ro/breadboards-pcb-expansions/1413-placa-pcb-prototipare-fata-dubla-5x7-6427854020703.html) | Steering System | [12.00 RON](https://ardushop.ro/ro/breadboards-pcb-expansions/1413-placa-pcb-prototipare-fata-dubla-5x7-6427854020703.html) |
 
 
 
