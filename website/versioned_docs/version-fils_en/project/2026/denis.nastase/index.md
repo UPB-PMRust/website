@@ -4,7 +4,7 @@ A LoRa-powered smart-home ecosystem using an STM32 hub and ESP32 nodes to optimi
 :::info 
 
 **Author**: Nastase Denis-Cristian \
-**GitHub Project Link**: [link_to_github](https://github.com/Denixzertyux/website)
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/fils-project-2026-Denixzertyux)
 
 :::
 
