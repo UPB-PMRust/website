@@ -44,7 +44,15 @@ I got the components (except the ESP32-CAM) and set up the start of my project (
 
 ### Week 20 April - 26 April
 
-I got the rest of the components (the ESP32-CAM, some wires and a battery holder) and started assembling the project, starting with the servomotor; I wired the servomotor and wrote some code to test it, worked mostly fine, but each time would stop working after a while; suspected it was because of insuficient power so I decided to get some batteries for power. Afterwards wired the first sensor and started testing; had errors, as sensor would get stuck on high - did a lot of debugging to narrow down the problem (this log unfinished)
+I got the rest of the components (the ESP32-CAM, some wires and a battery holder) and started assembling the project, starting with the servomotor; I wired the servomotor and wrote some code to test it, worked mostly fine, but each time would stop working after a while; suspected it was because of insuficient power so I decided to get some batteries for power. Afterwards wired the first sensor and started testing; had errors, as sensor would get stuck on high - did a lot of debugging to narrow down the problem. 
+
+### Week 27 April - 3 May
+
+The problem with the servomotor got fixed after I got some batteries to power it with. After finding that the problem with the sensor was related to a voltage divider malfucntioning (said divider was supposed to get a 5V signal coming from one of the sensor's pins to 3.3V for the STM connection) and failing several times to fix the voltage divider, I decided to use a logic level shifter instead of the divider; while waiting for the level shifter to arrive, I added a green and a red led, with the green led lighting up when the barrier was supposed to open and the red led beeing lit for the rest of the time (will probably change in future); also worked on writing code for more tests with the sensor and did more research on how it worked; work stalled for a few days while waiting for level shifter;
+
+### Week 4 May - 10 May
+
+Logic level shifter arrived, work resumed - log to be continued
 
 ## Hardware
 
@@ -68,7 +76,7 @@ coming soon
 
 | Device                                                                                                           | Usage                                     | Price                     
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------
-| [STM32-NUCLEO-U545RE-Q] | microcontroller | borrowed from politehnica
+| STM32-NUCLEO-U545RE-Q | microcontroller | borrowed from politehnica
 | [HC-SRO4 ultrasonic sensor x 2](https://www.emag.ro/set-2-senzori-distanta-ultrasonic-digital-3-3-5v-45x20x15mm-multicolor-9344435370736/pd/DCPK2H3BM/?ref=history-shopping_484549223_232871_1)          | measuring distance from barrier  | 36 Lei
 | [SG90 servo motor x 4](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-4-bucati-3874783591898/pd/DLHDYTYBM/?ref=history-shopping_484549223_157633_1)   | moving the barrier       | 48 Lei
 | [ESP32-CAM](https://www.emag.ro/microcontroler-esp32-cam-cu-ov2640-wi-fi-si-camera-bluetooth-5v-5904162804207/pd/DSTDNLMBM/?ref=history-shopping_485848746_38837_1) |   checks vehicles for authorization   | 67 Lei
