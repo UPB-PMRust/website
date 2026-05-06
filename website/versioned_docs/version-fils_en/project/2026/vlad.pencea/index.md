@@ -49,7 +49,7 @@ The project is built around the **Raspberry Pi Pico 2W** (RP2350), which handles
 
 ### Schematics
 
-TODO
+![Imagine hardware](schemaHardware.webp)
 
 ### Bill of Materials
 
