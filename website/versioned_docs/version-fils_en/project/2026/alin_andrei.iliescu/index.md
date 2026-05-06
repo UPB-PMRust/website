@@ -61,6 +61,10 @@ Rendering Engine -> 1.3" OLED Screen
 * Researched about the MQ-3 sensor
 * Started learning how to 3D model for the casing of the device
 
+### Week 10
+* 3D printed a box to build the project in
+* Tested the display for the first time
+
 ## Hardware
 
 The system is centered around the **STM32 NUCLEO-U545RE-Q** MCU. For output I am using an 1.3" OLED Display (SSD 1306 controller) using **I2C** for data transmission, a **passive buzzer** that gets a **PWM** signal, and an RGB LED that gets an oscilating **PWM** signal in the form of a 2D vector(since only red and blue are needed).
