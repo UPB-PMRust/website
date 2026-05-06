@@ -1,4 +1,4 @@
-## MiniMath Pocket Monsters
+# MiniMath Pocket Monsters
 An embedded game where players catch Pokémon by solving math equations.
 
 :::info
@@ -28,7 +28,7 @@ as it encourages quick thinking and problem solving through time-limited mathema
 
  ## Architecture
 
-![Architecture Diagram](architecture.svg)
+![Architecture](architecture.webp)
 
 ## Log
 
