@@ -1,6 +1,6 @@
 # Automated Drink Mixer
 
-An automated drink mixer that precisely measures and dispenses custom juice recipes.
+An automated drink mixer that precisely measures and dispenses custom juice recipes. 
 
 :::info
 **Author:** Mario Emancipatu \
