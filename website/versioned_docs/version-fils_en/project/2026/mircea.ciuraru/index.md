@@ -62,7 +62,7 @@ The hardware is split into a low-power, lightweight handheld device (the Wand) p
 
 ### Schematics
 
-![Kicad Schematic](schem.png)
+![Kicad Schematic](schem.webp)
 
 ### Bill of Materials
 
