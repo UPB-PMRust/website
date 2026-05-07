@@ -82,6 +82,11 @@ Since the hardware components are still in transit, I focused on planning and do
 
 
 
+### Week 10-11
+Received the physical components and successfully assembled the complete hardware circuit on the breadboard, including the custom driving circuit for the haptic motor. Validated the electrical connections and successfully tested the I2C communication with the OLED and the PWM signal generation for the servo motors. On the software side, completed approximately 80% of the embedded Rust firmware using the `embassy-rs` framework, establishing the core asynchronous task structure and peripheral initialization. The final 3D-printed enclosure and the final software refinements are the remaining steps.
+
+
+
 ## Hardware
 
 
@@ -92,7 +97,7 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 ## Schematics
 
-(KiCad schematics pending breadboard validation).
+![Schema Electrica](schema.svg)
 
 
 
