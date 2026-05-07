@@ -28,8 +28,6 @@ The project is built around a distributed micro-architecture consisting of two m
 
 ![Project Architecture](architecture.svg)
 
-![Kicad Schematic](schem.png)
-
 ## Log
 
 ### Week 8
@@ -64,7 +62,7 @@ The hardware is split into a low-power, lightweight handheld device (the Wand) p
 
 ### Schematics
 
-KiCAD schematic WIP.
+![Kicad Schematic](schem.png)
 
 ### Bill of Materials
 
