@@ -27,6 +27,9 @@ The project is built around a distributed micro-architecture consisting of two m
 2. The WIFI Controller (Base Station & Router Interface)
 
 ![Project Architecture](architecture.svg)
+
+![Kicad Schematic](schem.png)
+
 ## Log
 
 ### Week 8
@@ -35,15 +38,16 @@ The project is built around a distributed micro-architecture consisting of two m
 * Selected the **ESP-NOW** protocol for ultra-low latency wireless communication between the Wand and the Base Controller.
 * Explored the OpenWRT `ubus` HTTP API for executing remote network administration commands without relying on SSH.
 
-### Week 9 *(Current Week)*
+### Week 9
 * **Hardware Procurement:** Finalized the complete Bill of Materials (BOM).
 * Officially placed orders for all necessary hardware components (ESP32-S3 SuperMini, ESP8266 NodeMCU, MPU6050, TP4056 modules, Li-Po battery, jumper wires, etc.) from suppliers.
 * Currently awaiting delivery of the components to begin breadboard testing and initial hardware assembly.
 
 ### Week 10
-*(To be filled during development)*
+* Components have arrived and have started breadboard testing with some success.
+* Started writing software for the WIFI Wand, struggling with the MPU6050 and clean data from it.
 
-### Week 11
+### Week 11 *(Current Week)*
 *(To be filled during development)*
 
 ### Week 12
