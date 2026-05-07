@@ -24,11 +24,11 @@ I chose this project to practically apply embedded systems concepts, particularl
 
 The system is organized into five functional layers, centered around the STM32 Nucleo board:
 
-1. **Power:** Two 18650 Li-Ion batteries provide 7.4V. This powers the motor drivers directly, while an LM2596 buck converter steps it down to a stable 5V for the microcontroller and sensors.
-2. **Mobility (4WD):** Four independent DC motors, equipped with mecanum wheels, are driven by two TB6612FNG motor controllers receiving PWM signals from the STM32.
+1. **Power:** Two battery holders containing standard AA batteries provide the main power supply (approx. 6V - 9V). This powers the motor drivers directly, while an LM2596S-5 buck converter steps it down to a stable 5V for the microcontroller and sensors.
+2. **Mobility (4WD):** Four independent DC motors, equipped with mecanum wheels, are driven by two L298N motor controllers receiving PWM signals from the STM32.
 3. **Perception:** Three HC-SR04 ultrasonic sensors (front, rear, lateral) detect obstacles. Their 5V Echo signals are safely stepped down to the Nucleo's 3.3V logic via a level converter.
 4. **Communication:** An ESP-01S module establishes a Wi-Fi bridge, allowing the STM32 to receive remote control vectors from the custom joystick UI.
-5. **Feedback:** A 0.96" OLED display provides visual state information, while a passive buzzer emits variable-frequency acoustic warnings during reverse maneuvers.
+5. **Feedback:** An RC1602A 16x2 Character LCD provides visual state information, while a passive buzzer emits variable-frequency acoustic warnings during reverse maneuvers.
 
 ## Log
 
@@ -41,11 +41,11 @@ The system is organized into five functional layers, centered around the STM32 N
 
 ## Hardware
 
-The project relies on an STM32 Nucleo board as the main controller, communicating with an ESP8266 for remote commands. The chassis has been modified to support 4 independent DC motors and mecanum wheels for complex kinematics. Three ultrasonic sensors handle spatial awareness, while power is regulated via a buck converter to safely power the logic systems from the Li-ion batteries.
+The project relies on an STM32 Nucleo board as the main controller, communicating with an ESP8266 for remote commands. The chassis has been modified to support 4 independent DC motors and mecanum wheels for complex kinematics. Three ultrasonic sensors handle spatial awareness, while power is regulated via a buck converter to safely power the logic systems from the standard battery packs.
 
 ### Schematics
 
-![Architecture Diagram](./architecture.svg)
+![Architecture Diagram](./Mecanum_Rover_STM32.svg)
 
 ### Bill of Materials
 
@@ -54,16 +54,15 @@ The project relies on an STM32 Nucleo board as the main controller, communicatin
 | STM32 Nucleo-U545RE-Q | Main microcontroller | 108.34 RON |
 | 4WD Smart Car Chassis Kit | Base physical platform | 83.24 RON |
 | 4x Omnidirectional (Mecanum) Wheels | Lateral/omnidirectional movement | 108.04 RON |
-| 2x TB6612FNG Motor Drivers | PWM control for the DC motors | 20 RON |
+| 2x L298N Motor Drivers | PWM control for the DC motors | 20 RON |
 | ESP-01S ESP8266 Wireless Module | Wi-Fi bridge for remote teleoperation | 18.99 RON |
 | Bluetooth Module HC-06 | Alternative wireless communication | 30.41 RON |
 | 3x HC-SR04 Ultrasonic Sensors | Obstacle detection (front & rear) | 40.12 RON |
 | 2-Axis Joystick Module | Custom remote control input | 5.45 RON |
-| OLED Display 0.96" I2C | Real-time status UI | 16.96 RON |
+| RC1602A 16x2 LCD + 10k Potentiometer | Real-time status UI & contrast control | 16.96 RON |
 | 3V / 3.3V Passive Buzzer | Acoustic parking assist feedback | 0.99 RON |
-| 2x Li-Ion Batteries & Battery Case | Main power supply | 72.09 RON |
-| Li-Ion Battery Charger Module | Battery management & charging | 9.99 RON |
-| LM2596 DC-DC Buck Converter | Voltage regulation (fixed 5V) | 12.99 RON |
+| 2x Battery Holders (4-6 AA) & Batteries | Main power supply | 35.00 RON |
+| LM2596S-5 DC-DC Buck Converter | Voltage regulation (fixed 5V) | 12.99 RON |
 | Breadboard Power Supply & 9V Connector | Logic power distribution | 6.20 RON |
 | Prototyping PCBs & Breadboard | Component mounting & soldering | 22.98 RON |
 | Silicone Wires, Jumpers, & Pin Headers | Component interconnections | 71.40 RON |
