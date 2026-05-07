@@ -84,8 +84,7 @@ The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which inter
 
 ## Schematics
 
-(KiCAD or similar schematics will be added here)
-
+![Schematics](./KicadScheme.svg)
 
 ## Bill of Materials
 
