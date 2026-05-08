@@ -51,7 +51,9 @@ The system uses an STM32 Nucleo-U545RE-Q as the central hub. It orchestrates a V
 
 ### Schematics
 ![System Architecture Diagram](./LiDAR_Security_Hub.svg) 
-*To be added.*
+<p align="center">
+  <em>Complete system schematic for the Smart 2D LiDAR Security Hub.</em>
+</p>
 
 ### Bill of Materials
 
