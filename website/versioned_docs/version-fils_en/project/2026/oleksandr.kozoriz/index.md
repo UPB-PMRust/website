@@ -148,7 +148,7 @@ The format is
 | [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler that exits with an error code | Addressing errors |
 | [cortex-m-rt](https://github.com/rust-embedded/cortex-m) | Minimal runtime / startup for Cortex-M microcontrollers | Embassy dependency |
 | [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | Driver HD44780 compliant displays | Displaying the output |
-| [embedded-hal](https://github.com/JohnDoneth/hd44780-driver) | Hardware Abstraction Layer for embedded systems | Display driver's dependency |
+| [heapless](https://github.com/rust-embedded/heapless) | `static` friendly data structures that don't require dynamic memory allocation | Displaying strings on the LCD properly |
 
 ## Links
 
