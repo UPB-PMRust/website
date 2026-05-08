@@ -74,7 +74,7 @@ Nevermind, forget it, the double feed is not the final boss, the final boss turn
 
 ![Paper pendulum](sensor_w11.webp)
 
-From the software point of view, the logic is now reversed: we wait for rising edge, not for the falling one. With the new logic applied, due to motor vibration paper pendulum creates insane amount of false-triggers, so my next goal is to reconsider the pendulum material and position in order to minimize the vibration-triggers. Increasing the debouncing interval may also resolve the issue.
+From the software point of view, the logic is now reversed: we wait for rising edge, not for the falling one. With the new logic applied, due to motor vibration paper pendulum creates insane amount of false-triggers, so my next goal is to reconsider the pendulum material and position in order to minimize them. Increasing the debouncing interval may also resolve the issue.
 
 ### Week 12
 To be continued...
