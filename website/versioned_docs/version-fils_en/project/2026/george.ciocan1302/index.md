@@ -42,11 +42,19 @@ The motivation behind the project was my interests in aerospace and CAD modellin
 
 ## Log
 
--- TO DO --
-
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+
+Got a first prototype working. The rover can be controlled with a smartphone, but no other peripherals are installed yet. For now, only the motor drivers and their motors are connected to the ESP32. Also, the power cables from the battery are connected to a master switch, after which they split in two power rails: 12V for the motors and a 5V from the buck converter for the ESP. The 6V converter will be connected later when adding the servos.
+
+<center>
+![Side](Side.webp)
+</center>
+
+<center>
+![Top](Top.webp)
+</center>
 
 ### Week 12 - 18 May
 
@@ -68,9 +76,9 @@ An additional temperature/humidity sensor on board might also provide informatio
 displayed/saved together with the sample measurements in the logs of the database.
 
 ### Schematics
--- TO DO --
-
-Place your KiCAD or similar schematics here in SVG format.
+<center>
+![Schem](Schem.svg)
+</center>
 
 ### Bill of Materials
 
