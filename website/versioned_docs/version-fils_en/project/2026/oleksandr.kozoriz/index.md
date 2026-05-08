@@ -74,7 +74,7 @@ Nevermind, forget it, the double feed is not the final boss, the final boss turn
 
 ![Paper pendulum](sensor_w11.webp)
 
-From the software poing of view, the logic is now reversed: we wait for rising edge, not for the falling one.
+From the software point of view, the logic is now reversed: we wait for rising edge, not for the falling one.
 
 ### Week 12
 To be continued...
