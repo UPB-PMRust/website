@@ -63,9 +63,9 @@ The system uses a dual-controller architecture supported by an external vision s
 
 ### Schematics
 
-![img](schematics.svg)
+![img](schematics_scanny.svg)
 
-![img](kicad_scanny_anastasiu_antonia_maria.svg)
+![img](kicad_scanny_anastasiu_antonia_maria2.svg)
 
 ### Photos of the robot (in progress)
 
