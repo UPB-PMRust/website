@@ -82,12 +82,12 @@ The format is
 | [2 mm to 2 mm Coupling Hub](https://en.wikipedia.org/wiki/Coupling) | Shaft connections | 2 | [5.99 RON](https://www.optimusdigital.ro/en/coupling-hubs/451-2mm-to-2mm-coupling-hub.html) |
 | [Miniature Ball Bearing (2 mm Internal Diameter)](https://en.wikipedia.org/wiki/Bearing_(mechanical)) | Shaft support | 1 | [2.89 RON](https://www.optimusdigital.ro/en/bearings/402-rulment-in-miniatura-cu-diametru-interior-2-mm.html) |
 | [4x4 Push Button Keyboard Matrix](https://www.electronicwings.com/sensors-modules/4x4-keypad-module) | User input | 1 | [3.99 RON](https://www.optimusdigital.ro/en/touch-sensors/2441-tastatura-matriceala-4x4-cu-butoane.html) |
-| [Red Button with Round Cover](https://en.wikipedia.org/wiki/Push-button) | Start / Reset / Edit buttons | 2 | [1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html) |
+| [Button with Round Cover](https://en.wikipedia.org/wiki/Push-button) | Start / Reset / Edit buttons | 3 | [1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html) |
 | [Breadboard HQ (830 points)](https://en.wikipedia.org/wiki/Breadboard) | Prototyping | 1 | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
 | [Breadboard Jumper Wires Set](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 1 | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
 | [10 cm 10p Male-Female Wires](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 2 | [2.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/650-fire-colorate-mama-tata-10p.html) |
 | [Cardboard](https://en.wikipedia.org/wiki/Cardboard) | CAD (Cardboard Aided Design) | 1 | [4.40 RON](https://www.dedeman.ro/ro/cutie-depozitare-din-carton-ctft-435-420-x-330-x-210-mm/p/1045878) |
-| **Total** | | | **xxx RON** |
+| **Total** | | | **224.50 RON** |
 
 *was borrowed from the lab
 
