@@ -55,7 +55,7 @@ Other main components are the **LCD display**, that is used as the information o
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![KiCad schemactic](kicad.svg)
 
 ### Bill of Materials
 
@@ -69,24 +69,25 @@ The format is
 
 -->
 
-| Device | Usage | Price |
-|--------|--------|-------|
-| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [~130 RON*](https://ro.farnell.com/stmicroelectronics/nucleo-u545re-q/development-brd-32bit-arm-cortex/dp/4216396) |
-| [Mini Infrared Interruption Sensor Module](https://www.optimusdigital.ro/en/all-products/5826-mini-infrared-interruption-sensor-module.html) | Detection of the passing banknote | [6.99 RON](https://www.optimusdigital.ro/en/all-products/5826-mini-infrared-interruption-sensor-module.html) |
-| [1602 LCD with Blue Backlight 3.3 V](https://en.wikipedia.org/wiki/Liquid-crystal_display) | The main display | [19.99 RON](https://www.optimusdigital.ro/en/lcds/868-modul-lcd-1602-cu-backlight-galben-verde-de-33-v.html) |
-| [DC Motor](https://en.wikipedia.org/wiki/DC_motor) | Pulling the banknotes into the slit | [3.99 RON](https://www.optimusdigital.ro/en/others/13612-dc-motor-f130-3v.html) |
-| [L293D Motor Driver](https://www.ti.com/product/L293D) | The motor driver | [3 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/13613-driver-de-motoare-l293d.html) |
-| [18 mm Rubber Wheel](https://en.wikipedia.org/wiki/Wheel) | The roller | [5 x 0.89 RON](https://www.optimusdigital.ro/en/gears/571-18-mm-rubber-wheel.html) |
-| [2x150 mm Shaft](https://en.wikipedia.org/wiki/Shaft_(mechanical_engineering)) | The shaft for the roller | [1.95 RON](https://www.optimusdigital.ro/en/metal-axes/298-ax-metalic-2x150-mm.html) |
-| [2x50 mm Shaft](https://en.wikipedia.org/wiki/Shaft_(mechanical_engineering)) | Shaft extention | [0.95 RON](https://www.optimusdigital.ro/en/metal-axes/312-ax-metalic-2x50-mm.html) |
-| [2 mm to 2 mm Coupling Hub](https://en.wikipedia.org/wiki/Coupling) | Shaft connections | [2 x 5.99 RON](https://www.optimusdigital.ro/en/coupling-hubs/451-2mm-to-2mm-coupling-hub.html) |
-| [Miniature Ball Bearing (2 mm Internal Diameter)](https://en.wikipedia.org/wiki/Bearing_(mechanical)) | Shaft support | [2.89 RON](https://www.optimusdigital.ro/en/bearings/402-rulment-in-miniatura-cu-diametru-interior-2-mm.html) |
-| [4x4 Push Button Keyboard Matrix](https://www.electronicwings.com/sensors-modules/4x4-keypad-module) | User input | [3.99 RON](https://www.optimusdigital.ro/en/touch-sensors/2441-tastatura-matriceala-4x4-cu-butoane.html) |
-| [Red Button with Round Cover](https://en.wikipedia.org/wiki/Push-button) | Start / Reset buttons | [2 x 1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html) |
-| [Breadboard HQ (830 points)](https://en.wikipedia.org/wiki/Breadboard) | Prototyping | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
-| [Breadboard Jumper Wires Set](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
-| [10 cm 10p Male-Female Wires](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | [8 x 2.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/650-fire-colorate-mama-tata-10p.html) |
-| [Cardboard](https://en.wikipedia.org/wiki/Cardboard) | CAD (Cardboard Aided Design) | [4.40 RON](https://www.dedeman.ro/ro/cutie-depozitare-din-carton-ctft-435-420-x-330-x-210-mm/p/1045878) |
+| Device | Usage | Qty | Price |
+|--------|--------|--------|-------|
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | 1 | [~130 RON*](https://ro.farnell.com/stmicroelectronics/nucleo-u545re-q/development-brd-32bit-arm-cortex/dp/4216396) |
+| [Mini Infrared Interruption Sensor Module](https://www.optimusdigital.ro/en/all-products/5826-mini-infrared-interruption-sensor-module.html) | Detection of the passing banknote | 1 | [6.99 RON](https://www.optimusdigital.ro/en/all-products/5826-mini-infrared-interruption-sensor-module.html) |
+| [1602 LCD with Blue Backlight 3.3 V](https://en.wikipedia.org/wiki/Liquid-crystal_display) | The main display | 1 | [19.99 RON](https://www.optimusdigital.ro/en/lcds/868-modul-lcd-1602-cu-backlight-galben-verde-de-33-v.html) |
+| [DC Motor](https://en.wikipedia.org/wiki/DC_motor) | Pulling the banknotes into the slit | 1 | [3.99 RON](https://www.optimusdigital.ro/en/others/13612-dc-motor-f130-3v.html) |
+| [L293D Motor Driver](https://www.ti.com/product/L293D) | The motor driver | 1 | [3 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/13613-driver-de-motoare-l293d.html) |
+| [18 mm Rubber Wheel](https://en.wikipedia.org/wiki/Wheel) | The roller | 5 | [0.89 RON](https://www.optimusdigital.ro/en/gears/571-18-mm-rubber-wheel.html) |
+| [2x150 mm Shaft](https://en.wikipedia.org/wiki/Shaft_(mechanical_engineering)) | The shaft for the roller | 1 | [1.95 RON](https://www.optimusdigital.ro/en/metal-axes/298-ax-metalic-2x150-mm.html) |
+| [2x50 mm Shaft](https://en.wikipedia.org/wiki/Shaft_(mechanical_engineering)) | Shaft extention | 1 | [0.95 RON](https://www.optimusdigital.ro/en/metal-axes/312-ax-metalic-2x50-mm.html) |
+| [2 mm to 2 mm Coupling Hub](https://en.wikipedia.org/wiki/Coupling) | Shaft connections | 2 | [5.99 RON](https://www.optimusdigital.ro/en/coupling-hubs/451-2mm-to-2mm-coupling-hub.html) |
+| [Miniature Ball Bearing (2 mm Internal Diameter)](https://en.wikipedia.org/wiki/Bearing_(mechanical)) | Shaft support | 1 | [2.89 RON](https://www.optimusdigital.ro/en/bearings/402-rulment-in-miniatura-cu-diametru-interior-2-mm.html) |
+| [4x4 Push Button Keyboard Matrix](https://www.electronicwings.com/sensors-modules/4x4-keypad-module) | User input | 1 | [3.99 RON](https://www.optimusdigital.ro/en/touch-sensors/2441-tastatura-matriceala-4x4-cu-butoane.html) |
+| [Red Button with Round Cover](https://en.wikipedia.org/wiki/Push-button) | Start / Reset / Edit buttons | 2 | [1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html) |
+| [Breadboard HQ (830 points)](https://en.wikipedia.org/wiki/Breadboard) | Prototyping | 1 | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
+| [Breadboard Jumper Wires Set](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 1 | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
+| [10 cm 10p Male-Female Wires](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 2 | [2.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/650-fire-colorate-mama-tata-10p.html) |
+| [Cardboard](https://en.wikipedia.org/wiki/Cardboard) | CAD (Cardboard Aided Design) | 1 | [4.40 RON](https://www.dedeman.ro/ro/cutie-depozitare-din-carton-ctft-435-420-x-330-x-210-mm/p/1045878) |
+| **Total** | | | **xxx RON** |
 
 *was borrowed from the lab
 
