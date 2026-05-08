@@ -146,7 +146,7 @@ The main component is the Nucleo STM32U545RE-Q board that acts as the flight con
 
 ### Schematics
 
-![KiCAD Schematic](./MAProject.svg)
+![KiCAD Schematic](./maproject.svg)
 
 ### Bill of Materials
 
