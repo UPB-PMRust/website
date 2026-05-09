@@ -119,10 +119,10 @@ The dashboard's interface is controller by a resistive touchscreen processed by 
 ### Schematics
 
 Measurement device:
-![Power](energy_monitor_pcb-Power.svg)
-![Sensors](energy_monitor_pcb-Sensors.svg)
-![MCU](energy_monitor_pcb-MCU.svg)
-![Display](energy_monitor_pcb-Display.svg)
+![Power](energy_monitor_pcb-power.svg)
+![Sensors](energy_monitor_pcb-sensors.svg)
+![MCU](energy_monitor_pcb-mcu.svg)
+![Display](energy_monitor_pcb-display.svg)
 
 Dashboard device:
 ![Dashboard](dashboard_device.svg)
