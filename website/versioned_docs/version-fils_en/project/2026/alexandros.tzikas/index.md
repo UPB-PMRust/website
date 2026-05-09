@@ -44,15 +44,15 @@ I got the components (except the ESP32-CAM) and set up the start of my project (
 
 ### Week 20 April - 26 April
 
-I got the rest of the components (the ESP32-CAM, some wires and a battery holder) and started assembling the project, starting with the servomotor; I wired the servomotor and wrote some code to test it, worked mostly fine, but each time would stop working after a while; suspected it was because of insuficient power so I decided to get some batteries for power. Afterwards wired the first sensor and started testing; had errors, as sensor would get stuck on high - did a lot of debugging to narrow down the problem. 
+I got the rest of the components (the ESP32-CAM, some wires and a battery holder) and started assembling the project, starting with the servomotor; I wired the servomotor and wrote some code to test it, worked mostly fine, but each time would stop working after a while; suspected it was because of insuficient power so I decided to get some batteries for power. Afterwards wired the first sensor and started testing; had errors, as sensor would not correctly detect distance - did a lot of debugging to narrow down the problem. 
 
 ### Week 27 April - 3 May
 
-The problem with the servomotor got fixed after I got some batteries to power it with. After finding that the problem with the sensor was related to a voltage divider malfucntioning (said divider was supposed to get a 5V signal coming from one of the sensor's pins to 3.3V for the STM connection) and failing several times to fix the voltage divider, I decided to use a logic level shifter instead of the divider; while waiting for the level shifter to arrive, I added a green and a red led, with the green led lighting up when the barrier was supposed to open and the red led beeing lit for the rest of the time (will probably change in future); also worked on writing code for more tests with the sensor and did more research on how it worked; work stalled for a few days while waiting for level shifter;
+The problem with the servomotor got fixed after I got some batteries to power it with. I wasted a lot of time on the sensor problem and failed fixing it even after several attemps, because I had incorrectly identified the problem's source as beeing a faulty connection; in the meantime, I added a green and a red led, with the green led lighting up when the barrier was supposed to open and the red led beeing lit for the rest of the time (will probably change in future); also worked on writing code for more tests with the sensor and did more research on how it worked; work stalled for a few days as I was trying to figure out the actual problem with the sensor;
 
 ### Week 4 May - 10 May
 
-Logic level shifter arrived, work resumed - log to be continued
+After more debugging I finally found the problem with the sensor and fixed it - to be continued
 
 ## Hardware
 
@@ -70,7 +70,7 @@ picture coming soon
 
 ## Schematics
 
-coming soon
+![KiCAD Schematics](./kicadmabun.svg)
 
 ## Bill of Materials
 
