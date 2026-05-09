@@ -125,6 +125,7 @@ Interface: GPIO/I2C
 ### Schematics
 
 ![Schematics](./study_assistant.svg)
+The KiCad schematic will be added here.
 
 ### Bill of Materials
 
