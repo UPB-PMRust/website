@@ -103,7 +103,7 @@ The OLED Display will have animations for the 2 minute waiting time and in the c
   <line x1="510" y1="175" x2="580" y2="235" stroke="black" stroke-width="1.5"/>
 </svg>
 
-![KiCad Schematic](./Schematic.svg)
+![KiCad Schematic](./schematic.svg)
 
 ## Bill of Materials
 
