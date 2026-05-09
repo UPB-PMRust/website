@@ -132,15 +132,16 @@ Current Status
 
 The project topic, motivation, initial architecture, hardware plan, and software plan are defined. The next step is to build the first breadboard prototype and test GPIO input and output using Rust.
 
-![image](./Images/Ekran görüntüsü 2026-05-09 010937.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011422.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011503.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011601.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011615.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011631.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011736.webp)
-![image](./Images/Ekran görüntüsü 2026-05-09 011937.webp)
+![image](./Images/1.webp)
+![image](./Images/2.webp)
+![image](./Images/3.webp)
+![image](./Images/4.webp)
+![image](./Images/5.webp)
+![image](./Images/6.webp)
+![image](./Images/7.webp)
+![image](./Images/8.webp)
 ![image](./Images/Pico_Gamepad.svg)
+
 
 
 
