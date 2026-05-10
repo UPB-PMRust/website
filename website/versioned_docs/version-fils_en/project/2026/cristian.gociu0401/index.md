@@ -47,7 +47,7 @@ The system uses a Raspberry Pi Pico W (RP2040) as the main controller and for Wi
 
 ### Photos
 
-![Photo IRL1](./20260510_191622.webp)
+![Photo IRL1](./imagine.webp)
 
 ## Bill of Materials
 
