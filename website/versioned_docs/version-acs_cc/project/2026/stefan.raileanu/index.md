@@ -5,7 +5,7 @@ A standalone two-deck DJ controller running on the STM32U5, written in Rust.
 :::info
 
 **Author**: Stefan Răileanu \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-raylaj23)
 
 :::
 
