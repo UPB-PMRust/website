@@ -1,7 +1,6 @@
 # Theremin Sound Station
 
 A touchless audio station that equalizes and controls music tracks using hand gestures and distance sensing.
-
 :::info
 **Author**: Mitrea Briana-Ștefania
 **GitHub Project Link**: https://github.com/briana1012/Theremin_Sound_Station
