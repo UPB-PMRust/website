@@ -3,7 +3,7 @@ A smart plant monitoring system
 
 :::info 
 
-**Author**: Ana-Maria Adascalitei 1241EA
+**Author**: Ana-Maria Adascalitei 1241EA \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-AnaAdascalitei
 
 :::
