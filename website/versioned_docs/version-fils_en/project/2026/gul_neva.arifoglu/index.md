@@ -58,15 +58,14 @@ System workflow:
 ## WEEK 7
 * Started to connect components.
 
-![Hardware Setup](hardware.webp)
+![Hardware Setup](WhatsApp Image 2026-05-07 at 16.45.04 (3).webp)
 
 ---
 
 ## WEEK 9
 * Connected RFID and PIR sensor.
 
-![Week 9 Progress](week9.webp)
-
+![Week 9 Progress](WhatsApp Image 2026-05-10 at 13.34.15.webp)
 
 ---
 
