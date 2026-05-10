@@ -38,10 +38,12 @@ The gait algorithm uses diagonal leg pairs (FL+RB, FR+LB) stepping one leg at a 
     Bought all the components needed.
 ### Week 4 - 7
     Started building the main frame and installig the SG90 servo motors, batteries, regulators, to test the idea and also the weight. First i made it just as a prototype.
+### Week 8 - 10
+    Seeing that the prototype failed(it was too heavy because of the construction materials, and the SG90 servo motors broke down very quickly and didn't have enough power for that weight), i decided to rebuild it using 3d printed parts and upgrading to mg90s metal gear servo motors.
 
 ## Hardware
 
-The robot frame is built using PLA 3D printed parts and metal brackets. 12 SG90 servo motors are mounted across 4 legs (3 per leg: ankle, knee, hip). All servos are connected to a PCA9685 PWM driver which is controlled by the STM32 NUCLEO-F446RE over I2C. An HC-05 Bluetooth module connects to the MCU over UART for wireless control. The servos are powered by a dedicated 5V/3A external power supply to avoid overloading the MCU's onboard regulator.
+The robot frame is built using PLA and AMS 3D printed parts and metal brackets. 12 MG90s servo motors are mounted across 4 legs (3 per leg: ankle, knee, hip). All servos are connected to a PCA9685 PWM driver which is controlled by the STM32 NUCLEO-F446RE over I2C. An HC-05 Bluetooth module connects to the MCU over UART for wireless control. The servos are powered by a dedicated external power supply composed of two 18650(a total of 7.4V) rechargeable batteries with a discharge of 30A and regulated to 6V using the XL4005 module.
 
 **Servo Channel Mapping:**
 
@@ -61,7 +63,15 @@ The robot frame is built using PLA 3D printed parts and metal brackets. 12 SG90 
 | 12 | Front Right Hip |
 | 13 | Front Right Ankle (remapped - ch10 damaged) |
 
+### Photos
+
+![Initial spider position image](initial_position.webp)
+![Standing position image](standing_position.webp)
+![Upside-down spider image](upside_down.webp)
+
 ### Schematics
+
+![KiCad Schematic](spider.svg)
 
 ### Bill of Materials
 
@@ -69,15 +79,15 @@ The robot frame is built using PLA 3D printed parts and metal brackets. 12 SG90 
 | --- | --- | --- |
 | [STM32 NUCLEO-F446RE](https://www.skroutz.ro/s/58712886/Nucleo-64-Stm32f446re.html) | Main microcontroller | [131 RON](https://www.skroutz.ro/s/58712886/Nucleo-64-Stm32f446re.html) |
 | [PCA9685 PWM Driver](https://www.skroutz.ro/s/10560469/PCA9685-Modul-pentru-Arduino-16-Channel-PWM-Servo-Motor-Driver-I2C.html) | 16-channel I2C PWM servo driver | [32 RON](https://www.skroutz.ro/s/10560469/PCA9685-Modul-pentru-Arduino-16-Channel-PWM-Servo-Motor-Driver-I2C.html) |
-| [SG90 Servo Motor](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-4-bucati-3874783591898/pd/DLHDYTYBM/) | Leg joints (x12) | [13,5 RON x12 = 162 RON](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-4-bucati-3874783591898/pd/DLHDYTYBM/) |
+| [MG90s Servo Motor](https://www.optimusdigital.ro/ro/motoare-servomotoare/271-servomotor-mg90s.html) | Leg joints (x12) | [19,33 RON x12 = 232 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/271-servomotor-mg90s.html) |
 | [HC-05 Bluetooth Module](https://www.emag.ro/modul-bluetooth-hc-05-cl263/pd/D0966JBBM/?ref=sponsored_products_search_f_b_1_1&recid=recads_1_32fbfcfad6badb03a5a5715a583651c1e300e6c6667564a20a6976c19acbfa71_1776782861&aid=623e9e46-3c92-11f1-801c-06eaf0d4245d&oid=44261365&scenario_ID=1) | Wireless RC control | [46 RON](https://www.emag.ro/modul-bluetooth-hc-05-cl263/pd/D0966JBBM/?ref=sponsored_products_search_f_b_1_1&recid=recads_1_32fbfcfad6badb03a5a5715a583651c1e300e6c6667564a20a6976c19acbfa71_1776782861&aid=623e9e46-3c92-11f1-801c-06eaf0d4245d&oid=44261365&scenario_ID=1) |
-| [18650 Batteries](https://www.dedeman.ro/ro/acumulator-lohuis-18650-3-7-v-2200-mah-li-ion-2-buc/p/1116472) | External servo power | [23 RON](https://www.dedeman.ro/ro/acumulator-lohuis-18650-3-7-v-2200-mah-li-ion-2-buc/p/1116472) |
+| [18650 Batteries](https://www.optimusdigital.ro/ro/acumulatori-li-ion/13662-us18650vtc5c-2600mah-30a.html?search_query=Murata+US18650VTC5C+2600mAh+-+30A&results=1) | External servo power | [44 RON](https://www.optimusdigital.ro/ro/acumulatori-li-ion/13662-us18650vtc5c-2600mah-30a.html?search_query=Murata+US18650VTC5C+2600mAh+-+30A&results=1) |
 | Building Materials | Robot frame | 100 RON |
 | Jumper wires | Connections | [15 RON](https://www.optimusdigital.ro) |
 | [18650 Batteries Case](https://www.emag.ro/suport-acumulator-liion-format-18650-2-celule-in-serie-18650-2/pd/DN292RYBM/?ref=history-shopping_482223871_3410_1) | Used for conecting the batteries in series (7.4V) | [20 RON](https://www.emag.ro/suport-acumulator-liion-format-18650-2-celule-in-serie-18650-2/pd/DN292RYBM/?ref=history-shopping_482223871_3410_1) |
 | [DC-DC Step Down module LM2596](https://www.emag.ro/modul-dc-dc-step-down-lm2596-display-pentru-v-lm2596s-v-lcd/pd/DFFDSBMBM/) | Regulating the current to 5V for the microcontroller | [15 RON](https://www.emag.ro/modul-dc-dc-step-down-lm2596-display-pentru-v-lm2596s-v-lcd/pd/DFFDSBMBM/) |
 | [DC-DC Step Down module XL4005](https://www.emag.ro/modul-dc-dc-step-down-5a-xl4005/pd/DCFDSBMBM/) | Regulating the current to 6V for the servo driver | [15 RON](https://www.emag.ro/modul-dc-dc-step-down-5a-xl4005/pd/DCFDSBMBM/) |
-| Total | | **559 RON** |
+| Total | | **650 RON** |
 
 ## Software
 
