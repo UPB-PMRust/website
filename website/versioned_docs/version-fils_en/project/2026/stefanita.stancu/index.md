@@ -67,7 +67,7 @@ Soldered wires on LoRa module, wired every component, had a bit of trouble so th
 ![img3](hardware_image3.webp)
 
 **Hardware Used**
-STM32 microcontroller, environmental sensors ( temperature, humidity, light ), LoRa transceiver (SX1276/SX1262), and a LoRa gateway for wireless data transmission(the gateway is a public one which is hosted on TTN).
+STM32 microcontroller, environmental sensors ( temperature, humidity, light ), LoRa transceiver (RFM96), and a LoRa gateway for wireless data transmission(the gateway is a public one which is hosted on TTN).
 
 ### Schematics
 
@@ -90,8 +90,9 @@ The format is
 | Nucleo STM32            | The microcontroller    | BORROWED |
 | Kit Arduino Intermediar | I will use some parts  | 360 RON  |
 | KY-013                  | Sensor for temperature | 5 RON    |
-
-| KY-
+| KY-015                  | Sensor for humidty     | 7 RON    |
+| KY-018                  | Sensor for light       | 3 RON    |
+| LoRa Module RFM96       | LoRa Transceiver       | 80 RON   |
 
 ### Kit components that will be used
 
