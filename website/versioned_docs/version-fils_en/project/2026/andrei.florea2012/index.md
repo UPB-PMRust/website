@@ -205,7 +205,7 @@ The watering actuator is a 5V mini water pump controlled through a logic-level N
 
 ### Schematics
 
-![PlantGuard Node schematic](./PlantGuardNode.svg)
+![PlantGuard Node schematic](./plantguardnode.svg)
 
 ### Hardware Pictures
 
