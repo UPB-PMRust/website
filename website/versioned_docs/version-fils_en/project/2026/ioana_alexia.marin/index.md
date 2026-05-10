@@ -52,8 +52,8 @@ The core logic is managed by the **Embassy** async executor, which acts as a sop
 - Added a new feature: an LED strip for visual feedback, mounted above the harp to indicate which string needs to be played during the game.
 - Developed the core game logic and performed initial tests using a single laser diode and phototransistor setup.
 - Implemented a temporary testing phase where all virtual game strings respond to the single physical input, with audio output currently routed through the laptop.
-![Photo1](./Hardware1.webp)
-![Photo1](./Hardware2.webp)
+![Photo1](./hardware1.webp)
+![Photo1](./hardware2.webp)
 
 ## Hardware
 
@@ -70,7 +70,7 @@ The hardware components are selected to ensure a low-latency and interactive mus
 
 ### Schematics
 
-![KiCad](./KiCad.webp)
+![KiCad](./kicad.webp)
 
 
 ### Bill of Materials
