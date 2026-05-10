@@ -1,4 +1,4 @@
-import Schematic from './MA.svg';
+import Schematic from './schematicc.svg';
 
 # Autonomous Context-Aware Thermal Rover
 
