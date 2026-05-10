@@ -12,12 +12,14 @@ A circcular device that, when prompted from a keypad, will spin to a preloaded c
 ---
 
 # Description
-	The project I decide to work on can be classified as a dispenser or vending machine that works with a single type of product and that I will try to make using a mechanism similar to a tank autoloader. The original idea was to use bottles but since that would be too big and costly I will use cigarettes. 
-	They will be loaded into the circular, disc shaped device. When prompted with a number, the top part of the disc will spin to the correct chamber and push the cigarette out. This action can pe repeated.
+The project I decide to work on can be classified as a dispenser or vending machine that works with a single type of product and that I will try to make using a mechanism similar to a tank autoloader. The original idea was to use bottles but since that would be too big and costly I will use cigarettes. 
+They will be loaded into the circular, disc shaped device. When prompted with a number, the top part of the disc will spin to the correct chamber and push the cigarette out. This action can pe repeated.
 
 ---
 
 # Architecture
+
+![Architecture](images/architecture.svg)
 
 ## Main Components
 
@@ -104,6 +106,12 @@ The physical setup consists of:
 - SG90 servo connected to GP12 (PWM) for the ejection arm
 - All components powered from a 5V USB supply via VSYS and shared GND
 - Circular disc chassis (3D-printed or hand-built) with numbered chambers
+
+---
+
+# Schematics
+
+![Schematic](images/schematic.svg)
 
 ---
 
