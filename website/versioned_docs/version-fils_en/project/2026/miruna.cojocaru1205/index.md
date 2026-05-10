@@ -104,7 +104,7 @@ An SSD1306 OLED display is connected through the same I2C bus and provides local
 
 ### Schematics
 
-![VitalBox schematic](./VitalBox.svg)
+![VitalBox schematic](./vitalbox.svg)
 
 ### Hardware Pictures
 
