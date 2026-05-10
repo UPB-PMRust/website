@@ -103,43 +103,43 @@ Working on final documentation and cleaning up firmware constants.
 
 ### Schematics
 
-[POWER & DEBUGGING SECTION]
+                    [POWER & DEBUGGING SECTION]
 
-+-----------------------+  
-| Host PC |  
-| (USB Power 5V) |  
-+-----------+-----------+  
- |  
- | (5V via USB)  
- v  
++-----------------------+      +--------------------------+
+|        Host PC        |      |         Host PC          |
+|    (USB Power 5V)     |      |    (Debug / Logging)     |
++-----------+-----------+      +------------+-------------+
+            |                               |
+            | (5V via USB)                  | [USB / UART]
+            v                               v
 +----------------------------------------------------------------+
-| |
-| NUCLEO STM32U545RE-Q |
-| (Main Microcontroller) |
-| |
-| - I2S + DMA (Audio Input) |
-| - Double Buffering |
-| - FFT Processing |
-| - Spectrum Rendering |
-| |
+|                                                                |
+|                     NUCLEO STM32U545RE-Q                       |
+|                    (Main Microcontroller)                      |
+|                                                                |
+|  - I2S + DMA (Audio Input)                                     |
+|  - Double Buffering                                            |
+|  - FFT Processing                                              |
+|  - Spectrum Rendering                                          |
+|                                                                |
 +--------+-------------------+-------------------+---------------+
-| | |
-[I2S] [SPI] [GPIO]
-| | |
-v v v
+         |                   |                   |
+       [I2S]               [SPI]               [GPIO]
+         |                   |                   |
+         v                   v                   v
 +------------------+ +-------------------+ +------------------+
-| | | | | |
-| PCM1808 | | 2.4" TFT Display | | Buttons / |
-| Audio ADC | | ST7789V | | Controls |
-| (Analog → I2S) | | (240x320, SPI) | | (Potentiometer) |
+|                  | |                   | |                  |
+|     PCM1808      | | 2.4" TFT Display  | |    Buttons /     |
+|    Audio ADC     | |      ST7789V      | |     Controls     |
+|  (Analog → I2S)  | |  (240x320, SPI)   | | (Potentiometer)  |
 +--------+---------+ +---------+---------+ +------------------+
-|
-| [Analog Audio]
-v
+         |
+  [Analog Audio]
+         v
 +------------------+
-| |
-| 3.5 mm Jack |
-| (Audio Input) |
+|                  |
+|   3.5 mm Jack    |
+|  (Audio Input)   |
 +------------------+
 
 ![Audio Spectrum Analyzer](./schematics.webp)
