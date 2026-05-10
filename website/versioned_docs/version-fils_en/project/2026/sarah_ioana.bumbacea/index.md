@@ -89,6 +89,7 @@ Step-down converter (LM2596) – regulates voltage to 5V
 18650 batteries + holder + charger – portable power supply
 
 
+
 ### Schematics
 
 ![Sakura Lamp Schematic](hardware_kicad_1024x768.webp)
