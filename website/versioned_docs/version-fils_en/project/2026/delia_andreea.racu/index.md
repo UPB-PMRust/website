@@ -35,17 +35,24 @@ The ESP-01 connects to the local WiFi network and exposes a WebSocket server. Th
 ## Log
 
 ### Week 5 - 11 May
-- Decided on the final project idea: a physical MIDI controller with piano-layout keys, chord detection, and BPM sensing
+- Decided on the final project idea: a physical MIDI controller with piano-layout keys, chord detection, and BPM sensing. The KiCad schematic for the IoT MIDI Controller has been completed and verified using the Electrical Rules Checker. Physical assembly on the breadboard has started, following the schematic design. The next step is to begin firmware development in Rust using the Embassy-RS framework.
+
+
 
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
+
+![Work Progress](work_progress1.svg)
+![Work Progress](work_progress1.1.svg)
+
 
 ## Hardware
 
 The main microcontroller is the **STM32U545** on a NUCLEO-U545RE-Q development board, chosen for its multiple ADC channels, hardware I2C, hardware UART, and native Embassy-RS support. WiFi connectivity is handled by an **ESP-01 (ESP8266)** module communicating via UART AT commands. Thirteen **tactile push buttons** are arranged in the physical layout of a piano octave, each with a 10 kOhm pull-down resistor and software debounce. Two **10 kOhm potentiometers** control master volume and octave selection via ADC. An **SSD1306 OLED display** (128x64 px, I2C) shows the note or chord name, octave, WiFi status, and current BPM. An **RGB LED** (5mm, common-cathode) provides visual feedback: colour encodes the chord type and brightness pulses with the detected BPM. The **MAX4466 microphone module** provides an analog output (0-3.3V) read by ADC for peak detection and BPM computation.
 
 ### Schematics
+![KiCad Schematic](midi_controller.kicad.svg)
 
 
 **Pin mapping:**
