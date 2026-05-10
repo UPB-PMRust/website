@@ -4,7 +4,6 @@ A touchless audio station that equalizes and controls music tracks using hand ge
 
 :::info
 **Author**: Mitrea Briana-Ștefania
-
 **GitHub Project Link**: https://github.com/briana1012/Theremin_Sound_Station
 :::
 
@@ -47,7 +46,7 @@ The project is built on the STM32 Nucleo U545RE-Q using the Embassy asynchronous
 
 The project uses a modular design with three "Sound Cubes" to separate sensors from the main control unit, preventing interference.
 
-![Theremin Sound Station Hardware](Poza%20Hardware.png)
+![Theremin Sound Station Hardware](poza_hardware.png)
 
 ### Schematics
 
