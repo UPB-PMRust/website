@@ -11,7 +11,7 @@ A 2.5" drive bay panel for monitoring and controlling a desktop PC over Ethernet
 
 ## Description
 
-BayPanel is an embedded device that fits into a standard 2.5" HDD bay slot of a desktop PC. It uses an STM32 Nucleo-U545RE-Q connected to a W5500 Ethernet module to join the home network and expose an HTTP API. A companion lightweight agent running on the host PC communicates with the Nucleo over the local network, forwarding system metrics (CPU usage, RAM, temperatures, uptime) and accepting control commands (shutdown, reboot, execute shell commands). A 2.8" ILI9341 TFT display (240×320 px) mounted flush with the drive bay faceplate shows live system stats and animated temperature graphs. Power-on is handled via Wake-on-LAN magic packets sent directly from the Nucleo.
+BayPanel is an embedded device that fits into a standard 2.5" HDD bay slot of a desktop PC. It uses an STM32 Nucleo-U545RE-Q connected to a W5500 Ethernet module to join the home network and expose an HTTP API. A companion lightweight agent running on the host PC communicates with the Nucleo over the local network, forwarding system metrics (CPU usage, RAM, temperatures, uptime) and accepting control commands (shutdown, reboot, execute shell commands). A 3.2" ILI9341 TFT display (320×240 px) mounted flush with the drive bay faceplate shows live system stats and animated temperature graphs. Power-on is handled via Wake-on-LAN magic packets sent directly from the Nucleo.
 
 ## Motivation
 
@@ -19,7 +19,7 @@ I wanted a permanent, always-on control panel for my desktop that doesn't depend
 
 ## Architecture
 
-![Architecture Diagram](./images/architecture.jpeg)
+![Architecture Diagram](./images/architecture.webp)
 
 ## Log
 
@@ -45,12 +45,12 @@ To be added at Hardware Milestone (Week 11).
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | Free (Faculty) |
-| [W5500 Ethernet Module](https://www.optimusdigital.ro/ro/comunicatie-ethernet/2447-modul-ethernet-cu-w5500.html) | Hardware TCP/IP stack, LAN connectivity | ~30 RON |
-| [2.8" ILI9341 TFT SPI Display (240×320)](https://www.optimusdigital.ro/en/lcds/3544-modul-lcd-spi-de-28-cu-touchscreen-controller-ili9341-i-xpt2046-240x320-px.html) | Live stats display mounted in bay faceplate | ~90 RON |
+| [W5500 Ethernet Module](https://www.emag.ro/modul-retea-ethernet-shield-w5500-cu-suport-tcp-ip-bn484/pd/D010W5YBM/) | Hardware TCP/IP stack, LAN connectivity | ~41 RON |
+| [3.2" ILI9341 TFT SPI Display (320×240)](https://www.emag.ro/display-tft-lcd-3-2-inch-320x240-touchscreen-14pini-spi-ili9341-arduino-rx407/pd/D7Q411YBM/) | Live stats display mounted in bay faceplate | ~89 RON |
 | [Breadboard 400 points](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-puncte.html) | Prototyping connections | ~10 RON |
 | [Jumper Wires M-F 40p 20cm](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html) | Component interconnections | ~8 RON |
 
-**Total estimated cost: ~158 RON** (excluding Nucleo)
+**Total estimated cost: ~148 RON** (excluding Nucleo)
 
 ## Software
 
