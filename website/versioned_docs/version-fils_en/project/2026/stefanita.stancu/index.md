@@ -85,13 +85,10 @@ The format is
 
 -->
 
-| Device                  | Usage                  | Price    |
-| ----------------------- | ---------------------- | -------- |
-| Nucleo STM32            | The microcontroller    | BORROWED |
-| Kit Arduino Intermediar | I will use some parts  | 360 RON  |
-| KY-013                  | Sensor for temperature | 5 RON    |
-
-| KY-
+| Device                  | Usage                 | Price    |
+| ----------------------- | --------------------- | -------- |
+| Nucleo STM32            | The microcontroller   | BORROWED |
+| Kit Arduino Intermediar | I will use some parts | 360 RON  |
 
 ### Kit components that will be used
 
