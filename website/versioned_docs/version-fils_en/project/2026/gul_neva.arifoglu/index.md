@@ -87,6 +87,13 @@ The STM32 microcontroller controls all peripherals. The RFID module is used for 
 
 
 
+## Schematics
+
+![Schematic](schematic.svg)
+
+---
+
+
 
 ## Bill of Materials
 
@@ -120,7 +127,10 @@ The STM32 microcontroller controls all peripherals. The RFID module is used for 
 | [defmt-rtt](https://crates.io/crates/defmt-rtt)               | RTT transport for logs                                | Sends debug output to host PC                                      |
 | [panic-probe](https://crates.io/crates/panic-probe)           | Panic handler for embedded debugging                  | Reports system crashes during development                          |
 
+
+
 ## Links
 
-1. [link](https://embassy.dev/)
-...
+1. [Embassy Framework](https://embassy.dev/)
+2. [STM32 Nucleo Boards](https://www.st.com/en/evaluation-tools/nucleo-boards.html)
+3. [KiCad EDA](https://www.kicad.org/)
