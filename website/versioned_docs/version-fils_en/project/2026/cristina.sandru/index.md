@@ -40,7 +40,7 @@ The project uses:
 - **SSD1306 OLED**
 
 ## Schematics
-![Project Schematic](./schematicaBun.webp)
+![Project Schematic](./schematica.webp)
 
 ## Bill of Materials
 | Device | Usage | Price |
