@@ -38,11 +38,11 @@ graph TD
 
 ## Log
 
-### Week 5 – 11 May
+### Week 5 – 7 
 
 Brainstormed project ideas and defined the concept of an RFID-based school access system. Researched required components and planned the overall architecture.
 
-### Week 12 – 18 May
+### Week 7 – 8 
 
 Discussed the project with the lab assistant. Selected key components (RFID reader, servo motor, OLED display) and set up the development environment.
 
@@ -68,7 +68,7 @@ Started implementation:
 
 ### Schematics
 
-Not available right now.
+![Schematic](./schematic.svg)
 
 ### Bill of Materials
 
