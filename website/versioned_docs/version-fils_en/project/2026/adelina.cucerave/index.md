@@ -4,7 +4,7 @@ A smart reaction-training station that uses lights and sensors to measure hit fo
 :::info 
 
 **Author**: Cucerave Adelina-Maria 1222EEB \
-**GitHub Project Link**: (https://github.com/UPB-PMRust-Students/fils-project-2026-AdelinaMariaCucerave)
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-AdelinaMariaCucerave
 
 :::
 
