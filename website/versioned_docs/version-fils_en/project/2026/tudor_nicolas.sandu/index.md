@@ -60,11 +60,11 @@ Main Components & Interconnections:
 
 The project is built around the Raspberry Pi Pico 2 W (featuring the dual-core ARM Cortex-M33 RP2350), selected for its excellent asynchronous Embassy Rust support and native USB capabilities. Gesture inputs are captured using a single, millimeter-accurate VL53L0X ToF laser sensor on the I2C bus. Performance input is handled by mechanical arcade buttons. Visual feedback is delivered via a 1.44" LCD display driven by an ST7735 controller communicating over the SPI bus. To ensure a professional and durable musical instrument, the entire circuit will be permanently soldered onto a prototyped perfboard.
 
-![Lumentra Hardware Photo](./PozaMA.webp)
+![Lumentra Hardware Photo](./pozama.webp)
 
 ### Schematics
 
-![Lumentra KiCad Schematic](./KiCadSchem.svg)
+![Lumentra KiCad Schematic](./kicadschem.svg)
 
 ### Bill of Materials
 
