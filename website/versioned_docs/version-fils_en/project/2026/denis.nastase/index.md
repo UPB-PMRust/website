@@ -62,9 +62,11 @@ The hardware setup includes one high-performance central controller and multiple
 - **Actuators (relays)**: physical switching of connected appliances.
 - **LoRa modules**: low-power, long-distance communication between hub and nodes.
 
+<img src="./hardware_progress.webp" alt="Hardware Progress" width="1000" />
+
 ### Schematics
 
-The electric scheme will be added later.
+<img src="./kicad_scheme.svg" alt="Electrical Scheme (KiCad)" width="1000" />
 
 ### Bill of Materials
 
