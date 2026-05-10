@@ -65,7 +65,11 @@ The batteries feed the L298N motor driver directly. The LM2596 buck converter st
 
 ![Schematic](desk_pet.svg)
 
-## Hardware
+### Hardware
+
+## Week 4-10
+![Prototip Hardware Desk Pet](./hardware1.webp)
+*Figure 1: Current hardware prototype of the Desk Pet robot. All electrical connections have been completed and tested successfully. Remaining work focuses on cable organization and final component placement on the chassis.*
 
 ### Bill of Materials
 
@@ -121,44 +125,6 @@ The HC-SR04 ECHO pin outputs 5V logic but the RP2040 GPIO is 3.3V tolerant only.
 
 The firmware is written in Rust using the **Embassy** async executor on `thumbv6m-none-eabi` (Cortex-M0+).
 
-### Project Structure
-
-```
-desk_pet/
-├── Cargo.toml
-├── memory.x
-├── build.rs
-└── src/
-    ├── main.rs          # Entrypoint, bind_interrupts!, task spawning
-    ├── fsm.rs           # PetState + PetEvent enums, transition logic
-    ├── motors.rs        # L298N via GPIO + PWM (GP2-6, GP16)
-    ├── lcd.rs           # I2C0 LCD 1602 (GP8/GP9)
-    ├── rfid.rs          # SPI1 MFRC522 (GP10-14)
-    ├── ultrasonic.rs    # HC-SR04 (GP28 trig, GP27 echo)
-    ├── touch.rs         # TTP223 (GP22)
-    ├── buzzer.rs        # PWM buzzer (GP19)
-    └── bluetooth.rs     # UART0 HC-05 (GP0/GP1), parses W/A/S/D/X
-```
-
-### Key Crates
-
-```toml
-[dependencies]
-embassy-rp         = { version = "0.2", features = ["rp2040", "time-driver"] }
-embassy-executor   = { version = "0.5", features = ["arch-cortex-m", "executor-thread"] }
-embassy-time       = { version = "0.3" }
-embassy-sync       = { version = "0.6" }
-embedded-hal       = "1.0"
-embedded-hal-async = "1.0"
-mfrc522            = "0.8"
-hd44780-driver     = "0.4"
-static_cell        = "2.1"
-heapless           = "0.8"
-defmt              = "=0.3.10"
-defmt-rtt          = "=0.4.1"
-panic-halt         = "0.2"
-```
-
 ## Results
 
 - Firmware compiles with `cargo build --release` targeting `thumbv6m-none-eabi`.
@@ -177,4 +143,8 @@ panic-halt         = "0.2"
 3. [RP2040 Technical Reference Manual](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)
 4. [`mfrc522` crate on crates.io](https://crates.io/crates/mfrc522)
 5. [`hd44780-driver` crate on crates.io](https://crates.io/crates/hd44780-driver)
-7. [PMRust Lab 00 — Rust setup for RP2040](https://pmrust.pages.upb.ro/docs/fils_en/lab/00)
+
+
+## Inspiration
+1. [Takway AI - Mobile Robot Platform](https://takway.ai/)
+2. [Zeroth W1 - Home Robot with Camera Eyes (DesignBoom)](https://www.designboom.com/technology/mobile-robot-camera-eyes-monitors-smoke-open-windows-home-zeroth-w1-ces-2026-01-05-2026/)
