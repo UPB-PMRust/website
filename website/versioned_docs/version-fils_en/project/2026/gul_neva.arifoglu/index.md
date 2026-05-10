@@ -57,12 +57,19 @@ System workflow:
 * Initial setup.
 ## WEEK 7
 * Started to connect components.
+  
+![Hardware Setup](hardware.jpg)
+
+---
+## WEEK 9
+* Connected RFID and PIR sensor.
+ 
+![Week 9 Progress](week9.jpg)
 
 ---
 
 
 ## Hardware
-![Hardware Setup](hardware.jpg)
 Main components:
 
 - STM32 microcontroller  
