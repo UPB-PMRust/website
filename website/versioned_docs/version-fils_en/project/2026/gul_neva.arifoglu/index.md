@@ -58,6 +58,16 @@ System workflow:
 ## WEEK 7
 * Started to connect components.
 
+![Hardware Setup](hardware.webp)
+
+---
+
+## WEEK 9
+* Connected RFID and PIR sensor.
+
+![Week 9 Progress](week9.webp)
+
+
 ---
 
 
@@ -78,6 +88,12 @@ The STM32 microcontroller controls all peripherals. The RFID module is used for 
 
 ---
 
+
+## Schematics
+
+![System Schematic](schematic.svg)
+
+---
 
 
 
