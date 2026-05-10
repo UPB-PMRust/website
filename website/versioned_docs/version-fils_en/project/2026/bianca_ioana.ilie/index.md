@@ -77,7 +77,7 @@ Because the cube is a standalone IoT device, it is powered by batteries rather t
 
 ### Schematics
 
-![Aura Cube KiCAD Schematic](./kicad_schematic.webp)
+![Schematic](./schematic.webp)
 
 ### Bill of Materials
 
