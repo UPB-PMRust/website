@@ -48,7 +48,7 @@ The project uses the STM32 NUCLEO-U545RE-Q as the main microcontroller. An SSD13
 
 ## Schematics
 
-![KiCad Schematic](schematic.svg)
+![KiCad Schematic](schematic.webp)
 
 ## Bill of Materials
 
