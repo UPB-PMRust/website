@@ -50,7 +50,12 @@ LEDs will also be connected to GPIO pins through resistors and be used for debug
 
 ## Schematics
 
-Place your KiCAD schematics here.
+![Hardware Schematic](schematic.svg)
+
+![Image 1](webp1.webp)
+
+![Image 2](webp2.webp)
+
 
 ## Bill of Materials
 
