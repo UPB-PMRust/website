@@ -45,10 +45,10 @@ The project is built around a distributed micro-architecture consisting of two m
 * Components have arrived and have started breadboard testing with some success.
 * Started writing software for the WIFI Wand, struggling with the MPU6050 and clean data from it.
 
-### Week 11 *(Current Week)*
-*(To be filled during development)*
+### Week 11 
+* Finalized hardware wiring and testing on a breadboard. Will need to start finishing the software side.
 
-### Week 12
+### Week 12 *(Current Week)*
 *(To be filled during development)*
 
 ### Week 13
@@ -59,6 +59,11 @@ The project is built around a distributed micro-architecture consisting of two m
 ## Hardware
 
 The hardware is split into a low-power, lightweight handheld device (the Wand) powered by a small Li-Po battery, and a stationary base unit (the Controller) that processes and routes the commands.
+
+![Hardware](hardware.webp)
+
+## Software
+
 
 ### Schematics
 
