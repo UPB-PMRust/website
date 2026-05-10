@@ -48,7 +48,7 @@ SG90 servos each, one servo moves the clamp away and towards the cube, while the
 The color of each piece of the cube is detected using the TCS34725 color sensor seated separately  from the main mechanism to ensure no external interference with the sensor.
 
 ### Photos
-![Photos](IMG_8513%20(2).webp)
+![Photos](project_photo.webp)
 
 
 ### Schematics
