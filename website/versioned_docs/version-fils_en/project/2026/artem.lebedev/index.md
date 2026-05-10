@@ -45,7 +45,7 @@ All components share a common ground. The 12V rail powers the solenoid valve and
 
 Awaiting arrival of remaining components, added minor changes in the hardware by replacing 100 Ohm resistor for 1K and 10K ones and IRF540N transistor for IRF3205PBF as well as GPIO's of some devices; also the power supply of solenoid been changed to direct supply from adaptor. 
 
-![Hardware_1](Hardware_1.webp)
+![Hardware_1](hardware_1.webp)
 
 ### Week 12 - 18 May
 
