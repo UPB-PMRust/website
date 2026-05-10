@@ -47,6 +47,8 @@ Began the software implementation. Set up the Embassy async runtime on the Pico 
 
 The project is built around the **Raspberry Pi Pico 2W** (RP2350), which handles all game logic, rendering, networking, and peripheral control. The display is a 2.4" 240×320 ILI9341 LCD connected over SPI. Six push buttons provide physical input controls (forward, backward, left, right, interact and shoot). An RGB LED and a passive buzzer handle visual and audio feedback respectively, both driven by PWM signals
 
+![hardware](hardware.webp)
+
 ### Schematics
 
 ![Imagine hardware](schemahardware.webp)
