@@ -21,7 +21,7 @@ I chose this project because I wanted to make guidance more accessible to visual
 
 ## Architecture 
 
-![Orion Architecture](./images/OrionArchitecture.svg)
+![Orion Architecture](./images/orionarchitecture.svg)
 
 The system follows a decentralized command structure, where high-level strategy is handled by a mobile device and real-time safety is handled locally by the robot.
 
@@ -62,17 +62,17 @@ All ordered materials arrived. I started doing small functionality tests to make
 Worked on the website for the project.
 ### Week 20 - 26 April
 Started working on hardware
-![Orion Hardware 1/x](./images/MA1.webp)
-![Orion Hardware 2/x](./images/MA2.webp)
-![Orion Hardware 3/x](./images/MA3.webp)
+![Orion Hardware 1/x](./images/ma1.webp)
+![Orion Hardware 2/x](./images/ma2.webp)
+![Orion Hardware 3/x](./images/ma3.webp)
 ### Week 27 April - 3 May
 Continued working on hardware
-![Orion Hardware 4/x](./images/MA4.webp)
-![Orion Hardware 5/x](./images/MA5.webp)
-![Orion Hardware 6/x](./images/MA6.webp)
+![Orion Hardware 4/x](./images/ma4.webp)
+![Orion Hardware 5/x](./images/ma5.webp)
+![Orion Hardware 6/x](./images/ma6.webp)
 ### Week 4 - 10 May
-![Orion Hardware 7/x](./images/MA7.webp)
-![Orion Hardware 8/x](./images/MA8.webp)
+![Orion Hardware 7/x](./images/ma7.webp)
+![Orion Hardware 8/x](./images/ma8.webp)
 ### Week 11 - 17 May
 
 ### Week 18 - 24 May
@@ -86,7 +86,7 @@ For movement, the system uses a 4WD motor and wheel set adapted into a "walker-s
 The power system is split into two distinct rails for stability: the 4WD motors are powered directly from the Li-ion batteries to handle high current spikes, while a buck converter steps the voltage down to a stable 5V for the breadboard-mounted logic circuits, protecting the microcontrollers from electrical interference.
 
 ### Schematics
-![Orion Schematics](./images/OrionSchematics.svg)
+![Orion Schematics](./images/orionschematics.svg)
 
 ### Bill of Materials
 
