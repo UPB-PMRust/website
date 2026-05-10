@@ -56,7 +56,7 @@ The system is built around the STM NUCLEO-U545RE-Q microcontroller, which manage
 
 ### Schematics
 
-![KiCad](ReactionTimeGame.svg)
+![KiCad](ReactionTimeGame.webp)
 
 ![Circuit photo](Circuit1.webp)
 
