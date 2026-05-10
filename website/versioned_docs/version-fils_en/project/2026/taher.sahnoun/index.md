@@ -43,7 +43,7 @@ The project is built around the Raspberry Pi Pico 2W (RP2350) which provides GPI
 
 ### Schematics
 
-Schematics in SVG format.
+![PicoReflex Schematic](https://raw.githubusercontent.com/UPB-PMRust-Students/fils-project-2026-taherdaringa-maker/main/picoflex.svg)
 
 ### Bill of Materials
 
