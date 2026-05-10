@@ -38,7 +38,7 @@ The system is organized into five functional layers, centered around the STM32 N
 
 ### Week 12 - 18 May
 - Started assembling the hardware of the kit and laying out the components.
-![Robot Assembly](./robot.jpeg)
+![Robot Assembly](./robot.webp)
 
 ### Week 19 - 25 May
 
@@ -48,7 +48,7 @@ The project relies on an STM32 Nucleo board as the main controller, communicatin
 
 ### Schematics
 
-![Architecture Diagram](./Mecanum_Rover_STM32.svg)
+![Architecture Diagram](./mecanum_rover_stm32.svg)
 
 ### Bill of Materials
 
