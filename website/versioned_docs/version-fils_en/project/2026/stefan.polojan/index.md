@@ -20,9 +20,9 @@ Physical currency remains a vital part of daily life, but it presents a signific
 
 ![schematic](schematic.svg)
 
-![Kicad](KICAD.webp)
+![Kicad](kicad.webp)
 
-![Hardware](Hardware.webp)
+![Hardware](hardware.webp)
 
 The system is divided into four main subsystems coordinated by the RP2350 microcontroller:
 1. **Processing System:** Olimex RP2350-PICO2-XXL running bare-metal software written in Rust.
