@@ -24,13 +24,19 @@ The sensors detect the black line and send data to the multiplexer, which select
 
 ## Log
 
-<!-- write your progress here every week -->
-
 ### Week 5 - 11 May
+
+This week, the final components for my robot arrived. I began planning how to wire everything together by reviewing the pin configurations of the sensors, multiplexer, motor driver, and microcontroller. I then started creating the schematic in KiCad to organize the connections.
+
+![ROBOT1](ROBOT1.webp)
 
 ### Week 12 - 18 May
 
+This week, I finished assembling all the hardware for my robot. I mounted all the components onto the chassis and completed the wiring between them. After I finished assembling it, I began working on the software, starting with testing the basic functionalities of the sensors, motors, and multiplexer.
+
 ### Week 19 - 25 May
+
+This week, I completed the sensor reading code using a multiplexer and addressed a faulty channel by remapping it in software. I also finished the motor control code. After I tested both codes, I merged the sensor and motor code into a single program. With that, the core functionality of my robot is now working. 
 
 ## Hardware
 
@@ -49,10 +55,12 @@ Chassis + 2 Tires + Swivel Wheel - Provide structural support and movement capab
 
 9V Battery - powers the robot by connecting to the motor power input of the L298N motor driver, whose onboard regulator steps it down to 5V; this 5V is then fed into the VSYS pin of the Raspberry Pi Pico 2W to power the microcontroller. 
 
+![ROBOT2](ROBOT2.webp)
+
 ### Schematics
 
 <!--Place your KiCAD schematics here.-->
-![Schematics](Schematics.webp)
+![KiCadLineFollower](KiCadLineFollower.svg)
 
 ### Bill of Materials
 
@@ -90,6 +98,12 @@ The format is
 | [gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html) | General-purpose Input/Output module | Used for controlling GPIO pins |
 | [ADC](https://docs.embassy.dev/embassy-rp/git/rp2040/adc/index.html) | Analog-to-digial converter module | Used for controlling ADC pins |
 | [defmt](https://github.com/knurling-rs/defmt) | Compact logging crate for embedded systems | Used for debugging |
+| embassy-executor | Async Runtime | Enables async runtime and task scheduling on embedded systems |
+| pwm | PWM Module | For PWM motor speed control |
+| embassy-time | Timing Utility| For delays, timing, and async timers |
+| defmt-rtt | Logging Output | Provides Real-Time Transfer logging output over USB |
+| panic-probe | Panic Handler | Handles panics in no_std environments safely |
+
 
 ## Links
 

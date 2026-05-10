@@ -36,16 +36,28 @@ The system architecture comprises the following components:
   - *LM75B Temperature Sensors (x4):* Monitor the temperature of each wheel.
   - *MPU6050 Accelerometer and Gyroscope:* Track the car's orientation and movement.
 - **Actuators:**
-  - *DC Motors (x4):* Provide propulsion for the car.
-  - *Stepper Motor:* Controls the Drag Reduction System (DRS) mechanism.
+  - *DC Motor:* Provide propulsion for the car.
+ - *Stepper Motor:* Handles steering by adjusting the front wheel orientation in response to joystick input.
 - **Drivers:**
   - *L9110S Motor Drivers (x2):* Interface between the microcontroller and DC motors.
   - *ULN2003 Stepper Motor Driver:* Controls the stepper motor for DRS.
-- **Camera:** Captures live video feed for real-time monitoring.
 - **Web Server:** Hosts the interface displaying sensor data and live video.
 
 ![Diagram](Picture1.svg)
 
+## Log
+
+### Week 5 - 11 May
+
+During this week, the initial concept of the Formula 1 miniature car was developed. The components were selected and partially assembled. First tests focused on validating connectivity between the Pico, sensors, and motor drivers.
+
+### Week 12 - 18 May
+
+Hardware assembly was finalized. The initial LM35 analog temperature sensors were replaced with LM75B digital sensors to ensure accurate readings via I2C. All sensors and actuators were tested successfully on the breadboard.
+
+### Week 19 - 25 May
+
+The embedded software was completed. WebSocket data streaming, sensor acquisition, and motor control were fully implemented. The onboard camera functionality was removed to focus on performance and simplify system integration.
 
 ## Hardware
 
@@ -56,14 +68,34 @@ The hardware setup includes:
   - LM75B Temperature Sensors (x4)
   - MPU6050 Accelerometer and Gyroscope
 - **Actuators:**
-  - DC Motors (x4)
+  - DC Motor (x1)
   - Stepper Motor
 - **Drivers:**
-  - L9110S Motor Drivers (x2)
+  - L9110S Motor Driver
   - ULN2003 Stepper Motor Driver
-- **Camera:** Raspberry Pi Camera Module
-- **Power Supply:** 9V Batteries (x2)
+- **Power Supply:** 9V Battery
 
+## Schematic
+
+![Schematic made in Kicad](schematicnew.svg)
+
+## Pictures
+![Circuit](./circuit.webp)
+
+
+## Bill of Materials 
+
+| Item                                                                                              | Quantity | Estimated Price (RON) | Total (RON) | Usage                                           |
+|---------------------------------------------------------------------------------------------------|----------|------------------------|-------------|------------------------------------------------|
+| [GY-6500 (Gyro + Magnetometer)](https://contactelectric.ro/module-diverse-arduino/1577-gy-6500-modul-magnetometru-giroscop) | 1        | 24.90                 | 24.90       | Motion sensing (gyro + mag)                   |
+| [L9110S Motor Driver](https://contactelectric.ro/drivere-motor/2779-oky3199-3-driver-motor-cu-l9110s-h-bridge-dc)           | 1        | 8.50                  | 8.50        | Dual DC motor driver                           |
+| [28BYJ-48 Stepper Motor](https://contactelectric.ro/motoare-arduino/478-motor-pas-cu-pas-28ybj-48-cu-4-faze-5-fire-5vdc)    | 1        | 11.50                 | 11.50       | DRS mechanism (stepper)                        |
+| [Miniature DC Motor 3–6V](https://contactelectric.ro/motoare-arduino/7803-motor-miniatura-dc-3-6v-oky5022-3)                | 2        | 5.00                  | 10.00       | Main propulsion motors                         |
+| [LM35 Temperature Sensor](https://contactelectric.ro/senzori-arduino/2386-senzor-de-temperatura-cu-lm35-4-30v-oky3066-2)    | 4        | 4.90                  | 19.60       | Ambient/motor temperature sensing              |
+| [ULN2003 Stepper Driver](https://contactelectric.ro/drivere-motor/2073-driver-motor-stepper-cu-uln2003-oky3192-10107101)    | 1        | 6.50                  | 6.50        | Drives stepper motor (DRS)                     |
+| [9V Battery Holder with Wires](https://contactelectric.ro/module-diverse-arduino/8399-suport-cu-fire-pentru-baterii-9v-oky0252-1) | 2   | 2.50                  | 5.00        | Power supply (motor + peripherals)             |
+| [Raspberry Pi Pico 2W (Optimus)](https://www.optimusdigital.ro/ro/raspberry-pi/21133-raspberry-pi-pico-w-wireless.html)     | 2        | 39.66                  | 79.32       | Main controller & wireless communication       |
+| PixyCam 2                                                                                          | 1        | 299.00                | 299.00      | Visual tracking and object detection           |
 
 
 ## Software
@@ -73,20 +105,12 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 - **Motor Control:** PWM signals generated for precise motor operation.
 - **Sensor Data Acquisition:** I2C communication with temperature and motion sensors.
 - **Web Server:** Hosts a real-time dashboard displaying sensor data and live video feed.
-
-
-## Software Libraries
-
-| Library             | Description                                                                 | Usage in Project                                                            |
-|---------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| `embassy-rs`        | An async embedded framework for Rust, providing task scheduling and HALs.  | Used to create async tasks for motor control, sensor reading, and server.   |
-| `embedded-hal`      | A set of standard traits for embedded hardware abstractions in Rust.       | Used as a foundation to write portable drivers for I2C, PWM, and GPIO.      |
-| `nb`                | Provides traits for non-blocking operations in embedded systems.            | Ensures sensor reading and UART comms are non-blocking in async tasks.      |
-| `mpu6050`           | A driver for the MPU6050 accelerometer and gyroscope sensor.               | Reads orientation data from the MPU6050 via I2C for stability analysis.     |
-| `pwm-pio`           | A crate for generating PWM signals on RP2040 using PIO.                     | Generates PWM signals for controlling the speed of the DC motors.           |
-| `embassy-net`       | An async TCP/IP network stack for embedded systems written in Rust.         | Implements a web server that exposes sensor data via HTTP.                  |
-| `bluetooth-serial`  | Serial communication over classic Bluetooth (RFCOMM).                       | Receives control commands from the gaming controller via Bluetooth.         |
-| `defmt`             | Efficient logging framework for embedded systems in Rust.                   | Provides lightweight debugging logs via serial output or RTT.               |
+- **WebSocket Protocol:** Used to send and receive compact, real-time control and telemetry messages between the car and the remote control server.
 
 
 ## Links
+
+- [pygame Documentation](https://www.pygame.org/docs/) – Python joystick interface used to control the car
+
+
+

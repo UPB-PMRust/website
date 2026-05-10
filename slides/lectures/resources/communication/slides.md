@@ -67,7 +67,7 @@ safely share data between tasks
 
 no `.await` allowed while the mutex is held
 
-```rust{all|1|3-5|7-14|10-14}
+```rust{1|3-5|7-14|10-14|all}
 use embassy_sync::blocking_mutex::Mutex;
 
 struct Data {/* ... */ }
@@ -85,13 +85,12 @@ async fn task1() {
 }
 ```
 
+---
 
----
----
 # Async Mutex
 `.await` is allowed while the Mutex is held, it will release the Mutex while `await`ing
 
-```rust{all|1|3-5|7-14|10-14}
+```rust{1|3-5|7-14|10-14|all}
 use embassy_sync::mutex::Mutex;
 
 struct Data {/* ... */ }

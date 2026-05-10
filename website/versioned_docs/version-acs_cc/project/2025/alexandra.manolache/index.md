@@ -6,7 +6,7 @@ Automates plant watering based on soil moisture and provides monitoring via a mo
 
 :::info 
 
-**Author**: Manolache Alexandra Claudia
+**Author**: Manolache Alexandra Claudia 
 
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-alexandra33312
 
@@ -29,7 +29,7 @@ The system architecture is divided into four main logical components:
 **Control Layer** - Raspberry Pi Pico W: Hosts the core logic, compares sensor readings against thresholds, and decides when to activate the irrigation. Exposes a REST API over Wi-Fi for status reporting and remote control.
 
 **Actuation Layer**- Relay & Pump Module: Receives digital control signals from the Pico W GPIO to switch the relay, which powers the water pump.
-Feedback Indicators: LED and buzzer provide local visual and audible status alerts (e.g., watering in progress, errors).
+
 
 **Presentation & Management Layer** - Mobile Application (Android/iOS): Polls the Pico W REST API to display real-time moisture data, pump status, and watering history. Allows manual triggering of irrigation via POST requests.
 
@@ -40,8 +40,17 @@ Feedback Indicators: LED and buzzer provide local visual and audible status aler
 - The Pico W REST API provides endpoints such as /status (GET moisture, pump state) and /water (POST to trigger watering).
 - The mobile app periodically polls /status and displays data in the UI; a manual button invokes /water to start irrigation on demand.
 
+### Architecture Diagram
 ![Architecture Diagram](schematics/architecture.svg)
-Schematics
+
+### KiCad Schematic
+![KiCad Schematic](schematics/my_kicad.svg)
+
+### Hardware foto
+
+![Hardware foto](./schematics/img.webp)
+
+
 
 ## Log 
 
@@ -68,10 +77,6 @@ YL‑69 Soil Moisture Sensor Module: Analog sensor probes + comparator module fo
 5 V Relay Module: Drives the water pump by switching its power on/off via GPIO signal
 DC Water Pump (3–6 V): Pumps water through tubing to irrigate plants
 6 mm Silicone Tubing: Carries water from the pump to the plant pots
-10 kΩ Resistor: Forms a voltage divider with the YL‑69 sensor for stable ADC readings
-LED (Red/Green): Visual feedback for system status (e.g., watering, idle, error)
-5V Buzzer: Audible alert for errors or watering start/stop
-Jumper Wires & Breadboard: Prototyping and connections between components
 5V 3A Power Supply: Powers the relay module and pump; Pico W is powered via the same supply (through breadboard power lines)
 
 ### Schematics
@@ -91,12 +96,9 @@ Place your KiCAD schematics here
 |                         |irrigation                       |       |
 | DC Water Pump (3–6V)    |Pumps water through tubing       | 16    |
 | 6 mm Silicone Tubing    |Transports water to plant        | 10    |
-| 10 kΩ Resistor          |Voltage divider for sensor       | 1     |
 | Jumper Wires            |Connections between components   | 12    |
 | Breadboard              |Prototyping platform             | 10    |
 | 5V 3A Power Supply      |Powers Pico W and pump           | 24    |
-| Red/Green LED           |Visual feedback indicator        | 1     |
-| 5V Buzzer                |Audible alert                   | 1     |
 
 
 Raspberry Pi Pico W https://www.emag.ro/placa-de-baza-raspberry-pi-pico-2w-ai2237/pd/D1YX6B3BM/?X-Search-Id=f0dcce3aa6dd09c15077&X-Product-Id=226605089&X-Search-Page=1&X-Search-Position=2&X-Section=search&X-MB=0&X-Search-Action=view
@@ -109,18 +111,12 @@ DC Water Pump (3–6V) https://www.emag.ro/pompa-de-apa-3-6v-cl88/pd/D91Z5JBBM/#
 
 6 mm Silicone Tubing https://claumarpescar.ro/tub-siliconic-mostiro-1m-0.6mm.html?srsltid=AfmBOorzXBO0eFCGJUn9feYSHYxty-69NSNSLf_W9DOd_fCkD1tnU4bg
 
-10 kΩ Resistor       https://www.optimusdigital.ro/ro/kituri/4745-set-de-rezistoare-asortate-optimus-digital-intre-10-1-m-600-buc-0616639927610.html?search_query=rezistor&results=110
-
 Jumper Wires         https://www.optimusdigital.ro/ro/fire-fire-mufate/891-set-fire-tata-tata-10p-30-cm.html?search_query=fire&results=429
                      https://www.optimusdigital.ro/ro/toate-produsele/877-set-fire-mama-tata-40p-15-cm.html?search_query=Fire+Colorate+Mama-Tata+%2840p%29&results=5
 
 Breadboard           https://www.optimusdigital.ro/ro/kituri/9698-kit-plusivo-pi-4-fara-placa-i-fara-card.html?search_query=KIT&results=324
 
 5V 3A Power Supply   https://www.emag.ro/sursa-de-alimentare-5v-3a-pa5-3/pd/DJYZ6TMBM/
-
-Red/Green LED        https://www.optimusdigital.ro/ro/kituri/9698-kit-plusivo-pi-4-fara-placa-i-fara-card.html?search_query=KIT&results=324
-
-5V Buzzer            https://www.optimusdigital.ro/ro/kituri/9698-kit-plusivo-pi-4-fara-placa-i-fara-card.html?search_query=KIT&results=324
 
 
 

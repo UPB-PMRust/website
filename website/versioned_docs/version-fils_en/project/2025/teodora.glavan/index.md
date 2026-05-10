@@ -56,11 +56,16 @@ LU-ASR01 Voice Recognition Module, SG90 Micro Servo Motors, LCD Display and othe
 ### Week 5 - 11 May
 
 ### Week 12 - 18 May
-
+During this week, I connected the components on the breadboard, ensuring proper wiring and layout. Additionally, I configured the power supply to provide a stable voltage source for the project.
 ### Week 19 - 25 May
 
 ## Hardware
 
+![photo](./poza1_5856942353917528793_y.webp)
+![photo](./poza2_5856942353917528790_y.webp)
+![photo](./poza3_5856942353917528792_y.webp)
+![photo](./poza4_5856942353917528794_y.webp)
+![photo](./poza5_5856942353917528791_y.webp)
 ESP32 Microcontroller
 Purpose: Acts as the main control unit of the system, handling communication and processing.
 Function: Processes voice commands, environmental sounds, and controls outputs (servos, LEDs, display).
@@ -97,7 +102,8 @@ Function: Provides sufficient power for the servos and other components that req
 ### Schematics
 
 Place your KiCAD schematics here.
-| Device                                                                                                                                                                                                                                                                                   | Usage                                                 | Price       |
+![Schematic](./Tema.svg)
+Device                                                                                                                                                                                                                                                                                   | Usage                                                 | Price       |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------- |
 | [ESP32 Dev Board](https://www.optimusdigital.ro/ro/placi-cu-bluetooth/4371-placa-de-dezvoltare-esp32-cu-wifi-i-bluetooth-42.html?search_query=Placa+de+Dezvoltare+ESP32+cu+WiFi+%C8%99i+Bluetooth+4.2&results=8)                                                                         | The microcontroller for controlling the entire system | 35 RON      |
 | [LU-ASR01 Voice Recognition Module](https://www.bitmi.ro/electronica/modul-control-si-recunoastere-vocala-lu-asr01-11724.html)                                                                                                                                                           | Recognizes and processes voice commands               | 60 RON      |

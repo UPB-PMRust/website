@@ -19,6 +19,7 @@ Sunt pasionat de securitate. Am vrut sa fac ceva din acest domeniu, dar ma pasio
 
 ## Architecture 
 
+![Schematic Screenshot](./sspmpozaaranjata.webp)
 Voi folosi un servo-motor, breadboard, Ultrasonic Sensor HC -SR04, Display LCD I2C, Fire de legatura.
 
 ## Log
@@ -26,6 +27,8 @@ Voi folosi un servo-motor, breadboard, Ultrasonic Sensor HC -SR04, Display LCD I
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+- Am comandat piesele necesare si am inceput dezvoltarea hardware.
+- Am creat schema electrica in KiCad.
 
 ### Week 12 - 18 May
 
@@ -34,9 +37,11 @@ Voi folosi un servo-motor, breadboard, Ultrasonic Sensor HC -SR04, Display LCD I
 ## Hardware
 
 Aparatura hardware folosita este una interactiva, oarecum asemanatoare cu ce am folosit la laborator. Am ales aceste piese pentru ca au un raport pret/calitate mare (dupa cum spun review-urile de pe optimus digital)
+![poza1](img1.webp)
+![poza2](img2.webp)
 
 ### Schematics
-![Schematic Screenshot](./sspmpozaaranjata.webp)
+![Schematic Screenshot](schematic.svg)
 
 ### Bill of Materials
 

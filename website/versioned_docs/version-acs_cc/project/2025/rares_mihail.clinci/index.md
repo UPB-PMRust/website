@@ -72,12 +72,18 @@ graph TD
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+- obtained all components
 
 ### Week 12 - 18 May
+- glued the headers of all the componets
+- built the set up for the Load Cell
+- designed the hardware for the project in KiCad
+- designed the hardware on the board
 
 ### Week 19 - 25 May
 
 ## Hardware
+
 
 Hardware used:
 - Raspberry Pi Pico 2W
@@ -92,9 +98,12 @@ Hardware used:
 - 4 buttons
 - breadboard and wires
 
+![Circuit](circuit.webp)
+
 ### Schematics
 
 <!-- TODO: Place your KiCAD schematics here. -->
+![Schematic](CatFeeder.webp)
 
 ### Bill of Materials
 
@@ -111,6 +120,7 @@ The format is
 | Device | Usage | Quantity | Price |
 |--------|--------|-------| -------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | 1 | [39.66 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico+2w&results=33) |
+| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The debugger | 1 | [39.66 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=pico+2w&results=33) |
 | Micro Servomotor | Dispensing food | 1 | [13.99 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html) |
 | Real Time Clock | Measuring time intervals | 1 | [5.77 RON](https://www.optimusdigital.ro/ro/altele/12286-modul-ceas-in-timp-real-rtc-pcf8563.html?search_query=rtc&results=149) |
 | LCD Screen | Displaying info | 1 | [43.58 RON](https://ardushop.ro/ro/electronica/2124-modul-lcd-spi-128x160-6427854032546.html) |
@@ -123,7 +133,7 @@ The format is
 | Breadboard | Connecting components | 2 | 9.89 RON |
 | Wires | Connecting components | 1 | [7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/12-set-de-cabluri-pentru-breadboard.html?search_query=Set+Fire+pentru+Breadboard&results=37) |
 | Rigid Wires | Connecting components | 1 | [12.49 RON](https://www.optimusdigital.ro/ro/fire-fire-nemufate/899-set-de-fire-pentru-breadboard-rigide.html?search_query=%09Set+de+fire+Rigide+pentru+Breadboard&results=1) |
-| Male Header | Connecting microcontroller | 2 | [0.99 RON](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/1268-header-de-pini-verde-254-mm-40p.html?search_query=Header+de+pini+verde+2.54+mm+%2840p%29&results=1) |
+| Male Header | Connecting microcontroller | 3 | [0.99 RON](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/1268-header-de-pini-verde-254-mm-40p.html?search_query=Header+de+pini+verde+2.54+mm+%2840p%29&results=1) |
 | Female Header | Connecting microcontroller | 2 | [2.56 RON](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/1285-header-de-pini-mama-40p-254-mm-separabil.html?search_query=%09Header+de+Pini+Mama+40p+2.54+mm+Separabil&results=1) |
 
 

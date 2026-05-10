@@ -78,7 +78,7 @@ The implementation of a smart parking system, based on Raspberry Pi Pico 2 and p
 | VCC         | 5V (external source)                                        |
 | GND         | GND (Pico)                                                  |
 | TRIG        | GPIO18 (Pico)                                               |
-| ECHO        | GPIO19 through voltage divider                              |
+| ECHO        | GPIO22 through voltage divider                              |
 
 - HC-SR04 NR.5 connection diagram
 
@@ -93,7 +93,7 @@ The implementation of a smart parking system, based on Raspberry Pi Pico 2 and p
 
 | SG90 Servo Pin    | Connecting to Raspberry Pi Pico 2           |
 |-------------------|---------------------------------------------|
-| Orange (PWM)      | GPIO15 (or other PWM compatible GPIO)       |
+| Orange (PWM)      | GPIO12 (or other PWM compatible GPIO)       |
 | Red (VCC)         | 5V from an external source                  |
 | Brown(GND)        | GND common with Pico                        |
 
@@ -104,9 +104,9 @@ The implementation of a smart parking system, based on Raspberry Pi Pico 2 and p
 ### Week 21 April - 5 May
     Connecting the hardware components
 ### Week 12 - 18 May
-
+    Added the second pico2 for debug. Testing the project 
 ### Week 19 - 25 May
-
+    Finishing the software
 ## Hardware
 
 Detail in a few words the hardware used.
@@ -117,6 +117,9 @@ Here’s a concise description of the hardware components used in my project:
 - SG90 Servo + Barrier – the servo motor lifts or lowers a physical barrier to control access when a car is detected.
 - 7-Segment Display – shows the number of free parking spaces available in real time.
 - Voltage Source – provides 5V power to the sensors, servo, and display.
+
+  ![Poza 1](poza1.webp)
+  ![Poza 2](poza2.webp)
 
 ### Schematics
 
@@ -147,13 +150,20 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
-
+| [`embassy-rp`](https://github.com/embassy-rs/embassy) | Async runtime and HAL support for Raspberry Pi Pico | Provides the async foundation and hardware abstractions |
+| [`embassy-executor`](https://github.com/embassy-rs/embassy) | `Spawner` | Task spawning for asynchronous embedded systems |
+| [`embassy-time`](https://github.com/embassy-rs/embassy) | `Timer`, `Duration` | Time delays and intervals in async context |
+| [`fixed`](https://github.com/aldanor/fixed) | `traits::ToFixed` | Fixed-point arithmetic for precise timing or servo signals |
+| [`defmt`](https://github.com/knurling-rs/defmt) | Logging framework optimized for embedded systems | Enables efficient debug output | 
+| [`panic-probe`](https://github.com/knurling-rs/panic-probe) | Panic handler for defmt-based projects | Handles panics with minimal overhead |
+| [`static-cell`](https://github.com/embassy-rs/embassy/tree/main/static-cell) | Safe global variables | Manages safe static memory for async resources |
+| [`core`](https://doc.rust-lang.org/core/) | `sync::atomic::{AtomicBool, AtomicU8, Ordering}` | Low-level atomic types for concurrency without locks |
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Embassy: Asynchronous Embedded Development in Rust](https://embassy.dev/) 
+2. [Ultrasonic Sensor HC-SR04 with Raspberry Pi Pico](https://how2electronics.com/hc-sr04-ultrasonic-distance-sensor-with-raspberry-pi-pico/)
+3. [Controlling Servos with PWM](https://www.tomshardware.com/raspberry-pi/how-to) 
+4. [Driving a 7-Segment Display using Shift Registers](https://lastminuteengineers.com/seven-segment-arduino-tutorial/) 
+

@@ -32,26 +32,39 @@ General purpose, for PC & workstations
 
 <img src="./pi5.jpg" class="m-5 h-50 rounded">
 ---
----
+
 # How a microprocessor works
 This is a simple processor
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![Processor](./processor.svg)
+
+</div>
 
 ---
 
 # 8 bit processor
 a simple 8 bit processor with a text display
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![8 Bit Processor](./8-bit-processor.svg)
+
+</div>
 
 ---
 layout: two-cols
 ---
+
 # Programming
 in Rust
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![8 Bit Processor](./8-bit-processor.svg)
+
+</div>
 
 <v-click>
 

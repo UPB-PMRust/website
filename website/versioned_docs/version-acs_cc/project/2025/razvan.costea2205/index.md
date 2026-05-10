@@ -33,9 +33,34 @@ One of the biggest environmental threats that the modern world faces is global w
 
 ### Week 5 - 11 May
 
+During the first week, I soldered the pins for all my components during the lab
+session. After that, I placed both Picos on the breadboard and managed to connect
+them by following the instructions in the datasheet.
+
+I also connected one of the LEDs and the BME280 sensor and managed to get readings
+from it.
+
 ### Week 12 - 18 May
 
+In the second week, I connected the buzzer and activated it and the LED only when
+the temperature reached above a certain threshold. I also connected the TSL2561
+sensor and wrote the code for it, getting readings.
+
+After that, I configured the GPS module and had to do a lot of outdoors trips in
+order to get my location by sattelite.
+
 ### Week 19 - 25 May
+
+During the final week, I connected the LCD screen to the main circuit (it has no I2C,
+so I had to use the data lines directly) and managed to print text on it.
+
+I added another LED an reconfigured a lot of my code in order to make the LEDs
+flash alternatively and the buzzer play an alarm only when certain parameters are
+reached and stop when within normal ranges.
+
+Lastly, I used the Wi-Fi module of the Pico to host an endpoint to which I can
+connect to request sensor readings. The GPS coordinates are also sent on that
+connection when dangerous levels are reached.
 
 ## Hardware
 
@@ -58,9 +83,29 @@ One of the biggest environmental threats that the modern world faces is global w
 6. Buzzer & LEDs:
 - the audible-visual alarm: when certain parameters are reached, the alarm is triggered
 
+![plot1](./above_final.webp)
+![plot2](./side_final.webp)
+![plot3](./side.webp)
+![plot4](./closeup.webp)
+
+The first two photos showcase the main circuit: both Picos on the breadboard,
+connected accordingly, the BME280 and TSL2561 sensors, the GPS module, the LCD
+screen, the buzzer and the two LEDs.
+The last two pictures represent an earlier version of the project.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U6qI5ENBEnQ" 
+frameborder="0" allowfullscreen></iframe>
+
+The video presents the current functionality of the project:
+- the MCU constantly reads readings from both sensors and GPS module
+- readings are displayed on the LCD screen
+- when the temperature is above 26 °C, an alarm is started
+- the alarm consists of a buzzer and LEDs that flash alternatively
+
 ### Schematics
 
 ![kicad](./schematic.svg)
+
 
 ### Bill of Materials
 
@@ -80,16 +125,46 @@ The format is
 | [BME280](https://bme280.readthedocs.io/en/latest/) | Pressure, temperature and humidity sensor | [73.99 RON](https://www.optimusdigital.ro/en/pressure-sensors/5649-bme280-barometric-pressure-sensor-module.html) |
 | [TSL2561](https://cdn-learn.adafruit.com/downloads/pdf/tsl2561.pdf) | Light intensity sensor | [22.99 RON](https://www.optimusdigital.ro/en/optical-sensors/137-tsl2561-light-intensity-sensor-module.html) |
 | [GY-NEO6MV2](https://www.mantech.co.za/datasheets/products/GY-NEO6MV2.pdf?srsltid=AfmBOopLKLqdQ1J7A7ymF9OSc_P0oyHDmRPk4yhrHdXcxkb17nsCUqgT) | GPS Module | [44.95 RON](https://www.optimusdigital.ro/en/gps/105-gy-neo6mv2-gps-module.html) |
+| Potentiometer | Control the contrast of the characters on the LCD screen | [1.49 RON](https://www.optimusdigital.ro/en/potentiometers/1885-50k-mono-potentiometer.html?search_query=potentiometer&results=225) |
 | Breadboard | Connect all the components | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
 | LCD screen | Display the sensors' measurements | [16.34 RON](https://www.optimusdigital.ro/en/lcds/2894-1602-lcd-with-i2c-interface-and-blue-backlight.html) |
 | Buzzer | Audio alarm | [1.40 RON](https://www.optimusdigital.ro/en/buzzers/634-5v-passive-buzzer.html) |
 | LED | Visual alarm | [0.39 RON × 2](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html) |
 | Pin header | Connect components to the breadboard | [0.99 RON × 3](https://www.optimusdigital.ro/en/pin-headers/464-colored-40p-254-mm-pitch-male-pin-header-red.html) |
 | Battery holder | Power the circuit | [3.95 RON](https://www.optimusdigital.ro/en/battery-holders/1090-3-x-r6-battery-holder.html) |
-| Total | - | 256.67 RON |
+| Total | - | 258.16 RON |
 
 
 ## Software
+
+The flow of the code is as follows:
+1. The main task:
+- sets up the network endpoint
+- spawns the GPS, sensor, LED and buzzer tasks
+- waits for connections from peers and for data from the sensors
+- sends measurements to peers and the coordinates when there are dangerous levels
+- updates the measurements with the data from the sensors, prints them to the screen
+and signals the LEDS and the buzzer when dangerous levels are reached
+2. The sensors task:
+- configures the registers
+- reads data from the sensors
+- sends the measurements to the main task
+3. The GPS task:
+- receives the sattelite data
+- parses the data with the NMEA0183 protocol
+- updates the geographic coordinates
+4. The LEDs task:
+- waits for a signal from main
+- flashes the LEDs alternatively while there are dangerous levels
+5. The buzzer task:
+- waits for a signal from main
+- plays an alarm while there are dangerous levels
+
+### Functional diagram
+
+![functional](./functional_diagram.svg)
+
+### Dependencies
 
 | Library | Description | Usage |
 |---------|-------------|-------|
@@ -97,9 +172,14 @@ The format is
 | [embassy-time](https://crates.io/crates/embassy-time) | Timekeeping, delays and timeouts | Create timers |
 | [embassy-net](https://crates.io/crates/embassy-net) | Async network stack | Send messages over Wi-Fi |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor | Create different tasks |
-| [lcd1602-rs](https://crates.io/crates/lcd1602-rs) | Display library | Used for my 16 characters on 2 lines LCD screen |
-| [heapless](https://crates.io/crates/heapless) | Statically allocated data | Used to write strings for my LCD |
-
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Synchronization primitives with async support | Communication between tasks |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | Utilities for working with futures | Select the first of multiple futures  |
+| [ag_lcd](https://crates.io/crates/ag-lcd) | Display library | Used for my 16 characters on 2 lines LCD screen |
+| [heapless](https://crates.io/crates/heapless) | Statically allocated data | Used to write strings for my LCD and to peers |
+| [tsl256x](https://crates.io/crates/tsl256x) | Platform agnostic driver for TSL256x | Read raw data from TSL2561 |
+| [libm](https://crates.io/crates/libm) | libm in pure Rust | Use mathematical functions, such as `pow` | 
+| [nmea0183](https://crates.io/crates/nmea0183) | NMEA 0183 parser targetting embedded devices | Parse sattelite data from GPS module |
+| [static-cell](https://crates.io/crates/static_cell) | Statically allocated, initialized at runtime cell | Send arguments from `main` to tasks |
 
 ## Links
 

@@ -13,10 +13,13 @@ for this section
    - Chapter 12 - *Peripherals*
      - Chapter 12.3 - *SPI*
 
-2. **Paul Denisowski**, *[Understanding SPI](https://www.youtube.com/watch?v=0nVNwozXsIc)*
+2. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
+   - Chapter 68 - *Serial Peripheral Interface*
+
+3. **Paul Denisowski**, *[Understanding SPI](https://www.youtube.com/watch?v=0nVNwozXsIc)*
 
 ---
----
+
 # SPI
 a.k.a *spy*
 
@@ -28,11 +31,11 @@ a.k.a *spy*
 
 
 <div align="center">
-<img src="./spi_network.svg" class="rounded w-120">
+<img src="./spi_network.svg" class="rounded w-120" style="background-color: white; padding: 5px;">
 </div>
 
 ---
----
+
 # Wires
 3 + n
 
@@ -49,7 +52,7 @@ a.k.a *spy*
 </div>
 
 <div align="center">
-<img src="./spi_network.svg" class="rounded w-120">
+<img src="./spi_network.svg" class="rounded w-120" style="background-color: white; padding: 5px;">
 </div>
 
 </div>
@@ -57,6 +60,7 @@ a.k.a *spy*
 ---
 layout: two-cols
 ---
+
 # Transmission Example
 
 <v-clicks>
@@ -89,13 +93,13 @@ SPI Signals
 SPI Network
 
 <div align="center">
-<img src="./spi_main_sub.svg" class="rounded w-120">
+<img src="./spi_main_sub.svg" class="rounded w-120" style="background-color: white; padding: 5px;">
 </div>
-
 
 ---
 layout: two-cols
 ---
+
 # SPI Modes
 when data is read and written
 
@@ -120,8 +124,8 @@ when data is read and written
 
 | | | |
 |-|-|-|
-| `CPOL` | Clock polarity | defines when the data bit is read <br> 0: *rising edge* <br> 1: *falling edge* |
-| `CPHA` | Clock phase | defines when the data is written to the line <br> 0: when `CS` *activates* or *clock edge* <br> 1: on *clock edge* (depends on `CPOL`) |
+| `CPOL` | Clock polarity | The idle level of the clock when no data is being sent.<br> 0: *Clock is LOW when idle.* <br> 1: *Clock is HIGH when idle.* |
+| `CPHA` | Clock phase | That clock edge used to read the data bit. <br> 0: Data sampled on the 1<sup>st</sup> clock edge (*the leading edge*). <br> 1: Data sampled on the 2<sup>nd</sup> clock edge (*the trailing edge*). |
 
 ---
 
@@ -191,13 +195,12 @@ using several SPI devices together
 activate all the **sub** devices
 
 <div align="center">
-<img src="./spi_daisy.svg" class="rounded">
+<img src="./spi_daisy.svg" class="rounded" style="background-color: white; padding: 5px;">
 </div>
 
 <div align="center">
 <img src="./spi_leds.jpg" class="rounded w-90">
 </div>
-
 
 ---
 ---
@@ -217,18 +220,23 @@ activate all the **sub** devices
 
 - EEPROMs / Flash (usually in *QSPI* mode)
   - Raspberry Pi Pico has its 2MB Flash connected using *QSPI*
-- sensors
-- small displays
+- sensors / small displays
 - RP2350 has two SPI devices
+- STM32U545RE has two full SPI devices and one limited SPI device
+
+<div grid="~ cols-2 gap-5">
 
 <div align="center">
-<img src="../rp2350/pico2w-pinout.svg" class="rounded m-5 w-100">
+<img src="../rp2350/pico2w-pinout.svg" class="rounded m-5 w-100" style="background-color: white; padding: 5px;">
+</div>
+
+<div></div>
+
 </div>
 
 ---
 
-# Embassy API
-for RP2040, synchronous
+# Synchronous Embassy API - RP2350
 
 <div grid="~ cols-3 gap-5">
 
@@ -267,7 +275,7 @@ let clk = p.PIN_10;
 let mut spi = Spi::new_blocking(p.SPI1, clk, mosi, miso, config);
 
 // Configure CS
-let mut cs = Output::new(p.PIN_X, Level::Low);
+let mut cs = Output::new(p.PIN_X, Level::High);
 
 cs.set_low();
 let mut buf = [0x90, 0x00, 0x00, 0xd0, 0x00, 0x00];
@@ -277,13 +285,76 @@ cs.set_high();
 
 ---
 
-# Embassy API
-for RP2040, asynchronous
+# Synchronous Embassy API - STM32U545RE
+
+<div grid="~ cols-4 gap-1">
+
+```rust {*}{lines: false}
+pub struct Config {
+  pub mode: Mode,
+  pub bit_order: BitOrder,
+  pub frequency: Hertz,
+  pub miso_pull: Pull,
+  pub gpio_speed: Speed,
+}
+```
+
+```rust {*}{lines: false}
+pub struct Mode {
+  pub polarity: Polarity,
+  pub phase: Phase,
+}
+pub enum Polarity {
+  IdleLow, IdleHigh,
+}
+```
+
+```rust {*}{lines: false}
+pub enum Phase {
+ CaptureOnFirstTransition,
+ CaptureOnSecondTransition,
+}
+pub enum BitOrder {
+  LsbFirst, MsbFirst,
+}
+```
+
+```rust {*}{lines: false}
+pub enum Speed { Low,
+    Medium, High, VeryHigh,
+}
+```
+
+</div>
+
+```rust {1|2|2,3|5-7|5-8|10,11|13|13,14|13,14,15|13,14,15,16|all}
+use embassy_stm32::spi::Config as SpiConfig;
+let mut config = SpiConfig::default();
+config.frequency = Hertz(1_000_000);
+
+let miso = p.PA6;
+let mosi = p.PA7;
+let clk = p.PA5;
+let mut spi = Spi::new_blocking(p.SPI1, clk, mosi, miso, config);
+
+// Configure CS
+let mut cs = Output::new(p.PXn, Level::High, Speed::Low);
+
+cs.set_low();
+let mut buf = [0x90, 0x00, 0x00, 0xd0, 0x00, 0x00];
+spi.blocking_transfer_in_place(&mut buf);
+cs.set_high();
+```
+
+---
+
+# Asynchronous Embassy API
+for RP2040
 
 ```rust {1|2|2,3|5-7|5-8|10,11|13|13,14,15|13,14,15,16|13,14,15,16,17|all}
 use embassy_rp::spi::Config as SpiConfig;
 let mut config = SpiConfig::default();
-config.frequency = 2_000_000;
+config.frequency = 1_000_000;
 
 let miso = p.PIN_12;
 let mosi = p.PIN_11;
@@ -291,7 +362,32 @@ let clk = p.PIN_10;
 let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.DMA_CH0, p.DMA_CH1, config);
 
 // Configure CS
-let mut cs = Output::new(p.PIN_X, Level::Low);
+let mut cs = Output::new(p.PIN_X, Level::High);
+
+cs.set_low();
+let tx_buf = [1_u8, 2, 3, 4, 5, 6];
+let mut rx_buf = [0_u8; 6];
+spi.transfer(&mut rx_buf, &tx_buf).await;
+cs.set_high();
+```
+
+---
+
+# Asynchronous Embassy API
+for STM32U545RE
+
+```rust {1|2|2,3|5-7|5-8|10,11|13|13,14,15|13,14,15,16|13,14,15,16,17|all}
+use embassy_stm32::spi::Config as SpiConfig;
+let mut config = SpiConfig::default();
+config.frequency = Hertz(1_000_000);
+
+let miso = p.PIN_12;
+let mosi = p.PIN_11;
+let clk = p.PIN_10;
+let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.GPDMA1_CH0, p.GPDMA1_CH1, config);
+
+// Configure CS
+let mut cs = Output::new(p.PIN_X, Level::High, Speed::Low);
 
 cs.set_low();
 let tx_buf = [1_u8, 2, 3, 4, 5, 6];

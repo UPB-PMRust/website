@@ -15,6 +15,8 @@ The Smart Pet Water Dispenser is an automated system designed to keep pets hydra
 
 To ensure safety and usability, the system also monitors water temperature via a sensor and displays it on an LCD screen, while an RGB LED provides status indicators (green for normal, red for errors). It also features remote connectivity for monitoring and controlling the system through a simple web interface.
 
+[Smart Pet Water Dispenser Presentation](https://youtube.com/shorts/5p4oQqmrmHQ?feature=shared)
+
 ## Motivation
 
 I chose to work on this project because ensuring pets have constant access to clean water is a common challenge for many pet owners, especially during busy schedules or when away from home. As a cat owner, I have personally faced the difficulty of maintaining a reliable water supply for my pet, which motivated me to develop the Smart Pet Water Dispenser.
@@ -41,12 +43,18 @@ The architecture components of the Smart Pet Water Dispenser:
 
 ### Week 5 - 11 May
 
+This week, I was able to have all the components required for my project. I soldered both Raspberry Pi Picos and connected them on the breadboard using probedebug. I also tested them with a short code to check that everything works fine.
+
 
 ### Week 12 - 18 May
+
+I connected and tested several components of the project. The RGB LED was successfully integrated and responds correctly to control signals. I also connected the LCD display and began displaying test messages on it. I wired the temperature and water level sensors and started checking their readings through initial tests.
+
 
 
 ### Week 19 - 25 May
 
+This week I finished both software and hardware parts of my project and presented it to my laboratory professor. The final steps were implementing the water pump, the relay module and a level shifter to make my project work properly.
 
 ### Week 26 - 2 June
 
@@ -107,9 +115,17 @@ The hardware components include:
 
     Limits current to protect components.
 
+
+![Project1](Project1.webp)
+![Project2](Project2.webp)
+![Project3](Project3.webp)
+
+
 ### Schematics
 
 Place your KiCAD schematics here.
+
+![KiCad](KiCad2.svg)
 
 
 ### Bill of Materials

@@ -4,7 +4,7 @@ A network of sensors which can collect enviromnent data and transmit it without 
 :::info 
 
 **Author**: Andrei Stan \
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-Andreis0605/tree/main)
+**GitHub Project Link**: [City Data Collector](https://github.com/UPB-PMRust-Students/proiect-Andreis0605/tree/main)
 
 :::
 
@@ -30,7 +30,7 @@ I chose this project because it addresses a real need for monitoring urban envir
 
 ## Architecture
 
-![Schema Block](Diagrama_buna.webp)
+![Schema Block](DiagramaConcept.webp)
 
 ## Log
 
@@ -39,6 +39,22 @@ I chose this project because it addresses a real need for monitoring urban envir
 The three types of nodes will be based on Raspberry Pi Pico 2W boards. Sensor nodes will be equipped with a temperature and atmospheric pressure sensor, as well as a sound sensor. Additionally, these nodes will include distance sensors to detect when a bus is at the stop, allowing data transfer to begin. A Real-Time Clock (RTC) will also be used to record the exact time when the data is collected.
 
 Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, which will store and forward the collected data.
+![Poza breadpoard](ProiectBreadboard.webp)
+![Poza prototype board](ProiectNodSenzor.webp)
+![Poza_toate_nodurile](ProiectToateNodurile.webp)
+<iframe width="1024" height="768"
+    src="https://www.youtube.com/embed/is8oZhdyjjo"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+</iframe>
+
+
+## Schematics
+
+![Diagrama_senzor](SensorDiagram.svg)
+![Diagrama_collector_aggregator](CollectorAggregatorDiagram.svg)
 
 ## Bill of Materials
 
@@ -61,3 +77,5 @@ Collector and Aggregator nodes will consist of Raspberry Pi Pico 2W boards, whic
 
 ## Links
 
+ - [Pollution map](https://aqicn.org/map/bucharest//ro/)
+ - [Sensors](https://www.germanelectronics.ro/aparate-de-masura-surse-de-alimentare/meteo/senzori-externi-accesorii-statii-meteo)

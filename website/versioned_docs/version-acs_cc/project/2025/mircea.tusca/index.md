@@ -100,6 +100,20 @@ This breakout makes adding removable flash storage trivial via the RP2040’s SP
 - **microSD SPI Module**: SPI flash storage breakout; logs timestamped CSV sensor data to a microSD card.  
 - **HC-06 Bluetooth Module**: UART SPP slave device; streams ASCII-formatted sensor readings over Bluetooth at a default 9600 bps.  
 
+## Log
+- **Week 5 - 11 May**:  
+  Documentation implemented
+- **Week 12 - 18 May**:  
+  Added schematic and hardware photo of the project
+- **Week 19 - 25 May**:  
+  Hardware presentation, final adjustments, working on the software part
+
+## Schematics
+![Schematic](Schematic.svg)
+
+## Photo
+![Hardware Photo](hardware_photo.webp)
+
 ## Bill of Materials
 
 | Device                                               | Usage                                 | Price                                                                                                  |

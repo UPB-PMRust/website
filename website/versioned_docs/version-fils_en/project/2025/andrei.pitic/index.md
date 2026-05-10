@@ -1,6 +1,4 @@
-# Project Name  
-
-3x3 SLOTS MACHINE
+# 3x3 SLOTS MACHINE
 
 :::info
 
@@ -48,11 +46,15 @@ Input (button press) → Game Logic → Display Update → (Optional) Sound Outp
 - Designed basic slot machine logic (reels, spin, random generation, double or nothing feature )  
 
 ### Week 12 - 18 May  
-
+-finished hardware
+-starting to tie the software with the hardware
+-moved software from python to rust project and set up running
 
 ### Week 19 - 25 May  
 
 ## Hardware
+
+![Hardware](Hardware.webp)
 
 - Raspberry Pi Pico W as the main controller  
 - 2.4-inch Arduino LCD for displaying the slot grid and game information  
@@ -65,7 +67,7 @@ Input (button press) → Game Logic → Display Update → (Optional) Sound Outp
 
 ### Schematics
 
-![Circuit diagram for the 3x3 Slots Machine showing connections between Raspberry Pi Pico W, display, buttons, and other components](slots-machine-kicad-schematic.svg)
+![Circuit diagram for the 3x3 Slots Machine showing connections between Raspberry Pi Pico W, display, buttons, and other components](Schematic.svg)
 
 
 ### Bill of Materials

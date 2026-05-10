@@ -62,7 +62,7 @@ fn clear_bits(register: usize, bits: usize) -> usize {
 
 ```rust {all|2|3|4|1,5,6}
 fn flip_bit(register: usize, bit: u8) -> usize {
-    // assume register is 0b1000, bit is 2
+    // assume register is 0b1100, bit is 2
     //   1 << 2 is 0b0100
     //   0b1100 ^ 0b0100 is 0b1000
     register ^ 1 << bit

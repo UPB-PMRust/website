@@ -47,10 +47,11 @@ The diagram above shows the overall system architecture of the guitar tuner.
 ### Push Buttons (x2)
 
 **Interface**: GPIO  
-**Role**: Used to scroll left/right through available tuning notes (E, A, D, G, B, e).  
+**Role**: Used to scroll left/right through available tuning notes (E, A, D, G, B, e), Mode selection.  
 **Connections**:
 - Each button connected to a GPIO pin
-- Configured with pull-up/pull-down resistors and interrupts
+- Configured with pull-up resistors and checked continuously in the main loop.
+
 
 ### LEDs (x6)
 
@@ -82,24 +83,29 @@ The diagram above shows the overall system architecture of the guitar tuner.
 
 This week I finalized the basic design for the project and gathered all the necessary components. I focused on checking that everything works correctly and started outlining the system architecture. I also worked on the initial documentation. I began testing the microphone to see if I can get a stable signal through the ADC. If that works, I’ll move on to the next steps in signal processing and note detection.
 
-### Week 12 - 18 May
+### Week 12 – 18 May  
+I focused on testing the microphone input and checking if I could get stable frequency detection and feedback on the LCD. I also began setting up the logic for note selection using two buttons and confirmed that the correct LED lights up based on the selected note. As well finished the hardware setup.
 
 ### Week 19 - 25 May
+During the last week, A significant part of the time was spent debugging issues related to harmonic and string misclassification, and improving the logic for frequency analysis, matching, and stability. Eventually, I finalized the software side of the project. 
+When I began getting quite satisfying results, I started polishing and verifying the manual string detection mode, testing it for accuracy by comparing the output against the GuitarTuna mobile app. After confirming reliable results across all strings, I proceeded to implement Auto Mode, which automatically detects the closest played note without user input.  In addition, I developed a startup selection menu that allows the user to choose between Manual and Auto Mode and added runtime mode switching — holding both buttons for 2 seconds returns the tuner to the mode selection screen, without restarting the device.
+Alongside software, I also began working on the physical enclosure for the project — a box to house all the hardware components and make the system look more like a finished product.
 
 ## Hardware
 
-The system is built around a Raspberry Pi Pico W. It uses an analog microphone to capture the guitar sound, two push buttons to select the target note, and LEDs to indicate which note is currently selected. A small LCD display shows the detected frequency and tuning status. The project is powered by a 9V battery with proper voltage regulation for portability.
+The system is built around a Raspberry Pi Pico W. It uses an analog microphone to capture the guitar sound, two push buttons to select the target note, and LEDs to indicate which note is currently selected. A small LCD display shows the detected frequency and tuning status. Initially, I planned to power the circuit using a 9V battery with a voltage regulator, but for now I decided to stick with USB power for simplicity and reliability during testing and development.
+
 
 ![Breadboard Setup](./hardware1.webp)
-_Fig.1 – Prototype setup on breadboard_
+_Fig.1 – Setup on breadboard_
 
 ![](./hardware2.webp)
-_Fig.2 -_
+_Fig.2 – Display and microphone module_
 
 ### Schematics
 
-![Schematic Diagram](./schematic.webp)
-_Fig.3 – Initial Schematic_
+![Schematic Diagram](./schematic.svg)
+_Fig.3 – Schematic_
 
 ### Bill of Materials
 

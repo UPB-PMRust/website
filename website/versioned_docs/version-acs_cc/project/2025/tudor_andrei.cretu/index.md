@@ -1,5 +1,5 @@
-#Minesweeper
-Minesweeper implementat in rust.
+# Minesweeper
+Minesweeper implemented in rust.
 
 :::info
 **Author**: Cretu Tudor-Andrei \
@@ -40,11 +40,17 @@ Final version of the software, finished game
 
 ## Hardware
 
+# Photos
+![poza1](poza1.webp)
+![poza2](poza2.webp)
+![poza3](poza3.webp)
+![poza4](poza4.webp)
+
 As the main hardware part I used the Raspberry Pi Pico 2W to create the game. For displaying the game I chose a 1.8" SPI LCD, which should be enough to see the game in both dificulties. 6 buttons are used for gameplay, with 4 of them being used for the 4 movement directions, 1 used for placing the flag on the mines, and the last one is used for checking the slots for mines. 
 
 ### Schematics
 
-![schematic](schematic_cretu_tudor.webp)
+![schematic](schematic_cretu_tudor.svg)
 
 ### Bill of materials
 | Device | Usage | Price |
@@ -61,7 +67,7 @@ As the main hardware part I used the Raspberry Pi Pico 2W to create the game. Fo
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-rs](https://github.com/embassy-rs/embassy) | Rust framework | Used for writing the software |
-| [st7789](https://github.com/almindor/st7789) | Display driver | Used to connect the display |
+| [st7735](https://github.com/adafruit/Adafruit-ST7735-Library) | Display driver | Used to connect the display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used to generate the images for the display |
 
 ## Links

@@ -85,8 +85,14 @@ src: ../../resources/rp2040/slides.md
 
 <!-- RP2350 -->
 
+<!-- --- -->
+<!-- src: ../../resources/rp2350/slides.md -->
+<!-- --- -->
+
+<!-- STM32U545RE -->
+
 ---
-src: ../../resources/rp2350/slides.md
+src: ../../resources/stm32u545re/slides.md
 ---
 
 ---
@@ -106,4 +112,4 @@ we talked about
 - Microcontrollers (MCU) / Microprocessors (CPU)
 - Microcontroller architectures
 - ARM Cortex-M
-- RP2040 and RP2350
+- RP2040 and STM32U545RE

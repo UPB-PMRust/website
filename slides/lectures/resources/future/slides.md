@@ -74,7 +74,7 @@ sequenceDiagram
 
 <div grid="~ cols-2 gap-5">
 
-```rust {1-4|6-9|11-18|all}
+```rust {1-4|6-9|11-18|all}{lines: false}
 enum SleepStatus {
     SetAlarm,
     WaitForAlarm,
@@ -97,6 +97,7 @@ impl Sleep {
 
 <v-click>
 
+````md magic-move
 ```rust {1,20|1,2,20|4,19|5,18|6-10|11-17|11,12,13|11,14,15|all}{lines: false}
 impl Future for Sleep {
     type Output = ();
@@ -120,6 +121,32 @@ impl Future for Sleep {
 }
 ```
 
+```rust {*}{lines: false}
+impl Future for Sleep {
+    type Output = ();
+
+    fn poll(&mut self) -> Poll<Self::Output> {
+        loop {
+            match self.status {
+                SleepStatus::SetAlarm => {
+                    ALARM.set_alarm(self.timeout);
+                    self.status = SleepStatus::WaitForAlarm;
+                }
+                SleepStatus::WaitForAlarm => {
+                    if ALARM.expired() {
+                        return Poll::Ready(());
+                    } else {
+                        return Poll::Pending
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+````
+
 </v-click>
 
 </div>
@@ -130,22 +157,19 @@ impl Future for Sleep {
 
 <div grid="~ cols-2 gap-5">
 
-```rust {1,20|1,2,20|4,19|5,18|6-10|11-17|11,12,13|11,14,15|all}{lines: false}
-impl Future for Sleep {
-    type Output = ();
-
-    fn poll(&mut self) -> Poll<Self::Output> {
+```rust {1,17|2,16|3,15|4-7|2,16|3,15|8-14|8,9,10|1,17|8,11,12|all}{lines: false}
+fn poll(&mut self) -> Poll<Self::Output> {
+    loop {
         match self.status {
             SleepStatus::SetAlarm => {
                 ALARM.set_alarm(self.timeout);
                 self.status = SleepStatus::WaitForAlarm;
-                Poll::Pending
             }
             SleepStatus::WaitForAlarm => {
                 if ALARM.expired() {
-                    Poll::Ready(())
+                    return Poll::Ready(());
                 } else {
-                    Poll::Pending
+                    return Poll::Pending;
                 }
             }
         }
@@ -191,7 +215,7 @@ async fn blink(mut led: Output<'static, PIN_X>) {
     led.off();
 }
 ```
-<v-click>
+<div v-click="1">
 Rust rewrites
 
 ```rust {1-7|1-3,7|1,4-7|8-12|13-15|all}{lines: false}
@@ -212,11 +236,11 @@ fn blink(led: Output<'static, PIN_X>) -> Blink {
 }
 ```
 
-</v-click>
+</div>
 
 :: right ::
 
-<v-click>
+<div v-click="6">
 
 ```rust {4-23|5-22|5,6-10,22|5,11-17,22|12-14|5,11-17,22|12,14,15,16|5,18-21,22|all}{lines: false}
 impl Future for Blink {
@@ -246,7 +270,7 @@ impl Future for Blink {
 }
 ```
 
-</v-click>
+</div>
 
 
 ---

@@ -53,6 +53,8 @@ In the first week of my PlantaSoteria project, I ordered and gathered all the ne
 
 ### Week 12 - 18 May
 
+I put all the components of the hardware together and tested them (photos in Hardware topic).
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -74,6 +76,10 @@ Power Supply: A stable 5V/3A micro-USB adapter powers the entire system.
 Wiring & Connectors: A set of jumper wires and resistors ensure reliable and organized electrical connections between components.
 
 All sensors connect to the microcontroller via GPIO pins, using interfaces such as I2C and analog input. This setup allows for real-time monitoring and data collection, forming the foundation of the smart monitoring system.
+
+![hardware_part1](part1_hardware.webp)
+![hardware_part2](part2_hardware.webp)
+![hardware_part3](part3_hardware.webp)
 
 ### Schematics
 

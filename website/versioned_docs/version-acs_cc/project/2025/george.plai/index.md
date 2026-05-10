@@ -81,6 +81,13 @@ Total : 83.84RON
 | [rand](https://docs.rs/rand/latest/rand/) | library for random number generation | Used for generating numbers that act as place for the fruits to be placed at
 | [const_random](https://docs.rs/const-random/latest/const_random/) | generates random values at compile time | Used for generating a seed so each game start randomly from the last one
 
+## Pictures
+A Picture of the Hardware assembled and wired.
+![block](hardware.webp)
+
+A picture of the Hardware working.
+!![block](working_hardware.webp)
+
 
 ## Links
 

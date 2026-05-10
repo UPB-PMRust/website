@@ -10,7 +10,7 @@ Play sudoku using a Raspberry Pi Pico 2W and a keyboard module
 
 ## Description
 
-My project makes it possible to play Sudoku by inputting the numbers and moving from one cell to another by using a keyboard module. The game is visible on a webpage on an older phone. Games are previously added and players can choose what difficulty to play. Players will be able to start a new game, input numbers, use the undo and redo operations and check if their answers are correct.
+My project makes it possible to play Sudoku by inputting the numbers and moving from one cell to another by using a keyboard module. The game is visible on a webpage on the laptop. Games are previously added and players can choose what difficulty to play. Players will be able to start a new game, input numbers, use the undo and redo operations and check if their answers are correct.
 
 Sudoku is a logic-based, combinatorial number placement puzzle. The objective is to fill the 9x9 grid with numbers so that each column, each row, and each 3x3 subgrid contain the numbers from 1 to 9 without repetition.
 
@@ -22,11 +22,25 @@ I have been playing Sudoku on and off since I was a little child, and over time,
 
 ## Architecture 
 
-![alt text](./Untitled%20Diagram.drawio.webp)
+![alt text](./diagramaFINALA.webp)
 
 ## Log
 
+### Before week 5 - 11 May
+
+I had bought all necessary components way before and wired the Picos first. I flashed my debugger and then made sure everything worked by running the lab skeleton with the "Hello, world!" program. 
+
+Then I wired my keyboard module to make sure it worked properly, and wrote a program to get input from it in the terminal. After multiple tries and checks of the wiring and the code, I still didn't manage to do it.
+
+![alt text](./firstCircuitPhoto1.webp)
+
+![alt text](./secondCircuitPhoto1.webp)
+
 ### Week 5 - 11 May
+ 
+This week I finally managed to make the keyboard module work by continuously trying to find other solutions and methods to make it work. 
+
+Then I got started on the game logic.
 
 ### Week 12 - 18 May
 
@@ -37,8 +51,12 @@ I have been playing Sudoku on and off since I was a little child, and over time,
 * Raspberry Pi Pico - debugger    
 * Keyboard module - number keyboard used for input and other controls 
 
+The pins of the keyboard module have a very interesting configuration. There are 9 pins, of which the first and last are NC (No Connect) pins. The remaining 7 pins each correspond to a row or a column. The picture below clearly shows the pin configuration.
+
+![alt text](./keyboardPicture.webp)
+
 ### Schematics
-![alt text](./KicadSchematics.webp)
+![alt text](./kicad_finalFINAL.svg)
 
 ### Bill of Materials
 
@@ -55,10 +73,11 @@ Total comes up to 88.1 RON.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | used for timekeeping, delays and timeouts in embedded systems | syncronization|
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xa/index.html) | HAL crate designed for the RP2040 and RP2350 microcontrollers | gpio and uart for the keyboard module
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | used for timekeeping, delays and timeouts in embedded systems | syncronization of tasks|
 | [embassy-usb](https://docs.embassy.dev/embassy-usb/git/default/index.html) | async USB device stack for embedded devices in Rust | connectivity between pico and laptop |
 | [embassy-net](https://docs.embassy.dev/embassy-net/git/default/index.html) | no-std no-alloc async network stack, designed for embedded systems | networking |
-| [cyw43](https://docs.rs/cyw43/latest/cyw43/) | Rust driver for the CYW43439 wifi+bluetooth chip | display of sudoku game on website |
+| [cyw43](https://docs.rs/cyw43/latest/cyw43/) | Rust driver for the CYW43439 wifi+bluetooth chip | wifi connectivity |
 
 ## Links
 

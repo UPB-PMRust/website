@@ -21,29 +21,56 @@ I chose to implement Minesweeper over other games because it seemed to offer an 
 
 ## Architecture
 
-![drawio_diagram](minesweeper_pico_diagram.webp)
+![drawio_diagram](Pico_Minesweeper.svg)
 
 ## Log
-
-### TODO
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
 
+I bought the hardware components from Optimus Digital and soldered the headers on 2 picos, as well as some jumper wires for the SD card interfaces.
+
 ### Week 12 - 18 May
 
+I couldn't get probe-rs to work, so I ended up working with only one pico. Debugging is done via USB. The runner in config.toml was changed from probe-rs to picotool.
+This is how you can run the project:
+
+1. Plug in the USB while holding BOOTSEL if you want to change the firmware.
+2. `cargo run`
+3. Run `sudo minicom -b 115200 -o -D /dev/ttyACM0` to view the debug messages in a separate terminal. You need to install minicom on your system.
+4. Exit from minicom with Ctrl+A, X
+
+I assembled all of the hardware and wrote code for debugging via USB, initializing the display, and testing the buzzer, vibration motor and buttons.
+
 ### Week 19 - 25 May
+
+I tried to initialize the SD card using the embedded-sdmmc crate, but it didn't work, so the save/load functionality is not implemented. Making a HTTP server didn't make sense without the SD card, because I wanted to store the game data on the Pico, not on a remote server.
+
+I spawned an embassy task in main for each of the peripherals: the vibration motor, joystick, buttons, buzzer and display. Each of these has its separate file, containing the task for initializing the respective peripheral, plus some additional functions as needed.
+
+By far the most code was needed for drawing the UI (in display.rs). I added 4 types of screens: the main menu, the game options, the minesweeper game itself, and the victory/defeat screen. The first 3 have 2 different functions each: one for drawing the UI elements, and another that handles user input and remembers state variables like what option/tile is selected.
+
+minesweeper.rs contains code for managing the game logic and state, independent of the UI.
+Cell represents a single tile state, Minesweeper represents the whole game board, and GameState contains additional metadata like a timer and win/loss flags.
+
+The hardest part of writing the software was having to selectively rerender only the parts of the screen that were changed most recently. I had to do this because redrawing the whole screen for every update was too slow, and it was annoying to wait a second between every move.
 
 ## Hardware
 
 The project utilizes a Raspberry Pi Pico W microcontroller as the central processing unit. User interaction is handled by a biaxial joystick for grid navigation and menu control, along with several push buttons for actions like placing flags, restarting, accessing the menu, and potentially other features. Visual feedback is provided through a 2.8" SPI LCD display (ILI9341 controller). Audio and haptic feedback are implemented using a passive buzzer and a vibration motor. Game state persistence and map storage are managed using a microSD card connected via SPI. The Pico W's wireless capability is used to host a local HTTP server, allowing saved maps to be viewed remotely. A second Pico is used as a debug probe (Picoprobe).
 
+Here are some pics to see how the project is assembled.
+
+![Hardware_turned_off](Turned_off.webp)
+![Main Menu](main_menu.webp)
+![Game Menu](game_menu.webp)
+![Minesweeper](minesweeper.webp)
+![Game Over](game_over.webp)
+
 ### Schematics
 
-### TODO
-
-Place your KiCAD schematics here.
+![KiCad_Schematic](KiCad_project.svg)
 
 ### Bill of Materials
 
@@ -61,6 +88,7 @@ The format is
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Breadboard HQ (830 Puncte)                                                                                                                                    | Breadboard                                        | [10 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html?search_query=breadboard+HQ+830&results=15)                                                                                                                                    |
 | Set de fire Rigide pentru Breadboard                                                                                                                          | Jumper cables                                     | [12.5 RON](https://www.optimusdigital.ro/ro/fire-fire-nemufate/899-set-de-fire-pentru-breadboard-rigide.html?search_query=Set+de+fire+Rigide+pentru+Breadboard&results=1)                                                                                                       |
+| Fire Colorate Mamă-Tată (10p) 20 cm                                                                                                                           | Jumper cables (male-female)                       | [4 RON](no link avalible)                                                                                                                                                                                                                                                       |
 | [Modul LCD SPI de 2.8" cu Touchscreen - Controller ILI9341 și XPT2046 (240x320 px)](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf)                     | The LCD display                                   | [70 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/3544-modul-lcd-spi-de-28-cu-touchscreen-controller-ili9341-i-xpt2046-240x320-px.html?search_query=Modul+LCD+SPI+de+2.8%27%27+cu+Touchscreen+-+Controller+ILI9341+%C8%99i+XPT2046+%28240x320+px%29+&results=2) |
 | [Motor cu vibratii A1027](https://buybestelectronic.com/part-image/15684/datasheet/15684.pdf)                                                                 | The Vibration motor                               | [10 RON](https://www.optimusdigital.ro/ro/motoare-motoare-cu-vibratii/86-motor-cu-vibratii-a1027.html?search_query=Motor+cu+vibratii+A1027&results=2)                                                                                                                           |
 | Buzzer Pasiv de 3.3V sau 3V                                                                                                                                   | Passive buzzer                                    | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=Buzzer+Pasiv+de+3.3V+sau+3V+&results=1)                                                                                                                               |
@@ -73,19 +101,19 @@ The format is
 
 ## Software
 
-| Library                                                                        | Description                                                                                           | Usage                                                                                              |
-| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [embassy-executor](https://github.com/embassy-rs/embassy)                      | async/await executor designed for embedded usage                                                      | Runs and manages all asynchronous tasks (input handling, display updates, networking, game logic). |
-| [embassy-rp](https://github.com/embassy-rs/embassy)                            | Embassy Hardware Abstraction Layer (HAL) for the Raspberry Pi RP2040 microcontroller                  | Interfacing with Pico W hardware: GPIO (buttons, joystick, buzzer, motor), SPI (LCD, SD card).     |
-| [embassy-time](https://github.com/embassy-rs/embassy)                          | Instant and Duration for embedded no-std systems, with async timer support                            | Implementing delays, timeouts, debouncing inputs, potentially game timers.                         |
-| [embassy-net](https://github.com/embassy-rs/embassy)                           | Async TCP/IP network stack for embedded systems                                                       | Providing the underlying networking capabilities for the HTTP server.                              |
-| [cyw43](https://github.com/embassy-rs/embassy)                                 | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W.                              | Enabling WiFi connectivity via the Pico W's onboard wireless chip.                                 |
-| [picoserve](https://github.com/sammhicks/picoserve)                            | An async no_std HTTP server suitable for bare-metal environments                                      | Implementing the HTTP server to serve saved game maps over WiFi.                                   |
-| [defmt](https://github.com/knurling-rs/defmt)                                  | A highly efficient logging framework that targets resource-constrained devices, like microcontrollers | Debug logging during development via the debug probe.                                              |
-| [mipidsi](https://github.com/almindor/mipidsi)                                 | MIPI Display Command Set compatible generic driver usage                                              | Low-level driver for communicating with the ILI9341 LCD controller over SPI.                       |
-| [embedded_graphics](https://github.com/embedded-graphics/embedded-graphics)    | Embedded graphics library for small hardware displays                                                 | Drawing the game grid, menus, text, and other UI elements on the LCD.                              |
-| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | A basic SD/MMC driver for Embedded Rust.                                                              | Reading from and writing to the microSD card for game save/load functionality.                     |
-| [oorandom](https://hg.sr.ht/~icefox/oorandom)                                  | A tiny, robust PRNG implementation.                                                                   | Generating random numbers for placing mines on the game board.                                     |
+| Library                                                                                   | Description                                                                                           | Usage                                                                                              |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [embassy-executor](https://github.com/embassy-rs/embassy)                                 | async/await executor designed for embedded usage                                                      | Runs and manages all asynchronous tasks (input handling, display updates, networking, game logic). |
+| [embassy-rp](https://github.com/embassy-rs/embassy)                                       | Embassy Hardware Abstraction Layer (HAL) for the Raspberry Pi RP2040 microcontroller                  | Interfacing with Pico W hardware: GPIO (buttons, joystick, buzzer, motor), SPI (LCD, SD card).     |
+| [embassy-time](https://github.com/embassy-rs/embassy)                                     | Instant and Duration for embedded no-std systems, with async timer support                            | Implementing delays, timeouts, debouncing inputs, potentially game timers.                         |
+| [embassy-net](https://github.com/embassy-rs/embassy)                                      | Async TCP/IP network stack for embedded systems                                                       | Providing the underlying networking capabilities for the HTTP server.                              |
+| [cyw43](https://github.com/embassy-rs/embassy)                                            | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W.                              | Enabling WiFi connectivity via the Pico W's onboard wireless chip.                                 |
+| [picoserve (not used)](https://github.com/sammhicks/picoserve)                            | An async no_std HTTP server suitable for bare-metal environments                                      | Implementing the HTTP server to serve saved game maps over WiFi.                                   |
+| [defmt](https://github.com/knurling-rs/defmt)                                             | A highly efficient logging framework that targets resource-constrained devices, like microcontrollers | Debug logging during development via the debug probe.                                              |
+| [mipidsi](https://github.com/almindor/mipidsi)                                            | MIPI Display Command Set compatible generic driver usage                                              | Low-level driver for communicating with the ILI9341 LCD controller over SPI.                       |
+| [embedded_graphics](https://github.com/embedded-graphics/embedded-graphics)               | Embedded graphics library for small hardware displays                                                 | Drawing the game grid, menus, text, and other UI elements on the LCD.                              |
+| [embedded-sdmmc (not used)](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | A basic SD/MMC driver for Embedded Rust.                                                              | Reading from and writing to the microSD card for game save/load functionality.                     |
+| [oorandom](https://hg.sr.ht/~icefox/oorandom)                                             | A tiny, robust PRNG implementation.                                                                   | Generating random numbers for placing mines on the game board.                                     |
 
 ## Links
 

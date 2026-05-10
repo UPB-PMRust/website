@@ -1,7 +1,6 @@
 # 🔐 Smart Door Lock with Face Recognition
 A secure, AI-powered door lock system using ESP32-CAM and Raspberry Pi Pico 2.
 
-
 :::info
 
 **Author**: Matei-Alexandru Tiță \
@@ -55,6 +54,9 @@ The goal of this project is to explore a practical application of embedded syste
 
 ![Schematic diagram](Scheme.webp)
 ---
+![Hardware image](Hardware.webp)
+
+![Scheme](Scheme.svg)
 
 ## 🗓️ Development Log
 
@@ -62,6 +64,8 @@ The goal of this project is to explore a practical application of embedded syste
    I set up and powered the Raspberry Pi Pico 2 and ESP32-CAM, tested the ESP32-CAM by flashing the CameraWebServer example and viewing the live video stream on my laptop, and verified the Pico environment by writing a simple Rust program to blink an LED, confirming basic GPIO control and that both boards were functioning properly.
 
 ### Week 2 – Core Setup
+   In Week 2, I replaced the initial UART-based communication with a Wi-Fi-based protocol for transmitting access control signals between the ESP32-CAM and the Raspberry Pi Pico 2. I configured the ESP32-CAM to run a lightweight HTTP server that, upon recognizing a known face, sends a GRANT or DENY signal as an HTTP GET request to the Pico's IP address on the local network.
+
 
 ### Week 3 – Hardware Integration
 

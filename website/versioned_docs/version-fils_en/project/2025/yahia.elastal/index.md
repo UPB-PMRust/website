@@ -110,8 +110,22 @@ I bought all the cardboard needed for the build and drew out the floor plan on i
 - **Cardboard House Construction**:
 This week, I focused on building the cardboard house and successfully completed the main structure. The layout is now ready for installing components and starting the wiring process.
 ### Week 5 - 11 May
+- **Wiring and GPIO Allocation**:
+Completed all wiring for the sensors, LEDs , Push Buttons , Photoresistors, and display. Careful planning was essential during this stage, as nearly all available GPIO pins on the Raspberry Pi Pico W were used. Pin allocation was done with attention to communication protocols and compatibility.
+- **Code Testing**:
+Tested some code for the temperature sensors and LCD in order to intergrate them in the project
+- **KiCad Schematic**:
+Finalized the KiCad schematic for the full system, accurately reflecting all physical connections and components used in the project.
 ### Week 12 - 18 May
+- **Component Installation**:
+Started mounting components onto the cardboard structure. Fixed the LCD display, LEDs, sensors and RFID in their designated positions.
+- **Smart Lighting Feature**:
+Completed the implementation of the smart lighting logic. Each LED now adjusts its brightness automatically based on readings from its corresponding LDR sensor, and the system can switch between OFF, ON, and SMART modes using push buttons.
 ### Week 19 - 25 May
+- **Code Progress**:
+Focused on finalizing the integration of the LCD screen and the temperature sensors.
+- **Project Polishing**:
+Worked on improving the visual appearance of the cardboard house by adding decorations and details to make the model more presentable for demonstration.
 ## Hardware
 - Infrared Flame Sensor: Used to detect any nearby fire in the kitchen area, triggering an emergency alarm when activated.
 - Active Buzzer Module: Provides audio feedback; it is activated both when a fire is detected and when an unauthorized RFID tag is scanned at the entrance.
@@ -123,8 +137,16 @@ This week, I focused on building the cardboard house and successfully completed 
     - Manual Mode: Allows direct on/off control.
 - Ambient Mode: Adjusts brightness automatically based on the light sensor readings using PWM.
 - LCD Screen: Continuously displays real-time information about room conditions, access activity, and fire alarm status.
-### Schematics
 
+- **This is how the wiring looks** :
+![Wiring](wiring.webp)
+- **This is how the the cardboard home came out** :
+![Cardboard](Cardboard.webp)
+- **And this is how to projects looks till now** :
+![TopView](Final_topview.webp)
+![SideView](Final_sideview.webp)
+### Schematics
+![KiCad Schematic](Schematic.svg)
 ### Bill of Materials
  
 
@@ -145,7 +167,8 @@ This week, I focused on building the cardboard house and successfully completed 
 |Male-Male Wires 10cm |Connectivity |[1 x 4.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=Fire+&results=430)|
 |Female-Male Wires |Connectivity |[1 x 5.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html?search_query=Fire+20cm&results=18)|
 |Female-Female Wires |Connectivity|[1 x 7.99 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/90-fire-colorate-mama-mama-40p.html?search_query=Fire+20cm&results=18)|
-| **TOTAL** | - | **171.19 RON** |
+|Mucava Cardboard|Building the house |22 RON|
+| **TOTAL** | - | **193.19 RON** |
 
 :::info Development Tool
 A [Raspberry Pi Debug Probe](https://www.optimusdigital.ro/ro/accesorii/12777-placa-pentru-depanare-raspberry-pi.html?search_query=Debug+probe&results=1) was used during development and debugging but it will not be included in the final build of the project.
@@ -158,12 +181,20 @@ A [Raspberry Pi Debug Probe](https://www.optimusdigital.ro/ro/accesorii/12777-pl
 |---------|-------------|-------|
 | [embassy-executor](https://docs.embassy.dev/embassy-executor/git/std/index.html) | Asynchronous executor for embedded systems | Used to manage concurrent tasks in a non-blocking way |
 | [embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Time management library | Used for time-based operations such as delays |
-|[embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html)| Raspberry Pi Pico-specific HAL for Embassy |Used for PWM, SPI, GPIO, I²C, and peripheral setup |
-|[embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Lightweight async synchronization tools | Used for communication between tasks via Signal |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp2040/index.html) | Raspberry Pi Pico-specific HAL for Embassy | Used for PWM, SPI, GPIO, I²C, ADC, and peripheral setup |
+| [embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Lightweight async synchronization tools | Used for inter-task communication using `Signal`, `Mutex`, and critical sections |
+| [embassy-embedded-hal](https://docs.embassy.dev/embassy-embedded-hal/latest/embassy_embedded_hal/) | Embassy adaptation of `embedded-hal` traits | Used for shared bus access in screen and sensor drivers |
+| [embedded-hal-async](https://docs.rs/embedded-hal-async/latest/embedded_hal_async/) | Async I/O traits for I²C, SPI, UART | Used for BMP280 I²C temperature sensor integration |
+| [static-cell](https://docs.rs/static_cell/latest/static_cell/) | Safe static allocation support | Used to safely initialize peripherals with `'static` lifetime |
+| [defmt](https://docs.rs/defmt/latest/defmt/) | Logging framework for embedded Rust | Used for efficient runtime logging and debugging |
+| [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | Real-Time Transfer backend for `defmt` | Enables RTT-based log output over USB |
+| [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Minimal panic handler for embedded Rust | Provides debug output on panics |
 | [mfrc522](https://docs.rs/mfrc522/latest/mfrc522/) | RFID reader driver | Used to initialize and interact with the MFRC522 RFID module |
-| [mipidisi](https://docs.rs/mipidsi/latest/mipidsi/) | Display driver for MIPI-compliant screens like ST7735 | Used to initialize and control the SPI LCD screen |
-| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | Wrapper for SPI display interfaces |Used to link the display to the SPI bus and simplify communication|
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | Display driver for MIPI-compliant screens like ST7735 | Used to initialize and control the SPI LCD screen |
+| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | Wrapper for SPI display interfaces | Used to link the display to the SPI bus and simplify communication |
 | [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | Graphics library for embedded displays | Used for rendering shapes, text, and layouts on the LCD screen |
+| [heapless](https://docs.rs/heapless/latest/heapless/) | Fixed-capacity data structures for `no_std` | Used for `String` display buffers without dynamic allocation |
+| [fixed](https://docs.rs/fixed/latest/fixed/) | Fixed-point math support for embedded systems | Used for converting floats for servo and display formatting |
 
 ## Links
-
+[Projects 2024](https://pmrust.pages.upb.ro/docs/fils_en/category/projects-2024)

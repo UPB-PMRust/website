@@ -47,8 +47,10 @@ Architectural Diagram:
 I've acquired all the necessary hardware, which is likely still subject to be rethought and changed. I've set up a configuration with two Pico 2Ws, one of them being a debugger for another one. Currently I'm in the process of getting LCD to work and looking for suitable libraries and crates for the project.
 
 ### Week 12 - 18 May
+I managed to implement a basic version of Snake Game. Although initially it was choppy due to optimisation flaws in screen updates, I managed to fix it and the game now runs at buttery smooth 60 fps. The console is fully functional, but barebones and a little wonky to use for now. For now my plan is to add new gameplay features to the game which are not currently present, and add LEDs for visual feedback. Since I haven't done that yet my KiCad schematic doesn't include RGB LEDs, in the next weekly log I'll make sure to include that as well, as the project will reach a more finished and polished state.
 
 ### Week 19 - 25 May
+I moved buttons to a separate breadboard which is connected to the main one on order to make a more "d-pad" like controls layout. I implemented Tetris, which is still in beta. So far I encountered 0 unfixed issues but in case if I do I will try to fix them. For Snake Game I added 2 types of rare items: Golden Apples and Diamonds. Golden Apples generate on the field every 10 seconds with odds being 50%, Diamonds on the other hand can spawn with a chance of 25% every 10 seconds, while also moving. Golden Apples give 10 points and Diamonds give 20, Unlike the regular Apple which gives only 1. I also added difficulties to Snake Game: Easy, Normal, Hard, Nightmare. Each affect game's speed, the higher the difficulty - the faster the game is.
 
 ## Hardware
 Consists of RP Pico 2W (2x), LCD TFT 2.2" module, buttons and resistors and 2 breadboards to hold everything together. At the moment buttons and resistors are not installed due to design concerns.
@@ -57,8 +59,8 @@ Consists of RP Pico 2W (2x), LCD TFT 2.2" module, buttons and resistors and 2 br
 ![](pic2.webp)
 
 ### Schematics
-
-At the moment KiCad schematic cannot be done as I am unsure about connections. For now I will only provide architectural schematic, KiCad schematic is WIP.
+Here's a KiCad schematic for the current version of the console:
+![KiCad schematic](kicad.svg)
 
 ### Bill of Materials
 
@@ -77,14 +79,17 @@ At the moment KiCad schematic cannot be done as I am unsure about connections. F
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-[embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Grants access to low-level peripherals on RP microcontrollers | Initializing and interacting with peripherals
-[embassy-executor](https://docs.embassy.dev/embassy-executor/git/cortex-m/index.html) | Async runtime tailored for embedded environments | Used for async programming |
-[embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Time abstraction library for delays and timers | Used for delays |
-[embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Async-safe primitives for shared state management | Used for inter-task communication via channels, mutexes, etc. in async code |
-[ili9341](https://docs.rs/ili9341/0.6.0/ili9341/) | Driver for TFT module based on ILI9341 chip | Used for rendering graphics on compatible TFT LCD displays |
-[embedded-graphics](https://docs.rs/embedded-graphics/0.8.1/embedded_graphics/) | 2D graphics library that is focused on memory constrained embedded devices | Used for displaying graphics on the display |
-[embedded-hal-async](https://docs.rs/embedded-hal-async/latest/embedded_hal_async/) | An asynchronous Hardware Abstraction Layer (HAL) for embedded systems | Provides a standard way to use hardware asynchronously across different embedded devices |
-[gpio](https://docs.embassy.dev/embassy-rp/git/rp235xb/gpio/index.html) | GPIO management | Used for controlling GPIO pins
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/git/rp235xb/index.html) | Hardware abstraction for Raspberry Pi Pico (GPIO, SPI, etc.) | Used for GPIO, SPI, and board initialization |
+| [embassy-executor](https://docs.embassy.dev/embassy-executor/git/cortex-m/index.html) | Async runtime for embedded systems | Runs the async main loop and tasks |
+| [embassy-time](https://docs.embassy.dev/embassy-time/git/default/index.html) | Async timers and delays | Used for frame timing and delays |
+| [embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) | Mutexes and synchronization primitives | Used for sharing SPI bus safely |
+| [embassy-embedded-hal](https://docs.embassy.dev/embassy-embedded-hal/git/default/index.html) | Embedded HAL traits and shared bus support | Used for SPI device abstraction |
+| [ili9341](https://docs.rs/ili9341/0.6.0/ili9341/) | Driver for ILI9341 TFT LCD displays | Used for rendering graphics on the LCD |
+| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | SPI interface abstraction for displays | Used to connect the display driver to SPI |
+| [embedded-graphics](https://docs.rs/embedded-graphics/0.8.1/embedded_graphics/) | 2D graphics library for embedded devices | Used for drawing shapes, text, and game graphics |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient logging for embedded | Used for debug output |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT backend for defmt logging | Used for debug output over RTT |
+| [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Minimal panic handler for embedded | Handles panics safely in embedded context |
 
 ## Links
 

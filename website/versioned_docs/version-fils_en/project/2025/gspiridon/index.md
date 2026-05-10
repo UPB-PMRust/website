@@ -2,8 +2,8 @@
 A handheld Sudoku game inspired by classic paper puzzles, bringing the joy of logical thinking into a portable digital format.
 
 :::info 
-*Author*: Spiridon Georgiana-Alina \
-*GitHub Project Link*: https://github.com/UPB-PMRust-Students/project-gspiridon
+**Author**: Spiridon Georgiana-Alina \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-gspiridon
 :::
 
 ## Description
@@ -64,7 +64,7 @@ I focused on gathering the necessary hardware components for the project. I purc
 ![](hardware1.webp)
 
 ### Week 12 - 18 May
-
+I decided to add an RGB led that turns green when the answer is correct and red when it is not. I completed the hardware part and started implementing the Sudoku game. 
 
 ### Week 19 - 25 May
 
@@ -72,10 +72,13 @@ I focused on gathering the necessary hardware components for the project. I purc
 ## Hardware
 The hardware for the project is built around the Raspberry Pi Pico 2W microcontroller, which serves as the central control unit. A LCD display module with an ILI9341 controller is used to render the 9x9 Sudoku grid and user interface. The display is connected to the Pico via the SPI interface. Five tactile pushbuttons are connected to GPIO pins and used for user input,specifically to move the selection cursor and change numbers in the grid. Each button is wired with a 10kΩ pull-down resistor to ensure stable digital input readings. The components are assembled on a breadboard using jumper wires for quick prototyping and easy modifications.
 
-![](hardware2.webp)
+![](final_hardware2.webp)
 
 
 ### Schematics
+
+![](kicad.svg)
+
 ### Bill of Materials
 | Device                                                  | Usage                        | Price                           |
 |---------------------------------------------------------|------------------------------|---------------------------------|

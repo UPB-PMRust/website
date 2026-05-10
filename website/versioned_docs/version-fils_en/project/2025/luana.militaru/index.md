@@ -55,9 +55,14 @@ After the project was approved, I gathered all the necessary components and star
 ![](hardware2.webp)
 
 ### Week 12 - 18 May
+Since the display is a core component of my project, I started experimenting with the embedded-graphics crate, focusing on the primitives I needed — mainly rectangles and circles. I began writing the code by initializing the peripherals I planned to use. Wanting to work asynchronously, I started developing the display task. While experimenting with shapes and colors, I discovered how to move objects on the screen by drawing a black shape behind and in front of the moving object using a for in the loop. However, this method proved to be quite slow — but it was a start, and the project was beginning to take shape. I set aside the display for a while, as I still had other components that needed their tasks implemented. I started with the LEDs, since they were the simplest, and then moved on to the buzzer. I experimented with different sounds until I was satisfied with the result.
+The joysticks seemed the most difficult to implement, and since I hadn't yet finalized the game mechanics, I decided to leave them for later.
 
+![](software1.webp)
 ### Week 19 - 25 May
-
+I worked on the game mechanics and managed to implement the movement of both the ball and the paddles simultaneously, even though the joysticks weren’t connected yet. I also wrote the task logic for the two joysticks and continued adding additional elements to the code, such as an end screen (which displays the winning player) and individual scores for each player that count how many times they've hit the ball.
+I added a more challenging aspect to the game: when a player reaches a score of 5, the ball speed increases, and this process repeats every 5 points.
+I disassembled the project and reassembled it into the case, which I successfully 3D-printed. My little console is now complete and ready for people to play a game of Pong.
 
 ## Hardware
 The hardware setup consists of a Raspberry Pi Pico 2W microcontroller as the core unit, interfacing with multiple peripherals.
@@ -70,7 +75,7 @@ The life system is physically implemented using multiple red LEDs connected to G
 ### Schematics
 KiCad Scheme
 
-![](KiCad.webp)
+![](KiCad.svg)
 
 TinkerCad Scheme
 
@@ -80,7 +85,7 @@ TinkerCad Scheme
 |---------------------------------------------------------|------------------------------|---------------------------------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) | The microcontroller | [39.66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?srsltid=AfmBOoo5CQdoi14-RbmA_YJJrNUG1hPBzlSKgPdCOYv9U2PgJdK3bPwM) |
 [2 x Biaxial Joystick Module](https://www.laskakit.cz/user/related_files/joystick_module.pdf) | Joystick  | [10.70 RON](https://www.optimusdigital.ro/en/touch-sensors/742-ps2-joystick-breakout.html?search_query=0104110000006585&results=1) |
-[2.8" SPI LCD Module with ILI9341 Controller (240 x 320 px)](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | LCD Display | [69.99 RON](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) |
+[2.8" SPI LCD Module with ILI9341 Controller (240 x 320 px)](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | LCD Display | [69.99 RON](https://www.optimusdigital.ro/en/lcds/3550-modul-lcd-de-28-cu-spi-i-controller-ili9341-240x320-px.html?search_query=0104110000028938&results=1) |
 [Passive Buzzer Module](https://www.handsontec.com/dataspecs/module/passive%20buzzer.pdf) | Buzzer | [1.69 RON](https://www.optimusdigital.ro/en/electronic-components/12598-passive-buzzer-module.html?search_query=passive+buzzer&results=17) |
 [6 x 5 mm Red LED with Diffused Lens](https://www.farnell.com/datasheets/1498852.pdf) | Red LED | [2.34 RON](https://www.optimusdigital.ro/en/leds/29-5-mm-red-led-with-difused-lens.html?search_query=led&results=2050) |
 [2 x 5 mm Green LED with Diffused Lens](https://www.farnell.com/datasheets/1498852.pdf) | Green LED | [0.78 RON](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html?search_query=led&results=2050&HTTP_REFERER=https%3A%2F%2Fwww.optimusdigital.ro%2Fen%2Fsearch%3Fcontroller%3Dsearch%26orderby%3Dposition%26orderway%3Ddesc%26search_query%3Dled%26submit_search%3D) |

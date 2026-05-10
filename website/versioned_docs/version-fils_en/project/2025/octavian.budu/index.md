@@ -26,24 +26,32 @@ transmitter circuit.
 
 I chose this project because I am fan of 20th century history and I like the old school method of sending messages, I wanted to recreate one of the most famous encryption machines, engima, to the best of my ability to replicate it
 
-## Architecture 
+## Architecture
 
-1. **Browser** (HTML/CSS/JS)  
-2. **Node.js** bridge (HTTP + WebSocket + TCP)  
-3. **Pico W** runs `embassy-rp` + `embassy-net`, TCP client  
-4. **SI4713** via I²C: tune FM & key its tone generator  
+![Architecture photo](./Raw_Arhitecture.webp)
+
+1. **Browser** (HTML/CSS/JS)
+2. **Node.js** bridge (HTTP + WebSocket + TCP)
+3. **Pico W** runs `embassy-rp` + `embassy-net`, TCP client
+4. **SI4713** via I²C: tune FM & key its tone generator
 
 ## Log
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+I have finished the hardware section, a few more issues are on the clarity of the signal but a better antenna has been installed.
 
 ### Week 12 - 18 May
+I have implemented multiple encryption methods that should serve at the pleasure of the user to encrypt their message before sending via RF.
 
 ### Week 19 - 25 May
+I have implemented error handling on the user side so that if they make a small mistake when inserting keys and messages it doesn't panic the pico and instead it tells them the format they should use.
 
 ## Hardware
+
+![Project_picture](./arhitecture.webp)
+![Project_picture2](./arhitecture2.webp)
 
 | Device                      | Interface    | Pico Pin(s)            |
 | --------------------------- | ------------ | ---------------------- |
@@ -56,7 +64,7 @@ I chose this project because I am fan of 20th century history and I like the old
 
 ### Schematics
 
-Place your KiCAD schematics here.
+![Schematic](./schematic.svg)
 
 ### Bill of Materials
 
@@ -82,11 +90,17 @@ The format is
 
 | Crate / Library         | Version        | Role                                   |
 | ----------------------- | -------------- | -------------------------------------- |
-| [`embassy-rp`]          | 0.3.0 (git)    | Pico RP2 async executor + GPIO/PIO    |
+| [`embassy-rp`]          | 0.3.0 (git)    | Pico RP2 async executor + GPIO/PIO     |
 | [`embassy-net`]         | 0.7.0 (git)    | DHCP + TCP client                      |
 | [`cyw43`]               | 0.3.0 (git)    | On-board Wi-Fi driver                  |
 | [`panic-probe`]         | 0.3.2          | Defmt RTT panic handler                |
 | [`defmt`]               | 1.0            | Compact logging                        |
+| [`heapless`]            | 1.0            | Fixed-capacity no-std containers       |
+| [`static_cell`]         | 1.0            | Safe global storage                    |
+| [`embedded_hal_async`]  | 1.0            | HAL-compat async I²C trait             |
+| [`embassy_time`]        | 1.0            | Async timing utilities                 |
+| [`embassy_executor`]    | 1.0            | Asynchronous task executor             |
+
 
 
 ## Links
@@ -94,3 +108,7 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [link](https://www.youtube.com/watch?v=XGqbieVcjPU)
+2. [link](https://embassy.dev/book/)
+3. [link](https://www.raspberrypi.com/documentation/pico-sdk/networking.html)
+4. [link](https://www.manualslib.com/products/Silicon-Laboratories-Si4713-5585424.html)
+

@@ -57,13 +57,16 @@ All components are connected using the **breadboard** for modularity and ease of
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 1
+I created the project documentation, including its purpose, the required components, and the general architecture.
 
 
-### Week  -  May
+### Week 2
+I worked on the hardware documentation, detailing the connections between components, the power supply, and specific information about each module used.
 
 
-### Week  -  May
+### Week 3
+I assembled the hardware on a breadboard according to the schematic, testing the connections and integration of components (LCD, TCS3200, motors, buzzer, etc.).
  
 
 ## Hardware
@@ -108,6 +111,7 @@ All components are connected using the **breadboard** for modularity and ease of
 - **Purpose**: Prototyping and wiring  
 - **Function**: Enable modular and safe interconnection between all components without soldering.
 
+![Schema kicad](./Pico_project.svg)
 ---
 
 ### Hardware Overview
@@ -118,6 +122,8 @@ All components are connected using the **breadboard** for modularity and ease of
 - The **MG90S servos** handle the mechanical sorting of cash.  
 - **LEDs** and **buzzer** offer quick and intuitive feedback.  
 - The entire circuit is assembled on a **breadboard**, allowing flexibility in testing and debugging.
+
+![Schema Hard](./hardware.webp)
 
 ---
 

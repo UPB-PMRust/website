@@ -37,6 +37,9 @@ These components are connected to the microcontroller, which is processing the i
 
 ## Hardware
 
+![Hardware1](hardware1.webp)
+![Hardware2](hardware2.webp)
+
 Hardware used:
 - Raspberry Pi Pico 2 W, the microcontroller
 - TFT LCD with ST7735R driver, the display
@@ -45,11 +48,11 @@ Hardware used:
 - Breadboard, for placing all the components on
 - Pin headers, soldered to the microcontroller
 - Jumper wires, for interconnecting components
-- Resistors, if need be
+- Resistors, for pull up
 
 ### Schematics
 
-Work in progress at the moment.
+![Schematics](schematics.svg)
 
 ### Bill of Materials
 
@@ -66,8 +69,11 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | Raspberry Pi Pico 2 W | The microcontroller | [39.66 lei](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html) |
+| Pin Header | For connecting the microcontroller to the breadboard | [0,99 lei](https://www.optimusdigital.ro/en/pin-headers/85-40p-254-mm-pin-header-200-pcs.html) |
 | TFT LCD with ST7735R driver | The display | [28,99 lei](https://www.optimusdigital.ro/en/lcds/1311-modul-lcd-spi-de-18-128x160.html) |
 | Biaxial Joystick | The input | [5,35 lei](https://www.optimusdigital.ro/en/touch-sensors/742-ps2-joystick-breakout.html) |
+| Female Header | For connecting the joystick to the breadboard | [0,49 lei](https://www.optimusdigital.ro/en/pin-headers/797-header-de-pini-6p.html) |
+| Plusivo Wireless Kit | For the buzzer, the breadboard, the jumper wires and the resistors included in the kit | [79,99 lei](https://www.optimusdigital.ro/en/optimus-digital-kits/7356-kit-wireless-super-starter-cu-esp8266.html) |
 
 ## Software
 
@@ -75,13 +81,16 @@ The format is
 |---------|-------------|-------|
 | [embassy-rp](https://github.com/embassy-rs/embassy) | RP2350 HAL | Used for embedded programming |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Graphics crate | Used for drawing |
+| [embedded-graphics-framebuf](https://github.com/bernii/embedded-graphics-framebuf) | Framebuffer with DMA support | Used to eliminate the flickering of the display |
 | [mipidsi](https://github.com/almindor/mipidsi) | Generic display driver to connect to TFT displays | Used for the display |
+| [heapless](https://github.com/rust-embedded/heapless) | Heapless allocator | Used for creating formatted text |
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-Also work in progress.
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Breakout (Video Game)](https://en.wikipedia.org/wiki/Breakout_(video_game))
+1. [Godot port of Breakout](https://rinest.itch.io/breakout-1976)
+1. [Tutorial to be able to program the microcontroller in WSL](https://www.youtube.com/watch?v=iyBfQXmyH4o)
+1. [Finding out that the current version of elf2uf2-rs doesn't work with pico2w and eventually deciding to install picotool](https://github.com/JoNil/elf2uf2-rs/issues/38)
+1. [Tutorial about installing picotool to finally be able to upload valid uf2 to the microcontroller](https://piers.rocks/2023/09/05/installing-pico-sdk-and-picotool.html)

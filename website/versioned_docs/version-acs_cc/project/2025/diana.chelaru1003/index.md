@@ -41,13 +41,25 @@ The entire system is powered through a USB cable connected to the Pico.
 
 <!-- write every week your progress here -->
 
-### Week  -  May
+### Week 4 - 11 May
+-modified/updated the schematic
+
+-assembled some components on the breadboard
+
+-started working on the software
 
 
-### Week  -  May
+### Week 12 - 18 May
+-modified/updated the schematic again
 
+-assembled all components on the breadboard
 
-### Week  -  May
+-made some progress on the software
+
+### Week 18 - 25 May
+-completed the software implementation
+
+-rearranged the wires so the project looks more organized
  
 
 ## Hardware
@@ -80,8 +92,12 @@ The entire system is powered through a USB cable connected to the Pico.
 **Purpose**: Ensure physical and electrical connections between components.
 **Function**: Carry data signals and power between the Raspberry Pi Pico and all peripheral devices.
 
+![diagram](Poza1.webp)
+![diagram](Poza2.webp)
+![diagram](Poza3.webp)
+
 ### Schematics
-![diagram](Schematic.webp)
+![diagram](Schematic.svg)
 
 ### Bill of Materials
 
@@ -100,9 +116,9 @@ The format is
 | [Rapspberry Pi Pico 2W](https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf) | The microcontroller | [40 RON x2](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2&results=36) |
 | [LCD Display](http://www.lcdwiki.com/1.44inch_SPI_Module_ST7735S_SKU:MSP1443) | Main Display SPI LCD| [28 RON](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/870-modul-lcd-144.html) |
 | [LED Display](https://robojax.com/learn/arduino/robojax-TM1637_display_manual.pdf) | Score Display TM1637| [9 RON](https://www.optimusdigital.ro/en/led-displays/1202-led-display-module-with-serial-interface-tm1637-chip.html?search_query=led+display&results=499) |
-| [Breadboard](https://docs.sunfounder.com/projects/sf-components/en/latest/component_breadboard.html) | Bredboard for connecting the hardware | [4.56 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard&results=128) |
+| [Breadboard](https://docs.sunfounder.com/projects/sf-components/en/latest/component_breadboard.html) | Bredboard for connecting the hardware | [4.56 RON x4](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/44-breadboard-400-points.html?search_query=breadboard&results=128) |
 | [Button](https://components101.com/sites/default/files/component_datasheet/Push-Button.pdf) | Game Interactions | [0.36 RON x5](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=buttons&results=259) |
-| [Buzzer](https://components101.com/sites/default/files/component_datasheet/Buzzer%20Datasheet.pdf) | Sound Effects | [1 RON](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html?search_query=3+V+or+3.3V+Passive+Buzzer&results=2) |
+| [Buzzer](https://components101.com/sites/default/files/component_datasheet/Buzzer%20Datasheet.pdf) | Sound Effects | [1 RON](https://www.optimusdigital.ro/en/buzzers/635-3v-active-buzzer.html?search_query=buzzer+active&results=15) |
 | [Wires](https://www.farnell.com/datasheets/3178883.pdf) | Connections | [8 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html?search_query=wires&results=556) |
 
 
@@ -114,10 +130,15 @@ The format is
 | [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library | Used for displaying the game|
 | [rand](https://crates.io/crates/rand) | Random number generating | Random tetris block generating|
 | [tm1637-embedded-hal](https://crates.io/crates/tm1637-embedded-hal) | Rust crate for TM1637 microcontroller | TM1637 module control|
-| [ST7789](https://github.com/almindor/st7789/tree/master) | Display driver for ST7789 | Main display control|
+| [embassy-time](https://docs.rs/embassy-time/latest/embassy_time/) | Timekeeping and delay library for embedded systems | Handles timers for auto-drop, button debouncing and buzzer durations|
+| [display-interface-spi](https://docs.rs/display-interface-spi/latest/display_interface_spi/) | SPI interface for displays | Interfaces with the ST7735s LCD|
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/index.html) | Driver for MIPI DSI-compatible displays | Initializes and controls the ST7735s LCD|
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. (https://donte.dev/tetris/)
+2. (https://en.wikipedia.org/wiki/Tetris_(Game_Boy_video_game))
+3. (https://rust-classes.com/chapter_embedded_pi_input_tm1637)

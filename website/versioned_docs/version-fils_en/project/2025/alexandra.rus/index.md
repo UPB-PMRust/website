@@ -1,4 +1,5 @@
-# Project Name
+
+
 Guitar Tuner
 
 :::info 
@@ -81,26 +82,109 @@ How the Components Connect:
         If stepper motors are added later, the Raspberry Pi would control them to adjust the string tension automatically based on the detected frequency.
        
        
-        ![Architecture Diagram](image-resized.png)
+        ![Architecture Diagram](image.webp)
 
 
 ## Log
 
-<!-- write your progress here every week -->
+
 
 ### Week 5 - 11 May
 
+
+This week, I soldered the hardware components in the lab to improve stability and reduce noise. I also placed the final order for the stepper motor, which I plan to use later for automatic tuning. Meanwhile, I focused on debugging using probe-rs, and successfully tested the OLED display, buzzer, LEDs, and microphone input. Sampling works correctly, and I’m now able to capture real-time sound data. I also wrote code to test each component individually, to check that they were working properly and I integrated them in the project. 
 ### Week 12 - 18 May
+I drew the first version of my Tinkercad schematics, and made some modifications afterwards, while performing tests on my components. Afterwards, I draw the Kicad schematics. This week I completed the hardware connections for the project, with the exception of the stepper motor, which I am still waiting to arrive. Once everything is stable and functional, I will integrate the motor into the system for automatic tuning. I also created the schematic in Tinkercad and adjusted it as needed while testing different components and wiring configurations.
+
+On the software side, I started developing the signal acquisition system. I successfully tested the microphone and began capturing sound input through the ADC. To make sense of the audio data, I implemented a basic signal processing stage where the sampled waveform is passed through a Fast Fourier Transform (FFT) in order to extract the frequency components.
+
+During this process, I encountered several issues with the OLED display — sometimes it showed static noise (“white noise” pixels), other times it worked normally. After multiple attempts to debug the wiring and refresh timings, I decided to order a new display and plan to replace the current one for better reliability.
+
+Overall, this week was focused on finalizing the core of the hardware setup and initiating the software logic for sound analysis.
 
 ### Week 19 - 25 May
+This week, I focused extensively on the software development and hardware integration of the automatic guitar tuner system.
 
+    I received two new LCD displays, since the initially ordered LCD (intended to replace the OLED display) malfunctioned. After successfully wiring the replacement display, I implemented functionality to display the detected frequency in real time.
+
+    I added logic to compare the detected frequency with a user-selected target note (selectable via button) and show visual feedback:
+
+       Arrows (&lt;, &gt;, =) indicate whether the current frequency is too low, too high, or correctly tuned.
+
+
+        An RGB LED provides intuitive color-coded feedback: red for low, blue for high, and green when the frequency is within tolerance.
+
+    I mounted and configured the stepper motor (28BYJ-48 with ULN2003 driver) to rotate forward or backward based on the frequency deviation. This enables automated tuning by physically adjusting the guitar peg.
+
+    The motor is powered by an external 5V power supply connected through the breadboard to ensure stable operation without overloading the microcontroller.
+
+    Additionally, I designed and 3D-printed a custom motor adapter to fit securely onto the guitar tuning pegs, improving mechanical stability during operation.
+
+All logic for signal acquisition (via microphone and ADC), FFT-based frequency detection, note matching, LED feedback, LCD output, and motor control has been integrated into the main Rust firmware. The system is now capable of detecting pitch, displaying tuning information, and physically adjusting the string tension accordingly.
 ## Hardware
 
-Detail in a few words the hardware used.
+
+Raspberry Pi Pico 2W
+Purpose: Acts as the main microcontroller.
+Function: Reads analog audio data from the microphone, processes the signal, controls the OLED display, buzzer, LEDs, and handles button input.
+
+
+MAX9814 Microphone Module with AGC (Automatic Gain Control)
+Purpose: Captures audio input, particularly guitar string vibrations.
+Function: Outputs an amplified analog signal with stable gain, ideal for detecting pitch variations.
+
+SSD1306 128x64 OLED Display (I2C)
+Purpose: Provides visual feedback to the user.
+Function: Displays the detected note, tuning status, or frequency values.
+
+Piezo Buzzer (20mm)
+Purpose: Provides auditory feedback.
+Function: Emits beeps when a string is correctly tuned or when specific actions are triggered.
+
+RGB LED (or 3 separate LEDs: red, green, blue)
+Purpose: Visual tuning indicator.
+Function:
+
+    Red: String is out of tune (flat or sharp)
+
+    Green: String is correctly tuned
+
+    Blue: Tuning in progress
+
+Push Button
+Purpose: User interaction.
+Function: Can be used to cycle between strings, confirm actions, or reset tuning.
+
+Breadboard and Jumper Wires
+Purpose: Prototyping.
+Function: Connects components without soldering.
+
+Debug Probe (CMSIS-DAP, via probe-rs)
+Purpose: Firmware flashing and real-time debugging.
+Function: Enables direct code deployment and logging using defmt and probe-rs.
+
+[Planned] Stepper Motor (optional, not yet integrated)
+Purpose: Enable automatic guitar tuning.
+Function: Will be connected in the future to physically turn the tuning pegs based on detected frequency deviations. The motor is currently on order and will be added once core functionality is stable.
+
+Hardware Summary
+The central component of my project is the Raspberry Pi Pico 2W, to which I connected all other modules. The MAX9814 microphone captures the sound of the guitar and sends it to the Pico's ADC for analysis. An SSD1306 OLED display connected via I2C shows tuning information, while an RGB LED indicates tuning status: red for flat, blue for sharp, and green for correct.
+
+A piezo buzzer provides audio feedback, and a push button will later allow user interaction. I used a CMSIS-DAP debugger for flashing and real-time monitoring. All components were soldered during the lab, and I plan to add a stepper motor for automatic tuning as soon as it arrives.
 
 ### Schematics
 
-Place your KiCAD schematics here.
+ ![Tinkercad schematics](Design.webp)
+
+ ![Kicad schematics](kicad2.svg)
+
+ Here are some pictures of the project in current state. I am going to use a 3D printer to make it a case for the design part and also a peg clip for the stepper motor.
+ ![](image1.webp)
+  ![](Image2.webp)
+   ![](image3.webp)
+    ![](image4.webp)
+    ![](image5.webp)
+
 
 
 
@@ -108,10 +192,10 @@ Place your KiCAD schematics here.
 
 | Device                                    | Usage                                            | Price                                                                            | Total   |
 |-------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------|---------|
-| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | The microcontroller                             | [39,66 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | 39,66 RON |
+| [2 x Raspberry Pi Pico 2W](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | The microcontroller                             | [80, 00 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-2w.html) | 39,66 RON |
 | [Modul microfon High Sensitivity Sound Detection](https://www.ardushop.ro/modul-microfon-high-sensitivity-sound-detection.html) | Captures sound from the guitar strings          | [5,41 RON](https://www.ardushop.ro/modul-microfon-high-sensitivity-sound-detection.html) | 5,41 RON |
 | [Modul Amplificator Microfon cu AGC MAX9814](https://www.optimusdigital.ro/en/microphone-amplifiers/10411-modul-amplificator-microfon-cu-agc-max9814.html) | Amplifies microphone signal                     | [24,90 RON](https://www.optimusdigital.ro/en/microphone-amplifiers/10411-modul-amplificator-microfon-cu-agc-max9814.html) | 24,90 RON |
-| [Modul OLED SPI de 0.96''](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | For displaying tuning information (optional)     | [23,79 RON](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | 23,79 RON |
+| [3 x Modul OLED SPI de 0.96''](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | For displaying tuning information (optional)     | [23,79 RON](https://www.optimusdigital.ro/en/oled-displays/10010-oled-display-096-inch-128x64-i2c.html) | 23,79 RON |
 | [Buzzer Piezo 20mm](https://www.optimusdigital.ro/en/buzzers/10411-buzzer-piezo-20mm.html) | Provides auditory feedback                      | [1,49 RON](https://www.optimusdigital.ro/en/buzzers/10411-buzzer-piezo-20mm.html) | 1,49 RON |
 | [Buton 6x6x6](https://www.optimusdigital.ro/en/switches/10421-push-button-66x6x6mm.html) | Used for user input (optional)                   | [0,36 RON](https://www.optimusdigital.ro/en/switches/10421-push-button-66x6x6mm.html) | 0,36 RON |
 | [Buton cu Capac Rotund Alb](https://www.optimusdigital.ro/en/switches/10421-push-button-rotund-alb.html) | Used for user input (optional)                   | [1,99 RON](https://www.optimusdigital.ro/en/switches/10421-push-button-rotund-alb.html) | 3,98 RON |
@@ -121,10 +205,6 @@ Place your KiCAD schematics here.
 | [Kit GPIO compatibil Raspberry Pi OKY1201](https://www.emag.ro/kit-gpio-pentru-raspberry-pi-10107500-oky1201/pd/D946KDMBM/) | To connect Raspberry Pi to various components    | [12,00 RON](https://www.emag.ro/kit-gpio-pentru-raspberry-pi-10107500-oky1201/pd/D946KDMBM/) | 12,00 RON |
 | **Total**                                  |                                                  |                                                                                  | **183,25 RON** |
 
-
-
-
-## Software
 
 ## Software
 
@@ -141,8 +221,9 @@ Place your KiCAD schematics here.
 
 ## Links
 
-<!-- Add a few links that inspired you and that you think you will use for your project -->
+
 
 1. [link](https://www.instructables.com/Raspberry-Pi-Guitar-Tuner/)
 2. [link](https://www.reddit.com/r/raspberry_pi/comments/pn7z7y/automatic_guitar_tuner_with_the_pico_sound_on/?rdt=52573)
+
 

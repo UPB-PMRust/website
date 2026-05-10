@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="svg" href="#object-0"/>
+      <bx:file format="svg" href="#object-1" path="Untitled 2.svg"/>
+      <bx:file format="svg" href="#object-2" path="Untitled 3.svg"/>
+      <bx:file format="svg" href="#object-3" path="Untitled 4.svg"/>
+      <bx:file format="svg" href="#object-4" path="Untitled 5.svg"/>
+      <bx:file format="svg" href="#object-5" path="Untitled 6.svg"/>
+      <bx:file format="svg" href="#object-6" path="Untitled 7.svg"/>
+      <bx:file format="svg" href="#object-7" path="Untitled 8.svg"/>
+      <bx:file format="svg" href="#object-8" path="Untitled 9.svg"/>
+      <bx:file format="svg" href="#object-9" path="Untitled 10.svg"/>
+      <bx:file format="svg" href="#object-10" path="Untitled 11.svg"/>
+      <bx:file format="svg" href="#object-11" path="Untitled 12.svg"/>
+      <bx:file format="svg" href="#object-12" path="Untitled 13.svg"/>
+      <bx:file format="svg" href="#object-13" path="Untitled 14.svg"/>
+      <bx:file format="svg" href="#object-14" path="Untitled 15.svg"/>
+      <bx:file format="svg" href="#object-15" path="Untitled 16.svg"/>
+      <bx:file format="svg" href="#object-16" path="Untitled 17.svg"/>
+    </bx:export>
+  </defs>
+  <rect x="107.348" y="93.452" width="26.208" height="22.095" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" id="object-0"/>
+  <rect x="169.985" y="71.062" width="65.904" height="65.984" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" id="object-1"/>
+  <rect x="302.84" y="72.576" width="65.904" height="65.984" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 1;"/>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 28px;" x="113.709" y="101.304" transform="matrix(0.130907, 0, 0, 0.130907, 97.288544, 90.175598)" id="object-2">Display<tspan x="113.70899963378906" dy="1em">​</tspan>(SPI LCD)</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 4.6px;" x="193.536" y="76.836" id="object-3">Console</text>
+  <rect x="178.014" y="90.899" width="51.171" height="33.432" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" id="object-4"/>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 3.5px;" x="192.001" y="97.499" transform="matrix(1, 0, 0, 1, 1.193994, -0.170571)" id="object-5">Game Logic<tspan x="192.00100708007812" dy="1em">​</tspan></text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 3.5px;" x="192.001" y="97.499" transform="matrix(1, 0, 0, 1, -2.330684, 10.542193)" id="object-6">Graphics Engine<tspan x="192.00100708007812" dy="1em">​</tspan></text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 3.5px;" x="192.001" y="97.499" transform="matrix(1, 0, 0, 1, 0.833545, 19.753008)" id="object-7">WiFi Module<tspan x="192.00100708007812" dy="1em">​</tspan></text>
+  <rect x="310.719" y="88.34" width="51.171" height="33.432" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 1;"/>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 3.5px;" x="192.001" y="97.499" transform="matrix(1, 0, 0, 1, 133.82132, -1.551728)" id="object-8">Input Handler<tspan x="192.00100708007812" dy="1em">​</tspan></text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 3.5px;" x="192.001" y="97.499" transform="matrix(1, 0, 0, 1, 137.290054, 8.478753)" id="object-9">Buttons<tspan x="192.00100708007812" dy="1em">​</tspan></text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 3.5px;" x="192.001" y="97.499" transform="matrix(1, 0, 0, 1, 133.97258, 18.883564)" id="object-10">WiFi Module<tspan x="192.00100708007812" dy="1em">​</tspan></text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 4.6px; stroke-width: 1;" x="325.82" y="78.448" id="object-11">Controller</text>
+  <rect x="229.356" y="114.438" width="81.021" height="0.853" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" id="object-12"/>
+  <path d="M 239.424 107.278 L 244.2 116.83 L 234.648 116.83 L 239.424 107.278 Z" bx:shape="triangle 234.648 107.278 9.552 9.552 0.5 0 1@6becb4ba" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(0, -1, 1, 0, -6.481674, 2.899689)" id="object-13"/>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 4.6px; stroke-width: 1;" x="250.94" y="111.537" id="object-14">WiFi Communication</text>
+  <rect x="133.7" y="103.019" width="37.077" height="0.548" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 1;" id="object-15"/>
+  <path d="M 153.917 49.091 L 156.987 53.462 L 150.846 53.462 L 153.917 49.091 Z" bx:shape="triangle 150.846 49.091 6.141 4.371 0.5 0 1@b9ced767" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 1; transform-origin: 153.916px 51.277px;" transform="matrix(0, -1, 1, 0, -18.574337, 52.073826)" id="object-16"/>
+</svg>
