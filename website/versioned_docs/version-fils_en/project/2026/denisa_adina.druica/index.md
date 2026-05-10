@@ -22,7 +22,7 @@ The motivation for this project came from my passion for gaming and technology. 
 
 ![Bomb](bomb.svg)
 
-![Architecture](architecture.svg)
+![Architecture](architecture1.svg)
 
 
 
@@ -58,8 +58,8 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [125 RON](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
-| [SN74LS21DR](https://www.ti.com/lit/ds/symlink/sn74ls21.pdf?ts=1776868308732&ref_url=https%253A%252F%252Feu.mouser.com%252F) | 4:1 And Gate  | [2,5 RON](https://www.ti.com/lit/ds/symlink/sn74ls21.pdf?ts=1776868308732&ref_url=https%253A%252F%252Feu.mouser.com%252F) |
-| [SN74LS04N](https://www.ti.com/lit/ds/symlink/sn74ls04.pdf?ts=1776871706956&ref_url=https%253A%252F%252Fen.wikipedia.org%252F) | Not Gate | [3,5 RON RON](https://eu.mouser.com/ProductDetail/595-SN74LS04N) |
+| [SN74LS21DR](https://www.ti.com/lit/ds/symlink/sn74ls21.pdf?ts=1776868308732&ref_url=https%253A%252F%252Feu.mouser.com%252F) | 4:1 And Gate  | [2,5 RON](https://eu.mouser.com/ProductDetail/595-SN74LS21DR) |
+| [SN74LS04N](https://www.ti.com/lit/ds/symlink/sn74ls04.pdf?ts=1776871706956&ref_url=https%253A%252F%252Fen.wikipedia.org%252F) | Not Gate | [3,5 RON](https://eu.mouser.com/ProductDetail/595-SN74LS04N) |
 | [Square Buttons]() | Buttons | [0,92 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1117-buton-cu-capac-patrat-negru.html?search_query=butoane&results=154) |
 | [Led Display TM1637](https://www.datasheetcafe.com/tm1637-datasheet-pdf/) | 7 segment display | [8,99 RON](https://www.optimusdigital.ro/ro/optoelectronice-afisaje-led/1202-modul-display-led-cu-interfata-seriala-chip-tm1637-.html) |
 | [Temperature Sensor DHT11](https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf) | For the temperature module | [4,65 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-temperatura/584-senzor-de-temperatura-dht11.html?search_query=temperature&results=84) |
