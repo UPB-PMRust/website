@@ -30,12 +30,15 @@ with a Raspberry Pi Pico and see for myself the way it performs and can handle a
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+This week I was able to work on most of my hardware, successfully managing to test all of the components and visualize the final outline of the project. I also finally managed to connect the Pico 2W to my code, as I had struggled for a few days to get it to flash. Half of the software is done, and so far nothing has gone wrong, except for the fact that I am thinking about replacing some hardware components, such as my keypad and LED ring.
 
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
 
 ## Hardware
+
+![Hardware Picture](./imgHARDWARE.webp)
 
 1. Raspberry Pi Pico 2W: The main microcontroller unit running the asynchronous rust firmware;
 2. PIR Motion Sensor: Used to detect human movement in the monitored area;
