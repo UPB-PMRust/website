@@ -3,11 +3,10 @@ An intelligent greenhouse automation system that monitors and controls the growi
 
 :::info
 
-<<<<<<< HEAD
-**Author:** Yehor Zaplishnyi  \
-=======
+
+
 **Author:** Yehor Zaplishnyi \ 
->>>>>>> 96fcdb9 (Add schematic)
+
 **GitHub Project:** [rust-grow](https://github.com/UPB-PMRust-Students/fils-project-2026-yehorzaplishnyi)
 
 :::
@@ -57,6 +56,11 @@ The system is built around the STM32 Nucleo-64 board powered by a 5V supply. Sen
 ### Schematics 
 
 ![Rust-Grow KiCad](ma.svg)
+
+### Schematics
+
+![Rust-Grow Block Diagram](rust_grow_schema.svg)
+
 
 ### Bill of Materials
 
