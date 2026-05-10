@@ -60,7 +60,7 @@ The modules communicate through the microcontroller, which acts as the central u
 - Implemented melody playback using PWM and passive buzzer
 - Implemented rhythm gameplay logic
 
-![Hardware Prototype](hardware_photo.webp)
+![Hardware Prototype](hardware_photo_f.webp)
 
 ### Week 12 – 18 May
  
