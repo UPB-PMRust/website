@@ -45,7 +45,7 @@ The project is built on the STM32 Nucleo U545RE-Q using the Embassy asynchronous
 
 The project uses a modular design with three "Sound Cubes" to separate sensors from the main control unit, preventing interference.
 
-![Theremin Sound Station Hardware](poza_hardware.svg)
+![Theremin Sound Station Hardware](poza_hardware.webp)
 
 ### Schematics
 
