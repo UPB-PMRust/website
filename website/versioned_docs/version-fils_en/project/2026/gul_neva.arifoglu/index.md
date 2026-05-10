@@ -62,7 +62,7 @@ System workflow:
 
 
 ## Hardware
-
+![Hardware Setup](hardware.jpg)
 Main components:
 
 - STM32 microcontroller  
