@@ -75,7 +75,7 @@ graph TD
             TOUCH["XPT2046 Touch"]
             RADIO["NRF24L01+ Radio"]
             BUZZ["Passive Buzzer"]
-            BTNS["Action & D-Pad Buttons"]
+            BTNS["Action Buttons"]
             LEDS["Status & Game LEDs"]
         end
 
@@ -168,8 +168,8 @@ The board has been floorplanned to accommodate a comfortable handheld form facto
 
 This is the physical representation of the board, which will be used to design the 3D-printed enclosure. 
 
-![3D PCB Render - Front](./images/pcb_3d_f.png)
-![3D PCB Render - Back](./images/pcb_3d_b.png)
+![3D PCB Render - Front](./images/pcb_3d_f.webp)
+![3D PCB Render - Back](./images/pcb_3d_b.webp)
 *Figure 3: 3D visualization of the assembled PCB (front and back).*
 
 ### Bill of Materials
