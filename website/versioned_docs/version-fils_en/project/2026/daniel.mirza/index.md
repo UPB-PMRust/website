@@ -56,20 +56,47 @@ Each game action is serialized into a `NetworkMessage` and sent to the opponent.
 
 ```mermaid
 graph TD
-    subgraph "Handheld Unit (x2)"
+    subgraph "Handheld Unit x2"
 
-    MCU["STM32U545RE Nucleo"]
-    DISP["4.0 Inch ST7796S Display"]
-    TOUCH["XPT2046 Touch"]
-    RADIO["NRF24L01+ Radio"]
-    BUZZ["Passive Buzzer"]
-    BTNS["Action Buttons"]
-    
-    MCU -->|SPI Bus| DISP
-    MCU -->|SPI Bus| TOUCH
-    MCU -->|SPI Bus| RADIO
-    MCU -->|PWM| BUZZ
-    BTNS -->|GPIO Interrupts| MCU
+        subgraph "Power Management"
+            BATT["3.7V LiPo Battery"]
+            TP4056["TP4056 Charger USB-C"]
+            LATCH["P-MOSFET Auto-Power Latch"]
+            REG["Buck-Boost Converter 3.3V"]
+
+            BATT <--> TP4056
+            TP4056 --> LATCH
+            LATCH --> REG
+        end
+
+        subgraph "Core & Peripherals"
+            MCU["STM32U545RE Nucleo"]
+            DISP["4.0 Inch ST7796S Display"]
+            TOUCH["XPT2046 Touch"]
+            RADIO["NRF24L01+ Radio"]
+            BUZZ["Passive Buzzer"]
+            BTNS["Action & D-Pad Buttons"]
+            LEDS["Status & Game LEDs"]
+        end
+
+        %% Power Routing
+        REG == +3V3 Power ==> MCU
+        REG -. +3V3 Power .-> DISP
+        REG -. +3V3 Power .-> RADIO
+
+        %% Data Routing
+        MCU -->|SPI Bus| DISP
+        MCU -->|SPI Bus| TOUCH
+        MCU -->|SPI Bus| RADIO
+        
+        MCU -->|PWM| BUZZ
+        MCU -->|GPIO| LEDS
+        BTNS -->|GPIO Interrupts| MCU
+        
+        %% The Latch Control
+        MCU -->|GPIO Keep-Alive| LATCH
+        BTNS -. Physical Power Button .-> LATCH
+
     end
     
     RADIO <-->|2.4GHz Wireless| RADIO2["Opponent Device"]
