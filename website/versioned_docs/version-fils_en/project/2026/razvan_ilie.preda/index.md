@@ -48,7 +48,7 @@ Sensors: Color sensor (TCS34725), metal detector, weight sensor (load cell + HX7
 User Interface: LEDs, buttons, and buzzer for feedback and control.
 
 ### Schematics
-
+![Kicad Schematic](kicadsch.svg)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
