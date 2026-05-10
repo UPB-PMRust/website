@@ -52,10 +52,10 @@ The system follows a producer-consumer architecture managed by the Embassy execu
 The project uses the **Raspberry Pi Pico 2W** (RP2350), which provides more processing power for audio handling. The **PCM5102A** DAC provides high-quality stereo output via an I2S interface.
 
 ### Physical Setup
-![Hardware Setup](Hardware.webp)
+![Hardware Setup](hardware.webp)
 
 ### Schematics
-![Kicad Schematic](Nedelcu_Diana_kicad.svg)
+![Kicad Schematic](nedelcu_diana_kicad.svg)
 
 ### Software Data Flow
 1. **File System Task:** Reads raw WAV data chunks from the SD card into a shared memory buffer.
