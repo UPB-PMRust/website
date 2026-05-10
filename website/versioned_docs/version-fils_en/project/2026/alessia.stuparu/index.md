@@ -64,7 +64,7 @@ The system uses a Nucleo STM32U545RE-Q as the main controller, a Raspberry Pi Pi
 
 ### Schematics
 
-![KiCad Schematic](./sunrisealarm.svg)
+![KiCad Schematic](./sunrisealarm.webp)
 
 ### Bill of Materials
 
