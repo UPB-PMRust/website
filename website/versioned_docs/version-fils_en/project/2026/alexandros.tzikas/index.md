@@ -56,7 +56,7 @@ After more debugging I finally found the problem with the sensor and fixed it - 
 
 ## Hardware
 
-picture coming soon
+![Hardware picture](./mahardware.webp)
 
 *STM32-NUCLEO-U545RE-Q* will do computatiosn, signals processing and transmit data to the laptop
 
@@ -70,7 +70,7 @@ picture coming soon
 
 ## Schematics
 
-![KiCAD Schematics](./kicadmabun.svg)
+![KiCAD Schematics](./kicadmabun2.svg)
 
 ## Bill of Materials
 
