@@ -84,9 +84,9 @@ ultrasonic sensor** is placed at the tube entrance to confirm ball presence befo
 A **128x64 I2C OLED display** shows system state and mode. Physical **buttons** allow the user
 to select between game modes (Random, Training) and start/stop the system.
 
-<!-- ### Schematics -->
+### Schematics
 
-<!-- Place your KiCAD schematics here in SVG format -->
+![Schematics Diagram](images/Smart_Pet_Ball_Launcher.svg)
 
 ### Bill of Materials
 
@@ -94,7 +94,7 @@ to select between game modes (Random, Training) and start/stop the system.
 |--------|--------|-------|
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | ~85 RON |
 | [A2212/13T 1000KV Brushless Motor x2](https://hobbymarket.ro/motor-brushless-1000kv-a2212-13t-pentru-drone-si-aeromodele.html) | Dual flywheel ball propulsion | ~120 RON |
-| [BTS7960 43 A Motor Driver](https://www.optimusdigital.ro/en/brushed-motor-drivers/174-bts7960-43-a-motor-driver.html) | ~40 RON |
+| [FlyFun V5 40A Motor Speed Controller](https://www.aliexpress.com/item/33058004400.html) | ~40 RON |
 | 3D Printed Flywheel Wheels x2 | Grip and propel the ball | ~0 RON (printed) |
 | 3D Printed Turret Base + Bearing | Rotating turret platform | ~0 RON (printed) |
 | [MG996R Servo Motor](https://www.emag.ro/servomotor-towerpro-mg-996r-180-55g-cuplu-pana-la-10-kg-cablu-30-cm-3-pini-multicolor-2-c-038/pd/DTHLKLMBM/) | Turret horizontal rotation | ~35 RON |
@@ -104,7 +104,7 @@ to select between game modes (Random, Training) and start/stop the system.
 | [LM2596 DC-DC Step-Down Module](https://www.bitmi.ro/electronica/modul-coborator-de-tensiune-lm2596-dc-3a-10017.html) | Voltage regulation for logic components | ~12 RON |
 | [12V 5A Switched-Mode Power Supply](https://www.optimusdigital.ro/en/12-v-ac-dc-power-supplies/5067-12v-5a-60-w-switched-mode-power-supply.html) | Main power source | ~60 RON |
 | [OLED Display 128x64 I2C 1.3"](https://www.emag.ro/display-oled-rezolutie-128-x-64-1-3-inchi-comunicare-i2c-27-x-27-mm-multicolor-5904162806386/pd/D7RP0LMBM/) | System state and mode display | ~25 RON |
-| [Buttons x5](https://www.emag.ro/set-5-bucati-buton-microintrerupator-smd-tactil-6x6x3-1mm-4-pini-cupru-rosu-setmswitch/pd/DT9XRK3BM/) | Mode selection and start/stop | ~8 RON |
+| [Buttons x3](https://www.emag.ro/set-5-bucati-buton-microintrerupator-smd-tactil-6x6x3-1mm-4-pini-cupru-rosu-setmswitch/pd/DT9XRK3BM/) | Mode selection and start/stop | ~8 RON |
 | Breadboard + Jumper Wires | Prototyping connections | ~15 RON |
 | **Total** | | **~432 RON** |
 
