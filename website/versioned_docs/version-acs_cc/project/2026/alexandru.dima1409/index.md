@@ -32,6 +32,8 @@ Researched and ordered hardware components from Sigmanortec.
 
 ### Week 5 - 11 May
 
+Tested hardware components, soldered MPU pins and built the hardware.
+
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
@@ -42,8 +44,7 @@ The system is based on an STM32 NUCLEO development board, complemented by multip
 
 ### Schematics
 
-Work in progress.. \
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic](reaction-trainer.svg)
 
 ### Bill of Materials
 
