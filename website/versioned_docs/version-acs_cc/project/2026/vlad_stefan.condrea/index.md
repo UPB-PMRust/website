@@ -34,15 +34,10 @@ Ordered all the components.
 
 ### Week 5 - 11 May
 Assembled the mechanical pan-tilt bracket. Fixed alignment issues with the tilt servo and bearing. 
-Attached the HC-SR04 sensor and prepared the DC motors for the flywheel launcher.
-
+Attached the HC-SR04 sensor.
 ### Week 12 - 18 May
-Adjusted the LM2596 voltage to 5V. 
-Started wiring the components to the STM32 Nucleo board and set up the Rust (Embassy) project structure.
 
 ### Week 19 - 25 May
-Finished implementing the ultrasonic sensor driver and servo PWM control in Rust. 
-Calibrated the aiming logic and tested the flywheel launcher.
 
 ## Hardware
 
