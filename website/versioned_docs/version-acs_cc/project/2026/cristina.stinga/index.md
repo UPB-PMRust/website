@@ -97,13 +97,13 @@ The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary bo
 
 ### Schematics
 
-![STM](images/schematic.svg)
+![STM](images/schematichard.svg)
 
 ### Photos
 
-![STM](images/sursa.webp)
-![Controller](images/pico1.webp)
-![Teren](images/montaj.webp)
+![STM](images/alimentare.webp)
+![Controller](images/controller.webp)
+![Teren](images/teren.webp)
 
 ### Bill of Materials
 
