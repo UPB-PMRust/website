@@ -1,7 +1,3 @@
----
-title: IoT Smartwatch with Health Monitoring
----
-
 # IoT Smartwatch with Health Monitoring
 
 A smartwatch based on RP2040 developed in Rust using the Embassy framework.
@@ -14,17 +10,20 @@ A smartwatch based on RP2040 developed in Rust using the Embassy framework.
 :::
 
 ## Description
-
-This project aims to create a functional IoT smartwatch. It uses a Raspberry Pi Pico W to collect data and display a user interface on a circular IPS screen, focusing on power efficiency and real-time task management.
+This project aims to create a functional IoT smartwatch using a Raspberry Pi Pico W and a circular IPS screen (GC9A01), focusing on power efficiency and real-time task management.
 
 ## Motivation
-
-I chose this project to explore the capabilities of the Rust programming language in the embedded world, specifically using the Embassy framework for asynchronous multitasking on the RP2040.
+I chose this project to explore the capabilities of the Rust programming language in embedded systems, specifically using the Embassy framework for asynchronous multitasking.
 
 ## Architecture
-
 The system architecture consists of several interconnected modules:
 - **Display Driver Layer**: Manages SPI communication with the GC9A01 circular screen.
 - **Power Management Module**: Monitors battery levels via ADC and handles low-power states.
-- **UI Engine**: A lightweight graphics stack to render the clock face and sensor data.
-- **Asynchronous Task Executor**: The Embassy executor that schedules tasks for sensor polling and display updates.
+- **Sensor Integration**: Reads heart rate and SpO2 data from the MAX30102 sensor via I2C.
+
+### KiCad Schematic
+*(Add your KiCad screenshot here after you upload it to the images folder)*
+
+### 3D Model
+The chassis was designed to fit the 250mAh Li-Po battery and the circular display.
+[Download .step Model](./images/smartwatch_model.step)
