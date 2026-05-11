@@ -1,67 +1,80 @@
-# Mini Air Defence System
-
-An automated miniature turret system that monitors the environment via ultrasonic scanning and engages detected targets using automated or semi-automated firing modes.
+# Mini air defense system
+A robotic pan-tilt turret capable of detecting targets and launching projectiles using a flywheel mechanism.
 
 :::info 
-**Author**: Vlad-Ştefan CONDREA  
-**Laboratory Assistant**: Irina Bradu  
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-CondreaVladStefan
+
+**Author**: Condrea Vlad-Stefan \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-[YourRepo]
+
 :::
 
 ## Description
 
-My project consists of a mini air defense system that continuously monitors the surrounding space using ultrasonic sweeping. The system processes distance data in real-time to identify intrusions within its perimeter and reacts by orienting a launcher towards the target. 
-
-The device operates in two distinct modes:
-1. **Semi-automatic mode**: The system detects the target, calculates the necessary coordinates, and aligns the launcher on the target's axis. It then waits for an external command (a laptop keystroke) transmitted via UART to initiate the firing sequence.
-2. **Automatic mode**: The internal processing unit identifies the target's trajectory and immediately aligns the launcher. Once aligned, it sequentially activates the propulsion motors and the launch mechanism without requiring human intervention.
-
-To ensure precision and stability, the control mechanism uses the STM32's advanced hardware timers to generate precise PWM signals for the exact positioning of the servomotors. Furthermore, I have implemented debouncing algorithms and software filtering for the ultrasonic sensor data. This filters out the inherent noise and compensates for the 15-30 degree measurement cone of the sensor, allowing the system to approximate the true center of the target rather than firing blindly at the edge of the detected cone.
+A smart robotic turret made using a STM32 NUCLEO board that acts as the main controller. The system uses a pan-tilt mechanical bracket driven by two MG996R servo motors to aim. An HC-SR04 ultrasonic sensor is mounted on the moving arm to detect the distance to a target. Once the target is within range, the Nucleo board triggers the flywheel launcher, which consists of two high-speed DC motors with rubber wheels that shoot the projectile. 
+The entire system is powered by a LiPo battery, using an LM2596 step-down module to safely provide 5V to the servos and sensor.
 
 ## Motivation
 
-I chose this project because it perfectly combines complex hardware architecture with critical real-time software processing. It tackles real-world engineering challenges such as power distribution management, sensor noise filtering, and latency reduction in serial communication. Building a mechatronic system from scratch allows me to deeply understand the timing constraints of STM32 microcontrollers and how to seamlessly integrate peripherals like UART, PWM timers, and external interrupts (EXTI).
+I believe that it would be a fun and challenging experience. I find robotics fascinating, and this project perfectly combines mechanical assembly, sensor data acquisition, and motor control using Rust. It acts as a great introduction to tracking systems and automated defense mechanisms.
 
 ## Architecture 
 
-![Architecture](./images/gemini-svg.svg)
-### Log
-* **Week 20 - 27 May**
-  * Conducted research on the necessary components and their compatibility, specifically focusing on the STM32 microcontroller's timer capabilities for PWM generation.
-  * Set up the development environment using STM32CubeIDE and configured the clock tree and peripheral initializations using STM32CubeMX.
-  * Analyzed the power consumption risks. I realized that the servomotors draw high peak currents on startup, which would cause voltage drops and continuously reset the STM32 if powered from the same source. Decided to use a separate power supply and a buck converter for the motors.
+The system starts with the HC-SR04 ultrasonic sensor, which constantly sends distance data to the STM32 Nucleo controller. 
 
-### Hardware
-* **STM32 Nucleo U545RE-Q** – The main control board processing sensor data, managing interrupts, and controlling outputs.
-* **Ultrasonic Sensor (HC-SR04)** – Performs the spatial sweep and measures distance to targets.
-* **Pan/Tilt Servomotors** – Orients the launcher on the X and Y axes (MG996R).
-* **DC Propulsion Motors** – Spins the flywheels to launch the projectile.
-* **Dual Motor Driver Module L298N** – Controls the high-current DC propulsion motors.
-* **Step-down Buck Converter (LM2596)** – Regulates a separate, stable power supply for the motors to prevent STM32 brown-out resets.
-* **External Power Supply (LiPo Battery)** – Provides sufficient current for the entire system.
+The Nucleo board processes the sensor data to determine if a target is present. Based on the logic, it generates PWM signals sent directly to the two MG996R servo motors to adjust the Pan (horizontal) and Tilt (vertical) angles. When the target is locked, the Nucleo sends digital signals to a motor driver, which spins up the two DC motors of the flywheel launcher.
+
+Power management is critical: a 7.4V LiPo battery supplies raw power to the motor driver for the DC motors. In parallel, the battery connects to an LM2596 Step-Down converter, which drops the voltage to a stable 5V to safely power the STM32 board, the HC-SR04 sensor, and the servo motors without frying them.
+
+![Architecture Diagram](images/turret.svg)
+
+## Log
+
+### Week 20 - 26 April
+Got approval and researched the components. 
+Ordered all the components.
+
+### Week 5 - 11 May
+Assembled the mechanical pan-tilt bracket. Fixed alignment issues with the tilt servo and bearing. 
+Attached the HC-SR04 sensor and prepared the DC motors for the flywheel launcher.
+
+### Week 12 - 18 May
+Adjusted the LM2596 voltage to 5V. 
+Started wiring the components to the STM32 Nucleo board and set up the Rust (Embassy) project structure.
+
+### Week 19 - 25 May
+Finished implementing the ultrasonic sensor driver and servo PWM control in Rust. 
+Calibrated the aiming logic and tested the flywheel launcher.
+
+## Hardware
+
+The project uses the Nucleo board as the brain. It receives echo pulses from the HC-SR04 sensor. After processing the distance, it sends PWM signals to the Pan and Tilt MG996R servos. It also controls a motor driver (L298N/L293D) to activate the dual DC motors for the launcher. The LM2596 acts as a power regulator.
 
 ### Schematics
-*(Insert Schematics Image Here)*
 
 ### Bill of Materials
 
 | Device | Usage | Price |
-| :--- | :--- | :--- |
-| **STM32 Nucleo U545RE-Q** | The main microcontroller | ~120.00 RON |
-| **HC-SR04 Ultrasonic Sensor** | Target detection and distance measurement | ~6.50 RON |
-| **MG996R Servomotors (x2)** | Pan and tilt positioning | ~50.00 RON |
-| **DC Motors (x2)** | Projectile propulsion | ~15.00 RON |
-| **Dual Motor Driver L298N**| Driving the DC motors | ~10.99 RON |
-| **LM2596 Buck Converter** | Power regulation for motors | ~8.50 RON |
+|--------|--------|-------|
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/) | Main Controller | Lab Provided |
+| [Metal Pan-Tilt Bracket](https://www.optimusdigital.ro/) | Mechanical structure for the arm | 45 RON |
+| [2 x MG996R Servo Motor](https://www.optimusdigital.ro/) | Aiming (Pan and Tilt axis) | 60 RON | 
+| [2 x DC Motor with Rubber Wheel](https://www.optimusdigital.ro/) | Flywheel projectile launcher | 30 RON |
+| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/) | Target detection and distance measuring | 10 RON |
+| [LM2596 Step-Down Module](https://www.optimusdigital.ro/) | Voltage regulator (Drops LiPo 7.4V to 5V) | 15 RON |
+| [L298N Motor Driver Module](https://www.optimusdigital.ro/) | Controls the DC motors for the launcher | 20 RON |
+| [LiPo Battery 7.4V](https://www.optimusdigital.ro/) | Main power supply | 60 RON |
 
----
 
 ## Software
 
-| Library / Tool | Description | Usage |
-| :--- | :--- | :--- |
-| **STM32CubeIDE** | Integrated Development Env. | The primary IDE used for writing, compiling, and debugging the C code. |
-| **STM32 HAL** | Hardware Abstraction Layer | Core library generated by CubeMX for configuring peripherals and clocks. |
-| **TIM (Timers)** | Hardware Timers / PWM | Generating precise PWM signals for servo positions and measuring sensor echoes. |
-| **UART** | Universal Asynchronous Rx/Tx | Handling the communication between the PC and STM32 for the semi-auto mode. |
-| **EXTI** | External Interrupts | Triggering immediate actions based on specific sensor inputs or button presses. |
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer | Handling GPIOs, EXTI (for sensor echo), and PWM peripherals (for servos) |    
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Managing concurrent tasks (sensor reading, aiming, shooting) |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Standard interface for interacting with peripherals |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework | Used for debugging distance readings and states |
+
+## Links
+
+[How a Flywheel Blaster Works](https://www.youtube.com/watch?v=example1)
+[STM32 Rust Embassy Tutorial](https://github.com/embassy-rs/embassy)
