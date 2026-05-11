@@ -18,6 +18,7 @@ The game is accompanied by music, and players can customize which set tracks are
 
 I chose this project because I like rhythm games. Combining them with hardware will be a fun challenge for players.
 
+
 ## Architecture
 
 ![](./arhitectura_diagrama.webp)
