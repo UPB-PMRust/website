@@ -48,11 +48,11 @@ The rover's chassis is created out of 2 acrylic plates to ensure it is both ligh
 ### PHOTOS
 
 <div align="center">
-    <img src={require('./Poza1.webp').default} alt="Rover build photo 1" width="100%" />
+    <img src={require('./poza1.webp').default} alt="Rover build photo 1" width="100%" />
     <br /><br />
-    <img src={require('./Poza2.webp').default} alt="Rover build photo 2" width="100%" />
+    <img src={require('./poza2.webp').default} alt="Rover build photo 2" width="100%" />
     <br /><br />
-    <img src={require('./Poza3.webp').default} alt="Rover build photo 3" width="100%" />
+    <img src={require('./poza3.webp').default} alt="Rover build photo 3" width="100%" />
 </div>
 
 ### Schematics
