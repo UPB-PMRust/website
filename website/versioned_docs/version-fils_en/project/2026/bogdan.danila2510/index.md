@@ -20,7 +20,7 @@ I wanted to build something that actually uses all the protocols we learned (SPI
 
 The STM32 talks to everything through different interfaces:
 
-- **SPI Bus (shared)**: the ST7789 display and XPT2046 touch controller both sit on SPI1. Display runs at 16 MHz, touch at 1 MHz, switched via software chip selects.
+- **SPI Bus (shared)**: the ST7789 display and XPT2046 touch controller both sit on SPI1. Display runs at 20 MHz, touch at 1 MHz, switched via software chip selects.
 - **I2C Bus**: BME280 (temperature + humidity) and TSL2561 (light) share the same I2C bus with different addresses.
 - **ADC**: MQ135 air quality sensor gives an analog voltage that gets read through the STM32's ADC.
 - **PWM**: drives the buzzer and RGB LED for alerts.
@@ -33,26 +33,80 @@ The firmware uses Embassy's async executor. The main loop polls touch input, det
 
 | Component | Interface | STM32 Pins |
 |-----------|-----------|------------|
-| ST7789 Display | SPI1 (16 MHz) | MOSI: PA7, SCK: PA5, MISO: PA6, CS: PC9, DC: PC6, RST: PC7 |
-| XPT2046 Touch | SPI1 (1 MHz, shared) | CS: PA8, IRQ: PB10 |
-| BME280 Sensor | I2C | SDA / SCL (TBD) |
-| TSL2561 Sensor | I2C | SDA / SCL (shared with BME280) |
-| MQ135 Sensor | ADC | Analog input (TBD) |
-| HC-SR501 PIR | GPIO | Digital input (TBD) |
-| ESP8266 WiFi | UART | TX / RX (TBD) |
-| Buzzer | PWM | TBD |
-| RGB LED | PWM x3 | TBD |
+| ST7789 Display | SPI1 (20 MHz) | MOSI: PA7 (D11), SCK: PA5 (D13), MISO: PA6 (D12), CS: PC9 (D10), DC: PC6 (D9), RST: PC7 (D8), LED: 3V3 |
+| XPT2046 Touch | SPI1 (1 MHz, shared) | T_CLK: PA5 (D13), T_DIN: PA7 (D11), T_DO: PA6 (D12), T_CS: PA8 (D7), T_IRQ: PB10 (D6) |
+| BME280 Sensor | I2C1 (shared) | SCL: PB6 (D15), SDA: PB7 (D14), VCC: 3V3 |
+| TSL2561 Sensor | I2C1 (shared) | SCL: PB6 (D15), SDA: PB7 (D14), INT: not connected |
+| MQ135 Sensor | ADC1 + GPIO | AOUT: PA0 (A0), DOUT: PA10 (D2), VCC: 5V |
+| HC-SR501 PIR | GPIO input | OUT: PB5 (D4), VCC: 5V |
+| ESP8266 WiFi (NodeMCU) | USART1 TX (one-way) | STM32 PA9 (TX) -> NodeMCU D5 (GPIO14 RX), common GND |
+| Passive Buzzer | PWM (planned) | PB4 (D5), via series resistor to buzzer |
+| RGB LED | PWM x3 (planned) | PA1 (A1), PA2 (D1), PA3 (D0), each color through resistor |
+
+### System Schematic (Text)
+
+```text
++---------------------+       +--------------------------------------+
+| 5V / 3V3 / GND rails|------>| STM32 NUCLEO-U545RE-Q (central node) |
++---------------------+       +--------------------------------------+
+                                      |
+      +-------------------------------+-------------------------------+
+      |               |               |               |               |
+      v               v               v               v               v
++----------------+ +-------------+ +-------------+ +-------------+ +--------------+
+| ST7789 +       | | BME280      | | TSL2561     | | MQ-135      | | HC-SR501 PIR |
+| XPT2046 LCD    | | Temp/Hum/P  | | Light       | | Air quality | | Motion       |
+| SPI1 + GPIO    | | I2C1        | | I2C1        | | ADC + GPIO  | | GPIO input   |
++----------------+ +-------------+ +-------------+ +-------------+ +--------------+
+      |               |               |               |               |
+      +---------------+---------------+---------------+---------------+
+                                      |
+                                      v
+                          +----------------------+
+                          | ESP8266 NodeMCU v0.1|
+                          | UART RX + common GND|
+                          +----------------------+
+                                      |
+                    +-----------------+-----------------+
+                    |                                   |
+                    v                                   v
+           +-------------------+                +-------------------+
+           | Passive buzzer    |                | RGB LED           |
+           | PWM output (PB4)  |                | PWM R/G/B         |
+           +-------------------+                +-------------------+
+
+HARDWARE CONNECTIONS (pin-level):
+  LCD+Touch: PA5/PA6/PA7, PC9, PC6, PC7, PA8, PB10
+  BME280: PB6 (SCL), PB7 (SDA), 3V3, GND
+  TSL2561: PB6 (SCL), PB7 (SDA), 3V3, GND
+  MQ-135: PA0 (AOUT), PA10 (DOUT), 5V, GND
+  PIR: PB5 (OUT), 5V, GND
+  ESP8266: PA9 (USART1_TX) -> D5 (GPIO14 RX), GND <-> GND
+  Buzzer (planned): PB4 (PWM) -> buzzer +
+  RGB LED (planned): PA1/PA2/PA3 (PWM) -> R/G/B
+```
 
 ## Log
 
-# Week 2 - 4 
- Documentation for both software and hardware part of the project.
+# Week 2 - 4
+
+Documentation for both software and hardware part of the project. Set up the Rust embedded toolchain and prepared the STM32 workflow.
 
 # Week 5 - 6
- Ordered all the hardware. Soldered the TSL2561 Sensor and the MQ135 Sensor. Debugged the STM32 Nucleo-U545RE-Q and prepared it for the project.
+
+Ordered all the hardware. Soldered the TSL2561 sensor and the MQ135 sensor. Debugged the STM32 Nucleo-U545RE-Q and prepared it for the project.
 
 # Week 7
- Connected the ST7789 Display to the STM32 Nucleo-U545RE-Q. Sorted out visual and touchscreen part. Tweaked the UI and swiping animations (between the sensor values) with static values before starting to add the sensors.
+
+Connected the ST7789 display to the STM32 Nucleo-U545RE-Q. Sorted out visual and touchscreen parts. Tweaked the UI and swipe animations with static values before adding all sensors.
+
+# Week 8
+
+Integrated BME280, TSL2561, and PIR into the runtime UI, then added the ESP8266 NodeMCU web dashboard path over UART JSON streaming.
+
+# Week 9
+
+Improved refresh responsiveness and synchronized motion behavior between board display and web dashboard. Finalized project documentation updates and KiCad schematic integration.
 
 ## Hardware
 
@@ -60,13 +114,13 @@ The core is an STM32 Nucleo-U545RE-Q running at 160 MHz (PLL from HSI). The disp
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![KiCad schematic](./kicadproject.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [105 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=tlsG%2FOw5FFjl20PI4ypAag%3D%3D) |
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [125 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=tlsG%2FOw5FFjl20PI4ypAag%3D%3D) |
 | [2.4" TFT LCD Touchscreen (ST7789V + XPT2046)](https://www.emag.ro/display-tft-spi-2-4-inch-240x320-lcd-cu-touchscreen-driver-st7789v-arduino-emg178/pd/DXZMBSYBM/) | Display + touch for the dashboard UI | [54.86 RON](https://www.emag.ro/display-tft-spi-2-4-inch-240x320-lcd-cu-touchscreen-driver-st7789v-arduino-emg178/pd/DXZMBSYBM/) |
 | [Set 3x BME280](https://www.emag.ro/set-3x-senzor-temperatura-si-umiditate-presiune-atmosferica-bme280-modul-digital-i2c-spi-3-3v-5v-compatibil-arduino-si-raspberry-pi-pentru-statie-meteo-diy-et000011/pd/DNBHJ53BM/) | Temperature, humidity, pressure (I2C) | [76.74 RON](https://www.emag.ro/set-3x-senzor-temperatura-si-umiditate-presiune-atmosferica-bme280-modul-digital-i2c-spi-3-3v-5v-compatibil-arduino-si-raspberry-pi-pentru-statie-meteo-diy-et000011/pd/DNBHJ53BM/) |
 | [TSL2561 (GY-2561)](https://www.emag.ro/modul-senzor-de-luminozitate-tsl2561-0-1-40k-lux-3v-0-6ma-gy-2561-dh000007/pd/DJ8QQL3BM/) | Light sensor, 0.1 to 40k+ lux (I2C) | [29.84 RON](https://www.emag.ro/modul-senzor-de-luminozitate-tsl2561-0-1-40k-lux-3v-0-6ma-gy-2561-dh000007/pd/DJ8QQL3BM/) |
@@ -74,6 +128,7 @@ Place your KiCAD or similar schematics here in SVG format.
 | [HC-SR501 PIR](https://www.emag.ro/detector-de-miscare-hc-sr501-pir-compatibil-cu-arduino-infrarosu-33-mm-x-25-mm-x-25-mm-verde-d1/pd/D52G1QYBM/) | Motion detection | [23.27 RON](https://www.emag.ro/detector-de-miscare-hc-sr501-pir-compatibil-cu-arduino-infrarosu-33-mm-x-25-mm-x-25-mm-verde-d1/pd/D52G1QYBM/) |
 | [ESP8266 NodeMCU V3](https://www.emag.ro/modul-esp8266-wifi-usb-c-30pin-nodemcu-v3-arduino-ch340-suport-pentru-esp32-alimentare-5v-12v-64kb-sram-4mb-flash-wifi-802-11-b-g-n-securitate-wpa-wpa2-11-porturi-i-o-1-port-analogic-compatibil-pentru/pd/D9DHMQYBM/) | WiFi for remote logging | [39.14 RON](https://www.emag.ro/modul-esp8266-wifi-usb-c-30pin-nodemcu-v3-arduino-ch340-suport-pentru-esp32-alimentare-5v-12v-64kb-sram-4mb-flash-wifi-802-11-b-g-n-securitate-wpa-wpa2-11-porturi-i-o-1-port-analogic-compatibil-pentru/pd/D9DHMQYBM/) |
 | [Electronics Kit (Duueyct)](https://www.emag.ro/set-componente-electronice-duueyct-breadboard-830-puncte-rezistenta-de-lunga-durata-usor-de-manevrat-cu-cutie-de-depozitare-perfect-de-transportat-compatibil-arduino-uno-r3-si-raspberry-pi-multicolor-/pd/D8KWPG3BM/) | Breadboard, wires, resistors, LEDs, buzzer | [65.50 RON](https://www.emag.ro/set-componente-electronice-duueyct-breadboard-830-puncte-rezistenta-de-lunga-durata-usor-de-manevrat-cu-cutie-de-depozitare-perfect-de-transportat-compatibil-arduino-uno-r3-si-raspberry-pi-multicolor-/pd/D8KWPG3BM/) |
+| **Total** | **Complete hardware cost** | **442.97 RON** |
 
 ## Software
 
