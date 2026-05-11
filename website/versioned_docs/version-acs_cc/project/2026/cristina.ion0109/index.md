@@ -1,5 +1,5 @@
 # Reaction time trainer
-A device that measures and evaluates user reaction time using randomly generated stimuli
+A device that measures and evaluates user reaction time using randomly generated stimuli.
 
 :::info 
 
@@ -24,16 +24,23 @@ This project allows me to work with different types of inputs and outputs, such 
 
 ## Architecture 
 
-![Schema Block](./schem_bloc.svg)
+![Schema Block](./diagrama.svg)
 
-## Log 21 - 27 April
+## Log
+
+### Week 21 - 27 April
 I looked for the components I needed
 
-## Log 28 April - 4 May
+### Week 28 April - 4 May
 I received the components ordered from Drot and Bitmi
 
 <!-- write your progress here every week -->
 ### Week 5 - 11 May
+I completed the full schematic. I have a clear view of the system architecture.
+
+I connected all hardware components. I verified all electrical connections.
+
+I tested every module individually. I configured the Rust development environment and I started writing the initial firmware.
 
 ### Week 5 - 11 May
 
@@ -53,12 +60,12 @@ Main parts:
 - Potentiometer - This component is used to detect user input. In response to certain stimuli (sound), the user must rotate the potentiometer. The STM32 reads its value and determines whether the action was performed correctly
 - Photoresistors - These sensors detect changes in light intensity. The system can display instructions such as covering a specific sensor, and the user must react
 - Servo Motor: The servo is used to create a mechanical stimulus by raising a small flag. When the flag is lifted, the user must press a specific button
-- Display (OLED): The display is used to show instructions, reaction times and game statistics. It also provides a menu for selecting the game mode and guides the user throughout the session
+- Display (LCD): The display is used to show instructions, reaction times and game statistics. It also provides a menu for selecting the game mode and guides the user throughout the session
 
 
 ### Schematics
 
-In progress.
+![Schematics](./pm.svg)
 
 ### Bill of Materials
 
@@ -76,10 +83,21 @@ The format is
 |--------|--------|-------|
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | Provided by university |
 | [LED](https://www.drot.ro/platforma-arduino/1031-led-dioda-ro-ie-5-mm.html) | Stimulus | 0,44 RON |
-| [Potentiometer](https://www.drot.ro/platforma-arduino/7597-potentiometru-liniar-10k-ohm.html) | Response | 3,92 RON |
+| [LED](https://www.drot.ro/platforma-arduino/1032-led-dioda-verde-5-mm.html) | Stimulus | 0,44 RON |
+| [LED](https://www.drot.ro/platforma-arduino/1035-led-dioda-albastra-5-mm.html) | Stimulus | 0,44 RON |
+| [Potentiometer](https://www.drot.ro/platforma-arduino/7597-potentiometru-liniar-10k-ohm.html) | Analog input | 3,92 RON |
 | [Servomotor sg90](https://www.bitmi.ro/electronica/servomotor-sg90-180-grade-9g-10496.html#resp-tab2) | Stimulus | 9,99 RON |
-| [Photoresistor](https://www.drot.ro/platforma-arduino/1073-fotorezistor-gl5539-5-mm.html) | Response | 0,65 RON |
-| [Pasive buzzer](https://www.bitmi.ro/electronica/modul-buzzer-pasiv-ky-006-10678.html#resp-tab2) | Stimulus | 2,99 RON |
+| [3 x Photoresistor](https://www.bitmi.ro/electronica/modul-senzor-cu-fotorezistor-ldr-compatibil-arduino-10394.html) | Light-dependent input | 2,43 RON |
+| [Active buzzer](https://www.bitmi.ro/electronica/modul-buzzer-activ-compatibil-arduino-10397.html) | Stimulus | 3,24 RON |
+| [Breadboard](https://www.bitmi.ro/electronica/breadboard-830-puncte-mb-102-10500.html) | - | 13,99 RON |
+| [LCD Display](https://www.bitmi.ro/electronica/display-lcd1602-hd44780-albastru-iluminat-10486.html) | Human-Machine Interface | 13,99 RON |
+| [I2C LCD Interface Module](https://www.bitmi.ro/electronica/modul-interfata-i2c-pentru-lcd1602-10456.html) | I2C converter | 9,99 RON |
+| [Bidirectional Logic Level Converter](https://www.bitmi.ro/electronica/convertor-nivel-logic-iic-i2c-bidirectiona-4-canale-10462.html) | Logic level shifter | 2,99 RON |
+| [Buttons](https://www.drot.ro/platforma-arduino/1253-microswitch-buton-6-x-6-x-6-mm.html) | Digital inputs | 0,44 RON |
+| [Buttons](https://www.drot.ro/platforma-arduino/1180-mikroswitch-tc-1212t-12-x-12-x-7-3-mm-smd-pcb.html) | Digital inputs | 0,87 RON |
+
+
+
 
 
 
