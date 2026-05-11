@@ -60,7 +60,7 @@ The drone is built from the following components:
 
 ### Schematics
 
-Place KiCAD schematics here.
+![Kicad Schematic](altitude_hold_drone.svg)
 
 ### Bill of Materials
 
