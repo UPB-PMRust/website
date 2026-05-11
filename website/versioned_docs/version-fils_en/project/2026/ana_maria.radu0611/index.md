@@ -46,11 +46,17 @@ I did some initial testing to see if the components work.
 ### Week 20 - 26 April
 I continued the testing, wrote the page of the website and started writing the actual code of the project.
 
+### Week 27 April - 3 May
+I had an issue where my screen would stay white, regardless of the commands written in code. I managed to fix it by using a different crate. Also, I found a way of drawing my objects by importing images modified on a website which created an array of pixels. I had to find a way to remove the white background of the pictures, which turned out to be different shades of white, so I couldn't just manually exclude those pixels.
+
+### Week 4 - 10 May
+I had a problem where the buzzers were not working, but I fixed it. I finished the wiring, which will be slightly changed later on, and I finished the KiCAD schematic.
+
 
 ## Hardware
 
 ### Schematic
-*(The KiCAD schematic will be here later)*
+![KiCAD schematic](hardware_scheme.svg)
 
 ### Bill of materials
 
@@ -83,3 +89,5 @@ I continued the testing, wrote the page of the website and started writing the a
 2. [Screen connection documentation](https://emalliab.wordpress.com/2020/10/10/arduino-and-a-cheap-tft-display/) - explains what each pin of the screen is used for and how to connect them.
 3. [Joystick Datasheet](https://naylampmechatronics.com/img/cms/Datasheets/000036%20-%20datasheet%20KY-023-Joy-IT.pdf)
 4. [Joystick Documentation](https://www.watelectronics.com/ky-023-joystick-module/) - more information about the joystick
+5. [KiCAD schematic pins documentation](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html#cad-resources)
+6. [image2cpp](https://javl.github.io/image2cpp/) - website where you can turn an image into an array of pixels
