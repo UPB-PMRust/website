@@ -38,7 +38,7 @@ This week I was able to work on most of my hardware, successfully managing to te
 
 ## Hardware
 
-![Hardware Picture](./imgHARDWARE.webp)
+![Hardware Picture](./imghardware.webp)
 
 1. Raspberry Pi Pico 2W: The main microcontroller unit running the asynchronous rust firmware;
 2. PIR Motion Sensor: Used to detect human movement in the monitored area;
