@@ -66,6 +66,59 @@ Main components:
 
 I wrote the initial documentation.
 
+### Week 20 - 26 April
+
+I tested the functionality of the components.
+
+### Week 27 April - 3 May
+
+I implemented the UI interface and the button logic.
+
+### Week 4 - 10 May
+
+I wrote the logic for the rhythm game and color match.
+
+## Hardware
+
+The project uses the STM32 Nucleo Board as the main controller. A LCD Display is used for rendering the game graphics. User input is taken using push buttons. While in game, visual feedback is given using LEDs for hit accuracy, and a servomotor for color match bar progress. The music is played using a DFPlayer Mini that has a microSD card and a speaker. A passive buzzer is used for sound effects. A gyroscope is used to detect the motion notes.
+
+![](./poza_cablaj.webp)
+
+### Schematics
+
+![](./KiCAD_schematics.webp)
+
+### Bill of Materials
+
+| Device | Usage | Price |
+|--------|--------|-------|
+| STM32 Nucleo-U545RE-Q | The microcontroller | [Provided by faculty](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) |
+| TFT LCD Display | Displaying the game graphics | [21,60 RON](https://www.emag.ro/display-tactil-tft-lcd-240-x-320-px-cu-cititor-sd-spi-2-4-inch-gri-rosu-tft-24-ili9341-restouch-spi/pd/D49CJMYBM/) |
+| Buttons | User input| [1,5 RON X 7](https://www.emag.ro/set-25-butoane-tactile-chucai-12x12x7-3mm-multicolor-a-md390/pd/DRPKD83BM/) |
+| Gyroscope MPU 6050 GY-521 | Detecting the breadboard movement | [31,99 RON](https://www.emag.ro/modul-giroscop-mpu-6050-gy-521-accelerometru-arduino-3-axe-2-1-cm-x-1-1-cm-x-0-3-cm-albastru-c7/pd/DL3G1QYBM/) |
+| RGB LEDs | Visual feedback | [1,33 RON X 4](https://www.emag.ro/set-10-x-led-rgb-5-mm-se2301081533/pd/D8VDVRMBM/) |
+| Servomotor SG90 180° | Visual feedback | [26,14 RON](https://www.emag.ro/servomotor-genelec-sg90-0-180-grade-22x11-5x22-5mm-gd-0228/pd/DGMQ44YBM/) |
+| DFPlayer Mini TF-16P | Audio player for the music tracks | [18,03 RON](https://www.emag.ro/modul-tf-16p-dfplayer-mini-player-audio-24-biti-32-gb-negru-auriu-5904162801930/pd/D8B8KLMBM/) |
+| Speaker | Audio output for the music tracks | [< 19,68 RON](https://www.emag.ro/modul-inregistrare-redare-audio-isd1820-cu-difuzor-3-5v-3-b-044/pd/DLXDNLMBM/) |
+| MicroSD Card | Storing music files| [29,98 RON](https://www.emag.ro/card-de-memorie-microsd-premium-32-gb-hc-i-class-10-qeno-100mb-s-pentru-camera-auto-telefon-aparat-foto-hub-console-negru-card32gb/pd/DBTYN2YBM/) |
+| Pasive Buzzer | Sound effects | [12,48 RON](https://www.emag.ro/buzzer-pasiv-pe-pcb-elektroweb-fara-generator-convertor-5-v-3-d-012/pd/DSLMTMYBM/) |
+
+
+## Software
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Hardware Abstraction Layer for STM32 | Used for control of GPIO, SPI, I2C, UART, and PWM |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor | Used to manage concurrent tasks |
+| [embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Hardware abstraction traits | Used for interacting with peripherals|
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework | Used for debugging |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Timekeeping | Used for timer and duration |
+| [display-interface-spi](https://github.com/therealprof/display-interface) | SPI interface for displays | Used for communication between the STM32 SPI and the display driver |
+| [mipidsi](https://github.com/almindor/mipidsi) | Display driver for ILI9341 | Used for connecting the screen via SPI |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing the game graphics |
+| [mpu6050](https://crates.io/crates/mpu6050) | Driver for MPU6050 | Used to read data via I2C |
+
+
 
 
 
