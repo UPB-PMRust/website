@@ -39,6 +39,7 @@ Pondering about getting started.
 The hardware subsystem implements a cartesian XY architecture, utilizingsteel rods and linear bearings to ensure smooth translation with low. Actuation is provided by two stepper motors , coupled with a GT2 timing belt and 20-tooth pulley transmission system. This configuration allows for high mechanical resolution, further optimized by microstepping managed via A4988 drivers. Power management is handled by a 12V DC supply, with voltage distributed to the motor power stage and simultaneously regulated through abuck converter to 5V for the STM32 microcontroller and the servo motor responsible for the Z-axis (pen-lift) action.
 
 ## Schematics
+![schematics](./img/schematics.webp)
 
 ## Bill of Materials
 
