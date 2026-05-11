@@ -70,9 +70,23 @@ I wrote the initial documentation.
 
 I tested the functionality of the components.
 
+### Week 27 April - 3 May
+
+I implemented the UI interface and the button logic.
+
+### Week 4 - 10 May
+
+I wrote the logic for the rhythm game and color match.
+
 ## Hardware
 
 The project uses the STM32 Nucleo Board as the main controller. A LCD Display is used for rendering the game graphics. User input is taken using push buttons. While in game, visual feedback is given using LEDs for hit accuracy, and a servomotor for color match bar progress. The music is played using a DFPlayer Mini that has a microSD card and a speaker. A passive buzzer is used for sound effects. A gyroscope is used to detect the motion notes.
+
+![](./poza_cablaj.webp)
+
+### Schematics
+
+![](./KiCAD_schematics.webp)
 
 ### Bill of Materials
 
