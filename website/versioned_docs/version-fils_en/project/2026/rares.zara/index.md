@@ -26,7 +26,7 @@ The choice of this project stems from a desire to explore Real-Time Systems and 
 
 ## Architecture 
 The system is centralized around the STM32F767ZI (Cortex-M7) which handles the high-speed game loop, user input debouncing, and peripheral data streaming.
-![System Architecture Picture](./Architecture_IronBeats.drawio.svg)
+![System Architecture Picture](./architecture_ironbeats.drawio.svg)
 ## Log
 
 <!-- write your progress here every week -->
@@ -48,7 +48,7 @@ Integrated the hardware and architecture diagrams into the GitHub documentation 
 ## Hardware
 
 IronBeats is a bare-metal Rust rhythm game powered by an STM32F767ZI microcontroller, ensuring precise gameplay timing. An 8x32 LED matrix serves as the vertical runway for falling notes, while a 1.3" OLED handles menus and leaderboards. Three tactile buttons let players catch notes in specific lanes, with three passive buzzers providing real-time audio feedback. A joystick controls UI navigation, and a 5V power bank safely drives the entire hardware system
-![Hardware Electric Scheme Picture](./Schematic_IronBeats.svg)
+![Hardware Electric Scheme Picture](./schematic_ironbeats.svg)
 
 ### Schematics
 
