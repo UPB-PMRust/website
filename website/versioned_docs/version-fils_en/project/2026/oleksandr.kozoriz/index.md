@@ -77,7 +77,30 @@ Nevermind, forget it, the double feed is not the final boss, the final boss turn
 From the software point of view, the logic is now reversed: we wait for rising edge, not for the falling one. With the new logic applied, due to motor vibration paper pendulum creates insane amount of false-triggers, so my next goal is to reconsider the pendulum material and position in order to minimize them. Increasing the debouncing interval may also resolve the issue.
 
 ### Week 12
-To be continued...
+I've made the new pendulum out of PET plastic, it works great. However, the false triggers still occur because the new logic is applied. The motor generates a lot of electromagnetic noice and voltage spikes. I've already defeated the voltage spikes with a 100nF capacitor, but for the case [EMI (elecromagnetic interference)](https://en.wikipedia.org/wiki/Electromagnetic_interference), I've just filtered the impulses in software, assuming that if the duration of a signal was less then 2ms it was coming from the motor, not from the sesor.
+
+For the old falling-edge logic it worked fine: `noice impulse` -> `EXTI falling edge` -> `sleep for 2ms` -> `check if the GPIO is still low`, wich would immediately rise back to high after the noice is gone.
+
+However, now, with a mechanical flag banknotes tend to jam or to get stuck in the slit from time to time, which keeps the sensor output high for a longer period of time. `noice impulse` -> `EXTI rising edge` -> `sleep for 2ms` -> `check if the GPIO is still high`, which is the case because the banknote is still there. Theoretically that issue could also occur with the old logic if the banknote got stuck in the slit, but on practice it only occured with the rising edges.
+
+To address this, it would be better to physically reduce the noice rather than make some complex filtering algorithms. After some research I found out that communication cables utilize a [twisted pair](https://en.wikipedia.org/wiki/Twisted_pair) to fight the elecromagnetic radiation. So I twisted the `motor<--->diriver` wires and the `sensor<--->breadboard` wires, and it actually helped a lot.
+
+I took a stack of 10 lei banknotes and decided that it is time for the first benchmark:
+| # | Outuput |
+|---|---------|
+| **Expected value** | **150** |
+| **1** | **150** |
+| 2 | 140 |
+| **3** | **150** |
+| 4 | 130 |
+| 5 | 120 |
+| 6 | 140 |
+| 7 | 130 |
+| **8** | **150** |
+| 9 | 130 |
+| 10 | 130 |
+
+There are no cases where the outuput is greater then 150, meaning that false triggers do not occur anymore. Therefore I consider EMI to be defeated by now, and for the rest of the values, the error is coming from the double feed. 
 
 ### Week 13
 To be continued...
@@ -155,5 +178,7 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Currency-counting machine](https://en.wikipedia.org/wiki/Currency-counting_machine)
-2. [The Rust Book](https://doc.rust-lang.org/stable/book/index.html)
-3. [Embassy](https://embassy.dev/)
+2. [Elecromagnetic interference](https://en.wikipedia.org/wiki/Electromagnetic_interference)
+3. [Twisted pair](https://en.wikipedia.org/wiki/Twisted_pair)
+4. [The Rust Book](https://doc.rust-lang.org/stable/book/index.html)
+5. [Embassy](https://embassy.dev/)
