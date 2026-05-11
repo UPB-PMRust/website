@@ -42,6 +42,9 @@ Tested hardware components, soldered MPU pins and built the hardware.
 
 The system is based on an STM32 NUCLEO development board, complemented by multiple input and output peripherals. It includes visual outputs (OLED display and LED), an audio output (buzzer), and mechanical output (servo motor). User interaction is handled through a push button, a rotary encoder, analog sensors (potentiometer and photoresistor), and an IMU sensor for gesture detection. Data storage is implemented using an SD card module and non-volatile memory (EEPROM) for saving user profiles and leaderboards.
 
+![Inside](inside.webp)
+![Outside](outside.webp)
+
 ### Schematics
 
 ![Schematic](reaction-trainer.svg)
