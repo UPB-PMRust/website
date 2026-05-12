@@ -55,7 +55,7 @@ TODO
 
 ### Schematics
 
-
+![Hardware Schematic](./PM_Proiect_Schematic.webp)
 
 ### Bill of Materials
 
@@ -80,10 +80,14 @@ TODO
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | Pin control, PWM, I2C, ADC |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | Pin control, PWM, SPI, ADC |
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded | Running concurrent tasks |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Async timers and delays | Timing for sensors and motors |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Embedded HAL adapters for Embassy | SPI bus sharing for display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded | Rendering text on the display |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer traits | PWM control for servo motors |
+| [mipidsi](https://github.com/almindor/mipidsi) | Display driver for MIPI displays | ST7735 display driver |
+| [display-interface-spi](https://github.com/therealprof/display-interface) | SPI display interface | SPI communication with ST7735 |
 
 
 ## Links
