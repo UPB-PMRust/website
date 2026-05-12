@@ -37,8 +37,11 @@ Starting to assemble the project.
 ## Hardware
 The physical pary of my project consists of the STM32U545RE-Q microcontroller as the main source of processing power. The ESP32 module enables the user to remotely communicate with the STM32 in order to give out commands.The ultrasonic sensors detect any unwanted objects in the way of the car, each wheel is powered by a motor and the most important part of the machine is the dual servo powered cleaning system that can move up and down and side to side in order for it to adapt to different cleaning scenarious.
 
+### Photos
+![](images/robomop1.webp)
+![](images/robomop2.webp)
 ### Schematics
-
+![](images/robomop_manole_eliza.svg)
 ### Bill of Materials
 |  Device  |  Usage  |  Price  |
 |----------|---------|---------|
