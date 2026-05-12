@@ -118,7 +118,7 @@ The STM32 NUCLEO-U545RE-Q acts as the central controller, managing all input/out
 
 ![Kicad Schematic](./webp_kicad_pm_mic.webp)
 
-![Hardware Picture](./braille_hw_svg.svg)
+![Hardware Picture](./poza_hw_braille_w.webp)
 
 ### Bill of Materials
 
