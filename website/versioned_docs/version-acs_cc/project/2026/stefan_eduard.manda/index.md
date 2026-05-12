@@ -62,7 +62,7 @@ Am terminat montajul pe breadboard și am făcut schema în KiCad (microfoane, D
 
 ### Week 12–13
 
-Am scris cod de test în Rust: mai întâi un singur microfon + căști, apoi OLED, apoi două microfoane cu afișare pe ecran. Încă lucrez la al treilea/al patrulea canal ca să ajung la array-ul complet de 4.
+Am scris cod de test în Rust: mai întâi un singur microfon + căști, apoi OLED, apoi două microfoane cu afișare pe ecran. Încă lucrez la al treilea/al patrulea canal ca să ajung la array-ul complet de 4
 
 ## Hardware
 
