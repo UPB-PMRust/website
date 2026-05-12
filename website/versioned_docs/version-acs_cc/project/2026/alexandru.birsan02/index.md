@@ -1,9 +1,3 @@
----
-id: index
-title: "Polargraph"
-sidebar_label: Polargraph
----
-
 # Polargraph
 A vertical drawing machine that uses a polar coordinate system to create pen-on-paper art
 
@@ -28,7 +22,7 @@ The idea came to me because I have previously studied architecture and have alwa
 
 ## Architecture 
 
-![Diagram](./images/Diagram.svg)
+![Diagram](./images/diagram.svg)
 
 ## Log
 
