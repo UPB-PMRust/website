@@ -29,7 +29,7 @@ Input: Consists of push-buttons used to select the quantities of coffee and suga
 
 Processing: The STM32 Nucleo processes the signals from the buttons and coordinates the other components, managing the timing and quantities required for the recipe through the SG90 servo motors. It also verifies that the cup is properly placed with the help of the distance sensor and resets the system once the process is finished. With the help of the water pump and the mixer, the coffee is ready.
 
-![Architecture Diagram](./images/PM_schema_arhitectura.svg)
+![Architecture Diagram](./images/schema_arhitectura.svg)
 
 ## Log
 
