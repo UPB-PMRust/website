@@ -4,7 +4,7 @@ An engineered-from-scratch 3D printer powered by a 32-bit STM32 board, featuring
 :::info 
 
 **Author**: Bârsan Clara Maria \
-**GitHub Project Link**: [link_to_github](https://github.com/clarabarsan/pm-rust-3d-printer/tree/project/clara_maria.barsan)
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-clarabarsan)
 
 :::
 
