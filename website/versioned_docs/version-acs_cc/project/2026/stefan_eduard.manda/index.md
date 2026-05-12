@@ -19,7 +19,7 @@ Am ales proiectul acesta pentru că mi s-a părut super interesant cum poți să
 
 ## Architecture
 
-## Architecture
+![Diagrama Arhitectura](./architecture.svg)
 
 Proiectul este structurat pe un flux de date continuu, împărțit în patru etape principale:
 
@@ -39,6 +39,8 @@ Proiectul este structurat pe un flux de date continuu, împărțit în patru eta
    - Sunetul procesat este trimis prin protocolul **I2S** către DAC-ul extern, unde pot conecta căștile.
    - În paralel, calculez intensitatea sunetului și trimit datele prin **I2C** către ecranul OLED pentru a avea un feedback vizual (un VU-meter).
 
+![Prototip Real](./poza_proiect_pm.jpg)
+
 
 ## Log
 
@@ -54,6 +56,10 @@ Am dat comanda de piese de pe AlieExpress și am început să caut documentația
 
 Mi-au venit piesele și m am apucat să scriu documentația.
 
+### Week 11
+
+Am termiant circuitul si mai urmeaza sa i fac un case printat 3d sau un prototip de cutie pt a fi ergonomic
+
 
 ## Hardware
 
@@ -66,7 +72,9 @@ Configuratia fizica include:
 
 ## Schematics
 
-- TODO: schematica KiCad de adăugat la Milestone Hardware(week 11). 
+Schematica electrica a sistemului include conexiunile pentru bus-ul de date PDM(microfoane), interfata I2S(DAC audio) si magistrala I2C pentru ecranul OLED
+
+![Schematica KiCad](./schematica_kicad.jpg) 
 
 ## Bill of Materials
 
