@@ -1,5 +1,5 @@
 # Autonomous Light-Following Flower Robot
-
+An autonomous light-following robot that has a flower on top of the chassis to mimic the behaviour of a natural plant.
 :::info 
 
 **Author**: Serban Lidia-Andreea \
@@ -33,7 +33,7 @@ My motivation for this project is to apply embedded systems engineering to a nat
              │                       ▼
 ┌────────────▼────────────┐  ┌──────────────────────────┐
 │      STM32 U545RE-Q     │  │      L9110S DRIVER       │
-│   (Logic / Brain Rail)  │  │   (Motor Control H-Bridge)│
+│   (Logic / Brain Rail)  │  │  (Motor Control H-Bridge)│
 └────────────┬────────────┘  └──────────────▲───────────┘
              │                              │
              ├──────────────────────────────┘
@@ -50,7 +50,7 @@ My motivation for this project is to apply embedded systems engineering to a nat
 ## Log
 
 <!-- write your progress here every week -->
-
+### Week ...
 ### Week 5 - 11 May
 
 ### Week 12 - 18 May
@@ -62,9 +62,12 @@ My motivation for this project is to apply embedded systems engineering to a nat
 The system is based on the STM32 Nucleo U545RE-Q microcontroller, which manages data processing and control. Light detection is performed using photoresistors, while an ultrasonic sensor provides obstacle detection and a temperature–humidity sensor monitors environmental conditions.
 Movement is achieved using DC motors controlled by an H-bridge driver with PWM signals. The structure includes wheels and a caster for stability. Power is supplied by a battery and regulated with a DC-DC converter. An LCD display is used to present system data.
 
+![Hardware picture](./hardware-project-2.webp)
+
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![KiCad schematic](./kicad-proiect-rust.svg)
+
 
 ### Bill of Materials
 
@@ -112,5 +115,5 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Embassy Book](https://embassy.dev/book/#_what_is_embassy)
-2. [link](https://example3.com)
+2. 
 ...
