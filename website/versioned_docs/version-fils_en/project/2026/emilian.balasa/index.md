@@ -6,13 +6,8 @@ An interactive, physical desktop dashboard that monitors PC hardware telemetry i
 
 :::info
 
-
-
-**Author:** Balasa Emilian-Valentin \
-
-**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
-
-
+**Author**: Balasa Emilian-Valentin \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
 
 :::
 
@@ -62,8 +57,7 @@ The project revolves around the **STM32 NUCLEO-U545RE-Q** microcontroller acting
 
 
 
-!\[Project System Architecture](./architecture.svg)
-
+![Architecture Diagram](architecture.drawio.svg)
 
 
 ## Log
@@ -98,7 +92,7 @@ The logic runs on 3.3V and 5V. Most components interface directly with the STM32
 
 ## Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+(KiCad schematics pending breadboard validation).
 
 
 
@@ -115,7 +109,7 @@ Place your KiCAD or similar schematics here in SVG format.
 |[3V Coin Vibration Motor](https://www.adafruit.com/product/1201)|Haptic alarm system|18.51 RON|
 |[WS2812B RGB LED Stick](https://www.adafruit.com/product/1426)|Visual alarm system|14.18 RON|
 |[Breadboard (Large)](https://www.optimusdigital.ro/)|Prototyping base|19.52 RON|
-|[Dupont Cables (M-M \& M-F)](https://www.optimusdigital.ro/)|Interconnections|38.33 RON|
+|[Dupont Cables (M-M & M-F)](https://www.optimusdigital.ro/)|Interconnections|38.33 RON|
 |[2N2222, 1k Resistor, 1N4007](https://www.optimusdigital.ro/)|Motor driving circuit components|36.55 RON|
 
 
