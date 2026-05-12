@@ -55,7 +55,7 @@ The system is built around the STM32 Nucleo-U545RE-Q microcontroller. The sensor
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematics](./smartHome_schema.svg)
 
 ### Bill of Materials
 
