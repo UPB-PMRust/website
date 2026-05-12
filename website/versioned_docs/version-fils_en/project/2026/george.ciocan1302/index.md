@@ -25,7 +25,7 @@ The motivation behind the project was my interests in aerospace and CAD modellin
 ## Design Concept
 
 <center>
-![RoverCAD](RoverCAD.webp)
+![RoverCAD](cad.webp)
 </center>
 
 **View the 3D model on Onshape**: https://cad.onshape.com/documents/5f14d6b2b58ea1de1b963c7e/w/1fe714927cde1f63024d6414/e/a3d36fc78328462c12924175?renderMode=0&uiState=69cfa1ff11451da0736ff72f
@@ -33,20 +33,28 @@ The motivation behind the project was my interests in aerospace and CAD modellin
 ## Architecture 
 
 <center>
-![PowerDiagram](PowerDiagram.webp)
+![PowerDiagram](power_diag.webp)
 </center>
 
 <center>
-![CommDiagram](CommDiagram.webp)
+![CommDiagram](comm_diag.webp)
 </center>
 
 ## Log
 
--- TO DO --
-
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+
+Got a first prototype working. The rover can be controlled with a smartphone, but no other peripherals are installed yet. For now, only the motor drivers and their motors are connected to the ESP32. Also, the power cables from the battery are connected to a master switch, after which they split in two power rails: 12V for the motors and a 5V from the buck converter for the ESP. The 6V converter will be connected later when adding the servos.
+
+<center>
+![Side](side_view.webp)
+</center>
+
+<center>
+![Top](top_view.webp)
+</center>
 
 ### Week 12 - 18 May
 
@@ -68,9 +76,9 @@ An additional temperature/humidity sensor on board might also provide informatio
 displayed/saved together with the sample measurements in the logs of the database.
 
 ### Schematics
--- TO DO --
-
-Place your KiCAD or similar schematics here in SVG format.
+<center>
+![Schem](schem.svg)
+</center>
 
 ### Bill of Materials
 
