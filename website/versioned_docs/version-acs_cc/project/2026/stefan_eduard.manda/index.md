@@ -39,7 +39,7 @@ Proiectul este structurat pe un flux de date continuu, împărțit în patru eta
    - Sunetul procesat este trimis prin protocolul **I2S** către DAC-ul extern, unde pot conecta căștile.
    - În paralel, calculez intensitatea sunetului și trimit datele prin **I2C** către ecranul OLED pentru a avea un feedback vizual (un VU-meter).
 
-![Prototip Real](./poza_proiect_pm.jpg)
+![Prototip Real](./poza_proiect_pm.webp)
 
 
 ## Log
@@ -74,7 +74,7 @@ Configuratia fizica include:
 
 Schematica electrica a sistemului include conexiunile pentru bus-ul de date PDM(microfoane), interfata I2S(DAC audio) si magistrala I2C pentru ecranul OLED
 
-![Schematica KiCad](./schematica_kicad.jpg) 
+![Schematica KiCad](./schematica_kicad.webp) 
 
 ## Bill of Materials
 
