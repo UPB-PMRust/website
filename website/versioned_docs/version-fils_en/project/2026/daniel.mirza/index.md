@@ -56,20 +56,47 @@ Each game action is serialized into a `NetworkMessage` and sent to the opponent.
 
 ```mermaid
 graph TD
-    subgraph "Handheld Unit (x2)"
+    subgraph "Handheld Unit x2"
 
-    MCU["STM32U545RE Nucleo"]
-    DISP["4.0 Inch ST7796S Display"]
-    TOUCH["XPT2046 Touch"]
-    RADIO["NRF24L01+ Radio"]
-    BUZZ["Passive Buzzer"]
-    BTNS["Action Buttons"]
-    
-    MCU -->|SPI Bus| DISP
-    MCU -->|SPI Bus| TOUCH
-    MCU -->|SPI Bus| RADIO
-    MCU -->|PWM| BUZZ
-    BTNS -->|GPIO Interrupts| MCU
+        subgraph "Power Management"
+            BATT["3.7V LiPo Battery"]
+            TP4056["TP4056 Charger USB-C"]
+            LATCH["P-MOSFET Auto-Power Latch"]
+            REG["Buck-Boost Converter 3.3V"]
+
+            BATT <--> TP4056
+            TP4056 --> LATCH
+            LATCH --> REG
+        end
+
+        subgraph "Core & Peripherals"
+            MCU["STM32U545RE Nucleo"]
+            DISP["4.0 Inch ST7796S Display"]
+            TOUCH["XPT2046 Touch"]
+            RADIO["NRF24L01+ Radio"]
+            BUZZ["Passive Buzzer"]
+            BTNS["Action Buttons"]
+            LEDS["Status & Game LEDs"]
+        end
+
+        %% Power Routing
+        REG == +3V3 Power ==> MCU
+        REG -. +3V3 Power .-> DISP
+        REG -. +3V3 Power .-> RADIO
+
+        %% Data Routing
+        MCU -->|SPI Bus| DISP
+        MCU -->|SPI Bus| TOUCH
+        MCU -->|SPI Bus| RADIO
+        
+        MCU -->|PWM| BUZZ
+        MCU -->|GPIO| LEDS
+        BTNS -->|GPIO Interrupts| MCU
+        
+        %% The Latch Control
+        MCU -->|GPIO Keep-Alive| LATCH
+        BTNS -. Physical Power Button .-> LATCH
+
     end
     
     RADIO <-->|2.4GHz Wireless| RADIO2["Opponent Device"]
@@ -90,12 +117,21 @@ graph TD
 - Set up the Cargo workspace with `game-core`, `simulator`, and `embassy-app` crates
 - Implemented the `grid.rs`, `ship.rs`, and `state.rs` (in `game-core`)
 - Received the ordered TFT modules
-- Ordered two NUCLEO-U545RE-Q boards
+- Ordered two NUCLEO-U545RE-Q boards and the NRF24L01+ modules
 - Passed the Documentation Milestone
 
 ### Week 10 - 11
 
-- _to be continued..._
+- Received the other ordered components
+- Learned to use KiCad Software by reading and watching tutorials
+- Started to work on KiCAD for the PCB
+- Finished the hardware prototype using breadboards and jumpers
+- Completed the KiCad schematic
+- Assigned and generated new footprints for KiCAD components
+- Completed the mecanical placement and layout of the PCB
+- Ordered and unpacked the last components needed
+- Completed the rouding on the PCB
+- Passed the Hardware Milestone
 
 ### Week 12 - 13
 
@@ -114,21 +150,43 @@ Each player's device consists of:
 
 ### Schematics
 
-_KiCAD schematic to be uploaded later..._
+#### 1. Schematic Design
+
+The schematic integrates the STM32 Nucleo, nRF24L01+ transceiver, SPI TFT Display, and a custom P-Channel MOSFET auto-power latch circuit for battery management.
+
+![System Schematic](./images/schematic.svg)
+*Figure 1: Full system schematic including power management, MCU, and peripherals.*
+
+#### 2. PCB Layout and Routing (2D)
+
+The board has been floorplanned to accommodate a comfortable handheld form factor. Critical components (like the nRF24 decoupling capacitors) have been placed as close to their target pins as possible.
+
+![2D PCB Routing](./images/pcb_2d.svg)
+*Figure 2: Current 2-layer copper routing (Front: Red, Back: Blue).*
+
+#### 3. 3D Render
+
+This is the physical representation of the board, which will be used to design the 3D-printed enclosure. 
+
+![3D PCB Render - Front](./images/pcb_3d_f.webp)
+![3D PCB Render - Back](./images/pcb_3d_b.webp)
+*Figure 3: 3D visualization of the assembled PCB (front and back).*
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32U545RE Nucleo-64](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&countryCode=RO&currencyCode=RON) | Main microcontroller board (×2) | 130 RON × 2 |
-| [4.0" TFT LCD ST7796S 320×480](https://www.amazon.es/-/en/gp/product/B0CQ87KN3Q/ref=ox_sc_act_title_1?smid=A3E5QOOXTLF93M&th=1) | Touchscreen display (×2) | 130 RON × 2 |
-| NRF24L01+ module* | 2.4GHz wireless link (×2) | __ RON × 2 |
-| Passive buzzer* | Audio feedback (×2) | __ RON × 2 |
-| Tactile push buttons* | Navigation + action input (×2 sets) | __ RON × 2 |
-| Jumper wires + breadboard | Prototyping connections | ~30 RON |
-| **Total (estimated)** | | **~~ 550 RON** |
-
-_*to be ordered..._
+| [STM32U545RE Nucleo-64](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html#overview) | Main microcontroller board (×2) | [130 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&countryCode=RO&currencyCode=RON) × 2 |
+| [4.0" TFT LCD ST7796S 320×480](https://www.lcdwiki.com/4.0inch_SPI_Module_ST7796) | Touchscreen display (×2) | [130 RON](https://www.amazon.es/-/en/gp/product/B0CQ87KN3Q/ref=ox_sc_act_title_1?smid=A3E5QOOXTLF93M&th=1) × 2 |
+| [NRF24L01+ module](https://www.handsontec.com/dataspecs/module/NRF24L01+.pdf) | 2.4GHz wireless link (×2) | [7 RON](https://www.optimusdigital.ro/ro/ism-24-ghz/48-modul-tranceiver-nrf24l01-24-ghz.html?search_query=NRF24L01++module&results=5) × 2 |
+| [TP4056 Charger module]() | Charger module (x2) | [4 Ron](https://www.optimusdigital.ro/ro/electronica-de-putere-incarcatoare/7534-incarcator-tp4056-cu-micro-usb-pt-baterie-lipo-1a-cu-protectie-pentru-circuite.html?search_query=TP4056+&results=4) × 2 |
+| [Buck-Boost 3V3]() | Constant and regulated 3.3V voltage (x2) | [15 Ron](https://www.emag.ro/convertor-buck-boost-elektroweb-3v-15v-la-3-3v-rosu-3-h-051/pd/D8HNPBYBM/) × 2 |
+| [Tantalum Capacitors]() | Help the radio transmission | [4 RON]() × 6 |
+| [LEDs]() | Illumination + feedback | [4 Ron](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/11629-led-portocaliu-0603.html?search_query=0104110000072290&results=1) × 3 |
+| [Resisistors]() | Leds and power management | [20 RON](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/638-set-de-rezistoare-smd-0805.html?search_query=0104110000003560&results=1) |
+| [Push buttons]() | Navigation + action input (×2 sets) | [0.36 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1119-6x6x6-push-button.html?search_query=button&results=379) × 20 |
+| [Jumper wires]() + [breadboard](https://www.optimusdigital.ro/en/breadboards/13244-breadboard-175-x-67-x-9-mm.html) | Prototyping connections | [~12 RON]() |
+| **Total (estimated)** | | **~ 650 RON** |
 
 ## Software
 
