@@ -23,7 +23,7 @@ I chose this project because of a deep conviction that mood and mental well-bein
 <!--Add here the schematics with the architecture of your project. Make sure to include:
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other-->
-![SchemaBlock](./arhitectura.svg)
+![SchemaBloc](./arhitectura.svg)
 
 ### Components and Interconnection
 The Digital Fairy Companion is structured into three primary functional modules that work in tandem to create an interactive experience:
@@ -53,11 +53,15 @@ I wrote the initial documentation.
 
 ### Week 5 - 11 May
 
+This week, I focused on the hardware assembly of the project. I successfully soldered the components onto the pins using a soldering iron and solder, ensuring reliable electrical connections. Additionally, I purchased a speaker to complete the audio subsystem for the device.
+
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
 
 ## Hardware
+
+![SchemaHardware](./Digital_Fairy_Hardware.svg)
 
 Each component was selected to balance high performance with the low-power requirements of an always-on companion device:
 * **Microcontroller (MCU)**
