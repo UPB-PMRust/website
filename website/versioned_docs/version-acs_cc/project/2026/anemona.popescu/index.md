@@ -1,5 +1,11 @@
 # **Unitate de Monitorizare a Mediului cu Autonomie Solara**
--------------------------------------------------------------
+
+:::info
+*Author:* Anemona Georgia Popescu
+*GitHub Project Link:* [anemona.popescu/website](https://github.com/ds2mon/website/tree/project/anemona.popescu)
+:::
+
+---
 
 ## Descriere
 Proiectul implementeaza un sistem embedded fiabil pe microcontroller-ul **STM32U545RE-Q**, progrmat in Rust. Sistemul colecteaza date in timp real de la senzori de vant, umiditate, index UV, altitudine, presiune barometrica. Dispozitivul asigura functionare autonoma prin alimentare solara, integrand un circuit de incarcare si acumulator Li-Ion. Datele sunt afisate local pe un display si transmise prin interfata seriala catre PC. Sistemul include un mecanism de siguranta prin alertare sonora PWM, declansat automat la depasirea pragurilor critice de umiditate sau presiune.
