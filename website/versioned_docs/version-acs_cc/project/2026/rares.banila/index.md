@@ -51,7 +51,7 @@ By placing precision passives (1% resistors and C0G capacitors) in the negative 
 
 ### Schematics
 
-![Schematics](./images/schematics.svg)
+![Schematics](./images/schematics.webp)
 
 ### Bill of Materials
 
