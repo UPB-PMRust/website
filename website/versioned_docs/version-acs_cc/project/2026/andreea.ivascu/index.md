@@ -23,7 +23,7 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 
 **Processing**: The STM32 Nucleo-U545RE-Q handles all logic and signal generation. It connects to a PC via USB-C for flashing and debugging using ST-LINK/V3.
 
-**Power Management**: A 9V 5A adapter feeds an XL4015 step-down converter which provides a stable 5V rail for servo power, and an AMS1117 regulator which provides 3.3V for the STM32 and digital logic.
+**Power Management**: A 5V powerbank serves as the primary power source, directly supplying the 5V rail for the servo motors through the PCA9685 driver. The STM32 microcontroller is also powered by the same source, utilizing its onboard voltage regulator to convert the 5V input into a stable 3.3V for the digital logic.
 
 **Communications**:
 - *I2C*: Used between the STM32 and the PCA9685 PWM driver for servo control commands.
@@ -55,6 +55,8 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 - Ordered all hardware components
 
 ### Week 4 - 8 May
+- Tested all the components to ensure they are working
+- Created first drafts for the TeddyBot
 
 ### Week 12 - 18 May
 
@@ -64,7 +66,10 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 
 The hardware centers on an STM32 microcontroller that orchestrates servo motors via an I2C PWM for movement, an MP3 module for audio, an LED for a heartbeat effect and a wired button console for user control.
 
+![Hardware](hardware_test.webp)
+
 ### Schematics
+![Schematics](schematics_pm.webp)
 
 
 ### Bill of Materials
