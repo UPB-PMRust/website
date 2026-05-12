@@ -80,7 +80,7 @@ The main brain of the project is the STM32 Nucleo-U545RE-Q microcontroller provi
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Diagram](images/schematics.webp)
 
 ### Bill of Materials
 
