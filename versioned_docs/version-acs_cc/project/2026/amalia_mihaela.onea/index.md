@@ -2,11 +2,11 @@
 
 An electronic chess board that autonomously moves pieces using an XY electromagnetic system, detects piece positions with Hall sensors, displays legal moves with LEDs, and shows a timer on LCD.
 
-:::info
+
 
 **Author:** Onea Amalia-Mihaela  \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-AmaliaOnea
-:::
+
 
 ## Description
 
