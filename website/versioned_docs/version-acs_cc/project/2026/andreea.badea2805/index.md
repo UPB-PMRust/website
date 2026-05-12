@@ -37,7 +37,7 @@ Input system: RC522 RFID module for scanning the access card.
 
 Indicators: RGB LED module and an active buzzer (for alarms).
 
-![SchemaBlock](./schemaPM.svg)
+![SchemaBlock](./schemabloc.svg)
 
 ## Log
 
@@ -55,7 +55,7 @@ The system is built around the STM32 Nucleo-U545RE-Q microcontroller. The sensor
 
 ### Schematics
 
-![Schematics](./smartHome_schema.svg)
+![Schematics](./smarthome_schema.svg)
 
 ### Bill of Materials
 
