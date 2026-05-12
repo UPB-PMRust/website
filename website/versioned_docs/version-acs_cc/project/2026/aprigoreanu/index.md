@@ -1,5 +1,5 @@
-# Braille E-Reader
-An e-reader for Braille alphabet
+# Braille Display
+A mini e-reader for Braille alphabet
 :::info 
 
 **Author**: Alexandra Prigoreanu\
@@ -19,6 +19,8 @@ Over the last 20 years, E-readers have become a practical solution to encourage 
 
 ## Architecture
 
+![Architecture Diagram](./schematics/pm_diagram.drawio.svg)
+
 ### Software achitecture:
 Software will be written in Rust, using Embassy. The main logic components are:
 - input: read button input (next / previous page logic), read data source (from SD card)
@@ -32,6 +34,8 @@ Software will be written in Rust, using Embassy. The main logic components are:
 Researched mechanical solutions for Braille pins
 
 ### Week 5 - 11 May
+- Purchased components
+- Built the circuit
 
 ### Week 12 - 18 May
 
@@ -42,25 +46,31 @@ Researched mechanical solutions for Braille pins
 <!-- Detail in a few words the hardware used. -->
 ### Hardware Components:
 - microcontroller: STM32 Nucleo-U545RE-Q with ARM Cortex-M33 core
-- input system: SD card, user input buttons (next / previous page)
-- actuation system: 6 actuators per Braille letter
-- power system: 5V external supply, 3.3V MCU supply
+- input system: SD card (and a SD card module for communication with the MCU), user input buttons (next / previous page)
+- LCD display: displays the character currently shown on the Braille display for easy testing
+- actuation system: 6 push-pull solenoids per Braille letter
+- power system: 12V external supply for powering the solenoids
 
 ### Schematics
-Work in progress
 <!-- Place your KiCAD or similar schematics here in SVG format. -->
+![Schematic Diagram](./schematics/pm_schematics.webp)
 
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
+| [Device](link://to/device) | This is used ... | [price](link://to/store) | -->
+| Device | Usage | Price |
+|--------|--------|-------|
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/resource/en/data_brief/nucleo-c031c6.pdf) | Microcontroller | [Provided by university](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&utm_id=6470900573&utm_source=google&utm_medium=cpc&utm_marketing_tactic=emeacorp&gad_source=1&gad_campaignid=6470900573&gbraid=0AAAAADn_wf043yhXebcoAqw1Iff8pYQm8&gclid=CjwKCAjwn4vQBhBsEiwAq3hhN_h0Pu1D5L2QilgHGkEgC0pYCNrOPTKM_4GwgZndlKvavfXNY44vDBoCf8MQAvD_BwE) |
+|[12V Push Pull Solenoids](link://to/device) | The actuation system for raising and lowering the Braille pins | [6x24 RON](https://sigmanortec.ro/en/electromagnetic-piston-jf-0530b-with-solenoid-12v-push-pull) |
+|[IRLZ44NPBF N-MOSFET TRANSISTOR](https://www.tme.eu/Document/71cf1899624764088671ce6de5d15eb4/irlz44n.pdf) | Acts as a switch between the 12V power system for the solenoids and the logical control from the MCU  | [6x4.52 RON](https://www.tme.eu/ro/details/irlz44npbf/tranzistori-canal-n-tht/infineon-technologies/) |
+|[1N4007 Flyback Diode](https://www.alldatasheet.com/datasheet-pdf/view/14624/PANJIT/1N4007.html) | Protects the MCU from higher current coming from 12V power supply  | [6x4.52 RON](https://www.optimusdigital.ro/en/diodes/7457-dioda-1n4007.html?gad_source=1&gad_campaignid=19615979487&gbraid=0AAAAADv-p3BnFuc6ibFlpEHe_cuA18OsU&gclid=CjwKCAjwn4vQBhBsEiwAq3hhNxS2gEkTvwjruVyPiq5TcYVGZN2fPa5pg4qdPRYverdqT5pWP5pvghoCgqUQAvD_BwE) |
+|[External Power Supply](link://to/device) | Provides external power to the 6 solenoids | [37 RON](https://www.emag.ro/sursa-alimentare-12v-3a-36w-dc-5-5x2-5mm-jfgtew-psu-12v-3a/pd/DKSWQD2BM/?ref=history-shopping_487342570_156063_1) |\
+| [MicroSD Module](link://to/device) | Bridges communication over I2C between MCU and microSD card | [4.38 RON](https://sigmanortec.ro/en/microsd-module) |
+| [LCD Screen]() | Displays the same character on screen for as the one on the Braille display | [≈23 RON](l) |
+| [Breadboard]() | Links components | [         -        ]() |
 
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
-```
-
--->
 <!-- 
 | Device | Usage | Price |
 |--------|--------|-------|
