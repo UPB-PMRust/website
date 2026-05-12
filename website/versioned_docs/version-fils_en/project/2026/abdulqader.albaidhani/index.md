@@ -1,5 +1,6 @@
-# Project Name
-Sonar using ToF Distance Sensors 
+# Sonar using ToF Distance Sensors
+
+A Sonar using ToF Distance Sensors to detect foreign objects and deliver geographical information
 
 :::info 
 
@@ -105,4 +106,4 @@ The format is
 
 1. [Visual of a Sonar](https://www.teledynemarine.com/products/product-line/sonar)
 2. [Different types of Sonars](https://www.deeptrekker.com/news/sonar-systems)
-...
+
