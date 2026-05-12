@@ -98,7 +98,7 @@ The format is
 |--------|--------|-------|
 | [STM32 Nucleo U545RE-Q] | The microcontroller | [110 RON](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&utm_id=6470900573&utm_source=google&utm_medium=cpc&utm_marketing_tactic=emeacorp&gad_source=1&gad_campaignid=6470900573&gbraid=0AAAAADn_wf0GICp7OV9wICGSd4JiEPUkg&gclid=CjwKCAjwzLHPBhBTEiwABaLsSpfYEy1LvXzJXlwQr9pTOutAzfZ2l9gvivkogoet7YjGyN21xj5GexoCsvcQAvD_BwE) |
 | [Chassis Kit] | The base for the robot | [48.40 RON](https://sigmanortec.ro/Kit-Sasiu-Smart-Car-2WD-p141489122) |
-| [HC-SR04 Ultrasonic Sensor] x2 | Used for user and obstacle detection | [16.26 RON](https://sigmanortec.ro/Kit-Sasiu-Smart-Car-2WD-p141489122) |
+| [HC-SR04 Ultrasonic Sensor] x2 | Used for user and obstacle detection | [16.26 RON](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) |
 | [L298N Motor Driver] | Used to control the motors | [10.84 RON](https://sigmanortec.ro/Punte-H-Dubla-L298N-p125423236) |
 | [Passive Buzzer] | Used for the alarm sound | [1.45 RON](https://sigmanortec.ro/Buzzer-pasiv-5v-p172425809) |
 | [LEDs] x3 | Used before the alarm starts to indicate the time left until the alarm goes off | [0.30 RON](https://sigmanortec.ro/led-5mm-rosu) | 
