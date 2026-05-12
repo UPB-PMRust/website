@@ -102,21 +102,23 @@ The format is
 
 | Device | Usage | Price |
 |--------|-------|-------|
-| ILI9341 2.4" LCD with Touch and SD Slot | Display for pixel-art animations and SD card storage | 66,99 RON |
-| TCS34725 Color Recognition Sensor | Detects ambient colors for state transitions | 19,99 RON |
-| GY-521 MPU-6050 Gyroscope + Accelerometer | Motion and rhythm detection | 24,19 RON |
-| PAM8403 Class D Audio Amplifier Module | Drives the speaker for audio feedback | 5,99 RON |
-| High Sensitivity Microphone Sound Sensor Module | Detects ambient sound levels | 13,92 RON |
-| WS2812 RGB5050 LED Module | Status-based ambient lighting | 3,99 RON |
-| LM393 Photodiode Sensor Module | Detects ambient light intensity | 3,65 RON |
-| TTP223 Capacitive Touch Sensor | Touch/petting interaction interface | 1,98 RON |
-| MB102 830-Point Breadboard | Prototyping platform | 13,99 RON |
-| 40x Dupont Wires Male-Female 20cm | Connecting modules to microcontroller | 6,99 RON |
-| 40x Dupont Wires Male-Male 20cm | Breadboard connections | 8,99 RON |
-| Mini Speaker 1W 8Ω | Audio output | ? RON |
+| [ILI9341 2.4" LCD with Touch and SD Slot](https://www.bitmi.ro/ecran-lcd-ili9341-cu-touch-si-slot-pentru-card-sd-2-4-10797-bitmi-ro.html?gad_source=1&gad_campaignid=22990790771&gclid=Cj0KCQjwm6POBhCrARIsAIG58CI9J_OjbqLsP55WVXLVXK4t0tbIUI6HwqQBbrRAZelJB7tnRIu_BBwaAl8tEALw_wcB) | Display for pixel-art animations and SD card storage | [66,99 RON](https://www.bitmi.ro) |
+| [TCS34725 Color Recognition Sensor](https://www.bitmi.ro/senzor-de-recunoastere-culorilor-tcs34725-11528.html?gad_source=1&gad_campaignid=21312430054&gclid=Cj0KCQjwm6POBhCrARIsAIG58CKA59ezjv7EMOcSnebIJfpuMzCeV7eYwOhPFfXKTtjKoG95O3QhUHIaAs4fEALw_wcB) | Detects ambient colors for state transitions | [19,99 RON](https://www.bitmi.ro) |
+| [GY-521 MPU-6050 Gyroscope + Accelerometer](https://www.bitmi.ro/modul-giroscop-accelerometru-pe-3-axe-gy-521-11022.html?gad_source=1&gad_campaignid=22991722025&gclid=Cj0KCQjwm6POBhCrARIsAIG58CLV1czH8KcB0ugE427ynmQnYKl73YCqR8sPsFia3oSTV-r8sD_R5LIaAvUKEALw_wcB) | Motion and rhythm detection | [24,19 RON](https://www.bitmi.ro) |
+| [PAM8403 Class D Audio Amplifier Module](https://www.bitmi.ro/modul-amplificator-audio-clasa-d-2x3w-dc-5v-pam8403-10764.html) | Drives the speaker for audio feedback | [5,99 RON](https://www.bitmi.ro) |
+| [High Sensitivity Microphone Sound Sensor Module](https://www.bitmi.ro/modul-senzor-sunet-cu-microfon-sensibilitate-ridicata-iesire-analogica-11248.html?gad_source=1&gad_campaignid=21312430054&gclid=Cj0KCQjwm6POBhCrARIsAIG58CKOXY7KbNqWNDGkSCjvKiWgJLeFwFiP5H9MZ4EDyVmPl2ZfKPiSrCIaAh34EALw_wcB) | Detects ambient sound levels | [13,92 RON](https://www.bitmi.ro) |
+| [WS2812 RGB5050 LED Module](https://www.bitmi.ro/modul-led-rgb5050-ws2812-10402.html) | Status-based ambient lighting | [3,99 RON](https://www.bitmi.ro) |
+| [LM393 Photodiode Sensor Module](https://www.bitmi.ro/senzori-electronici/modul-senzor-cu-fotodioda-lm393-10524.html) | Detects ambient light intensity | [3,65 RON](https://www.bitmi.ro) |
+| [TTP223 Capacitive Touch Sensor](https://www.bitmi.ro/senzor-touch-capacitiv-ttp223-10993.html?gad_source=1&gad_campaignid=22991722025&gclid=Cj0KCQjwm6POBhCrARIsAIG58CJL3fHTJQgAh4WWhmBka0jOd8Hln5wbZWOXjDbRidbKQH-Fw2FF9ZcaAlqQEALw_wcB) | Touch/petting interaction interface | [1,98 RON](https://www.bitmi.ro) |
+| [MB102 830-Point Breadboard](https://www.bitmi.ro/componente-electronice/breadboard-830-puncte-mb-102-10500.html) | Prototyping platform | [13,99 RON](https://www.bitmi.ro) |
+| [400-Point Breadboard](https://www.bitmi.ro/electronica/breadboard-400-puncte-pentru-montaje-electronice-rapide-10633.html) | Buttons platform | [6,99 RON](https://www.bitmi.ro) |
+| [40x Dupont Wires Male-Female 20cm](https://www.bitmi.ro/electronica/40-x-fire-dupont-tata-mama-20cm-10512.html) | Connecting modules to microcontroller | [6,99 RON](https://www.bitmi.ro) |
+| [40x Dupont Wires Male-Male 20cm](https://www.bitmi.ro/electronica/40-x-fire-dupont-tata-tata-20cm-10511.html) | Breadboard connections | [8,99 RON](https://www.bitmi.ro) |
+| [40x Dupont Wires Female-Female 30cm](https://www.bitmi.ro/electronica/40-fire-dupont-mama-mama-30cm-10503.html) | Breadboard connections | [6,99 RON](https://www.bitmi.ro) |
+| Mini Speaker 1W 8Ω | Audio output | 18 RON |
 | MicroSD Card | Storing graphical frames and audio clips | ? RON |
 | Tactile Push Button 6x6mm | Reset and color detection triggers | 0.65 RON x 3 |
-| 1x40 Pin Header 2.54mm | Connecting PAM8403 to breadboard | ? RON |
+| 1x40 Pin Header 2.54mm | Connecting PAM8403 to breadboard | 2 RON |
 | NUCLEO-U545RE-Q | Main microcontroller running the FSM logic | - RON |
 
 
