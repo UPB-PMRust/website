@@ -84,19 +84,27 @@ HC-06 Bluetooth module connected to STM32 via UART. Bidirectional: laptop sends 
 <!-- write your progress here every week -->
 
 ### Week 6 - 12 Apr
-Ordered all of the components needed.
+Ordered most of the components needed.
 
 ### Week 13 - 19 Apr
 Assembled the mechanical parts (wheels, motors, car platform).
 
 ### Week 20 - 26 Apr
 Working on the Schematic in KiCad.
+Tested individual components: bluetooth module, display, motors, distance sensors, LM393 speed sensors.
 
 ### Week 27 Apr - 3 May
+Ordered Li-Ion Samsung 18650 3.6V 3450mAh 8A batteries, a charger for the batteries,
+more male-female and female-female jumpers and a smaller breadboard (400 points).
 
 ### Week 4 - 10 May
+Soldered IMU and OLED display in the lab.
+Assembled final product.
+Started to write the software for the cargobot and tested it carrying another car.
+The HC-SR04 sensors are not so precise as the car sometimes crashes into walls if driven into.
 
 ### Week 11 - 17 May
+
 
 ## Hardware
 
@@ -104,7 +112,9 @@ The robot is built on a 4WD chassis with 4 DC motors (3–6V) driven through an 
 
 ### Schematics
 
-Place your KiCAD schematics here in SVG format.
+<!-- Place your KiCAD schematics here in SVG format. -->
+KiCad Schematic:
+![KiCad Schematic](PM_PROJECT.svg)
 
 
 
@@ -121,9 +131,12 @@ Place your KiCAD schematics here in SVG format.
 | [OLED SSD1306 0.96" I2C](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) | On-board display, shows RPM, tilt, obstacle distance, state, load level (I2C, 0x3C) | [14.01 RON](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) |
 | [2x HC-SR04 Ultrasonic Sensor](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) x2 | Obstacle detection, front and rear, GPIO trigger/echo | [18.80 RON](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) |
 | [18650 Battery Holder 2S](https://sigmanortec.ro/suport-acumulatori-18650-2s) | Holds 2x 18650 cells in series, 7.4V output for L298N and STM32 | [5.74 RON](https://sigmanortec.ro/suport-acumulatori-18650-2s) |
-| Passive Buzzer | Horn and audio feedback via PWM | 0 RON (owned) |
+| [2x Li-Ion Samsung 18650 3.6V 3450mAh 8A](https://www.emag.ro/acumulator-li-ion-samsung-18650-3-6v-3450mah-8a-cu-borne-joase-si-fara-bms-model-inr18650-35e-3450ma-lincr18650-35e/pd/DWVV74MBM/) | Batteries to provide voltage for the motors and for the board | [63 RON](https://www.emag.ro/acumulator-li-ion-samsung-18650-3-6v-3450mah-8a-cu-borne-joase-si-fara-bms-model-inr18650-35e-3450ma-lincr18650-35e/pd/DWVV74MBM/) |
+| [Battery charger](https://www.emag.ro/incarcator-dublu-pentru-acumulator-baterie-reincarcabila-4-2v-1000ma-li-ion-ultrafire-18650-10440-14500-16340-17335-17500-17670-18500-0201/pd/DMG7FVBBM/) | Charges the Li-ion batteries | [35 RON](https://www.emag.ro/incarcator-dublu-pentru-acumulator-baterie-reincarcabila-4-2v-1000ma-li-ion-ultrafire-18650-10440-14500-16340-17335-17500-17670-18500-0201/pd/DMG7FVBBM/) |
 | 3x LED (red/yellow/green) + resistors | Visual motor effort indicator | 0 RON (owned) |
-| Breadboard + jumper wires | For connections | 0 RON (owned) |
+| [Female-Female jumper wires](https://sigmanortec.ro/40-fire-Dupont-10cm-Mama-Mama-p129872525) | Wires for connections | [7.73 RON](https://sigmanortec.ro/40-fire-Dupont-10cm-Mama-Mama-p129872525) |
+| [Male-Female jumper wires](https://sigmanortec.ro/40-fire-Dupont-10cm-Tata-Mama-p210855157) | Wires for connections | [7.73 RON](https://sigmanortec.ro/40-fire-Dupont-10cm-Tata-Mama-p210855157) |
+| Male-Male jumper wires | Wires for connections | 0 RON (owned) |
 
 ## Software
 
