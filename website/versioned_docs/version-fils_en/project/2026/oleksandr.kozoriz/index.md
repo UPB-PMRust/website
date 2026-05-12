@@ -100,7 +100,9 @@ I took a stack of 10 lei banknotes and decided that it is time for the first ben
 | 9 | 130 |
 | 10 | 130 |
 
-There are no cases where the outuput is greater then 150, meaning that false triggers do not occur anymore. Therefore I consider EMI to be defeated by now, and for the rest of the values, the error is coming from the double feed. 
+There are no cases where the outuput is greater then 150, meaning that false triggers do not occur anymore. Therefore I consider EMI to be defeated by now, and for the rest of the values, the error is coming from the double feed.
+
+For the double feed, I glued up 3 sponges on the slit: 2 with insulating strip underneath for straightening the banknotes, and one with a toothpick sticked into it, acting as adjustable physical gate. After playing around with the toothpick and calibrating the debouncing configuration it works percise enough for now.
 
 ### Week 13
 To be continued...
@@ -169,6 +171,7 @@ The format is
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for resource-constrained devices | Debug & Logging |
 | [defmt-rtt](https://github.com/knurling-rs/defmt) | defmt log messages over the RTT protocol | Debug & Logging |
 | [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler that exits with an error code | Addressing errors |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Low level access to Cortex-M processors | Embassy dependency |
 | [cortex-m-rt](https://github.com/rust-embedded/cortex-m) | Minimal runtime / startup for Cortex-M microcontrollers | Embassy dependency |
 | [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | Driver HD44780 compliant displays | Displaying the output |
 | [heapless](https://github.com/rust-embedded/heapless) | `static` friendly data structures that don't require dynamic memory allocation | Displaying strings on the LCD properly |
@@ -178,7 +181,5 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Currency-counting machine](https://en.wikipedia.org/wiki/Currency-counting_machine)
-2. [Elecromagnetic interference](https://en.wikipedia.org/wiki/Electromagnetic_interference)
-3. [Twisted pair](https://en.wikipedia.org/wiki/Twisted_pair)
-4. [The Rust Book](https://doc.rust-lang.org/stable/book/index.html)
-5. [Embassy](https://embassy.dev/)
+2. [The Rust Book](https://doc.rust-lang.org/stable/book/index.html)
+3. [Embassy](https://embassy.dev/)
