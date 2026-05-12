@@ -28,7 +28,7 @@ The idea came to me because I have previously studied architecture and have alwa
 
 ## Architecture 
 
-![Diagram](./images/diagram.svg)
+![Diagram](./images/Diagram.svg)
 
 ## Log
 
