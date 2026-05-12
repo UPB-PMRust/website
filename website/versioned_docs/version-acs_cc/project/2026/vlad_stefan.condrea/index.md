@@ -24,7 +24,7 @@ The Nucleo board processes the sensor data to determine if a target is present. 
 
 Power management is critical: a 7.4V LiPo battery supplies raw power to the motor driver for the DC motors. In parallel, the battery connects to an LM2596 Step-Down converter, which drops the voltage to a stable 5V to safely power the STM32 board, the HC-SR04 sensor, and the servo motors without frying them.
 
-![Architecture Diagram](images/turret.svg)
+![Architecture Diagram](images/architecture.svg)
 
 ## Log
 
