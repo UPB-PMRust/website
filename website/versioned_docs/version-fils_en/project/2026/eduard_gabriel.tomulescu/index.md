@@ -76,9 +76,15 @@ I am also trying to balance both the mechanical and software parts of the projec
 
 The hardware setup includes an STM32 microcontroller, multiple servo motors, potentiometers, and basic prototyping components such as a breadboard and jumper wires.
 
+## Photos 
+
+![Prototype](photo1.webp)
+![Prototype](photo2.webp)
+![Prototype](photo.webp)
+
 ### Schematics
 
-(To be added)
+![Schematic](schematics.svg)
 
 ### Bill of Materials
 
