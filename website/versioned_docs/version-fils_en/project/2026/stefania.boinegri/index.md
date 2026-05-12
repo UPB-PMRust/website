@@ -42,7 +42,7 @@ The project uses the STM32 Nucleo-U545RE-Q as the microcontroller to process inp
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Block Diagram](./aeroglove_diagram.svg)
 
 ### Bill of Materials
 
