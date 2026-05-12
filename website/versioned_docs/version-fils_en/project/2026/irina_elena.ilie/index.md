@@ -30,7 +30,7 @@ Connections:
 - The microcontroller processes the input signals
 - Based on the processed data, it controls the servo motors and the display
 
-![Architecture Diagram](./diagram.svg)
+![Architecture Diagram](./ilie_irina.svg)
 
 ## Log
 
