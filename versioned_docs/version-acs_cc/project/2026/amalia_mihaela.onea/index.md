@@ -4,9 +4,8 @@ An electronic chess board that autonomously moves pieces using an XY electromagn
 
 :::info
 
-**Author:** Onea Amalia-Mihaela  
+**Author:** Onea Amalia-Mihaela  \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-AmaliaOnea
-
 :::
 
 ## Description
