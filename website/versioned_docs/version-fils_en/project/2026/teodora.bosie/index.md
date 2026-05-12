@@ -37,7 +37,7 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![KICAD Scheme](images/kicad_scheme.webp)
 
 ### Bill of Materials
 
