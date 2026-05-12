@@ -53,7 +53,7 @@ The system architecture is divided into two main hardware-software modules:
 The hardware architecture features two STM32 Nucleo-U545RE-Q boards configured in a Master-Slave setup for synchronized control. The Remote Controller acts as the Master, reading analog joystick positions via ADC and transmitting serial commands through an HC-05 Bluetooth module. The Mobile Car serves as the Slave, parsing UART strings to drive two DC motors via an L298N H-Bridge using PWM signals. Additionally, the system integrates an SG90 servomotor to sweep a VL53L0X ToF sensor for distance monitoring, providing real-time visual feedback on an SSD1306 OLED display via the I2C bus.
 
 ### Schematics
-![Circuit Schematics](./schematic1.svg)
+![Circuit Schematics](./schema_proiect.svg)
 
 ### Bill of Materials
 
