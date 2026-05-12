@@ -50,7 +50,7 @@ Main Architectural Components:
    - Components: 3x LEDs.
    - Logic: The LEDs light up in sequence to indicate the time left until the alarm is triggered.
 
-![Architecture Diagram](./images/diagramapm_update.drawio.svg)
+![Architecture Diagram](./images/diagramapm.webp)
 
 ## Log
 
@@ -101,8 +101,8 @@ The format is
 | [HC-SR04 Ultrasonic Sensor] x2 | Used for user and obstacle detection | [16.26 RON](https://sigmanortec.ro/Kit-Sasiu-Smart-Car-2WD-p141489122) |
 | [L298N Motor Driver] | Used to control the motors | [10.84 RON](https://sigmanortec.ro/Punte-H-Dubla-L298N-p125423236) |
 | [Passive Buzzer] | Used for the alarm sound | [1.45 RON](https://sigmanortec.ro/Buzzer-pasiv-5v-p172425809) |
-| [Leds] x3 | Used before the alarm starts to indicate the time left until the alarm goes off | [0.30 RON](https://sigmanortec.ro/led-5mm-rosu) | 
-| [Resistors 220Ω] x3 | Used for the voltage divider and to limit current to the LEDs | [0.10 RON](https://www.optimusdigital.ro/en/resistors/10958-05w-220-resistor.html?search_query=resistor+220&results=28) |
+| [LEDs] x3 | Used before the alarm starts to indicate the time left until the alarm goes off | [0.30 RON](https://sigmanortec.ro/led-5mm-rosu) | 
+| [Resistors 220Ω] x3 | Used to limit the current to the LEDs | [0.10 RON](https://www.optimusdigital.ro/en/resistors/10958-05w-220-resistor.html?search_query=resistor+220&results=28) |
 | [Resistors 2k2Ω] x2 | Used for the voltage divider | [0.10 RON](https://www.optimusdigital.ro/en/resistors/851-025w-22k-resistor.html?search_query=resistor+2k&results=221) |
 | [Resistors 5k2Ω] x2 | Used for the voltage divider | [0.10 RON](https://www.optimusdigital.ro/en/resistors/849-025w-47k-resistor.html?search_query=resistor+5k&results=221) |
 | [Infrared Receiver] | Used to stop the alarm remotely | [4.84 RON](https://sigmanortec.ro/Receptor-Infrarosu-KY-022-p136259491) |
