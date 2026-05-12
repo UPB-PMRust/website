@@ -54,7 +54,7 @@ Assembled the frame and the Y axis.
 
 ## Hardware
 
-Detail in a few words the hardware used.
+This custom 3D printer utilizes an STM32 Nucleo-U545RE-Q microcontroller as the core processing unit. The motion system features NEMA 17 stepper motors driven by ultra-silent TMC2209 modules, with axis limits detected by reliable SS-5GL2 mechanical endstops. Thermal actuation for the MK3 heated bed and MK8 extruder is safely managed by optoisolated external MOSFETs and continuously monitored by NTC 100k thermistors. To ensure signal integrity, the system employs a dual-isolated power architecture—a 5V power bank for logic circuits and a 24V 20A PSU for high-current loads. The entire setup operates independently of a PC using an SPI Micro SD Card module, with all custom signal routing soldered onto a double-sided FR4 prototype PCB.
 
 ### Schematics
 
@@ -74,9 +74,17 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
-
-
+| [STM32 NUCLEO-U545RE-Q](https://www.st.com/resource/en/data_brief/nucleo-c031c6.pdf) | Main microcontroller processing G-code and controlling the entire system | [105 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
+| [NEMA 17 Stepper Motor](https://www.alldatasheet.com/datasheet-pdf/pdf/1245674/NINGBO/17HS8401.html) | Stepper motor driving the physical movement of the axes and the extruder | [218 RON](https://www.emag.ro/motor-pas-cu-pas-nema17-pentru-imprimanta-3d-cnc-reprap-42mm-multicolor-1-w-020/pd/D83GKLMBM/?utm_source=email&utm_medium=tranzactional&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&ref_id=2102441991#specification-section) |
+| [TMC2209 Motor Driver](https://www.alldatasheet.com/datasheet-pdf/pdf/1180128/TRINAMIC/TMC2209.html) | Ultra-silent stepper driver translating MCU logic signals into motor movement | [157 RON](https://www.emag.ro/modul-driver-motor-pas-cu-pas-tmc2209-v2-0-set-de-5-bucati-2-8-a-pentru-imprimante-3d-ultra-silentios-novamart-k0079-260327-3200/pd/DZTFZ32BM/?utm_source=email&utm_medium=tranzactional&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&ref_id=2116328933) |
+| [NTC 100k Thermistor](https://fab.cba.mit.edu/classes/863.18/CBA/people/erik/reference/11_NTC-3950-100K.pdf) | Temperature sensor used to continuously monitor the hotend and heated bed | [9,7 RON](https://sigmanortec.ro/Termistor-NTC-100k-p125162185) |
+| [SS-5GL2 Mechanical Endstop](https://omronfs.omron.com/en_US/ecb/products/pdf/en-ss.pdf) | Physical microswitch used to detect the 0-position (home) of the printer's axes | [15,7 RON](https://sigmanortec.ro/Endstop-mecanic-SS-5GL2-p136284192) |
+| Micro SD Card Module | SPI storage module allowing the printer to read G-code and work standalone | [4,7 RON](https://sigmanortec.ro/Modul-card-SD-p137611367) |
+| External MOSFET Module | High-current solid-state switch used to safely route 24V power to the heaters | [41,2 RON](https://sigmanortec.ro/modul-mosfet-e-switch-control-3-12v-iesire-5-36v-cu-optoizolator) |
+| MK3 Heated Print Bed | Aluminum build plate that heats up to ensure first-layer print adhesion | [54 RON](https://www.emag.ro/incalzitor-aluminiu-pentru-imprimanta-3d-elektroweb-mk3-senzor-de-temperatura-214x214x3mm-z-003/pd/DHG9KM2BM/?ref_id=2116328933&utm_campaign=cns_confirmation_order&utm_content=cns_product_image&utm_medium=tranzactional&utm_source=email) |
+| 24V 20A Power Supply | Main power supply unit providing high-current 24V for heaters and motors | [111 RON](https://altex.ro/sursa-alimentare-profesionala-yds-24v-20a-in-comutatie-cu-carcasa-metalica-cu-ventilator-480w/cpd/68F7A90A9BF88/) |
+| FR4 Prototype PCB (7x9cm) | Double-sided board used to solder and route the custom electronic circuits | [5,8 RON](https://sigmanortec.ro/Placa-PCB-prototipare-fata-dubla-7x9cm-p125747328) |
+| MK8 Extruder Components | Mechanical assembly responsible for feeding, melting, and depositing the filament | [211 RON](https://www.skroutz.ro/s/58723451/49041-Manson-din-aluminiu-pentru-mana-stanga-24v-0-4-1-75-Extruder-unic-Mk8-40-Inalt.html) |
 
 ## Software
 
