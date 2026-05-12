@@ -25,7 +25,6 @@ Smart Bin is built around an STM32U545RE-Q Nucleo board that coordinates all sen
 2. The object falls onto the analysis platform where the following are read simultaneously:
    - humidity sensor
    - metal sensor
-   - weight sensor (object presence)
 3. Based on the readings, the microcontroller classifies the object as WET / DRY / METAL
 4. The fill level of the target container is checked (one infrared sensor per container)
 5. If the container is available: the stepper motor rotates the turntable to the correct position, the second servo releases the object
@@ -43,10 +42,10 @@ Smart Bin is built around an STM32U545RE-Q Nucleo board that coordinates all sen
 This will be updated as I continue developing the project
 
 ### Week 5 - 11 May
-TODO
+I bought the hardware components, and mapped out the pin connections. I started testing each component with simple and minimal code. 
 
 ### Week 12 - 18 May
-TODO
+I completed the initial testing for each component, and presented them to the lab assistant.
 
 ### Week 19 - 25 May
 TODO
