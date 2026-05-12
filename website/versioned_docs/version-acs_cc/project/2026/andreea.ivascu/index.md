@@ -66,7 +66,7 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 
 The hardware centers on an STM32 microcontroller that orchestrates servo motors via an I2C PWM for movement, an MP3 module for audio, an LED for a heartbeat effect and a wired button console for user control.
 
-![Hardware](hardware.webp)
+![Hardware](hardware_test.webp)
 
 ### Schematics
 ![Schematics](schematics_pm.svg)
