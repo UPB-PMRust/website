@@ -19,7 +19,7 @@ Am ales proiectul acesta pentru că mi s-a părut super interesant cum poți să
 
 ## Architecture
 
-![Diagrama Arhitectura](./architecture.svg)
+![Diagrama Arhitectura](./architecture.webp)
 
 Proiectul este structurat pe un flux de date continuu, împărțit în patru etape principale:
 
