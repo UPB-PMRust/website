@@ -3,7 +3,7 @@
 A touchless audio station that equalizes and controls music tracks using hand gestures and distance sensing.
 
 :::info
-**Author**: Mitrea Briana-Ștefania\
+**Author**: Mitrea Briana-Ștefania \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-briana1012.git
 :::
 
