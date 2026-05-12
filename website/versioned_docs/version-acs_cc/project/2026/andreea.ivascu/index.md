@@ -69,7 +69,7 @@ The hardware centers on an STM32 microcontroller that orchestrates servo motors 
 ![Hardware](hardware_test.webp)
 
 ### Schematics
-![Schematics](schematics_pm.svg)
+![Schematics](schematics_pm.webp)
 
 
 ### Bill of Materials
