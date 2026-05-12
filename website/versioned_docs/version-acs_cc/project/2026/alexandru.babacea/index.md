@@ -25,8 +25,6 @@ The system architecture comprises the following modules:
 - Actuation Module: Controls the physical movement using two Nema 17 stepper motors and a powerful electromagnet.
 - Detection Module: A grid of 64 magnetic Reed sensors read via external multiplexers, compensating for the limited GPIO pins on the microcontroller.
 
-![block_diagram](./assets/block_diagram.webp)
-
 ## Log
 
 ### Weeks March 16th - March 29th
@@ -38,22 +36,17 @@ Prepared the physical structure by cutting the V-slot aluminum profiles and the 
 ### Weeks April 13th - April 26th
 Installed the CoreXY mechanical drive system, including pulleys, timing belts, and the Nema 17 stepper motors. Developed and executed the initial test scripts to validate motor movement and control via the A4988 drivers.
 
-### Weeks April 27th - May 10th
-Finalized the physical enclosure by adding the side walls and the top playing surface complete with the chess sticker. Installed the initial piece detection matrix, wiring and validating the first two rows of reed switches through a multiplexer. Furthermore, integrated the transistor-controlled electromagnet and successfully executed the first physical test to move a piece.
-
 ## Hardware
 
 The hardware setup includes an STM32 microcontroller, 64 magnetic Reed sensors for piece detection, two Nema 17 stepper motors for the CoreXY movement and a 12V electromagnet to physically drag the pieces.
 
 ### Schematics
 
-![block_diagram](./assets/schematics.webp)
+![block_diagram](./assets/block_diagram.webp)
 
-### Photos
+### Photo
 
-| Frame | Components |
-| :---: | :---: |
-| ![frame_photo](./assets/frame_photo.webp) | ![components_photo](./assets/components_inside_box.webp) |
+![frame_photo](./assets/frame_photo.webp)
 
 ### Bill of Materials
 
