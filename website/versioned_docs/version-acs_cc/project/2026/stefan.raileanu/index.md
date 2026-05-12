@@ -5,7 +5,7 @@ A standalone two-deck DJ controller running on the STM32U5, written in Rust.
 :::info
 
 **Author**: Stefan Răileanu \
-**GitHub Project Link**: link_to_github
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/acs-project-2026-raylaj23)
 
 :::
 
@@ -70,6 +70,7 @@ amplifier to the headphones (used by the DJ to prepare the next transition).
 * Completed the documentation and ordered the hardware parts
 
 ### Week 28 April - 4 May
+* Connected all the parts to stm
 
 ### Week 5 - 11 May
 
@@ -95,7 +96,7 @@ in play mode and the file list in browse mode.
 
 ### Schematics
 
-To Do: KiCAD schematics to be added here in SVG format for hardware ddl.
+![Schematics](images/Dj_Controller.svg)
 
 ### Bill of Materials
 
