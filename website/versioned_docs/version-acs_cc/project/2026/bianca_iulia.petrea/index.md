@@ -48,6 +48,9 @@ The project is built as a motion mirroring system between the controller and the
 The project uses the STM32 Nucleo-U545RE-Q board as the brain, connected to sensors for input and motors for output.
 
 ### Schematics
+The hardware connections are detailed below, routing all components to the STM32 Nucleo board. Power distribution is handled via a breadboard 5V and GND rail supplied by the Nucleo board (for testing) or an MB102 module (for portable use).
+
+![Schematics](images/schematic_kicad_exact.svg)
 
 ### Bill of Materials
 
