@@ -1,7 +1,3 @@
----
-title: BreatheCheck
----
-
 # BreatheCheck
 A portable device that measures breath alcohol concentration, heart rate, and SpO2.
 
