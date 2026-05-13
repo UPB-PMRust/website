@@ -5,7 +5,7 @@ A embedded system for recording and monitoring bicycle ride data, with real-time
 :::info
 
 **Author**: Dorneanu Stefan Cristian \
-**GitHub Project Link**: <https://github.com/UPB-PMRust-Students/acs-project-2026-stefandorneanu>
+**GitHub Project Link**: [Project Link](https://github.com/UPB-PMRust-Students/acs-project-2026-stefandorneanu)
 
 :::
 
