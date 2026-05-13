@@ -24,7 +24,7 @@ I chose this project because it has a concrete real-world application: preventin
 
 ## Architecture 
 
-![Architecture Diagram](ProximityIdeaMoiseVlad.svg)
+![Architecture Diagram](DiagramaCompressedMoiseVlad.svg)
 
 The system is divided into two independent embedded devices:
 
