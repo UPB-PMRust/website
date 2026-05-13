@@ -52,6 +52,12 @@ Chose the project idea, researched components, and ordered hardware.
 ### Week 13 - 26 April
 Assembled the frame and the Y axis.
 
+### Week 27 April - 10 May
+Finished the Z axis and parts of the X axis.
+
+### Week 11 - 17 May
+Structured and organized the hardware schematic in EasyEDA and soldered the physical hardware components using a soldering iron.
+
 ## Hardware
 
 This custom 3D printer utilizes an STM32 Nucleo-U545RE-Q microcontroller as the core processing unit. The motion system features NEMA 17 stepper motors driven by ultra-silent TMC2209 modules, with axis limits detected by reliable SS-5GL2 mechanical endstops. Thermal actuation for the MK3 heated bed and MK8 extruder is safely managed by optoisolated external MOSFETs and continuously monitored by NTC 100k thermistors. To ensure signal integrity, the system employs a dual-isolated power architecture—a 5V power bank for logic circuits and a 24V 20A PSU for high-current loads. The entire setup operates independently of a PC using an SPI Micro SD Card module, with all custom signal routing soldered onto a double-sided FR4 prototype PCB.
