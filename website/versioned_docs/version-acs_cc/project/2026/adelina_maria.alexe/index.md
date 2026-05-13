@@ -55,7 +55,7 @@ The project uses an STM32 Nucleo-U545RE-Q as the main microcontroller board, fea
 ### Schematics
 
 <!-- TODO: Add KiCad schematic exported as SVG -->
-<!--![Schematic](schematic.svg)-->
+![Schematic](images/schematic.webp)
 
 ### Bill of Materials
 
