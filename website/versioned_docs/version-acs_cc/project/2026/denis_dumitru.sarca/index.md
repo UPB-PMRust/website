@@ -23,31 +23,53 @@ The PC application is responsible for image processing. It loads the input image
 The STM32 Nucleo-U545RE-Q board receives movement commands and controls the hardware modules. It drives the two DC motors through a motor driver, reads encoder feedback for position estimation, reads the IR sensors for black border detection and controls the servo motor used for lifting and lowering the pen.
 
 MAIN ARCHITECTURE COMPONENTS:
-PC image processing module
-USB serial communication module
-STM32 command parser
-motor control module
-encoder feedback module
-encoder feedback module
-canvas calibration module
-pen control module
+* PC image processing module
+* USB serial communication module
+* STM32 command parser
+* motor control module
+* encoder feedback module
+* canvas calibration module
+* pen control module
 
 ## Log
 
+### Week 6 - 12 April
+
+* brainstormed the functionality of the robot
+
+### Week 13 - 19 April
+
+* made the initial component list and checked compatibility
+
+### Week 20 - 26 April
+
+* final component list and placed order
+
+### Week 27 April - 3 May
+
+* started to work on the hardware setup
+
+### Week 4 May - 11 May
+
+* ordered extra components for added functionality
+
+### Week 11 - 18 May
+
+
 ## Hardware
-STM32 Nucleo-U545RE-Q
-2 sau 4 motoare DC cu encodere
-driver motoare
-roti omnidirectionale
-roata caster
-servo pentru marker
-senzori IR pentru detectarea marginii canvasului
-baterie
-convertor buck
+* STM32 Nucleo-U545RE-Q
+* 2 motoare DCdriver motoare
+* 2 roti
+* roata caster
+* servo pentru marker
+* senzori IR pentru detectarea marginii canvasului
+* baterie
+* buck converter
 
 
 ### Schematics
 ![Schematics](./images/schematic.svg)
+![Schematics](./images/hardware.webp)
 ### Bill of Materials
 
 | [Device](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) | Used for tension adjustment | [price](7 ron) |
