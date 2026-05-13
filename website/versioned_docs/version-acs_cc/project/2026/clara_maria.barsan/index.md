@@ -64,7 +64,7 @@ This custom 3D printer utilizes an STM32 Nucleo-U545RE-Q microcontroller as the 
 
 ### Schematics
 
-![Schematic](Schematic_3D-printer.svg)
+![Schematic](schematic_3D-printer.svg)
 
 ### Bill of Materials
 
