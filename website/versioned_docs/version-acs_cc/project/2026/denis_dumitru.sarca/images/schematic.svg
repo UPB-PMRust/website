@@ -1,0 +1,113 @@
+<svg width="1024" height="720" viewBox="0 0 1024 720" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .box { fill:#f8f9fa; stroke:#111; stroke-width:2; rx:10; }
+    .power { fill:#fff3cd; stroke:#111; stroke-width:2; rx:10; }
+    .mcu { fill:#dbeafe; stroke:#111; stroke-width:2; rx:10; }
+    .act { fill:#dcfce7; stroke:#111; stroke-width:2; rx:10; }
+    .sens { fill:#fce7f3; stroke:#111; stroke-width:2; rx:10; }
+    .text { font-family:Arial, sans-serif; font-size:15px; text-anchor:middle; }
+    .title { font-family:Arial, sans-serif; font-size:18px; font-weight:bold; text-anchor:middle; }
+    .small { font-family:Arial, sans-serif; font-size:13px; text-anchor:middle; }
+    .wire { stroke:#111; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    .pwr { stroke:#d97706; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+    .sig { stroke:#2563eb; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    .gnd { stroke:#555; stroke-width:2; stroke-dasharray:6 4; fill:none; }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0,10 4,0 8" fill="#111"/>
+    </marker>
+  </defs>
+
+  <!-- Power -->
+  <rect class="power" x="40" y="70" width="170" height="85"/>
+  <text class="title" x="125" y="105">Battery Pack</text>
+  <text class="small" x="125" y="130">Main supply</text>
+
+  <rect class="power" x="285" y="70" width="180" height="85"/>
+  <text class="title" x="375" y="105">LM2596 Buck</text>
+  <text class="small" x="375" y="130">5V regulated output</text>
+
+  <!-- MCU -->
+  <rect class="mcu" x="385" y="255" width="255" height="160"/>
+  <text class="title" x="512" y="295">STM32 Nucleo-U545RE-Q</text>
+  <text class="small" x="512" y="325">PWM / GPIO / ADC / UART</text>
+  <text class="small" x="512" y="350">Rust firmware</text>
+  <text class="small" x="512" y="375">Motor + pen + calibration control</text>
+
+  <!-- PC -->
+  <rect class="box" x="40" y="285" width="180" height="100"/>
+  <text class="title" x="130" y="320">PC</text>
+  <text class="small" x="130" y="345">Image processing</text>
+  <text class="small" x="130" y="365">USB Serial commands</text>
+
+  <!-- Motor Driver -->
+  <rect class="act" x="730" y="220" width="210" height="105"/>
+  <text class="title" x="835" y="255">Dual Motor Driver</text>
+  <text class="small" x="835" y="280">TB6612FNG / DRV8833</text>
+  <text class="small" x="835" y="300">PWM + DIR inputs</text>
+
+  <!-- Motors -->
+  <rect class="act" x="735" y="390" width="95" height="75"/>
+  <text class="title" x="782" y="420">Left</text>
+  <text class="small" x="782" y="443">DC Motor</text>
+
+  <rect class="act" x="845" y="390" width="95" height="75"/>
+  <text class="title" x="892" y="420">Right</text>
+  <text class="small" x="892" y="443">DC Motor</text>
+
+  <!-- Servo -->
+  <rect class="act" x="725" y="535" width="220" height="85"/>
+  <text class="title" x="835" y="570">SG90 Servo</text>
+  <text class="small" x="835" y="595">Pen up / pen down</text>
+
+  <!-- Sensors -->
+  <rect class="sens" x="285" y="535" width="185" height="90"/>
+  <text class="title" x="377" y="570">TCRT5000 x2</text>
+  <text class="small" x="377" y="595">Black border sensors</text>
+
+  <rect class="sens" x="525" y="535" width="185" height="90"/>
+  <text class="title" x="617" y="570">Encoders x2</text>
+  <text class="small" x="617" y="595">Optional feedback</text>
+
+  <!-- Connections -->
+  <path class="pwr" d="M210 112 L285 112"/>
+  <text class="small" x="247" y="98">VIN</text>
+
+  <path class="pwr" d="M465 112 L835 112 L835 220"/>
+  <text class="small" x="665" y="96">5V logic / servo / sensors</text>
+
+  <path class="pwr" d="M125 155 L125 205 L835 205 L835 220"/>
+  <text class="small" x="585" y="190">Motor supply</text>
+
+  <path class="sig" d="M220 335 L385 335"/>
+  <text class="small" x="300" y="318">USB Serial</text>
+
+  <path class="sig" d="M640 300 L730 270"/>
+  <text class="small" x="690" y="255">PWM/DIR</text>
+
+  <path class="wire" d="M782 325 L782 390"/>
+  <path class="wire" d="M892 325 L892 390"/>
+
+  <path class="sig" d="M640 365 L725 575"/>
+  <text class="small" x="690" y="470">PWM</text>
+
+  <path class="sig" d="M377 535 L440 415"/>
+  <text class="small" x="365" y="485">Digital input</text>
+
+  <path class="sig" d="M617 535 L565 415"/>
+  <text class="small" x="635" y="485">GPIO input</text>
+
+  <!-- Ground -->
+  <path class="gnd" d="M125 155 L125 665 L835 665 L835 620"/>
+  <path class="gnd" d="M512 415 L512 665"/>
+  <path class="gnd" d="M375 155 L375 665"/>
+  <text class="small" x="505" y="690">Common GND between battery, buck converter, STM32, sensors, servo and motor driver</text>
+
+  <!-- Notes -->
+  <rect class="box" x="40" y="500" width="190" height="95"/>
+  <text class="title" x="135" y="535">Canvas</text>
+  <text class="small" x="135" y="560">White surface</text>
+  <text class="small" x="135" y="582">Black border detected by IR</text>
+</svg>
