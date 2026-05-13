@@ -1,5 +1,5 @@
 # Bluetooth Proximity Monitoring System
-A two-device embedded system that uses Bluetooth to detect when a wearable bracelet moves too far from a base station and triggers alarms on both devices.
+A two-device embedded system that uses Bluetooth to detect when a wearable bracelet moves too far from a base station and triggers alarms on base device.
 
 :::info 
 
@@ -14,7 +14,7 @@ A two-device embedded system that uses Bluetooth to detect when a wearable brace
 
 The Bluetooth Proximity Monitoring System is a two-device embedded application built in Rust using the Embassy async framework on two STM32 Nucleo-U545RE-Q microcontrollers. One device acts as a fixed base station and the other as a wearable bracelet.
 
-Each device is paired with an HM-10 BLE 4.0 module communicating over UART. The base station continuously monitors the Bluetooth signal strength (RSSI) received from the bracelet to estimate inter-device distance. When the estimated distance exceeds approximately 20 meters, both devices trigger their passive buzzers simultaneously as an alarm. The base station displays the live estimated distance on an SSD1306 OLED display over I2C. A physical button on each device allows the user to acknowledge and reset the alarm. The bracelet is powered by a portable USB powerbank, making it wearable, while the base station is powered via USB.
+Each device is paired with an HM-10 BLE 4.0 module communicating over UART. The base station continuously monitors the Bluetooth signal strength (RSSI) received from the bracelet to estimate inter-device distance. When the estimated distance exceeds approximately 20 meters, base station device trigger their passive buzzer as an alarm. The base station displays the live estimated distance on an SSD1306 OLED display over I2C. A physical button on station device allows the user to acknowledge and reset the alarm. The bracelet is powered by a portable USB powerbank/phone, making it wearable, while the base station is powered via USB.
 
 
 ## Motivation
@@ -24,12 +24,12 @@ I chose this project because it has a concrete real-world application: preventin
 
 ## Architecture 
 
-![Architecture Diagram](bluetooth_proximity_architecture.svg)
+![Architecture Diagram](ProximityIdeaMoiseVlad.svg)
 
 The system is divided into two independent embedded devices:
 
 - **Base station**: reads RSSI from the HM-10 module via UART, estimates distance, drives the OLED display over I2C, triggers the buzzer via PWM, and handles button input via GPIO.
-- **Bracelet**: transmits a continuous Bluetooth signal via the HM-10 module over UART, triggers its own buzzer via PWM when signaled, and handles button input via GPIO.
+- **Bracelet**: transmits a continuous Bluetooth signal via the HM-10 module over UART.
 
 
 ## Log
@@ -42,6 +42,7 @@ Researched project requirements and finalized the hardware component list. Order
 ### Week 27 April - 4 May
 
 ### Week 5 - 11 May
+I finished the hardware part of the project.
 
 ### Week 12 - 18 May
 
@@ -49,12 +50,14 @@ Researched project requirements and finalized the hardware component list. Order
 
 ## Hardware
 
-The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: one for the base station and one for the bracelet. Each board is connected to one HM-10 BLE 4.0 module via UART for Bluetooth communication. Each of the two devices includes one passive 3.3V buzzer for audio alerts and one physical button for alarm reset, for a total of 1 buzzers and 2 buttons in the full system. The base station additionally drives one SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank for portability.
+The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: one for the base station and one for the bracelet. Each board is connected to one HM-10 BLE 4.0 module via UART for Bluetooth communication. One device includes one passive 3.3V buzzer for audio alerts and two physical button for alarm reset and stopping the alarm to get out of the zone, for a total of 1 buzzers and 2 buttons in the full system. The base station additionally drives one SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank/phone for portability.
+
+![Hardware](hardwareResized.webp)
 
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic Diagram](Schematic_Proximity-Moise.svg)
 
 ### Bill of Materials
 
@@ -70,12 +73,12 @@ The format is
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/resource/en/user_manual/um3121-stm32-nucleo144-boards-mb1549-stmicroelectronics.pdf) | Main microcontroller (x2) | provided by lab |
 | [HM-10 BLE 4.0 Module](https://people.ece.cornell.edu/land/courses/ece4760/PIC32/uart/HM10/DSD%20TECH%20HM-10%20datasheet.pdf) | Bluetooth communication via UART (x2) | [59.98 RON](https://www.optimusdigital.ro/en/wireless-bluetooth/862-modul-bluetooth-40-cu-adaptor-compatibil-33v-si-5v.html) |
 | [OLED Display 0.96" SSD1306](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Shows live distance on base station | [30.00 RON](https://www.emag.ro/display-oled-0-96-inch-128x64-lcd-arduino-ssd1306-cu-interfata-iic-i2c-albastru-bn621/pd/D436WM3BM/) |
-| [Yellow Button with Round Cover](https://components101.com/switches/push-button) | Alarm reset input — 2 per device (x4) | [7.96 RON](https://www.optimusdigital.ro/en/buttons-and-switches/13604-yellow-button-with-round-cover.html) |
-| [Passive Buzzer 3V/3.3V](https://components101.com/sites/default/files/component_datasheet/Buzzer%20Datasheet.pdf) | Audio alarm on both devices (x4) | [3.96 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html) |
+| [Yellow Button with Round Cover](https://components101.com/switches/push-button) | Alarm reset input — 2 per device | [4 RON](https://www.optimusdigital.ro/en/buttons-and-switches/13604-yellow-button-with-round-cover.html) |
+| [Passive Buzzer 3V/3.3V](https://components101.com/sites/default/files/component_datasheet/Buzzer%20Datasheet.pdf) | Audio alarm on device (x1) | [2 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html) |
 | [Female-Male Wires 20cm](https://media.digikey.com/pdf/Data%20Sheets/Digi-Key%20PDFs/Jumper_Wire_Kits.pdf) | Component wiring (x2) | [14.90 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/12466-fire-colorate-mama-tata-40p-40-cm.html) |
 | [Breadboard](https://components101.com/sites/default/files/component_datasheet/Breadboard%20Datasheet.pdf) | Prototyping | [5.35 RON](https://www.optimusdigital.ro) |
 | USB Powerbank | Portable power for bracelet | ~50.00 RON |
-| **Total** | | **~172.15 RON** |
+| **Total** | | **~150.15 RON** |
 
 
 ## Software
