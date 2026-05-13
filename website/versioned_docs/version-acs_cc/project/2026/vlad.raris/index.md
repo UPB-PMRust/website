@@ -13,7 +13,7 @@ Un sistem mecatronic destinat aruncării mingilor de ping-pong către un coș de
 
 Acest proiect implementează un lansator automat pentru basket în miniatură. Sistemul folosește o catapultă pentru mingi de ping-pong, montată pe o bază rotativă. Lansatorul detectează panoul coșului cu ajutorul unui senzor de distanță VL53L0X, se orientează pe axa orizontală și apoi declanșează mecanismul de aruncare.
 
-Controlul este realizat cu o placă NUCLEO-U545RE-Q, iar codul proiectului este scris în Rust. Coșul este construit separat și are un panou gri în spate, folosit ca suprafață de detecție pentru senzor. Pentru a simplifica problema de poziționare, coșul este deplasat pe un cerc în jurul lansatorului, iar sistemul trebuie să determine doar unghiul potrivit de orientare.
+Controlul este realizat cu o placă NUCLEO-U545RE-Q, iar codul proiectului este scris în Rust. Coșul este construit separat și are un panou gri în spate, folosit ca suprafață de detecție pentru senzor. Pentru a simplifica problema de poziționare, lansatorul este deplasat pe un cerc în jurul coșului, iar sistemul trebuie să determine unghiul potrivit de orientare către panou.
 
 ## Motivație
 
@@ -65,12 +65,25 @@ Schema electrică a fost realizată în EasyEDA și arată conexiunile dintre pl
 
 ## Jurnal de Proiect
 
-* Am stabilit varianta finală a arhitecturii: senzorul este pe lansator, iar coșul rămâne simplu, fără electronică.
-* Am construit coșul fizic, cu bază, suport vertical, panou gri și inel metalic.
-* Am ales senzorul VL53L0X pentru detectarea panoului coșului.
-* Am ales servo-ul MG995 pentru orientarea bazei și servo-ul SG90 pentru declanșare.
-* Am ales o catapultă printată 3D pentru mingi de ping-pong.
-* Am realizat schema electrică în EasyEDA.
+### Săptămâna 1
+
+Am realizat documentația inițială a proiectului și am stabilit ideea generală: un lansator automat pentru mingi de ping-pong, orientat către un coș de basket în miniatură. În această etapă am descris obiectivul proiectului, motivația, arhitectura inițială și principalele componente hardware/software.
+
+### Săptămâna 2
+
+Am simplificat arhitectura sistemului. În loc să pun electronică pe coș, am decis ca senzorul să fie montat pe lansator, iar coșul să rămână o țintă pasivă. Lansatorul este deplasat pe un cerc în jurul coșului, iar sistemul trebuie să determine unghiul potrivit de orientare către panou. Pentru detecție am ales senzorul VL53L0X, care măsoară distanța până la panoul gri din spatele coșului.
+
+### Săptămâna 3
+
+Am ales și cumpărat componentele principale: senzorul VL53L0X, servomotorul MG995 pentru orientarea bazei, servomotorul SG90 pentru declanșare, modulul XL4005 pentru alimentarea servomotoarelor, breadboard-ul, modulul de buton și modulul LED RGB. Tot în această etapă am stabilit că alimentarea servourilor va fi separată de placa Nucleo, folosind sursa de laborator în timpul testelor.
+
+### Săptămâna 4
+
+Am construit coșul fizic, format din bază, suport vertical, panou gri și inel metalic. Am ales panoul gri ca suprafață de detecție pentru senzor, deoarece este mai ușor de identificat decât inelul propriu-zis. De asemenea, am ales modelul de catapultă printată 3D pentru mingi de ping-pong și am pregătit fișierele necesare pentru printare.
+
+### Săptămâna 5
+
+Am realizat schema electrică în EasyEDA și am asamblat partea hardware principală a proiectului. Schema include placa NUCLEO-U545RE-Q, senzorul VL53L0X, servomotoarele MG995 și SG90, butonul, LED-ul RGB, condensatorul de filtrare și alimentarea externă pentru servouri. Am documentat explicit faptul că `+5V_SERVO` este alimentare externă și nu trebuie conectată la pinul de 5V sau 3V3 al plăcii Nucleo, iar masa este comună între alimentarea servourilor și placa de dezvoltare.
 
 ## Hardware
 
