@@ -5,7 +5,6 @@ A two-device embedded system that uses Bluetooth to detect when a wearable brace
 
 **Author**: Ioan-Vlad Moise \
 **GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-ioan_vlad.moise)
-**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-ioan_vlad.moise)
 
 :::
 
