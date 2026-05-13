@@ -20,7 +20,7 @@ I chose this project to explore the idea of building an embedded project that co
 
 ## Architecture 
 
-![Project Architecture](./Arch_diagram.svg)
+![Project Architecture](./arch_diagram.svg)
 
 Main components:
 
