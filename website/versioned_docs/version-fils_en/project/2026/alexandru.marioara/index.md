@@ -61,21 +61,21 @@ The system architecture revolves around the STM32U545RE microcontroller:
 
 ## Log
 * **Week 1 - 9:** Finalized component list, established architecture using the internal DAC to avoid I2S complexity, and set up the documentation website.
-* **Week 9 - ...:** (soon...)
-* **Week ... - ...:** (...)
+* **Week 9 - 11:** Assembling the hardware circuit. Initializing the code on the board and verifying the components. Making the KiCad schematics.
+* **Week 11 - ...:** (...)
 
 ## Hardware
 The project uses a mix of digital sensors and analog amplification to achieve audio playback.
 
 ### Schematics
-*(KiCAD schematic here later)*
+![Schematics](./kicad.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
 | ----------- | ----------- | ----------- |
 | STM32 Nucleo-U545RE | Main microcontroller (Brain) | 126 RON |
 | PAM8403 Amplifier | Amplifies the analog signal from the STM32 DAC | ~6 RON |
-| 52mm 4 Ohm Speaker | Audio output | ~20 RON |
+| 4 Ohm Speaker | Audio output | ~8 RON |
 | MicroSD Card Module | SPI storage for music files | ~5 RON |
 | 0.96" OLED Display | I2C UI Display | ~17 RON |
 | IR Receiver & Remote | Wireless user interface control | ~7 RON |
@@ -86,10 +86,16 @@ The project is built entirely in Rust (no_std) utilizing the asynchronous Embass
 
 | Library | Description | Usage |
 | ----------- | ----------- | ----------- |
-| `embassy-stm32` | Hardware Abstraction Layer | Controls peripherals (SPI, I2C, DAC, DMA, Timers, GPIO) |
-| `embedded-sdmmc` | FAT32 File System | Reading WAV files from the SD Card |
-| `ssd1306` | Display Driver | Controlling the OLED screen |
-| `embedded-graphics` | 2D Graphics | Rendering text and the audio visualizer UI |
+| [`embassy-stm32`](https://docs.embassy.dev/embassy-stm32/0.6.0/stm32c011d6/index.html) | Hardware Abstraction Layer | Controls peripherals (SPI, I2C, DAC, DMA, Timers, GPIO) |
+| [`embassy-executor`](https://crates.io/crates/embassy-executor) | Async Execution Environment | Manages asynchronous tasks and threads |
+| [`embassy-time`](https://crates.io/crates/embassy-time) | Time Management | Handles delays and timing (e.g., `Timer::after_millis`) |
+| [`embedded-sdmmc`](https://docs.rs/embedded-sdmmc/latest/embedded_sdmmc/) | FAT32 File System | Reading WAV files from the SD Card |
+| [`ssd1306`](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Display Driver | Controlling the OLED screen |
+| [`embedded-graphics`](https://crates.io/crates/embedded-graphics) | Graphics Library | Renders text and UI elements on the display |
+| [`defmt`](https://crates.io/crates/defmt) | Logging Framework | Sends fast, low-overhead debug messages via USB |
+| [`panic-probe`](https://crates.io/crates/panic-probe) | Debugging Utility | Captures and reports critical errors (panics) |
+| [`infrared`](https://crates.io/crates/infrared) | IR Decoding | Decodes NEC protocol pulses from the remote control |
+
 
 ## Links
 1. [Rust Embassy Documentation](https://embassy.dev/)

@@ -13,7 +13,7 @@ A dual-controller foosball game
 
 The project is an interactive foosball game designed for a dynamic two-player experience. Each player uses a custom-built remote controller to command their digital striker on the field. The strikers are powered by stepper motors and move along the OX axis to position themselves  and execute rapid striking maneuvers to kick the ball.
 
-Using a set of arcade-style buttons, players can move their striker left or right to block shots and trigger a strike action to score a goal. The system features a distributed architecture, where a central STM32 master coordinates the movement while two Raspberry Pi Pico units handle player input and real-time scoring updates on OLED displays. To ensure reliability and precision, the machine is equipped with endstops to recognize its frame boundaries and infrared sensors to automatically detect goals.
+Using a set of arcade-style buttons, players can move their striker left or right to block shots and trigger a strike action to score a goal. The system features a distributed architecture, where a central STM32 master coordinates the movement while two Raspberry Pi Pico units handle player input and real-time scoring updates on OLED displays. To ensure reliability and precision, the machine is equipped with infrared sensors to automatically detect goals.
 
 This project combines hardware engineering and real-time control into a fun, high-speed test of player coordination.
 
@@ -37,12 +37,11 @@ The project uses a modular design where different parts work together to control
 * **Sensors & Feedback**
   * Goal Detection: Infrared sensors are placed in the goals. When the ball passes, the system automatically updates the score.
   * OLED Displays: Small screens that show the current score.
-  * Endstops: Limit switches that tell the motors to stop at the edges.
 
 * **User Controls**
   * Arcade Buttons: High-quality buttons that players use to move and shoot. They are designed for fast and repeated use.
 
-![Diagram](images/architecture.svg)
+![Diagram](images/finalarchh.webp)
 
 ## Log
 
@@ -60,27 +59,51 @@ The project uses a modular design where different parts work together to control
 
 * Decided to use buttons instead of joysticks for better control.
 
-### Week 20 - 26 April
+### Week 20 April - 26 April
 
 * Ordered all the necessary electronic components and hardware parts.
 
 * Sent the custom-designed slider parts for 3D printing to begin the mechanical assembly.
 
+### Week 27 April - 3 May
+
+* Completed the hardware setup for both controllers: mounted the displays, wired the buttons and soldered the USB-C ports.
+
+* Configured UART communication between the STM32 and both Raspberry Pi Picos. I verified that button signals are received correctly and that the STM32 sends updates to be displayed based on the attack button presses.
+
+### Week 4 May - 10 May
+
+* Assembled the game table and worked on its design.
+
+* Assembled the movement mechanism and connected everything to a 12V power source.
+
+* Connected IR sensors to each gate so that they would display the correct score on the screens when they detect the ball.
+
+### Week 11 May - 17 May
+
 ## Hardware
 
 The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary boards (Raspberry Pi Pico H) to handle the game smoothly.
 
-* **Main Controller (STM32 Nucleo-U545RE-Q)**: This is the brain of the project. It runs the game logic and tells the motors how to move. It communicates with the player boards using Serial communication via USB-C modules and sends signals to the motor drivers.
+* **Main Controller (STM32 Nucleo-U545RE-Q)**: This is the brain of the project. It runs the game logic and tells the motors how to move. It communicates with the player boards using UART communication via physical USB-C connectors and sends signals to the motor drivers.
 
 * **Player Boards (Raspberry Pi Pico)**: Each player has a Pico board. Its job is to read the Arcade Buttons and show the score on the OLED screens.
 
-* **Motors & Movement:** I use NEMA 17 motors with a GT2 belt system to move the players. Linear bearings and steel rods make the movement smooth, while Endstops stop the motors safely at the edges.
+* **Motors & Movement:** I use NEMA 17 motors with a GT2 belt system to move the players. Linear bearings and steel rods make the movement smooth.
 
 * **Sensors:** IR Sensors are placed in the goals. When the ball passes through, the sensor sends a signal to the STM32 to increase the score.
 
 * **Power Supply:** A 12V adapter powers the motors. I use an LM2596 converter to change 12V into 5V for the controllers.
 
 ### Schematics
+
+![STM](images/schematichard.svg)
+
+### Photos
+
+![STM](images/alimentare.webp)
+![Controller](images/controller.webp)
+![Teren](images/teren.webp)
 
 ### Bill of Materials
 
@@ -93,7 +116,6 @@ The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary bo
 | [A4988 Expansion Board](https://sigmanortec.ro/placa-expansiune-driver-motor-stepper-drv8825-si-a4988-5v?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72PYOVYYJVcWF-co_NlzFjur9&gclid=Cj0KCQjw77bPBhC_ARIsAGAjjV-6k3v8b6p63zTdHONLPGIyYjfyJo4oz8hcuQrUugva4Ze6RGrzyyIaAlCVEALw_wcB) | Simplifies wiring and protects drivers from voltage spikes | 9.97 RON x 2|
 | [OLED Displays (0.96")](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) | Small screens that show the live score to each player | 16.95 RON x 2 |
 | [Infrared obstacle sensor](https://sigmanortec.ro/Senzor-obstacol-IR-p125423458) | Detect when the ball enters the goal to update the score automatically | 3.12 RON x 2 |
-| [Endstops SS-5GL2](https://sigmanortec.ro/Endstop-mecanic-SS-5GL2-p136284192) | Small switches that detect when the slider reaches its physical limit | 5.23 RON x 4 |
 | [Arcade Buttons](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1852-buton-arcade-iluminat-24mm-galben.html) | Durable buttons used by players to move and shoot | 9.99 RON x 6 |
 | [LM2596 Step-Down Module](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) | Converts 12V to stable 5V output | 6.69 RON |
 | [GT2 Timing Pulley](https://sigmanortec.ro/Fulie-dintata-GT2-20-dinti-ax-5mm-p125814315) | Used to drive the belt and move the players | 4.67 RON x 2 |
@@ -110,7 +132,9 @@ The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary bo
 | [Mini Breadboard (170 pts)](https://sigmanortec.ro/Breadboard-170-puncte-diferite-culori-p126177349?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72PYOVYYJVcWF-co_NlzFjur9&gclid=Cj0KCQjw77bPBhC_ARIsAGAjjV9Gx6bAxHp8FiXbmVABCp3OWb9gofa_dZ5HeVo4je3Yepal9UyQ3ssaApKjEALw_wcB) | Provides a stable mounting point for the Pico H and connects arcade buttons/OLEDs | 2.42 RON x 2 |
 | [Breadboard (830 pts)](https://www.emag.ro/breadboard-h-hct-tronic-830-puncte-de-conectare-abs-200x630-puncte-034-066/pd/DBNQ7R3BM/?ref=history-shopping_485525269_1558_1) | Main hub for STM32 integration | 10.00 RON |
 | [Electrolytic Capacitor](https://www.emag.ro/condensator-electrolitic-100uf-25v-dc-105-c-aishi-t128297/pd/D911MSMBM/?ref=history-shopping_486202414_7656_1) | Filters power supply noise and protects drivers from voltage spikes | 3.03 RON x 3 |
-| **TOTAL** | **Estimated Total Project Cost** | **727.09 RON** |
+| [IRF520 MOSFET Module](https://www.emag.ro/modul-bazat-pe-tranzistorul-n-mosfet-irf520-elektroweb-3-5-v-5-a-2-m-114/pd/DSGC35MBM/) | Allows the STM32 to control the 12V solenoid for the attack mechanism | 12.60 RON x 2 |
+| [Push-Pull Solenoid](https://sigmanortec.ro/piston-electromagnetic-jf-0530b-cu-solenoid-12v-push-pull) | Used for offensive mechanics| 24.38 RON RON x 2 |
+| **TOTAL** | **Estimated Total Project Cost** | **780.13 RON** |
 
 ## Software
 
