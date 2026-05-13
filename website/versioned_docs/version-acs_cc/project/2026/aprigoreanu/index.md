@@ -1,5 +1,7 @@
 # Braille Display
 A mini e-reader for Braille alphabet
+
+
 :::info 
 
 **Author**: Alexandra Prigoreanu\
