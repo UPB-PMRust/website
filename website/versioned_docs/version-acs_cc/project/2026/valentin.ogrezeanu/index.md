@@ -5,7 +5,7 @@ A small autonomous desk robot with a mood engine, face animations, and wireless 
 :::info 
 
 **Author**: Ogrezeanu Valentin Alexandru \
-**GitHub Project Link**: https://github.com/valeogre/website
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-valeogre
 
 :::
 
