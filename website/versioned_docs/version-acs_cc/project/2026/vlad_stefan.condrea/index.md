@@ -5,6 +5,8 @@ A robotic pan-tilt turret capable of detecting targets and launching projectiles
 
 **Author**: Condrea Vlad-Stefan \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-Ionidis
+
+
 :::
 
 ## Description
