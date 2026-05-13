@@ -36,7 +36,7 @@ The system consists of the following main components:
 
 ### Architecture Diagram
 
-![Architecture](arch.svg)
+![Architecture](smart_bin_block.svg)
 
 The STM32 microcontroller acts as the central controller, receiving input from sensors and the NFC module, and controlling the servo motor and LEDs accordingly.
 
@@ -75,7 +75,7 @@ The system is built around an STM32 Nucleo board and integrates multiple sensors
 
 ### Schematics
 
-![Schematics](schlast.svg)
+![Schematics](Schemat.svg)
 
 ## Bill of Materials
 
