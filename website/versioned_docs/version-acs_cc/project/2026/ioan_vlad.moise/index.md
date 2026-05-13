@@ -57,7 +57,7 @@ The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: 
 
 ### Schematics
 
-![Schematic Diagram](schematicproximity_moisevlad.webp)
+![Schematic Diagram](schematicresized_moisevlad.webp)
 
 ### Bill of Materials
 
