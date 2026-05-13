@@ -20,9 +20,7 @@ Because I love coffee. Of course, I'm not addicted.
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+![Schematic](projectscheme.svg)
 
 ## Log
 

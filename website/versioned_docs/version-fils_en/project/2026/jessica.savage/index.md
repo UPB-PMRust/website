@@ -15,7 +15,7 @@ The system can be controlled by a joystick and a display or remotely via Bluetoo
 
 ## Motivation
 
-I chose this project idea beacause i wanted to make something that accesses a CD collection easier and faster. Instead of manually seaching through a stack of CDs, you cand simply browse for a desired album and the system will locate and present it.
+I chose this project idea beacause i wanted to make something that accesses a CD collection easier and faster. Instead of manually searching through a stack of CDs, you cand simply browse for a desired album and the system will locate and present it.
 
 ## Architecture
 
@@ -24,14 +24,13 @@ The whole system is built around an STM32 microcontroller. It receives commands 
 ![Scheme](imagejs.webp)
 
 ## Schematics
-
-KitCAD schematics
+\\wsl.localhost\Ubuntu\home\jessi\website\website\versioned_docs\version-fils_en\project\2026\jessica.savage\schema-jessica.webp
 
 ## Log
 
 ### Week 6
 
-I came with the project idea and recieved a feedback.
+I came with the project idea and received a feedback.
 
 ### Weeks 7-8
 
