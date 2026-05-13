@@ -17,12 +17,18 @@ I’ve been itching to bridge the gap between my software-heavy coursework and h
 
 ## Architecture 
 
-![Diagram](./images/architecture.svg)
+![Diagram](./images/architecture.webp)
 
 ## Log
 
 ### Week 20 - 24 April
 Made initial documentation and ordered hardware parts.
+
+### Week 27 - 30 April
+Tested all components
+
+### Week 4 - 8 April
+Assembled first prototype 
 
 ## Hardware
 
