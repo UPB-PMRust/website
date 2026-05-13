@@ -80,9 +80,15 @@ The device is powered by two series-connected 18650 lithium-ion cells (~7.4V com
 
 All peripheral components communicate with the microcontroller primarily over the shared I2C bus.
 
+### Hardware photos
+
+![Hardware Photo 1](photo_1.webp)
+
+![Hardware Photo 2](photo_2.webp)
+
 ### Schematics
 
-KiCAD schematics will be added here as soon as they're done.
+![Schematic](schematic.svg)
 
 ### Bill of Materials
 
