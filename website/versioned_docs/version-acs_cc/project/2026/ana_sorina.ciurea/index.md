@@ -26,16 +26,13 @@ The system consists of the following main components:
 - **Proximity sensor (IR/ultrasonic)** – detects when a user approaches
 - **Servo motor** – controls lid opening and closing
 - **NFC module (RC522)** – reads user cards and product tags
-- **LED indicators** – provide visual feedback to the user
+
 
 ### System Flow
 
-1. User approaches → proximity sensor detects movement → lid opens automatically  
-2. User scans NFC card → system registers recycling action  
-3. Optional: NFC tag from item is scanned → item is identified  
-4. Feedback is provided through LEDs:
-   - Green LED → successful action  
-   - Red LED → invalid scan or error  
+1. **Proximity Sensor detects hand** → Lid opens automatically
+2. **NFC Card is scanned** → System registers and you receive bonuses
+3. **When lid opens** → Speaker beeps and servo motor 
 
 ### Architecture Diagram
 
