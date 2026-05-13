@@ -26,6 +26,7 @@ OLED Display (SSD1306) is connected via SPI (or I2C) for real-time rendering of 
 Life Indicator LEDs show the remaining player lives.
 Passive Buzzer: Connected to a pin for dynamic tone generation. It provides auditory cues for game events, such as losing a life.
 
+![Project Architecture](./architecture.svg)
 
 ## Log
 
@@ -39,10 +40,12 @@ Passive Buzzer: Connected to a pin for dynamic tone generation. It provides audi
 ## Hardware
 
 The system is powered by an STM32 microcontroller (ARM Cortex-M), utilizing its SPI, GPIO, and PWM peripherals to interface with external components.
+![Project hardware1](./poza1.webp)
+![Project hardware2](./poza2.webp)
 
 ### Schematics
 
-![Project Schematic](./schematics.svg)
+![Project Schematic](./schematica.svg)
 
 ### Bill of Materials
 
