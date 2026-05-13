@@ -14,7 +14,7 @@ Proiectul implementeaza un sistem embedded fiabil pe microcontroller-ul **STM32U
 Motivatia mea a constat in dorinta mea de a folosi in cadrul acestui proiect un panou solar. Pornind de la acest aspect, am ajuns la ideea dezvoltarii unei solutii de monitorizare ambientala complet autonome, care sa fie capabila sa functioneze in locatii izolate sau greu accesibile. Alegerea senzorilor si a parametriilor meteorologici a fost facuta astfel incat sa pot sa creez un tablou climatic complex
 
 ## **Arhitectura**
-![Arhitectura Proiectului](./Arhitectura-proiect-pm.webp)
+![arhitectura proiectului](./arhitectura-proiect-pm.webp)
 ## **Hardware**
 1.  Microcontroller si baza
     *   **STM32U545RE-Q**
@@ -23,10 +23,9 @@ Motivatia mea a constat in dorinta mea de a folosi in cadrul acestui proiect un 
 2.  Senzori
 
     Pentru a-mi fi mai usor am incercat sa aleg niste senzori care folosesc I2C pentru a avea deja crates
-    *   **BMP280 sau BME280** - presiune barometrica si altitudine
-    *   **SHT31** - Umiditate(si Temperatura)
+    *   **BMP280** - presiune barometrica si altitudine
     *   **VEML6070** - Intensitate UV
-    *   **Anemometru tip cupa** - Vant
+    *   **Ventilator PC** - Pe post de anemometru
 3.  Management Energetic
     *   **Panou Fotovoltaic** - 5V - 6V / 2W - 5W
     *   **CN3791** - modul incarcare solara 
@@ -36,6 +35,9 @@ Motivatia mea a constat in dorinta mea de a folosi in cadrul acestui proiect un 
 4.  Interfata si feedback
     * **OLED 0.96" (SSD1306)** - display local prin I2C
     *   **Buzzer**
+
+## *Schematic*
+![schematic](./schematic.webp)
 
 ## **Software**
 | Librarie | Rol | Protocol/Funcție |
