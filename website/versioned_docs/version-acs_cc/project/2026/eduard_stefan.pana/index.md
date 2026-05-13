@@ -1,8 +1,10 @@
 # NucleoPod: High-Fidelity Digital Audio Player
 
 :::info
-**Author:** Eduard-Ștefan Pană  
-**GitHub Project Link:** [eduard_stefan.pana/website](https://github.com/editheman/website/tree/project/eduard_stefan.pana)
+
+**Author:** Eduard-Ștefan Pană  \
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-editheman
+
 :::
 
 ---
@@ -17,22 +19,25 @@ The motivation behind this project is rooted in a childhood dream. Growing up, I
 
 ## Architecture
 
-The software architecture is entirely asynchronous, avoiding blocking operations. It uses an async executor to run several concurrent tasks:
+The software architecture is entirely asynchronous, built on the Embassy executor. It uses several concurrent tasks coordinated through async channels:
 
-* **Audio Task:** Manages the DMA transfers to the I2S peripheral using a double-buffering (ping-pong) technique to ensure a continuous audio stream.
-
-* **SD Reader Task:** Reads data chunks from the `.wav` files via SPI into RAM buffers.
-* **DSP Task:** Applies Biquad filters (Low-pass, Band-pass, High-pass) utilizing the Cortex-M33 hardware Floating-Point Unit (FPU).
-* **UI & Input Task:** Polls the capacitive touch sensor via I2C, updates the internal state machine for the menu, and pushes UI updates to the TFT display over SPI.
+* **Audio Task:** Runs on TIM6 hardware interrupt at the WAV file's sample rate. The interrupt handler reads samples directly from a buffer and writes them to the internal DAC registers via PAC. This provides true hardware-driven audio output independent of CPU scheduling.
+* **SD Reader Task:** Reads audio data from `.wav` files via SPI2 in 8KB chunks, using a double-buffering (ping-pong) technique to ensure continuous playback without underruns.
+* **UI & Input Task:** Polls the MPR121 capacitive touch sensor via I2C1, detects click-wheel gestures (scroll up/down, select), and updates the menu state machine. Pushes UI updates to the TFT display over SPI1.
+* **Haptic Task:** Triggers the vibration motor via GPIO on each scroll event to provide tactile feedback.
 
 ## Block Diagram
 
-* **Power Subsystem:** 3.7V Li-Po Battery ➔ TP4056 (Charger/Protection) ➔ 5V Step-Up Boost ➔ STM32 Nucleo `5V` Pin.
-* **Processing:** STM32U545RE (Nucleo-64).
-* **Inputs:** * MicroSD Card Module ➔ connected via SPI.
-* MPR121 Capacitive Touch Sensor ➔ connected via I2C.
-* **Outputs:** * PCM5102A DAC Module ➔ connected via I2S ➔ 3.5mm Audio Jack.
-* TFT LCD Display (ST7789) ➔ connected via SPI.
+* **Power Subsystem:** External 5V Power Bank ➔ STM32 Nucleo USB-C port (`5V` rail).
+* **Processing:** STM32U545RE (Nucleo-64), clocked at 160MHz via PLL.
+* **Inputs:**
+  * MicroSD Card Module ➔ connected via SPI2 (PB13/PB14/PB15, CS on PB5).
+  * MPR121 Capacitive Touch Sensor ➔ connected via I2C1 (PB6/PB7).
+  * Tactile push-button (center select) ➔ connected to GPIO PB4.
+* **Outputs:**
+  * Internal 12-bit DAC (DAC1_OUT1 on PA4) ➔ RC filter (100Ω + 100nF) ➔ 3.5mm Audio Jack.
+  * TFT LCD Display (ILI9341, 320x240) ➔ connected via SPI1 (PA5/PA6/PA7, DC/RST/CS on PC6/PC7/PC9).
+  * Vibration motor module (haptic feedback) ➔ connected to GPIO PB10.
 
 ## Log
 
@@ -46,27 +51,50 @@ The software architecture is entirely asynchronous, avoiding blocking operations
 * Identified specific, compatible breakout boards (PCM5102A DAC, ST7789 TFT display, MPR121 Touch sensor) and designed the theoretical portable power subsystem (Li-Po battery, TP4056 charger, and 5V Boost converter).
 * **Week Apr 27 - Present:** * Drafting the official project documentation and Moodle proposal.
 * Initializing the GitHub repository and setting up the basic Rust toolchain for the target architecture (`thumbv8m.main-none-eabihf`). Currently preparing to order the hardware components to begin physical prototyping.
+* **Week May 4 - May 10:**
+  * Verified Nucleo board power rails and tested each component individually.
+  * Successfully integrated and tested the ILI9341 display via SPI1 (with mirror correction via `flip_horizontal`).
+  * Validated SD card communication on SPI2 and verified FAT32 file listing.
+  * Tested MPR121 touch sensor on I2C1 — confirmed touch detection by reading raw electrode capacitance values.
+  * Tested vibration motor on GPIO PB10 for haptic feedback.
+  * Validated push-button input on PB4 with internal pull-up.
+* **Week May 11 - Present:**
+  * Discovered that SAI/I2S peripheral pins are not exposed on Nucleo-64, blocking the PCM5102A I2S path. Pivoted to using STM32's internal DAC on PA4.
+  * Resolved DAC clock configuration by routing it through the LSE oscillator and increasing system clock to 160 MHz via PLL.
+  * Built initial WAV playback prototype using a single-task busy-wait loop. Identified audio glitches caused by SD card read latency interleaved with sample output.
+  * Implemented double-buffering (ping-pong) between two 8 KB / 16 KB / 32 KB buffers.
+  * Tested an Embassy async task split (audio task + SD task) with a `Channel`, but confirmed that Embassy's cooperative scheduling on a single core could not eliminate the interruption while `embedded-sdmmc` performs blocking SPI transfers.
+  * Currently implementing TIM6 hardware interrupt for audio output via PAC, decoupling sample timing from the async executor and allowing the main task to handle SD I/O without affecting audio continuity.
 
 ## Hardware Overview
 
-The core of the system is the **STM32 Nucleo-64 (STM32U545RE)**. This microcontroller was chosen for its ultra-low power capabilities, ARM Cortex-M33 core, and built-in FPU, which is essential for executing the DSP equalizer math without lagging the system. Its advanced DMA controllers and native I2S support make it ideal for high-fidelity audio streaming. The hardware design is strictly modular, separating storage, user input, graphical output, and audio generation into dedicated breakout boards.
+The core of the system is the **STM32 Nucleo-64 (STM32U545RE)**, chosen for its ARM Cortex-M33 core with hardware FPU, built-in 12-bit DAC, and good Embassy support. The system clock is configured at 160 MHz using HSI + PLL to provide enough processing headroom for parallel SD reads and audio output. The hardware design is modular: each peripheral (display, SD, touch, motor) is on its own breakout board, connected via standard SPI/I2C/GPIO buses.
+
+### Schematics
+
+![Schematic](./images/edi_schematic.webp)
 
 ## Components
 
-* **PCM5102A DAC Module:** Receives digital audio data via I2S and converts it into a clean analog signal for headphones.
-* **MicroSD SPI Module:** Acts as the mass storage drive for the audio files.
-* **TFT LCD Display (ST7789/ST7735):** A 1.8" screen used to display the currently playing track, volume, equalizer settings, and battery status.
-* **MPR121 Touch Sensor:** Reads up to 12 capacitive touch inputs. Arranged in a circular pattern, it simulates the rotational physical input of a classic media player click-wheel.
-* **Power Subsystem:** Ensures the board and modules receive a stable 5V (stepped down to 3.3V by the Nucleo's internal regulator) while providing safe charging for the lithium battery.
+* **STM32U545RE Nucleo-64:** Main microcontroller and development board.
+* **Internal 12-bit DAC (PA4):** Generates analog audio signal, AC-coupled via 100Ω + 100nF to the headphone jack.
+* **PCM5102A Module (jack reuse only):** Provides the 3.5mm headphone jack and AGND reference; its I2S DAC chip is unused.
+* **MicroSD SPI Module:** Mass storage for `.wav` audio files (FAT32 formatted, max 32 GB SDHC).
+* **2.4" Color TFT LCD (ILI9341, 320x240):** Displays the menu UI, track list, and playback status.
+* **MPR121 Touch Sensor:** Reads capacitive touch on copper-tape electrodes arranged in a circle, simulating a click-wheel.
+* **Tactile Push-Button (6x6mm):** Center "Select / Play-Pause" button.
+* **Vibration Motor Module:** Provides haptic feedback on scroll events.
+* **5V USB Power Bank:** Portable power source.
 
 ## Bill of Materials (Hardware)
 
 1. 1x STM32 Nucleo-64 Development Board (STM32U545RE)
-2. 1x PCM5102A I2S Audio DAC Module (with 3.5mm Jack)
-3. 1x MicroSD Card Reader Module (SPI logic level 3.3V) + MicroSD Card
-4. 1x 1.8" Color TFT LCD Display (ST7789 or ST7735 driver)
+2. 1x PCM5102A Module (used only for its 3.5mm jack)
+3. 1x MicroSD Card Reader Module (SPI, 5V supply, 3.3V logic) + MicroSD card formatted FAT32 GroundStudio
+4. 1x 2.4" Color TFT LCD Display (ILI9341 driver)
 5. 1x MPR121 Capacitive Touch Module
-6. 1x 3.7V Li-Po Battery (Flat pouch, approx. 1000mAh - 1500mAh)
-7. 1x TP4056 Battery Charging Module (with battery protection circuits)
-8. 1x 5V Step-Up (Boost) Converter Module
-9. 1x Breadboard (830 tie-points) and assorted Dupont jumper wires (M-M, M-F)
+6. 1x Tactile push-button 6x6mm (THT)
+7. 1x Vibration motor module (3.0–5.3V DC, ~60 mA)
+8. 1x USB Power Bank (5V output)
+9. 2x 100Ω resistors, 2x 100nF (104) ceramic capacitors for DAC output coupling
+10. 1x Breadboard (830 tie-points) and assorted Dupont jumper wires (M-M, M-F)
