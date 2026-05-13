@@ -22,7 +22,7 @@ Security systems are a critical application for embedded devices, where memory l
 
 ## Architecture  
 
-![Diagram](./images/OxideVault.svg)
+![Diagram](./images/oxidevault.svg)
 
 ## Log
 
