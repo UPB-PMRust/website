@@ -5,6 +5,7 @@ A two-device embedded system that uses Bluetooth to detect when a wearable brace
 
 **Author**: Ioan-Vlad Moise \
 **GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-ioan_vlad.moise)
+**GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-ioan_vlad.moise)
 
 :::
 
@@ -49,7 +50,7 @@ Researched project requirements and finalized the hardware component list. Order
 
 ## Hardware
 
-The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: one for the base station and one for the bracelet. Each board is connected to one HM-10 BLE 4.0 module via UART for Bluetooth communication. Each of the two devices includes one passive 3.3V buzzer for audio alerts and one physical button for alarm reset, for a total of 2 buzzers and 2 buttons in the full system. The base station additionally drives one SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank for portability.
+The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: one for the base station and one for the bracelet. Each board is connected to one HM-10 BLE 4.0 module via UART for Bluetooth communication. Each of the two devices includes one passive 3.3V buzzer for audio alerts and one physical button for alarm reset, for a total of 1 buzzers and 2 buttons in the full system. The base station additionally drives one SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank for portability.
 
 
 ### Schematics
@@ -61,10 +62,7 @@ Place your KiCAD or similar schematics here in SVG format.
 <!-- Fill out this table with all the hardware components that you might need.
 
 The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
-```
 
 -->
 
@@ -90,7 +88,6 @@ The format is
 | [ssd1306](https://github.com/jamwaffles/ssd1306) | OLED display driver over I2C | Displaying the estimated distance |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Text and graphics rendering on OLED | Drawing text and UI elements on the display |
 | [heapless](https://github.com/rust-embedded/heapless) | Fixed-size data structures for embedded systems | UART parsing buffers without dynamic allocation |
-| [embedded-kalman](https://crates.io/crates/embedded-kalman) | Kalman filter | RSSI smoothing for stable distance estimation |
 
 
 ## Links
