@@ -24,7 +24,7 @@ I chose this project because it has a concrete real-world application: preventin
 
 ## Architecture 
 
-![Architecture Diagram](DiagramaCompressedMoiseVlad.svg)
+![Architecture Diagram](diagramacompressedmoisevlad.svg)
 
 The system is divided into two independent embedded devices:
 
@@ -52,12 +52,12 @@ I finished the hardware part of the project.
 
 The project uses two STM32 Nucleo-U545RE-Q boards as the main processing units: one for the base station and one for the bracelet. Each board is connected to one HM-10 BLE 4.0 module via UART for Bluetooth communication. One device includes one passive 3.3V buzzer for audio alerts and two physical button for alarm reset and stopping the alarm to get out of the zone, for a total of 1 buzzers and 2 buttons in the full system. The base station additionally drives one SSD1306 OLED display over I2C to show live distance estimates. The bracelet is powered by a USB powerbank/phone for portability.
 
-![Hardware](hardwareResized.webp)
+![Hardware](hardwareresized.webp)
 
 
 ### Schematics
 
-![Schematic Diagram](Schematic_Proximity-Moise.svg)
+![Schematic Diagram](schematic_proximity-moise.svg)
 
 ### Bill of Materials
 
