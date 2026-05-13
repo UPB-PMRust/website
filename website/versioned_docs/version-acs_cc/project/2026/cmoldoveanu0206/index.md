@@ -48,7 +48,7 @@ The project is divided into four main modules that work together:
 
 ### Schematics
 *[Here you will add the schematic drawn in KiCad EDA]*
-![Schematic](./images/schematic.svg)
+![Schematic](./images/schematic.png)
 
 ### Bill of Materials
 
