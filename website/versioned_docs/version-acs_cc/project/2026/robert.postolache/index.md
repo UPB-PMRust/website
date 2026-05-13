@@ -54,7 +54,7 @@ TODO
 
 ### Schematics
 
-![Hardware Schematic](./PM_Proiect_Schematic.webp)
+![Hardware Schematic](./pm_proiect_schematic.webp)
 
 ### Bill of Materials
 
