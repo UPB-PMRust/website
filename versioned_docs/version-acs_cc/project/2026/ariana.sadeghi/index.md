@@ -1,7 +1,4 @@
----
-id: ariana.sadeghi
-title: Automated Optical Sorting System
----
+
 
 # Automated Optical Sorting System
 
@@ -9,7 +6,7 @@ An automated system designed to identify and sort objects based on their optical
 
 ## Info
 * **Author:** Ariana Sadeghi
-* **GitHub Project Link:** [Link to your repository]
+* **GitHub Project Link:** https://github.com/arianasadeghi/website
 
 ## Description
 The project consists of an industrial-style sorting line that uses a photoresistor to detect the opacity/reflection of objects. Based on the sensor data, a mechanical arm (servomotor) sorts the items, while a stepper motor drives the conveyor belt.
