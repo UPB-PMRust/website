@@ -41,31 +41,31 @@ Sistemul utilizeaza microcontrolerul **STM32** pentru a gestiona protocoalele de
 
 ### Bill of Materials
 
-| Device | Usage | Price |
-|--------|-------|-------|
-| STM32 (Nucleo-F401RE / BlackPill) | Microcontroler principal | TBD |
-| [MLX90640](https://www.melexis.com/en/product/MLX90640/Far-Infrared-Thermal-Sensor-Array) | Senzor termic IR (32x24 pixeli) | TBD |
-| [ILI9341 TFT Display](https://www.displayfuture.com/Display/Datasheet/Controller/ILI9341.pdf) | Afisare harta termica | TBD |
-| Encoder Rotativ KY-040 | Ajustare praguri temperatura | TBD |
-| 2x SG90 Servomotors | Mecanism Pan-Tilt pentru laser | TBD |
-| Modul Laser 5V/3.3V | Indicator punct fierbinte | TBD |
-| Buton Push-button | Captura screenshot (UART) | TBD |
-| Breadboard & Jumper Wires | Conectica hardware | TBD |
+| Device | Usage | Price (Est. RON) |
+|--------|-------|------------------|
+| Placă de dezvoltare STM32 Nucleo-64 | Microcontrolerul principal, procesare date și rulare task-uri asincrone. | FREE |
+| [Modul AMG8833 (8x8 pixeli)](https://www.bitmi.ro) | Senzor termic IR (matrice 64 puncte). Comunică prin I2C. Baza pentru interpolarea la 320x240. | 205 RON |
+| [Display TFT LCD 3.2" ILI9341](https://www.emag.ro) | Afișarea interfeței grafice și a hărții termice. Controlat rapid prin magistrala SPI. | 88 RON |
+| Modul Encoder Rotativ KY-040 | Interacțiunea utilizatorului pentru ajustarea pragurilor de temperatură (zoom/scaling termic). | 5 RON |
+| 2x Micro Servomotoare SG90 | Acționarea mecanismului Pan-Tilt (axa X și axa Y) pentru urmărirea fizică a sursei de căldură. | 30 RON |
+| Modul Diodă Laser 650nm KY-008 | Indicator vizual montat pe mecanismul Pan-Tilt; indică cel mai cald punct detectat. | 3 RON |
+| Breadboard 830 puncte MB-102 | Platforma principală pentru realizarea conexiunilor electrice rapide (fără lipire). | 14 RON |
+| Set Fire DuPont (Tată-Tată, Tată-Mamă) | Realizarea legăturilor electrice între pinii STM32 și periferice. | 15 RON |
+
 
 ## Software
 
-| Library | Description | Usage |
+Sistemul este dezvoltat în ecosistemul **Rust Embedded (`no_std`)**. Proiectul se bazează puternic pe framework-ul `embassy` pentru multitasking cooperativ bazat pe `async/await`, permițând senzorului, ecranului și encoderului să ruleze simultan fără să se blocheze reciproc.
+
+| Library (Crate) | Description | Usage in Project |
 |---------|-------------|-------|
-| `embassy-rs` | Framework async pentru microcontrolere | Runtime si gestionarea concurenta a task-urilor (achizitie, afisare, tracking) |
-| `embassy-stm32` | Suport Embassy pentru STM32 | Acces hardware low-level (I2C, SPI, PWM, UART, EXTI) cu suport DMA |
-| `embassy-time` | Functionalitati de timp | Timere si delay-uri non-blocante |
-| `embedded-hal` | Abstractizari hardware | Interfete standard pentru periferice (I2C, SPI) |
-| `embedded-graphics` | Biblioteca grafica `no_std` | Randarea imaginii termice, a paletei de culori si a UI-ului pe ecranul TFT |
-| `ili9341` | Driver ecran TFT | Controlul hardware al display-ului |
-| `mlx9064x` | Driver senzor termic | Citirea datelor si a EEPROM-ului din senzorul MLX90640 |
-| `defmt` | Logging embedded | Debugging si afisare log-uri structurate via probe-rs |
-| `heapless` | Structuri de date fara alocare dinamica | Buffere statice pentru stocarea matricei termice (768 elemente) |
-| `micromath` (sau `libm`) | Operatii matematice `no_std` | Calcule matematice rapide pentru interpolarea biliniara si maparea unghiurilor pentru servomotoare |
+| `embassy-rs` | Framework asincron pentru microcontrolere | Baza de execuție (Runtime). Gestionează task-urile concurente (citire I2C, afișare ecran, monitorizare EXTI encoder). |
+| `embassy-stm32` | Hardware Abstraction Layer (HAL) | Configurarea la nivel de regiștri a pinilor GPIO, SPI, I2C, PWM și a întreruperilor externe (EXTI) pentru STM32. |
+| `embassy-time` | Gestionarea timpului hardware | Funcții non-blocante de `Delay` și `Timer` necesare pentru debounce-ul encoderului și inițializarea ecranului. |
+| `mipidsi` | Driver modern pentru ecrane TFT | Comunicarea cu controller-ul ILI9341 al display-ului, configurarea orientării (Landscape) și trimiterea pixelilor. |
+| `embedded-graphics` | Bibliotecă grafică 2D `no_std` | Randarea formelor, a textului și afișarea dreptunghiurilor/gradienților ce formează imaginea termică pe ecran. |
+| `amg88xx` | Driver pentru senzorul termic | Preluarea matricelor de temperatură (8x8) via I2C direct de la senzorul termic AMG8833. |
+| `defmt` / `probe-rs` | Sistem de logging și debugging | Flash-uirea rapidă a codului pe placă și transmiterea log-urilor structurate via RTT (fără a folosi un port serial clasic). |
 
 ## Links
 
