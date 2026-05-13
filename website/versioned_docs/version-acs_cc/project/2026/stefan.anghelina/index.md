@@ -20,14 +20,19 @@ I chose this project to explore the idea of building an embedded project that co
 
 ## Architecture 
 
-The project architecture consists of three main logical blocks:
+![Project Architecture](./Arch_diagram.svg)
 
-1.  **PC Host Layer:** A background application (written in Python or Rust) that monitors OS metrics (Volume, OBS Studio status) and pushes updates to the STM32 while listening for HID shortcuts.
-2.  **Firmware Layer (STM32):**
-    * **USB Stack:** Manages the enumeration of the device as a standard Human Interface Device.
-    * **Mode Controller:** A central State Machine that switches the board's resources between the "Deck" logic and the "Game" logic.
-    * **Peripheral Drivers:** Specialized modules for the SSD1306 OLED display and the timing-critical Neopixel protocol.
-3.  **Hardware Layer:** The physical interface including mechanical buttons, RGB feedback, and an OLED dashboard.
+Main components:
+
+**Microcontroller** (STM32 Nucleo): The central processor running Rust Embassy to manage asynchronous tasks, power distribution, and real-time logic routing.
+
+**Inputs** (Tactile Buttons & Mini Switch): Physical triggers for stream macros and game actions, including a toggle to switch between operating modes.
+
+**Low-Level Drivers** (GPIO, SPI, I2C): The hardware abstraction layer that handles EXTI interrupts, software debouncing, and precise digital communication protocols.
+
+**Visual Outputs** (OLED & LED Matrix): A 1.3" screen and 8x8 matrix that display stream alerts, game targets, and live player scores.
+
+**Feedback Actuators** (LEDs & Buzzer): Provides immediate visual and auditory cues for game hits, alerts, and system status.
 
 ## Log
 
@@ -43,18 +48,18 @@ The project utilizes the **STM32 Nucleo-U545RE-Q**, a powerful ARM Cortex-M33 mi
 
 ### Schematics
 
-![Project Schematic](./schematic_pm.webp)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32 Nucleo-U545RE-Q](https://www.optimusdigital.ro/ro/placi-stm/12693-nucleo-u545re-q.html) | Main Microcontroller (Cortex-M33) | [~165 RON](https://www.optimusdigital.ro/) |
-| [OLED Display 0.96" I2C](https://www.optimusdigital.ro/ro/display-uri-oled/230-display-oled-096-cu-interfaa-i2c-albastru-galben.html) | Dashboard and Score Display | [25 RON](https://www.optimusdigital.ro/) |
-| [WS2812B RGB LED Strip](https://www.optimusdigital.ro/ro/led-uri-rgb-adreabile/1932-bareta-cu-8-led-uri-rgb-ws2812-5050.html) | Volume Visualizer and Status LED | [18 RON](https://www.optimusdigital.ro/) |
-| [Tactile Buttons 12x12mm](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/683-buton-tactiv-12x12x73mm.html) | Inputs for Deck and Game (6-8 pcs) | [10 RON](https://www.optimusdigital.ro/) |
-| [Passive Buzzer](https://www.optimusdigital.ro/ro/buzzere/154-buzzer-pasiv.html) | Audio feedback for game events | [5 RON](https://www.optimusdigital.ro/) |
-| [Passive Components Set](https://www.optimusdigital.ro/) | Resistors (10k, 330) and Capacitors (100nF) | [10 RON](https://www.optimusdigital.ro/) |
+| STM32 Nucleo-U545RE-Q | Main Microcontroller (Cortex-M33) | ~165 RON |
+| [Display OLED 1.3" Alb 128x64](https://sigmanortec.ro/Display-OLED-1-3-Alb-128x64-p136081872) | Dashboard and Score Display | 36 RON   |
+| [Modul matrice led 8x8, MAX7219, 5V](https://sigmanortec.ro/modul-matrice-led-8x8-max7219-5v) | Volume Visualizer and Status LED | 12 RON|
+| [Tactile Buttons 12x12mm](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) | Inputs for Deck and Game (15 pcs) | 15 RON |
+| [Buzzer activ 5v](https://sigmanortec.ro/Buzzer-activ-5v-p126421597) | Audio feedback for game events | 2 RON |
+| [LEDS](https://sigmanortec.ro/led-5mm-rosu) | LED (9>) | ~10 RON |
+| [Passive Components Set](https://www.optimusdigital.ro/) | Resistors, Capacitors, Cables, Breadboards | ~35 RON |
 
 ## Software
 
