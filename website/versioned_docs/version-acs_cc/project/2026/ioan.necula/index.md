@@ -19,7 +19,7 @@ The project aims to be a 2D cartesian plotter designed to reproduce images in an
 I have always been passionate about art and always looked up to artists who could give their vision form. As I do not have that talent myself, this might've been the deciding factor that pushed me to choose this particular project. The other part of it was me thinking how cool it would be to reproduce literally ANY image on the internet. Also, this requires good knowledge of physics, mechanics in particular, which I found to be an interesting challenge for myself
 
 ## Architecture 
-![diagram](./img/diagramapm.svg)
+![diagram](./img/diagram.webp)
 
 ## Log
 
@@ -53,7 +53,7 @@ The hardware subsystem implements a cartesian XY architecture, utilizingsteel ro
 | 8mm Linear Rods | Structural guides for X and Y axes | - RON|
 | LM8UU Bearings | Low-friction motion on rods | 39,20 RON |
 | GT2 Belt & Pulleys | Motion transmission system | - RON |
-| 12V 3A Power Supply | Main system power source | 29,99 RON |
+| 12V 5A Power Supply | Main system power source | 29,99 RON |
 
 
 ## Software
