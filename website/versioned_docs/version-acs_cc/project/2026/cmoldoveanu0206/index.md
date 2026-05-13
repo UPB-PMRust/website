@@ -36,7 +36,7 @@ The project is divided into four main modules that work together:
    * Two 12V peristaltic pumps, controlled via two IRLZ44N MOSFET transistors (for switching high current from the 3.3V pins of the board) and protected by 1N4007 flyback diodes against reverse voltage.
 
 *[Here you will add a block diagram drawn in draw.io / diagrams.net]*
-![Block Diagram](./images/block_diagram.png)
+![Block Diagram](./images/block_diagram.svg)
 
 ## Log
 
