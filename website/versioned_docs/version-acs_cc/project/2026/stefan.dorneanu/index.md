@@ -48,7 +48,7 @@ The system uses the NUCLEO-U545RE-Q board as the main microcontroller. The GPS m
 
 ### Schematics
 
-![Schematici Proiect](./Schematic_ProiectPM-DataloggerGPS_2026-05-13.svg)
+![schematici proiect](./schematic_proiectpm-dataloggergps_2026-05-13.svg)
 
 ### Bill of Materials
 
