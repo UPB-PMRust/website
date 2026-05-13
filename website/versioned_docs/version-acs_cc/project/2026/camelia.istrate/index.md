@@ -78,9 +78,9 @@ The robotic arm is driven by multiple servo motors, controlled through a PCA9685
 
 All components are connected using standard wires and connectors, and the mechanical structure of the arm is made from 3D printed parts.
 
-<!-- ### Schematics
+### Schematics
 
-Place your KiCAD or similar schematics here in SVG format. -->
+![Schematic](./images/Schematic_PM.svg)
 
 
 
@@ -91,12 +91,12 @@ Place your KiCAD or similar schematics here in SVG format. -->
 | [STM32 Nucleo Board](https://www.st.com/en/evaluation-tools/stm32-nucleo-boards.html) | Main microcontroller used for processing inputs and controlling the robotic arm | Free (Provided by faculty) |
 | [10k Potentiometer](https://sigmanortec.ro/Potentiometru-1K-5K-10K-20K-50K-100K-p136286400) | Used as analog input for controlling servo positions | 4 x 1.31 RON |
 | [MG996R Servo Motor](https://sigmanortec.ro/servomotor-mg996r-180-13kg) | High torque servo motors used for main joints (base, shoulder, elbow) | 3 x 29.5 RON |
-| [Mini Push Button](https://sigmanortec.ro/buton-mini-6x6x5-4-pini) | Used for switching between operating modes | 3 x 0.36 RON |
+| [Mini Push Button](https://sigmanortec.ro/buton-mini-6x6x5-4-pini) | Used for switching between operating modes |4 x 0.36 RON |
 | [SG90 Micro Servo](https://sigmanortec.ro/Servomotor-SG90-limit-switch-p141662062) | Used for controlling the gripper | 1 x 9.5 RON |
 | [XT60 Connector](https://sigmanortec.ro/Conector-XT60-Mama-Tata-p148577270) | Used for power supply connection | 2 x 4.3 RON |
 | [Power Switch KCD11](https://sigmanortec.ro/Intrerupator-KCD11-250V-3A-2-pini-p166528374) | Used to turn the system on/off | 1 x 1.19 RON |
 | [PCA9685 Servo Driver](https://sigmanortec.ro/Modul-PCA9685-interfata-I2C-16-CH-servo-motor-p126016016) | Generates PWM signals for controlling multiple servo motors via I2C | 1 x 27.27 RON |
-| **Total** |  | **141.14 RON + Free board** |
+| **Total** |  | **141.5 RON + Free board** |
 
 
 ## Software
