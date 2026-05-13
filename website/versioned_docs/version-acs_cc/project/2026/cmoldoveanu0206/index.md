@@ -1,17 +1,17 @@
-
-
 # Automated Drink Dispenser
+
+:::info
+
+**Author:** Moldoveanu Cătălin-Cristian \
+**GitHub Project Link:** [Link to your repository](https://github.com/UPB-PMRust-Students/acs-project-2026-Dynamate92)
+
+:::
 
 An automated liquid mixer based on real-time weighing and sequential control of peristaltic pumps.
 
-:::info
-**Author:** Moldoveanu Cătălin-Cristian
-**GitHub Project Link:** [Link to your repository](https://github.com/UPB-PMRust-Students/acs-project-2026-Dynamate92)
-:::
-
 ## Description
 
-The system is an automated dispenser designed for the precise mixing of two liquids (e.g., wine and sparkling water for spritz). As inputs, the system takes user commands via a Rotary Encoder (to select the mixing ratio) and continuously reads the weight of a glass placed on a load cell using an HX711 module.
+The system is an automated dispenser created for the precise mixing of two liquids (e.g., wine and sparkling water for spritz). As inputs, the system takes user commands via a Rotary Encoder (to select the mixing ratio) and continuously reads the weight of a glass placed on a load cell using an HX711 module.
 
 The central unit (NUCLEO-U545RE-Q) calculates the required target weight for each liquid based on the selection. As outputs, the system sequentially starts and stops two independent 12V peristaltic pumps (driven by MOSFET modules) to pour exactly the calculated amounts. The graphical interface, provided by an I2C OLED display, shows the menu and the filling progress in real time.
 
@@ -67,7 +67,7 @@ The project is divided into four main modules that work together:
 
 ## Software
 
-The software logic is developed exclusively in **Rust**, using an embedded systems framework (e.g., `embassy-rs`). 
+The software logic is created exclusively in **Rust**, using an embedded systems framework (e.g., `embassy-rs`). 
 * The system will use asynchronous tasks to read the Rotary Encoder without blocking the main execution.
 * Data from the HX711 will be polled at regular intervals while the liquid is pumping.
 * The I2C interface will be used to update the OLED screen using a state-machine logic (states: Idle, Selecting, Pouring, Done).
