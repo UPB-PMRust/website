@@ -22,7 +22,7 @@ I chose this project to explore the integration of analog sensors (ADC) with pre
 * **User Interface:** LCD display via SPI.
 
 ### Connection Diagram
-![Hardware Block Diagram](./Schematic_PM_2026-05-13.svg)
+![Hardware Block Diagram](./schema_pm.png)
 
 ## Log
 ### Week 5 - 11 May
