@@ -38,7 +38,7 @@ The project uses:
 - **WS2812B LED strip**
 - **LDR**  
 - **SSD1306 OLED**
-
+![hardware](./hardware.webp)
 ## Schematics
 ![Project Schematic](./schematica.webp)
 
