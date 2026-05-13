@@ -43,6 +43,10 @@ All components share a common ground. The 12V rail powers the solenoid valve and
 
 ### Week 5 - 11 May 
 
+Awaiting arrival of remaining components, added minor changes in the hardware by replacing 100 Ohm resistor for 1K and 10K ones and IRF540N transistor for IRF3205PBF as well as GPIO's of some devices; also the power supply of solenoid been changed to direct supply from adaptor. 
+
+![Hardware_1](hardware_1.webp)
+
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
@@ -59,40 +63,39 @@ Coffee powder is dispensed through a mechanical gate controlled by the SG90 serv
 
 | ESP32-C6 GPIO | Function | Connected To |
 |---|---|---|
-| GPIO2 | Button – Espresso | Tactile button → GND |
-| GPIO3 | Button – Double Espresso | Tactile button → GND |
-| GPIO4 | Button – Americano | Tactile button → GND |
-| GPIO5 | Solenoid valve control | IRF540N Gate (via 100Ω) |
-| GPIO6 | I2C SCL | SSD1306 SCL |
-| GPIO7 | I2C SDA | SSD1306 SDA |
-| GPIO8 | Servo PWM (LEDC) | SG90 signal wire |
-| GPIO9 | Water level sensor | Float switch → GND |
+| GPIO23 | Button – Espresso | Tactile button → GND |
+| GPIO22 | Button – Double Espresso | Tactile button → GND |
+| GPIO21 | Button – Americano | Tactile button → GND |
+| GPIO5 | Solenoid valve control | IRF3205 Gate (via 1KΩ) |
+| GPIO20 | I2C SCL | SSD1306 SCL |
+| GPIO19 | I2C SDA | SSD1306 SDA |
+| GPIO2 | Servo PWM (LEDC) | SG90 signal wire |
+| GPIO1 | Water level sensor | Float switch → GND |
+| GPIO18 | Buzzer | Active buzzer |
 | 3.3V | Power | SSD1306 VCC, SG90 VCC, Float switch |
 | GND | Common ground | All GND rails |
 
 ### Schematics
-
+![KiCAD schematics](coffee_machine.svg)
 
 ## Bill of Materials
 
 | Device | Usage | Price |
 |---|---|---|
 | ESP32-C6 | Main microcontroller | 50 RON |
-| Solenoid Valve 12V N/C | Water flow control | 25 RON |
-| IRF540N MOSFET | Solenoid valve driver | 2.5 RON |
-| Resistor 100Ω | Gate resistor for MOSFET | 0.5 RON |
+| Solenoid Valve 12V N/C | Water flow control | 45 RON |
+| IRF3205PBF MOSFET | Solenoid valve driver | 6 RON |
+| Resistor 1KΩ and 10KΩ | 1 RON |
 | Servo SG90 | Coffee powder gate control | 13.5 RON |
-| OLED SSD1306 0.96" I2C | Status display | 10 RON |
-| Float Switch Liquid Level Sensor | Water tank monitoring | 25 RON |
+| OLED SSD1306 0.96" I2C | Status display | 15 RON |
+| Float Switch Liquid Level Sensor | Water tank monitoring | 30 RON |
 | Food-grade plastic container 1–2L (×2) | Water and coffee powder tanks | 30 RON |
-| Silicone tube (thermoresistant) | Water delivery from tank to cup | 10 RON |
-| Hose barb fitting | Tank outlet connector | 5 RON |
+| Silicone tube (thermoresistant) | Water delivery from tank to cup | 25 RON |
 | Tactile push buttons (×3) | Mode selection | 5 RON |
 | Breadboard 830 points | Prototyping platform | 10 RON |
 | Dupont jumper wires (M-M, M-F set) | Component connections | 10 RON |
-| DC barrel jack 5.5mm | Power supply connector | 2.5 RON |
 | 12V 2A DC power adapter | Powers solenoid valve | 20 RON |
-| **TOTAL** | | **220 RON** |
+| **TOTAL** | | **260.5 RON** |
 
 ***
 
