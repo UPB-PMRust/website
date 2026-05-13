@@ -65,7 +65,7 @@ Main parts:
 
 ### Schematics
 
-![Schematics](./pm.svg)
+![Schematics](./pm_schema.svg)
 
 ### Bill of Materials
 
