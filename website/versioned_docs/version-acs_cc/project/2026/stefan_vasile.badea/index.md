@@ -1,5 +1,6 @@
 # DeskCal - Smart Desk Calendar
 A smart desk calendar that displays weather, news, local sensor data, and 
+A smart desk calendar that displays weather, local sensor data, and Google 
 Calendar events on a TFT screen, with animated LED ring alerts for upcoming 
 meetings.
 
@@ -33,6 +34,16 @@ events start.
 The system supports multiple visual themes, selectable in real time from the 
 companion web app which communicates with the Python bridge over HTTP. The 
 device is housed in a custom 3D-printed enclosure.
+DeskCal is a smart desk calendar running on an STM32 Nucleo-U545RE-Q 
+microcontroller. It receives weather data and Google Calendar events from a 
+laptop via USB-UART, processed by a Python script. A BME280 sensor provides 
+local temperature, humidity, and atmospheric pressure. A TFT color display shows 
+four navigable pages: current clock and date, weather conditions, local sensor 
+data with historical temperature graph, and upcoming calendar events. A
+WS2812B RGB LED ring displays animated color patterns indicating meeting 
+proximity. A passive buzzer emits timed audio alerts before events. A physical
+button snoozes active reminders. The device is housed in a custom 3D-printed 
+enclosure.
 
 ## Motivation
 
@@ -85,6 +96,23 @@ to a dedicated alert animation mode when a meeting is approaching. A passive
 buzzer driven by PWM emits a tone. Both the
 normal ring color/animation and the alert color/animation are configurable in
 real time from the web app.
+The system is organized around four main components:
+ 
+**Host Python Script** — runs on the laptop, fetches weather from OpenWeatherMap 
+and events from Google Calendar, serializes to JSON and sends over USB-UART 
+every 60 seconds.
+ 
+**STM32 Nucleo-U545RE-Q** — main controller running embassy-rs async tasks: 
+UART reception, BME280 reading, display rendering, LED ring and buzzer control.
+ 
+**Display Subsystem** — ILI9341 2.8" TFT over SPI renders four pages selected
+via potentiometer (ADC).
+ 
+**Alert Subsystem** — WS2812B LED ring (SPI) + passive buzzer (PWM) produce 
+visual and audio alerts based on meeting proximity; tactile button handles 
+snooze via GPIO interrupt.
+
+
 
 ## Log
 
@@ -138,6 +166,24 @@ tactile button with integrated blue LED provides user interaction via GPIO.
 
 All components are interconnected via jumper wires on a mini breadboard and
 housed in a custom 3D-printed PLA enclosure designed in Fusion 360.
+Ordered all hardware components from Optimus Digital and eMAG. Started reading 
+embassy-rs documentation and experimenting with basic GPIO and UART on the 
+Nucleo board. Started enclosure design in Fusion 360.
+
+### Week 8
+
+Stating writing the documentation page.
+
+## Hardware
+
+The project uses an STM32 Nucleo-U545RE-Q as the main microcontroller.
+A 2.8" ILI9341 TFT display connected via SPI renders the user interface across
+four pages. A BME280 sensor connected via I2C measures local temperature, 
+humidity, and atmospheric pressure. A WS2812B 16-LED ring connected via SPI 
+provides animated RGB visual alerts. A passive buzzer driven by PWM emits 
+audio alerts. A 50kΩ potentiometer on an ADC pin handles page navigation. 
+A tactile button on GPIO pins handle snooze and interaction. 
+All components are housed in a custom 3D-printed PLA enclosure.
 
 ### Schematics
 
@@ -182,6 +228,12 @@ The format is
 
 * TODO: the rest will be added as I develop the code
 
+* TODO: the rest will be added as I develop the code
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
 
 ## Links
 
