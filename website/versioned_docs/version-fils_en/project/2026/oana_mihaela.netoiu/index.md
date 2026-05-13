@@ -60,11 +60,11 @@ Finished the whole hardware assembly and the KiCad Schematic after receiving all
 
 The core of the project is the STM32 Nucleo-U545RE-Q board. The visual interface is handled by a 0.96" I2C OLED display. Distance detection is measured by the HC-SR04 ultrasonic sensor, which dictates the state of the SG90 180-degree servo motor, controlling the barrier. Audio feedback is processed by a DFPlayer Mini MP3 module reading from a FAT32-formatted microSD card, outputting to a 1W 8-Ohm speaker. Visual feedback is provided by 3 common-cathode RGB LEDs, and manual inputs are handled by the 6x6x6 push button. The circuit is prototyped on 3 400-point breadboards using standard Dupont jumper wires.
 
-![hardware image 1](hardware2.webp)
+![hardware image 1](hw1.webp)
 
-![hardware image 2](hardware3.webp)
+![hardware image 2](hw2.webp)
 
-![hardware image 3](hardware4.webp)
+![hardware image 3](hw3.webp)
 
 ### Schematics
 
