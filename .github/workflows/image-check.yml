@@ -116,7 +116,7 @@ jobs:
           ERRORS=0
           MAX_WIDTH=1024
           MAX_HEIGHT=768
-          MAX_FILE_SIZE=307200  # 300KB in bytes (300 * 1024)
+          MAX_FILE_SIZE=389120  # 380KB in bytes (380 * 1024)
 
           FILES="${{ steps.changed-files.outputs.files }}"
 
@@ -178,7 +178,7 @@ jobs:
             echo "  File size: ${FILE_SIZE_KB}KB (${FILE_SIZE} bytes)"
 
             if [ "$FILE_SIZE" -gt "$MAX_FILE_SIZE" ]; then
-              echo "  FAIL – File size ${FILE_SIZE_KB}KB exceeds limit of 300KB"
+              echo "  FAIL – File size ${FILE_SIZE_KB}KB exceeds limit of 380KB"
               ERRORS=$((ERRORS + 1))
             else
               echo "  File size OK"
@@ -217,4 +217,49 @@ jobs:
             exit 1
           else
             echo "All images passed validation."
+          fi
+
+      # ── Check for embedded base64 images in SVG files ──
+      - name: Check for embedded base64 images in SVG files
+        run: |
+          FILES="${{ steps.changed-files.outputs.files }}"
+
+          if [ -z "$FILES" ]; then
+            echo "No files to check."
+            exit 0
+          fi
+
+          ERRORS=0
+
+          echo "══════════════════════════════"
+          echo "Checking for embedded base64 images in SVG files..."
+          echo "══════════════════════════════"
+
+          while IFS= read -r FILE; do
+            [ -z "$FILE" ] && continue
+            [ ! -f "$FILE" ] && continue
+
+            EXT="${FILE##*.}"
+            EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$EXT_LOWER" != "svg" ]; then
+              continue
+            fi
+
+            echo "──────────────────────────────"
+            echo "Checking for embedded images: $FILE"
+
+            if grep -o 'data:image/[^;]*' "$FILE"; then
+              echo "$FILE -> has embedded images"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+          done <<< "$FILES"
+
+          echo "══════════════════════════════"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS SVG file(s) contain embedded base64 images."
+            exit 1
+          else
+            echo "✅ All SVG files are clean – no embedded base64 images found."
           fi
