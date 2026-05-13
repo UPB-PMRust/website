@@ -135,16 +135,17 @@ This separation keeps the system realistic for an embedded student project while
 
 ### Week 12 - 18 May
 
-- Finalized the initial hardware list for both units.
+- Finalized the hardware list for both units.
 - Defined the main sensing and feedback modules for the rover: chassis, motor drivers, ultrasonic sensors, servo, OLED, LED strip, and buzzer.
 - Defined the control station interaction elements: OLED, buttons, and potentiometers for configurable attack simulation.
 - Documented power regulation constraints, common ground requirements, and safe interconnection rules.
+- Exported the KiCad schematics for both embedded nodes and added them to the project documentation.
+- Integrated teacher feedback by planning TLS for the dashboard channel between phone and control station.
 
 ### Week 19 - 25 May
 
 - Defined the embedded software stack in Rust for async tasks, networking, telemetry, and UI rendering.
 - Refined the resilience model around replay, spoof, delay, loss, and flood simulation.
-- Integrated teacher feedback by planning TLS for the dashboard channel between phone and control station.
 - Clarified the split between secure transport and lightweight rover-side anomaly detection.
 - Defined the target final demo as a full detection-to-recovery cycle with visible system state transitions.
 
@@ -223,23 +224,25 @@ Functions:
 
 ### Schematics
 
-The full schematic will be added here in SVG format, exported from KiCad. Until the KiCad export is ready, this section documents the exact wiring plan used for the build.
+The hardware design is split into two KiCad sheets, matching the two physical embedded nodes of the project. Unit A contains the rover electronics, while Unit B contains the control station electronics used for operator input and fault simulation.
 
-#### Rover schematic overview
+#### Unit A - Rover KiCad schematic
 
-```text
-+5V_EXT ─────────────┬── Pico 2 W VSYS
-                    ├── HC-SR04 Front VCC
-                    ├── HC-SR04 Radar VCC
-                    ├── MG90S Servo V+
-                    ├── WS2812B +5V
-                    ├── Active Buzzer VCC
-                    └── MOTOR_VM, if using 5V motors
+![Unit A rover KiCad schematic](rover_schematic_kicad.webp)
 
-Pico 2 W 3V3_OUT ─── +3V3
-+3V3 ──────────────── OLED VCC + TB6612 logic VCC
-GND ───────────────── common ground everywhere
-```
+The rover schematic connects the Raspberry Pi Pico 2 W to the complete mobile platform: two TB6612FNG motor drivers for the four DC motors, two HC-SR04 ultrasonic sensors, the MG90S radar servo, the SSD1306 OLED display, the WS2812B status LED, the active buzzer, and the external power regulation stage.
+
+The design keeps the high-current motor supply and the Pico logic supply explicit, while sharing a common ground between the battery pack, LM2596 module, motor drivers, sensors, and controller. The HC-SR04 echo signals are protected with voltage dividers before reaching Pico GPIO pins, and the WS2812B data input uses a series resistor.
+
+#### Unit B - Control Station KiCad schematic
+
+![Unit B control station KiCad schematic](control_station_schematic.webp)
+
+The control station schematic focuses on the user-facing hardware for the simulation controller. A second Raspberry Pi Pico 2 W drives an SSD1306 OLED display, reads the physical attack-mode buttons, and samples two potentiometers that configure packet loss and delay intensity. The buttons are wired to ground and are intended to use internal pull-ups in firmware.
+
+This separation keeps the rover electronics dedicated to movement, sensing, and fail-safe behavior, while the control station handles the dashboard bridge and all software-only fault injection controls.
+
+#### Rover pin map
 
 | Pico pin | Net | Destination |
 |---|---|---|
@@ -270,7 +273,7 @@ GND ───────────────── common ground everywhere
 
 #### HC-SR04 echo protection
 
-Not conecting HC-SR04 `ECHO` directly to the Pico. Each echo line uses this divider:
+The HC-SR04 `ECHO` pin gives a 5V signal, so I should not connect it directly to a Pico GPIO. For both ultrasonic sensors I used a simple voltage divider:
 
 ```text
 HC-SR04 ECHO ── 2.0kΩ ── ECHO_DIV ── 3.3kΩ ── GND
@@ -278,9 +281,9 @@ HC-SR04 ECHO ── 2.0kΩ ── ECHO_DIV ── 3.3kΩ ── GND
                          └── Pico GPIO input
 ```
 
-This reduces the 5V echo signal to about 3.1V.
+This brings the echo signal down to about 3.1V, which is safe enough for the Pico input pins.
 
-#### Control station schematic overview
+#### Control station pin map
 
 | Pico pin | Net | Destination |
 |---|---|---|
@@ -303,6 +306,12 @@ This reduces the 5V echo signal to about 3.1V.
 | GP27 | `POT_DELAY_WIPER` | Delay potentiometer wiper |
 
 Buttons and encoder inputs use internal pull-ups in firmware. Each button shorts its GPIO net to `GND` when pressed. Potentiometer high side connects to `+3V3`, low side to `GND`, and wiper to the ADC GPIO.
+
+### Hardware setup
+
+![Hardware setup](hardware_pic.webp)
+
+This is the current hardware setup while I am testing the rover and the control station. The parts are not mounted in the final positions yet, but this setup lets me check the wiring, sensors, motor drivers, displays, and power before assembling everything on the chassis.
 
 ### Bill of Materials
 

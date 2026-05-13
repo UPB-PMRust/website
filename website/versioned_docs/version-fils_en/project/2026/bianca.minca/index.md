@@ -50,12 +50,13 @@ The system architecture revolves around the **STM32 microcontroller (Nucleo boar
 ```
 
 The system architecture revolves around the STM32 microcontroller (Nucleo board):
-1. **Input:*User credentials are captured via a Keypad matrix for secure PIN entry. Vehicle proximity and parking spot occupancy are monitored asynchronously using IR sensors connected via External Interrupts (EXTI) to ensure zero-latency detection.
+1. **Input:**User credentials are captured via a Keypad matrix for secure PIN entry. Vehicle proximity and parking spot occupancy are monitored asynchronously using IR sensors connected via External Interrupts (EXTI) to ensure zero-latency detection.
 2. **Processing:** The STM32 validates the entered PIN against reservation data and manages the parking state logic. Using the Embassy framework, the system concurrently tracks the barrier's position, processes keypad input, and updates the real-time availability of parking spots.
 3. **Output:** Movement is triggered via PWM (Pulse Width Modulation) to the Servomotor, which precisely actuates the barrier arm. Visual feedback is provided through a Multi-LED system: status indicators for the main gate and individual Red/Green LEDs to signal occupancy for each parking spot.
 
 ## Shematics
-(Will be put here)
+**KiCad Schematic** 
+![SmartPark Schematic](./schematic.svg)
 
 ## Hardware
 The system is centered around an STM32 Nucleo MCU. For input, I am using IR proximity sensors for vehicle detection and a 4x4 Matrix Keypad for secure PIN entry. Outputs consist of an SG90 Servo Motor driven by a PWM signal to actuate the barrier, alongside Red and Green LEDs for real-time status and occupancy feedback via digital GPIO.
