@@ -44,7 +44,7 @@ Assembled first prototype
 
 ### Schematics
 
-TBD
+![Schematic](./images/schematic.svg)
 
 ### Bill of Materials
 
