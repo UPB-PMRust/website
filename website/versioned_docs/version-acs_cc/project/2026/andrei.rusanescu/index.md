@@ -110,6 +110,9 @@ The HC-SR04 sensors are not so precise as the car sometimes crashes into walls i
 
 The robot is built on a 4WD chassis with 4 DC motors (3–6V) driven through an L298N dual H-bridge using skid steering (left/right side in parallel). Speed and direction are controlled via PWM from the STM32. Two IR optical sensors read encoder discs on the motors to compute RPM. An MPU-6500 IMU over I2C measures tilt angle using a complementary filter. Two HC-SR04 ultrasonic sensors handle obstacle detection front and rear. An SSD1306 OLED displays live telemetry. An HC-06 Bluetooth module provides bidirectional communication with the laptop.
 
+![Car from above](IMG_3541.webp)
+![Car from a side](IMG_3536.webp)
+
 ### Schematics
 
 <!-- Place your KiCAD schematics here in SVG format. -->
