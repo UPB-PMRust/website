@@ -91,7 +91,7 @@ The user interface consists of the KY-040 Rotary Encoder (for navigation and sel
 
 ## Schematics
 
-KiCAD schematic will be placed here.
+![KICAD Schematic](./kicadproject.svg)
 
 ## Software
 

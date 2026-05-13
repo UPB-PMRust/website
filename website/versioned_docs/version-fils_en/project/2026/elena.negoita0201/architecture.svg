@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 950" width="100%" height="100%">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000" />
+    </marker>
+  </defs>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" fill="#000">
+    
+    <rect x="275" y="30" width="250" height="80" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="50">ENVIRONMENT / FLOOR</text>
+    <text x="400" y="70">color-coded parking marker</text>
+    <text x="400" y="90">provides visual cue</text>
+
+    <line x1="400" y1="110" x2="400" y2="135" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="145">reflected light</text>
+    <line x1="400" y1="150" x2="400" y2="170" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="250" y="170" width="300" height="90" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="195">TCS34725 RGB SENSOR</text>
+    <text x="400" y="215">scans surface continuously</text>
+    <text x="400" y="235">detects Red, Green, Blue values</text>
+
+    <line x1="400" y1="260" x2="400" y2="285" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="299">I2C</text>
+    <line x1="400" y1="305" x2="400" y2="330" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="225" y="330" width="350" height="110" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="355">STM32 NUCLEO-U545RE-Q</text>
+    <text x="400" y="375">main controller</text>
+    <text x="400" y="395">State Machine evaluates color</text>
+    <text x="400" y="415">executes timed parking sequence</text>
+
+    <line x1="400" y1="440" x2="400" y2="470" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="484">PWM / GPIO</text>
+    <line x1="400" y1="490" x2="400" y2="520" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <rect x="250" y="520" width="300" height="80" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="550">TB6612FNG MOTOR DRIVER</text>
+    <text x="400" y="570">translates logic to motor power</text>
+
+    <path d="M300,600 L200,660" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="230" y="620">Power</text>
+    
+    <path d="M500,600 L600,660" stroke="#000" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="570" y="620">Power</text>
+
+    <rect x="100" y="660" width="200" height="70" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="200" y="685">LEFT DC MOTORS (x2)</text>
+    <text x="200" y="705">drive left side wheels</text>
+
+    <rect x="500" y="660" width="200" height="70" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="600" y="685">RIGHT DC MOTORS (x2)</text>
+    <text x="600" y="705">drive right side wheels</text>
+
+    <rect x="250" y="800" width="300" height="90" fill="#fff" stroke="#000" stroke-width="1.5"/>
+    <text x="400" y="825">5V POWER SUPPLY</text>
+    <text x="400" y="845">18650 Li-ion Cells &amp; LM2596</text>
+    <text x="400" y="865">powers STM32, sensor, driver</text>
+
+  </g>
+</svg>
