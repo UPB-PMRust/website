@@ -12,7 +12,7 @@ A portable medical device that measures lung function and tracks asthma evolutio
 
 ## Description
 
-A handheld peak flow meter built around the STM32F4 microcontroller that measures PEF (Peak Expiratory Flow) and FEV1 by analyzing differential pressure generated when the user exhales forcefully into a calibrated tube. Results are displayed in real time as a waveform graph on a 2.4" touchscreen TFT display, compared against the user's personal best and color-coded via an RGB LED, timestamped using a DS3231 real-time clock module, logged to a microSD card, and transmitted via Bluetooth to a mobile device for long-term trend visualization.
+A handheld peak flow meter built around the STM32U545 microcontroller that measures PEF (Peak Expiratory Flow) and FEV1 by analyzing differential pressure generated when the user exhales forcefully into a calibrated tube. Results are displayed in real time as a waveform graph on a 2.4" touchscreen TFT display, compared against the user's personal best and color-coded via an RGB LED, timestamped using a DS3231 real-time clock module, logged to a microSD card, and transmitted via Bluetooth to a mobile device for long-term trend visualization.
 
 ## Motivation
 
@@ -22,7 +22,7 @@ What motivated me specifically to chose this project was the gap between what ex
 
 - **Pressure sensor** (**MPXV7002DP**) measures the pressure difference generated when the user exhales through a **PVC tube** with a **calibrated 6mm orifice**. The output voltage is stepped down from **5V to 3.3V** via a **resistive voltage divider** before reaching the microcontroller.
 
-- **STM32F4** samples the sensor at **~1kHz**, applies **Bernoulli's equation** to convert pressure into airflow **(L/min)**, detects the **PEF peak**, and computes **FEV1** by numerically integrating the **first second** of the flow curve.
+- **STM32U545** samples the sensor at **~1kHz**, applies **Bernoulli's equation** to convert pressure into airflow **(L/min)**, detects the **PEF peak**, and computes **FEV1** by numerically integrating the **first second** of the flow curve.
 
 - **TFT touchscreen** displays the **exhalation waveform** in real time and shows the final **PEF** and **FEV1** values at the end of each measurement. It also handles all **user input**, replacing physical buttons entirely.
 
@@ -39,14 +39,22 @@ What motivated me specifically to chose this project was the gap between what ex
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Defined the concept of a portable respiratory monitoring device (peak flow meter).
+Chosen STM32 as the main microcontroller.
+Outlined system architecture and main hardware components.
 
 ### Week 12 - 18 May
+Selected main hardware components: pressure sensor, TFT display, RTC, microSD, Bluetooth module.
+Designed initial schematic and defined communication interfaces (SPI, I2C, UART, ADC).
+Completed STM32 pin mapping.
+Finalized system architecture and data flow (sensing, processing, display, logging, communication).
+Prepared system for firmware implementation and hardware testing.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
-- The heart of the device is the STM32F407 microcontroller, which handles all ADC sampling, signal processing, display rendering, and peripheral communication.
+- The heart of the device is the STM32U545 microcontroller, which handles all ADC sampling, signal processing, display rendering, and peripheral communication.
 - The MPXV7002DP differential pressure sensor is the most critical component — it measures the pressure drop across a 6mm calibrated orifice in the exhalation tube and converts it into a voltage that the STM32 reads through a resistive voltage divider, since the sensor outputs up to 5V while the STM32 ADC accepts a maximum of 3.3V.
 - The 2.4 inch TFT shield combines the ILI9341 display and an XPT2046 resistive touchscreen controller on a single board, handling both waveform visualization and all user input without the need for physical buttons.
 - The microSD module connects over the same SPI bus as the display using a dedicated chip select line and stores every measurement as a CSV file.
@@ -56,7 +64,8 @@ What motivated me specifically to chose this project was the gap between what ex
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Full system schematic](schematic.svg)
+
 
 ### Bill of Materials
 
@@ -72,7 +81,7 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| STM32F4 Development Board | Main microcontroller | - |
+| STM32U545 Development Board | Main microcontroller | - |
 | [MPXV7002DP Pressure Sensor Module](https://www.optimusdigital.ro/ro/senzori-senzori-de-presiune/1163-modul-senzor-de-presiune-mpxv7002dp.html) | Differential pressure measurement | 279.00 RON |
 | [DS3231 Real Time Clock Module](https://www.optimusdigital.ro/ro/altele/12432-modul-cu-ceas-in-timp-real-ds3231-fara-baterie.html) | Accurate timestamping for CSV log | 15.98 RON |
 | [Assorted LED Kit 310pcs + Resistors](https://www.optimusdigital.ro/ro/kituri-optimus-digital/9517-set-de-led-uri-asortate-de-5-mm-si-3-mm-310-buc-cu-rezistoare-bonus.html) | RGB LED indicator + current limiting resistors + voltage divider resistors | 26.99 RON |
