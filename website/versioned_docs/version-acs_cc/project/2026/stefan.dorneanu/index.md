@@ -5,7 +5,7 @@ A embedded system for recording and monitoring bicycle ride data, with real-time
 :::info
 
 **Author**: Dorneanu Stefan Cristian \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-stefandorneanu
+**GitHub Project Link**: <https://github.com/UPB-PMRust-Students/acs-project-2026-stefandorneanu>
 
 :::
 
@@ -36,6 +36,8 @@ All tasks communicate through Mutex and Channel mechanisms to avoid data conflic
 
 ### Week 5 - 11 May
 
+Ordered all hardware components (GPS module, accelerometer/gyroscope MPU-6050, barometric sensor AHT20+BMP280, OLED display, SD card module, RGB LED, passive buzzer, LiPo battery, TP4056 charger, wires and breadboard). Set up the Rust embedded development environment with Embassy framework. Created individual test projects for each component. Successfully tested the buzzer (PWM signal generation), RGB LED (common anode, color cycling), OLED display (I2C communication, text rendering) and accelerometer/gyroscope (I2C data reading). Started testing the GPS module — UART communication works and NMEA sentences are being received.
+
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
@@ -46,28 +48,28 @@ The system uses the NUCLEO-U545RE-Q board as the main microcontroller. The GPS m
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematici Proiect](./Schematic_ProiectPM-DataloggerGPS_2026-05-13.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
-|--------|--------|-------|
-| [NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | ~ 130 RON |
-| [GPS Module NEO-6M](https://www.optimusdigital.ro/en/gps/2137-gyneo6mv2-gps-module-with-miniature-antenna.html) | Position, speed, GPS altitude | ~ 35 RON |
-| [Accelerometer and Gyroscope MPU-6050](https://www.optimusdigital.ro/en/inertial-sensors/96-mpu6050-accelerometer-and-gyroscope-module.html) | Sudden braking and cornering detection | ~ 10 RON |
-| [Barometric Sensor BMP280](https://www.optimusdigital.ro/en/pressure-sensors/1777-bmp280-barometric-pressure-sensor-module.html) | Temperature and barometric altitude | ~ 8 RON |
-| [OLED Display 128x64 I2C](https://www.optimusdigital.ro/en/lcds/2894-096-i2c-oled-module.html) | Real-time data display | ~ 15 RON |
-| [MicroSD Card Module](https://www.optimusdigital.ro/en/memories/1516-microsd-card-slot-module.html) | Data logging in CSV format | ~ 5 RON |
-| MicroSD Card 8GB | CSV file storage | ~ 15 RON |
-| RGB LED | Visual event indicator | ~ 2 RON |
-| Passive Buzzer | Audio alert for sudden braking | ~ 3 RON |
-| LiPo Battery 3.7V + TP4056 module | Mobile power supply and charging | ~ 20 RON |
-| Wires, breadboard, resistors | Component connections | ~ 10 RON |
+| -------- | -------- | ------- |
+| [NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | 130 RON |
+| [GPS Module NEO-6M](https://www.optimusdigital.ro/en/gps/2137-gyneo6mv2-gps-module-with-miniature-antenna.html) | Position, speed, GPS altitude | 69.99 RON |
+| [Accelerometer and Gyroscope MPU-6050](https://www.optimusdigital.ro/en/inertial-sensors/96-mpu6050-accelerometer-and-gyroscope-module.html) | Sudden braking and cornering detection | 14.68 RON |
+| [Barometric Sensor AHT20 + BMP280](https://www.optimusdigital.ro/en/pressure-sensors/1777-bmp280-barometric-pressure-sensor-module.html) | Temperature and barometric altitude | 12.00 RON |
+| [OLED Display 0.96" I2C](https://www.optimusdigital.ro/en/lcds/2894-096-i2c-oled-module.html) | Real-time data display | 18.98 RON |
+| [MicroSD Card Module](https://www.optimusdigital.ro/en/memories/1516-microsd-card-slot-module.html) | Data logging in CSV format | 4.99 RON |
+| MicroSD Card 8GB | CSV file storage | 15 RON |
+| RGB LED Module | Visual event indicator | 6.39 RON |
+| Passive Buzzer | Audio alert for sudden braking | 2.97 RON |
+| LiPo Battery 3.7V + TP4056 module | Mobile power supply and charging | 34.67 RON |
+| Wires and Breadboard | Component connections | 38.96 RON |
 
 ## Software
 
 | Library | Description | Usage |
-|---------|-------------|-------|
+| --------- | ------------- | ------- |
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | Async framework for embedded Rust | Parallel tasks, peripheral drivers |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Time management in Embassy | Async timers and delays |
 | [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT32 file system for SD | CSV writing on SD card |
