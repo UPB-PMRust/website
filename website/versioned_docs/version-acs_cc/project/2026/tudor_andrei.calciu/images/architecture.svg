@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <defs>
+    <style>
+      .box { fill: #ffffff; stroke: #000000; stroke-width: 1.5; rx: 8px; }
+      .text-title { font-family: Arial, sans-serif; font-size: 14px; font-weight: normal; fill: #000000; text-anchor: middle; }
+      .text-label { font-family: Arial, sans-serif; font-size: 11px; fill: #000000; text-anchor: middle; }
+      .text-label-left { font-family: Arial, sans-serif; font-size: 11px; fill: #000000; text-anchor: start; }
+      .line { stroke: #000000; stroke-width: 1.5; fill: none; }
+      .arrow { marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#000000" />
+    </marker>
+  </defs>
+
+  <rect width="900" height="600" fill="#ffffff" />
+
+  <rect x="330" y="260" width="140" height="80" class="box" />
+  <text x="400" y="305" class="text-title">STM32 Nucleo</text>
+
+  <rect x="50" y="150" width="140" height="60" class="box" />
+  <text x="120" y="185" class="text-title">Push Buttons</text>
+
+  <rect x="50" y="270" width="140" height="60" class="box" />
+  <text x="120" y="305" class="text-title">Potentiometer</text>
+
+  <rect x="50" y="390" width="140" height="60" class="box" />
+  <text x="120" y="425" class="text-title">LDR Module</text>
+
+  <rect x="600" y="150" width="140" height="60" class="box" />
+  <text x="670" y="185" class="text-title">LCD 1602 Display</text>
+
+  <rect x="600" y="270" width="140" height="60" class="box" />
+  <text x="670" y="305" class="text-title">L298N Motor Driver</text>
+
+  <rect x="600" y="390" width="140" height="60" class="box" />
+  <text x="670" y="425" class="text-title">DC Gear Motors</text>
+
+  <rect x="600" y="490" width="140" height="60" class="box" />
+  <text x="670" y="525" class="text-title">Servo Motor SG90</text>
+
+  <rect x="600" y="50" width="140" height="60" class="box" />
+  <text x="670" y="85" class="text-title">12V/7.4V Power</text>
+
+
+  <path d="M 190 180 L 270 180 L 270 280 L 322 280" class="line arrow" />
+  <text x="230" y="175" class="text-label">Digital PIN</text>
+
+  <path d="M 190 300 L 322 300" class="line arrow" />
+  <text x="260" y="295" class="text-label">Analog Value</text>
+
+  <path d="M 190 420 L 270 420 L 270 320 L 322 320" class="line arrow" />
+  <text x="230" y="415" class="text-label">Analog Value</text>
+
+  <path d="M 470 280 L 530 280 L 530 180 L 592 180" class="line arrow" />
+  <text x="500" y="275" class="text-label">I2C Data</text>
+
+  <path d="M 470 300 L 592 300" class="line arrow" />
+  <text x="535" y="295" class="text-label">Motor Directions (PWM)</text>
+
+  <path d="M 470 320 L 530 320 L 530 520 L 592 520" class="line arrow" />
+  <text x="500" y="335" class="text-label">PWM Signal</text>
+
+  <path d="M 740 80 L 800 80 L 800 300 L 748 300" class="line arrow" />
+  <rect x="755" y="175" width="45" height="16" fill="white" />
+  <text x="758" y="187" class="text-label-left">Power</text>
+
+  <path d="M 670 330 L 670 382" class="line arrow" />
+  <rect x="635" y="347" width="70" height="16" fill="white" />
+  <text x="670" y="359" class="text-label">Motor Power</text>
+
+</svg>

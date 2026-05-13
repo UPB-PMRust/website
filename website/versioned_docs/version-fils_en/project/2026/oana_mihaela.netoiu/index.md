@@ -52,13 +52,23 @@ Ordered all the hardware components from multiple suppliers. Set up the Rust dev
 
 Received all the hardware components, including the STM32 Nucleo board. Unboxed and organized the components for assembly. Verified the pinout compatibility between the Nucleo-U545RE-Q and the peripheral modules. Started the initial hardware assembly on the breadboards and began the first connectivity tests for the power rails and basic GPIO.
 
+### Weeks 10-11
+
+Finished the whole hardware assembly and the KiCad Schematic after receiving all the components. I will probably change the jumper wires to shorter ones or rigid ones for a more organized look.
+
 ## Hardware
 
-The core of the project is the STM32 Nucleo-U545RE-Q board. The visual interface is handled by a 0.96" I2C OLED display. Distance detection is measured by the HC-SR04 ultrasonic sensor, which dictates the state of the SG90 180-degree servo motor, controlling the barrier. Audio feedback is processed by a DFPlayer Mini MP3 module reading from a FAT32-formatted microSD card, outputting to a 1W 8-Ohm speaker. Visual feedback is provided by 3 common-cathode RGB LEDs, and manual inputs are handled by the 6x6x6 push button. The circuit is prototyped on 1 to 3 400-point breadboards using standard Dupont jumper wires.
+The core of the project is the STM32 Nucleo-U545RE-Q board. The visual interface is handled by a 0.96" I2C OLED display. Distance detection is measured by the HC-SR04 ultrasonic sensor, which dictates the state of the SG90 180-degree servo motor, controlling the barrier. Audio feedback is processed by a DFPlayer Mini MP3 module reading from a FAT32-formatted microSD card, outputting to a 1W 8-Ohm speaker. Visual feedback is provided by 3 common-cathode RGB LEDs, and manual inputs are handled by the 6x6x6 push button. The circuit is prototyped on 3 400-point breadboards using standard Dupont jumper wires.
+
+![hardware image 1](hw1_with_bgc.webp)
+
+![hardware image 2](hw2_with_bgc.webp)
+
+![hardware image 3](hw3_with_bgc.webp)
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic](smart_parking_simulator_scehmatic(1).svg)
 
 ### Bill of Materials
 
