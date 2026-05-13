@@ -114,6 +114,10 @@ The system is composed of the following main modules:
 ### 14. Breadboard + Jumper Wires
 - **Role**: Prototyping and connections
 
+## Schematics
+
+![Schematic](schema.webp)
+
 
 ## Bill of Materials
 
