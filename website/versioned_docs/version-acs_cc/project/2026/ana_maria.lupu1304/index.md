@@ -97,10 +97,19 @@ flowchart LR
 
 ## Log
 
-### Weak 14 - 29 April
+### Week 14 - 29 April
 
 - Finalized project theme and received approval.
 - Researched and ordered components.
+
+### Week 4 - 10 May
+
+- Components arrived
+
+### Week 11 - 17 May
+
+- Tested components separately
+- Started assembling the project
 
 ## Hardware
 
@@ -108,7 +117,7 @@ The hardware platform is built around an STM32 microcontroller, an MPU6050 IMU f
 
 ## Schematics
 
-
+![Schematics](./images/schematic.webp)
 
 ## Bill of Materials
 
@@ -127,7 +136,4 @@ The hardware platform is built around an STM32 microcontroller, an MPU6050 IMU f
 
 ## Software
 
-
-
-## Links
 
