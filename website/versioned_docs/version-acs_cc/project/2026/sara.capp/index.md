@@ -35,7 +35,7 @@ The system is composed of the following main components:
 
 The STM32 reads the distance using GPIO pins and reads the light values from photodiodes using ADC inputs. It communicates with the PCA9685 module via I2C. The PCA9685 generates PWM signals used to control the servomotors.
 
-![Architecture diagram](diagram .png)
+![Architecture diagram](diagram.png)
 
 ## Log
 
