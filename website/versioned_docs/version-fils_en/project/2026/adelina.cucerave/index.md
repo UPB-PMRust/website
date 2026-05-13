@@ -4,7 +4,7 @@ A smart reaction-training station that uses lights and sensors to measure hit fo
 :::info 
 
 **Author**: Cucerave Adelina-Maria 1222EEB \
-**GitHub Project Link**: (https://github.com/UPB-PMRust-Students/fils-project-2026-AdelinaMariaCucerave)
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-AdelinaMariaCucerave
 
 :::
 
@@ -81,6 +81,14 @@ By building a system that gives instant feedback through lights and sounds, user
 - Having problems with Windows/Linux environment but fixing them
 - Received help with soldering some wires to my piezo sensors and RGB LED rings
 
+### Week 11:
+- Finished with KiCAD schematic
+- Noticed 2 things when testing the protection circuit for the piezoel. sensors: I need a different capacitor ( 100nF instead of 200nF), missing FTF wires
+- I also need a different potentiometer because the legs of the one I have right now are too short to reach into the breadboard, ordered it
+
+### Week 12:
+- Will start doing testing of hardware
+
 ## Hardware
 
 The main component is the Nucleo STM32U545RE-Q board that acts as the central unit, analyzing real-time vibration data based on signals from three piezoelectric diaphragms taped underneath the training cups. To protect the microcontroller's ADC pins from high-voltage spikes caused by physical "thumps," each piezo is connected through a protection circuit using BAT41 Schottky diodes and high-value resistors. A potentiometer is integrated to provide a variable voltage signal, allowing the user to manually adjust the "Global Sensitivity" threshold for the training session.
@@ -92,6 +100,15 @@ For user feedback, the STM32 controls RGB LED rings to provide instant visual cu
 <center>
 ![Diagram](diagram.svg)
 </center>
+
+<center>
+![KiCAD](kicadschematic.svg)
+</center>
+
+<center>
+![Hardware](hardware.webp)
+</center>
+
 
 ### Bill of Materials
 
