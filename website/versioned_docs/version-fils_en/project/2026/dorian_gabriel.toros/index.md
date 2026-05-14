@@ -21,7 +21,7 @@ I chose this project because I wanted to make guidance more accessible to visual
 
 ## Architecture 
 
-![Orion Architecture](./images/OrionArchitecture.svg)
+![Orion Architecture](./images/orionarchitecture.svg)
 
 The system follows a decentralized command structure, where high-level strategy is handled by a mobile device and real-time safety is handled locally by the robot.
 
@@ -61,11 +61,18 @@ All ordered materials arrived. I started doing small functionality tests to make
 ### Week 13 - 19 April
 Worked on the website for the project.
 ### Week 20 - 26 April
-
+Started working on hardware
+![Orion Hardware 1/x](./images/ma1.webp)
+![Orion Hardware 2/x](./images/ma2.webp)
+![Orion Hardware 3/x](./images/ma3.webp)
 ### Week 27 April - 3 May
-
+Continued working on hardware
+![Orion Hardware 4/x](./images/ma4.webp)
+![Orion Hardware 5/x](./images/ma5.webp)
+![Orion Hardware 6/x](./images/ma6.webp)
 ### Week 4 - 10 May
-
+![Orion Hardware 7/x](./images/ma7.webp)
+![Orion Hardware 8/x](./images/ma8.webp)
 ### Week 11 - 17 May
 
 ### Week 18 - 24 May
@@ -79,7 +86,7 @@ For movement, the system uses a 4WD motor and wheel set adapted into a "walker-s
 The power system is split into two distinct rails for stability: the 4WD motors are powered directly from the Li-ion batteries to handle high current spikes, while a buck converter steps the voltage down to a stable 5V for the breadboard-mounted logic circuits, protecting the microcontrollers from electrical interference.
 
 ### Schematics
-![Orion Schematics](./images/OrionSchematics.svg)
+![Orion Schematics](./images/orionschematics.svg)
 
 ### Bill of Materials
 
@@ -96,7 +103,8 @@ The format is
 | Device | Usage | Price |
 |--------|-------|-------|
 | [ESP 32 DEVKIT V1, 1 PC](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp-dev-kits-en-master-esp32.pdf) | Sending instructions from phone through BLE | [53.08](https://www.emag.ro/placa-dezvoltare-esp32-devkit-v1-ai669/pd/DXV9FDMBM/) |
-| [10 FEMALE TO MALE DUPONT WIRE JUMPER CABLES, 20 CM, 2 PCS](https://www.budgetronics.eu/en/search?query=Wire+Jumper) | Connections | [12.22](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-ai306-s459/pd/DZJ66JBBM/) |
+| [10 FEMALE TO MALE DUPONT WIRE JUMPER CABLES, 20 CM, 4 PCS](https://www.budgetronics.eu/en/search?query=Wire+Jumper) | Connections | [24.44](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-ai306-s459/pd/DZJ66JBBM/) |
+| [10 FEMALE TO MALE DUPONT WIRE JUMPER CABLES, 30 CM, 2 PCS](https://www.budgetronics.eu/en/search?query=Wire+Jumper) | Connections | [9.70](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-ai306-s459/pd/DZJ66JBBM/) |
 | [STM32-NUCLEO-U545RE-Q, 1 PC](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main control unit - Handles logic, safety, and real-time processing. | [106.59](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
 | [5 MM LED, BLUE, 5 PCS](https://sigmanortec.ro/led-5mm-albastru) | Debugging | [1.50](https://sigmanortec.ro/led-5mm-albastru) |
 | [5 MM LED, GREEN, 5 PCS](https://sigmanortec.ro/led-5mm-verde) | Debugging | [1.50](https://sigmanortec.ro/led-5mm-verde) |
@@ -105,6 +113,7 @@ The format is
 | [5 MM LED, RED, 5 PCS](https://sigmanortec.ro/led-5mm-rosu) | Debugging | [1.50](https://sigmanortec.ro/led-5mm-rosu) |
 | [ELECTRET MICROPHONE CAPSULE, 1 PC](https://sigmanortec.ro/Microfon-electret-capsula-p126469106) | Microphone for hazard detection | [1.21](https://sigmanortec.ro/Microfon-electret-capsula-p126469106) |
 | [760 POINTS BREADBOARD, 1 PC](https://sigmanortec.ro/Breadboard-760-puncte-p190992404) | Connections board between devices | [10.59](https://sigmanortec.ro/Breadboard-760-puncte-p190992404) |
+| [400 POINTS BREADBOARD, 2 PC](https://www.emag.ro/placa-test-breadboard-400-ai059-a-s69/pd/D5WBP7MBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | Connections board between devices | [13.36](https://www.emag.ro/placa-test-breadboard-400-ai059-a-s69/pd/D5WBP7MBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) |
 | [40 MALE TO MALE DUPONT WIRE JUMPER CABLES, 10 CM, 1 PC](https://www.budgetronics.eu/en/search?query=Wire+Jumper) | Connections | [7.73](https://sigmanortec.ro/40-Fire-Dupont-30cm-Tata-Tata-p210849599) |
 | [40 MALE TO MALE DUPONT WIRE JUMPER CABLES, 20 CM, 1 PC](https://www.budgetronics.eu/en/search?query=Wire+Jumper) | Connections | [8.97](https://sigmanortec.ro/40-Fire-Dupont-20cm-Tata-Tata-p210851325) |
 | [MICRO VIBRATION MOTORS, 3V, 5 PCS](https://precisionminidrives.com/product/10mm-coin-vibration-motor-3mm-type-model-nfp-c1030?_gl=1*xjkzbp*_up*MQ..*_gs*MQ..&gclid=Cj0KCQjwkYLPBhC3ARIsAIyHi3SQnjs6q14PMiZl5raiINrToDman7eGPuO6rXBETsWOfCBPPjlN3WMaAt5WEALw_wcB&gbraid=0AAAAAomY7RVV_VKawgmUUJGBq9vz8B5WF)  | Guidance components | [31.44](https://www.drot.ro/platforma-arduino/121940-motor-minim-vibra-ie-1027-3v.html) |
@@ -147,7 +156,11 @@ The format is
 | [ESP32-CAM, 1PC](https://www.espressif.com/en/news/ESP32_CAM) | Vision of surroundings | [69.73](https://sigmanortec.ro/placa-dezvoltare-esp32-cam-wifi-bluetooth-ov2640-2mp?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72NaeHUezr_l2tenEtN_DWuo-&gclid=CjwKCAjwwJzPBhBREiwAJfHRncs6iBeoE0wPaSECFaCZAgI91YlvsW3P0Mivj8F67mw68YUT3yr1gBoCHEMQAvD_BwE) |
 | [MOTOR DRIVER L298N, 1PC](https:/www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf) | Control the motors | [11.99](https://www.bitmi.ro/modul-driver-l298n-cu-punte-h-dubla-pentru-motoare-dc-stepper-10400.html?gad_source=1&gad_campaignid=22990790771&gbraid=0AAAAADLag-l-Qerv9f0lSY9XqqBlFnwNA&gclid=CjwKCAjwwJzPBhBREiwAJfHRnfinvN0rXoyvlGJ25nfHMtS9aOkRWboLQOHjwRcBMDjc36QEGa-khxoCv7QQAvD_BwE) |
 | [BATTERIES 3.7V 2500mAh LI-ION CELLS 18650, 2PC](https://www.a2t.ro/default-category/acumulator-li-ion-sony-18650-25r-inr-3-7v-2500mah-descarcare-20a?gad_source=1&gad_campaignid=21154157017&gclid=CjwKCAjwwJzPBhBREiwAJfHRnY9QXvOL2PKbyJ5mpJ0N7jnGqOhSX-3I-1vSrV_tmaTLDerpL75RmxoCVAwQAvD_BwE) | Power | [57.98](https://www.a2t.ro/default-category/acumulator-li-ion-sony-18650-25r-inr-3-7v-2500mah-descarcare-20a?gad_source=1&gad_campaignid=21154157017&gclid=CjwKCAjwwJzPBhBREiwAJfHRnY9QXvOL2PKbyJ5mpJ0N7jnGqOhSX-3I-1vSrV_tmaTLDerpL75RmxoCVAwQAvD_BwE) |
-| Total |     | 1057.46 |
+| [2-PRONG PLUG, 1PC](https://www.bricolaj.ro/stecher-plat-fara-cp-negru?gad_source=1&gad_campaignid=20166278864&gclid=Cj0KCQjw2YDQBhD_ARIsAE1qeScg9VBd2adSebJ-Jw5v2wAZdaTxWV-dSDg2yq2YJWaZiAYfU-t7H9oaAhnvEALw_wcB) | Design | [3.50](https://www.bricolaj.ro/stecher-plat-fara-cp-negru?gad_source=1&gad_campaignid=20166278864&gclid=Cj0KCQjw2YDQBhD_ARIsAE1qeScg9VBd2adSebJ-Jw5v2wAZdaTxWV-dSDg2yq2YJWaZiAYfU-t7H9oaAhnvEALw_wcB) |
+| [SYNTHETIC FUR, 1PC](https://www.stoklasa.ro/blana-sintetica-x156074?barva=258339) | Design | [75.00](https://www.stoklasa.ro/blana-sintetica-x156074?barva=258339) |
+| [VENTILATOR 5V 25x25x10mm, 2PC](https://www.emag.ro/ventilator-computer-axial-5v-25x25x10mm-19800/pd/D3N17GBBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | Cooling | [45.12](https://www.emag.ro/ventilator-computer-axial-5v-25x25x10mm-19800/pd/D3N17GBBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) |
+| [SILICON CABLE 1x6 10m, 1PC](https://www.emag.ro/cablu-siliconic-1-x-6-10m-112236/pd/D7GTQVYBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) | Leash | [69.09](https://www.emag.ro/cablu-siliconic-1-x-6-10m-112236/pd/D7GTQVYBM/?utm_campaign=share_product&utm_source=mobile_dynamic_share&utm_medium=android) |
+| Total |     | 1285.45 |
 
 
 ## Software
