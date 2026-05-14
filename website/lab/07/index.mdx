@@ -1,555 +1,641 @@
 ---
-description: Wi-Fi
+description: Universal Serial Bus v2.0
 slug: /lab/07
 ---
 
-# 07 - Wi-Fi
+# 07 - Universal Serial Bus
 
-import { useActiveVersion } from '@docusaurus/plugin-content-docs/client';
+This lab will teach you how to configure and communicate with devices using the Universal Serial Bus (USB) protocol, specifically USB 2.0, using the Embassy framework.
 
-export function NetworkingLecture() {
-  const version = useActiveVersion();
-  return <a href={`/docs/${version?.name}/lecture/08`}>Lecture 08 - Networking</a>;
-}
-
-This lab will teach you the basics of networking and Wi-Fi, and how to use Wi-Fi with the Raspberry Pi Pico W, in Embassy.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Resources
 
-**Andrew Tanenbaum**, *Computer networks (5th edition)*
-  - Chapter 1 - *Introduction*
-    - Subchapter 1.4.2 - *The TCP/IP Reference Model*
+1. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
+2. **STMicroelectronics**, *[Nucleo STM32U545 User manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)*
+3. **Raspberry Pi Ltd**, *[RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)*
+  - Chapter 12 - *Peripherals*
+    - Chapter 12.7 - *USB*
+4. **BeyondLogic** *[USB in a NutShell](https://www.beyondlogic.org/usbnutshell/usb1.shtml)*
+5. **Ben Eater** *[How does a USB keyboard work?](https://www.youtube.com/watch?v=wdgULBpRoXk)*
+6. **Ben Eater** *[How does USB device discovery work?](https://www.youtube.com/watch?v=N0O5Uwc3C0o)*
+7. *[USB Examples](https://github.com/UPB-PMRust/usb-examples)*
 
-## Networking basics
+## Universal Serial Bus 2.0 (USB)
 
-A network is a set of devices that are linked together in order to share resources. Most of the time, devices communicate to one another within a network using a set of protocols based on a network communication standard called the OSI (Open Systems Intercommunication) Stack.
+The Universal Serial Bus (USB) is a standard protocol used for communication between a host (usually a computer) and several devices that each provide specific functions.
 
-The OSI stack has 7 layers, out of which 5 are important:
-- **L1 - hardware layer** - transmission of bits through a physical medium (copper wire, radio waves, optical fibre)
-- **L2 - data link layer** - transmission of packets between two devices in a network (Ethernet, Wi-Fi)
-- **L3 - network layer** - transmission of packets between devices in different networks (IP)
-- **L4 - transport** - transmission of data from a source to a destination (TCP, UDP)
-- **L7 - application** - transmission of data from an application (port) of a device to an application of another device
+### Network Topology and Physical Layer
+```mermaid
+graph TD
+    %% Define Nodes
+    Host[Host]
+    Hub1[Hub]
+    Hub2[Hub]
+    Hub3[Hub]
+    Hub4[Hub]
+    Dev1[Device 1]
+    Dev2[Device 2]
+    Dev3[Device 3]
+    Dev4[Device 4]
+    Dev5[Device 5]
 
-Devices that communicate in a network have associated addresses. In a TCP/IP network these addresses are called IP (Internet Protocol) addresses. There are two types of IP addresses: 
+    %% Define Connections
+    Host --> Hub1
+    
+    Hub1 --> Hub2
+    Hub1 --> Dev1
+    Hub1 --> Hub3
+    
+    Hub2 --> Hub4
+    Hub2 --> Dev3
+    
+    Hub3 --> Dev2
+    
+    Hub4 --> Dev4
+    Hub4 --> Dev5
 
-- **IPv4** - stored on 32 bits
-- **IPv6** - newer, stored on 128 bits
-
-The IPv6 solves the problem of an evergrowing number of devices with networking capabilities; a higher resolution for the IP address means more unique addresses that can be assigned. We will be discussing only the IPv4 in this lab, since it is most commonly used in local networks.
-
-### IPv4
-
-An IPv4 address looks like this: `192.168.0.1/24`.
-
-Each number separated by a dot is represented on 8 bits (ranging from 0 to 255). The number after the slash is the *network mask*, which will be described shortly.
-
-:::info IPv4 in binary
-The IP address can also be represented in hexadecimal or binary form. Usually, when configuring subnets, it's easier to use the binary form to perform the necessary calculations.
-
-`192.168.0.1` = `11000000.10101000.00000000.00000001`
-:::
-
-An IP address is made of two parts:
-- **network prefix**: this portion defines the network to which the device belongs
-- **host identifier**: this portion uniquely identifies the device in the network
-
-The *network mask* defines the number of bits that are used to represent the network prefix. A smaller mask allows more bits to be used for host identifiers, enabling a larger number of unique devices within the network.
-
-For example, for the above address `192.168.0.1/24`, we know that the network prefix is 24 bits long. Therefore, the first 24 bits give us the network prefix and the last 8 bits give us the host identifier. The mask in this case would look like this: `255.255.255.0`.
-
-:::info Network masks
-In binary, `255.255.255.0` is `11111111.11111111.11111111.00000000`. 
-
-The first 24 bits are `1`, the last 8 bits are `0`.
-:::
-
-Any device that wants to communicate in this local network (or *subnet*) must have an address ranging from `192.168.0.1` to `192.168.0.254`. Note that the first 24 bits of the address are the same: the network prefix for these addresses is the same, since they can all be allocated to devices within the *same* network.
-
-![ip_address](images/ip_address.png)
-
-![ip_address_bits](images/ip_address_bits.png)
-
-:::note
-In the above example, `192.168.0.0` is the *network address*, and `192.168.0.255` is the *broadcast address* (used to broadcast to *all* endpoints in a subnet). The first and last possible addresses in a subnet are reserved and should not be assigned to devices.
-
-To determine the *network address*, we need to perform a logic `AND` operation between the IP address and the network mask.
-
-To determine the *broadcast address*, we need to perform a logic `OR` operation between the IP address and the *inverse* of the network mask.
-
-This means converting the IP address and network mask to binary, then performing `AND` or `OR` on every bit, then converting it back to decimal.
-:::
-
-Learn more about subnetting [here](https://networklessons.com/cisco/ccna-routing-switching-icnd1-100-105/what-is-subnetting).
-
-### Routers
-
-Routers are devices that forward packets between networks. The packets of the sender will be *routed* to the receiver of a different network, depending on the IP of the destination, passing from one router to another until they reach their destination. This happens through complex routing protocols. Routers also deal with traffic filtering, DNS (Domain Name System), DHCP and others.
-
-The *default gateway* in a local network is the router where packets must be sent when the *destination IP* is not in the current local network. From there, packets will be routed further. Read more about it [here](https://en.wikipedia.org/wiki/Default_gateway).
-
-A L3 (Network) packet looks like this:
-
-![network_packet](images/packet.svg)
-
-The L3 packet is contained within the L2 frame. The L2 packet headers contain the MAC address of the source and the destination, and the data contains the L3 packet. The L3 packet has a separate header, with the IP address of the source and the destination. The router is an L3 network device, meaning it is able to descifer the IP address of the source and the destination from the L3 frame and determine where the packet needs to be routed to.
-
-![osi_stack](images/osi_stack.svg)
-
-### DHCP
-
-Dynamic Host Configuration Protocol (DHCP) is a network management protocol used by routers to dynamically allocate IP addresses to devices connected to its network. Routers dynamically assign addresses to new devices in the network, if they don't already have a *static* IP. DHCP leases IP, Mask, Gateway and DNS servers.
-
-### Networking protocols
-
-#### TCP (Transmission Control Protocol)
-
-TCP is *connection-oriented*, meaning that a connection must be first established between two devices (client and server) before data can be sent. Packets that are not received correctly must be *retransmitted* by the sender, ensuring that data always reaches its destination. The packet might also be fragmented during the transmission and the receiver might receive it in several smaller packets. TCP is used in cases where data integrity is most important.
-
-#### UDP (User Datagram Protocol)
-
-UDP, on the other hand, is *connectionless*, and prioritizes speed over reliability. Packets that are not received correctly are dropped, **not** retransmitted and **not** fragmented. UDP is used in time-sensitive applications, such as audio streaming.
-
-## Wi-Fi
-
-**Wi-Fi** is a networking technology that allows devices to *wirelessly* communicate in a local network or interface the Internet. 
-
-Wi-Fi devices use radio waves to transmit data to one another in a network, through *wireless access points* (a wireless router, for instance). The access point (AP) connects directly to a local area network (LAN) and provides wireless connections for other devices in its proximity to use. 
-
-![wi-fi](images/Wi-Fi.gif)
-
-### Protocol
-
-Wi-Fi uses the *802.11* IEEE standard, with different radio technologies:
-
-- 2.4 GHz radio band, ultra high frequency, (widely supported; Raspberry Pi Pico W uses this frequency)
-- 5 GHz radio band, super high frequency
-- others, not widely used
-
-Each radio frequency range is divided into a multitude of *channels*. Each device that uses a frequency band communicates over one channel. Ideally, each device is allocated a separate channel. Sometimes, though, when there are many devices using a Wi-Fi frequency band, devices might end up having to *share* a channel and wait their turn to transmit data, leading to lower communication speeds. 5 GHz provides more channels than 2.4 GHz, allowing more devices to use the band without interference. 
-
-### Security
-
-#### Open Wi-Fi
-
-Open wireless networks don't require any authentication, and all transmissions are unencrypted. Any device that connects to an open network can easily intercept data sent in this network. This is unsecured and unsafe.
-
-#### Wired Equivalent Privacy (WEP)
-
-WEP is the first security protocol ever implemented. It uses data encryption based on generated key values. It was designed in 1997 and has since become obsolete, because it is really easy to crack and basically as unsafe as open Wi-Fi.
-
-#### Wi-Fi Protected Access (WPA/WPA2/WPA3)
-
-WPA, WPA2 and WPA3 were defined in response to the serious weaknesses discovered in WEP. Each version of WPA increments the security of the protocol, using more powerful password encryption methods. 
-
-### Wi-Fi on the Raspberry Pi Pico 2 W
-
-Apart from the RP2350 microcontroller, the Raspberry Pi Pico 2W board also has a separate, on-board wireless interface. It is a 2.4 GHz Infineon chip, *CYW43439*. This chip deals only with Wi-Fi (and Bluetooth) communication, and it is connected to the RP2350 via SPI.
-
-![cyw43](images/pico2w.png)
-
-## Wi-Fi in Embassy
-
-### CYW43 driver 
-
-The CYW43 chip also needs to be programmed in order to handle the Wi-Fi connection and transfers. For this, Infineon provides two firmware binaries that need to be loaded into our flash memory. We use the [`include_bytes!`](https://doc.rust-lang.org/core/macro.include_bytes.html) macro to achieve this.
-
-```rust
-let fw = include_bytes!("../cyw43-firmware/43439A0.bin");
-let clm = include_bytes!("../cyw43-firmware/43439A0_clm.bin");
+    %% Styling
+    classDef host fill:#bbdefb,stroke:#1e88e5,stroke-width:2px;
+    classDef hub fill:#b2ebf2,stroke:#00acc1,stroke-width:2px;
+    classDef dev fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px;
+    
+    class Host host;
+    class Hub1,Hub2,Hub3,Hub4 hub;
+    class Dev1,Dev2,Dev3,Dev4,Dev5 dev;
 ```
 
-The above example assumes that the binaries have been downloaded and added to the `<crate_root>/cyw43-firmware` folder. They can be downloaded from [here](https://github.com/embassy-rs/embassy/tree/main/cyw43-firmware).
+- **Host and Devices**: USB operates in two modes: the **host** (initiates the communication) and the **device** (receives and transmits data only when requested by the host).
+- **Tree Structure**: Devices are interconnected using hubs. A maximum of 127 devices can be connected to a single USB host. Each device is assigned a unique 7-bit address upon connection.
+- **Signaling**: USB is a **half-duplex** protocol, meaning data must be sent in one direction at a time. It utilizes a differential pair of wires (`DP` and `DM`) for data transmission.
+- **Clocking**: The host and the device use independent clocks and must synchronize them. Standard operations use a 48 MHz clock.
+- **Speeds**: USB 2.0 supports High Speed (480 Mbit/s), while USB 1.0 covers Full Speed (12 Mbit/s) and Low Speed (1.5 Mbit/s).
 
-Next, we need to declare the SPI that interfaces the Wi-Fi chip. This SPI will be controlled by PIO (Programmable Input/Output), instead of simple GPIO pins, as we've done so far. PIO contains dedicated hardware that can deal with high-speed input and output operations, therefore offloading the MCU.
+### Endpoints
+Data in a USB device flows through **Endpoints**, which act as data buffers.
 
-```rust
-let cs = Output::new(p.PIN_25, Level::High);
-let mut pio = Pio::new(p.PIO0, Irqs);
-let spi = PioSpi::new(&mut pio.common, pio.sm0, pio.irq0, cs, p.PIN_24, p.PIN_29, p.DMA_CH0);
+```mermaid
+graph LR
+    Host[USB Host]
+
+    subgraph USB_Device [USB Device]
+        direction TB
+        EP0_IN[Endpoint 0 IN<br/>Control]
+        EP0_OUT[Endpoint 0 OUT<br/>Control]
+        EP1_IN[Endpoint 1 IN<br/>Data]
+        EP2_OUT[Endpoint 2 OUT<br/>Data]
+    end
+
+    %% IN connections (Device to Host)
+    EP0_IN -- "IN" --> Host
+    EP1_IN -- "IN" --> Host
+
+    %% OUT connections (Host to Device)
+    Host -- "OUT" --> EP0_OUT
+    Host -- "OUT" --> EP2_OUT
+
+    %% Styling
+    classDef host fill:#bbdefb,stroke:#1e88e5,stroke-width:2px;
+    classDef device fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px;
+    classDef ep_in fill:#c8e6c9,stroke:#43a047,stroke-width:1px;
+    classDef ep_out fill:#ffccbc,stroke:#e53935,stroke-width:1px;
+
+    class Host host;
+    class USB_Device device;
+    class EP0_IN,EP1_IN ep_in;
+    class EP0_OUT,EP2_OUT ep_out;
 ```
 
-We're also going to need to bind the interrupts that can be triggered by the PIO.
+- A device can have a maximum of 16 endpoints.
+- **Directionality**: Direction is always from the perspective of the host.
+  * `IN` - Data flows from the device to the host.
+  * `OUT` - Data flows from the host to the device.
+- **Endpoint 0**: Endpoints `0 IN` and `0 OUT` are strictly reserved for control and configuration transfers.
+
+### Packets and Data Flow
+The smallest element of data transmission in USB is a **Packet**. Communication consists of three primary packet types:
+
+1. **Token Packets**: Issued by the host to ask for a data transmission or to setup the device.
+    - `OUT` (PID 0001): Host wants to transmit data to the device.
+    - `IN` (PID 1001): Host wants to receive data from the device.
+    - `SETUP` (PID 1101): Host wants to set up the device.
+
+![USB Packet Token](images/usb_packet_token.svg)
+
+
+2. **Data Packets**: Contains the actual payload being transmitted, ranging from 0 to 1024 bytes. Types include `DATA0` and `DATA1` to help with packet sequencing and error correction.
+
+![USB Packet Data](images/usb_packet_data.svg)
+
+
+3. **Handshake Packets**: Used to acknowledge data receipt.
+    - `ACK` (PID 0010): Data successfully received.
+    - `NACK` (PID 1010): Data not successfully received.
+    - `STALL` (PID 1110): The device has an error.
+
+![USB Packet Handshake](images/usb_packet_handshake.svg)
+
+
+### Transmission Modes
+USB defines four different types of transfers to accommodate different device requirements:
+
+1. **Control Transfers**: Used for device configuration and sending commands (like `GET_DESCRIPTOR` or `SET_ADDRESS`).
+
+```mermaid
+graph LR
+    %% Control Transfer
+    subgraph Setup_Stage [Setup Stage]
+        direction LR
+        T1[Token: SETUP] --> D1[Data: DATA0]
+        D1 --> H1[Handshake: ACK]
+    end
+
+    subgraph Data_Stage [Data Stage]
+        direction LR
+        T2[Token: IN/OUT] --> D2[Data: DATA1/0]
+        D2 --> H2[Handshake: ACK]
+    end
+
+    subgraph Status_Stage [Status Stage]
+        direction LR
+        T3[Token: OUT/IN] --> D3[Data: DATA1]
+        D3 --> H3[Handshake: ACK]
+    end
+
+    %% Link the subgraphs using their new exact IDs
+    Setup_Stage --> Data_Stage
+    Data_Stage --> Status_Stage
+
+    classDef token fill:#bbdefb,stroke:#1e88e5;
+    classDef data fill:#ffe0b2,stroke:#fb8c00;
+    classDef handshake fill:#c8e6c9,stroke:#43a047;
+    
+    class T1,T2,T3 token;
+    class D1,D2,D3 data;
+    class H1,H2,H3 handshake;
+    ```
+
+2. **Bulk Transfers**: Used for low bandwidth, reliable data streams (e.g., mass storage devices). They do not have guaranteed bandwidth, but data loss is not permitted.
+```mermaid
+graph LR
+    %% Bulk Transfer
+    Idle((Idle)) --> Token[Token: IN / OUT]
+    Token --> Data[Data: DATAx]
+    
+    Data -- Success --> ACK[Handshake: ACK]
+    Data -- Not Ready / Error --> NACK[Handshake: NACK]
+    Data -- Fatal Error --> STALL[Handshake: STALL]
+
+    ACK --> Idle
+    NACK --> Idle
+    STALL --> Reset[Reset Endpoint]
+
+    classDef token fill:#bbdefb,stroke:#1e88e5;
+    classDef data fill:#ffe0b2,stroke:#fb8c00;
+    classDef ack fill:#c8e6c9,stroke:#43a047;
+    classDef err fill:#ffccbc,stroke:#e53935;
+    class Token token;
+    class Data data;
+    class ACK ack;
+    class NACK,STALL err;
+    ```
+
+3. **Interrupt Transfers**: Used for low bandwidth, guaranteed latency data. The host polls the device at a specific time interval, which is ideal for keyboards or mice.
+```mermaid
+graph LR
+    %% Interrupt Transfer
+    Timer{Polling<br/>Interval} --> Token[Token: IN / OUT]
+    Token --> Data[Data: DATAx]
+    
+    Data -- Success --> ACK[Handshake: ACK]
+    Data -- Not Ready --> NACK[Handshake: NACK]
+
+    ACK --> Wait((Wait for<br/>next interval))
+    NACK --> Wait
+    Wait --> Timer
+
+    classDef token fill:#bbdefb,stroke:#1e88e5;
+    classDef data fill:#ffe0b2,stroke:#fb8c00;
+    classDef ack fill:#c8e6c9,stroke:#43a047;
+    classDef err fill:#ffccbc,stroke:#e53935;
+    classDef timer fill:#e1bee7,stroke:#8e24aa;
+    
+    class Token token;
+    class Data data;
+    class ACK ack;
+    class NACK err;
+    class Timer,Wait timer;
+  ```
+
+
+4. **Isochronous Transfers**: Fast but not reliable transfer. It has a guaranteed bandwidth but allows data loss, making it suitable for video or audio streaming where a dropped packet is preferable to a delayed one.
+```mermaid
+graph LR
+    %% Isochronous Transfer
+    Idle((Idle)) --> Token[Token: IN / OUT]
+    Token --> Data[Data: DATAx]
+    
+    Data -- "No Handshake (ACK/NACK)" --> Idle
+
+    classDef token fill:#bbdefb,stroke:#1e88e5;
+    classDef data fill:#ffe0b2,stroke:#fb8c00;
+    
+    class Token token;
+    class Data data;
+  ```
+
+### Device Organization (Descriptors)
+A USB device reports its capabilities to the host using a hierarchy of descriptors.
+
+1. **Device Descriptor**: Describes the whole device globally (e.g., Vendor ID `idVendor`, Product ID `idProduct`, number of configurations).
+2. **Configuration Descriptor**: A device can have multiple configurations (e.g., varying power consumption states), though only one is active at a time. It defines the number of interfaces.
+3. **Interface Descriptor**: A configuration has multiple interfaces, each representing a specific function (e.g., one interface for a serial port, another for a debugger). Interfaces can have alternate settings.
+4. **Endpoint Descriptor**: Bound to interfaces, endpoints define the data transfer attributes (direction, transfer type, max packet size).
+
+
+### USB in Embassy (Device Code)
+
+1. **Imports and Interrupt Binding**
+First, we need to import the required Embassy modules and bind the USB interrupt. We also define a unique GUID that Windows will use to identify our device interface.
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
+  ```rust
+  use defmt::info;
+  use defmt_rtt as _;
+  use embassy_executor::Spawner;
+  use embassy_futures::join::join;
+  use embassy_stm32::{
+      Config, bind_interrupts,
+      peripherals::USB,
+      usb::{Driver, InterruptHandler},
+  };
+  use embassy_time::Timer;
+  use embassy_usb::driver::{Endpoint, EndpointIn, EndpointOut};
+  use embassy_usb::{Builder, Config as UsbConfig, msos, msos::windows_version};
+  use panic_probe as _;
+  
+  // Randomly generated GUID to allow clients on Windows to find our device
+  const DEVICE_INTERFACE_GUIDS: &[&str] = &["{AFB9A6FB-30BA-44BC-9232-806CFC875321}"];
+  
+  bind_interrupts!(struct Irqs {
+      USB => InterruptHandler<USB>;
+  });
+  ```
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 
 ```rust
+use defmt::info;
+use defmt_rtt as _;
+use embassy_executor::Spawner;
+use embassy_futures::join::join;
+use embassy_rp::bind_interrupts;
+use embassy_rp::peripherals::USB;
+use embassy_rp::usb::{Driver, InterruptHandler};
+use embassy_time::Timer;
+use embassy_usb::driver::{Endpoint, EndpointIn, EndpointOut};
+use embassy_usb::{Builder, Config as UsbConfig, msos, msos::windows_version};
+use panic_probe as _;
+
+// This is a randomly generated GUID to allow clients on Windows to find our device
+const DEVICE_INTERFACE_GUIDS: &[&str] = &["{AFB9A6FB-30BA-44BC-9232-806CFC875321}"];
+
 bind_interrupts!(struct Irqs {
-    PIO0_IRQ_0 => InterruptHandler<PIO0>;
-});
-```
-Now we need to instantiate the `CYW43` driver, and spawn a task that will start it. 
-
-```rust
-let pwr = Output::new(p.PIN_23, Level::Low);
-
-static STATE: StaticCell<cyw43::State> = StaticCell::new();
-let state = STATE.init(cyw43::State::new());
-let (net_device, mut control, runner) = cyw43::new(state, pwr, spi, fw).await;
-spawner.spawn(wifi_task(runner)).unwrap();
-
-control.init(clm).await;
-control
-    .set_power_management(cyw43::PowerManagementMode::None)
-    .await;
-```
-
-Inside this task, the driver will deal with the low-level SPI transfers between the MCU and the Wi-Fi chip.
-
-```rust
-#[embassy_executor::task]
-async fn wifi_task(runner: cyw43::Runner<'static, Output<'static>, PioSpi<'static, PIO0, 0, DMA_CH0>>) -> ! {
-    runner.run().await
-}
-```
-
-### Network stack
-
-To be able to communicate in a network, our device needs to have an associated IP address. We can configure a static IP address, or we can use DHCP to have an IP address dynamically assigned to our device.
-
-#### Configuring the IP address
-
-1. **Static IP address:** the device defines its own IP address for the WLAN. For this, we also need to know the address of the default gateway.
-
-```rust
-let config = embassy_net::Config::ipv4_static(embassy_net::StaticConfigV4 {
-   address: Ipv4Cidr::new(Ipv4Address::new(192, 168, 0, 2), 24),
-   dns_servers: Vec::new(),
-   gateway: Some(Ipv4Address::new(192, 168, 0, 1)),
+    USBCTRL_IRQ => InterruptHandler<USB>;
 });
 ```
 
-2. **Dynamic IP address:** the device asks for an IP address via [DHCP](./index.mdx#dhcp). It also receives other configuration information, such as the default gateway.
+  </TabItem>
 
+</Tabs>
+
+
+2. **Clock Configuration and Initialization**
+USB requires a precise 48 MHz clock to function. On the STM32U5, we configure the internal HSI48 oscillator specifically for this purpose before initializing the peripherals.
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
 ```rust
-let config = Config::dhcpv4(Default::default());
-```
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    info!("Hello");
 
-:::note Waiting for an address
-This method takes more time, because the device needs to wait to receive an IP address before it can start communicating in the network:
+    let mut config = Config::default();
+    {
+        use embassy_stm32::rcc::*;
 
-```rust
-// After we join a network, we wait to receive an IP
-while !stack.is_config_up() {
-    Timer::after_millis(100).await;
-}
-```
-:::
+        // Do not configure HSE or PLLs. Use internal oscillators.
+        config.rcc.hsi = true;
+        config.rcc.sys = Sysclk::HSI; // System clock is now 16MHz
 
+        // Enable the 48MHz oscillator for USB
+        config.rcc.hsi48 = Some(Hsi48Config {
+            sync_from_usb: false, // Must be false
+        });
 
-Once we have defined the configuration, we need to instantiate and run the network stack driver, to be able to connect to the WLAN.
-
-```rust
-// Generate random seed
-let seed = 0x0123_4567_89ab_cdef; // chosen by fair dice roll. guarenteed to be random.
-// The number of sockets the stack can have open concurrently 
-const SOCK: usize = 2;
-
-// Init network stack
-static RESOURCES: StaticCell<StackResources<SOCK>> = StaticCell::new();
-
-let (stack, runner) = embassy_net::new(
-    net_device,
-    config,
-    RESOURCES.init(StackResources::new()),
-    seed,
-);
-
-spawner.spawn(net_task(stack));
-```
-
-The network driver deals with the network stack: receiving, building and sending packets over the WLAN.
-
-```rust
-/// This task runs the network stack, used for processing network events.
-#[embassy_executor::task]
-async fn net_task(mut runner: embassy_net::Runner<'static, cyw43::NetDriver<'static>>) -> ! {
-    runner.run().await
-}
-```
-
-#### Scanning for Wi-Fi networks
-
-The `CYW43` driver has a function that allows us to scan all Wi-Fi access points in the device's proximity.
-
-```rust
-
-let mut scanner = control.scan(Default::default()).await;
-while let Some(bss) = scanner.next().await {
-    if let Ok(ssid_str) = core::str::from_utf8(&bss.ssid) {
-        info!("Scanned {}", ssid_str);
+        config.rcc.mux.iclksel = mux::Iclksel::HSI48;
+        config.rcc.voltage_range = VoltageScale::RANGE2;
     }
+    
+    // Initialize peripherals with the custom clock config
+    let peripherals = embassy_stm32::init(config);
+    
+    /* additional USB initialisation code follows here */
+
 }
 ```
+  </TabItem>
 
-#### Connecting to a Wi-Fi Access Point
-
-To connect to a WPA2 Wi-Fi network, we can use the `join_wpa2` function, providing the network name and the password.
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 
 ```rust
-const WIFI_NETWORK: &str = "my_ssid";
-const WIFI_PASSWORD: &str = "password";
+#[embassy_executor::main]
+async fn main(_spawner: Spawner) {
+    info!("Hello");
 
-loop {
-    match control.join(WIFI_NETWORK, JoinOptions::new(WIFI_PASSWORD.as_bytes())).await {
-        Ok(_) => break,
-        Err(err) => {
-            info!("join failed with status={}", err.status);
-        }
-    }
-}
-
-// Wait for DHCP, not necessary when using static IP
-info!("waiting for DHCP...");
-while !stack.is_config_up() {
-    Timer::after_millis(100).await;
-}
-info!("DHCP is now up!");
+    let peripherals = embassy_rp::init(Default::default());
+});
 ```
 
-:::note Open networks
-To connect to an open network, we can use the `new_open` method of the `JoinOptions` struct.
+  </TabItem>
 
+</Tabs>
+
+
+3. **USB Driver and Configuration Setup**
+Next, we initialize the hardware-specific USB driver using the `PA12` (DP) and `PA11` (DM) pins. We also set up the `UsbConfig`, which defines the global properties of our device (like Vendor ID, Product ID, and manufacturer strings).
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
 ```rust
-control.join(WIFI_NETWORK, JoinOptions::new_open()).await;
+    let driver = Driver::new(peripherals.USB, Irqs, peripherals.PA12, peripherals.PA11);
+
+    // Create embassy-usb Config
+    let mut config = UsbConfig::new(0xc0de, 0xcafe);
+    config.manufacturer = Some("PMRust");
+    config.product = Some("USB Bulk Example");
+    config.serial_number = Some("0xcafe_c0de");
+    config.max_power = 100;
+    config.max_packet_size_0 = 64;
 ```
-:::
+  </TabItem>
 
-#### Creating a Wi-Fi Access Point
-
-The Pico can also be used as an Access Point, that other devices can connect to. We can initialize it as either an open network:
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 
 ```rust
-control.start_ap_open("Pico AP", 5).await;
-```
+// Create the driver, from the HAL.
+let driver = Driver::new(peripherals.USB, Irqs);
 
-or as a secured, WPA2 network:
-
-```rust
-control.start_ap_wpa2("Pico AP", "WeloveRust", 5).await;
-```
-
-#### Starting a TCP server
-
-Now that we have connected our Pico to a Wi-Fi network, we can start a server to handle connections to our Pico.
-
-We need to create a TCP socket in order to handle TCP connections and transfers. 
-
-```rust
-let mut rx_buffer = [0; 4096];
-let mut tx_buffer = [0; 4096];
-let mut socket = TcpSocket::new(stack, &mut rx_buffer, &mut tx_buffer);
-// If we want to keep the connection open regardless of inactivity, we can set the timeout
-// to `None`
-socket.set_timeout(Some(Duration::from_secs(10)));
-```
-
-Next, we wait for a connection on a specific port. For example, the following snippet waits for a TCP connection on port `1234`.
-
-```rust
-info!("Listening on TCP:1234...");
-if let Err(e) = socket.accept(1234).await {
-    warn!("accept error: {:?}", e);
-    continue;
-}
-
-info!("Received connection from {:?}", socket.remote_endpoint());
+    // Create embassy-usb Config
+    let mut config = UsbConfig::new(0xc0de, 0xcafe);
+    config.manufacturer = Some("PMRust");
+    config.product = Some("USB Bulk Example");
+    config.serial_number = Some("0xcafe_c0de");
+    config.max_power = 100;
+    config.max_packet_size_0 = 64;
 ```
 
-Once we have an established connection, we can read and write to the socket, and communicate with the other endpoint.
+  </TabItem>
+
+</Tabs>
+
+
+
+4. **Descriptor Builder and Windows Compatibility**
+Embassy requires memory buffers to build the descriptor tree. We pass these to a `Builder`.
+We also add **Microsoft OS Descriptors (MSOS)**. By telling Windows our device is compatible with the "WINUSB" feature, Windows will automatically load the standard WinUSB driver.
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
+```rust
+    // Buffers for building the descriptors.
+    let mut config_descriptor = [0; 256];
+    let mut bos_descriptor = [0; 256];
+    let mut msos_descriptor = [0; 256];
+    let mut control_buf = [0; 64];
+
+    let mut builder = Builder::new(
+        driver,
+        config,
+        &mut config_descriptor,
+        &mut bos_descriptor,
+        &mut msos_descriptor,
+        &mut control_buf,
+    );
+
+    // Tell Windows to use the built-in WinUSB driver automatically
+    builder.msos_descriptor(windows_version::WIN8_1, 0);
+    builder.msos_feature(msos::CompatibleIdFeatureDescriptor::new("WINUSB", ""));
+    builder.msos_feature(msos::RegistryPropertyFeatureDescriptor::new(
+        "DeviceInterfaceGUIDs",
+        msos::PropertyData::RegMultiSz(DEVICE_INTERFACE_GUIDS),
+    ));
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
 
 ```rust
-let mut buf = [0; 4096];
-loop {
-    let n = match socket.read(&mut buf).await {
-        Ok(0) => {
-            warn!("read EOF");
-            break;
-        }
-        Ok(n) => n,
-        Err(e) => {
-            warn!("read error: {:?}", e);
-            break;
+    // Buffers for building the descriptors.
+    let mut config_descriptor = [0; 256];
+    let mut bos_descriptor = [0; 256];
+    let mut msos_descriptor = [0; 256];
+    let mut control_buf = [0; 64];
+    
+    let mut builder = Builder::new(
+        driver,
+        config,
+        &mut config_descriptor,
+        &mut bos_descriptor,
+        &mut msos_descriptor,
+        &mut control_buf,
+    );
+    
+    // Tell Windows to use the built-in WinUSB driver automatically
+    builder.msos_descriptor(windows_version::WIN8_1, 0);
+    builder.msos_feature(msos::CompatibleIdFeatureDescriptor::new("WINUSB", ""));
+    builder.msos_feature(msos::RegistryPropertyFeatureDescriptor::new(
+        "DeviceInterfaceGUIDs",
+        msos::PropertyData::RegMultiSz(DEVICE_INTERFACE_GUIDS),
+    ));
+```
+
+  </TabItem>
+
+</Tabs>
+
+
+
+5. **Interface and Endpoint Creation**
+We add a vendor-specific function (Class `0xFF`) and create our endpoints. We need two endpoints for our echo device: one Bulk OUT (host to device) and one Bulk IN (device to host).
+
+<Tabs>
+  <TabItem value="stm32u5" label="STM32 Nucleo-U545RE-Q" default>
+  
+```rust
+    // Create a new USB Function.
+    // 0xFF means "Vendor Specific", meaning we aren't using a standard class 
+    // like Mass Storage (0x08) or HID (0x03). The OS will rely on our custom code.
+    let mut function = builder.function(0xFF, 0, 0);
+
+    // Create an interface within this function. A USB function must have at least one interface.
+    let mut interface = function.interface();
+
+    // Create an "alternate setting" for this interface.
+    // We create the default setting (index 0) with class 0xFF (Vendor Specific),
+    // subclass 0, protocol 0, and no specific string descriptor (None).
+    let mut alt = interface.alt_setting(0xFF, 0, 0, None);
+
+    // Create a Bulk OUT endpoint attached to this alternate setting.
+    // The `64` represents the maximum packet size in bytes.
+    let mut read_ep = alt.endpoint_bulk_out(None, 64);
+
+    // Create a Bulk IN endpoint attached to this alternate setting.
+    // Also configured with a 64-byte maximum packet size.
+    let mut write_ep = alt.endpoint_bulk_in(None, 64);
+
+    // Drop the function builder.
+    drop(function);
+
+    // Build the USB device handler
+    let mut usb = builder.build();
+```
+
+  </TabItem>
+
+  <TabItem value="rp2350" label="Raspberry Pi Pico 1 / 2" default>
+
+```rust
+    // Add a vendor-specific function (class 0xFF), and corresponding interface,
+    // that uses our custom handler.
+    let mut function = builder.function(0xFF, 0, 0);
+    let mut interface = function.interface();
+    let mut alt = interface.alt_setting(0xFF, 0, 0, None);
+    let mut read_ep = alt.endpoint_bulk_out(None, 64);
+    let mut write_ep = alt.endpoint_bulk_in(None, 64);
+    drop(function);
+    
+    // Build the builder.
+    let mut usb = builder.build();
+```
+
+  </TabItem>
+
+</Tabs>
+
+
+6. **Running the Async Tasks**
+USB communication is inherently asynchronous. We need to run the core USB driver task, alongside our application task that handles reading and writing.
+
+Our read/write task waits for a connection, reads data from the `read_ep`, waits for 1 second, and writes that exact data back to the `write_ep`. Finally, we use join to run both tasks concurrently.
+
+```rust
+    // Task 1: Initialize the core USB driver's task.
+    let usb_driver = usb.run();
+
+    // Task 2: Define the actual application logic
+    let usb_read_write = async {
+        loop {
+            read_ep.wait_enabled().await;
+            info!("Connected");
+            
+            loop {
+                let mut data = [0; 64];
+                match read_ep.read(&mut data).await {
+                    Ok(n) => {
+                        info!("Got bulk: {:a}", data[..n]);
+                        Timer::after_secs(1).await;
+                        
+                        // Echo the data back to the host:
+                        write_ep.write(&data[..n]).await.ok();
+                    }
+                    Err(_) => break, // Break the inner loop if disconnected
+                }
+            }
+            info!("Disconnected");
         }
     };
 
-    info!("rxd {}", core::str::from_utf8(&buf[..n]).unwrap());
-
-    match socket.write_all(&buf[..n]).await {
-        Ok(()) => {}
-        Err(e) => {
-            warn!("write error: {:?}", e);
-            break;
-        }
-    };
+    // Run the USB driver task and the actual application logic task concurrently.
+    join(usb_driver, usb_read_write).await;
 }
 ```
 
-#### Connecting as a client to a TCP server
-
-The Pico can connect as a client to a TCP server using the `connect` function:
-
-```rust
-if let Err(e) = socket.connect(IpEndpoint::new(IpAddress::v4(1,2,3,5), 1234)).await {
-    warn!("accept error: {:?}", e);
-    continue;
-}
-```
-
-#### Starting an UDP server
-
-Similarly to the TCP server, we create a new socket, this time one that handles UDP connections.
-
-```rust
-let mut rx_buffer = [0; 4096];
-let mut rx_metadata_buffer = [PacketMetadata::EMPTY; 3];
-let mut tx_buffer = [0; 4096];
-let mut tx_metadata_buffer = [PacketMetadata::EMPTY; 3];
-
-let mut socket = UdpSocket::new(
-    stack, &mut rx_metadata_buffer, &mut rx_buffer, &mut tx_metadata_buffer, &mut tx_buffer
-);
-```
-
-Next, we bind our socket to a port (for example port `1234`). Note that the `bind` function is not a future, since we don't need to wait for connections before initiating a transmission.
-
-```rust
-if let Err(e) = socket.bind(1234) {
-    warn!("accept error: {:?}", e);
-    continue;
-}
-```
-
-Now, we can read and write to the socket, and any endpoint that connects to the port can send/receive data.
-
-```rust
-// example read
-let mut buf = [0u8; 4096];
-loop {
-    match socket.recv_from(&mut buf).await {
-        Ok((n, endpoint)) => {
-            info!("Received from {:?}: {:?}", endpoint, from_utf8(&buf[..n]).unwrap());
-        },
-        Err(_) => {
-            info!("An error occurred when receiving the packet!");
-        }
-    }
-}
-
-// example write
-let buffer = "hello\n".as_bytes();
-match socket.send_to(&buffer, IpEndpoint::new(IpAddress::v4(192, 168, 100, 45), 1234)).await {
-    Ok(()) => {
-        info!("sent")
-    }
-    Err(e) => {
-        warn!("send error: {:?}", e);
-    }
-}
-```
-
-:::note Udp is connectionless
-Since UDP is connectionless, to send data to an endpoint we need to specify exactly to which IP address and port we want to send it to.
-:::
 
 ## Exercises
 
-:::note Lab skeleton
-We provided some helpers in the [lab skeleton](https://github.com/UPB-PMRust/lab-2025) so you don't have to configure the CYW43 driver and the network stack manually:
+:::warning 
+Before running any USB device code, you must configure your lab board correctly:
 
-- The `embassy_lab_utils::init_wifi!` macro generates an async block that initializes the CYW43 driver and spawns the driver task. The macro expects a reference to a `Spawner` instance and a `Peripherals` instance. The block returns a tuple containing the `NetDriver` instance, needed by the network stack, and the `Control` instance.
+1. **Move Jumper JP3** from the `STLK` position to the `USB USER` position.
 
-```rust
-let (net_device, mut control) = init_wifi!(&spawner, peripherals).await;
-```
+2. Connect **TWO USB** cables to your computer:
 
-- The `embassy_lab_utils::init_network_stack` function takes a reference to a `Spawner` instance, a `NetDriver` instance, a mutable reference to a `StackResources` instance, and an `embassy_net::Config` of either a static or a dynamic IP. The functions returns an
-`embassy_net::Stack` instance.
+    - One to the `ST-LINK` port (for flashing the code and reading `defmt` logs).
 
-```rust
-let stack = init_network_stack(&spawner, net_device, &RESOURCES, config);
-```
+    - One to the `USB USER` port (to connect your newly programmed USB device to the host).
 
+![JP3 Jumper](images/jp3.jpeg)
 :::
 
-1. Write a program that scans for local networks and prints their *SSID* using `defmt`. (**1p**)
+:::info Linux Device Permissions
+If you are running the host code on a Linux machine (including within WSL2 with USB passthrough or a Linux VM), you will likely get a "Permission Denied" error or the device will fail to open. By default, Linux restricts direct USB access to the `root` user.
 
-2. Connect to one of the available networks you found in the previous exercise. Configure the Pico to use a dynamic IP address provided through [DHCP](./index.mdx#dhcp). Once connected, print using `defmt` the IP address that has been
-assigned to your device. (**1p**)
+To allow standard users to interact with your custom USB device, you need to add a `udev` rule.
 
-:::tip Drop the `scanner`
-You will need to either comment out the **IP scan**, or manually `drop` the `scanner` to be able to connect to any network, because the `scan` function mutably borrows `ctrl`.
-:::
-
-3. Configure the Pico as an access point. You will need to set a static IP address both for the Pico and your computer,
-to make sure they are both in the same subnet, so that they can communicate. (**1p**)
-
-4. Implement a TCP server on port `6000` that listens for incoming client connections and echoes back any messages received from clients. (**1p**)
-
-:::note Testing your server
-
-In order to test your program, you will need to have a client connect to your server. The easiest way to do that is by using `netcat`, 
-a command-line networking utility that allows you to read from and write to network connections using TCP or UDP protocols.
-
-**Installation:**
--	**Linux or macOS**: Netcat is often pre-installed on Linux and macOS systems. If it isn’t already available, you can install it using your preferred package manager:
-    -	For Debian/Ubuntu: `sudo apt update && sudo apt install netcat`
-    -	For macOS (using Homebrew): `brew install netcat`.
-    
--	**Windows**: Netcat is not natively available on Windows, but you can use [NCat](https://nmap.org/download.html#windows).
-
-You can verify your installation by displaying the help menu:
+1. **Create a new rules file**:
+Open your terminal and create a new file in the udev rules directory:
 
 ```bash
-ncat -h # on Windows
-nc -h   # on Linux/MacOS 
+sudo nano /etc/udev/rules.d/99-custom-usb.rules
 ```
 
-**Connecting to a TCP socket:**
+2. **Add the rule**:
+Paste the following line into the file. Notice that the `idVendor` and `idProduct` match the `0xc0de` and `0xcafe` we configured in our device code. The `MODE="0666"` grants read and write access to all users.
 
-You can run the following command for establishing a TCP connection to a server:
-
-```shell
-ncat [ip_address] [port] # on Windows
-nc [ip_address] [port]   # on Linux/MacOS
+```bash
+SUBSYSTEM=="usb", ATTRS{idVendor}=="c0de", ATTRS{idProduct}=="cafe", MODE="0666"
 ```
 
-Replace `ip_address` with the server’s IP address and `port` with the port number you want to connect to. Once connected, you can send and receive data directly through the terminal.
-Any data received from the server will be displayed in the console. To send data, simply type the desired string and press `Enter`.
+3. **Reload the rules**:
+Save the file and exit. Finally, reload the `udev` rules and trigger them so you don't have to reboot:
 
-**Listen for TCP connections:**
-
-You can run the following command for listening to inbound TCP connections:
-
-```shell
-ncat -l [port] # on Windows
-nc -l [port]   # on Linux/MacOS
+```bash
+sudo udevadm control --reload-rules
+sudo udevadm trigger
 ```
 
-Here, `port` specifies the port number on which your system will listen for incoming connections. This is useful for simulating a server during testing or debugging.
+Unplug your USB device and plug it back in. You should now be able to run your Rust or Python host client without needing `sudo`!
 
 :::
 
-5. Connect the `SW4`, `SW5` and `SW6` buttons from the lab board to the Pico. Modify the server 
-from the previous exercise so that it sends the connected client
-the message `button{4,5,6}:pressed` when one of the buttons is pressed. (**2p**) 
+1. **Initialize the USB Peripheral (2p)**: Configure the USB builder on your microcontroller with a custom Vendor ID (`0xABCD`) and Product ID (`0x1234`). Set the manufacturer string to your name.
+2. **Create a Bulk Echo Device (3p)**: Using the `embassy-usb` library, create an interface with two Bulk endpoints (one `IN` and one `OUT`). Implement an asynchronous loop that waits for data on the `OUT` endpoint, reverses the received byte array, and sends it back to the host via the `IN` endpoint.
+3. **Host-side Rust Client (2p)**: Write a Rust or Python command line application using `nusb` that:
+    - Finds your custom device (VID=`0xABCD`, PID=`0x1234`).
+    - Sends the string "PM USB Lab" to the OUT endpoint.
+    - Reads the reversed string from the IN endpoint.
+    - Prints the result to the console.
+4. **Device Disconnect Handling (1p)**: Modify your Rust microcontroller code to gracefully log `"Host disconnected"` using `defmt` when the cable is unplugged or the host releases the interface, and then safely return to waiting for a new connection.
+5. **Data Transformation: The "Shouting" Device (3p)**: Modify your microcontroller's `usb_read_write` task. Instead of just echoing the data exactly as it was received, modify the byte array so that any lowercase ASCII letters are converted to UPPERCASE before being sent back to the host.
+6. **USB GPIO Controller (LEDs & Buttons)** (2p)
+Transform your board into a PC-controlled I/O expander.
 
-6. Connect the `RED`, `GREEN` and `BLUE` LEDs from the lab board to the Pico. Modify the server from the previous exercise so that when it receives the message `{red,green,blue}:{on,off}` it
-turns on or off the corresponding LED. (**2p**)
+    - **Device (Microcontroller)**: Write a task that reads the state of the **4 buttons** and packs them into a single byte. Send this byte to the host via the Bulk `IN` endpoint. Listen on the Bulk `OUT` endpoint for a 1-byte payload from the host and use its lower 5 bits to turn the **5 LEDs** on or off.
 
-7. You will have to pair up with another team for this task. The two Picos will have to
-communicate through a TCP socket, one being a server and the other, a client. The Pico
-which will act as a server will also be the access point. (**2p**)
+    - **Host (PC)**: Write a Rust (`nusb`) or Python script that reads the button state and prints it to the console. Add a feature to send a user-inputted number (0-31) to control the LEDs on the board.
 
-**The client Pico will need to implement the following functionality:**
-- The press of `SW4` will trigger the send of the message `led:toggle` to the server. 
-- The press of `SW5` will trigger the send of the message `led:red` to the server. 
-- The press of `SW6` will trigger the send of the message `led:green` to the server. 
-- The press of `SW7` will trigger the send of the message `led:blue` to the server. 
-- The receival of the `error` message will turn on the red LED (and the green LED off).
-- The receival of the `ok` message will turn on the green LED (and the red LED off).
-
-**The server Pico will need to implement the following functionality:**
-- The default `CHOSEN_LED` to be used will be the red LED 🔴.
-- The receival of the `led:toggle` message will toggle the `CHOSEN_LED`.
-- The receival of the `led:{red, green, blue}` message will set the `CHOSEN_LED` to be the red🔴, blue🔵 or green🟢 LED.
-- If a message wasn't recognized, it will need to send back the message `error`. Otherwise,
-it will send the message `ok`.
+7. **USB Environmental/Motion Dashboard (3p)** \
+**Device**: Listen on the Bulk `OUT` endpoint for specific ASCII commands from the host.
+      - If it receives `"T"`, read the temperature from the **BMP390** and send the formatted string (e.g., `"23.5 C"`) back over the Bulk `IN` endpoint.
+      - If it receives `"P"`, read the pressure from the **BMP390** and send it back.
+      - If it receives `"A"`, read the X, Y, Z acceleration from the **MPU-6000** and send it back. \
+**Host**: Create a simple script that asks the user which sensor they want to read, sends the corresponding letter, and prints the response.
