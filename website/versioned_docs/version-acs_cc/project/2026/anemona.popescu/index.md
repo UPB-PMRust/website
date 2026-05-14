@@ -16,7 +16,7 @@ Proiectul implementeaza un sistem embedded fiabil pe microcontroller-ul **STM32U
 Motivatia mea a constat in dorinta mea de a folosi in cadrul acestui proiect un panou solar. Pornind de la acest aspect, am ajuns la ideea dezvoltarii unei solutii de monitorizare ambientala complet autonome, care sa fie capabila sa functioneze in locatii izolate sau greu accesibile. Alegerea senzorilor si a parametriilor meteorologici a fost facuta astfel incat sa pot sa creez un tablou climatic complex
 
 ## **Arhitectura**
-![arhitectura proiectului](./arhitectura-proiect-pm.webp)
+![arhitectura proiectului](./arhitectura.webp)
 ## **Hardware**
 1.  Microcontroller si baza
     *   **STM32U545RE-Q**
