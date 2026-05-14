@@ -2,7 +2,8 @@
 
 :::info
 *Author:* Anemona Georgia Popescu
-*GitHub Project Link:* [anemona.popescu/website](https://github.com/ds2mon/website/tree/project/anemona.popescu)
+
+*GitHub Project Link:* [anemona.popescu/website](https://github.com/UPB-PMRust-Students/acs-project-2026-ds2mon)
 :::
 
 ---
@@ -24,17 +25,17 @@ Motivatia mea a constat in dorinta mea de a folosi in cadrul acestui proiect un 
 
     Pentru a-mi fi mai usor am incercat sa aleg niste senzori care folosesc I2C pentru a avea deja crates
     *   **BMP280** - presiune barometrica si altitudine
-    *   **VEML6070** - Intensitate UV
-    *   **Ventilator PC** - Pe post de anemometru
+    *   **GY-302 BH1750** - Intensitate UV
+    *   **Ventilator PC cu senzor** - Pe post de anemometru
 3.  Management Energetic
-    *   **Panou Fotovoltaic** - 5V - 6V / 2W - 5W
-    *   **CN3791** - modul incarcare solara 
+    *   **Panou Fotovoltaic** - 6V / 3.5W
+    *   **Modul TP4056** - pentru incarcare acumulatori Litiu 5V/1A
     *   **Li-Ion 18650** - acumulator
-    *   **Regulator de tensiune**
+    *   **Modul ridicator de tensiune MT3608**
 
 4.  Interfata si feedback
-    * **OLED 0.96" (SSD1306)** - display local prin I2C
-    *   **Buzzer**
+    * **OLED 0.96"** - display local prin I2C
+    * **Buzzer pasiv**
 
 ## *Schematic*
 ![schematic](./schematic.webp)
@@ -48,3 +49,4 @@ Motivatia mea a constat in dorinta mea de a folosi in cadrul acestui proiect un 
 | `bme280-rs` | Driver Senzor | Citire Umiditate/Presiune |
 | `ssd1306` | Driver Ecran | Afisare date pe OLED |
 | `embedded-graphics` | Randare Grafica | Desenare text si forme pe display-ul OLED|
+
