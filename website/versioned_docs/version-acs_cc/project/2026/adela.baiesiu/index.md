@@ -14,7 +14,7 @@ A wireless piano learning assistant with falling notes, physical keys, and real-
 
 Piano Trainer is an embedded piano learning system built around a wireless keyboard unit and a main display unit.
 
-The project is inspired by piano tutorial videos where colored notes fall toward the piano keys. The user has a 13-key piano keyboard covering one chromatic octave, from C to the next C. The keyboard unit detects key presses and sends them wirelessly using Bluetooth.
+The project is inspired by piano tutorial videos where colored notes fall toward the piano keys. The user has a 12-key piano keyboard covering one chromatic octave, from C to the next C. The keyboard unit detects key presses and sends them wirelessly using Bluetooth.
 
 The main unit, built around the STM32 Nucleo-U545RE-Q development board, receives the key events, displays the falling notes on a TFT screen, generates audio feedback using a passive buzzer, and computes gameplay statistics.
 
@@ -28,7 +28,7 @@ I chose this project because I learned piano using online videos where colored n
 
 ## Architecture 
 
-- **Piano input module**: reads the 13 physical piano keys corresponding to one complete octave.
+- **Piano input module**: reads the 12 physical piano keys corresponding to one complete octave.
 - **Menu input module**: reads the control buttons used for navigating the interface: UP, DOWN, SELECT, and BACK/PAUSE.
 - **Display module**: renders the start menu, song selection screen, gameplay screen, falling notes, results screen, settings screen, and best scores screen.
 - **Song engine**: stores each song as a sequence of note events. Each event contains the note, the expected start time, and the note duration.
@@ -66,7 +66,7 @@ I chose this project because I learned piano using online videos where colored n
 
 The project is built as two separate hardware units: a wireless keyboard unit and a main display unit.
 
-The wireless keyboard unit contains the physical piano keys and the menu control buttons. It is responsible for detecting user input and sending key events to the main unit through Bluetooth. The keyboard contains 13 physical keys, covering one octave from C to the next C.
+The wireless keyboard unit contains the physical piano keys and the menu control buttons. It is responsible for detecting user input and sending key events to the main unit through Bluetooth. The keyboard contains 12 physical keys, covering one octave.
 
 The main display unit contains the STM32 Nucleo-U545RE-Q development board, the TFT display, and the passive buzzer. It receives input events from the wireless keyboard unit, updates the game state, displays the falling notes, generates sound, and computes the final statistics.
 
@@ -88,17 +88,18 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| STM32 Nucleo-U545RE-Q | Main microcontroller board used to run the Rust firmware and control all peripherals | Provided |
-| Raspberry Pi Pico 2 | Secondary microcontroller used in the wireless keyboard unit to read the piano keys and menu buttons and forward events to the Bluetooth UART module | TODO |
-| Bluetooth UART Module x2 | Used for wireless communication between the keyboard unit and the main display unit | TODO |
-| TFT SPI Display ST7789 2.8 inch 320x240 | Used to display the main menu, song selection screen, falling notes, results, settings, and best scores | 58.99 RON |
-| MCP23017 I/O Expander | Used by the wireless keyboard unit to read most of the piano keys and menu buttons through I2C, reducing the number of GPIO pins required | 7.77 RON |
-| 12x12mm Tactile Push Buttons x 18 | Used as physical piano keys and menu control buttons | 1.52 RON |
+| STM32 Nucleo-U545RE-Q | Main microcontroller board used to run the Rust firmware, receive keyboard events, control the TFT display, and generate audio through PWM | Provided |
+| Raspberry Pi Pico H | Secondary microcontroller used in the wireless keyboard unit to read the piano keys and menu buttons through the MCP23017 and forward events to the Bluetooth UART module | 41.14 RON |
+| HC-05 Bluetooth UART Module | Bluetooth master module used on the Pico keyboard unit to transmit key and menu events wirelessly | 30.25 RON |
+| HC-06 Bluetooth UART Module | Bluetooth slave module used on the STM32 main unit to receive key and menu events wirelessly | 30.4 RON |
+| TFT SPI Display ST7789V 2.8 inch 240x320 | Used to display the main menu, song selection screen, falling notes, results, settings, and best scores | 58.99 RON |
+| MCP23017 I/O Expander | Used by the wireless keyboard unit to read most of the piano keys through I2C, reducing the number of GPIO pins required | 7.77 RON |
+| 12x12mm Tactile Push Buttons x16 | Used as 12 physical piano keys and 4 menu control buttons | 1.52 RON |
 | Passive Buzzer Module 3.3V-5V | Used to generate musical tones through PWM | 6.44 RON |
-| Breadboard | Used as the prototyping area for connecting the modules and components | 9.89 RON |
-| Male-Male Jumper Wires | Used for breadboard connections between components | 10.3 RON |
-| Female-Male Jumper Wires | Used for connecting modules with pins to the breadboard or Nucleo board | 8.66 RON |
-| Female-Female Jumper Wires | Used for direct connections between modules with male header pins | 6.54 RON |
+| Breadboards | Used as the prototyping area for connecting the modules, buttons, power rails, and peripherals | 12.89 RON |
+| 10 Male-Male Jumper Wires x4 | Used for breadboard connections between components | 10.30 RON |
+| 10 Female-Male Jumper Wires x4 | Used for connecting modules with pins to the breadboard or Nucleo board | 8.66 RON |
+| 10 Female-Female Jumper Wires x4 | Used for direct connections between modules with male header pins | 6.54 RON |
 
 ## Software
 
