@@ -16,11 +16,10 @@ My project's purpose is to have multiple integrated DSP algorithms (aiming to im
 
 ## Motivation
 
-Choosing this project was a mix of my interest in mathematics and wanting to learn DMA more in-depth.
+Choosing this project was because of a mix of my interest in mathematics and wanting to learn DMA (used for audio input/output leaving the processor more power to do the DSP required for the sound effects)more in-depth.
 
 ## Architecture 
 
-- **4x Buttons:** This acts as a control panel for all the audio effects. They are connected to the GPIO pins on the STM32 configured as hardware interrupts.
 - **INMP441 Module:** It sends clean digital audio arryas straight to the STM32 via I2S
 - **STM32:** Calculates FFT to draw on the screen and the algorithms for the audio effects.
 - **UDA1334A:** Takes the I2S output from the STM32 and outputs it into a 3.5mm Jack where you connect speakers or headphones.
@@ -51,9 +50,13 @@ Display: SPI TFT LCD (Shows visualizer)
 
 Interface: 4x Tactile Buttons (Changes effects)
 
+**Assembled hardware shown below (MVP):**
+
+![hardware_phase_one](./hardware_one.webp)
+
 ### Schematics
 
-Not available right now.
+![KiCad Schematic](./kicadscheme.svg)
 
 ### Bill of Materials
 
@@ -66,13 +69,13 @@ The format is
 ```
 
 -->
-
 | Device | Usage | Price |
 |--------|--------|-------|
-|[STM32 Nucleo-U545RE](https://www.st.com/en/evaluation-tools/nucleo-u545re.html) | The microcontroller | [Borrowed]() |
-| [INMP441 I2S Microphone](https://invensense.tdk.com/products/inmp441/) | Captures ambient audio digitally via I2S, bypassing analog ADC noise. | [21 RON](https://www.bitmi.ro/module-electronice/modul-microfon-omnidirectional-interfata-i2s-mems-inmp441-11003.html) |
-| [UDA1334A I2S DAC Module](https://learn.adafruit.com/adafruit-i2s-stereo-decoder-uda1334a) | Decodes processed digital audio to an analog signal via a 3.5mm jack. | [37 RON](https://www.emag.ro/decodor-dac-stereo-uda1334a-convertor-digital-analogic-i2s-3-3-v-5-v-s-038/pd/D9WPHR3BM) |
-| [Starting Electronics Kit](https://www.emag.ro/kit-start-componente-electronice-ai777/pd/DXRJ4TMBM/) | Contains Miscellaneous components like resistors,breadboard,etc | [51 RON](https://www.emag.ro/kit-start-componente-electronice-ai777/pd/DXRJ4TMBM/) |
+|[STM32 Nucleo-U545RE](__https://www.st.com/en/evaluation-tools/nucleo-u545re.html__) | The microcontroller | [Borrowed]() |
+| [INMP441 I2S Microphone](__https://invensense.tdk.com/products/inmp441/__) | Captures ambient audio digitally via I2S, bypassing analog ADC noise. | [21 RON](__https://www.bitmi.ro/module-electronice/modul-microfon-omnidirectional-interfata-i2s-mems-inmp441-11003.html__) |
+| [UDA1334A I2S DAC Module](__https://learn.adafruit.com/adafruit-i2s-stereo-decoder-uda1334a__) | Decodes processed digital audio to an analog signal via a 3.5mm jack. | [37 RON](__https://www.emag.ro/decodor-dac-stereo-uda1334a-convertor-digital-analogic-i2s-3-3-v-5-v-s-038/pd/D9WPHR3BM__) |
+| [ILI9341 3.2" TFT LCD Touchscreen](__https://www.adafruit.com/product/1743__) | Displays UI, audio visualizations, and status information; touch input via SPI. | [84 RON](__https://www.emag.ro/display-tft-lcd-3-2-inch-320x240-touchscreen-14pini-spi-ili9341-arduino-rx407/pd/D7Q411YBM/__) |
+| [Starting Electronics Kit](__https://www.emag.ro/kit-start-componente-electronice-ai777/pd/DXRJ4TMBM/__) | Contains Miscellaneous components like resistors,breadboard,etc | [51 RON](__https://www.emag.ro/kit-start-componente-electronice-ai777/pd/DXRJ4TMBM/__) |
 
 
 ## Software
