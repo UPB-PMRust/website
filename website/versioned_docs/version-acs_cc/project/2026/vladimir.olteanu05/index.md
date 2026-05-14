@@ -4,7 +4,7 @@ A six-legged walking robot with Bluetooth control, ToF obstacle detection, and I
 :::info 
 
 **Author**: Vladimir-Nicolae Olteanu \
-**GitHub Project Link**: https://github.com/Vldd28/ProiectPM
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-Vldd28
 
 :::
 
