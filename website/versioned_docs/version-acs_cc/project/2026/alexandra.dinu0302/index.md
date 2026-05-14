@@ -17,8 +17,7 @@ Elderly people and patients with complex treatments frequently forget to take th
 
 ## Architecture 
 
-![Architecture Diagram](architecture.png)
-
+![Architecture Diagram](architecture.svg)
 The system has three main subsystems connected to the STM32 Nucleo-U545RE-Q:
 
 - **Sensor subsystem** — 4 sensors provide feedback: Hall effect (KY-035, ADC) for carousel homing, IR obstacle sensor (GPIO) for pill detection, HTU21D (I2C) for temperature and humidity, HC-SR04P (GPIO) for user proximity detection.
@@ -41,7 +40,7 @@ The mechanical assembly uses a commercially available 7-day round pill box mount
 
 ### Schematics
 
-![KiCad Schematic](schematics/pill_dispenser.svg)
+![KiCad Schematic](schematic_kicad.svg)
 
 ### Bill of Materials
 
