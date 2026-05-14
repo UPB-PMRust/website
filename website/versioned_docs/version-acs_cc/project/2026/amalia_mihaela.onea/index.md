@@ -119,7 +119,7 @@ The system is composed of the following main modules:
 
 ## Schematics
 
-![Schematic](schematic.webp)
+![Schematic](schematicul.webp)
 
 
 ## Bill of Materials
