@@ -48,6 +48,7 @@ The project utilizes the **STM32 Nucleo-U545RE-Q**, a powerful ARM Cortex-M33 mi
 
 ### Schematics
 
+![Project Schematic](./sdaf_schematic.svg)
 
 ### Bill of Materials
 
