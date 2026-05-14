@@ -72,13 +72,35 @@ Implemented on measurement device:
 
 ### Week 9
 
-Started working on this documentation.
+- Started working on this documentation.
+- Started working on the PCB designs for both devices.
+
+### Week 10
+
+- Finished the PCB designs and ordered them.
+- New display for dashboard arrived.
+
+Implemented on dashboard:
+- touchscreen handling
+- basic UI
+- basic ESP-NOW communication
+
+### Week 11
+
+Implemented on dashboard:
+- SD card reading and writing
+- bidirectional ESP-NOW communication
+- better UI
+
+Implemented on measurement device:
+- Wi-Fi access point with HTTP server for setting the time and date from a phone
+- DNS server for "captive portal" functionality (webpage opens automatically when connecting to the network)
 
 ## Hardware
 
 Both the measurement device and the dashboard are based on the **ESP32-C6** microcontroller. They have built-in **ST7789** displays of different sizes.
 
-The measurement device samples an **SCT-013** non-invasive current clamp a **ZMPT101B** isolated transformer module.
+The measurement device samples an **SCT-013** non-invasive current clamp and a **ZMPT101B** isolated transformer (through an amplifier circuit).
 
 The dashboard's interface is controller by a resistive touchscreen processed by an **XPT2046**. For data storage, a standard **SD card** is used.
 
@@ -86,15 +108,34 @@ The dashboard's interface is controller by a resistive touchscreen processed by 
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [ESP32-C6](https://www.tme.eu/ro/details/esp32c6-wroom-1-n4/module-iot-wifi-bluetooth/espressif/esp32-c6-wroom-1-n4/) | Microcontrollers | 2 * 20 RON |
 | [SCT-013](https://www.aliexpress.com/item/1005006325551071.html) | Non-invasive current clamp | 25 RON |
 | [ZMPT101B](https://www.aliexpress.com/item/32810872584.html) | Isolated voltage transformer module | 15 RON |
-| [0.96in ST7789](https://www.aliexpress.com/item/1005006258472043.html) | Display on measurement device | 25 RON (2 years ago) |
-| [2.8in ST7789+XPT2046](https://www.aliexpress.com/item/1005009761383945.html) | Display on dashboard | 50 RON |
+| [0.96in ST7789](https://www.aliexpress.com/item/1005006258472043.html) | Display for measurement device | 25 RON (2 years ago) |
+| [2.8in ST7789+XPT2046](https://www.aliexpress.com/item/1005009761383945.html) | Display for dashboard | 50 RON |
+| [XIAO ESP32-C6](https://www.aliexpress.com/item/1005007427033011.html) | Microcontroller for dashboard (with built-in battery management) | 55 RON |
+| [PCBs](https://jlcpcb.com/) | PCBs for both devices, 5pcs each | 87 RON |
+| [Parts](https://www.lcsc.com/) | Components for the PCBs | 182 RON |
 
 ### Schematics
 
-TODO
+Measurement device:
+![Power](energy_monitor_pcb-power.svg)
+![Sensors](energy_monitor_pcb-sensors.svg)
+![MCU](energy_monitor_pcb-mcu.svg)
+![Display](energy_monitor_pcb-display.svg)
+
+Dashboard device:
+![Dashboard](dashboard_device.svg)
+
+### PCBs
+
+Measurement device:
+
+![PCB](main_pcb.webp)
+
+Dashboard:
+
+![PCB](dashboard_pcb.webp)
 
 ### Photos
 
@@ -108,12 +149,23 @@ TODO
 | Crate | Description | Usage |
 |---------|-------------|-------|
 | [esp-hal](https://github.com/esp-rs/esp-hal) | `no-std` hardware abstraction layer for ESP32 | Support for the ESP32-C6 |
+| [esp-radio](https://github.com/esp-rs/esp-hal/tree/main/esp-radio) | Wi-Fi driver | Support for ESP-NOW and Wi-Fi |
+| [esp-rtos](https://github.com/esp-rs/esp-hal/tree/main/esp-rtos) | Real-time operating system | Needed for `esp-radio` |
+| [esp-storage](https://github.com/esp-rs/esp-hal/tree/main/esp-storage) | Flash access | Non-volatile storage |
+| [sequential-storage](https://github.com/tweedegolf/sequential-storage) | Key-value pair data storage | Non-volatile storage |
 | [embassy](https://github.com/embassy-rs/embassy) | Async framework | Cooperative multitasking |
-| [mipidsi](https://github.com/almindor/mipidsi) | Generic MIPI-DSI driver | Driver for the ST7789 displays |
+| [lcd-async](https://github.com/okhsunrog/lcd-async) | Generic MIPI-DSI driver with async support | Driver for the ST7789 displays |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing graphics on the displays |
 | [u8g2-fonts](https://github.com/Finomnis/u8g2-fonts) | U8g2 font system | Better fonts for `embedded-graphics` |
 | [micromath](https://github.com/tarcieri/micromath) | Math library | Trigonometric functions |
 | [bytemuck](https://github.com/Lokathor/bytemuck) | Safe byte operations | Serialization and deserialization for ESP-NOW data |
+| [heapless](https://github.com/rust-embedded/heapless) | Data structures that don't require dynamic allocation | Strings and vectors |
+| [embedded-fatfs](https://github.com/MabezDev/embedded-fatfs) | FAT filesystem | SD card |
+| [chrono](https://github.com/chronotope/chrono) | Date and time | Managing timestamps |
+| [embassy-net](https://github.com/embassy-rs/embassy/tree/main/embassy-net) | Async network stack | Built-in webpage |
+| [edge-dhcp](https://github.com/sysgrok/edge-net/tree/master/edge-dhcp) | DHCP protocol | Built-in webpage |
+| [edge-http](https://github.com/sysgrok/edge-net/tree/master/edge-http) | HTTP protocol | Built-in webpage |
+| [edge-captive](https://github.com/sysgrok/edge-net/tree/master/edge-captive) | Captive portal DNS server |Built-in webpage |
 
 ### Design
 
@@ -123,7 +175,10 @@ TODO
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [LCD tutorial](https://esp32.implrust.com/tft-display/index.html)
-2. [SD card tutorial](https://esp32.implrust.com/sdcard/index.html)
-3. [ESP-NOW example](https://github.com/esp-rs/esp-hal/tree/main/examples/esp-now/embassy_esp_now_duplex)
-4. [Old Arduino library for energy monitoring](https://github.com/openenergymonitor/EmonLib)
+1. [Old Arduino library for energy monitoring](https://github.com/openenergymonitor/EmonLib)
+2. [LCD tutorial](https://esp32.implrust.com/tft-display/index.html)
+3. [SD card tutorial](https://esp32.implrust.com/sdcard/index.html)
+4. [Webserver tutorial](https://esp32.implrust.com/wifi/web-server/index.html)
+5. [ESP-NOW example](https://github.com/esp-rs/esp-hal/tree/main/examples/esp-now/embassy_esp_now_duplex)
+6. [HTTP server with captive portal](https://github.com/esp-rs/no_std-training/tree/feat/overhaul/project/part5/src) (needs some changes to work)
+
