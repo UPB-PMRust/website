@@ -52,6 +52,10 @@ TBD
 
 <!-- ![Schematic diagram](schematics.svg) -->
 
+### Photos
+
+![Hardware](poza_hardware.webp)
+
 ### Bill of Materials
 
 | Device | Usage | Price |
