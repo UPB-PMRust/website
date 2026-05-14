@@ -48,7 +48,7 @@ The project is divided into four main modules that work together:
 
 ### Schematics
 *[Here you will add the schematic drawn in KiCad EDA]*
-![Schematic](./images/schematic.png)
+![Schematic](./images/schematic.webp)
 
 ### Bill of Materials
 
@@ -73,7 +73,7 @@ The software logic is created exclusively in **Rust**, using an embedded systems
 * The I2C interface will be used to update the OLED screen using a state-machine logic (states: Idle, Selecting, Pouring, Done).
 
 *[Here you will add a flowchart of the software logic]*
-![Software Flow](./images/software_flow.png)
+![Software Flow](./images/software_flow.svg)
 
 ## Links
 * [Rust on ESP/STM32 Book](https://docs.rust-embedded.org/book/)
