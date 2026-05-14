@@ -41,7 +41,7 @@ I am running the robot in a theadered format, for the ease of development, to co
 
 ### Schematics
 
-![Schematic](./images/schematic.svg)
+![Schematic](./images/schematic.webp)
 
 The schematic does not include the power bus, just the data and commands wires.
 
