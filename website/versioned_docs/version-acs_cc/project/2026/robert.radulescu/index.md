@@ -72,7 +72,7 @@ Sistemul este dezvoltat in ecosistemul **Rust Embedded (`no_std`)**. Proiectul s
 
 ### Schematics
 
-![Circuit](images/Schematic_PM_Project_STD.webp)
+![Circuit](images/schematic.webp)
 
 ## Links
 
