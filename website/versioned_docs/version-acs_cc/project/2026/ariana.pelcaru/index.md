@@ -2,9 +2,10 @@
 **An autonomous robotic system capable of navigating along a predefined path and dynamically adapting its route in real time to avoid obstacles.**
 
 ---
-**INFO:**
+:::info
 + **Author:** ariana.pelcaru
 + **GitHub Project Link :** https://github.com/UPB-PMRust-Students/acs-project-2026-aryuqq
+:::
 ---
 
 ## Description
