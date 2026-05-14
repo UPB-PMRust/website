@@ -1,7 +1,3 @@
----
-title: Spy Video Car
----
-
 # Spy Video Car
 A remote-controlled smart car with obstacle detection and onboard video capture.
 
@@ -38,7 +34,7 @@ Main Components:
 * **The Video Capture System**: The OV7670 camera module connected directly to the STM32 for capturing image frames.
 * **The Storage System**: A microSD card module connected via SPI, used to store captured images.
 
-![System Diagram](./Diagram.svg)
+![System Diagram](./images/diagrama.svg)
 
 ## Log
 
@@ -64,7 +60,7 @@ The system uses an STM32 microcontroller along with motors, sensors, communicati
 
 ### Schematics
 
-![Hardware Schematics](./SpyVideoCar.svg)
+![Hardware Schematics](./images/schematic_pm.svg)
 
 ### Bill of Materials
 
