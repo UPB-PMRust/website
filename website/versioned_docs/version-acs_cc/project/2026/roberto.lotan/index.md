@@ -63,16 +63,16 @@ The project aims to automate drink preparation while ensuring precision and repe
 
 | Device | Usage | Price |	
 |--------|--------|-------|
-| [STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Microcontroller (main control unit) | ~120 RON |
-| [HX711 Load Cell Amplifier](https://www.optimusdigital.ro/ro/senzori-senzori-de-greutate/471-modul-hx711.html) | Converts load cell signal to digital | ~10 RON |
-| [Load Cell 1kg](https://www.optimusdigital.ro/ro/senzori-senzori-de-greutate/468-celula-de-sarcina-1kg.html) | Measures weight of the liquid | ~35 RON |
-| [Peristaltic Pump 12V](https://www.optimusdigital.ro/ro/cautare?controller=search&s=pompa+peristaltica) ×4 | Dispenses liquids | ~50 RON × 4 |
-| [MOSFET Module IRF520](https://www.optimusdigital.ro/ro/cautare?controller=search&s=mosfet+irf520) ×4 | Controls pumps from microcontroller | ~5 RON × 4 |
-| [LCD 16x2 I2C](https://www.optimusdigital.ro/ro/cautare?controller=search&s=lcd+1602+i2c) | User interface display | ~20 RON |
-| [Power Supply 12V 3A](https://www.optimusdigital.ro/ro/cautare?controller=search&s=sursa+12v) | Powers pumps | ~40 RON |
-| [Breadboard](https://www.optimusdigital.ro/ro/cautare?controller=search&s=breadboard) | Prototyping | ~15 RON |
-| [Jumper Wires](https://www.optimusdigital.ro/ro/cautare?controller=search&s=fire+jumper) | Connections | ~10 RON |
-| [Silicone Tubing](https://www.optimusdigital.ro/ro/cautare?controller=search&s=tub+silicon) | Liquid transport | ~15 RON |
+| [STM32 NUCLEO-U545RE-Q] | Microcontroller (main control unit) | ~120 RON |
+| [HX711 Load Cell Amplifier] | Converts load cell signal to digital | ~10 RON |
+| [Load Cell 1kg] | Measures weight of the liquid | ~35 RON |
+| [Peristaltic Pump 12V] ×4 | Dispenses liquids | ~50 RON × 4 |
+| [MOSFET Module IRF520] ×4 | Controls pumps from microcontroller | ~5 RON × 4 |
+| [LCD 16x2 I2C] | User interface display | ~20 RON |
+| [Power Supply 12V 3A] | Powers pumps | ~40 RON |
+| [Breadboard] | Prototyping | ~15 RON |
+| [Jumper Wires] | Connections | ~10 RON |
+| [Silicone Tubing] | Liquid transport | ~15 RON |
 
 TOTAL: ~450 RON
 
