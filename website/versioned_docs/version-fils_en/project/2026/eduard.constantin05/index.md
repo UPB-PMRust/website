@@ -40,11 +40,17 @@ Finalized component research and ordered all necessary hardware (microcontroller
 
 ### Week 12 - 18 May
 
+So far, I've 3D printed the baseplate for the switches to snap into. I went with a hand-wired matrix setup, including diodes for reliable input. I've also soldered a power switch and a battery, which I tested with a multimeter. I connected the columns and one of the rows to the microcontroller just to check the continuity. This is all for the first half of the build; I plan to wrap up the other half later this week.
+
 ### Week 19 - 25 May
 
 ## Hardware
 
 The hardware relies on a 3D-printed chassis to hold the switches, eliminating the need for a PCB. The logic is handled by NRF52840 chips due to their low power consumption and excellent Bluetooth capabilities.
+
+![KiCad](hardware1.webp)
+
+![KiCad](hardware2.webp)
 
 ### Schematics
 
