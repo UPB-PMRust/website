@@ -1,9 +1,10 @@
 # **Unitate de Monitorizare a Mediului cu Autonomie Solara**
 
 :::info
-*Author:* Anemona Georgia Popescu
 
+*Author:* Anemona Georgia Popescu \
 *GitHub Project Link:* [anemona.popescu/website](https://github.com/UPB-PMRust-Students/acs-project-2026-ds2mon)
+
 :::
 
 ---
