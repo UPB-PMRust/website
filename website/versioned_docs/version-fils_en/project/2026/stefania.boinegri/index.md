@@ -53,7 +53,7 @@ The project uses the STM32 Nucleo-U545RE-Q as the microcontroller to process inp
 | Tactile Push-Button | Digital Input | 0.36 RON |
 | RGB LED Module | Visual Feedback | 2 RON |
 | Vibration Motor Module | Haptic Feedback | 5 RON |
-| USB Data Cable | Power & Communication | 30 RON |
+| USB Data Cable | Power & Communication | 29 RON |
 | Jumper Wires | Physical Connectivity | 7 RON |
 
 ## Software
