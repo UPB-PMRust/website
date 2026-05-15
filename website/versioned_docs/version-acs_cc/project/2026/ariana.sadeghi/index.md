@@ -1,5 +1,3 @@
-
-
 # Automated Optical Sorting System
 
 An automated system designed to identify and sort objects based on their optical properties using an STM32 microcontroller.
