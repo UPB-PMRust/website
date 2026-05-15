@@ -74,7 +74,8 @@ Continued working on hardware
 ![Orion Hardware 7/x](./images/ma7.webp)
 ![Orion Hardware 8/x](./images/ma8.webp)
 ### Week 11 - 17 May
-
+![Orion Hardware 9/x](./images/ma9.webp)
+![Orion Hardware 10/x](./images/ma10.webp)
 ### Week 18 - 24 May
 
 ## Hardware
