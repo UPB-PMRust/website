@@ -1,8 +1,7 @@
 # Project Name
-
 A one line project description
 
-:::info
+:::info 
 
 **Author**: Student Name \
 **GitHub Project Link**: link_to_github
@@ -19,12 +18,11 @@ Describe in a few words your project idea.
 
 Why did you choose this project?
 
-## Architecture
+## Architecture 
 
 Add here the schematics with the architecture of your project. Make sure to include:
-
-- what are the main components (architecture components, not hardware components)
-- how they connect with each other
+ - what are the main components (architecture components, not hardware components)
+ - how they connect with each other
 
 ## Log
 
@@ -48,7 +46,7 @@ Place your KiCAD or similar schematics here in SVG format.
 
 <!-- Fill out this table with all the hardware components that you might need.
 
-The format is
+The format is 
 ```
 | [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
@@ -56,16 +54,17 @@ The format is
 
 -->
 
-| Device                                                                                                   | Usage               | Price                                                                                         |
-| -------------------------------------------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------- |
+| Device | Usage | Price |
+|--------|--------|-------|
 | [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
+
 
 ## Software
 
-| Library                                                                     | Description               | Usage                                           |
-| --------------------------------------------------------------------------- | ------------------------- | ----------------------------------------------- |
-| [st7789](https://github.com/almindor/st7789)                                | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library       | Used for drawing to the display                 |
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
 
 ## Links
 
@@ -73,4 +72,4 @@ The format is
 
 1. [link](https://example.com)
 2. [link](https://example3.com)
-   ...
+...
