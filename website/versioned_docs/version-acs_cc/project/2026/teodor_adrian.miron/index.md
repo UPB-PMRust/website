@@ -1,99 +1,100 @@
-# project name
-
-Slot Machine
+# Slot Machine
+A mini slot machine that accepts real coins, spins three physical reels, and dispenses a payout on win.
 
 :::info
 
-**author**: Teodor Adrian Miron \
-**github project link**: [https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann](https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann)
+**Author**: Teodor Adrian Miron \
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann](https://github.com/UPB-PMRust-Students/acs-project-2026-teodoradriann)
 
 :::
 
-## description
+<!-- do not delete the \ after your name -->
 
-My project consists in building a mini Slot Machine where you can insert coins and bet X amount of credited money. The system uses a load cell to count coins and three stepper motors to physically roll the reels. The game is initiated via a dedicated **Spin button**, and if the player wins, the amount is dispensed physically using a servo-driven payout mechanism.
+## Description
 
-## motivation
+My project consists in building a mini Slot Machine where you can insert coins and bet X amount of credited money. The system uses a load cell to count coins and three stepper motors to physically roll the reels. The game is initiated via a dedicated Spin button, and if the player wins, the amount is dispensed physically using a servo-driven payout mechanism.
+
+## Motivation
 
 I wanted to do something fun and help students control their gambling addiction with tiny amounts of money.
 
-## architecture
+## Architecture
 
 The software architecture is based on a Finite State Machine (FSM) managing the game flow, implemented in Rust using the Embassy framework for async multitasking.
 
-### 1. Main Components
+ - The main components (architecture components, not hardware components):
+   - **Core Logic / State Machine**: manages game states (`IDLE`, `WAITING_FOR_BET`, `SPINNING`, `PAYOUT`) and coordinates all modules.
+   - **Input / Sensor Manager**: handles debouncing for the Spin and Bet buttons and interprets weight signals from the load cell.
+   - **Random Number Generator (RNG)**: responsible for the fair generation of the spin outcome.
+   - **Motor / Actuator Controller**: translates the RNG result into steps for the 3 stepper motors and PWM signals for the payout servo.
+   - **Display / UI Controller**: manages the ST7735 LCD, displaying credit balance and bet amount.
+   - **Payout Manager**: commands the servo motor to eject the coins.
+ - How they connect with each other:
+   - The Input Manager detects a coin (weight increase) or a button press and sends an event to the Core Logic.
+   - Core Logic updates the credit and instructs the Display Controller to refresh.
+   - When the Spin button is pressed, Core Logic switches to the `SPINNING` state and requests a value from the RNG.
+   - The Motor Controller starts the 3 stepper motors and stops them sequentially based on the RNG result.
+   - If a win is detected, the Payout Manager activates the servo to slide coins out of the storage tube.
 
-- **Core Logic / State Machine:** Manages game states (e.g., `IDLE`, `WAITING_FOR_BET`, `SPINNING`, `PAYOUT`) and coordinates all modules.
-- **Input / Sensor Manager:** Handles debouncing for the **Spin and Bet buttons** and interprets weight signals from the load cell.
-- **Random Number Generator (RNG):** Responsible for the fair generation of the spin outcome.
-- **Motor / Actuator Controller:** Translates the RNG result into steps for the 3 stepper motors and PWM signals for the payout servo.
-- **Display / UI Controller:** Manages the ST7735 LCD, displaying credit balance and bet amount.
-- **Payout Manager:** Commands the servo motor to eject the coins.
+## Log
 
-### 2. How they connect with each other
+<!-- write your progress here every week -->
 
-- **Data Collection:** The `Input Manager` detects a coin (weight increase) or a button press. It sends an event to the `Core Logic`.
-- **Processing:** `Core Logic` updates credit and instructs the `Display Controller` to refresh.
-- **Triggering the Spin:** When the **Spin button** is pressed, `Core Logic` switches to `SPINNING` state and requests a value from the `RNG`.
-- **Animation and Result:** The `Motor Controller` starts the 3 stepper motors and stops them sequentially based on the `RNG` result.
-- **Payout:** If a win is detected, the `Payout Manager` activates the MG995 servo to slide coins out of the storage tube.
+### Week 5 - 11 May
 
-## log
+### Week 12 - 18 May
 
-### week 5 - 11 may
+### Week 19 - 25 May
 
-### week 12 - 18 may
+## Hardware
 
-### week 19 - 25 may
+The build uses a microcontroller board driving a small TFT display, an HX711 + load cell pair for detecting inserted coins by weight, three 28BYJ-48 stepper motors with ULN2003 drivers for the physical reels, a continuous-rotation servo for the payout mechanism, arcade buttons for player input, and a 5 V stabilized power supply to handle motor peak currents.
 
-## hardware
+### Schematics
 
-### 1. Electronics & Control
+Place your KiCAD or similar schematics here in SVG format.
 
-- **Microcontroller:** Nucleo STM32 Development Board.
-- **Display:** 1.44" Color TFT LCD (ST7735 driver, 128x128 px) using SPI.
-- **Weight Sensor:** 1kg Load Cell + HX711 amplifier for 50 Bani coin detection.
-- **Sound:** 5V Passive Buzzer for 8-bit game effects.
-- **Input:**
-  - **Buttons:** Tactile buttons to adjust the wager and spin button.
-- **Actuators:**
-  - **Stepper Motors (x3):** 28BYJ-48 + ULN2003 drivers for the physical reels.
-  - **MG995 Servo/SG90:** Servo for the payout ejector.
-- **Power Supply:** 5V 3A external DC power supply to handle motor peak currents.
+### Bill of Materials
 
-### bill of materials
+<!-- Fill out this table with all the hardware components that you might need.
 
-| Component | Description | Price / Link |
-|---|---|---|
-| [STM32U545](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf) | The microcontroller | [113 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q) |
-| [LCD SCREEN ST7735] | the LCD screen | [30 RON](https://www.optimusdigital.ro/3552-product.html) |
-| [Load cell 1KG] | the scale sensor | [10 RON](https://ardushop.ro/ro/electronica/2418-1349-senzor-greutate.html) |
-| [HX711] | the module used for the scale sensor | [10 RON](https://ardushop.ro/ro/groundstudio/2207-modul-citire-senzor-greutate-hx711-groundstudio-6427854000040.html) |
-| [BUZZER] | used for simulating sounds of slots machines | [0 RON](i already have it) |
-| [BUTTONS] | used for changing the bet amount and spin | [0 RON](i already have them) |
-| [3 x stepper motors 28BYJ-48] | used to mechanically roll the fruits | [51 RON](https://www.optimusdigital.ro/en/stepper-motors/101-stepper-motor-with-uln2003-driver.html) |
-| [Servomotor MG995] | used to push the coins out | [26 RON](https://ardushop.ro/ro/motoare-si-drivere/634-servomotor-mg995-semi-metal-6427854007889.html) |
-| [Servomotor SG90] | lower power servo used to push the coins out | [14 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html) |
-| [DC in adaptor] | used to power the mg995 | [1.5 RON](https://www.optimusdigital.ro/en/connectors/12499-dc-jack-connector-female-21mm-x-55mm.html) |
-| [Power supply 5V 3A] | used to power the mg995 | [? RON](nu gasesc niciuna potrivita la momentul actual) |
+The format is
+```
+| [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
-## software
+```
+
+-->
+
+| Device | Usage | Price |
+|--------|-------|-------|
+| [DS04-NFC Continous Rotation Servo](https://www.optimusdigital.ro/en/servomotors/1161-ds04-nfc-continous-rotation-servo.html) | Drives the coin payout mechanism | [39 RON](https://www.optimusdigital.ro/en/servomotors/1161-ds04-nfc-continous-rotation-servo.html) |
+| [5 V 5000 mA Stabilized Power Supply](https://www.optimusdigital.ro/en/wall-socket-power-supplies/2890-5-v-5000-ma-stabilized-power-supply.html) | Powers the motors and the rest of the system | [30 RON](https://www.optimusdigital.ro/en/wall-socket-power-supplies/2890-5-v-5000-ma-stabilized-power-supply.html) |
+| [1.44" SPI LCD Module with ST7735 Controller (128x128 px)](https://www.optimusdigital.ro/en/lcds/3552-modul-lcd-de-144-cu-spi-i-controller-st7735-128x128-px.html) | Displays credit balance, bet amount and reel animation | [30 RON](https://www.optimusdigital.ro/en/lcds/3552-modul-lcd-de-144-cu-spi-i-controller-st7735-128x128-px.html) |
+| [ULN2003 Stepper Driver + 5V Stepper Motor](https://www.optimusdigital.ro/en/stepper-motors/101-stepper-motor-with-uln2003-driver.html) (x3) | Physically rolls the three reels | [17 RON](https://www.optimusdigital.ro/en/stepper-motors/101-stepper-motor-with-uln2003-driver.html) |
+| [Arcade Button 24 mm - Green](https://www.optimusdigital.ro/en/buttons-and-switches/1851-buton-arcade-iluminat-24mm-verde.html) | Spin / bet input from the player | [10 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1851-buton-arcade-iluminat-24mm-verde.html) |
+| [HX711 GroundStudio Load Cell Amplifier](https://ardushop.ro/ro/groundstudio/2207-modul-citire-senzor-greutate-hx711-groundstudio-6427854000040.html) | Reads digital weight values from the load cell | [11 RON](https://ardushop.ro/ro/groundstudio/2207-modul-citire-senzor-greutate-hx711-groundstudio-6427854000040.html) |
+| [Load Cell (max. 1 Kg)](https://ardushop.ro/ro/electronica/2418-1349-senzor-greutate.html#/246-greutate_maxima-1_kg) | Detects inserted coins by weight | [10 RON](https://ardushop.ro/ro/electronica/2418-1349-senzor-greutate.html#/246-greutate_maxima-1_kg) |
+
+## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| **embassy-stm32** | STM32 hardware driver | Controlling pins, timers (PWM for servos), and SPI for the LCD |
-| **embassy-time** | Time and delay management | Handling non-blocking delays for stepper motor steps and animations |
-| **embassy-executor** | Async task scheduler | Running multiple tasks (motors, UI, sensors) concurrently |
-| **embassy-sync** | Async sync primitives | Inter-task communication (e.g., sending coin weight data to the UI) |
-| **cortex-m** | Core processor access | Managing interrupts and CPU-specific instructions |
-| **cortex-m-rt** | Startup/Runtime for ARM | Initializing memory and the program entry point |
-| **defmt** | Low-overhead logger | Fast logging for debugging sensor data and game states |
-| **defmt-rtt** | RTT transport for logs | Viewing logs in real-time through the debugger |
-| **embedded-graphics** | 2D graphics library | Core library for drawing fruit icons, text, and shapes on the screen |
-| **st7735-lcd** | Display driver for ST7735 | Managing the specific command set for the 1.44" color TFT screen |
-| **hx711** | Load cell driver | Reading digital weight values from the 50 Bani coin scale amplifier |
-| **panic-probe** | Debug panic handler | Reporting and stopping the CPU safely if a runtime crash occurs |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | STM32 hardware driver | Controlling pins, timers (PWM for the servo) and SPI for the LCD |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time and delay management | Non-blocking delays for stepper motor steps and animations |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task scheduler | Running multiple tasks (motors, UI, sensors) concurrently |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Async sync primitives | Inter-task communication (e.g. sending coin weight data to the UI) |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Core processor access | Managing interrupts and CPU-specific instructions |
+| [cortex-m-rt](https://github.com/rust-embedded/cortex-m) | Startup/Runtime for ARM | Initializing memory and the program entry point |
+| [defmt](https://github.com/knurling-rs/defmt) | Low-overhead logger | Fast logging for debugging sensor data and game states |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for logs | Viewing logs in real-time through the debugger |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing fruit icons, text and shapes on the screen |
+| [st7735-lcd](https://crates.io/crates/st7735-lcd) | Display driver for ST7735 | Managing the command set for the 1.44" color TFT screen |
+| [hx711](https://crates.io/crates/hx711) | Load cell driver | Reading digital weight values from the load cell amplifier |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Debug panic handler | Reporting and stopping the CPU safely if a runtime crash occurs |
 
-## links
+## Links
 
-[Video Link](https://youtu.be/ihVHIpEZ-Pw?is=S4FJ2DUwAJGDrWJH)
+<!-- Add a few links that inspired you and that you think you will use for your project -->
+
+1. [Slot machine reference video](https://youtu.be/ihVHIpEZ-Pw)
