@@ -4,7 +4,7 @@ Autonomous robot that follows a line using an infrared sensor array and controls
 
 :::info
 
-**Author**: Andrei Bem
+**Author**: Andrei Bem \
 
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-andrei.bem
 
@@ -62,8 +62,6 @@ All grounds are connected together to ensure proper signal reference.
 ![Architecture Diagram](schematics/architecture.svg)
 
 ### Hardware photo
-
-![Hardware photo](./schematics/robot.webp)
 
 ---
 
