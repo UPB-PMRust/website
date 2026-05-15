@@ -31,6 +31,7 @@ The power management system supplies the entire device from a 4×AA battery pack
 ![img](architecture.svg)
 
 
+
 ## Log
 
 <!-- write your progress here every week -->
@@ -41,7 +42,12 @@ Most of the components started to arrive, among the STM32 NUCLEO-U545RE-Q. Still
 ### Week 9 - 20 April
 Waiting on the left components to arrive.
 
+## Week 10 - 27 April
+All components arrived, started working on Kicad.
 
+## Week 11 - 4 May
+Finished the Kicad schematic and started working on hardware.
+ 
 
 ## Hardware
 
@@ -49,7 +55,7 @@ Waiting on the left components to arrive.
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![img](aquarust.svg)
 
 ### Bill of Materials
 
