@@ -65,7 +65,7 @@ Asembled hardware components, tested each component (to verify its functionality
 
 The robot is built on a 2WD chassis with two DC motors with Hall encoders for precise odometry. Three HC-SR04 ultrasonic sensors (front, left, right) mounted on an SG90 scanning servo provide obstacle detection. An MPU-6050 IMU handles heading correction, while two IR sensors detect floor edges. An ST7735 128x160 color LCD displays the live map, and an ESP8266 WiFi module streams data wirelessly to a PC. The system is powered by a 7.4V 2000mAh LiPo battery with an LM2596 voltage regulator.
 
-![Hardware](masina_SLAM.webp)
+![Hardware](masina_slam.webp)
 
 ### Schematics
 
