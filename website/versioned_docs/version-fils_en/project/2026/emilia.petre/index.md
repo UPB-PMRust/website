@@ -26,27 +26,36 @@ This project combines Computer Vision and Embedded Rust, transforming digital ge
 
 ## Log
 
-# Weeks 5-6
+### Weeks 5-6
 
  - Researched possible project ideas and chose the Rock, Paper, Scissors Game
  - Researched different development boards and selected the STM32 Nucleo-U545RE-Q as the main microcontroller
  - Ordered STM32
 
- # Weeks 7-8
+ ### Weeks 7-8
 
  - Researched additional hardware components and implementation methods
  - Ordered the necessary materials and performed initial functionality tests on the purchased modules
 
- # Week 9
- - Searching for a suitable 3D-printable robotic hand that can be adapted to project requirements and looking to start the 3D printing process
+ ### Weeks 9-10
+
+ - Searched for a suitable 3D-printable robotic hand that can be adapted to project requirements and looking to start the 3D printing process
+ - Researched how to connect the hardware components together 
+
+ ### Week 11
+
+ - Completed the 3D printing process for the robotic hand
+ - Started integrating the electronic components with the printed structure
 
 ## Hardware
 
 The hardware platform of the project is centered around the STM32 Nucleo-U545RE-Q development board, which acts as the main controller of the robotic arm. The SG90 servo motors are used to actuate the fingers of the hand and reproduce the rock, paper, and scissors gestures. A 0.96-inch SSD1306 OLED display connected through I2C is used to show the score and game status. Wireless connectivity is provided by an ESP-01 WiFi module communicating with the STM32 through UART. Gesture recognition is performed on a laptop using a USB webcam or the integrated camera. For prototyping and interconnections, a breadboard and jumper wires are used. The robotic hand itself is manufactured using 3D printing, while the system is powered by a 5V external power supply.
 
+![Hardware Photo](images/imagehardware.webp)
+
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format
+![Hardware Schematic](images/kicademilia-2.svg)
 
 ### Bill of materials
 
@@ -60,7 +69,8 @@ Place your KiCAD or similar schematics here in SVG format
 | [ESP-01 Adaptor Module](https://sigmanortec.ro/Modul-adaptor-pentru-ESP-01-ESP8266-5V-3-3V-p182230951) | Wireless communication and remote scoreboard access | ~ 10 RON |
 | [Breadboard (760 points)](https://sigmanortec.ro/Breadboard-760-puncte-p190992404) | Rapid prototyping and circuit connections | ~ 10 RON |
 | Jumper Wires Set | Electrical interconnections between modules | owned |
-| 5V Power Supply (old charger)| Powers servos and electronic modules | owned |
+| [LiPo Gens Ace 3S 11.1v 450mAh 30C](https://www.autorc.ro/acumulatori-baterii-lipo-life-nimh/5736-acumulator-lipo-gens-ace-3s-111v-450mah-30c-mufa-jst.html) | Powers servos and electronic modules | ~40 RON |
+| [Step-Down Voltage Converter 5V 5A](https://sigmanortec.ro/modul-coborator-tensiune-sincron-9-35v-la-5v-5a-fix) | Electrical interconnections between modules | ~ 20 RON |
 | 3D Printed Robotic Hand Parts | Mechanical structure of the robotic hand | - |
 
 ## Software
