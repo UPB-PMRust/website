@@ -41,20 +41,32 @@ Main Architectural Components:
 5. Power Network:
    - Role: Power the circuit accordingly to each component's needs.
    - Logic: 1x external battery power the STM32 board and 4x AA batteries power the motors.
+6. Remote Control System (Input):
+   - Role: Allows the user to stop the alarm remotely.
+   - Components: Infrared Receiver and Remote Control.
+   - Logic: The receiver is connected to the board and listens for signals from the remote to trigger the alarm stop function.
+7. Visual Indicator System (Output):
+   - Role: Provides a visual countdown before the alarm goes off.
+   - Components: 3x LEDs.
+   - Logic: The LEDs light up in sequence to indicate the time left until the alarm is triggered.
 
-![Architecture Diagram](./images/diagramapm.drawio.svg)
+![Architecture Diagram](./images/diagramapm.webp)
 
 ## Log
 
 <!-- write your progress here every week -->
 ### Week 13 - 19 April
     - Bought the hardware necessary for the project.
-    - Defined the power managemt system.
+    - Defined the power management system.
 ### Week 20 - 26 April
     - Worked on the documentation, defining the architecture for the main features of the project.
-
+### Week 27 April - 3 May
+    - Started working on the hardware, setting up the breadboard and testing the sensors and motors separately.
+### Week 4 - 10 May
+    - Finished the hardware setup and started working on the software, implementing the basic logic for the alarm and the motor control.
 ### Week 12 - 18 May
-
+    - Met the hardware deadline and presented the project during the lab session.
+    - Started working on the software, implementing the logic for the user and obstacle detection and the escape system.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -68,7 +80,7 @@ Main Architectural Components:
 
 ### Schematics
 
-![Schematic](./images/project%20architecture%20resized.webp)
+![Schematic](./images/architecture.webp)
 
 ### Bill of Materials
 
@@ -86,10 +98,15 @@ The format is
 |--------|--------|-------|
 | [STM32 Nucleo U545RE-Q] | The microcontroller | [110 RON](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&utm_id=6470900573&utm_source=google&utm_medium=cpc&utm_marketing_tactic=emeacorp&gad_source=1&gad_campaignid=6470900573&gbraid=0AAAAADn_wf0GICp7OV9wICGSd4JiEPUkg&gclid=CjwKCAjwzLHPBhBTEiwABaLsSpfYEy1LvXzJXlwQr9pTOutAzfZ2l9gvivkogoet7YjGyN21xj5GexoCsvcQAvD_BwE) |
 | [Chassis Kit] | The base for the robot | [48.40 RON](https://sigmanortec.ro/Kit-Sasiu-Smart-Car-2WD-p141489122) |
-| [HC-SR04 Ultrasonic Sensor] | Used for user and obstacle detection | [16.26 RON](https://sigmanortec.ro/Kit-Sasiu-Smart-Car-2WD-p141489122) |
+| [HC-SR04 Ultrasonic Sensor] x2 | Used for user and obstacle detection | [16.26 RON](https://sigmanortec.ro/Senzor-ultrasunete-HC-SR04-p125423514) |
 | [L298N Motor Driver] | Used to control the motors | [10.84 RON](https://sigmanortec.ro/Punte-H-Dubla-L298N-p125423236) |
 | [Passive Buzzer] | Used for the alarm sound | [1.45 RON](https://sigmanortec.ro/Buzzer-pasiv-5v-p172425809) |
-
+| [LEDs] x3 | Used before the alarm starts to indicate the time left until the alarm goes off | [0.30 RON](https://sigmanortec.ro/led-5mm-rosu) | 
+| [Resistors 220Ω] x3 | Used to limit the current to the LEDs | [0.10 RON](https://www.optimusdigital.ro/en/resistors/10958-05w-220-resistor.html?search_query=resistor+220&results=28) |
+| [Resistors 2k2Ω] x2 | Used for the voltage divider | [0.10 RON](https://www.optimusdigital.ro/en/resistors/851-025w-22k-resistor.html?search_query=resistor+2k&results=221) |
+| [Resistors 5k2Ω] x2 | Used for the voltage divider | [0.10 RON](https://www.optimusdigital.ro/en/resistors/849-025w-47k-resistor.html?search_query=resistor+5k&results=221) |
+| [Infrared Receiver] | Used to stop the alarm remotely | [4.84 RON](https://sigmanortec.ro/Receptor-Infrarosu-KY-022-p136259491) |
+| [Infrared Remote Control] | Used to stop the alarm remotely | [3.60 RON](https://www.optimusdigital.ro/en/others/11-mini-infrared-remote.html?search_query=infrared&results=109) |
 
 
 ## Software

@@ -12,7 +12,7 @@ A dual-unit system featuring wireless control and real-time telemetry.
 
 ## Description
 
-The project is a Bluetooth-based robotic system consisting of a 2-wheeled mobile car and a dedicated handheld remote. Both units utilize STM32 Nucleo-64 microcontrollers. The remote reads joystick inputs to transmit directional data, while the car processes these signals to drive two DC motors. The system also integrates a ToF sensor for distance monitoring and an OLED display for real-time telemetry.
+The project is a Bluetooth-based robotic system consisting of a 2-wheeled mobile car and a dedicated handheld remote. Both units utilize STM32 Nucleo-U545RE-Q microcontrollers. The remote reads joystick inputs to transmit directional data, while the car processes these signals to drive two DC motors. The system also integrates a ToF sensor for distance monitoring and an OLED display for real-time telemetry.
 
 ## Motivation
 
@@ -32,6 +32,8 @@ The system architecture is divided into two main hardware-software modules:
    - **Processing**: Movement logic and motor speed calculation.
    - **Output**: PWM for Motor Driver, I2C for OLED and ToF Sensor.
 
+![System Architecture](./architecture_diagram.svg)
+
 ## Log
 
 ### Week 13 - 19 April
@@ -48,16 +50,16 @@ The system architecture is divided into two main hardware-software modules:
 
 ## Hardware
 
-The hardware architecture features two STM32F401RE Nucleo-64 boards configured in a Master-Slave setup for synchronized control. The Remote Controller acts as the Master, reading analog joystick positions via ADC and transmitting serial commands through an HC-05 Bluetooth module. The Mobile Car serves as the Slave, parsing UART strings to drive two DC motors via an L298N H-Bridge using PWM signals. Additionally, the system integrates an SG90 servomotor to sweep a VL53L0X ToF sensor for distance monitoring, providing real-time visual feedback on an SSD1306 OLED display via the I2C bus.
+The hardware architecture features two STM32 Nucleo-U545RE-Q boards configured in a Master-Slave setup for synchronized control. The Remote Controller acts as the Master, reading analog joystick positions via ADC and transmitting serial commands through an HC-05 Bluetooth module. The Mobile Car serves as the Slave, parsing UART strings to drive two DC motors via an L298N H-Bridge using PWM signals. Additionally, the system integrates an SG90 servomotor to sweep a VL53L0X ToF sensor for distance monitoring, providing real-time visual feedback on an SSD1306 OLED display via the I2C bus.
 
 ### Schematics
-![System Architecture](./architecture_diagram.svg)
+![Circuit Schematics](./schema_proiect.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [2x STM32 Nucleo-64 (F401RE)](https://www.st.com/en/evaluation-tools/nucleo-f401re.html) | Microcontrollers (Car & Remote) | [~240 RON](https://www.st.com/en/evaluation-tools/nucleo-f401re.html) |
+| 2x STM32 Nucleo-U545RE-Q| Microcontrollers (Car & Remote) | Lab Provided|
 | [2x HC-05 Bluetooth Module](https://www.emag.ro/modul-bluetooth-master-slave-hc-05-cu-adaptor-compatibil-3-3-v-si-5-v-6-pini-ai123-s113/pd/DQG1TWBBM/?ref=history-shopping_482799714_38837_1) | Wireless communication link | [60 RON](https://www.optimusdigital.ro/ro/wireless-bluetooth/12-modul-bluetooth-hc-05.html) |
 | [Joystick Module](https://www.emag.ro/modul-joystick-pentru-arduino-keyestudio-3-3-5v-analogic-x2-digital-x1-negru-galben-86560/pd/D6VMVFYBM/) | Remote control steering | [35 RON](https://www.optimusdigital.ro/ro/senzori-senzori-pozitie/166-modul-joystick-ps2.html) |
 | [SSD1306 OLED Display](https://www.emag.ro/afisaj-oled-0-96-i2c-iic-ssd1306-128x64px-3-5v-e498/pd/DX0LYDYBM/?ref=history-shopping_482799714_164433_1) | On-board telemetry display | [18 RON](https://www.optimusdigital.ro/ro/optoelectronica-lcd-uri/161-display-oled-096-cu-interfaa-i2c-albastru-galben.html) |
