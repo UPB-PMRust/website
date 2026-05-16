@@ -58,7 +58,7 @@ The project is based on the STM32U575RE-Q (Nucleo-64), an ultra-low-power ARM Co
 
 ### Electrical Schematic(KiCad)
 Detailed electrical schematic designed in KiCad, showing pin-to-pin connections between the STM32 MCU and peripheral modules (I2C, UART, and Digital interfaces):
-![Electrical Schematic](./schema.svg)
+![Electrical Schematic](./schema.webp)
 
 ### Physical Implementation
 The final hardware prototype, fully assembled with all sensors and modules integrated onto the frame:
