@@ -71,11 +71,11 @@ andrei.zamfir@wyliodrin.com
 </td>
 
 <td>
-**Roi Bachynskyi**
-![Roi Bachynskyi](images/roi_bachynskyi.jpg)
+**Roy Bachynskyi**
+![Roy Bachynskyi](images/roy_bachynskyi.jpg)
     
 Lab Professor \
-GitHub: [Roi Bachynskyi](https://github.com/frihetselsker) \
+GitHub: [Roy Bachynskyi](https://github.com/frihetselsker) \
 roi.bachynskyi@stud.fils.upb.ro
 </td>
 </tr>
@@ -115,7 +115,7 @@ victor.lisman@oxidos.io
 
 | Activity | Group | Day | Hour | Room | Professor |
 |----------|-------|-----|------|-------|----------|
-| Lab | 1221EAa - first half | Thursday | 12 - 14 | ED 217 | Roi Bachynskyi |
+| Lab | 1221EAa - first half | Thursday | 12 - 14 | ED 217 | Roy Bachynskyi |
 | Lab | 1221EAb - second half | Thursday | 10 - 12 | ED 218 | Irina Bradu |
 | Lab | 1221EBa - first half | Thursday | 16 - 18 | ED 218 | Cristiana Precup |
 | Lab | 1221EBb - second half | Thursday | 10 - 12 | ED 218 | Victor Lișman |
@@ -129,12 +129,12 @@ victor.lisman@oxidos.io
 
 | Part | Description | Points |
 |--------|-------------|--------|
-| [Lecture](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lecture) tests | You will have a test at every class with subjects from the previous class. | 0.2p |
-| [Final Lecture](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lecture) test | You will have a test during one of the lectures in May. | 1.8p |
-| [Lab](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab) | Your **presence** at every lab will be graded. | 1p |
-| [Lab](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab) Test | A final test at the lab - will scale your lab grade | 1p |
-| [Project](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
-| Final Test | You will have to take an exam during the last week of the semester. | 4p |
+| [Lecture](./category/lecture) tests | You will have a test at every class with subjects from the previous class. | 0.2p |
+| [Final Lecture](./category/lecture) test | You will have a test during one of the lectures in May. | 1.8p |
+| [Lab](./category/lab) | Your **presence** at every lab will be graded. | 1p |
+| [Lab](./category/lab) Test | A final test at the lab - will scale your lab grade | 1p |
+| [Project](./project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
+| Final Test | You will have to take an exam during the exams session. | 4p |
 | **Total** | *You will need at least 4.5 points to pass the subject.* | **11p** |
 
 
