@@ -96,7 +96,7 @@ in play mode and the file list in browse mode.
 
 ### Schematics
 
-![Schematics](images/Dj_Controller.svg)
+![Schematics](images/dj_controller.webp)
 
 ### Bill of Materials
 
