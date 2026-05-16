@@ -37,7 +37,7 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 
 ### Schematics
 
-![KICAD Scheme](images/solar_1024x768.svg)
+![KICAD Scheme](images/solar_kicad.svg)
 
 ### Bill of Materials
 
