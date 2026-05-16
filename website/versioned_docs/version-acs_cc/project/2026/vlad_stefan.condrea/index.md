@@ -28,6 +28,10 @@ Power management is critical: a 7.4V LiPo battery supplies raw power to the moto
 
 ![Architecture Diagram](images/architecture.svg)
 
+## Schematics
+
+![](images/schematic.svg)
+
 ## Log
 
 ### Week 20 - 26 April
