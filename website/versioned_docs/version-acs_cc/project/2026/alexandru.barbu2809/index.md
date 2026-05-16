@@ -36,10 +36,14 @@ Add here the schematics with the architecture of your project. Make sure to incl
  - from what i understand i also need a filter that stabilizes the signal from the IMU sensor
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- TODO:
 =======
 TODO:
 >>>>>>> 5a2ebf16 (I have added the project description.)
+=======
+<!-- TODO:
+>>>>>>> 4f802494 (fixed index.md a little.)
  - what are the main components (architecture components, not hardware components)
  - how they connect with each other -->
 
@@ -48,6 +52,9 @@ TODO:
 <!-- write your progress here every week -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4f802494 (fixed index.md a little.)
 ### Week 23 Feb - 29 Mar
 
 Looking for an idea, validating idea, idea is too simple so back to square 1.
