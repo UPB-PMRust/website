@@ -31,22 +31,21 @@ alexandru.radovici@upb.ro
 </td>
 
 <td>
-**Gabriel Păvăloiu**
-![Gabriel Păvăloiu](images/gabriel_pavaloiu.jpg)
- 
-Lab Professor \
-GitHub: [GabrielPavaloiu](https://github.com/GabrielPavaloiu) \
-gabriel.pavaloiu@upb.ro
+**Genan Omer**
+![Genan Omer](images/genan_omer.jpeg)
+
+Responsible for Lab Materials \
+GitHub: [genan2003](https://github.com/genan2003) \
+genan.omer@stud.fils.upb.ro
 </td>
 
 <td>
-**Teodor Dicu**
-![Teodor Dicu](images/teodor_dicu.jpg)
- 
-Lab Professor\
-Responsible for hardware\
-GitHub: [DTeodor-Alexaandru](https://github.com/DTeodor-Alexaandru) \
-teodor.dicu@wyliodrin.com
+**Irina Bradu**
+![Irina Bradu](images/irina_bradu.jpg)
+    
+Lab Professor \
+GitHub: [Irina Bradu](https://github.com/irina-b-dev) \
+irina.bradu@upb.ro    
 </td>
 </tr>
 
@@ -72,33 +71,16 @@ andrei.zamfir@wyliodrin.com
 </td>
 
 <td>
-**Ioana Culic**
-![Ioana Culic](images/ioana_culic.jpg)
-
+**Roi Bachynskyi**
+![Roi Bachynskyi](images/roi_bachynskyi.jpg)
+    
 Lab Professor \
-GitHub: [ioanaculic](https://github.com/ioanaculic) \
-ioana_maria.culic@upb.ro
+GitHub: [Roi Bachynskyi](https://github.com/frihetselsker) \
+roi.bachynskyi@stud.fils.upb.ro
 </td>
 </tr>
 
 <tr valign="top">
-<td>
-**Alexandru Ungureanu**
-![Alexandru Ungureanu](images/alexandru_ungureanu.jpg)
-
-Lab Professor \
-GitHub: [AlexU01](https://github.com/AlexU01) \
-alexagungureanu@gmail.com
-</td>
-
-<td>
-**Layla El-Ghoul**
-![Layla El-Ghoul](images/layla_elghoul.jpg)
-
-Lab Professor \
-GitHub: [ScarletWtc](https://github.com/ScarletWtc) \
-layla.el@stud.fils.upb.ro
-</td>
 
 <td>
 **Cristiana Precup**
@@ -108,27 +90,6 @@ Lab Professor \
 GitHub: [cristianaprecup](https://github.com/cristianaprecup) \
 cristiana.precup@wyliodrin.com
 </td>
-</tr>
-
-<tr valign="top">
-<td>
-**Andrei Batasev**
-![Andrei Batasev](images/andrei_batasev.jpg)
-
-Lab Professor \
-GitHub: [Pfat8equalsD](https://github.com/Pfat8equalsD) \
-andrei.batasev@stud.acs.upb.ro
-</td>
-
-<td>
-**Genan Omer**
-![Genan Omer](images/genan_omer.jpeg)
-
-Responsible for Lab Materials \
-GitHub: [genan2003](https://github.com/genan2003) \
-genan.omer@stud.fils.upb.ro
-</td>
-
 <td>
 **Eva Cosma**
 ![Eva Cosma](images/eva_cosma.jpg)
@@ -138,6 +99,15 @@ GitHub: [Eva Cosma](https://github.com/eva-cosma) \
 eva.cosma@wyliodrin.com
 </td>
 
+<td>
+**Victor Lișman**
+![Victor Lisman](images/victor_lisman.jpeg)
+ 
+Lab Professor \
+GitHub: [victorlisman](https://github.com/victorlisman) \
+victor.lisman@oxidos.io
+</td>
+
 </tr>
 </table>
 
@@ -145,32 +115,28 @@ eva.cosma@wyliodrin.com
 
 | Activity | Group | Day | Hour | Room | Professor |
 |----------|-------|-----|------|-------|----------|
-| Lecture | *all students* | Tuesday | 10 - 12 | EC002 | Alexandru Radovici |
-| Lab | 1241EC | Friday (weeks 2-8) | 10 - 12 | EG 306 | Alexandru Radovici |
-
-<!--
-| Lab | 1221Aa - first half | Thursday | 8 - 10 | ED 218 | Andrei Zamfir |
-| Lab | 1221Ab - second half | Thursday | 12 - 14 | ED 217 | Ioana Culic |
-| Lab | 1221Ba - first half | Thursday | 10 - 12 | ED 218 | Cristiana Precup <br/> Layla El-Ghoul |
-| Lab | 1221Bb - second half | Thursday | 14 - 16 | ED 217 | Alexandru Ungureanu |
-| Lab | 1221Ca - first half | Friday | 14 - 16 | ED 218 | Teodor Dicu |
-| Lab | 1221Cb - second half | Thursday | 8 - 10 | ED 217 | Alexandru Ungureanu |
-| Lab | 1221D | Thursday | 10 - 12 | ED 217 | Andrei Batasev |
-| Lab | 1222EEA | Thursday | 14 - 16 | ED 218 | Dănuț Aldea |
-| Lab | 1222EEB | Thursday | 12 - 14 | ED 218 | Teodor Dicu |
--->
+| Lab | 1221EAa - first half | Thursday | 12 - 14 | ED 217 | Roi Bachynskyi |
+| Lab | 1221EAb - second half | Thursday | 10 - 12 | ED 218 | Irina Bradu |
+| Lab | 1221EBa - first half | Thursday | 16 - 18 | ED 218 | Cristiana Precup |
+| Lab | 1221EBb - second half | Thursday | 10 - 12 | ED 218 | Victor Lișman |
+| Lab | 1221EC | Thursday | 8 - 10 | ED 218 | Andrei Zamfir |
+| Lab | 1221EDa - first half | Thursday | 14 - 16 | ED 217 | Eva Cosma |
+| Lab | 1221EDb - second half | Thursday | 8 - 10 | ED 217 | Dănuț Aldea |
+| Lab | 1221EEA | Thursday | 14 - 16 | ED 218 | Irina Bradu |
+| Lab | 1222EBB | Thursday | 12 - 14 | ED 218 | Omer Genan |
 
 ## Grading
 
 | Part | Description | Points |
 |--------|-------------|--------|
-| [Lecture](./category/lecture) tests | You will have a test at every class with subjects from the previous class. | 0.2p |
-| [Final Lecture](./category/lecture) test | You will have a test at one of the lectures in January. | 4p |
-| [Lab](./category/lab) | Your **presence** at every lab will be graded. | 1p |
-| [Lab](./category/lab) Test | A final test at the lab - will scale your lab grade | 1p |
-| [Project](./project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
-| Final Test | You will have to take an exam during the last lecture. | 4p |
+| [Lecture](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lecture) tests | You will have a test at every class with subjects from the previous class. | 0.2p |
+| [Final Lecture](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lecture) test | You will have a test during one of the lectures in May. | 1.8p |
+| [Lab](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab) | Your **presence** at every lab will be graded. | 1p |
+| [Lab](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab) Test | A final test at the lab - will scale your lab grade | 1p |
+| [Project](https://embedded-rust-101.wyliodrin.com/docs/fils_en/project) | You will have to design and implement a hardware device. Grading will be done for the documentation, hardware design and software development. | 3p |
+| Final Test | You will have to take an exam during the last week of the semester. | 4p |
 | **Total** | *You will need at least 4.5 points to pass the subject.* | **11p** |
+
 
 ## Rules
 
