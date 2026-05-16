@@ -59,6 +59,12 @@ src: ./admin/slides.md
 src: ./subjects.md
 ---
 
+<!-- Rust -->
+
+---
+src: ../../resources/rust/slides.md
+---
+
 <!-- AGC -->
 
 ---
