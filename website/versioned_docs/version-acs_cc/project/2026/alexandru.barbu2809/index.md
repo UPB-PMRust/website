@@ -4,15 +4,7 @@ A black box that logs data on an SD card if the RC car has been in an accident.
 :::info 
 
 **Author**: Barbu Alexandru Daniel \
-<<<<<<< HEAD
-<<<<<<< HEAD
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandruDanielBarbu
-=======
-**GitHub Project Link**: TODO
->>>>>>> 5a2ebf16 (I have added the project description.)
-=======
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandruDanielBarbu
->>>>>>> 35e342f7 (added the project gihub link)
 
 :::
 
@@ -30,31 +22,17 @@ I am passionate about cars. Many of my solo projects had involved cars from mode
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - i will do a Kalman filter so i need a crate for handling math and matrix multiplication
- - i will have to do some custom graphs to determine when an accident happened so another rust crate there
- - from what i understand i also need a filter that stabilizes the signal from the IMU sensor
+Schema of the project:
+[draw.io schema of the project](docs/Schema-Block-Black-Box.drawio.svg)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<!-- TODO:
-=======
-TODO:
->>>>>>> 5a2ebf16 (I have added the project description.)
-=======
-<!-- TODO:
->>>>>>> 4f802494 (fixed index.md a little.)
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other -->
+The core of the system is a Kalman filter that performs sensor fusion between the accelerometer and gyroscope. To eliminate noise, the filter records multiple readings in 2 seconds and stabilizes the raw IMU signal for acceleration first. Because these algorithms require complex linear algebra, a dedicated Rust mathematics crate handles the matrix multiplications.
+
+To accurately detect an accident, deceleration is calculated within a moving 20-millisecond window. The exact crash threshold is determined empirically by running test measurements, plotting and analyzing the data. If a crash is detected, the system immediately logs the car's acceleration and orientation to a CSV file on the SD card.
+
+Additionally, the hardware includes two physical buttons to streamline testing and demo reruns: one safely ejects the SD card to prevent data corruption, and the other resets the IMU state to eliminate gyroscope drift and start fresh.
 
 ## Log
 
-<!-- write your progress here every week -->
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4f802494 (fixed index.md a little.)
 ### Week 23 Feb - 29 Mar
 
 Looking for an idea, validating idea, idea is too simple so back to square 1.
@@ -72,36 +50,31 @@ Looking for components, finding components, ordering them, they get delivered to
 Doing small scale beginner project on the board to get the feel of how to program in rust on the STM board.
 
 Waiting for the rest of the components to be delivered.
-=======
-first 2 weeks: finding the idea
 
-week 3: validating idea
+### Week 27 Apr - 10 May
 
-week 4 to present day: mess around with the board, the labs, order parts, waiting for parts.
-### Week 23 Feb - 29 Mar
+Parts came to the right address.
 
-<<<<<<< HEAD
-### Week 5 - 11 May
->>>>>>> 5a2ebf16 (I have added the project description.)
-=======
-Looking for an idea, validating idea, idea is too simple so back to square 1.
+Researching Kalman filter. [Good information was found here](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python)
 
-Asking people for problems that my project could solve, I am not satisfied with the ideas.
+Buing the RC car body and further research on what kind of Kalman filter is needed and what kind of RC car body would help most.
 
-Finding out about back boxes and how they record data for a plane crash, adapting the idea for a smaller scope so i chose a car instead of a plane.
+Wiring the project to the RC car.
 
-Validating idea with the course staff, idea is good.
+Fixed an issue with the IMU sensor not reading data, thanks to the lab assistants.
 
-Looking for components, finding components, ordering them, they get delivered to the wrong address, waiting for components some more time.
+### Week 11 - 17 May
 
-### Week 30 Mar - 26 Apr
+Adding the external power supply.
 
-Doing small scale beginner project on the board to get the feel of how to program in rust on the STM board.
-
-Waiting for the rest of the components to be delivered.
->>>>>>> f27d442f (Added some more details as requested in the PR.)
-
-### Week 12 - 18 May
+Doing progress on the code side of things:
+    - first I refactored the lab code for the MPU6500 component to myneeds
+    - added code for the SD card system
+    - testing the buzzer, two buttons and the RGB LED
+    - testing sensor fusion and kalman filter.
+    - discovering two bugs:
+        - probe-rs was not reading the board (turns out i unplugged it from my PC at a weird time). This problem was fixed in the end.
+        - when connecting to the external power supply the board lights up but the code does not function. This problem was not yet solved.
 
 ### Week 19 - 25 May
 
@@ -119,7 +92,10 @@ Components:
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+[KiCad schema](docs/Automotive-Black-Box.svg)
+
+> [!NOTE]
+> Not sure of the buttons here, they are some no name hobbyist buttons so I tried to recreate them to the best of my ability.
 
 ### Bill of Materials
 
@@ -143,8 +119,10 @@ The format is
 | Buzzer | Auditorial effect of the crash | - |
 | Wires | - | - |
 | Breadboard | Link components together | - |
+| RC car | Support of the project | 130 RON |
 
-
+> [!NOTE]
+> Huge thanks to the lab assistants for providing detailed feedback on what kind of hardware to buy!
 
 > [!NOTE]
 > I bought 2 of each part just in case one breaks.
@@ -182,3 +160,4 @@ The format is
 2. [What is a black box](https://www.google.com/search?q=what+is+a+black+box&rlz=1C1GCEA_enRO1076RO1076&oq=what+is+a+black+box&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIICAUQABgWGB4yCAgGEAAYFhgeMggIBxAAGBYYHjIICAgQABgWGB4yCAgJEAAYFhge0gEJMTQ5ODNqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8)
 3. [Kalman filter - 1](https://kalmanfilter.net/)
 4. [Kalman filter - 2](https://www.youtube.com/watch?v=IFeCIbljreY)
+5. [KiCad tutorial](https://www.youtube.com/watch?v=vLnu21fS22s&t=551s)
