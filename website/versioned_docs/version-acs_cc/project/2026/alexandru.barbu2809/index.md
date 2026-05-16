@@ -5,10 +5,14 @@ A black box that logs data on an SD card if the RC car has been in an accident.
 
 **Author**: Barbu Alexandru Daniel \
 <<<<<<< HEAD
+<<<<<<< HEAD
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandruDanielBarbu
 =======
 **GitHub Project Link**: TODO
 >>>>>>> 5a2ebf16 (I have added the project description.)
+=======
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandruDanielBarbu
+>>>>>>> 35e342f7 (added the project gihub link)
 
 :::
 
