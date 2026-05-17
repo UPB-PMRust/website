@@ -20,7 +20,7 @@ Embedded systems and control theory are two domains I wanted to explore simultan
 
 ## Architecture
 
-The system is structured around four main architectural components that form a closed control loop:
+The system is structured around 4 main architectural components that form a closed control loop:
 
 **Sensor** — The VL53L0X laser Time-of-Flight sensor is mounted at the top of the tube and measures the distance to the ball via I2C. This gives the current height y(t).
 
@@ -28,19 +28,31 @@ The system is structured around four main architectural components that form a c
 
 **Actuator** — The Delta PFB0412EN-E fan receives a PWM signal at 25kHz directly on its dedicated blue wire. The duty cycle of this signal determines the fan speed, which controls the airflow and thus the ball's position.
 
-**User Interface** — Four potentiometers provide analog inputs via ADC: one sets the target height, and three adjust Kp, Ki, Kd in Manual mode. A 1602 I2C LCD displays system state. A toggle switch selects between Auto and Manual mode.
+**User Interface** — Four potentiometers provide analog inputs via ADC: one sets the target height in Auto Mode, and three adjust Kp, Ki, Kd in Manual mode. A ST7920 LCD displays system state using SPI. A toggle switch selects between Auto and Manual mode.
 
-## Closed Control Loop
+## Architecture Diagram
 
-![Closed Loop Diagram](Documentatie.drawio.svg)
+![Architecture Diagram](Architecture_Diagram.drawio.svg)
 
 ## Log
 
-### Week 5 - 11 May
+### Week 6 - 12 April
+    **Chose the project task**
 
-### Week 12 - 18 May
+### Week 13 - 19 April
+    **Initial Documentation**
 
-### Week 19 - 25 May
+### Week 20 - 26 April
+    **Final Documentation**
+
+### Week 4 - 10 May
+    **Tested HW Components**
+
+### Week 11 - 17 May
+    **Built HW Part and Startet the SW Part**
+
+### Week 18 - 24 May
+    **Finished the SW Part and Final Design**
 
 ## Hardware
 
@@ -48,7 +60,7 @@ The project uses an STM32 Nucleo-U545RE-Q (Cortex-M33) as the main microcontroll
 
 ### Schematics
 
-_KiCad schematic to be added here in SVG format._
+![alt text](image.png)
 
 ### Bill of Materials
 
@@ -57,10 +69,10 @@ _KiCad schematic to be added here in SVG format._
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller — runs PID algorithm in Rust/Embassy | already owned |
 | [VL53L0X Laser ToF Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-de-distanta/3309-modul-senzor-de-distanta-cu-laser-vl53l0x.html) | Measures ball height inside the tube via I2C | [25 RON](https://www.optimusdigital.ro) |
 | [Delta PFB0412EN-E Fan 12V](https://www.digikey.com) | Propeller fan — controls airflow in the tube via PWM | already owned |
-| [LCD 1602 I2C](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html) | Displays current height and PID constants | [15 RON](https://www.optimusdigital.ro) |
+| [LCD ST7920](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2894-lcd-cu-interfata-i2c-si-backlight-albastru.html) | Displays current height and PID constants | [15 RON](https://www.optimusdigital.ro) |
 | Potentiometer 10kΩ (x4) | Height target (x1) + Kp, Ki, Kd tuning (x3) | [5 RON x4](https://www.optimusdigital.ro) |
 | Toggle Switch | Selects Auto / Manual operating mode | [3 RON](https://www.optimusdigital.ro) |
-| Breadboard MB102 + YuRobot power module | Prototyping platform with integrated power supply | [20 RON](https://www.optimusdigital.ro) |
+| Breadboard MB102 - 830 pins | Prototyping platform with integrated power supply | [20 RON](https://www.optimusdigital.ro) |
 | DC Jack Module 5.5x2.1mm (breadboard) | Connects 12V adapter to breadboard for fan power | [7 RON](https://www.optimusdigital.ro) |
 | Resistor 100Ω | Protects STM32 PWM pin from fan input impedance | [1 RON](https://www.optimusdigital.ro) |
 | Jumper Wire Kit (120 pcs) | All signal and power connections on breadboard | [15 RON](https://www.optimusdigital.ro) |
@@ -75,11 +87,15 @@ _KiCad schematic to be added here in SVG format._
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 microcontrollers | Peripheral access: PWM, I2C, ADC, GPIO |
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor for embedded systems | Runs sensor, control and display tasks concurrently |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Timers and delays for Embassy | Fixed 20ms control loop timing |
+| [embassy-spi](https://github.com/UPB-PMRust/lab-solutions/tree/main/lab05) | Driver for ST7920-based LCD displays | Renders height and PID values |
 | [vl53l0x](https://crates.io/crates/vl53l0x) | Driver for VL53L0X ToF sensor | Reads ball distance over I2C |
-| [hd44780-driver](https://crates.io/crates/hd44780-driver) | Driver for HD44780-based LCD displays | Renders height and PID values on 1602 LCD |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework for embedded Rust | Debug output during development via RTT |
 | [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for defmt | Sends log messages to host over USB |
 | [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler for embedded Rust | Reports panics via defmt |
+
+## Closed Control Loop
+
+![Closed Loop Diagram](Documentatie.drawio.svg)
 
 ## Links
 
