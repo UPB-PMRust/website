@@ -1,10 +1,10 @@
 # Quadcopter
-A radio controled drone capable of pith roll and yaw.
+A radio controled drone capable of pitch roll and yaw.
 
 :::info 
 
 **Author**: Rizea Eduard-Ionut \
-**GitHub Project Link**: https://github.com/Edy1298/website
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-Edy1298
 
 :::
 
@@ -29,7 +29,7 @@ These corrections are sent as signals to the four ESCs, which regulate the speed
 
 The 3S LiPo battery supplies power to the entire system.
 
-![Architecture Diagram](images/drone.svg)
+![Architecture Diagram](images/Diagram.svg)
 
 ## Log
 
@@ -39,8 +39,14 @@ Got approval and researched the components.
 Ordered all of the components.
 
 ### Week 5 - 11 May
+Received all of the components. 
+Finished the design.
+Managed to connect the receiver and remote controller, and modify the signals based on the gyroscope's readings. 
 
 ### Week 12 - 18 May
+Joined the 3D pieces together.
+Started soldering the ESCs and Motors.
+Started soldering the squid cables that connect the ESC's and Nucleo to the battery. 
 
 ### Week 19 - 25 May
 
@@ -51,6 +57,7 @@ The project uses the Nucleo board as a flight controller. It receives data from 
 ### Schematics
 
 <!-- Place your KiCAD or similar schematics here in SVG format. -->
+![Schematic](images/Schematic.webp)
 
 ### Bill of Materials
 
@@ -83,6 +90,4 @@ The format is
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
-<!-- 
-1. [link](https://example.com)
-2. [link](https://example3.com) -->
+[Video Inspiration](https://m.youtube.com/watch?v=fQhsgUEnV2w)
