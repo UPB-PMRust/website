@@ -29,7 +29,7 @@ These corrections are sent as signals to the four ESCs, which regulate the speed
 
 The 3S LiPo battery supplies power to the entire system.
 
-![Architecture Diagram](images/Diagram.svg)
+![Architecture Diagram](images/diagram.svg)
 
 ## Log
 
@@ -57,7 +57,7 @@ The project uses the Nucleo board as a flight controller. It receives data from 
 ### Schematics
 
 <!-- Place your KiCAD or similar schematics here in SVG format. -->
-![Schematic](images/Schematic.webp)
+![Schematic](images/schematic.webp)
 
 ### Bill of Materials
 
