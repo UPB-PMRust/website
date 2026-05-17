@@ -1,10 +1,11 @@
 # Automated Pill Dispenser
 A sensor-verified automatic medication dispenser with dual stepper motor carousel and shutter mechanism.
 
-info 
+:::info 
+
 **Author**: Dinu Alexandra \
 **GitHub Project Link**: [GitHub Repository](https://github.com/UPB-PMRust-Students/acs-project-2026-alexandraioana3)
-
+:::
 
 
 ## Description
@@ -34,7 +35,7 @@ The hardware components arrived, and I immediately began testing them individual
 ### Week 12 - 18 May
 I successfully interconnected all the hardware modules and developed the initial part of the software architecture using async Embassy tasks.
 
-![Hardware Setup](img_hardware.png)
+![Hardware Setup](img_hardware.webp)
 
 ### Week 19 - 25 May
 
