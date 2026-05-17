@@ -9,7 +9,7 @@ A robotic hand that imitates the movement of a person's hand wearing a glove tha
 
 > [!NOTE]
 > **Author:** STANCIU Anastasia-Steliana
-> **GitHub Project Link:**
+> **GitHub Project Link:(https://github.com/UPB-PMRust-Students/acs-project-2026-anastasiilinca)**
 
 ## Description
 The project is a robotic, 3D printed hand, that is actiond through some basic wires and servo-motors, that imitate the signals from a control glove. The glove has flex sensors, one on each finger, sending continuos signals to the board and servo-motors. The motion is intended to be as smooth and real-time as possible, providing a continuous flex of the fingers, rather than discrete.
