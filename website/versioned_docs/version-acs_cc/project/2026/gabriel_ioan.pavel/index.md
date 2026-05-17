@@ -26,11 +26,11 @@ retrimitere automată în cazul pierderii pachetelor.
 2. Nod bridge - Heltec Wireless Stick V3: Asigură puntea de comunicație dintre transmițător și receptor.
 Se conectează la rețeaua WiFi creată de Pico 2W, participă la protocolul ARQ (echo al datelor, confirmare
 finală) și, la finalizarea cu succes a schimbului, trimite codul Morse prin UART nodului receptor.
-Afișează pe ecranul OLED intern ultimul cod primit.
 
 3. Nod receptor - STM32 Nucleo-U545RE-Q: Primește secvențele Morse prin UART pe PA3, le decodifică în
-litere ale alfabetului englez și le afișează pe un ecran LCD de 1.44''. Gestionează un buffer de text cu
-reîmpachetare automată pe linii și șterge afișajul la primirea semnalului special CLEAR.
+litere ale alfabetului englez și le afișează pe un ecran LCD de 1.44''. Pe prima linie a ecranului afișează
+permanent ultimul cod Morse primit brut (ex. `.-`), iar de la linia a doua în jos acumulează literele
+decodificate cu reîmpachetare automată. La primirea semnalului special CLEAR, șterge complet afișajul.
 
 Logica este realizată cu ajutorul frameworkului `embassy` pentru a facilita execuția de cod
 asincron, permițând procesarea non-blocantă a comunicațiilor și actualizarea ecranului
@@ -66,15 +66,15 @@ intrarea este deblocată.
 primirea datelor, trimite echo; la primirea confirmării „OK" de la Pico, trimite codul Morse
 prin UART și confirmă înapoi cu „OK". Dacă primește „OK" în starea WAITING_DATA (caz de pierdere
 a confirmării), răspunde cu „OK" fără a mai trimite pe UART.
-- Afișare OLED: Ecranul intern SSD1306 afișează ultimul cod Morse primit.
 - Transmisie UART: Trimite secvența Morse pe GPIO4, conectat prin cablu la PA3 al STM32.
 
 3. Nod receptor (STM32 Nucleo-U545RE-Q)
 - Recepție UART: Ascultă pe PA3 (USART2) datele trimise de nodul bridge.
 - Decodificare: Un tabel invers față de cel de pe Pico mapează secvențele Morse la literele
 corespunzătoare. La primirea „CLEAR", afișajul și bufferul sunt șterse.
-- Afișare: Caracterele decodificate sunt adăugate unui buffer de text cu reîmpachetare automată
-pe linii și trimise ecranului de 1.44'' prin interfața SPI.
+- Afișare: Linia 1 a ecranului afișează permanent ultimul cod Morse primit brut. De la linia 2
+în jos, caracterele decodificate sunt adăugate unui buffer cu reîmpachetare automată pe linii
+(FONT_6X10, 21 caractere/linie) și trimise ecranului de 1.44'' prin interfața SPI.
 
 ## Log
 
@@ -105,17 +105,24 @@ Schimbări:
 - (/) Modificat documentație.
 - (-) Eliminat componentele neutilizate din scheme și de pe plăcile de testare.
 - (+) Scris firmware pentru Pico.
+- (+) Scris firmware pentru Heltec.
 
 Altele:
 
 - Testat transmisie de pachete prin UDP între Pico și Heltec, cu confirmare
 hardware (LED și buzzer).
 
+În urma unor teste pentru a verifica protocolul, am observat că ecranul Heltecului
+este defect. Din acest motiv, am făcut următoarele modificări:
+
+- (/) Mutat logică ecran din Heltec in STM.
+- (-) Eliminat logică ecran din firmware Heltec.
+
 ### Week 19 - 25 May
 
 ## Hardware
 
-Proiectul folosește trei microcontrollere/module de procesare, un ecran SPI, un ecran OLED,
+Proiectul folosește trei microcontrollere/module de procesare, un ecran SPI,
 un buzzer, un LED, condensatori și rezistori.
 
 ### Schematics
@@ -138,7 +145,7 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) | Microcontroller emițător, punct de acces WiFi | ~52 RON |
-| [Heltec Wireless Stick V3](https://heltec.org/project/wireless-stick-v3/) | Nod bridge WiFi → UART, cu OLED SSD1306 integrat | ~70 RON |
+| [Heltec Wireless Stick V3](https://heltec.org/project/wireless-stick-v3/) | Nod bridge WiFi → UART | ~70 RON |
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Microcontroller receptor | ~125 RON |
 | [1.44'' SPI LCD](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2167-lcd-de-144-pentru-stc-stm32-i-arduino.html) | Ecran pentru output | 43 RON |
 | Potențiometru rotativ | Selectare de litere | ~10 RON |
@@ -159,10 +166,9 @@ The format is
 | [embassy-time](https://github.com/embassy-rs/embassy) | Ceas async pentru sisteme embedded | Timeout-uri ARQ și temporizări non-blocante |
 | [embassy-net](https://github.com/embassy-rs/embassy) | Stack de rețea async pentru sisteme embedded | UDP și gestionare stivă IP pe Pico 2W și Heltec |
 | [cyw43 / cyw43-pio](https://github.com/embassy-rs/embassy) | Driver WiFi pentru cipul CYW43439 (Pico 2W) | Inițializare chip WiFi, mod AP |
-| [esp-hal](https://github.com/esp-rs/esp-hal) | HAL bare-metal pentru ESP32 | Periferice hardware pentru Heltec: UART, I2C, timer |
+| [esp-hal](https://github.com/esp-rs/esp-hal) | HAL bare-metal pentru ESP32 | Periferice hardware pentru Heltec: UART, timer |
 | [esp-radio](https://github.com/esp-rs/esp-radio) | Driver WiFi pentru ESP32 | Conectare WiFi în mod STA pe Heltec |
-| [ssd1306](https://github.com/rust-embedded-community/ssd1306) | Driver pentru display-uri SSD1306 OLED | Afișarea codului Morse pe OLED-ul intern al Heltec |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Bibliotecă de grafică 2D pentru sisteme embedded | Randarea textului pe LCD și OLED |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Bibliotecă de grafică 2D pentru sisteme embedded | Randarea textului pe LCD |
 | [mipidsi](https://crates.io/crates/mipidsi) | Driver generic pentru display-uri MIPI DSI/SPI | Inițializarea și controlul ecranului ST7735S de 1.44'' |
 | [embedded-hal-bus](https://github.com/rust-embedded/embedded-hal) | Utilitar pentru partajarea bus-urilor hardware | Împachetarea bus-ului SPI cu pinul CS pentru driver-ul mipidsi |
 | [static_cell](https://github.com/embassy-rs/static-cell) | Alocare statică sigură în Rust | Alocarea resurselor de rețea și display fără heap și fără `static mut` |
