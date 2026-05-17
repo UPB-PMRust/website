@@ -23,7 +23,7 @@ I am passionate about cars. Many of my solo projects had involved cars from mode
 ## Architecture 
 
 Schema of the project:
-[draw.io schema of the project](docs/Schema-Block-Black-Box.drawio.svg)
+[draw.io schema of the project](docs/schema-block-black-box.drawio.svg)
 
 The core of the system is a Kalman filter that performs sensor fusion between the accelerometer and gyroscope. To eliminate noise, the filter records multiple readings in 2 seconds and stabilizes the raw IMU signal for acceleration first. Because these algorithms require complex linear algebra, a dedicated Rust mathematics crate handles the matrix multiplications.
 
@@ -92,7 +92,7 @@ Components:
 
 ### Schematics
 
-[KiCad schema](docs/Automotive-Black-Box.svg)
+[KiCad schema](docs/automotive-black-box.svg)
 
 > [!NOTE]
 > Not sure of the buttons here, they are some no name hobbyist buttons so I tried to recreate them to the best of my ability.
