@@ -5,7 +5,7 @@ An artificial flower that opens when a person approaches and rotates towards the
 :::info 
 
 **Author**: Sara-Cristiana Capp \
-**GitHub Project Link**: https://github.com/SaraCapp/acs-project-2026-SaraCapp
+**GitHub Project Link**: https://github.com/SaraCapp/website
 
 :::
 
