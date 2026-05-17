@@ -48,6 +48,7 @@ Ordered hardware components and finished documentation.
 
 Finished hardware assembly and created the KiCad schematic.
 Successfully tested LCD display output, GPS communication and verified MPU6050 sensor.
+
 ### Week 19 - 25 May
 
 ## Hardware
