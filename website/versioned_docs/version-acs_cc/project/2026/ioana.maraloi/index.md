@@ -42,9 +42,12 @@ Main architecture components:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Ordered hardware components and finished documentation.
 
 ### Week 12 - 18 May
 
+Finished hardware assembly and created the KiCad schematic.
+Successfully tested LCD display output, GPS communication and verified MPU6050 sensor.
 ### Week 19 - 25 May
 
 ## Hardware
@@ -58,9 +61,7 @@ A 2.4" display is used to present real-time data to the user, including activity
 Workout data is stored using a microSD card module, enabling later analysis. Additional components such as LEDs are used for status indication, while a breadboard, jumper wires, and resistors are used for prototyping and circuit connections.
 
 ### Schematics
-
-Place your KiCAD or similar schematics here in SVG format.
-
+![alt text](pm_kicad_scheme.svg)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
@@ -80,21 +81,29 @@ The format is
 | [MPU6050 GY-521 accelerometer module](https://www.emag.ro/modul-giroscop-mpu-6050-gy-521-accelerometru-arduino-3-axe-2-1-cm-x-1-1-cm-x-0-3-cm-albastru-c7/pd/DL3G1QYBM/) | Measures motion and is used for step detection |  32 RON |
 | [MicroSD Card Module ](https://www.emag.ro/modul-de-expansiune-micro-sd-card-de-memorie-tf-pentru-arduino-dh000036/pd/DP8QQL3BM/) | Reads and writes data to the microSD card for storing workout logs | 19 RON |
 | [GPS Module NEO6MV2 ](https://sigmanortec.ro/Modul-GPS-6MV2-p125423363) | Provides location data for tracking distance, speed, and route | 30 RON |
-| microSD Card 8GB | Stores workout data and GPS logs | 5 RON |
-|Push buttons| User input for mode switching and interaction| 8 RON |
+| microSD Card 8GB | Stores workout data and GPS logs | 20 RON |
+|Push button| User input for mode switching and interaction| 5 RON |
 | LEDs | Status indication and debugging | 5 RON |
 | Breadboard + Jumper Wires | prototyping and connecting components | 30 RON |
 | Resistors | Used for LEDs and buttons | 10 RON |
 
 ## Software
+
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rs](https://embassy.dev/) | Async embedded framework for Rust | Peripheral handling and task management |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Drawing text and graphics on the display |
+| embassy-rs | Async embedded framework for Rust | Task scheduling and async execution |
+| embassy-stm32 | STM32 HAL for embassy | UART, SPI, I2C, GPIO peripheral communication |
+| defmt | Embedded logging framework | Debug messages in terminal |
+| panic-probe | Panic handler for embedded Rust | Debugging runtime crashes |
+| embedded-graphics | 2D graphics library | Drawing text and interface elements on LCD |
+
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab
+2. https://docs.embassy.dev/
+3.  https://docs.rs/embassy-stm32/latest/embassy_stm32/
+
 <!-- 2. [link](https://example3.com)
 ... -->
