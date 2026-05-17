@@ -37,7 +37,7 @@ The gimbal uses an STM32 Nucleo as the main microcontroller, running both the se
 
 ### Schematics
 
-WIP
+![Diagram](./images/schematic.svg)
 
 ### Bill of Materials
 
