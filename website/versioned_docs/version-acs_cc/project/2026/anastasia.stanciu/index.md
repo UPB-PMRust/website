@@ -1,8 +1,3 @@
-
----
-
----
-
 # Robotic Hand
 
 A robotic hand that imitates the movement of a person's hand wearing a glove that has flex sensors on it.
