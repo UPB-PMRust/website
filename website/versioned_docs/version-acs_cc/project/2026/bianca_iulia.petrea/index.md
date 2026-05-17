@@ -1,7 +1,7 @@
 # Labyrinth game
 A physical labyrinth platform that mirrors the orientation of a handheld Nucleo board using IMU sensors and servo actuation.
 
-:::info 
+:::info
 
 **Author**: PETREA Bianca-Iulia \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-biancapetrea16
@@ -18,7 +18,7 @@ The project implements a physical 2-axis (X-Y) labyrinth platform driven by two 
 
 I chose this project to explore the concept of remote motion mirroring. It requires a precise synchronization between the handheld controller (IMU data processing) and the mechanical platform (PWM actuation).
 
-## Architecture 
+## Architecture
 
 The project is built as a motion mirroring system between the controller and the maze:
  - **Handheld Controller (Nucleo + IMU)**: Detects pitch and roll angles via I2C.
@@ -27,7 +27,7 @@ The project is built as a motion mirroring system between the controller and the
  - **End-of-Game Logic**: An IR sensor triggers the timer stop.
  - **Persistence Layer**: An SD card module stores the leaderboard via SPI.
 
- ![Architecture Diagram](images/architecture_diagram.svg)
+ ![Architecture Diagram](images/final_diagram.svg)
 
 ## Log
 
@@ -50,13 +50,13 @@ The project uses the STM32 Nucleo-U545RE-Q board as the brain, connected to sens
 ### Schematics
 The hardware connections are detailed below, routing all components to the STM32 Nucleo board. Power distribution is handled via a breadboard 5V and GND rail supplied by the Nucleo board (for testing) or an MB102 module (for portable use).
 
-![Schematics](images/schematic_kicad_exact.svg)
+![Schematics](images/labyrinth_schematic.svg)
 
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
 
-The format is 
+The format is
 ```
 | [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
