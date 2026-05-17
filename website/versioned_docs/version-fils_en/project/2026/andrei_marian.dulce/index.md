@@ -50,8 +50,10 @@ Main software and system components:
 The system uses an STM32 Nucleo-U545RE-Q as the central hub. It orchestrates a VL53L0X ToF sensor mounted on a 5V stepper motor for spatial scanning, alongside a suite of security sensors (Doppler radar, vibration, sound, keypad) and environmental sensors (BMP180, photoresistors). Everything is wired on a universal 830-point breadboard.
 
 ### Schematics
-
-*To be added.*
+![System Architecture Diagram](./lidarsecurityhub.svg) 
+<p align="center">
+  <em>Complete system schematic for the Smart 2D LiDAR Security Hub.</em>
+</p>
 
 ### Bill of Materials
 
