@@ -2,7 +2,7 @@
 A multi-sensor fresh fruit quality analyzer with data fusion from 4 physical domains
 
 **Author**: Costache David \
-**GitHub Project Link** : [Github]([https://github.com/costache-david/VERIT-SCAN](https://github.com/UPB-PMRust-Students/acs-project-2026-david08mihai))
+**GitHub Project Link**: [Github](https://github.com/UPB-PMRust-Students/acs-project-2026-david08mihai)
 
 ## Description
 VERIT-SCAN is a non-destructive fresh fruit quality analyzer that fuses measurements from four independent physical domains — aroma (VOC + humidity), firmness (elastic deformation under controlled force), apparent density (mass / laser-estimated volume), and electrical conductivity — into a single Overall Quality Score. The results are displayed locally on an OLED screen with RGB LED feedback and streamed via UART to a host PC for logging and plotting.
