@@ -38,8 +38,11 @@ The project is built as a motion mirroring system between the controller and the
 - Researched and ordered all hardware components (IMU, servos, SD module, IR sensor).
 
 ### Week 4 - 8 May
+- Mapped all pin connections between the Nucleo board, sensors, and actuators.
 
 ### Week 12 - 18 May
+- Started developing the software implementation in Rust.
+- Set up the main code structure and began integrating peripheral drivers.
 
 ### Week 19 - 25 May
 
