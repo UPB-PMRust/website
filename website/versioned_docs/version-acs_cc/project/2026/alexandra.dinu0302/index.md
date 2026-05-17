@@ -29,8 +29,12 @@ All I2C devices (OLED, DS3231, HTU21D) share the same bus on PB6/PB7 with 4.7kΩ
 ## Log
 
 ### Week 5 - 11 May
+The hardware components arrived, and I immediately began testing them individually to verify their basic functionality on the breadboard.
 
 ### Week 12 - 18 May
+I successfully interconnected all the hardware modules and developed the initial part of the software architecture using async Embassy tasks.
+
+![Hardware Setup](img_hardware.png)
 
 ### Week 19 - 25 May
 
