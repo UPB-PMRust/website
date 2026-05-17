@@ -61,7 +61,7 @@ A 2.4" display is used to present real-time data to the user, including activity
 Workout data is stored using a microSD card module, enabling later analysis. Additional components such as LEDs are used for status indication, while a breadboard, jumper wires, and resistors are used for prototyping and circuit connections.
 
 ### Schematics
-![alt text](pm_kicad_scheme.svg)
+![alt text](proiect_pm_kicad_final.svg)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
