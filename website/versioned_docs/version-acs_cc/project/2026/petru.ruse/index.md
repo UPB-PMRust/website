@@ -25,6 +25,9 @@ Am ales acest proiect pentru a explora provocările controlului fizic de precizi
 
 ## Log
 * **Săptămâna 20 - 26 Aprilie:** Cercetare componente, definirea arhitecturii software/hardware și completarea formularului de proiect pe Moodle. Am finalizat și plasat comenzile pentru toate componentele fizice.
+* **Săptămâna 27 Aprilie - 3 Mai:** Asamblarea hardware inițială (conectarea STM32 cu CNC Shield) și dezvoltarea primei versiuni de software pentru testarea mișcării de bază.
+* **Săptămâna 4 - 10 Mai:** Construcția mecanică a pistei adusă aproape de finalizare (montarea axelor liniare T8) și scrierea versiunii finale de software (implementarea mediului asincron).
+* **Săptămâna 11 - 18 Mai:** Finalizarea mecanică și electrică a sistemului, depanarea ultimelor erori hardware/software și redactarea documentației finale.
 
 ## Hardware & Bill of Materials (BOM)
 Sistemul utilizează componente electromecanice solide pentru axele liniare, controlate de drivere dedicate pentru a asigura o mișcare fluidă. Logica este izolată electric de circuitul de forță prin folosirea CNC Shield-ului.
@@ -51,6 +54,9 @@ Sistemul utilizează componente electromecanice solide pentru axele liniare, con
 | **embassy-executor** | Runtime asincron | Rularea simultană a celor 4 task-uri complet independente pentru motoare. |
 | **embassy-time** | Timer asincron | Generarea delay-urilor non-blocante pentru profilul de viteză. |
 | **defmt** | Logging framework | Depanarea stărilor sistemului și a datelor de pe senzorul ADC. |
+
+## Schematics
+![Schema Electrica a Proiectului](schematic.svg)
 
 ## Links
 * [Embassy Rust Documentation](https://embassy.dev/)
