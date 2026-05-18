@@ -64,7 +64,7 @@ The mixer: it is a motor that mixes the ingredients in the final stage.
 
 ### Schematics
 
-![KiCad Diagram](./images/schema_hardware.webp)
+![KiCad Diagram](./images/schema_hardware_kicad.webp)
 
 
 ### Bill of Materials
