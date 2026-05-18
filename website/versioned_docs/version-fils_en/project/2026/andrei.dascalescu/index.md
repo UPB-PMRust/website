@@ -35,7 +35,7 @@ The primary motivation for this project was to transition from classic, sequenti
                 |  (Env/IR)   |                         |  Actuation    |
                 '-------------'                         '---------------'
                 [ PERCEPTION ]                             [ ACTION ]
-
+```
 ## Log
 ### Week 5 - 11 May
 * Researched STM32U5 documentation and set up the Rust embedded toolchain (`probe-rs`, `defmt`).
