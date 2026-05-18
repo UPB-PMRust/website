@@ -1,12 +1,10 @@
 # Autonomous Vehicle with Dynamic Path Replanning
 **An autonomous robotic system capable of navigating along a predefined path and dynamically adapting its route in real time to avoid obstacles.**
 
----
 :::info
-+ **Author:** ariana.pelcaru
-+ **GitHub Project Link :** https://github.com/UPB-PMRust-Students/acs-project-2026-aryuqq
+**Author:** ariana.pelcaru \
+**GitHub Project Link :** https://github.com/UPB-PMRust-Students/acs-project-2026-aryuqq
 :::
----
 
 ## Description
 
@@ -69,9 +67,3 @@ This project was inspired by the idea of reducing such risks by enabling a syste
 1. [Lab Materials](https://pmi.acs.pub.ro/)
 2. [About Rust](https://docs.rust-embedded.org/book/)
 3. [Youtube_Video](https://www.youtube.com/watch?v=kPSBpfUpHt0)
-
-
-
-
-
-
