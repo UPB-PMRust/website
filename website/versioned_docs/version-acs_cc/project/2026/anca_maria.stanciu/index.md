@@ -11,9 +11,9 @@ An arcade claw machine that lets players grab prizes using a custom claw.
 
 ## Description
 
-The project is an interactive **Claw Machine** designed to grab and move objects. The claw is controlled by the user and can move in three directions: left-right (OX axis), front-back (OY axis) and up-down (OZ axis).
+The project is an interactive **Claw Machine** designed to grab and move objects. The claw is controlled by the user and can move in three directions: left-right (OX), front-back (OY) and up-down (OZ).
 
-Using a set of buttons, the player moves the claw over a prize, lowers it to grab the object, and then moves it to a special drop area. The player also has full control over the claw's grip, opening and closing it at the right moment to secure a win. To make the machine reliable and safe, it is designed to recognize its own limits, so it knows exactly when to stop at the edges of the frame. It's a project focused on building a fun, manual experience where the player's skill and timing are the main attractions.
+Players use buttons to move the claw over a prize, lower it, grip the object, and transport it to the drop area. The machine recognizes positional limits for safe and reliable operation, focusing on skill and timing for fun gameplay.
 
 ## Motivation
 
@@ -24,11 +24,11 @@ The idea for this project started during a brainstorming session with a colleagu
 The project is divided into a few main parts that work together to make the claw machine move and grab prizes.
 
 Main Components:
-* **The Controller**: The 'brain' of the machine (the STM32 board). It processes the logic of the arcade game and coordinates all other parts.
-* **The Movement System**: Three motors responsible for movement. They ensure the claw reaches the exact position above the prize and handle the up-and-down movement.
-* **The Grip System**: The claw is powered by a SG90 servo motor that opens and closes it. This part is responsible for picking up the prize.
-* **The Buttons**: A set of buttons mounted on a breadboard. These allow the player to move the claw on the OX, OY, and OZ axes and operate the grip.
-* **Boundaries**: Small switches placed at the ends of the axes (OX and OY). They tell the STM32 to stop the motors if the claw reaches the edge of the frame.
+* **The Controller**: The main part of the machine (the STM32 board). It handles the arcade game's logic and coordinates all other parts.
+* **The Movement System**: Three motors are responsible for movement. They ensure the claw reaches the exact position above the prize and handle the up-and-down movement.
+* **The Grip System**: The claw is powered by an SG90 servo motor that opens and closes it. This part is responsible for picking up the prize.
+* **The Buttons**: A set of buttons integrated on a breadboard. These allow the player to move the claw on the OX, OY, and OZ axes and operate the grip.
+* **Boundaries**: Small switches placed at the end of the axes (OX and OY). They signal the STM32 to stop the motors if the claw reaches the edge of the frame.
 
 ![Diagram](images/diagrama.svg)
 ![Schematic](images/poza1.webp)
@@ -40,14 +40,14 @@ Main Components:
 
 ### Week 16 - 20 March
 
-Defined the concept of the project and the list of the components.\
+Defined the project concept and the list of components.\
 Analyzed the movement logic for the OX, OY, and OZ axes.\
 Researched the necessary limit switches for boundaries.
 
 ### Week 23 - 27 March
 
 Researched and selected the stepper motors to ensure the movement of the claw.\
-Selected the appropriate servo motor for the claw's opening and closing mechanism.\
+Selected the servo motor for the claw's opening and closing mechanism.\
 Chose a button-based interface instead of a joystick to avoid misalignment and ensure precise directional control.
 
 ### Week 30 March - 3 April
@@ -69,14 +69,14 @@ allowfullscreen></iframe>
 
 ## Hardware
 
-The project is built around the **STM32 Nucleo** board, which acts as the main controller. It manages everything from reading button presses to moving the motors in the right direction.
+The project centers on the STM32 Nucleo board, the main controller. It processes button inputs and controls motor direction.
 
 Main parts:
-1. **STM32 Nucleo Board**: This is the 'brain' of the machine. It receives signals from the buttons and tells the motors exactly how many steps to move. It also makes sure the claw doesn't hit the walls by checking the limit switches.
-2. **28byj-48 Stepper Motors and ULN2003 Drivers**: I used three stepper motors for movement. These motors are great because they move in small, precise steps. Each motor has a driver (ULN2003) that acts as a bridge, providing the power needed for the motors to spin. One motor moves the claw left/right, one moves it forward/backward, and the last one moves it up/down.
-3. **SG90 Servo Motor**: This small motor is located on the claw. Unlike the stepper motors, the servo is used only for opening and closing the claw. When you press the 'grab' button, the servo turns to a specific angle to pick up the prize.
-4. **Buttons**: These are the manual controls. The player uses them to navigate the claw to the desired position.
-5. **Limit Switches**: These are very important for safety. If the claw reaches the end of the frame, it hits a switch. The switch sends a signal to the STM32 to stop the motor immediately so the machine doesn't break.
+1. **STM32 Nucleo Board**: This is the center of the machine. It receives signals from the buttons and tells the motors exactly how many steps to move. It also makes sure the claw doesn't hit the walls by checking the limit switches.
+2. **28byj-48 Stepper Motors and ULN2003 Drivers**: I used three stepper motors for movement. These motors are great because they move in small, precise steps. Each motor has a driver (ULN2003) that acts as a bridge, supplying the power needed for the motors to spin. One motor moves the claw left/right, one moves it forward/backward, and the last one moves it up/down.
+3. **SG90 Servo Motor**: This small motor is located on the claw. Unlike the stepper motors, the servo is used only to open and close the claw. When you press the grab button, the servo turns to a specific angle to pick up the prize.
+4. **Buttons**: The player uses them to navigate the claw to the desired position.
+5. **Limit Switches**: These are very important for safety. If the claw reaches the end of the frame, it hits a switch. The switch sends a signal to the STM32 to stop the motor so the machine doesn't break.
 6. **Power Supply**: The stepper motors need more power than a simple USB cable from the laptop can provide. To solve this, I used a power adapter that connects to a wall outlet. This adapter converts the high voltage from the wall outlet to a safe 5V DC. This power goes directly to the stepper motors, ensuring they have enough strength to move the claw smoothly without overloading the STM32 board.
 
 ### Schematics
@@ -93,7 +93,7 @@ Main parts:
 | GT2 Timing Pulley - 20 Teeth, 5mm Bore | Connected to the motors to move the cords for each axis. | [4.67 RON](https://sigmanortec.ro/Fulie-dintata-GT2-20-dinti-ax-5mm-p125814315) x 3 |
 | Breadboard | Used for organizing and connecting all electronic parts and power lines. | [11.30 RON](https://sigmanortec.ro/Breadboard-830-puncte-MB-102-p125923983) | 
 | Plexiglass | Used to build the walls. | 70 RON |
-| Polycarbonate Sheets | Used to build the floor and the structural system for the axis movement. | 20 RON |
+| Polycarbonate Sheets | Used to build the floor and the system for the axis movement. | 20 RON |
 | | Total | 311.13 RON |
 
 ## Software
@@ -101,7 +101,7 @@ Main parts:
 | Library                                      | Description                    | Usage                                          |
 | -------------------------------------------------------------- | ------------------------------ | ---------------------------------------------- |
 | [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Hardware Interface | Acts as a bridge between the Rust code and the physical pins (GPIO, PWM). |
-| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time)  | Time Management | Provides precise delays to control the speed of the motors. |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time)  | Time Management | Provides precise timing to control motor speed. |
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Task Manager | Allows the system to run the main loop and handle inputs simultaneously. |
 | [defmt](https://github.com/knurling-rs/defmt)                  | Debug Logging      | Used to send status messages to the computer for debugging.                  |
 | [panic-probe](https://github.com/knurling-rs/probe-run/tree/main) | Error Handling | Ensures that if the code crashes, the error is reported via the debug probe. |
@@ -109,9 +109,9 @@ Main parts:
 ![Diagrama_s](images/diagrama_s.webp)
 
 Key Implementation Details:
-* **Custom Stepper Driver**: Instead of using a generic library, I implemented a custom StepperMotor struct. This gives me direct control over the 8-step sequence of the motors, ensuring high precision.
+* **Stepper Driver**: Rather than using a generic library, I implemented a StepperMotor struct. This gives me direct control over the 8-step motor sequence, ensuring high precision.
 * **Movement Boundaries**: Every movement command for the OX and OY axes is wrapped in a safety check. The motor only moves if the Limit Switch for that direction is not triggered.
-* **Servo Precision**: The claw is controlled using Pulse Width Modulation (PWM). The software limits the servo's movement between specific angles (25 to 125) to prevent mechanical strain on the claw.
+* **Servo Precision**: The claw is controlled using PWM. The software limits the servo's movement between specific angles (25 to 125) to prevent mechanical strain on the claw.
 
 ## Links
 
