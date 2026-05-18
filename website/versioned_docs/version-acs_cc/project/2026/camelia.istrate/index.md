@@ -80,7 +80,7 @@ All components are connected using standard wires and connectors, and the mechan
 
 ### Schematics
 
-![Schematic](./images/schematic_pm.svg)
+![Schematic](./images/schematic.svg)
 
 
 
