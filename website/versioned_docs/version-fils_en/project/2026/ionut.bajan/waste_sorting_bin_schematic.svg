@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768">
+<style>
+  .wire { stroke: #2a7d2e; stroke-width: 1.4; fill: none; }
+  .comp-yellow { fill: #fff7c2; stroke: #b8860b; stroke-width: 1; }
+  .comp-orange { fill: #fce8a0; stroke: #b8860b; stroke-width: 1; }
+  .comp-big { fill: #fdf2a8; stroke: #b8860b; stroke-width: 1; }
+  .lbl { font-family: 'Helvetica', sans-serif; font-size: 8px; fill: #1a1a1a; }
+  .lbl-name { font-family: 'Helvetica', sans-serif; font-size: 9px; font-weight: 700; fill: #1a1a1a; }
+  .lbl-small { font-family: 'Helvetica', sans-serif; font-size: 7px; fill: #444; }
+  .pin { font-family: 'Helvetica', sans-serif; font-size: 7px; fill: #333; }
+  .ref { font-family: 'Helvetica', sans-serif; font-size: 7px; fill: #1a1a1a; }
+  .title-text { font-family: 'Helvetica', sans-serif; font-size: 9px; fill: #1a1a1a; }
+  .title-bold { font-family: 'Helvetica', sans-serif; font-size: 11px; font-weight: 700; fill: #1a1a1a; }
+  .node { fill: #2a7d2e; }
+</style>
+
+<rect x="0" y="0" width="1024" height="768" fill="#ffffff"/>
+<rect x="15" y="15" width="994" height="738" fill="none" stroke="#666" stroke-width="0.8"/>
+
+<!-- ================================================== -->
+<!-- TOP-LEFT: J1 (5V Input) and C1 (470uF capacitor)   -->
+<!-- ================================================== -->
+<text x="55" y="42" class="ref">J1</text>
+<rect x="55" y="48" width="80" height="38" class="comp-yellow"/>
+<text x="95" y="65" text-anchor="middle" class="lbl-name">J1</text>
+<text x="95" y="78" text-anchor="middle" class="lbl">5V Input</text>
+
+<text x="170" y="42" class="ref">C1</text>
+<rect x="170" y="55" width="55" height="24" class="comp-yellow"/>
+<text x="197" y="69" text-anchor="middle" class="lbl-name">C1</text>
+<text x="197" y="92" text-anchor="middle" class="lbl-small">470uF</text>
+
+<!-- ================================================== -->
+<!-- LEFT: U2 - ESP32-CAM (big block)                   -->
+<!-- ================================================== -->
+<rect x="55" y="135" width="155" height="185" class="comp-big"/>
+<text x="132" y="155" text-anchor="middle" class="lbl-name">U2</text>
+
+<!-- ESP32 left pins -->
+<line x1="50" y1="175" x2="55" y2="175" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="62" y="178" class="pin">5V</text>
+<line x1="50" y1="190" x2="55" y2="190" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="62" y="193" class="pin">GND</text>
+<line x1="50" y1="205" x2="55" y2="205" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="62" y="208" class="pin">U0R (RX)</text>
+<line x1="50" y1="220" x2="55" y2="220" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="62" y="223" class="pin">U0T (TX)</text>
+<line x1="50" y1="240" x2="55" y2="240" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="62" y="243" class="pin">GPIO0</text>
+<line x1="50" y1="260" x2="55" y2="260" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="62" y="263" class="pin">GPIO4</text>
+
+<!-- ESP32 right pins (going to STM32) -->
+<line x1="210" y1="175" x2="215" y2="175" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="210" y1="195" x2="215" y2="195" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="210" y1="215" x2="215" y2="215" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="210" y1="235" x2="215" y2="235" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="210" y1="255" x2="215" y2="255" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="208" y="178" text-anchor="end" class="pin">CAM_VCC</text>
+<text x="208" y="198" text-anchor="end" class="pin">CAM_RST</text>
+<text x="208" y="218" text-anchor="end" class="pin">FLASH</text>
+<text x="208" y="238" text-anchor="end" class="pin">SD_DAT</text>
+<text x="208" y="258" text-anchor="end" class="pin">SD_CLK</text>
+
+<text x="132" y="310" text-anchor="middle" class="lbl-small">ESP32-CAM_AI_Thinker</text>
+
+<!-- ================================================== -->
+<!-- LEFT-LOWER: J6 - SD Card                           -->
+<!-- ================================================== -->
+<text x="55" y="372" class="ref">J6</text>
+<rect x="55" y="378" width="80" height="40" class="comp-yellow"/>
+<text x="95" y="395" text-anchor="middle" class="lbl-name">J6</text>
+<text x="95" y="408" text-anchor="middle" class="lbl-small">SD_CARD</text>
+
+<!-- J6 pins (right side, going up to ESP32) -->
+<line x1="135" y1="388" x2="140" y2="388" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="135" y1="400" x2="140" y2="400" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="135" y1="412" x2="140" y2="412" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================== -->
+<!-- CENTER: U1 - STM32 Nucleo-U545 (large block)       -->
+<!-- ================================================== -->
+<rect x="380" y="130" width="220" height="365" class="comp-big"/>
+<text x="490" y="152" text-anchor="middle" class="lbl-name">U1</text>
+
+<!-- STM32 left side pins -->
+<g class="pin">
+  <line x1="375" y1="175" x2="380" y2="175" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="178">5V</text>
+  <line x1="375" y1="195" x2="380" y2="195" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="198">3V3</text>
+  <line x1="375" y1="215" x2="380" y2="215" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="218">GND</text>
+  <line x1="375" y1="235" x2="380" y2="235" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="238">PA0</text>
+  <line x1="375" y1="255" x2="380" y2="255" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="258">PA1</text>
+  <line x1="375" y1="275" x2="380" y2="275" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="278">PA2 (TX)</text>
+  <line x1="375" y1="295" x2="380" y2="295" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="298">PA3 (RX)</text>
+  <line x1="375" y1="315" x2="380" y2="315" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="318">PA4</text>
+  <line x1="375" y1="335" x2="380" y2="335" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="338">PA5</text>
+  <line x1="375" y1="375" x2="380" y2="375" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="378">PA6</text>
+  <line x1="375" y1="395" x2="380" y2="395" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="398">PA7</text>
+  <line x1="375" y1="415" x2="380" y2="415" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="418">PB0</text>
+  <line x1="375" y1="435" x2="380" y2="435" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="438">PB1</text>
+  <line x1="375" y1="455" x2="380" y2="455" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="458">PC13</text>
+  <line x1="375" y1="475" x2="380" y2="475" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="387" y="478">PC14</text>
+</g>
+
+<!-- STM32 right side pins -->
+<g class="pin">
+  <line x1="600" y1="175" x2="605" y2="175" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="178" text-anchor="end">PB3</text>
+  <line x1="600" y1="195" x2="605" y2="195" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="198" text-anchor="end">PB4 (SDA)</text>
+  <line x1="600" y1="215" x2="605" y2="215" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="218" text-anchor="end">PB5</text>
+  <line x1="600" y1="235" x2="605" y2="235" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="238" text-anchor="end">PB6 (SCL)</text>
+  <line x1="600" y1="255" x2="605" y2="255" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="258" text-anchor="end">PB7</text>
+  <line x1="600" y1="275" x2="605" y2="275" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="278" text-anchor="end">PB8</text>
+  <line x1="600" y1="295" x2="605" y2="295" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="298" text-anchor="end">PB9</text>
+  <line x1="600" y1="315" x2="605" y2="315" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="318" text-anchor="end">PB10</text>
+  <line x1="600" y1="335" x2="605" y2="335" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="338" text-anchor="end">PB12</text>
+  <line x1="600" y1="375" x2="605" y2="375" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="378" text-anchor="end">PB13</text>
+  <line x1="600" y1="395" x2="605" y2="395" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="398" text-anchor="end">PB14</text>
+  <line x1="600" y1="415" x2="605" y2="415" stroke="#2a7d2e" stroke-width="1.2"/>
+  <text x="595" y="418" text-anchor="end">PB15</text>
+</g>
+
+<text x="490" y="488" text-anchor="middle" class="lbl-small">STM32_Nucleo-U545</text>
+
+<!-- ================================================== -->
+<!-- TOP-RIGHT: J2 - LCD I2C                            -->
+<!-- ================================================== -->
+<text x="780" y="100" class="ref">J2</text>
+<rect x="780" y="106" width="105" height="55" class="comp-yellow"/>
+<text x="833" y="124" text-anchor="middle" class="lbl-name">J2</text>
+<text x="833" y="138" text-anchor="middle" class="lbl-small">LCD_I2C</text>
+<line x1="775" y1="120" x2="780" y2="120" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="123" class="pin">VCC</text>
+<line x1="775" y1="132" x2="780" y2="132" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="135" class="pin">GND</text>
+<line x1="775" y1="144" x2="780" y2="144" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="147" class="pin">SDA</text>
+<line x1="775" y1="156" x2="780" y2="156" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="159" class="pin">SCL</text>
+
+<!-- ================================================== -->
+<!-- TOP-RIGHT: J3 - HC-SR04                            -->
+<!-- ================================================== -->
+<text x="780" y="186" class="ref">J3</text>
+<rect x="780" y="192" width="105" height="55" class="comp-yellow"/>
+<text x="833" y="210" text-anchor="middle" class="lbl-name">J3</text>
+<text x="833" y="224" text-anchor="middle" class="lbl-small">HC-SR04</text>
+<line x1="775" y1="205" x2="780" y2="205" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="208" class="pin">VCC</text>
+<line x1="775" y1="218" x2="780" y2="218" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="221" class="pin">TRIG</text>
+<line x1="775" y1="231" x2="780" y2="231" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="234" class="pin">ECHO</text>
+<line x1="775" y1="243" x2="780" y2="243" stroke="#2a7d2e" stroke-width="1.2"/>
+<text x="788" y="246" class="pin">GND</text>
+
+<!-- ================================================== -->
+<!-- MIDDLE-RIGHT: SW1 - Button YES                     -->
+<!-- ================================================== -->
+<text x="780" y="280" class="ref">SW1</text>
+<rect x="780" y="286" width="105" height="45" class="comp-yellow"/>
+<text x="833" y="305" text-anchor="middle" class="lbl-name">SW1</text>
+<text x="833" y="320" text-anchor="middle" class="lbl-small">BTN_YES</text>
+<line x1="775" y1="300" x2="780" y2="300" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="318" x2="780" y2="318" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================== -->
+<!-- MIDDLE-RIGHT: SW2 - small                          -->
+<!-- ================================================== -->
+<text x="780" y="350" class="ref">SW2</text>
+<rect x="780" y="356" width="105" height="32" class="comp-orange"/>
+<text x="833" y="372" text-anchor="middle" class="lbl-name">SW2</text>
+<text x="833" y="383" text-anchor="middle" class="lbl-small">R1 10K</text>
+<line x1="775" y1="365" x2="780" y2="365" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="380" x2="780" y2="380" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================== -->
+<!-- MIDDLE-RIGHT: SW3 - small                          -->
+<!-- ================================================== -->
+<text x="780" y="405" class="ref">SW3</text>
+<rect x="780" y="410" width="105" height="32" class="comp-orange"/>
+<text x="833" y="426" text-anchor="middle" class="lbl-name">SW3</text>
+<text x="833" y="437" text-anchor="middle" class="lbl-small">R2 10K</text>
+<line x1="775" y1="420" x2="780" y2="420" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="434" x2="780" y2="434" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================== -->
+<!-- RIGHT: J4 - Power                                   -->
+<!-- ================================================== -->
+<text x="780" y="460" class="ref">J4</text>
+<rect x="780" y="466" width="105" height="40" class="comp-yellow"/>
+<text x="833" y="484" text-anchor="middle" class="lbl-name">J4</text>
+<text x="833" y="497" text-anchor="middle" class="lbl-small">PWR_5V</text>
+<line x1="775" y1="478" x2="780" y2="478" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="495" x2="780" y2="495" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================== -->
+<!-- BOTTOM-RIGHT: Servo 1                              -->
+<!-- ================================================== -->
+<text x="780" y="525" class="ref">Servo_1</text>
+<rect x="780" y="530" width="105" height="42" class="comp-yellow"/>
+<text x="833" y="548" text-anchor="middle" class="lbl-name">Servo_1</text>
+<text x="833" y="562" text-anchor="middle" class="lbl-small">SG90</text>
+<line x1="775" y1="540" x2="780" y2="540" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="552" x2="780" y2="552" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="564" x2="780" y2="564" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================== -->
+<!-- BOTTOM-RIGHT: Servo 2                              -->
+<!-- ================================================== -->
+<text x="780" y="590" class="ref">Servo_2</text>
+<rect x="780" y="595" width="105" height="42" class="comp-yellow"/>
+<text x="833" y="613" text-anchor="middle" class="lbl-name">Servo_2</text>
+<text x="833" y="627" text-anchor="middle" class="lbl-small">SG90</text>
+<line x1="775" y1="605" x2="780" y2="605" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="617" x2="780" y2="617" stroke="#2a7d2e" stroke-width="1.2"/>
+<line x1="775" y1="629" x2="780" y2="629" stroke="#2a7d2e" stroke-width="1.2"/>
+
+<!-- ================================================================== -->
+<!-- WIRES (green) - matching the routing of the original schematic     -->
+<!-- ================================================================== -->
+
+<!-- 5V rail along the top, from J1 to upper area then down to U1 -->
+<path class="wire" d="M 135 67 L 170 67"/>
+<path class="wire" d="M 225 67 L 280 67"/>
+<path class="wire" d="M 280 67 L 280 175 L 380 175"/>
+<circle cx="280" cy="67" r="2" class="node"/>
+<path class="wire" d="M 280 67 L 280 30 L 700 30 L 700 120 L 780 120"/>
+<circle cx="280" cy="30" r="1.8" class="node"/>
+<circle cx="700" cy="120" r="1.8" class="node"/>
+<path class="wire" d="M 700 120 L 700 205 L 780 205"/>
+<path class="wire" d="M 700 120 L 720 120 L 720 478 L 780 478"/>
+<circle cx="720" cy="120" r="1.8" class="node"/>
+<circle cx="700" cy="205" r="2" class="node"/>
+
+<!-- 5V also feeds ESP32 -->
+<path class="wire" d="M 280 67 L 280 175 L 50 175"/>
+
+<!-- GND - capacitor to ground rail -->
+<path class="wire" d="M 197 79 L 197 100 L 250 100 L 250 720"/>
+<circle cx="197" cy="79" r="1.5" class="node"/>
+
+<!-- GND rail (bottom) -->
+<path class="wire" d="M 50 720 L 990 720"/>
+<path class="wire" d="M 50 190 L 30 190 L 30 720"/>
+<circle cx="30" cy="720" r="2" class="node"/>
+<path class="wire" d="M 380 215 L 360 215 L 360 720"/>
+<circle cx="360" cy="720" r="2" class="node"/>
+
+<!-- ESP32 UART to STM32 UART (crossover RX-TX) -->
+<path class="wire" d="M 50 205 L 20 205 L 20 275 L 380 275"/>
+<path class="wire" d="M 50 220 L 25 220 L 25 295 L 380 295"/>
+
+<!-- ESP32 right pins to STM32 (control lines) -->
+<path class="wire" d="M 215 235 L 270 235 L 270 315 L 380 315"/>
+<path class="wire" d="M 215 255 L 265 255 L 265 335 L 380 335"/>
+
+<!-- ESP32 GPIO0/4 to STM32 -->
+<path class="wire" d="M 50 240 L 15 240 L 15 375 L 380 375"/>
+<path class="wire" d="M 50 260 L 18 260 L 18 395 L 380 395"/>
+
+<!-- J6 (SD Card) to ESP32 right side and to STM32 -->
+<path class="wire" d="M 140 388 L 220 388 L 220 235 L 215 235"/>
+<path class="wire" d="M 140 400 L 230 400 L 230 415 L 380 415"/>
+<path class="wire" d="M 140 412 L 240 412 L 240 435 L 380 435"/>
+
+<!-- STM32 right pins (I2C) to LCD -->
+<path class="wire" d="M 605 195 L 650 195 L 650 144 L 780 144"/>
+<path class="wire" d="M 605 235 L 660 235 L 660 156 L 780 156"/>
+
+<!-- STM32 to HC-SR04 (TRIG and ECHO) -->
+<path class="wire" d="M 605 215 L 640 215 L 640 218 L 780 218"/>
+<path class="wire" d="M 605 255 L 630 255 L 630 231 L 780 231"/>
+
+<!-- STM32 to SW1 (button) -->
+<path class="wire" d="M 605 275 L 670 275 L 670 300 L 780 300"/>
+
+<!-- STM32 to SW2 -->
+<path class="wire" d="M 605 295 L 680 295 L 680 365 L 780 365"/>
+
+<!-- STM32 to SW3 -->
+<path class="wire" d="M 605 315 L 690 315 L 690 420 L 780 420"/>
+
+<!-- STM32 to Servo 1 (PWM PB13) -->
+<path class="wire" d="M 605 375 L 700 375 L 700 540 L 780 540"/>
+
+<!-- STM32 to Servo 2 (PWM PB14) -->
+<path class="wire" d="M 605 395 L 710 395 L 710 605 L 780 605"/>
+
+<!-- PWR pins from servos and J4 to 5V rail -->
+<!-- shown via rail from earlier -->
+<path class="wire" d="M 780 552 L 740 552 L 740 478"/>
+<circle cx="740" cy="478" r="1.8" class="node"/>
+<path class="wire" d="M 780 617 L 745 617 L 745 478"/>
+<circle cx="745" cy="478" r="1.8" class="node"/>
+
+<!-- GND connections from right side blocks to GND rail -->
+<path class="wire" d="M 780 132 L 750 132 L 750 720"/>
+<circle cx="750" cy="720" r="2" class="node"/>
+<path class="wire" d="M 780 243 L 755 243 L 755 720"/>
+<circle cx="755" cy="720" r="2" class="node"/>
+<path class="wire" d="M 780 318 L 760 318 L 760 720"/>
+<path class="wire" d="M 780 380 L 765 380 L 765 720"/>
+<path class="wire" d="M 780 434 L 770 434 L 770 720"/>
+<path class="wire" d="M 780 495 L 770 495 L 770 720"/>
+<path class="wire" d="M 780 564 L 770 564 L 770 720"/>
+<path class="wire" d="M 780 629 L 770 629 L 770 720"/>
+
+<!-- STM32 unused right pins down -->
+<path class="wire" d="M 605 335 L 720 335 L 720 720"/>
+<path class="wire" d="M 605 415 L 730 415 L 730 720"/>
+
+<!-- GND symbol triangles -->
+<g fill="#2a7d2e">
+  <polygon points="28,722 32,722 30,727"/>
+  <polygon points="358,722 362,722 360,727"/>
+</g>
+
+<!-- ================================================================== -->
+<!-- Title block (bottom right corner)                                   -->
+<!-- ================================================================== -->
+<rect x="700" y="685" width="305" height="60" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.2"/>
+<line x1="700" y1="702" x2="1005" y2="702" stroke="#1a1a1a" stroke-width="0.8"/>
+<line x1="850" y1="702" x2="850" y2="745" stroke="#1a1a1a" stroke-width="0.6"/>
+<line x1="935" y1="702" x2="935" y2="745" stroke="#1a1a1a" stroke-width="0.6"/>
+
+<text x="708" y="697" class="title-text">Sheet: AI-Powered Waste Sorting Bin / U2</text>
+<text x="708" y="722" class="title-bold">Title: AI-Powered Waste Sorting Bin</text>
+<text x="708" y="738" class="title-text">Size: A3 - Date: 2026-05-13</text>
+<text x="858" y="738" class="title-text">Rev: 3.0</text>
+<text x="942" y="738" class="title-text">Sheet: 1/1</text>
+<text x="708" y="745" class="title-text" style="font-size:7px">KiCad E.D.A. kicad 9.0.4 + ESP32-led</text>
+</svg>
