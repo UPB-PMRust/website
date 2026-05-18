@@ -71,7 +71,7 @@ The structure is mounted on a custom wooden frame that keeps the lasers and sens
 
 ### Schematics
 
-![Circuit Schematic](images/laser_harp.svg)
+![Circuit Schematic](images/laser_harp.webp)
 
 
 ### Bill of Materials  
