@@ -4,7 +4,7 @@ A mini e-reader for Braille alphabet
 
 :::info 
 
-**Author**: Alexandra Prigoreanu\
+**Author**: Alexandra Prigoreanu \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-aprigoreanu20
 
 :::
