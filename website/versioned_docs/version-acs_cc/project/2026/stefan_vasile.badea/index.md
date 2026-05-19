@@ -1,4 +1,5 @@
 # DeskCal - Smart Desk Calendar
+A smart desk calendar that displays weather, news, local sensor data, and 
 A smart desk calendar that displays weather, local sensor data, and Google 
 Calendar events on a TFT screen, with animated LED ring alerts for upcoming 
 meetings.
@@ -14,6 +15,25 @@ meetings.
 
 ## Description
 
+DeskCal is a smart desk calendar running on an STM32 Nucleo-U545RE-Q
+microcontroller. It receives real-time data from a laptop via USB-UART —
+including current time, weather conditions, Calendar events, and live
+news headlines — all serialized as JSON by a companion Python script.
+
+A BME280 sensor measures local temperature, humidity, and atmospheric pressure.
+A 2.8" ILI9341 TFT touchscreen display renders five navigable screens: a
+summary overview, a full-screen clock with upcoming meetings, a local air
+quality dashboard, an outdoor weather page, and a live news feed. Navigation
+between screens is done via swipe gestures on the touchscreen.
+
+A WS2812B RGB LED ring displays animated color patterns — configurable via a
+companion web application — with a dedicated alert mode when a meeting is
+approaching. A passive buzzer emits an audio alert before
+events start.
+
+The system supports multiple visual themes, selectable in real time from the 
+companion web app which communicates with the Python bridge over HTTP. The 
+device is housed in a custom 3D-printed enclosure.
 DeskCal is a smart desk calendar running on an STM32 Nucleo-U545RE-Q 
 microcontroller. It receives weather data and Google Calendar events from a 
 laptop via USB-UART, processed by a Python script. A BME280 sensor provides 
@@ -46,6 +66,36 @@ include:
 
 ![System Architecture Diagram](./images/project-pm-diagram.drawio.svg)
 
+**DeskCal Controller (Web App)** — a local web application running in the
+browser that allows the user to select visual themes, configure LED ring
+behavior, adjust brightness, and push quick meetings to the device. Communicates
+with the Python bridge over HTTP at localhost:5000.
+
+**Python Bridge Script** — runs on the laptop and acts as the central data
+aggregator. Fetches weather data from OpenWeatherMap, events from
+Calendar, and news headlines from an RSS feed. Receives theme and configuration
+changes from the web app and forwards everything to the STM32 as JSON packets
+over USB-UART. Sends time synchronization packets every second
+and full data updates every 60 seconds.
+
+**STM32 Nucleo-U545RE-Q** — main controller running embassy-rs. Contains a
+dedicated async UART task that receives and parses incoming JSON packets and
+dispatches them to the main loop via a channel.
+
+**Display Subsystem** — ILI9341 2.8" TFT touchscreen over SPI renders five
+screens: Summary (screen 0), Clock + Meetings (screen 1), Air Quality (screen
+2), Weather (screen 3), and News (screen 4). Navigation between screens is
+performed via swipe gestures detected on the XPT2046 touchscreen
+controller. When a meeting is within 5 minutes, a full-screen alert overlay
+appears with a dismiss button.
+
+**Alert Subsystem** — WS2812B LED ring driven via one-wire protocol (using SPI
+peripheral for precise timing) displays eight configurable animation modes:
+Off, Dim, Solid, Breathe, Pulse, Fast, Strobe, and Chase. The ring switches
+to a dedicated alert animation mode when a meeting is approaching. A passive
+buzzer driven by PWM emits a tone. Both the
+normal ring color/animation and the alert color/animation are configurable in
+real time from the web app.
 The system is organized around four main components:
  
 **Host Python Script** — runs on the laptop, fetches weather from OpenWeatherMap 
@@ -72,6 +122,50 @@ snooze via GPIO interrupt.
 Finalized project idea and had the theme approved by the lab coordinator.
 
 ### Week 7
+Ordered all hardware components from Optimus Digital and eMAG. Started reading
+embassy-rs documentation and experimenting with basic GPIO and UART on the
+Nucleo board. Started enclosure design in Fusion 360.
+
+### Week 8 & 9
+Completed project documentation page. Set up embassy-rs project skeleton for
+STM32U545. Verified all components arrived and functional.
+
+### Week 11 - Hardware Milestone
+Connected and tested all hardware components: ILI9341 display via SPI,
+BME280 sensor via I2C, WS2812B LED ring via SPI, passive buzzer via PWM,
+XPT2046 touchscreen, potentiometer via ADC. Designed and 3D printed enclosure.
+Implemented basic firmware with display rendering, sensor reading, touch input,
+buzzer alerts and LED ring animations.
+
+![Project Wired](./images/wires_project.webp)
+![Fusion Enclosure Project](./images/fusion_project.webp)
+
+## Hardware
+
+The project uses an STM32 Nucleo-U545RE-Q as the main microcontroller, running
+at 160MHz via PLL configured in firmware.
+
+A 2.8" ILI9341 TFT display with integrated XPT2046 touchscreen controller is
+connected via SPI1 (PA5=SCK, PA7=MOSI, PA6=MISO). The display uses a dedicated
+SPI chip select (PC9) and control pins for data/command (PC8) and reset (PC6).
+The touchscreen controller shares the SPI bus with a separate chip select (PB4)
+and an interrupt line (PC13) for touch detection.
+
+A BME280 barometric sensor is connected via I2C1 (PB6=SCL, PB7=SDA) and
+provides local temperature, humidity, and atmospheric pressure readings.
+
+A WS2812B 16-LED RGB ring is driven via one-wire protocol using the SPI2
+peripheral (PC3=MOSI, PB13=SCK) at 6.4MHz for precise signal timing. Each bit
+is encoded as a single SPI byte (0xC0 for logical 0, 0xF8 for logical 1).
+
+A passive buzzer is driven via PWM on TIM1 channel 1 (PA8), producing
+configurable frequency tones for meeting alerts.
+
+A 50kΩ potentiometer is connected to ADC1 (PA0) and read periodically. A
+tactile button with integrated blue LED provides user interaction via GPIO.
+
+All components are interconnected via jumper wires on a mini breadboard and
+housed in a custom 3D-printed PLA enclosure designed in Fusion 360.
 Ordered all hardware components from Optimus Digital and eMAG. Started reading 
 embassy-rs documentation and experimenting with basic GPIO and UART on the 
 Nucleo board. Started enclosure design in Fusion 360.
@@ -94,6 +188,7 @@ All components are housed in a custom 3D-printed PLA enclosure.
 ### Schematics
 
 * TODO: KiCad schematic to be added at Hardware Milestone (Week 11)
+![KiCad schematic](./images/kikad-deskcal.webp)
 
 ### Bill of Materials
 
@@ -124,6 +219,15 @@ The format is
 
 ## Software
 
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | Peripheral drivers: SPI, I2C, UART, ADC, PWM, GPIO |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Running concurrent tasks on the microcontroller |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Sync primitives | Mutex and Channel for inter-task state sharing |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Embedded HAL bridge | SpiDevice wrapper for shared SPI bus |
+
+* TODO: the rest will be added as I develop the code
+
 * TODO: the rest will be added as I develop the code
 
 | Library | Description | Usage |
@@ -142,3 +246,4 @@ The format is
 5. [Google Calendar API Python quickstart](https://developers.google.com/calendar/api/quickstart/python)
 6. [OpenWeatherMap API](https://openweathermap.org/api)
 7. [embedded-graphics examples](https://github.com/embedded-graphics/examples)
+8. [KiCad EDA for schematics](https://www.kicad.org)

@@ -1,6 +1,6 @@
 # Automated Drink Mixer
 
-An automated drink mixer that precisely measures and dispenses custom juice recipes.
+An automated drink mixer that precisely measures and dispenses custom juice recipes. 
 
 :::info
 **Author:** Mario Emancipatu \
@@ -65,11 +65,19 @@ Rendering Engine -> [ I2C ] -> 0.96" OLED Screen
 * Built the initial physical circuit, wiring the STM32, relay module, and OLED screen.
 * Tested all the components on their own.
 
+### Week 10 - 11
+* Designed the final box for the project.
+* Successfully assembled and wired the complete hardware setup inside the box.
+* Finished the KiCad schematic.
+
 ## Hardware
 
 The system is centered around an **STM32 NUCLEO-U545RE-Q** microcontroller. For user interaction, I am using a **0.96" OLED display** (SSD1306 controller) communicating via **I2C**, and a **KY-040 rotary encoder** connected through digital GPIOs with hardware interrupts for precise tracking. 
 
 The fluid control system consists of **three 5V DC mini submersible pumps**, each driven by a channel of a **4-channel relay module**. The relays provide galvanic isolation between the MCU's logic and the inductive load of the pumps. Power is split into two domains: the STM32 is powered via USB, while the pumps are driven by an external **6V battery pack (4x AA)**. All connections are made using **Dupont wires** on a standard **830-point breadboard**, with additional current-limiting resistors where necessary.
+
+### Photos of hardware
+![Hardware](./hardwarewiredproject.webp)
 
 ## Schematics
 
@@ -102,6 +110,8 @@ The fluid control system consists of **three 5V DC mini submersible pumps**, eac
   
   <line x1="680" y1="185" x2="680" y2="200" stroke="black" strokeWidth="1.5"/>
 </svg>
+
+![Schematic](./schematickicadproject.webp)
 
 ## Bill of Materials
 
