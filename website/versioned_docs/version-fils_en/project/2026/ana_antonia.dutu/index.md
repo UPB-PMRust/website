@@ -3,7 +3,7 @@ A compact freestyle drone powered by an STM32 and ESP32 that streams real-time v
 
 :::info 
 
-**Author**: DUTU Ana-Antonia \
+**Author**: Dutu Ana-Antonia \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-anto987678
 :::
 
@@ -19,11 +19,7 @@ I chose this project because it combines multiple areas that interest me, such a
 
 ## Architecture 
 
-The system is structured into several main components: the flight control unit, the communication module, the sensing subsystem, and the power management system. The flight control unit, running on the STM32 microcontroller, is responsible for processing sensor data and generating control signals for the motors using a control algorithm. The sensing subsystem includes the IMU and environmental sensors, which provide real-time data (orientation, altitude, temperature) to the flight controller.
-
-The communication module, implemented using the ESP32, handles both Bluetooth and WiFi connectivity. It receives user input from a PS4/PS5 controller via Bluetooth and transmits video data from the camera to an external device over WiFi. Additionally, telemetry data can be sent back to the user device.
-
-All components are powered directly from the LiPo battery through the ESC and the step-down voltage regulator, which provides the necessary voltages for the STM32, ESP32, and sensors. The STM32 communicates with sensors via I2C and controls the ESC using PWM signals, while the ESP32 communicates with the STM32 through a serial interface (e.g., UART).
+![Architecture schematic](./rusty_drone_architecture.svg)
 
 <!-- write your progress here every week -->
 ### Week 1-4
@@ -35,13 +31,22 @@ Started researching how drones work and selecting suitable components, including
 ### Week 7-8
 Started working on the hardware by assembling the drone frame and mounting the motors. Continued by soldering the motors to the ESC and connecting the battery, while integrating the step-down voltage regulator into the power system. Also researched proper soldering techniques and component connections, and began considering different layouts for positioning the battery, STM32, ESP32, sensors, and IMU within the drone frame.
 
+### Week 9-10
+I also started working on the software part of the project, mainly on the communication between the STM32 and the ESC using the DShot protocol for controlling the motors. I researched how the protocol works and how it can be implemented using the STM32 timers and DMA peripherals. At the same time, I began writing the first parts of the code in Rust using the Embassy framework, focusing on generating the DShot signals correctly and understanding how the ESC receives throttle commands
+
 ## Hardware
 
 The project uses an STM32 Nucleo U545RE-Q microcontroller for flight control, along with an ESP32-CAM module for WiFi video streaming and Bluetooth communication. It includes brushless motors with a 4-in-1 ESC, an MPU6050 IMU for motion sensing, and BMP280 and MAX6675 sensors for environmental data. Power is provided by a LiPo battery with a step-down converter, all mounted on a 5-inch drone frame with standard supporting components.
 
+### Photos
+
+![Hardware image](./drona1.webp)
+![Hardware image](./drona2.webp)
+![Hardware image](./drona4.webp)
+
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Kicad Schematic](./rusty_drone_kicad.svg)
 
 ### Bill of Materials
 
@@ -96,4 +101,9 @@ The format is
 
 1. [Embassy Book](https://embassy.dev/book/#_what_is_embassy)
 2. [STM32 32-bit Arm Cortex MCUs - Documentation](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus/documentation.html)
-3. [MPU6050 documentatiom] (https://docs.sunfounder.com/projects/ultimate-sensor-kit/en/latest/components_basic/05-component_mpu6050.html)
+3. [MPU6050 documentation](https://docs.sunfounder.com/projects/ultimate-sensor-kit/en/latest/components_basic/05-component_mpu6050.html)
+
+4. [How To Get Started With FPV Drone](https://oscarliang.com/fpv-drone-guide/)
+5. [Dshot Protocol Description](https://betaflight.com/docs/development/API/Dshot)
+6. [ESC HGLRC MANUAL](https://storage.dronerion.com/files/ESC_HGLRC_60A_6S_V1_User_Manual_EN-8292.pdf)
+

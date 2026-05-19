@@ -34,15 +34,26 @@ Explored multiple project ideas and decided on the concept to be developed.
 
 Ordered the hardware components.
 
+### Week 27 April - 3 May
+
+Assembled the project and did the wiring.
+
+### Week 4 May - 10 May
+
+Finished the hardware.
+
+
 <!-- ### Week 19 - 25 May -->
 
 ## Hardware
 
 The project uses a STM32 Nucleo-U545RE board as the main microcontroller. A motor driver shield (L293D-based) is used to control four DC motors for the platform. The robotic arm is actuated using multiple servo motors (MG995 and SG90), while an electromagnet module is used for object manipulation. A Bluetooth module (HC-05) enables wireless control, and an RC522 RFID module is used for NFC-based user authorization. An RGB LED provides visual feedback. The system is powered by a 5V supply and assembled on a custom 3D-printed structure.
 
-<!-- ### Schematics
+### Schematics
 
-Place your KiCAD or similar schematics here in SVG format. -->
+![Schematic](images/schematic.svg)
+
+<!-- Place your KiCAD or similar schematics here in SVG format. -->
 
 ### Bill of Materials
 
