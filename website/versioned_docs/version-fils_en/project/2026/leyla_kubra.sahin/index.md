@@ -49,7 +49,7 @@ The project uses a mix of analog physiological sensors and asynchronous digital 
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Project Schematic](./kicad_lie_detector_schematic.svg)
 
 ### Bill of Materials
 

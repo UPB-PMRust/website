@@ -44,11 +44,19 @@ I got the components (except the ESP32-CAM) and set up the start of my project (
 
 ### Week 20 April - 26 April
 
-I got the rest of the components (the ESP32-CAM, some wires and a battery holder) and started assembling the project, starting with the servomotor; I wired the servomotor and wrote some code to test it, worked mostly fine, but each time would stop working after a while; suspected it was because of insuficient power so I decided to get some batteries for power. Afterwards wired the first sensor and started testing; had errors, as sensor would get stuck on high - did a lot of debugging to narrow down the problem (this log unfinished)
+I got the rest of the components (the ESP32-CAM, some wires and a battery holder) and started assembling the project, starting with the servomotor; I wired the servomotor and wrote some code to test it, worked mostly fine, but each time would stop working after a while; suspected it was because of insuficient power so I decided to get some batteries for power. Afterwards wired the first sensor and started testing; had errors, as sensor would not correctly detect distance - did a lot of debugging to narrow down the problem. 
+
+### Week 27 April - 3 May
+
+The problem with the servomotor got fixed after I got some batteries to power it with. I wasted a lot of time on the sensor problem and failed fixing it even after several attemps, because I had incorrectly identified the problem's source as beeing a faulty connection; in the meantime, I added a green and a red led, with the green led lighting up when the barrier was supposed to open and the red led beeing lit for the rest of the time (will probably change in future); also worked on writing code for more tests with the sensor and did more research on how it worked; work stalled for a few days as I was trying to figure out the actual problem with the sensor;
+
+### Week 4 May - 10 May
+
+After more debugging I finally found the problem with the sensor and fixed it - to be continued
 
 ## Hardware
 
-picture coming soon
+![Hardware picture](./mahardware.webp)
 
 *STM32-NUCLEO-U545RE-Q* will do computatiosn, signals processing and transmit data to the laptop
 
@@ -62,13 +70,13 @@ picture coming soon
 
 ## Schematics
 
-coming soon
+![KiCAD Schematics](./kicadmabun2.svg)
 
 ## Bill of Materials
 
 | Device                                                                                                           | Usage                                     | Price                     
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------
-| [STM32-NUCLEO-U545RE-Q] | microcontroller | borrowed from politehnica
+| STM32-NUCLEO-U545RE-Q | microcontroller | borrowed from politehnica
 | [HC-SRO4 ultrasonic sensor x 2](https://www.emag.ro/set-2-senzori-distanta-ultrasonic-digital-3-3-5v-45x20x15mm-multicolor-9344435370736/pd/DCPK2H3BM/?ref=history-shopping_484549223_232871_1)          | measuring distance from barrier  | 36 Lei
 | [SG90 servo motor x 4](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-4-bucati-3874783591898/pd/DLHDYTYBM/?ref=history-shopping_484549223_157633_1)   | moving the barrier       | 48 Lei
 | [ESP32-CAM](https://www.emag.ro/microcontroler-esp32-cam-cu-ov2640-wi-fi-si-camera-bluetooth-5v-5904162804207/pd/DSTDNLMBM/?ref=history-shopping_485848746_38837_1) |   checks vehicles for authorization   | 67 Lei
