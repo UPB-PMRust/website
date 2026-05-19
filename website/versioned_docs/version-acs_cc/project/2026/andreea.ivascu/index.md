@@ -108,9 +108,11 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer | Used for the display for the Pico Explorer Base |
-| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | SD Card File System | Manages SPI communication and file system |
-| [mpu6050](https://crates.io/crates/mpu6050) | IMU Driver | Converting physical motion into digital angular data |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer | Manages the GPIO pins (buttons), I2C (motor driver), UART (DFPlayer) and Timers (for the LED heartbeat) |
+| [embassy-time](https://crates.io/crates/embassy-time) | Time and Delay Management | Used for asynchronous delays and hardware debounce filtering for the buttons |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async/Await Executor | Runs the main logic and enables concurrent multitasking |
+| [pwm-pca9685](https://crates.io/crates/pwm-pca9685) | PCA9685 I2C Driver | Handles the PWM signals to accurately control the angles of the 8 servo motors on the teddy's skeleton |
+| [defmt](https://crates.io/crates/defmt) | Logging Framework | Sends text messages from the microcontroller to the PC console for debugging purposes |
 
 ## Links
 
