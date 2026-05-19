@@ -43,11 +43,23 @@ Indicators: RGB LED module and an active buzzer (for alarms).
 
 <!-- write your progress here every week -->
 
-### Week 5 - 11 May
+### Week 23 - 29 March
+Decided on the project idea.
 
-### Week 12 - 18 May
+### Week 13 - 19 April
+I researched ideas for implementing the project and made a list of necessary materials.
 
-### Week 19 - 25 May
+### Week 20 - 26 April
+I wrote the initial documentation.
+
+### Week 27 April - 3 May
+I ordered the components.
+
+### Week 4 - 10 May
+I tested the components and assembled the hardware part of the project.
+
+### Week 11 - 17 May
+I worked on the project's software.
 
 ## Hardware
 
@@ -74,18 +86,29 @@ The format is
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | Lab Provided
 | [SG90 Servo Motor](https://www.bitmi.ro/componente-electronice/servomotor-sg90-180-grade-9g-10496.html) | Controls door/window | [9.99 RON](https://www.bitmi.ro/componente-electronice/servomotor-sg90-180-grade-9g-10496.html) |
 | [RC522 RFID Module](https://www.bitmi.ro/module-electronice/modul-rfid-rc522-13-59mhz-cu-card-si-tag-10468.html) | Access control | [14.99 RON](https://www.bitmi.ro/module-electronice/modul-rfid-rc522-13-59mhz-cu-card-si-tag-10468.html) |
-| [DHT11 Temperature & Humidity Sensor](https://www.bitmi.ro/senzori-electronici/modul-senzor-de-umiditate-si-temperatura-dht11-ky-015-10637.html) | Indoor climate monitor  | [7.99 RON](https://www.bitmi.ro/senzori-electronici/modul-senzor-de-umiditate-si-temperatura-dht11-ky-015-10637.html) |
+| [LM35 Temperature Sensor](https://www.bitmi.ro/senzori-electronici/modul-senzor-de-temperatura-lm35-compatibil-arduino-10392.html) | Indoor climate monitor  | [9.99 RON](https://www.bitmi.ro/senzori-electronici/modul-senzor-de-temperatura-lm35-compatibil-arduino-10392.html) |
 | [MQ2 Gas Sensor Module](https://www.bitmi.ro/senzori-electronici/modul-senzor-de-gaze-mq2-11214.html) | Hazard and smoke detector | [11.99 RON](https://www.bitmi.ro/senzori-electronici/modul-senzor-de-gaze-mq2-11214.html) |
 | [RGB LED Module](https://www.bitmi.ro/module-electronice/modul-led-rgb-3-culori-10401.html) | Visual status indicator | [2.13 RON](https://www.bitmi.ro/module-electronice/modul-led-rgb-3-culori-10401.html) |
 | [LCD1602 Display with I2C/IIC Module](https://www.bitmi.ro/componente-electronice/ecran-lcd1602-cu-modul-i2c-iic-10487.html) | System data screen | [24.99 RON](https://www.bitmi.ro/componente-electronice/ecran-lcd1602-cu-modul-i2c-iic-10487.html) |
-| [Rain sensor](https://www.emag.ro/senzor-picaturi-de-ploaie-wlongc-rain-01/pd/DKXMPD2BM/?cmpid=148774&utm_source=google&utm_medium=cpc&utm_campaign=(RO:eMAG!)_3P_NO_SALES_%3e_Jucarii_hobby&utm_content=111476631565&gad_source=1&gad_campaignid=11606684347&gbraid=0AAAAACvmxQiuQWwRBmn2hIM6jL7g7XTSn&gclid=Cj0KCQjwkrzPBhCqARIsAJN460lHIac0SsnpISvLfFMwtyBHzZTLydA7KTRnV3tIgG6prJk7ttOOyS0aAq37EALw_wcB) | Rain sensor | [6.99 RON](https://www.emag.ro/senzor-picaturi-de-ploaie-wlongc-rain-01/pd/DKXMPD2BM/?cmpid=148774&utm_source=google&utm_medium=cpc&utm_campaign=(RO:eMAG!)_3P_NO_SALES_%3e_Jucarii_hobby&utm_content=111476631565&gad_source=1&gad_campaignid=11606684347&gbraid=0AAAAACvmxQiuQWwRBmn2hIM6jL7g7XTSn&gclid=Cj0KCQjwkrzPBhCqARIsAJN460lHIac0SsnpISvLfFMwtyBHzZTLydA7KTRnV3tIgG6prJk7ttOOyS0aAq37EALw_wcB) |
+| [Rain sensor](https://www.bitmi.ro/electronica/modul-senzor-de-ploaie-10455.html) | Rain sensor | [6.99 RON](https://www.bitmi.ro/electronica/modul-senzor-de-ploaie-10455.html) |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| cortex-m | Low-level ARM Cortex-M core access | Used for core processor control and critical sections |
+| cortex-m-rt | Startup runtime for Cortex-M | Used for system initialization and reset vector handling |
+| cortex-m-semihosting | Host PC debug communication | Used for sending debug messages during development |
+| defmt | High-efficiency embedded logging | Used for formatting system logs and error outputs |
+| defmt-rtt | RTT logging transport driver | Used for transmitting logs to the host PC in real-time |
+| panic-probe | Panic handler for probe-rs | Used to catch runtime panics and print call stacks |
+| embassy-stm32 | Async HAL for STM32 microcontrollers | Used to configure and control GPIO, ADC, I2C, and SPI |
+| embassy-executor | Async/await task scheduler | Used to drive the main asynchronous execution loop |
+| embassy-time | Timekeeping and delay utilities | Used for non-blocking sensor pooling and state timing |
+| embedded-hal | Standardized hardware abstraction traits | Used as a unified interface for peripheral drivers |
+| embedded-hal-bus | SPI/I2C bus sharing utilities | Used to manage peripheral access on shared buses safely |
+| mfrc522 | MFRC522 RFID reader driver | Used to scan and read access cards at the entrance |
+| hd44780-driver | Character LCD display driver | Used to print system status, temperature, and alerts to the screen |
 
 ## Links
 
