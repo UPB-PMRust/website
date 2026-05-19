@@ -53,6 +53,7 @@ Finalized peripheral integration: connected and configured the touch controller,
 
 ### Week 11 - 17 May
 
+
 ### Week 18 - 24 May
 
 
@@ -94,8 +95,15 @@ Finalized peripheral integration: connected and configured the touch controller,
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
+| [ili9488](https://github.com/DashCampbell/ili9488-rs) | Display driver for ILI9488 | Used for initializing the display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-time](https://github.com/embassy-rs/embassy)| Time library | Used for measuring the game time and for adding small delays |
+| [embassy_executor](https://github.com/embassy-rs/embassy) | Task manager | Used for reading user input and updating the screen at the same time |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Async synchronization | Used for communicating between the display task and buttons/touch task |
+| [embedded-hal] (https://github.com/rust-embedded/embedded-hal) | Standard hardware rules | Defines standard interfaces |
+| [panic-probe](https://github.com/knurling-rs/probe-run/tree/main) | Error handling | Stops the program if the code crashes |
+| [defmt]() | Logging library | Used for printing debug messages to the computer |
+| [rand]() | Random number generator | Used for shuffling the puzzle board pieces |
 
 ## Links
 
