@@ -10,8 +10,8 @@ Hardware Rhythm Game
 
 ## Description
 
-Rhythm game follows the standard mechanics of this genre: the player needs to hit the notes at the right time using the buttons on the breadboard. There are multiple types of notes: tap notes, hold notes, and motion notes triggered by moving the breadboard up/down on the table. Visual feedback is provided using LEDs, where the color represents the accuracy. \
-Every hit note fills up the color match progress bar. Once the bar is full, the game enters a special mode called "Color Match". In this mode, the player needs to match the color of the LEDs with those shown on the screen using RGB channels. Failing to finish the game mode successfully will make the player lose one life. The player starts with three lives and can replenish one after completing a song. \
+Rhythm game follows the standard mechanics of this genre: the player needs to hit the notes at the right time using the buttons on the breadboard. There are multiple types of notes: tap notes, hold notes, and motion notes triggered by moving the breadboard up/down on the table. Visual feedback is provided using RGB LEDs, where the color represents the accuracy. \
+The player needs to accumulate a certain number of hit notes within the time limit to trigger the special game mode called "Color Match". Failing to trigger this game mode will make the player lose one life. In this mode, the user needs to match the color of the RGB LEDs with those shown on the screen using RGB channels. Failing to finish the game mode successfully will deduct one life. The player starts with three lives and can replenish one after completing a song. The player wins when all songs in the current playlist are completed successfully. \
 The game is accompanied by music, and players can customize which set tracks are playing and in what order. 
 
 ## Motivation
@@ -20,7 +20,7 @@ I chose this project because I like rhythm games. Combining them with hardware w
 
 ## Architecture
 
-![](./arhitectura_diagrama.webp)
+![](./arhitecture_diagram.webp)
 
 Main components:
 
@@ -42,12 +42,12 @@ Main components:
    -  communicates through I2C
 
 *Feedback*:
-- **LEDs** 
+- **RGB LEDs** 
   - hit accuracy visual feedback
   - controlled via PWM pins
 -  **Servomotor** 
-   - color match progress bar visual feedback
-     - when it reaches 180° it means the bar is full
+   - color match progress visual feedback
+     - when it reaches 180° it means the color match progress is 100%
    - controlled via PWM pins   
 
 *Music*:
@@ -78,15 +78,23 @@ I implemented the UI interface and the button logic.
 
 I wrote the logic for the rhythm game and color match.
 
+### Week 11 - 17 May
+
+I integrated the music and sounds effects into the game and wrote the logic for the volume and playlist menu.
+
+## Week 18 - 24 May 
+
+I made multiple tests to ensure the game is working properly and calibrated game parameters to ensure the gameplay experience is smooth.
+
 ## Hardware
 
-The project uses the STM32 Nucleo Board as the main controller. A LCD Display is used for rendering the game graphics. User input is taken using push buttons. While in game, visual feedback is given using LEDs for hit accuracy, and a servomotor for color match bar progress. The music is played using a DFPlayer Mini that has a microSD card and a speaker. A passive buzzer is used for sound effects. A gyroscope is used to detect the motion notes.
+The project uses the STM32 Nucleo Board as the main controller. An LCD Display is used for rendering the game graphics. User input is taken using push buttons. While in game, visual feedback is given using RGB LEDs for hit accuracy, and a servomotor for color match progress. The music is played using a DFPlayer Mini that has a microSD card and a speaker. A passive buzzer is used for sound effects. The motion notes are detected using a gyroscope.
 
 ![](./poza_cablaj.webp)
 
 ### Schematics
 
-![](./KiCAD_schematics.webp)
+![](./kicad_schematics.webp)
 
 ### Bill of Materials
 
@@ -106,20 +114,30 @@ The project uses the STM32 Nucleo Board as the main controller. A LCD Display is
 
 ## Software
 
-| Library                                                                              | Description                          | Usage                                                               |
-| ------------------------------------------------------------------------------------ | ------------------------------------ | ------------------------------------------------------------------- |
-| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32)       | Hardware Abstraction Layer for STM32 | Used for control of GPIO, SPI, I2C, UART, and PWM                   |
-| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor                  | Used to manage concurrent tasks                                     |
-| [embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Hardware abstraction traits          | Used for interacting with peripherals                               |
-| [defmt](https://github.com/knurling-rs/defmt)                                        | Logging framework                    | Used for debugging                                                  |
-| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time)         | Timekeeping                          | Used for timer and duration                                         |
-| [display-interface-spi](https://github.com/therealprof/display-interface)            | SPI interface for displays           | Used for communication between the STM32 SPI and the display driver |
-| [mipidsi](https://github.com/almindor/mipidsi)                                       | Display driver for ILI9341           | Used for connecting the screen via SPI                              |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)          | 2D graphics library                  | Used for drawing the game graphics                                  |
-| [mpu6050](https://crates.io/crates/mpu6050)                                          | Driver for MPU6050                   | Used to read data via I2C                                           |
+| Library                                                                              | Description                                                       | Usage                                                         |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------- |
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32)       | Hardware Abstraction Layer for STM32                              | Used for control of GPIO, SPI, I2C, UART, and PWM peripherals |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor                                               | Used to manage concurrent tasks                               |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal)                        | Hardware abstraction traits                                       | Used for interacting with peripherals                         |
+| [defmt](https://github.com/knurling-rs/defmt)                                        | Logging framework                                                 | Used for debugging                                            |
+| [panic-probe](https://github.com/knurling-rs/probe-run/tree/main)                    | Panic handler                                                     | Used for monitoring fatal code errors                       |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time)         | Timekeeping, delays and timeouts                                  | Used for calculating game time                                |
+| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync)         | Synchronization primitives and data structures with async support | Used for managing signals and channels                        |
+| [heapless](https://github.com/rust-embedded/heapless)                                | Data structures that don't require dynamic memory allocation      | Used to store game data in vectors                            |
+| [core](https://github.com/rust-lang/rust/tree/main/library/core)                     | Rust standard library                                             | Used for debug and write operations                           |
+| [mipidsi](https://github.com/almindor/mipidsi)                                       | Display driver for ILI9341                                        | Used for connecting the screen via SPI                        |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics)          | 2D graphics library                                               | Used for drawing the game graphics                            |
 
 
+![](./software_diagram.webp)
 
+The game runs in a continuous loop where it checks the current game state:
+- *Start Menu*: the user chooses the next game state from the available options
+- *Volume Menu*: the user can adjust the volume level of the music and turn on/off the sound effects
+- *Playlist menu*: the user can edit the songs and their playback order during the game
+- *Rhythm game*: the user is in a game; the game state switches to color mode when the color mode progress reaches 100%, to start menu when a game is won/lost and again to rhythm game when a song, excepting the last one, is completed
+- *Color mode*: the user is in color mode; the game state switches to rhythm game after succesful completion or if the player is not out of lives after failing to complete the mode; if the player is out of lives, the game state switches to start menu
+- *Exit*: the program stops after the user chooses this option
 
 
 
