@@ -68,6 +68,7 @@ Main Architectural Components:
     - Met the hardware deadline and presented the project during the lab session.
     - Started working on the software, implementing the logic for the user and obstacle detection and the escape system.
 ### Week 19 - 25 May
+   - Finished the software implementation and validated the project at the lab session.
 
 ## Hardware
 
@@ -113,8 +114,13 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 microcontrollers | Provides hardware abstraction for peripherals like GPIO and EXTI |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded | Manages and schedules concurrent async tasks (sensor, IR, LEDs, buzzer) |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time and delay primitives | Handles precise timing requirements (ultrasonic echoes, IR decoding, motor delays) |
+| [defmt](https://github.com/knurling-rs/defmt) | Deferred formatting framework | Highly efficient console logging, debugging, and printing |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for defmt | Transmits log messages to the host over Real-Time Transfer (RTT) |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler for defmt | Catches panics and prints backtraces safely over the RTT channel |
+| [cortex-m / cortex-m-rt](https://github.com/rust-embedded/cortex-m) | ARM Cortex-M core crates | Low-level processor setup, core peripherals, and startup code |
 
 ## Links
 
