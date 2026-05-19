@@ -71,6 +71,7 @@ Main parts:
 - Display (LCD): The display is used to show instructions, reaction times and game statistics. It also provides a menu for selecting the game mode and guides the user throughout the session
 
 
+
 ### Schematics
 
 ![Schematics](./pm_schema.svg)
