@@ -1,4 +1,5 @@
 # Smart Access Control System
+A laser-based intrusion detection system.
 
 :::info
 
@@ -13,7 +14,7 @@ A laser-based smart access control system built on the Nucleo-STM32U545RE-Q boar
 
 ## Motivation
 
-I was inspired by a YouTube video of an analog laser alarm circuit and wanted to recreate it in a more modern, complex, and functional way using embedded Rust. The project gave me the opportunity to explore real-time embedded programming with Rust and Embassy, while building something visually striking for a live presentation. Unlike a simple PIR motion sensor, the laser beam creates a clear, visible security barrier that makes the demo immediately understandable and impressive. The added RFID access control layer transforms a simple alarm into a complete, realistic security system.
+I was inspired by a YouTube video of an analog laser alarm circuit and wanted to recreate it in a more modern, complex, and functional way using embedded Rust. The project gave me the opportunity to explore real-time embedded programming with Rust and Embassy, while building something that has real practical value — a low-cost security system suitable for protecting small spaces such as rooms, drawers, or storage areas. Unlike a simple PIR motion sensor, the laser beam creates a clear, visible security barrier that makes the system easy to understand and deploy. The added RFID access control layer transforms a simple alarm into a complete, realistic security system.
 
 ## Architecture
 
@@ -63,6 +64,8 @@ The system operates as a state machine with the following states:
 | Jumper wires (M-M, M-F) | ~50 | Connections |
 
 ## Schematics
+
+![Schematic](images/schematic.webp)
 
 ## Bill of Materials
 
