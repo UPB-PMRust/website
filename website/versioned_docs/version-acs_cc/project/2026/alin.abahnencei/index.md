@@ -119,7 +119,7 @@ The format is
 | [embassy-time](https://github.com/embassy-rs/embassy) | Time and delay primitives | Handles precise timing requirements (ultrasonic echoes, IR decoding, motor delays) |
 | [defmt](https://github.com/knurling-rs/defmt) | Deferred formatting framework | Highly efficient console logging, debugging, and printing |
 | [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for defmt | Transmits log messages to the host over Real-Time Transfer (RTT) |
-| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler for defmt | Catches panics and prints backtraces safely over the RTT channel |
+| [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler for defmt | Catches panics and prints backtraces safely over the RTT channel |
 | [cortex-m / cortex-m-rt](https://github.com/rust-embedded/cortex-m) | ARM Cortex-M core crates | Low-level processor setup, core peripherals, and startup code |
 
 ## Links
