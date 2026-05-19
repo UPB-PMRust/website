@@ -63,7 +63,7 @@ I worked on the project's software.
 
 ## Hardware
 
-The system is built around the STM32 Nucleo-U545RE-Q microcontroller. The sensory hardware includes a DHT11 temperature and humidity sensor , a rain sensor , an MQ2 gas/smoke sensor for safety , and an RC522 RFID module for secure access. Outputs and physical movements are driven by SG90 servomotors , an active buzzer , an RGB LED module , and an I2C-enabled LCD1602 screen for displaying system data.
+The system is built around the STM32 Nucleo-U545RE-Q microcontroller. The sensory hardware includes a LM35 temperature sensor , a rain sensor , an MQ2 gas/smoke sensor for safety , and an RC522 RFID module for secure access. Outputs and physical movements are driven by SG90 servomotors , an active buzzer , an RGB LED module , and an I2C-enabled LCD1602 screen for displaying system data.
 
 ### Schematics
 
