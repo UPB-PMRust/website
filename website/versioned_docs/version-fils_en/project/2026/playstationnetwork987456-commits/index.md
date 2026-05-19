@@ -4,7 +4,7 @@ A reaction-based gamepad using Raspberry Pi Pico 2 W, buttons, LEDs, and Rust.
 
 :::info
 
-**Author**: Furkan Korkmaz  
+**Author**: Furkan Korkmaz  \
 **GitHub Project Link**: GitHub Project Link: https://github.com/playstationnetwork987456-commits/Pico-Gamepad
 
 :::
