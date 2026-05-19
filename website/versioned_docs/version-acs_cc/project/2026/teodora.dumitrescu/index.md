@@ -35,16 +35,16 @@ Processing: The STM32 Nucleo processes the signals from the buttons and coordina
 
 <!-- write your progress here every week -->
 ### Week 20 - 26 April
-Preparing the project documentation and finalizing the structural layout. 
+Preparing the project documentation and finalizing the structural layout. Purchasing the components.
 
 ### Week 27 April - 3 May
-Finishing the documentation and starting to experiment with the hardware components.
+Finishing the documentation and starting to experiment with the hardware components. Making the arhitectural scheme.
 
 ### Week 4 - 10 May
-Making some snippets of code separately for the components
+Making some snippets of code separately for the components. Trying out different design ideas for the dispensers.
 
 ### Week 11 - 17 May
-Assembled the box for the automate
+Assembled the box for the automate. Completed the wiring for the project. Testing the coffee quantities.
 
 ### Week 18 - 23 May
 
@@ -62,7 +62,7 @@ The mixer: it is a motor that mixes the ingredients in the final stage.
 
 ### Schematics
 
-![KiCad Diagram](./images/schema_hardware.svg)
+![KiCad Diagram](./images/schema_hardware.webp)
 
 
 ### Bill of Materials
