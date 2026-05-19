@@ -59,6 +59,8 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 - Created first drafts for the TeddyBot
 
 ### Week 12 - 18 May
+- Implemented the asynchronous control logic using the Embassy framework
+- Configured and successfully integrated all 8 servo motors into the system
 
 ### Week 19 - 25 May
 
@@ -87,19 +89,19 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 Nucleo Board](https://www.st.com/) | Main Controller | Lab provided |
-| [MG996R Servomotor x4](https://sigmanortec.ro/servomotor-mg996r-180-13kg) | Main limb actuators | - |
-| [SG90 Servomotor x4](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotoare&results=97) | Small extremity actuators | - |
-| [PCA9685 PWM Board](https://www.emag.ro/placa-dezvoltare-general-pca9685-16-canale-pwm-12-biti-interfata-iic-alimentare-dc5-10v-gd-0015/pd/DDPYV8YBM/?ref=similar_products_7_5&provider=rec&recid=rec_4_ff0477b68916b5adffb79fd9f03ce155866497b263fd7e49fc427ea94a142352_1777327178&scenario_ID=4) | 16-channel I2C PWM driver for all servos | - |
-| [DFPlayer Mini](https://ro.farnell.com/dfrobot/dfr0299/dfplayer-mini-mp3-player-arduino/dp/3517866?srsltid=AfmBOorCmEjdT1ScIzEKmsDw2p3tjdh19xxks5S0iNV1yu7DXDjW-9BY) | UART-controlled MP3 player module | - |
-| [MicroSD Card](https://www.emag.ro/card-de-memorie-mediarange-micro-sdhc-4gb-clasa-10-cu-adaptor-sd-mr956/pd/DHJWRLMBM/) | Audio file storage | - |
-| [10mm Red LED](https://sigmanortec.ro/led-rgb-10mm-catod-comun) | Heartbeat visual effect | - |
-| [1W 8-Ohm Speaker](https://ardushop.ro/ro/difuzoare-si-buzzere/1084-difuzor-1w-8ohm-50mm-6427854014900.html) | Audio output for DFPlayer Mini | - |
-| [10x Tactile Push Buttons](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) | Wired console input for limb control | - |
-| [Powerbank 5V 20000mAh](https://www.emag.ro/baterie-externa-nuodwell-power-bank-20000mah-pd-22-5w-quickcharge-3-0-display-led-compatibil-cu-cabluri-tip-type-c-lightning-micro-usb-2-x-usb-incorporate-2-x-led-flash-abs-pc-mov-cxf047/pd/D70J6DYBM/) | Main power source for all components | - |
-| [ON/OFF Switch](https://www.emag.ro/intrerupator-on-off-rosu-prk0002b/pd/D87229MBM/) | Main power cutoff for the system | - |
-| [MB-102 Breadboard](https://sigmanortec.ro/Breadboard-830-puncte-MB-102-p125923983) | Prototyping platform for all connections | - |
-| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html?srsltid=AfmBOoqlQHNAoC4v6awvvkiXtXCXTNmnI55AzQYZUKZm0con7M3yU4R7) | Power rail for breadboard | - |
-| [50 cm Teddy Bear](https://www.emag.ro/jucarie-de-plus-urs-wepzsxo-50cm-cu-papion-maro-deschis-pentru-baieti-casas00572/pd/DFV9XN3BM/) | Main body and physical casing of the robot | - |
+| [8x SG90 Servomotor](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotoare&results=97) | Main limb actuators | 13.99 RON each|
+| [PCA9685 PWM Board 16 channels](https://www.emag.ro/placa-dezvoltare-general-pca9685-16-canale-pwm-12-biti-interfata-iic-alimentare-dc5-10v-gd-0015/pd/DDPYV8YBM/?ref=history-shopping_486605053_190386_1) | 16-channel I2C PWM driver for all servos | 37.51 RON |
+| [DFPlayer Mini](https://www.emag.ro/modul-tf-16p-dfplayer-mini-player-audio-24-biti-32-gb-negru-auriu-5904162801930/pd/D8B8KLMBM/?ref=history-shopping_486605053_116388_1) | UART-controlled MP3 player module | 18.03 RON |
+| [MicroSD Card](https://www.emag.ro/card-de-memorie-mediarange-micro-sdhc-4gb-clasa-10-cu-adaptor-sd-mr956/pd/DHJWRLMBM/) | Audio file storage | 24 RON |
+| [10mm Red LED](https://sigmanortec.ro/led-rgb-10mm-catod-comun) | Heartbeat visual effect | 2.23 RON |
+| [3W 8-Ohm Speaker](https://www.conexelectronic.ro/difuzoare/17459-DIFUZOR-3-W-8-OHMI-70X30MM.html?_gl=1*hv9gqd*_up*MQ..*_ga*MTk5Mjg4NTI2OC4xNzc3NDUwOTQ0*_ga_VNJZ3KSYZX*czE3Nzc0NTA5NDMkbzEkZzAkdDE3Nzc0NTA5NDMkajYwJGwwJGg5MjA3MDQxMw) | Audio output for DFPlayer Mini | 30.50 RON |
+| [13x Tactile Push Buttons](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) | Wired console input for limb control | 1.33 RON each|
+| [Powerbank 5V 20000mAh](https://www.emag.ro/baterie-externa-nuodwell-power-bank-20000mah-pd-22-5w-quickcharge-3-0-display-led-compatibil-cu-cabluri-tip-type-c-lightning-micro-usb-2-x-usb-incorporate-2-x-led-flash-abs-pc-mov-cxf047/pd/D70J6DYBM/) | Main power source for all components | 63.04 RON |
+| [2x MB-102 Breadboard 200x630 points](https://www.emag.ro/breadboard-h-hct-tronic-830-puncte-de-conectare-abs-200x630-puncte-034-066/pd/DBNQ7R3BM/?ref=history-shopping_486605053_1558_1) | Prototyping platform for all connections | 10 RON each |
+| [MB-102 Breadboard 400 points](https://sigmanortec.ro/Breadboard-400-puncte-p129872825) | Secondary prototyping board for the audio module and auxiliary mini-circuits | 6.62 RON |
+| [Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html?srsltid=AfmBOoqlQHNAoC4v6awvvkiXtXCXTNmnI55AzQYZUKZm0con7M3yU4R7) | Power rail for breadboard | 4.69 RON |
+| [20m Polymer-Coated Metal Wire](https://carrefour.ro/produse/franghie-rufe-20-m-metalica-19-31003679?srsltid=AfmBOopitDsjGte9fJsZudlIpfryQozfsu4lMLAeh88DVTkvehqwudn6) | Custom endoskeleton providing lightweight structural support and high malleability | 10 RON |
+| [50 cm Teddy Bear](https://www.emag.ro/jucarie-de-plus-urs-wepzsxo-50cm-cu-papion-maro-deschis-pentru-baieti-casas00572/pd/DFV9XN3BM/) | Main body and physical casing of the robot | 64.41 RON |
 
 
 ## Software
