@@ -68,7 +68,7 @@ Main Architectural Components:
     - Met the hardware deadline and presented the project during the lab session.
     - Started working on the software, implementing the logic for the user and obstacle detection and the escape system.
 ### Week 19 - 25 May
-   - Finished the software implementation and validated the project at the lab session.
+- Finished the software implementation and validated the project at the lab session.
 
 ## Hardware
 
