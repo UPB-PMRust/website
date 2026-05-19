@@ -3,7 +3,7 @@
 :::info
 
 **Author**: Bianca Mircea \
-**GitHub Project Link**: https://github.com/biancaamircea/website.git
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-biancaamircea
 
 :::
 
