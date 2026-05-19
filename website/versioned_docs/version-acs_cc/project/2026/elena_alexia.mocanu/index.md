@@ -93,7 +93,6 @@ The project uses the STM32 Nucleo Board as the main controller. An LCD Display i
 ![](./poza_cablaj.webp)
 
 ### Schematics
-
 ![](./kicad_schematics.webp)
 
 ### Bill of Materials
