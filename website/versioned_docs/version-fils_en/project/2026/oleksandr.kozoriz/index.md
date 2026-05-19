@@ -102,7 +102,7 @@ I took a stack of 10 lei banknotes and decided that it is time for the first ben
 
 There are no cases where the outuput is greater then 150, meaning that false triggers do not occur anymore. Therefore I consider EMI to be defeated by now, and for the rest of the values, the error is coming from the double feed.
 
-For the double feed, I glued up 3 sponges on the slit: 2 with insulating strip underneath for straightening the banknotes, and one with a toothpick sticked into it, acting as adjustable physical gate. After playing around with the toothpick and calibrating the debouncing configuration it works percise enough for now.
+For the double feed, I glued up 3 sponges on the slit: 2 with insulating strip underneath for straightening the banknotes, and one with a toothpick sticked into it, acting as adjustable physical gate. After playing around with the toothpick and calibrating the debouncing configuration it works percise enough for now
 
 ### Week 13
 To be continued...
@@ -150,11 +150,12 @@ The format is
 | [Miniature Ball Bearing (2 mm Internal Diameter)](https://en.wikipedia.org/wiki/Bearing_(mechanical)) | Shaft support | 1 | [2.89 RON](https://www.optimusdigital.ro/en/bearings/402-rulment-in-miniatura-cu-diametru-interior-2-mm.html) |
 | [4x4 Push Button Keyboard Matrix](https://www.electronicwings.com/sensors-modules/4x4-keypad-module) | User input | 1 | [3.99 RON](https://www.optimusdigital.ro/en/touch-sensors/2441-tastatura-matriceala-4x4-cu-butoane.html) |
 | [Button with Round Cover](https://en.wikipedia.org/wiki/Push-button) | Start / Reset / Edit buttons | 3 | [1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html) |
+| [10K Potentiometer](https://en.wikipedia.org/wiki/Potentiometer) | Adjusting the LCD contrast | 1 | [2.39 RON](https://www.optimusdigital.ro/en/potentiometers/12360-10k-wh148-variable-resistor-without-washer-and-nut.html) |
 | [Breadboard HQ (830 points)](https://en.wikipedia.org/wiki/Breadboard) | Prototyping | 1 | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
 | [Breadboard Jumper Wires Set](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 1 | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
 | [10 cm 10p Male-Female Wires](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 2 | [2.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/650-fire-colorate-mama-tata-10p.html) |
 | [Cardboard](https://en.wikipedia.org/wiki/Cardboard) | CAD (Cardboard Aided Design) | 1 | [4.40 RON](https://www.dedeman.ro/ro/cutie-depozitare-din-carton-ctft-435-420-x-330-x-210-mm/p/1045878) |
-| **Total** | | | **224.50 RON** |
+| **Total** | | | **226.89 RON** |
 
 *was borrowed from the lab
 
