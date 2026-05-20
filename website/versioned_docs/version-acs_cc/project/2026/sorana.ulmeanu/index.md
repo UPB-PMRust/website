@@ -116,7 +116,7 @@ The car chassis is either a commercial kit or a custom 3D-printed frame that hol
 
 ## Schematics
 
-![Schematic](Schematic_pm.svg)
+![Schematic](schematic.webp)
 
 ## Bill of Materials
 
