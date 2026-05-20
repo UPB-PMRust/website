@@ -21,14 +21,16 @@ I have been cycling regularly for the past few years and always wanted a deeper 
 
 ## Architecture
 
-The system is structured around 4 main components running in parallel:
+The system is structured around 6 main async tasks running in parallel:
 
-- **GPS Task** — reads position and speed data at 10Hz and calculates distance traveled
-- **IMU Task** — reads the accelerometer and gyroscope and detects sudden braking events
-- **Display Task** — updates the OLED screen with current data
-- **SD Task** — writes data to the CSV file on the SD card once per second
+- **GPS Task** — reads NMEA sentences from the NEO-6M module via UART, parses $GPRMC and $GPGGA sentences to extract position, speed, altitude and time
+- **IMU Task** — reads the MPU-6050 accelerometer via I2C and detects sudden braking events, classifying them as moderate (yellow alert) or severe/accident (red alert + buzzer)
+- **Input Task** — reads the KY-023 joystick ADC axes and button, generates navigation events for screen switching and race control
+- **Navigation Task** — processes joystick events to switch between the 4 OLED screens and trigger race start/stop
+- **Display Task** — updates the OLED screen at 5Hz with the currently selected view: environment data, GPS status, speed and altitude, or race control
+- **SD Task** — monitors race recording state and writes GPS trackpoints (timestamp, latitude, longitude) to a CSV file on the SD card when a race is active
 
-All tasks communicate through Mutex and Channel mechanisms to avoid data conflicts.
+All tasks communicate through atomic variables for sensor data and Embassy Signal primitives for events, avoiding data conflicts without blocking.
 
 ## Log
 
