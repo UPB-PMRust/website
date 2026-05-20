@@ -46,7 +46,7 @@ The hardware part of the project consists of an STM32 development board connecte
 
 ## Schematic
 
-![Schematic](./images/smart_parking_sensor_schematic.svg)
+![Schematic](./images/smart_parking_sensor_schematic.webp)
 
 ---
 
