@@ -70,9 +70,15 @@ Started writing the documentation and modifying the source chasis to fit my comp
 
 ### Week 5 - 11 May
 
+Finalized source chasis and printed the first version in order to start test-fitting components.
+
 ### Week 12 - 18 May
 
+Tested all individual components, finalized the second version of the chasis and started writing the software required to run the robot.
+
 ### Week 19 - 25 May
+
+Completed and uploaded the main portion of the software, with only minor addition left if time allows. Also performed first complete assembly to confirm everything fits correctly.
 
 ## Hardware
 
@@ -114,12 +120,16 @@ The format is
 
 
 
-
 ## Software
 
-| Library | Description | Usage |
+| Library / Tool | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | STM32 Hardware Abstraction Layer | Used to control the Nucleo board's pins, allowing the microcontroller to talk to the PCA9685 driver via I2C and to the HM-10 Bluetooth module via UART. |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded devices | Used to run the main loop of the robot, processing incoming Bluetooth commands and updating motor angles smoothly. |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timekeeping and delay library | Used to create the necessary delays between the robot's animation frames so it walks correctly, and to handle Bluetooth read timeouts. |
+| [defmt](https://github.com/knurling-rs/defmt) & [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging framework and transport | Used to print debugging info and state changes directly to my laptop's terminal to track what the brain is doing. |
+| [panic-probe](https://github.com/knurling-rs/probe-rs) | Panic handler | Used to catch program crashes and print the error backtrace to the terminal, making debugging much easier. |
+| [probe-rs](https://probe.rs/) | Debugging and flashing tool | Used to seamlessly compile, flash, and run the Rust code onto the STM32 board using the simple `cargo run` command. |
 
 ## Links
 
