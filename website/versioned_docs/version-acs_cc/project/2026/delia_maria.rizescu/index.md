@@ -53,20 +53,19 @@ Main Architectural Components:
 
 * Assembled the hardware components inside the vending machine structure and completed the breadboard wiring.
 
+### Week 11 - 17 May
+
+* Final software implementation.
+
 
 ## Hardware
 The vending machine is controlled by an STM32U5 microcontroller that manages all system operations. It integrates an MFRC522 RFID reader and push buttons for inputs, while using an I2C LCD 1602 for the display. The physical dispensing is handled by four stepper motors and the coin-return mechanism is driven by a servo motor.
 
 * **STM32U545 Nucleo:** The central microcontroller that executes the Rust firmware to process the system logic and coordinate all other parts.
-
 * **MFRC522 RFID Reader:** An SPI-based card scanner used to authorize admin transactions.
-
 * **28BYJ-48 Stepper Motors & ULN2003 Drivers:** Used to rotate the dispensing spirals inside the compartments.
-
 * **LCD 1602 Display with PCF8574 I2C Adapter:** Provides real-time instructions, credit status, and feedback using only two I2C wires.
-
 * **SG90 Servo Motor:** A micro servo used to operate the physical change coin mechanism.
-
 * **Push Buttons & Limit Switch:** Act as the physical user interface for product selection and mechanical coin detection.
 
 ![circuit](images/circuit1.webp)
@@ -110,6 +109,17 @@ The vending machine is controlled by an STM32U5 microcontroller that manages all
 | [heapless](https://github.com/rust-embedded/heapless) | Static data structures | Allocates text buffers for the LCD display. |
 | [panic-probe](https://github.com/knurling-rs/probe-run) | Panic handler for debugging | Prints error info. |
 
+
+### Implementation:
+
+* **Architecture:** Implemented an enum that represents the current state of the machine: Repaus, Livrare, FonduriInsuficiente, Admin.
+* **Stepper Motor:** Each of the four motors is used independently and rotates in 4 steps. To prevent overheating, the coils are deactivated after each full rotation.
+* **Coin Detection:** The coin_prev variable stores the previous switch state. Credit increments by 0.50 only on the falling edge (HIGH to LOW), which prevents duplicate counts.
+* **Servo Precision:** The coin-return servo is controlled via PWM. Movement is bounded between 15° and 165° and the initial angle is set before enabling the PWM output for safety.
+* **I2C LCD:** I2C driver sends data to the PCF8574 module using 4-bit mode. To save time, every message is padded to 16 characters with spaces to overwrite previous text.
+* **RFID:** The RC522 operates via SPI. It detects the card, extracts its 4-byte UID and compares it to a stored administrator constant to validate access.
+
+![diagrama_software](images/diagrama_software.webp)
 
 ## Links
 
