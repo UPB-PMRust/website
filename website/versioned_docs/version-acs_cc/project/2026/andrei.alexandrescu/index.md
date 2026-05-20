@@ -104,7 +104,7 @@ The firmware also handles abnormal situations. If the drawer is not opened in ti
 
 ## Log
 
-### Week 5 - 11 May
+### Week 4 - 10 May
 
 I started by choosing the project idea and deciding the main components. I wanted a project that uses both sensors and actuators, so I chose a medication locker with four compartments. I planned the first version around an STM32 NUCLEO board, four servo motors and four microswitches.
 
@@ -117,7 +117,7 @@ I also decided the role of each compartment:
 * C3 for the evening dose;
 * C4 for the night dose.
 
-### Week 12 - 18 May
+### Week 11 - 17 May
 
 During this week I connected and tested the main hardware setup. I connected all four servo motors and all four microswitches. The servo motors are powered from an external battery pack, because they can draw more current than the development board should provide. The ground of the battery pack is connected to the ground of the STM32 board, so the servo control signals have the correct reference.
 
@@ -130,7 +130,7 @@ After testing, all four switches correctly reported OPEN and CLOSED, and all fou
 
 I also added a buzzer to the circuit. The buzzer is used by the firmware for reminders, success signals and alarms.
 
-### Week 19 - 25 May
+### Week 18 - 24 May
 
 This week I worked mainly on the software milestone. I replaced the basic hardware test code with the final firmware structure. The new firmware is based on a state machine and controls the locker as a complete system, not only as separate hardware components.
 
