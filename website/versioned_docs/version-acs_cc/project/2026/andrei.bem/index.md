@@ -6,7 +6,7 @@ Autonomous robot that follows a line using an infrared sensor array and controls
 
 **Author**: Andrei Bem \
 
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/proiect-andrei.bem
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-bemandrei
 
 :::
 
