@@ -76,7 +76,7 @@ four **tactile push buttons** on GPIO pins PB0–PB3 with internal pull-ups. Wir
 communication is handled by an **HC-05 Bluetooth module** over USART1 (PA9/PA10) at 115200
 baud. An **SSD1306 OLED 128×64** display is connected via I²C (PB6/PB7) and shows Bluetooth
 connection status. A **PWM vibration motor module** (3–5V, integrated driver) on PA8 provides
-haptic feedback. All components are mounted on an open breadboard frame.
+haptic feedback.
 
 ## Schematics
 
