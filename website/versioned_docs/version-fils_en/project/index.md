@@ -80,7 +80,7 @@ These steps should be performed on inside your **VM**, or in **WSL2**, **not on 
 3. [Download Git](https://git-scm.com) from the official website and access it in the command line using `git -v` to check if it was installed correctly. You might have to use *Git Bash*.
 4. Navigate to the [website's Github repository](https://github.com/upb-pmrust/website) and create a public fork by clicking on the button in the top right corner.
 
-5. Clone the newly created repository by running `git clone git@github.com:UPB-PMRust/website.git`.
+5. Clone the newly created repository by running `git clone git@github.com:<your_github_username>/website.git`.
 
 6. Now you have your own clone. You need to create a new branch. For this, follow the steps:
   - Navigate to your cloned repository 
