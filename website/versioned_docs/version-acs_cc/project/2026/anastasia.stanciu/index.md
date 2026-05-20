@@ -10,7 +10,7 @@ A robotic hand that imitates the movement of a person's hand wearing a glove tha
 :::
 
 ## Description
-The project is a robotic, 3D printed hand, that is actiond through some basic wires and servo-motors, that imitate the signals from a control glove. The glove has flex sensors, one on each finger, sending continuos signals to the board and servo-motors. The motion is intended to be as smooth and real-time as possible, providing a continuous flex of the fingers, rather than discrete.
+The project is a robotic, 3D printed hand, that is actiond through some basic wires and servo-motors, that imitate the signals from a control glove. The glove has flex sensors, one on each finger, sending continuos signals to the board and servo-motors. The hand shall have 2 features: copy gestures of the glove and play rock paper scissors with a huamn player wearing the glove.
 
 ## Motivation
 This idea fits perfectly in the medical field. The main two innovations branching from my project are:
