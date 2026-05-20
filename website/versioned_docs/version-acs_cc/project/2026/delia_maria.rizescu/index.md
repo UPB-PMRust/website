@@ -74,6 +74,37 @@ The vending machine is controlled by an STM32U5 microcontroller that manages all
 
 ### Schematics
 
+
+### Week 27 April - 3 May
+
+* Designed and built the vending machine structure, featuring four product compartments, with two compartments on each row.
+
+### Week 4 - 10 May
+
+* Assembled the hardware components inside the vending machine structure and completed the breadboard wiring.
+
+
+## Hardware
+The vending machine is controlled by an STM32U5 microcontroller that manages all system operations. It integrates an MFRC522 RFID reader and push buttons for inputs, while using an I2C LCD 1602 for the display. The physical dispensing is handled by four stepper motors and the coin-return mechanism is driven by a servo motor.
+
+* **STM32U545 Nucleo:** The central microcontroller that executes the Rust firmware to process the system logic and coordinate all other parts.
+
+* **MFRC522 RFID Reader:** An SPI-based card scanner used to authorize admin transactions.
+
+* **28BYJ-48 Stepper Motors & ULN2003 Drivers:** Used to rotate the dispensing spirals inside the compartments.
+
+* **LCD 1602 Display with PCF8574 I2C Adapter:** Provides real-time instructions, credit status, and feedback using only two I2C wires.
+
+* **SG90 Servo Motor:** A micro servo used to operate the physical change coin mechanism.
+
+* **Push Buttons & Limit Switch:** Act as the physical user interface for product selection and mechanical coin detection.
+
+![circuit](images/circuit1.webp)
+![circuit](images/circuit2.webp)
+![circuit](images/circuit3.webp)
+
+### Schematics
+
 ![Schematics](images/schematics.webp)
 
 ### Bill of Materials
