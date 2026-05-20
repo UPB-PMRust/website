@@ -78,7 +78,7 @@ The hardware setup includes multiple sensors, each covering a different security
 
 ## Schematics
 
-Place your KiCad or similar schematics here in SVG format.
+![Schematics](./kicad_project.svg)
 
 ## Bill of Materials
 
