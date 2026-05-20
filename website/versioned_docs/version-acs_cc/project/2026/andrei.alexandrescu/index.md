@@ -185,6 +185,14 @@ Switch released  -> drawer OPEN
 
 The buzzer is used for sound feedback. It signals reminders, success and alarms. The onboard LED is used together with the buzzer so the user also gets visual feedback.
 
+### Prototype photos
+
+The following photos show the assembled RustMed Locker prototype and the hardware setup used for testing.
+
+![RustMed Locker hardware setup](./images/poza_proiect_1.jpeg)
+
+![RustMed Locker final prototype](./images/poza_proiect_2.jpeg)
+
 ### Pin mapping
 
 | Function    | Board pin | STM32 pin | Usage                         |
