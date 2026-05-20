@@ -40,6 +40,10 @@ Ordered all hardware components (GPS module, accelerometer/gyroscope MPU-6050, b
 
 ### Week 12 - 18 May
 
+Completed testing of all remaining individual components. Successfully obtained the first GPS fix outdoors after tuning the UART communication and analyzing NMEA sentences in real time. Tested the SD card module (SPI communication, FAT32 initialization, file write and read-back verification). Added a KY-023 analog joystick to the project for OLED screen navigation, tested ADC reading on both axes and button input. Reallocated several GPIO pins to avoid conflicts between the SD card SPI bus and the joystick ADC inputs. Started development of the main integrated project combining all components into 6 parallel async Embassy tasks.
+
+![progress pic](images/progress_pic.svg)
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -48,19 +52,20 @@ The system uses the NUCLEO-U545RE-Q board as the main microcontroller. The GPS m
 
 ### Schematics
 
-![schematici proiect](./schematic_proiectpm-dataloggergps_2026-05-13.svg)
+![schematici proiect](images/schematic_datalogger_all.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 | -------- | -------- | ------- |
 | [NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | 130 RON |
-| [GPS Module NEO-6M](https://www.optimusdigital.ro/en/gps/2137-gyneo6mv2-gps-module-with-miniature-antenna.html) | Position, speed, GPS altitude | 69.99 RON |
+| [GPS Module NEO-6M](https://www.optimusdigital.ro/en/gps/2137-gyneo6mvgps-module-with-miniature-antenna.html) | Position, speed, GPS altitude | 69.99 RON |
 | [Accelerometer and Gyroscope MPU-6050](https://www.optimusdigital.ro/en/inertial-sensors/96-mpu6050-accelerometer-and-gyroscope-module.html) | Sudden braking and cornering detection | 14.68 RON |
 | [Barometric Sensor AHT20 + BMP280](https://www.optimusdigital.ro/en/pressure-sensors/1777-bmp280-barometric-pressure-sensor-module.html) | Temperature and barometric altitude | 12.00 RON |
 | [OLED Display 0.96" I2C](https://www.optimusdigital.ro/en/lcds/2894-096-i2c-oled-module.html) | Real-time data display | 18.98 RON |
-| [MicroSD Card Module](https://www.optimusdigital.ro/en/memories/1516-microsd-card-slot-module.html) | Data logging in CSV format | 4.99 RON |
-| MicroSD Card 8GB | CSV file storage | 15 RON |
+| [MicroSD Card Module SPI](https://www.optimusdigital.ro/en/memories/1516-microsd-card-slot-module.html) | Data logging in CSV format via SPI | 4.99 RON |
+| MicroSD Card 16GB Class 10 | CSV file storage | 43 RON |
+| [Analog Joystick KY-023](https://www.optimusdigital.ro/en/joysticks/12-ps2-joystick-module.html) | OLED screen navigation and race control | 4.99 RON |
 | RGB LED Module | Visual event indicator | 6.39 RON |
 | Passive Buzzer | Audio alert for sudden braking | 2.97 RON |
 | LiPo Battery 3.7V + TP4056 module | Mobile power supply and charging | 34.67 RON |
@@ -70,12 +75,16 @@ The system uses the NUCLEO-U545RE-Q board as the main microcontroller. The GPS m
 
 | Library | Description | Usage |
 | --------- | ------------- | ------- |
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async framework for embedded Rust | Parallel tasks, peripheral drivers |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async framework for embedded Rust | Parallel tasks, peripheral drivers, I2C, SPI, UART, ADC, GPIO |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor for embedded | Running 6 parallel async tasks |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Time management in Embassy | Async timers and delays |
-| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT32 file system for SD | CSV writing on SD card |
-| [mpu6050](https://github.com/juliangaal/mpu6050) | Driver for accelerometer/gyroscope | IMU data reading via I2C |
-| [bmp280-ehal](https://github.com/uber-foo/bmp280) | Driver for barometric sensor | Temperature and pressure reading |
-| [ssd1306](https://github.com/jamwaffles/ssd1306) | OLED display driver | Real-time data display |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives | Signal and Mutex for inter-task communication |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Embedded HAL adapters for Embassy | Shared I2C bus between MPU6050, BMP280 and OLED |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT32 file system for SD | CSV writing on SD card via SPI |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer | SPI device trait implementation for SD card |
+| [ssd1306](https://github.com/jamwaffles/ssd1306) | OLED display driver | Real-time data display via I2C |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded | Text rendering on OLED |
+| [heapless](https://github.com/rust-embedded/heapless) | Stack-allocated data structures | String formatting without heap |
 | [libm](https://github.com/rust-lang/libm) | Math functions for no_std | Haversine formula, sqrt |
 
 ## Links
