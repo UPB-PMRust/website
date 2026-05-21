@@ -54,17 +54,18 @@ animal's ability.
 
 ## Log
 
-<!-- write your progress here every week -->
-
 ### Week 14 - 20 April
 - Finalized project theme and received approval.
-- Researched and ordered all hardware components from EMAG and Optimus Digital.
+- Researched and ordered all hardware components from EMAG, AliExpress and Optimus Digital.
 
 ### Week 4 - 8 May
 
 ### Week 12 - 18 May
+- 3D printed supports for both servo motors, one glued to the tube, the other to the project support, for better resistance.
+- Changed the infrastructure of the wheels, placing them with a spring between them to be able to adapt to the ball that is to be propelled and for better ball-wheel adhesion.
 
 ### Week 19 - 25 May
+- Encountered a problem with the components, I connected the servo motors directly from the board, which resulted in them burning out, which is why as a solution I powered them from the mains, first passing each one through a voltage regulator. From this problem, I came to the conclusion that I don't need to connect all my components to the board directly
 
 ## Hardware
 
@@ -86,27 +87,28 @@ to select between game modes (Random, Training) and start/stop the system.
 
 ### Schematics
 
-![Schematics Diagram](images/Smart_Pet_Ball_Launcher.svg)
+![Schematics Diagram](images/Smart_Pet_Ball_Launcher_scheme.webp)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | ~85 RON |
-| [A2212/13T 1000KV Brushless Motor x2](https://hobbymarket.ro/motor-brushless-1000kv-a2212-13t-pentru-drone-si-aeromodele.html) | Dual flywheel ball propulsion | ~120 RON |
-| [FlyFun V5 40A Motor Speed Controller](https://www.aliexpress.com/item/33058004400.html) | ~40 RON |
-| 3D Printed Flywheel Wheels x2 | Grip and propel the ball | ~0 RON (printed) |
-| 3D Printed Turret Base + Bearing | Rotating turret platform | ~0 RON (printed) |
-| [MG996R Servo Motor](https://www.emag.ro/servomotor-towerpro-mg-996r-180-55g-cuplu-pana-la-10-kg-cablu-30-cm-3-pini-multicolor-2-c-038/pd/DTHLKLMBM/) | Turret horizontal rotation | ~35 RON |
-| [SG90 Micro Servo](https://www.emag.ro/servomotor-sg90-180-de-grade-ai156-s297/pd/D33V1GMBM/) | Ball release gate | ~15 RON |
-| [HC-SR501 PIR Sensor](https://www.emag.ro/senzor-de-miscare-detector-pir-hc-sr501-sensibilitate-reglabila-33-x-23-x-30-mm-multicolor-2-a-020/pd/DZLTKLMBM/) | Pet presence detection + MCU wake-up | ~10 RON |
-| [HC-SR04 Ultrasonic Sensor](https://www.emag.ro/modul-senzor-ultrasonic-detector-distanta-hc-sr04-xbaxah-ultrasonic/pd/D5HMPD2BM/) | Ball presence detection at tube | ~7 RON |
-| [LM2596 DC-DC Step-Down Module](https://www.bitmi.ro/electronica/modul-coborator-de-tensiune-lm2596-dc-3a-10017.html) | Voltage regulation for logic components | ~12 RON |
-| [12V 5A Switched-Mode Power Supply](https://www.optimusdigital.ro/en/12-v-ac-dc-power-supplies/5067-12v-5a-60-w-switched-mode-power-supply.html) | Main power source | ~60 RON |
-| [OLED Display 128x64 I2C 1.3"](https://www.emag.ro/display-oled-rezolutie-128-x-64-1-3-inchi-comunicare-i2c-27-x-27-mm-multicolor-5904162806386/pd/D7RP0LMBM/) | System state and mode display | ~25 RON |
-| [Buttons x3](https://www.emag.ro/set-5-bucati-buton-microintrerupator-smd-tactil-6x6x3-1mm-4-pini-cupru-rosu-setmswitch/pd/DT9XRK3BM/) | Mode selection and start/stop | ~8 RON |
-| Breadboard + Jumper Wires | Prototyping connections | ~15 RON |
-| **Total** | | **~432 RON** |
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | 85 RON |
+| [A2212/13T 1000KV Brushless Motor x2](https://hobbymarket.ro/motor-brushless-1000kv-a2212-13t-pentru-drone-si-aeromodele.html) | Dual flywheel ball propulsion | 120 RON |
+| [Favorit FVT LittleBee 30A-S 30A ESC BLHeli_S Motor Speed Controller x2](https://de.aliexpress.com/item/32738195790.html?gatewayAdapt=glo2deu) | 45 RON |
+| 3D Printed Flywheel Wheels x2 | Grip and propel the ball | 0 RON (printed) |
+| 3D Printed Turret Base + Bearing | Rotating turret platform | 0 RON (printed) |
+| [MP1584EN Mini DC-DC Step Down Module x2](https://www.optimusdigital.ro/en/adjustable-step-down-power-supplies/166-mp1584en-mini-dc-dc-step-down-module.html) | Tension regulatory | 10 RON |
+| [MG996R Servo Motor](https://www.emag.ro/servomotor-towerpro-mg-996r-180-55g-cuplu-pana-la-10-kg-cablu-30-cm-3-pini-multicolor-2-c-038/pd/DTHLKLMBM/) | Turret horizontal rotation | 35 RON |
+| [SG90 Micro Servo](https://www.emag.ro/servomotor-sg90-180-de-grade-ai156-s297/pd/D33V1GMBM/) | Ball release gate | 15 RON |
+| [HC-SR501 PIR Sensor](https://www.emag.ro/senzor-de-miscare-detector-pir-hc-sr501-sensibilitate-reglabila-33-x-23-x-30-mm-multicolor-2-a-020/pd/DZLTKLMBM/) | Pet presence detection + MCU wake-up | 10 RON |
+| [HC-SR04 Ultrasonic Sensor](https://www.emag.ro/modul-senzor-ultrasonic-detector-distanta-hc-sr04-xbaxah-ultrasonic/pd/D5HMPD2BM/) | Ball presence detection at tube | 7 RON |
+| [LM2596 DC-DC Step-Down Module](https://www.bitmi.ro/electronica/modul-coborator-de-tensiune-lm2596-dc-3a-10017.html) | Voltage regulation for logic components | 12 RON |
+| [12V 5A Switched-Mode Power Supply](https://www.optimusdigital.ro/en/12-v-ac-dc-power-supplies/5067-12v-5a-60-w-switched-mode-power-supply.html) | Main power source | 60 RON |
+| [OLED Display 128x64 I2C 1.3"](https://www.emag.ro/display-oled-rezolutie-128-x-64-1-3-inchi-comunicare-i2c-27-x-27-mm-multicolor-5904162806386/pd/D7RP0LMBM/) | System state and mode display | 25 RON |
+| [Buttons x3](https://www.emag.ro/set-5-bucati-buton-microintrerupator-smd-tactil-6x6x3-1mm-4-pini-cupru-rosu-setmswitch/pd/DT9XRK3BM/) | Mode selection and start/stop | 8 RON |
+| Breadboard + Jumper Wires | Prototyping connections | 15 RON |
+| **Total** | | **447 RON** |
 
 ## Software
 
