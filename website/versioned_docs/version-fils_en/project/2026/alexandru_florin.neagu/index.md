@@ -27,6 +27,12 @@ This is the initial diagram, subject to change as I develop the project, regardi
 
 ![Architecture diagram](./steadyframe.svg)
 
+These are the current KiCAD diagrams for the project depicting the power distribution and the different protocols used for communication inbetween the STM32 board and the separate peripherals (The motor driver & encoder combos, the IMU, the joystick control, the screen and an additional vibration motor)
+
+![KiCAD diagram first](./kicad_first.svg)
+
+![KiCAD diagram second](./kicad_second.svg)
+
 ## Main components:
 
 ## Log
@@ -44,9 +50,28 @@ Conceptual stage, thinking how I would want my gimbal project to work, coming up
 
 Ordering a big part of components (motors, drivers+encoders, STM32 board). More research.
 
-### Week 9: 19 - 25 May
+### Week 9: 19 - 25 April
 
 Ordering next batch of components (IMU, battery and charger). More research x2. Changed to attempting CAN connection (lord have mercy).
+
+### Week 10: 26 April - 2 May
+
+Arrival of most components. Realised I need for the CAN bus a twisted pair insulated wire, had lots of trouble finding some available in Romania till I found some and ordered. Started working on the 3D printed components, the motor magnet couplings, the driver cages and the arms, alongside prototyping ways for cable management in Fusion 360.
+
+### Week 11: 3 - 9 May
+
+Finished designing the driver cages, still working on the rest of the components. Cable arrived. Realised my drivers have small can cables which I need to further connect to perfboards to fulfill CAN Bus conditions. Starting thinking about the KiCAD schematic and the different communication protocols required for pin connections between the board and the peripherals.
+
+![photo_first](./motors.webp)
+
+![photo_second](./some_wires.webp)
+
+![photo_third](./peripherals.webp)
+
+
+### Week 12: 10 - 16 May
+
+Finished the KiCAD schematic and submitted to Git branch for review by lab assistants. Worked on setting up motor drivers and motors with USB-C connection and integrated ODrive Python programs developed for MKS XDRive Mini. Still working on 3D design for arms and rails for coupling the 3 axis components.
 
 ## Hardware
 
@@ -79,10 +104,9 @@ The format is
 | [LM2596S](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | DC-DC Buck Step Down Convertor LM2596S 4.0~40V to 1.25-37V - for supplying correct voltage to STM32 board| [48 RON](https://www.emag.ro/modul-dc-dc-buck-step-down-lm2596s-dc-dc-4-0-40v-la-1-25-37v-regulator-de-tensiune-reglabil-cu-voltmetru-led-stlxy-741050522578/pd/DKNQT83BM/?ref=sponsored_products_search_f_b_1_5&recid=recads_1_b90d01a332c40f582acfccf6bf3bca72edcfc042cd11701d2d49ef94121cef69_1777211422&aid=549a3d7e-f438-11f0-801c-06eaf0d4245d&oid=302862900&scenario_ID=1) |
 | [Gens Ace iMars mini G-Tech](https://gensace.de/products/gens-ace-imars-mini-g-tech-usb-c-2-4s-60w-rc-battery-charger-with-power-supply-adapter-and-adpter-cable-eu) | The battery charger - charges the battery when needed | [245 RON](https://www.autorc.ro/incarcatoare-acumulatori/10560-incarcator-acumulatori-gens-ace-imars-mini-g-tech-usb-c-2-4s-60w.html) |
 | [2 Axis Joystick](https://www.laskakit.cz/user/related_files/joystick_module.pdf) | The joystick - human input to "move" (point) the camera in a specified direction | [6 RON](https://sigmanortec.ro/Modul-joystick-doua-axe-XY-p126458908#) |
-| []() | Total: | [~1850 RON]() |
-NOT CONFIRMED YET:
-| [ILI9341](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | The LCD 3.2 inch touch display - would be used for observing information displayed by the microcontroller regarding position and rotation, plus would help navigate a menu for parameters - lots of stuff to do here, not all figured out *yet* | [117 RON](https://sigmanortec.ro/display-lcd-32-inch-240x320-touch-ili9341-sd-mega) |
+| [ST7789V](https://newhavendisplay.com/content/datasheets/ST7789V.pdf) | The LCD display - used for observing information displayed by the microcontroller regarding position and rotation, plus would help navigate a menu for parameters - lots of stuff to do here, not all figured out *yet* | [31 RON](https://sigmanortec.ro/display-tft-13-ips-spi-65k-culori-lcd-st7789v-240x240-7p) |
 | [Wires]() | No exact count, still figuring out | []() |
+| []() | Total: | [~1850 RON]() |
 
 
 

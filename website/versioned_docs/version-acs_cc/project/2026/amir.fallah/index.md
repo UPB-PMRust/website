@@ -24,7 +24,16 @@ This is a project I had on my radar for a long time. Having no experience with C
 ## Log
 
 ### Week 20 - 24 April
+
 Made initial documentation and ordered hardware parts.
+
+### Week 4 - 8 May
+
+Parts started to arrive. I tested each part individually with some of them not working. I was forced to order three identical components to be sure one of them worked. Along side the hardware test I build for each component a small sanity check program to test the functionality.
+
+### Week 11 - 15 May
+
+Motors arrived.
 
 ## Hardware
 
@@ -32,7 +41,9 @@ I am running the robot in a theadered format, for the ease of development, to co
 
 ### Schematics
 
-TBD
+![Schematic](./images/schematic.webp)
+
+The schematic does not include the power bus, just the data and commands wires.
 
 ### Bill of Materials
 
@@ -42,8 +53,8 @@ TBD
 | [MPU6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/RM-MPU-6000A.pdf) | IMU (Gyroscope + Accelerometer) | [16 RON](https://www.emag.ro/modul-accelerometru-si-giroscop-mpu6050-ai382-s321/pd/DB606JBBM/)
 | [HM-10](https://components101.com/sites/default/files/component_datasheet/HM10%20Bluetooth%20Module%20Datasheet.pdf) | Bluetooth Module | [27 RON](https://www.emag.ro/modul-bluetooth-4-0-ble-at-09-hm-10-msalamon-conectivitate-rapida-mic-si-eficient-ideal-pentru-proiecte-iot-economiseste-energie-fiabil-usor-de-montat-functioneaza-in-diverse-conditii-calitate-inalta-/pd/DHKDDVYBM/) |
 | [LM2596](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | Buck Converter 12V - 5V | [10 RON](https://www.emag.ro/modul-dc-dc-step-down-lm2596-765464701237/pd/DWHHRGBBM/) |
-| [TB6612FNG](https://cdn.sparkfun.com/datasheets/Robotics/TB6612FNG.pdf) | Dual Motor Driver | [26 RON](https://www.emag.ro/driver-motor-tb6612fng-punte-h-dubla-control-pwm-1-2a-bmx474/pd/DSMDW83BM/) |
-| [JGA25-371](https://people.ece.ubc.ca/~eng-services/files/courses/elec391-data_sheets/MOT4-info.pdf) | Encoder Disk Gear Motor 12v | [2 x 31 RON](https://www.aliexpress.com/item/1005007889281285.html) | 
+| [L298N](https://www.st.com/resource/en/datasheet/l298.pdf) | Dual Motor Driver | [10 RON](https://www.optimusdigital.ro/en/brushed-motor-drivers/145-l298n-dual-motor-driver.html?search_query=L298N&results=3&HTTP_REFERER=https%3A%2F%2Fwww.optimusdigital.ro%2Fen%2Fsearch%3Fcontroller%3Dsearch%26orderby%3Dposition%26orderway%3Ddesc%26search_query%3DL298N%26submit_search%3D) |
+| [JGB37-520](https://c1555f5ec9.clvaw-cdnwnd.com/34662fcf1f1e607c561442431023ac8e/200013049-b3a11b3a13/JGB37-520%20Datasheet.pdf) | Encoder Disk Gear Motor 12v | [2 x 56 RON](https://www.aliexpress.com/item/1005007204535740.html) | 
 
 
 ## Software
