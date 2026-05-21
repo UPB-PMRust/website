@@ -60,7 +60,7 @@ The project uses an STM32 Nucleo-U545RE-Q (Cortex-M33) as the main microcontroll
 
 ### Schematics
 
-![alt text](Diagrama_Kicad.drawio.svg)
+![alt text](pingpong_levitation.svg)
 
 ### Bill of Materials
 
