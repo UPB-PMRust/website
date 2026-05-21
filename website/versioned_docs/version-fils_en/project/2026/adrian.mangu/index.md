@@ -95,16 +95,16 @@ Got the project approved. Planned the architecture, chose the components
 and researched thermal printer communication protocols (ESC/POS) and Rust crates.
 
 ### Week 13 – 19 April
-Ordered all the required components.
+Components arrived.
 
 ### Week 20 – 26 April
-(Work in progress)
+Working on the hardware and software.
 
 ### Week 27 April – 3 May
-(Work in progress)
+Working on the hardware and software.
 
 ### Week 4 – 10 May
-(Work in progress)
+Started assembling the hardware and connecting the components.
 
 ### Week 11 – 17 May
 (Work in progress)
@@ -116,9 +116,13 @@ Ordered all the required components.
 
 ## Hardware
 
-_Schematic to be added (KiCad)._
+### Schematics
 
-_Photos to be added when components arrive._
+![KiCad Schematic](mangu_adrian.svg)
+
+### Photos
+
+![Hardware Setup](hardware.webp)
 
 ---
 
@@ -143,7 +147,6 @@ _Photos to be added when components arrive._
 | embassy-net | Network stack | TCP/IP, HTTP requests |
 | serde-json-core | JSON parsing (no_std) | Parsing incoming order data |
 | thermal-print | Thermal printer ESC/POS commands | Controlling the printer |
-
 
 ## Links
 
