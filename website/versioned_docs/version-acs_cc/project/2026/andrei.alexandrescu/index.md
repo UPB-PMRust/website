@@ -189,9 +189,9 @@ The buzzer is used for sound feedback. It signals reminders, success and alarms.
 
 The following photos show the assembled RustMed Locker prototype and the hardware setup used for testing.
 
-![RustMed Locker hardware setup](./images/poza_proiect_1.jpeg)
+![RustMed Locker hardware setup](./images/poza_proiect_1.webp)
 
-![RustMed Locker final prototype](./images/poza_proiect_2.jpeg)
+![RustMed Locker final prototype](./images/poza_proiect_2.webp)
 
 ### Pin mapping
 
