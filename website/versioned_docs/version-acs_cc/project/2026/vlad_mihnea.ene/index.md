@@ -49,20 +49,26 @@ over I²C. A coin vibration motor driven via PWM through an N-MOSFET provides ha
 
 ### Week 5 - 11 May
 
+Selected project components and ordered hardware. Set up the Rust/Embassy development 
+environment with the correct toolchain (1.90) and probe-rs for flashing. Tested basic 
+project compilation for the STM32 Nucleo-U545RE-Q target.
+
 ### Week 12 - 18 May
+
+Tested all hardware components individually: analog joystick (ADC), tactile buttons (GPIO),
+SSD1306 OLED display (I2C), HC-05 Bluetooth module (USART), and vibration motor (PWM).
+All components confirmed working. Created EasyEDA schematic with all connections.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
 The controller is built around the **STM32 Nucleo-U545RE-Q** (ARM Cortex-M33, 160 MHz). Input
-comes from two **KY-023 analog joystick modules** connected to four ADC channels and six
+comes from a **KY-023 analog joystick module** connected to two ADC channels and four
 **tactile push buttons** on GPIO pins with internal pull-ups. Wireless communication is handled
 by an **HC-05 Bluetooth module** over USART. An **SSD1306 OLED 128×64** display is connected
-via I²C and shows battery level and connection status. A **coin vibration motor** driven by a
-**2N7000 MOSFET** provides rumble feedback. Power comes from a **3.7 V LiPo battery** managed
-by a **TP4056 charging module** and a **3.3 V AMS1117 LDO regulator**. All components are
-mounted on an open **acrylic plate** (~200×150 mm) using M3 standoffs and screws.
+via I²C and shows battery level and connection status. A **PWM vibration motor module**
+(3–5V, with integrated driver) provides rumble feedback.
 
 ## Schematics
 

@@ -28,22 +28,22 @@ Beyond the security aspect, this project offered a challenging opportunity to in
 - **Authentication FSM Task**: The central coordinator. It consumes events from the NFC, keypad, and fingerprint tasks in order. Each level has a configurable timeout; failure or timeout at any level resets the system to the idle state. On full success it drives the servo to the open position, waits 10 seconds, then closes and returns to idle. It also controls the buzzer and LEDs for acoustic and visual feedback.
 ### Architecture Diagram
  
-![Architecture Diagram](./architecture.svg)
+![Architecture Diagram](./architecture.webp)
  
 ## Log
  
 ### Week 4 - 10 May
- 
+The components arrived and I spent the first week familiarizing myself with the datasheets and documentation for the STM32U545, PN532, AS608, and the LCD.
 ### Week 11 - 17 May
- 
+I assembled the hardware on a breadboard, connecting the Nucleo board to the NFC module, fingerprint sensor, keypad, LCD, servo, buzzer, and LEDs according to the planned pinout. I also set up the power supply to provide 3.3V and 5V rails as needed.
 ### Week 18 - 24 May
- 
+I finalized the software architecture and implemented most of it.
 ## Hardware
  
 The project is built around the STM32 Nucleo-U545RE-Q (ARM Cortex-M33, 160 MHz) with its integrated ST-LINK/V3E debugger. The PN532 NFC module is connected over SPI1 on pins PA5 (SCK), PA6 (MISO), PA7 (MOSI), and PB6 (CS); it reads MIFARE Classic 1K cards and tags. The AS608 optical fingerprint sensor connects over UART2 on PA2 (TX) and PA3 (RX) for biometric enrollment and verification. The 4x4 membrane keypad uses 8 GPIO lines on PC0–PC7, with rows as push-pull outputs and columns as inputs with internal pull-ups. The LCD 16x2 display uses a PCF8574 I2C backpack at address 0x27, connected on PB8 (SCL) and PB9 (SDA). The SG90 servo motor is driven by a 50 Hz PWM signal from TIM2 Channel 1 on PA0, with a pulse width between 1 ms and 2 ms controlling the 0° to 90° range. A passive buzzer on PB0 generates different tone patterns for success and failure events. Three 5 mm LEDs (red on PB2, green on PB1, yellow on PB3) with 220-ohm series resistors provide per-step visual status. An MB102 breadboard power supply provides a regulated 5V rail for the AS608 sensor and LCD backlight, and 3.3V for the NFC module, with a common ground shared with the Nucleo board.
  
 ### Schematics
- 
+ ![Schematics Diagram](./schematic.webp)
  
 ### Bill of Materials
  
