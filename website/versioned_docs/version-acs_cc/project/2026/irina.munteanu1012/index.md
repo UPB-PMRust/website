@@ -87,7 +87,7 @@ to select between game modes (Random, Training) and start/stop the system.
 
 ### Schematics
 
-![Schematics Diagram](images/Smart_Pet_Ball_Launcher_scheme.webp)
+![Schematics Diagram](images/scheme.webp)
 
 ### Bill of Materials
 
