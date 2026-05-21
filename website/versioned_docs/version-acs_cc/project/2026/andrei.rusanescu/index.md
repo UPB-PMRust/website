@@ -22,7 +22,9 @@ I am particularly interested in cars and networking. This project combines multi
 
 ## Architecture
 
-![Architecture](schema_bloc.svg)
+![Hardware diagram](schema_bloc.svg)
+
+Both the hardware and software diagrams are drawn in `draw.io`.
 
 The system is organized around five main subsystems:
 
@@ -38,10 +40,10 @@ The L298N dual H-bridge receives PWM signals from the STM32 and drives 4 DC moto
 - 2x IR LM393 encoders: RPM feedback for PID
 
 **4. Communication Subsystem**
-HC-06 Bluetooth module connected to STM32 via UART. Bidirectional: laptop sends raw keyboard characters (w, a, s, d, x, p), and the robot streams back high-efficiency text-based CSV telemetry (T,Load,Comp,Ax,Ay,Gz) at 10Hz to reduce microcontroller overhead.
+HC-06 Bluetooth module connected to STM32 via UART. Bidirectional: laptop sends raw keyboard characters (w, a, s, d, x, p), and the robot streams back high-efficiency text-based CSV telemetry (T,Load,Comp,Ax,Ay,Gz,Slope) at 10Hz to reduce microcontroller overhead.
 
 **5. Display & Indicators Subsystem**
-- OLED SSD1306 128x64 (I2C, address 0x3C, shared bus with IMU): displays active metrics like distance, encoder ticks, load %, and current power mode.
+- OLED SSD1306 128x64 (I2C, address 0x3C, shared bus with IMU): displays active metrics like distance, encoder ticks, load %, slope, and current power mode.
 - 3x LEDs (green/blue/red) on GPIO: visual indicator of motor effort based on PWM duty cycle
 - PC Dashboard: Tkinter window with embedded real-time Matplotlib animation canvas displaying streaming physics graphs.
 
@@ -121,11 +123,32 @@ the sensor locking issue.
 
 ### Week 18 - 24 May
 Finalized the closed-loop motor control by deploying a tuned PI velocity regulator ($K_P=35, K_I=15$) and locking the noisy derivative term ($K_D$) to zero.
-Implemented a $7/8$ exponential moving average Low-Pass filter to smooth out encoder slot jitter, a rapid auto-calibration routine to sample target cruise speeds, and a 1.6-second startup "blind window" to stop the controller from confusing physical takeoff inertia with cargo load.
-Built the custom companion PC interface using Python Tkinter and Matplotlib to handle low-latency key debouncing and animate the 10Hz text-based CSV telemetry streams in real time.
+Implemented a $7/8$ exponential moving average Low-Pass filter to smooth out encoder slot jitter, a rapid auto-calibration routine that samples the target cruise RPM during the first seconds of movement and a 1.6-second startup blind window to stop the controller from confusing physical takeoff inertia with cargo load.
+
+Added another 2 compensation channels:
+1. Yaw-rate correction (lateral drift): The gyroscope $G_z$ axis is sampled
+at every PI loop tick (5 Hz). When the robot is commanded straight
+(`w` / `s`) and a non-zero yaw rate is detected, caused by an
+asymmetrically placed load or a difference in motor friction, the
+controller applies an asymmetric PWM correction. The yaw mixer is disabled
+during deliberate turns (`a` / `d`) via the `IS_TURNING` flag so that it
+does not fight the intentional rotation.
+It takes a few tries to get the right values.
+
+2. Slope detection and pre-emptive compensation: The accelerometer $A_y$
+axis (aligned with the driving direction after the IMU mounting orientation
+was taken into account) is read each PI tick. The slope compensation is
+clamped to +/- 30 % PWM. The result is published to `SLOPE_COMP` and added 
+**symmetrically** to both wheels in the motor loop, acting as a 
+feed-forward term that pre-emptively increases the
+duty cycle before the PI loop has had time to react to the RPM drop.
+
+Built the custom companion PC interface using Python Tkinter and Matplotlib
+to handle low-latency key debouncing and animate the 10Hz text-based CSV
+telemetry streams (`T,Load,Comp,Ax,Ay,Gz,Slope`) in real time.
 
 
-## Hardware
+## Hardware design
 
 The robot is built on a 4WD chassis powered by four DC motors (3–6V) wired in parallel per side (skid steering) and driven by an L298N dual H-bridge. Speed is dynamically regulated via 1kHz PWM signals from the STM32, while directional control is managed through discrete GPIO pins. Two LM393 IR optical sensors read wheel encoder discs to provide real-time RPM feedback, which serves as the primary metric for the PI load-compensation algorithm.
 
@@ -140,6 +163,68 @@ For environmental and physics telemetry, an MPU-6500 IMU communicates over a sha
 <!-- Place your KiCAD schematics here in SVG format. -->
 KiCad Schematic:
 ![KiCad Schematic](PM_PROJECT.svg)
+
+
+## Software design
+The entire program is `#![no_std]` and `#![no_main]`;
+there is no heap, no operating system, and no RTOS scheduler, thus
+all concurrency is cooperative and driven by `async`/`await`.
+
+### Concurrency Model
+
+Embassy runs a single-threaded cooperative executor. Every task is a Rust
+`async fn` marked with `#[embassy_executor::task]`. Because only one task
+runs at a time and tasks yield at every `.await` point, shared state can be
+safely exchanged through **lock-free atomics** (`AtomicU32`, `AtomicI32`,
+`AtomicBool`) for single-value reads/writes, and through an
+`embassy_sync::channel::Channel` for the command queue. The I2C bus, which
+is shared between the IMU and the OLED, is protected by an
+`embassy_sync::mutex::Mutex<ThreadModeRawMutex, I2c>` stored in a
+`StaticCell` so that its `'static` lifetime can be passed to multiple tasks.
+
+I chose lock-free atomics because they are fast they can be used with ease
+in more then 2 functions (if I used a channel instead of atomics it would have gotten
+very complicated very fast). Atomics ar fast and simple.
+
+
+### Global Shared State - Atomic Variables
+
+All inter-task communication goes through a flat set of `static` atomics.
+The table below maps each atomic to the task that **writes** it and the tasks that **reads** it.
+
+| Atomic | Type | Writer | Readers | Meaning |
+|--------|------|--------|---------|---------|
+| `DIST_FRONT_CM` | `AtomicU32` | `distance_task` | `display_task`, `main` (motor) | Front HC-SR04 distance (cm) |
+| `DIST_REAR_CM` | `AtomicU32` | `distance_task` | `display_task`, `main` (motor) | Rear HC-SR04 distance (cm) |
+| `EMERGENCY_STOP_FRONT` | `AtomicBool` | `distance_task` | `main` (motor) | True when front obstacle < 15 cm |
+| `EMERGENCY_STOP_REAR` | `AtomicBool` | `distance_task` | `main` (motor) | True when rear obstacle < 15 cm |
+| `ENC_L_TICKS` | `AtomicU32` | `encoder_left_task` | `pid_task`, `display_task` | Cumulative left encoder ticks (20 per slot) |
+| `ENC_R_TICKS` | `AtomicU32` | `encoder_right_task` | `pid_task`, `display_task` | Cumulative right encoder ticks |
+| `IMU_AX` | `AtomicI32` | `imu_task` | `pid_task`, `telemetry_task` | Accel X x100 (% of 1 g) |
+| `IMU_AY` | `AtomicI32` | `imu_task` | `pid_task`, `telemetry_task` | Accel Y x100, LPF-filtered |
+| `IMU_AZ` | `AtomicI32` | `imu_task` | `telemetry_task` | Accel Z x100 |
+| `IMU_GZ` | `AtomicI32` | `imu_task` | `pid_task`, `telemetry_task` | Yaw rate x100 (deg/s), LPF-filtered |
+| `LOAD_PERCENT` | `AtomicU32` | `pid_task` | `display_task`, `telemetry_task` | Load % (0 = no load, 100 = motor blocked) |
+| `PID_COMPENSATION` | `AtomicI32` | `pid_task` | `display_task`, `telemetry_task` | Symmetric PI output (% PWM delta) |
+| `PID_COMP_LEFT` | `AtomicI32` | `pid_task` | `main` (motor) | Left wheel comp after yaw mixer |
+| `PID_COMP_RIGHT` | `AtomicI32` | `pid_task` | `main` (motor) | Right wheel comp after yaw mixer |
+| `SLOPE_COMP` | `AtomicI32` | `pid_task` | `main` (motor), `display_task`, `telemetry_task` | Feed-forward slope compensation (% PWM) |
+| `PWM_LEFT_ACTUAL` | `AtomicU8` | `main` (motor) | `pid_task` | Actual left PWM duty sent to L298N |
+| `PWM_RIGHT_ACTUAL` | `AtomicU8` | `main` (motor) | `pid_task` | Actual right PWM duty sent to L298N |
+| `POWER_MODE` | `AtomicU8` | `main` (motor) | `display_task`, `telemetry_task` | 0=ECO, 1=DRIVE, 2=SPORT |
+| `PID_CALIBRATED` | `AtomicBool` | `pid_task` | `display_task`, `telemetry_task`, `pid_task` | True once reference RPM is locked |
+| `REFERENCE_RPM_X100` | `AtomicU32` | `pid_task` | `pid_task` | Calibrated cruise RPM x100 |
+| `IS_TURNING` | `AtomicBool` | `main` (motor) | `pid_task` | True during `a`/`d` commands |
+
+The single channel:
+| Channel | Type | Sender | Receiver | Meaning |
+|---------|------|--------|----------|---------|
+| `CMD_CHANNEL` | `Channel<_, u8, 4>` | `bluetooth_task` | `main` (motor) | Raw command bytes: `w s a d x p` |
+
+
+### Software diagram
+
+![software_diagram](software_diagram_colored.svg)
 
 
 
