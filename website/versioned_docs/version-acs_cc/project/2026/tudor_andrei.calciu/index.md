@@ -17,7 +17,7 @@ To prevent brute-force attacks, the safe features an active evasion mechanism. I
 The main idea for this project was inspired by puzzle boxes and escape room mechanics. I wanted to build a security system that isn't just a static box but interacts physically with its environment. Combining standard sensory inputs (digital and analog) with a mobile robotics platform felt like a great engineering challenge, blending logic state machines with physical movement and anti-tampering behaviors.
 
 ## Architecture
-![Diagram](images/architecture.webp) 
+![Diagram](images/architecture.svg) 
 
 Main Components:
 - **Microcontroller (STM32 Nucleo)**: The brain of the project, managing the state machine and processing inputs/outputs.
