@@ -87,7 +87,7 @@ to select between game modes (Random, Training) and start/stop the system.
 
 ### Schematics
 
-![Schematics Diagram](images/scheme.webp)
+![Schematics Diagram](images/schema.webp)
 
 ### Bill of Materials
 
