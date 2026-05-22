@@ -49,7 +49,7 @@ Pose estimation combines two independent angle sources through a complementary f
 **6. Display Subsystem**
 `display_task` drives an ST7735S 128×160 color LCD over SPI1 at 4 MHz (SCK PA5, MOSI PA7, CS PB5, DC PB3, RST PC2). The top 128×128 px renders the 32×32 occupancy grid at 4×4 px per cell. A dirty-tracking mechanism repaints only cells whose color index changed since the last frame, reducing SPI traffic. The robot is overlaid as a yellow triangle with a green heading line. A status bar at the bottom changes color to reflect the current navigation state. The display refreshes at ~1.3 Hz (750 ms sleep per frame), fast enough to observe map growth, slow enough to leave CPU budget for sensor tasks.
 
-![Block Scheme](schema_bloc.svg)
+![Block Scheme](schema_bloc_hardware.svg)
 
 ## Log
  
@@ -77,7 +77,9 @@ Implemented and integrated the full software stack. Key challenges resolved duri
  
 The robot is built on a 2WD chassis powered by two DC motors with Hall encoders, driven by an L298N dual H-bridge. A single HC-SR04 ultrasonic sensor mounted on an SG90 scanning servo provides obstacle detection in three directions (front, left, right) without requiring multiple sensors. An MPU-6050 IMU provides gyroscope data for heading correction. An ST7735S 128×160 color LCD displays the live occupancy grid map, robot pose, and navigation state. The system is powered by a 7.4V 2000mAh LiPo battery with an LM2596 voltage regulator stepping down to 5V for logic.
  
-![Hardware](masina_slam.webp)
+![Hardware](masina-slam.webp)
+
+![Video](https://drive.google.com/file/d/1XOovrqZ5_l_vMKnRxfIBl36JoMaDF0Ii/view?usp=sharing)
 
 ### Schematics
 
@@ -98,8 +100,6 @@ The robot is built on a 2WD chassis powered by two DC motors with Hall encoders,
 | [ST7735 LCD 128x160](https://www.optimusdigital.ro/en/lcds/3-18-inch-tft-lcd.html) | Live 2D map + robot status display | [20 RON](https://www.optimusdigital.ro/en/lcds/3-18-inch-tft-lcd.html) |
 | LiPo Battery 7.4V 2000mAh | Autonomous power supply (~45min) | 35 RON |
 | Breadboard + Jumper Wires | Prototype circuit | 30 RON |
-
-## Software
 
 ## Software
  
@@ -150,7 +150,7 @@ One deliberate exception to async discipline is the echo measurement in `get_dis
  
 | Static | Type | Writer | Readers | Meaning |
 |--------|------|--------|---------|---------|
-| `GRID` | `Mutex<_, [[u8; 32]; 32]>` | `mapping_task` | `display_task` | Occupancy probabilities; 128 = unknown, <100 = free, >155 = occupied |
+| `GRID` | `Mutex<_, [[u8; 32]; 32]>` | `mapping_task` | `display_task` | Occupancy probabilities; 128 = unknown, \<100 = free, >155 = occupied |
 | `VISITED` | `Mutex<_, [[u8; 32]; 32]>` | `visit_marker_task` | `nav_task` (turn decision) | Per-cell visit count; used to prefer unexplored directions |
 
 ![Software](schema_bloc_software.svg)
