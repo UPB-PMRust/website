@@ -47,16 +47,19 @@ The architecture of this custom 3D printer controller is designed as a standalon
 <!-- write your progress here every week -->
 
 ### Weeks 23 March - 12 April
-Chose the project idea, researched components, and ordered hardware.
+Chose the project idea, researched components, and ordered the hardware.
 
-### Week 13 - 26 April
+### Weeks 13 - 26 April
 Assembled the frame and the Y axis.
 
-### Week 27 April - 10 May
+### Weeks 27 April - 10 May
 Finished the Z axis and parts of the X axis.
 
 ### Week 11 - 17 May
 Structured and organized the hardware schematic in EasyEDA and soldered the physical hardware components using a soldering iron.
+
+### Week 18 - 24 May
+Installed all remaining hardware components, then developed and tested the firmware.
 
 ## Hardware
 
@@ -104,6 +107,9 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Idea](https://www.youtube.com/watch?v=og1506q67mo)
+2. [Printer Hardware](https://www.youtube.com/watch?v=hORwhyP58FE&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=7)
+3. [X-Axis Components Installation](https://www.youtube.com/watch?v=MgbjTq3Q-bI&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=2)
+4. [Y-Axis Components Installation](https://www.youtube.com/watch?v=nEHKKb_pfoc&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=3)
+5. [Z-Axis Components Installation](https://www.youtube.com/watch?v=MSuzXK-uvY8&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=4)
+6. [Extruder Assembly Mount](https://www.youtube.com/watch?v=hxFhZji7b7E)
