@@ -22,7 +22,7 @@ I chose this project because it combines real-time embedded control, sensor fusi
 The system is organized into six layers, with data flowing top-down from the user's command to the spinning motors and power flowing bottom-up from the battery to every component:
 
 * **Remote control** — an Android phone runs a Rust UDP client that sends target setpoints (throttle, pitch, roll, yaw) over WiFi.
-* **Sensors and input** — MPU-6050 reads gyroscope and accelerometer data over I2C at 200 Hz, HC-SR04P reads altitude over GPIO at 50 Hz, and the CYW43439 WiFi chip on the Pico 2W receives setpoints over a UDP socket.
+* **Sensors and input** — MPU-6050 reads gyroscope and accelerometer data over I2C at 200 Hz, a BMP280 barometer and a VL53L1X laser time-of-flight sensor both read altitude data over I2C at 50 Hz, and the CYW43439 WiFi chip on the Pico 2W receives setpoints over a UDP socket.
 * **Flight controller** (running on the Pico 2W in Rust) — a Kalman filter fuses the IMU readings into stable pitch and roll estimates, a setpoint manager holds the current targets (and locks altitude when the throttle is released), and four independent PID controllers (pitch, roll, yaw, altitude) compute the corrections needed to drive the filtered state toward the setpoints.
 * **Motor mixing and drivers** — the motor mixer combines the four PID outputs into individual speed commands for each of the four motors; each command is then sent as a PWM signal to a 30A BLHeli ESC, which converts it into a 3-phase drive signal.
 * **Propulsion** — four A2212 1000KV brushless motors with 1045 propellers, arranged on the F450 frame in an X configuration with alternating CW and CCW rotation directions to cancel out the torque around the vertical axis.
@@ -50,7 +50,8 @@ The drone is built from the following components:
 
 * **Raspberry Pi Pico 2W** — the flight controller; runs the Rust firmware (Kalman filter, four PID loops, motor mixer) and hosts the WiFi access point that receives commands from the phone.
 * **MPU-6050 (GY-521)** — 6-axis IMU containing a 3-axis gyroscope and a 3-axis accelerometer; provides raw orientation data over I2C at 200 Hz, used by the Kalman filter to estimate pitch and roll.
-* **HC-SR04P** — ultrasonic distance sensor (3.3V variant, safe for the Pico's GPIO); measures the distance to the ground at 50 Hz, used as input for the altitude PID.
+* **BMP280** — barometric pressure sensor; measures atmospheric pressure over I2C at 50 Hz to estimate absolute altitude, providing long-term-stable altitude data for the altitude PID and covering ranges beyond the laser sensor's reach.
+* **VL53L1X** — laser time-of-flight distance sensor; measures the distance to the ground over I2C at 50 Hz with a narrow beam (immune to propeller downwash and acoustic noise), providing precise short-range altitude data for the altitude PID, especially during liftoff and landing.
 * **F450 frame with integrated PDB and landing gear** — the airframe that holds everything together; the integrated power distribution board distributes 11.1V from the battery to all four ESCs (rated up to 100A), and the landing gear protects the electronics during landings.
 * **4× A2212 1000KV brushless motors** — provide the lift; rated for 2-3S LiPo and up to 12A each, paired with 1045 propellers for stable hover on a 3S battery.
 * **4× 1045 propellers (2 CW + 2 CCW)** — convert motor rotation into thrust; the alternating rotation directions cancel out torque around the vertical axis so the drone doesn't spin uncontrollably.
@@ -59,6 +60,7 @@ The drone is built from the following components:
 * **SkyRC iMAX B6AC V2 charger** — used off-board to balance-charge the LiPo battery between flights; supports 1-6S LiPo at up to 6A.
 
 ### Schematics
+![Schematic](altitude_hold_drone.svg)
 
 ### Bill of Materials
 
@@ -70,7 +72,8 @@ The drone is built from the following components:
 | [3S 2200mAh 30C LiPo Battery (XT60)](https://www.emag.ro/) | Main power source | 120 RON |
 | [SkyRC iMAX B6AC V2 Charger](https://www.skyrc.com/) | LiPo balance charger | 213 RON |
 | [MPU-6050 (GY-521)](https://www.optimusdigital.ro/) | Gyroscope + accelerometer (I2C) | 32 RON |
-| [HC-SR04P](https://www.optimusdigital.ro/) | Ultrasonic distance sensor (3.3V) | 32 RON |
+| [BMP280] | Barometric pressure / altitude sensor (I2C) | 15 RON |
+| [BMP280] | Laser time-of-flight distance sensor (I2C) | 40 RON |
 
 ## Software
 
