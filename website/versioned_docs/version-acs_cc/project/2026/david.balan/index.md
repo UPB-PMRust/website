@@ -5,7 +5,7 @@ A WiFi-controlled quadrotor drone that autonomously maintains altitude when no o
 :::info
 
 **Author**: David-Cristian Balan  
-**GitHub Project Link**: [https://github.com/davidbalan05/website](https://github.com/davidbalan05/website)
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/acs-project-2026-davidbalan05](https://github.com/UPB-PMRust-Students/acs-project-2026-davidbalan05)
 
 :::
 
