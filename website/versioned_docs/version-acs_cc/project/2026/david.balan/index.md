@@ -73,7 +73,7 @@ The drone is built from the following components:
 | [SkyRC iMAX B6AC V2 Charger](https://www.skyrc.com/) | LiPo balance charger | 213 RON |
 | [MPU-6050 (GY-521)](https://www.optimusdigital.ro/) | Gyroscope + accelerometer (I2C) | 32 RON |
 | [BMP280] | Barometric pressure / altitude sensor (I2C) | 15 RON |
-| [BMP280] | Laser time-of-flight distance sensor (I2C) | 40 RON |
+| [VL53L1X] | Laser time-of-flight distance sensor (I2C) | 40 RON |
 
 ## Software
 
