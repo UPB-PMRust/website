@@ -1,8 +1,7 @@
 # DeskCal - Smart Desk Calendar
 A smart desk calendar that displays weather, news, local sensor data, and 
-A smart desk calendar that displays weather, local sensor data, and Google 
-Calendar events on a TFT screen, with animated LED ring alerts for upcoming 
-meetings.
+calendar events from a dedicated web app on a TFT touch screen, with animated 
+LED ring alerts for upcoming meetings.
 
 :::info 
 
@@ -28,22 +27,11 @@ between screens is done via swipe gestures on the touchscreen.
 
 A WS2812B RGB LED ring displays animated color patterns — configurable via a
 companion web application — with a dedicated alert mode when a meeting is
-approaching. A passive buzzer emits an audio alert before
-events start.
+approaching. A passive buzzer emits an audio alert before events start.
 
 The system supports multiple visual themes, selectable in real time from the 
 companion web app which communicates with the Python bridge over HTTP. The 
 device is housed in a custom 3D-printed enclosure.
-DeskCal is a smart desk calendar running on an STM32 Nucleo-U545RE-Q 
-microcontroller. It receives weather data and Google Calendar events from a 
-laptop via USB-UART, processed by a Python script. A BME280 sensor provides 
-local temperature, humidity, and atmospheric pressure. A TFT color display shows 
-four navigable pages: current clock and date, weather conditions, local sensor 
-data with historical temperature graph, and upcoming calendar events. A
-WS2812B RGB LED ring displays animated color patterns indicating meeting 
-proximity. A passive buzzer emits timed audio alerts before events. A physical
-button snoozes active reminders. The device is housed in a custom 3D-printed 
-enclosure.
 
 ## Motivation
 
@@ -73,10 +61,10 @@ with the Python bridge over HTTP at localhost:5000.
 
 **Python Bridge Script** — runs on the laptop and acts as the central data
 aggregator. Fetches weather data from OpenWeatherMap, events from
-Calendar, and news headlines from an RSS feed. Receives theme and configuration
-changes from the web app and forwards everything to the STM32 as JSON packets
-over USB-UART. Sends time synchronization packets every second
-and full data updates every 60 seconds.
+Calendar, and news headlines from an RSS feed using an open-source NewsAPI. 
+Receives theme and configuration changes from the web app and forwards 
+everything to the STM32 as JSON packets over USB-UART. Sends time 
+synchronization packets every second and full data updates every 60 seconds.
 
 **STM32 Nucleo-U545RE-Q** — main controller running embassy-rs. Contains a
 dedicated async UART task that receives and parses incoming JSON packets and
@@ -84,18 +72,20 @@ dispatches them to the main loop via a channel.
 
 **Display Subsystem** — ILI9341 2.8" TFT touchscreen over SPI renders five
 screens: Summary (screen 0), Clock + Meetings (screen 1), Air Quality (screen
-2), Weather (screen 3), and News (screen 4). Navigation between screens is
-performed via swipe gestures detected on the XPT2046 touchscreen
-controller. When a meeting is within 5 minutes, a full-screen alert overlay
-appears with a dismiss button.
+2), Weather (screen 3), News (screen 4), and a pomodoro timer (screen 5). 
+Navigation between screens is performed via swipe gestures detected on the 
+XPT2046 touchscreen controller. When a meeting is within 5 minutes, a 
+full-screen alert overlay appears with a dismiss button on the touchscreen.
 
 **Alert Subsystem** — WS2812B LED ring driven via one-wire protocol (using SPI
-peripheral for precise timing) displays eight configurable animation modes:
-Off, Dim, Solid, Breathe, Pulse, Fast, Strobe, and Chase. The ring switches
-to a dedicated alert animation mode when a meeting is approaching. A passive
-buzzer driven by PWM emits a tone. Both the
-normal ring color/animation and the alert color/animation are configurable in
-real time from the web app.
+peripheral for timing) displays eight configurable animation modes:
+Off, Dim, Solid, Breathe, Pulse, Fast, Strobe, and Chase. 
+
+The ring switches to a dedicated alert animation mode when a meeting is 
+approaching. A buzzer driven by PWM emits a tone. Both the normal ring 
+color/animation and the alert color/animation are configurable in real time 
+from the web app.
+
 The system is organized around four main components:
  
 **Host Python Script** — runs on the laptop, fetches weather from OpenWeatherMap 
@@ -111,7 +101,6 @@ via potentiometer (ADC).
 **Alert Subsystem** — WS2812B LED ring (SPI) + passive buzzer (PWM) produce 
 visual and audio alerts based on meeting proximity; tactile button handles 
 snooze via GPIO interrupt.
-
 
 
 ## Log
@@ -140,6 +129,18 @@ buzzer alerts and LED ring animations.
 ![Project Wired](./images/wires_project.webp)
 ![Fusion Enclosure Project](./images/fusion_project.webp)
 
+### Week 12 - Software Milestone
+Implemented UART communication with the Python bridge, JSON parsing, and
+data handling. Developed the five main display pages with embedded-graphics.
+Implemented swipe gesture detection for page navigation. Developed LED ring
+animation modes and alert logic based on meeting proximity. Integrated buzzer
+alerts. Tested the complete end-to-end system with the Python bridge sending
+real-time data updates and theme changes from the web app. Enclosure design 
+finalized and printed.
+
+![Collage](./images/collage.webp)
+![Web_App](./images/web-app.webp)
+
 ## Hardware
 
 The project uses an STM32 Nucleo-U545RE-Q as the main microcontroller, running
@@ -161,29 +162,11 @@ is encoded as a single SPI byte (0xC0 for logical 0, 0xF8 for logical 1).
 A passive buzzer is driven via PWM on TIM1 channel 1 (PA8), producing
 configurable frequency tones for meeting alerts.
 
-A 50kΩ potentiometer is connected to ADC1 (PA0) and read periodically. A
-tactile button with integrated blue LED provides user interaction via GPIO.
-
 All components are interconnected via jumper wires on a mini breadboard and
 housed in a custom 3D-printed PLA enclosure designed in Fusion 360.
 Ordered all hardware components from Optimus Digital and eMAG. Started reading 
 embassy-rs documentation and experimenting with basic GPIO and UART on the 
 Nucleo board. Started enclosure design in Fusion 360.
-
-### Week 8
-
-Stating writing the documentation page.
-
-## Hardware
-
-The project uses an STM32 Nucleo-U545RE-Q as the main microcontroller.
-A 2.8" ILI9341 TFT display connected via SPI renders the user interface across
-four pages. A BME280 sensor connected via I2C measures local temperature, 
-humidity, and atmospheric pressure. A WS2812B 16-LED ring connected via SPI 
-provides animated RGB visual alerts. A passive buzzer driven by PWM emits 
-audio alerts. A 50kΩ potentiometer on an ADC pin handles page navigation. 
-A tactile button on GPIO pins handle snooze and interaction. 
-All components are housed in a custom 3D-printed PLA enclosure.
 
 ### Schematics
 
@@ -216,27 +199,26 @@ The format is
 | [Breadboard 170 points](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/246-mini-breadboard-colorat.html) | Prototyping connections | ~3 RON|
 | 3D-printed PLA enclosure | Houses all components | TBD |
 
-
 ## Software
 
 | Library | Description | Usage |
-|---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | Peripheral drivers: SPI, I2C, UART, ADC, PWM, GPIO |
-| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Running concurrent tasks on the microcontroller |
-| [embassy-sync](https://github.com/embassy-rs/embassy) | Sync primitives | Mutex and Channel for inter-task state sharing |
-| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Embedded HAL bridge | SpiDevice wrapper for shared SPI bus |
-
-* TODO: the rest will be added as I develop the code
-
-* TODO: the rest will be added as I develop the code
-
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| --- | --- | --- |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | Peripheral drivers: SPI1, SPI2, I2C1, USART1, GPIOs, and TIM1 PWM for the buzzer. |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Running concurrent tasks (`#[embassy_executor::main]` and the asynchronous `uart_task`). |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Sync primitives | `Channel` for inter-task packet communication and `Mutex` for safe SPI bus sharing. |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Embedded HAL bridge | `SpiDevice` wrapper to share SPI1 between the ILI9341 display and the touch controller. |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Async time management | Global timers (`Timer::after_millis`) and `Delay` provider for display/sensor initialization. |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems | Drawing primitives (rectangles, circles, boxes) and handling the `Rgb565` color palette. |
+| [mipidsi](https://github.com/almindor/mipidsi) | MIPI Display Interface driver | Initializing and controlling the ILI9341 TFT display orientation and reset routines. |
+| [display-interface-spi](https://www.google.com/search?q=https://github.com/rust-embedded/rust-spid%E9%81%8B%E8%BC%B8) | SPI display interface abstraction | Command/Data (DC) and SPI wrapper layer for the display driver. |
+| [u8g2-fonts](https://www.google.com/search?q=https://github.com/oriansln/u8g2-fonts) | U8g2 font renderer for embedded-graphics | Rendering high-quality standalone text (e.g., the `logisoso38` font for the clock/Pomodoro digits). |
+| [bme280](https://www.google.com/search?q=https://github.com/mcauser/rust-bme280) | BME280 sensor driver | Reading local temperature, humidity, and atmospheric pressure over I2C1. |
+| [embedded-hal / embedded-io-async](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Core traits used for hardware interoperability, specifically `SpiDevice` and asynchronous UART streams (`AsyncRead`). |
+| [defmt](https://github.com/knurling-rs/defmt) | Ultra-efficient logging framework | Logging runtime debug information (`info!`) such as touchscreen coordinates and sensor data. |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | Real-Time Transfer transport layer | Pushing `defmt` logs directly through the SWD debugger interface without using physical serial pins. |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler for microcontrollers | Catching runtime panics and safely streaming crash details over the debug probe. |
 
 ## Links
-
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [embassy-rs documentation](https://embassy.dev)
