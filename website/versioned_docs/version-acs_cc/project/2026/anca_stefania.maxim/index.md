@@ -22,8 +22,6 @@ This project was chosen because it covers all peripherals and protocols studied 
 
 ## Architecture 
 
-The system is organized around six main subsystems:
-
 **1. MCU (STM32 Nucleo-U545RE-Q)**
 The central unit running all Embassy-rs async tasks. `
 Coordinates all subsystems and shared state variables (Pose, Occupancy Grid, and Visited Cells Matrix), avoiding data races and enforcing correctness by using asynchronous Mutexes (`ThreadModeRawMutex`).
@@ -79,7 +77,7 @@ The robot is built on a 2WD chassis powered by two DC motors with Hall encoders,
  
 ![Hardware](masina-slam.webp)
 
-![Video](https://drive.google.com/file/d/1XOovrqZ5_l_vMKnRxfIBl36JoMaDF0Ii/view?usp=sharing)
+[Video](https://drive.google.com/file/d/1XOovrqZ5_l_vMKnRxfIBl36JoMaDF0Ii/view?usp=sharing)
 
 ### Schematics
 
@@ -103,7 +101,7 @@ The robot is built on a 2WD chassis powered by two DC motors with Hall encoders,
 
 ## Software
  
-The entire program is `#![no_std]` and `#![no_main]` — no heap, no operating system, no RTOS scheduler. All concurrency is cooperative and driven by `async`/`await` under the Embassy executor.
+The entire program is `#![no_std]` and `#![no_main]` (no heap, no operating system, no RTOS scheduler). All concurrency is cooperative and driven by `async`/`await` under the Embassy executor.
  
 ### Concurrency Model
  
