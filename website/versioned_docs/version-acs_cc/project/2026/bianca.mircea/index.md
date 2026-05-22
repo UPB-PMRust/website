@@ -1,17 +1,16 @@
-# Smart Fishing Boat - STM32 Rust Project
+# Smart Fishing Boat
 
 :::info
 
 **Author**: Bianca Mircea \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-biancaamircea
-
 :::
 
 
 ## Description
 
-This project is an autonomous smart fishing boat built using an STM32 microcontroller programmed in Rust.  
-The boat is capable of navigating on water using two independent motors and can deploy fishing bait using a mechanical catapult system.
+This project is a Bluetooth-controlled smart fishing boat built using an STM32 microcontroller programmed in Rust.  
+The boat can be controlled using a Bluetooth HC-05 module. It uses two independent DC motors for movement and a servo motor to open a bait container and release the fishing bait.
 
 ## Motivation
 
@@ -27,7 +26,7 @@ The system is composed of the following main components:
 - STM32 microcontroller (main control unit)
 - Motor driver module (controls 2 DC motors)
 - Two DC motors (propulsion system)
-- Servo / actuator (catapult mechanism)
+- Servo (catapult mechanism)
 - Power supply (battery system)
 
 ### How they connect:
@@ -64,7 +63,7 @@ The project uses embedded hardware components for movement and bait delivery.
 
 | Device | Usage | Price |
 |--------|------|------|
-| STM32 Microcontroller | Main controller | ~50 RON |
+| STM32 Microcontroller | Main controller | 0 RON |
 | 2x DC Motors | Boat propulsion | ~40 RON |
 | Motor Driver (L298N) | Controls motors | ~20 RON |
 | Servo Motor | Catapult mechanism | ~15 RON |
