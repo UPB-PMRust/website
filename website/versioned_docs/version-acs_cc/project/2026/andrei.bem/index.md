@@ -60,6 +60,7 @@ All grounds are connected together to ensure proper signal reference.
 ### Architecture Diagram
 
 ![Architecture Diagram](schematics/architecture.svg)
+![Schematics Diagram](schematics/fusion_schematic.svg)
 
 ### Hardware photo
 
