@@ -139,7 +139,6 @@ real-time data updates and theme changes from the web app. Enclosure design
 finalized and printed.
 
 ![Collage](./images/collage.webp)
-![Web_App](./images/web-app.webp)
 
 ## Hardware
 
