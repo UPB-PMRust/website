@@ -60,7 +60,6 @@ All grounds are connected together to ensure proper signal reference.
 ### Architecture Diagram
 
 ![Architecture Diagram](schematics/architecture.svg)
-![Schematics Diagram](schematics/fusion_schematic.svg)
 
 ### Hardware photo
 
@@ -206,8 +205,9 @@ Electrical connections.
 ---
 
 ### Schematics
+We have schematic file mad with AUTODESK FUSION!
 
-![Schematic diagram](schematics/kicad.svg)
+![Schematic diagram](schematics/fusion_schematic.svg)
 
 ---
 
