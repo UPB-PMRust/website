@@ -25,7 +25,7 @@ The main components of the plotter work together to complete the build:
  - **NEMA17 Stepper Motors (with A4988 Drivers)**: Provide X and Y-axis planar motion via GPIO step/direction signals
  - **JF-0530B Solenoid (with a Dual MOSFET Module)**: Moves the pen up and down, actuated via PWM
  - **Mechanical Endstops**: Get the origin (home) 0,0 position for X and Y-axis via GPIO input
- - **RepRapDiscount Full Graphic Smart Controller (with an SD-card)**: Manages the entire user interface and reads the .gcode files for plotting over SPI
+ - **MKS MINI 12864 V2.0 Display (with an SD-card)**: Manages the entire user interface and reads the .gcode files for plotting over SPI
  
 
 ![RustyPlotter Architecture](rustyplotterschematic.svg)
@@ -49,13 +49,32 @@ I started more research on the components, especially what solenoid to use and w
 
 I mapped out the hardware architecture diagram and wrote the system documentation for the first documentation milestone.
 
+### Weeks 10-11
+
+I planned, cut and assembled the aluminum frames for the new skeleton of the frame. I connected all the main components together and tested them, all working. Changed the display as the old one gave me trouble (lack of proper documentation). Bought another set of useful motion parts. Finished the KiCAD schematic of the circuit.
+
+![Frame](frame.webp)
+The frame of the plotter
+![Render](render.webp)
+The render of the frame
+![Components](components.webp)
+The connected components
+![Cutting the profiles](cut_profile.webp)
+Cutting the aluminum profiles
+![Thread tapping](thread_tap.webp)
+Tapping threads into newly made holes
+
+
 ## Hardware
 
-The plotter is built upon a rigid skeleton of 2020/2040 aluminum extrusions. Planar motion across the X and Y-axis is achieved using GT2 belts, pulleys, and V-slot wheels driven by two NEMA17 stepper motors. The electrical components are all connected through an 830-point breadboard with breadboard wires and jumpers. The NEMA17 steppers are driven by 2 A4988 stepper drivers, interfacing with the STM32 NUCLEO-U545RE-Q via GPIO. For protection of said drivers, 100uF 35V decoupling capacitors are added to help against voltage spikes. For the pen actuation, a JF-0530B 12V push-pull solenoid is used. It is controlled by a 15A 400W Dual Mosfet module, interfacing with the microcontroller via PWM. To prevent reverse voltage spikes from the solenoid getting to the MOSFET module, a 1N4007 flyback diode is used. The mechanical endstops, via GPIO, establish a known origin position for the X and Y-axis. In order to not get false triggers, 10kOhm external pull-up resistors and 0.47uF 50V debouncing capacitors are added. The machine is controlled (via SPI) with the help of the RepRapDiscount Full Graphic Smart Controller, which contains a 12864 LCD with a rotary encoder, used for navigating through the menus, showing status and selecting the .gcode files for plotting, which are stored on an SD-card plugged into the SD-card reader, the other component of the Smart Controller. The entire system is powered by a 12V 6A power supply with a DC barrel-jack, with 5V particularly going to the STM32 via a 12-24V to 5V 5A step-down module.
+The plotter is built upon a rigid skeleton of 2020/2040 aluminum extrusions. Planar motion across the X and Y-axis is achieved using GT2 belts, pulleys, and V-slot wheels driven by two NEMA17 stepper motors. The electrical components are all connected through an 830-point breadboard with breadboard wires and jumpers. The NEMA17 steppers are driven by 2 A4988 stepper drivers, interfacing with the STM32 NUCLEO-U545RE-Q via GPIO. For protection of said drivers, 100uF 35V decoupling capacitors are added to help against voltage spikes. For the pen actuation, a JF-0530B 12V push-pull solenoid is used. It is controlled by a 15A 400W Dual Mosfet module, interfacing with the microcontroller via PWM. To prevent reverse voltage spikes from the solenoid getting to the MOSFET module, a 1N4007 flyback diode is used. The mechanical endstops, via GPIO, establish a known origin position for the X and Y-axis. In order to not get false triggers, 10kOhm external pull-up resistors and 0.47uF 50V debouncing capacitors are added. The machine is controlled (via SPI) with the help of the MKS MINI 12864 V2.0 Display, which contains a 12864 LCD with a rotary encoder, used for navigating through the menus, showing status and selecting the .gcode files for plotting, which are stored on an SD-card plugged into the SD-card reader, the other component of the Smart Controller. The entire system is powered by a 12V 6A power supply with a DC barrel-jack, with 5V particularly going to the STM32 via a 12-24V to 5V 5A step-down module.
 
-<!--### Schematics
+### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.-->
+![RustyPlotter Main Schematic](RustyPlotter-main_schematic.svg)
+![RustyPlotter Stepper Subcircuit Schematic](RustyPlotter-stepper_subcircuit_schematic.svg)
+
+<!--Place your KiCAD or similar schematics here in SVG format.-->
 
 ### Bill of Materials
 
@@ -74,7 +93,7 @@ The format is
 | [x1 STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [112.47 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
 | [x1 12V 6A Power Supply](https://www.optimusdigital.ro/ro/surse-ac-dc-de-12-v/8016-alimentator-stabilizat-12-v-6000-ma.html) | Supplies power to the board and the other components | [49.99 RON](https://www.optimusdigital.ro/ro/surse-ac-dc-de-12-v/8016-alimentator-stabilizat-12-v-6000-ma.html) |
 | [x1 12/24V to 5V 5A Step-down Module](https://www.optimusdigital.ro/ro/surse-coboratoare/12484-sursa-coboratoare-dc-dc-de-la-24v12v-la-5v-5a.html) | Provides the STM32 with 5V | [already owned](https://www.optimusdigital.ro/ro/surse-coboratoare/12484-sursa-coboratoare-dc-dc-de-la-24v12v-la-5v-5a.html) |
-| [x1 RepRapDiscount Full Graphic Smart Controller](https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller) | The display with encoder and SD-card reader | [already owned](https://sigmanortec.ro/modul-control-imprimanta-3d-display-12864-ramps-14-card-sd?SubmitCurrency=1&id_currency=2&gad_source=5&gad_campaignid=23069763085&gclid=EAIaIQobChMIvdmqh96JlAMV0KeDBx3roxqiEAQYASABEgJshfD_BwE) |
+| [x1 MKS MINI 12864 V2.0](https://reprap.org/wiki/MKS_MINI_12864) | The display with encoder and SD-card reader | [already owned](https://www.reprapmania.ro/cumpara/bigtreetech-lcd-display-mini-12864-v2-1575) |
 | [x1 SanDisk microSDHC Ultra 16GB C10/UHS-I](https://www.evomag.ro/foto-video-carduri-memorie/sandisk-card-de-memorie-sandisk-ultra-android-microsdhc-16gb-80-mb-s-citire-clasa10-uhs-i-3645969.html) | MicroSD-card (with SD-card adapter) | [already owned](https://www.evomag.ro/foto-video-carduri-memorie/sandisk-card-de-memorie-sandisk-ultra-android-microsdhc-16gb-80-mb-s-citire-clasa10-uhs-i-3645969.html) |
 | [x2 NEMA17 SL42STH40-1684A-23 Stepper Motor](https://forum.duet3d.com/assets/uploads/files/1694961895301-sl42sth40-1684a-23%E7%94%B5%E6%9C%BA%E5%9B%BE.pdf) | The motors that will move the pen on the X and Y axis | [already owned](https://www.aliexpress.com/i/1005008532513345.html) |
 | [x2 A4988 Stepper Driver](https://www.pololu.com/file/0j450/a4988_dmos_microstepping_driver_with_translator.pdf) | The drivers that control the stepper motors | [15.98 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-pas-cu-pas/866-driver-pentru-motoare-pas-cu-pas-a4988-rosu.html) |
@@ -94,19 +113,23 @@ The format is
 | [x6 Bed Screws with Springs](https://sigmanortec.ro/set-surub-m3-cu-arc-si-piulita-pat-imprimanta-3d?SubmitCurrency=1&id_currency=2) | For securing the bed and making sure it's flat | [already owned](https://sigmanortec.ro/set-surub-m3-cu-arc-si-piulita-pat-imprimanta-3d?SubmitCurrency=1&id_currency=2) |
 | [GT2 Belt](https://sigmanortec.ro/Curea-GT2-6mm-p125814436?SubmitCurrency=1&id_currency=2) | X and Y axis motion | [already owned](https://sigmanortec.ro/Curea-GT2-6mm-p125814436?SubmitCurrency=1&id_currency=2) |
 | [GT2 Pulleys](https://www.optimusdigital.ro/ro/mecanica-roti-scripete/12641-roata-scripete-din-aluminiu-cu-diametru-intern-de-8-mm-30-dinti-pentru-curea-gt2-6mm.html) | Guides the belt | [already owned](https://www.optimusdigital.ro/ro/mecanica-roti-scripete/12641-roata-scripete-din-aluminiu-cu-diametru-intern-de-8-mm-30-dinti-pentru-curea-gt2-6mm.html) |
-| [V-Slot Wheels](https://sigmanortec.ro/Rola-V-Slot-POM-p128663792) | X and Y axis motion | [already owned](https://sigmanortec.ro/Rola-V-Slot-POM-p128663792) |
-| Total | Total cost of the components | 271.23 RON |
+| [x9 V-Slot Wheels](https://hobbymarket.ro/rola-mare-openbuilds-pentru-profil-v-slot-cu-rulment-625-forma-v-set-2-buc.html) | X and Y axis motion | [51.52 RON](https://hobbymarket.ro/rola-mare-openbuilds-pentru-profil-v-slot-cu-rulment-625-forma-v-set-2-buc.html) |
+| [x3 Eccentric Nuts](https://zyx3d.ro/produs/distantier-excentric) | X and Y axis motion | [18.00 RON](https://zyx3d.ro/produs/distantier-excentric) |
+| Total | Total cost of the components | 340.75 RON |
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-stm32](https://crates.io/crates/embassy-stm32) | Embassy Hardware Abstraction Layer (HAL) for ST STM32 series microcontrollers | Async task management |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | Async/await executor designed for embedded usage | Runs the asynchronous tasks |
-| [gcode](https://crates.io/crates/gcode) | A gcode parser for no-std applications | For parsing the .gcode files |
-| [st7920](https://crates.io/crates/st7920) | SPI driver for the ST7920 LCD display controller | Display driver library |
+| [embassy-time](https://crates.io/crates/embassy-time) | Instant and Duration for embedded no-std systems, with async timer support | Times the motor step pulses and delays |
+| [embedded-hal](https://crates.io/crates/embedded-hal) | A Hardware Abstraction Layer (HAL) for embedded systems | PWM for solenoid control |
+| [st7567s](https://crates.io/crates/st7567s) | Driver for the ST7567S LCD controller | Display driver library |
 | [embedded-graphics](https://crates.io/crates/embedded-graphics) | Embedded graphics library for small hardware displays | For displaying the system on the screen |
+| [display-interface-spi](https://crates.io/crates/display-interface-spi) | Generic SPI implementation for display interfaces | SPI communication layer for display driver |
 | [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | A basic SD/MMC driver for Embedded Rust | For storing and using the .gcode files |
 | [micromath](https://crates.io/crates/micromath) | Embedded-friendly math library | For calculating motion |
+| [gcode](https://crates.io/crates/gcode) | A gcode parser for no-std applications | For parsing the .gcode files |
 | [defmt](https://crates.io/crates/defmt) | A highly efficient logging framework that targets resource-constrained devices, like microcontrollers | For debugging |
 
 ## Links
@@ -114,7 +137,7 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Embassy Framework Documentation](https://embassy.dev/book/)
-2. [RepRapDiscount Full Graphic Smart Controller Wiki](https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller)
+2. [MKS MINI 12864 V2.0 Documentation](https://reprap.org/wiki/MKS_MINI_12864)
 3. [A4988 Stepper Driver Datasheet](https://www.pololu.com/file/0j450/a4988_dmos_microstepping_driver_with_translator.pdf)
 4. [JF-0530B Solenoid Datasheet](https://www.hobbytronics.co.za/Content/external/1274/D2512640695.pdf)
 5. [STM32 NUCLEO-U545RE-Q Specifications](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html)
