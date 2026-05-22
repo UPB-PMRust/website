@@ -64,15 +64,16 @@ Performed initial research on required libraries and reviewed Embassy STM32 ADC 
 Completed initial documentation. Hardware components ordered and received. 
 
 ### Week 4 - 10 May
+Connected all hardware components on the breadboard. Verified that each component powers up correctly and tested basic communication (SPI bus with the display and SD card module, ADC input from the microphone amplifier).
 
 ### Week 11 - 17 May
+Implemented basic ADC sampling and verified signal integrity using the MAX9814 module.
 
 ### Week 18 - 24 May
 
 ## Hardware
 
 - **STM32 Nucleo-U545RE-Q** - main microcontroller running firmware in Rust with the Embassy async framework.
-- **Electret Microphone Capsule** - captures audio input as an analog signal.
 - **MAX9814 Microphone Amplifier Module** - amplifies the microphone signal and provides automatic gain control (AGC) before feeding it into the MCU ADC.
 - **ST7735 TFT Display (1.8")** - shows recognition result over SPI.
 - **SD Card Module** - optional storage for feature data, connected over SPI.
@@ -82,16 +83,17 @@ Completed initial documentation. Hardware components ordered and received.
 - **Resistors** - used for biasing, current limiting, and voltage division.
 - **Ceramic Capacitors** - used for decoupling, filtering, and signal stabilization.
 
+![Hardware](./hardware.webp)
+
 ### Schematics
 
-<!-- TODO: add KiCad schematic at Hardware Milestone (week 11) -->
+![Schematic](./schematic.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|-------|-------|
 | STM32 Nucleo-U545RE-Q | Main microcontroller | Provided by university |
-| [Electret microphone capsule](https://sigmanortec.ro/Microfon-electret-capsula-p126469106) | Audio capture | ~5 RON |
 | [MAX9814 amplifier module](https://www.emag.ro/amplificator-microfon-max9814-ai1095/pd/DJGRKFMBM/) | Microphone amplifier | ~24 RON |
 | [ST7735 TFT Display (1.8")](https://sigmanortec.ro/Display-Color-1-8-TFT-LCD-p130546947) | Result display | ~41 RON |
 | [MicroSD Card module](https://sigmanortec.ro/Modul-MicroSD-p126079625) | Feature logging | ~5 RON |
@@ -103,7 +105,7 @@ Completed initial documentation. Hardware components ordered and received.
 | [Ceramic Capacitor Kit](https://sigmanortec.ro/Set-condensatori-ceramici-300-bucati-p136306101) | Decoupling, filtering, and signal stabilization | ~13 RON |
 | [Resistor Kit](https://sigmanortec.ro/kit-rezistori-30-valori-20-bucati) | Biasing, current limiting, and voltage division | ~15 RON |
 
-**Estimated total**: ~136 RON
+**Estimated total**: ~131 RON
 
 ## Software
 

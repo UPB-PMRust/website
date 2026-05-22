@@ -1,7 +1,8 @@
 # Lansator Automat de Basket (Miniatură)
+
 Un sistem mecatronic destinat aruncării mingilor de ping-pong către un coș de basket în miniatură.
 
-:::info 
+:::info
 
 **Author**: Raris Vlad-Cristian \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-duduvlad
@@ -10,97 +11,142 @@ Un sistem mecatronic destinat aruncării mingilor de ping-pong către un coș de
 
 ## Descriere
 
-Acest proiect implementează un sistem automat de lansare pentru basket în miniatură. Obiectivul principal este ca dispozitivul de lansare să identifice poziția coșului în cameră și să se orienteze precis pe axa orizontală înainte de tragere. Controlul este gestionat de un microcontroller STM32, iar detectarea spațială este realizată prin senzori ultrasonici.
+Acest proiect implementează un lansator automat pentru basket în miniatură. Sistemul folosește o catapultă pentru mingi de ping-pong, montată pe o bază rotativă. Lansatorul detectează panoul coșului cu ajutorul unui senzor de distanță VL53L0X, se orientează pe axa orizontală și apoi declanșează mecanismul de aruncare.
+
+Controlul este realizat cu o placă NUCLEO-U545RE-Q, iar codul proiectului este scris în Rust. Coșul este construit separat și are un panou gri în spate, folosit ca suprafață de detecție pentru senzor. Pentru a simplifica problema de poziționare, lansatorul este deplasat pe un cerc în jurul coșului, iar sistemul trebuie să determine unghiul potrivit de orientare către panou.
 
 ## Motivație
-Alegerea acestui proiect a fost determinată de dorința de a explora controlul precis al mișcării și fuziunea datelor de la senzori într-un context practic. Implementarea unui lansator de basket implică provocări specifice de inginerie:
 
-* **Aplicabilitate practică:** Algoritmii de triangulare și orientare automată sunt fundamentali în robotică și sistemele de poziționare.
-* **Rust în sisteme embedded:** Utilizarea framework-ului Embassy permite scrierea unui cod asincron și sigur din punct de vedere al memoriei, esențial pentru gestionarea simultană a senzorilor și a motoarelor.
-* **Integrare Hardware-Software:** Proiectul necesită corelarea calculelor trigonometrice cu semnalele PWM trimise către servomotoare pentru a obține o precizie ridicată de ochire.
-* **Optimizare mecanică:** Utilizarea servomotorului mic exclusiv pentru eliberarea trăgaciului rezolvă problema durabilității componentelor sub tensiune mare.
+Alegerea acestui proiect a fost determinată de dorința de a combina controlul mecanic, măsurarea distanței și programarea embedded în Rust într-un sistem vizibil și ușor de testat.
+
+* **Control embedded:** Proiectul folosește semnale PWM pentru servomotoare și I2C pentru senzorul de distanță.
+* **Rust în sisteme embedded:** Implementarea urmărește folosirea Rust pentru controlul sigur și predictibil al perifericelor.
+* **Integrare hardware-software:** Sistemul combină partea mecanică a catapultei cu detecția panoului și controlul mișcării.
+* **Prototipare practică:** Coșul, panoul și mecanismul de lansare permit testarea rapidă a comportamentului real al sistemului.
 
 ## Arhitectură
 
 ### Schema Bloc
+
 ```mermaid
 flowchart LR
-    subgraph Coș ["Unitate Coș"]
-        Senzori[Senzori HC-SR04] --> TX[Modul Wireless TX]
+    subgraph Cos ["Coș"]
+        Panou[Panou gri]
+        Inel[Inel metalic]
     end
 
     subgraph Lansator ["Unitate Lansator"]
-        RX[Modul Wireless RX] --> MCU[Microcontroller STM32]
-        Alimentare[Baterie Li-Po + Step-Down LM2596] --> MCU
-        Alimentare --> S1
+        Senzor[VL53L0X ToF] -->|I2C| MCU[NUCLEO-U545RE-Q]
+        Buton[Buton] -->|GPIO| MCU
+        MCU -->|GPIO| LED[LED RGB]
+        MCU -->|PWM| S1[Servo MG995 Bază]
+        MCU -->|PWM| S2[Servo SG90 Trăgaci]
+        Alimentare[Sursă laborator / XL4005] --> S1
         Alimentare --> S2
-        Buton[Buton și LED] <--> MCU
-        MCU -->|Semnal PWM| S1[Servo MG996R Bază]
-        MCU -->|Semnal PWM| S2[Servo SG90 Zăvor]
+        Catapulta[Catapultă printată 3D] --> Minge[Minge ping-pong]
+        S2 --> Catapulta
+        S1 --> Catapulta
     end
 
-    TX -.->|Date Wireless| RX
+    Senzor -.->|măsoară distanța până la panou| Panou
+    Minge -.->|aruncare| Inel
 ```
 
 **Conexiunile Componentelor:**
-Sistemul este compus din unitatea de calcul (STM32) și unitatea de detecție (montată pe coș). Unitatea de detecție trimite distanțele măsurate către STM32 prin comunicație wireless. Modulul matematic din interiorul STM32 calculează unghiul de rotație necesar. Controlerul de motoare trimite semnale PWM către servo-ul MG996R pentru aliniere și către SG90 pentru declanșare. Interfața cu utilizatorul este formată dintr-un buton fizic și un LED de stare, gestionate prin pini GPIO cu întreruperi hardware. Alimentarea este separată printr-un modul Step-Down pentru a proteja microcontrollerul de consumul ridicat al motoarelor.
+Senzorul VL53L0X este conectat la placa NUCLEO-U545RE-Q prin I2C. Servo-ul MG995 rotește baza lansatorului, iar servo-ul SG90 acționează mecanismul de declanșare al catapultei. Butonul este folosit pentru comandă, iar LED-ul RGB oferă feedback vizual pentru stările sistemului.
+
+Servomotoarele sunt alimentate separat, folosind sursa de laborator în timpul testelor și modulul XL4005 pentru o alimentare stabilizată la 5-6V. Masa sursei pentru servomotoare este comună cu masa plăcii Nucleo, însă tensiunea `+5V_SERVO` nu este conectată la pinul de 5V al plăcii.
+
+### Schema Electrică
+
+Schema electrică a fost realizată în EasyEDA și arată conexiunile dintre placa NUCLEO-U545RE-Q, senzorul VL53L0X, servomotoare, buton, LED RGB și alimentarea externă a servourilor.
+
+![Schema electrică](./schema-electrica.webp)
 
 ## Jurnal de Proiect
 
-soon...
+### Săptămâna 1
+
+Am realizat documentația inițială a proiectului și am stabilit ideea generală: un lansator automat pentru mingi de ping-pong, orientat către un coș de basket în miniatură. În această etapă am descris obiectivul proiectului, motivația, arhitectura inițială și principalele componente hardware/software.
+
+### Săptămâna 2
+
+Am simplificat arhitectura sistemului. În loc să pun electronică pe coș, am decis ca senzorul să fie montat pe lansator, iar coșul să rămână o țintă pasivă. Lansatorul este deplasat pe un cerc în jurul coșului, iar sistemul trebuie să determine unghiul potrivit de orientare către panou. Pentru detecție am ales senzorul VL53L0X, care măsoară distanța până la panoul gri din spatele coșului.
+
+### Săptămâna 3
+
+Am ales și cumpărat componentele principale: senzorul VL53L0X, servomotorul MG995 pentru orientarea bazei, servomotorul SG90 pentru declanșare, modulul XL4005 pentru alimentarea servomotoarelor, breadboard-ul, modulul de buton și modulul LED RGB. Tot în această etapă am stabilit că alimentarea servourilor va fi separată de placa Nucleo, folosind sursa de laborator în timpul testelor.
+
+### Săptămâna 4
+
+Am construit coșul fizic, format din bază, suport vertical, panou gri și inel metalic. Am ales panoul gri ca suprafață de detecție pentru senzor, deoarece este mai ușor de identificat decât inelul propriu-zis. De asemenea, am ales modelul de catapultă printată 3D pentru mingi de ping-pong și am pregătit fișierele necesare pentru printare.
+
+### Săptămâna 5
+
+Am realizat schema electrică în EasyEDA și am asamblat partea hardware principală a proiectului. Schema include placa NUCLEO-U545RE-Q, senzorul VL53L0X, servomotoarele MG995 și SG90, butonul, LED-ul RGB, condensatorul de filtrare și alimentarea externă pentru servouri. Am documentat explicit faptul că `+5V_SERVO` este alimentare externă și nu trebuie conectată la pinul de 5V sau 3V3 al plăcii Nucleo, iar masa este comună între alimentarea servourilor și placa de dezvoltare.
 
 ## Hardware
+
 Sistemul utilizează următoarele componente hardware principale:
 
-* **Microcontroller STM32:** Unitatea centrală de procesare a logicii și calculelor.
-* **Servo MG996R:** Motor pentru rotirea bazei lansatorului.
-* **Servo SG90:** Motor utilizat pentru mecanismul de declanșare.
-* **Senzori HC-SR04:** Pereche de senzori pentru măsurarea distanțelor necesare triangulării.
-* **Modul Step-Down LM2596:** Regulator de tensiune pentru alimentarea constantă la 5V a servomotoarelor.
-* **Buton și LED:** Elemente de control și feedback pentru utilizator.
+* **NUCLEO-U545RE-Q:** Placa de dezvoltare folosită pentru controlul sistemului.
+* **VL53L0X:** Senzor ToF folosit pentru măsurarea distanței până la panoul coșului.
+* **Servo MG995:** Servomotor pentru rotirea bazei lansatorului.
+* **Servo SG90:** Servomotor pentru mecanismul de declanșare.
+* **XL4005 Step-Down:** Modul coborâtor de tensiune pentru alimentarea servomotoarelor.
+* **Buton:** Element de control pentru pornirea scanării sau declanșare.
+* **LED RGB:** Element de feedback vizual.
+* **Catapultă printată 3D:** Mecanismul de lansare pentru mingea de ping-pong.
+* **Coș cu panou gri:** Ținta fizică folosită pentru testare și detecție.
 
 Protocoale și semnale utilizate:
-* **PWM (Pulse Width Modulation):** Pentru controlul poziției servomotoarelor.
-* **EXTI (External Interrupts):** Pentru citirea instantanee a butonului de declanșare.
-* **Wireless/UART:** Pentru transferul datelor de telemetrie între coș și lansator.
---- urmeaza si altele
+
+* **I2C:** Comunicația cu senzorul VL53L0X.
+* **PWM:** Controlul servomotoarelor MG995 și SG90.
+* **GPIO:** Citirea butonului și controlul LED-ului RGB.
 
 ## Listă de materiale
 
 | Dispozitiv | Utilizare | Preț Estimativ |
 | :--- | :--- | :--- |
-| Placă STM32 | Unitatea centrală de control | ~25 RON |
-| Servo MG996R | Orientarea orizontală a lansatorului | ~35 RON |
-| Servo SG90 | Mecanismul de blocare/eliberare (zăvor) | ~15 RON |
-| 2x HC-SR04 | Măsurarea distanțelor pentru poziționare | ~20 RON |
-| LM2596 Step-Down | Stabilizarea tensiunii la 5V pentru motoare | ~15 RON |
-| Baterie Li-Po 7.4V | Sursa principală de energie | ~50 RON |
-| Module Wireless RF | Transferul datelor de la senzori | ~25 RON |
-| Materiale brute | Lemn, elastic, șuruburi, fire conexiune | ~35 RON |
-| **Total Estimativ** | **-** | **~220 RON** |
+| NUCLEO-U545RE-Q | Unitatea centrală de control | disponibilă |
+| Senzor VL53L0X | Detectarea panoului coșului | ~30 RON |
+| Servo MG995 | Orientarea orizontală a lansatorului | ~30 RON |
+| Servo SG90 | Mecanismul de declanșare | ~10 RON |
+| XL4005 Step-Down | Alimentarea stabilizată a servomotoarelor | ~14 RON |
+| Breadboard | Prototipare conexiuni | ~7 RON |
+| Modul LED RGB | Feedback vizual | ~2 RON |
+| Modul buton | Control utilizator | ~4 RON |
+| Fire, rezistențe, condensator | Conexiuni și stabilizare alimentare | disponibile |
+| Catapultă printată 3D | Mecanism de aruncare | în lucru |
+| Coș și panou | Țintă pentru lansator | realizat |
+| **Total cumpărat estimativ** | **-** | **~97 RON** |
 
 ## Software
 
 ### Prezentare Generală
-Implementarea software folosește framework-ul Embassy pentru Rust, oferind o arhitectură asincronă. Aplicația gestionează fluxul de lucru prin stări logice succesive, asigurând controlul precis al timpului pentru semnalele PWM fără a bloca procesorul.
+
+Implementarea software folosește Rust pe placa NUCLEO-U545RE-Q. Aplicația controlează servomotoarele prin PWM, citește senzorul VL53L0X prin I2C și gestionează stările sistemului în funcție de buton și de distanțele măsurate.
 
 ### Design Detaliat
-Codul este structurat pe patru piloni principali:
 
-1. **Gestionarea Stărilor:** Controlează succesiunea operațiunilor (IDLE, OCHIRE, READY, FOC). Previne executarea accidentală a comenzilor de către motoare în timpul încărcării manuale.
-2. **Modulul de Triangulare:** Procesează distanțele primite de la senzorii de pe coș și aplică funcții trigonometrice pentru a extrage unghiul de pan necesar alinierii.
-3. **Controlul Motoarelor:** Calculează factorul de umplere (duty cycle) pentru semnalele PWM în vederea poziționării servomotorului principal și acționării rapide a zăvorului.
-4. **Interfața Utilizator:** Monitorizează pinul butonului folosind întreruperi externe (EXTI) pentru a asigura un răspuns prompt la comanda de tragere.
+Codul este structurat pe patru module logice:
+
+1. **Gestionarea stărilor:** Controlează succesiunea operațiunilor: IDLE, SCANARE, ALINIERE, READY și FOC.
+2. **Scanarea panoului:** Rotește baza lansatorului pe un interval de unghiuri și citește distanța măsurată de VL53L0X.
+3. **Controlul motoarelor:** Generează semnalele PWM pentru MG995 și SG90.
+4. **Interfața utilizator:** Citește butonul și controlează LED-ul RGB pentru feedback.
 
 ### Diagramă Funcțională
+
 ```mermaid
 flowchart TD
-    A([Start Sistem]) --> B[Așteptare Armare Manuală]
-    B -->|Apăsare Buton| C[Achiziție Date Senzori]
-    C --> D[Calcul Unghi]
-    D --> E[Rotație Bază]
-    E --> F[Semnalizare Ready]
-    F -->|Apăsare Buton Foc| G[Declanșare Zăvor]
-    G --> H([Resetare Stare])
-    H -.->|Revenire la starea inițială| B
+    A([Start Sistem]) --> B[Așteptare comandă]
+    B -->|Apăsare buton| C[Scanare cu VL53L0X]
+    C --> D[Determinare direcție panou]
+    D --> E[Rotire MG995 către țintă]
+    E --> F[Semnalizare READY]
+    F -->|Apăsare buton| G[Declanșare SG90]
+    G --> H([Resetare stare])
+    H -.-> B
 ```
