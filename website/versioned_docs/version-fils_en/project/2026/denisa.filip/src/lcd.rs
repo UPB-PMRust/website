@@ -1,19 +1,4 @@
-/// LCD 1602 display driver (PCF8574 I²C backpack).
-///
-/// We drive the display by bit-banging the PCF8574 I/O expander that is
-/// soldered onto most 1602 I²C modules.  The backpack maps:
-///
-///   PCF8574 bit 7 (P7) → D7
-///   PCF8574 bit 6 (P6) → D6
-///   PCF8574 bit 5 (P5) → D5
-///   PCF8574 bit 4 (P4) → D4
-///   PCF8574 bit 3 (P3) → Backlight (active HIGH)
-///   PCF8574 bit 2 (P2) → E  (enable)
-///   PCF8574 bit 1 (P1) → RW (write = 0)
-///   PCF8574 bit 0 (P0) → RS (register select: 0 = cmd, 1 = data)
-///
-/// We use 4-bit mode (only D4–D7), which means each byte is sent as two
-/// nibbles with an enable pulse between them.
+
 
 use embassy_rp::i2c::I2c;
 use embassy_time::{Duration, Timer};
@@ -22,9 +7,7 @@ use embedded_hal_async::i2c::I2c as AsyncI2c;
 const BACKLIGHT: u8 = 0b0000_1000;
 const ENABLE: u8    = 0b0000_0100;
 const RS_DATA: u8   = 0b0000_0001;
-// RW always 0 (write)
 
-/// Blocking-style LCD wrapper that hides all the nibble shuffling.
 pub struct Lcd1602<I2C> {
     i2c: I2C,
     addr: u8,
@@ -35,28 +18,21 @@ where
     I2C: AsyncI2c<Error = E>,
     E: core::fmt::Debug,
 {
-    /// Initialise the LCD in 4-bit mode.
     pub async fn new(i2c: I2C, addr: u8) -> Self {
         let mut lcd = Self { i2c, addr };
-        // Wait for power-on
+        
         Timer::after(Duration::from_millis(50)).await;
 
-        // Special init sequence to switch into 4-bit mode
         lcd.write_nibble(0x03, false).await;
         Timer::after(Duration::from_millis(5)).await;
         lcd.write_nibble(0x03, false).await;
         Timer::after(Duration::from_millis(1)).await;
         lcd.write_nibble(0x03, false).await;
         Timer::after(Duration::from_micros(150)).await;
-        lcd.write_nibble(0x02, false).await; // switch to 4-bit
-
-        // Function set: 4-bit, 2 lines, 5×8 font
+        lcd.write_nibble(0x02, false).await; 
         lcd.send_cmd(0x28).await;
-        // Display on, cursor off, blink off
         lcd.send_cmd(0x0C).await;
-        // Entry mode: increment, no shift
         lcd.send_cmd(0x06).await;
-        // Clear display
         lcd.clear().await;
         lcd
     }
@@ -78,7 +54,7 @@ where
         }
     }
 
-    // ── internals ────────────────────────────────────────────────────────────
+ 
 
     async fn send_cmd(&mut self, cmd: u8) {
         self.send_byte(cmd, false).await;
@@ -99,7 +75,7 @@ where
         let rs_bit = if rs { RS_DATA } else { 0 };
         let data = (nibble << 4) | BACKLIGHT | rs_bit;
 
-        // Pulse enable high then low
+        
         let _ = self.i2c.write(self.addr, &[data | ENABLE]).await;
         Timer::after(Duration::from_micros(1)).await;
         let _ = self.i2c.write(self.addr, &[data & !ENABLE]).await;
