@@ -32,7 +32,7 @@ The system is structured around 4 main architectural components that form a clos
 
 ## Architecture Diagram
 
-![Architecture Diagram](architecture_diagram.drawio.svg)
+![Architecture Diagram](Architecture_Diagram.drawio.svg)
 
 ## Log
 
@@ -95,7 +95,7 @@ The project uses an STM32 Nucleo-U545RE-Q (Cortex-M33) as the main microcontroll
 
 ## Closed Control Loop
 
-![Closed Loop Diagram](documentatie.drawio.svg)
+![Closed Loop Diagram](Documentatie.drawio.svg)
 
 ## Links
 
