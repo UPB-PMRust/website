@@ -87,10 +87,10 @@
   <path class="edge" d="M 210 435 L 245 405" marker-end="url(#arrow)"/>
   <text class="edge-label" x="227" y="423">GPIO</text>
 
-  <!-- ============== External: Displays (right) ============== -->
+  <!-- ============== External: Display (right) ============== -->
   <rect class="ext" x="960" y="305" width="140" height="70" rx="8"/>
   <text class="title" x="1030" y="334">ILI9341</text>
-  <text class="sub"   x="1030" y="352">TFT Display</text>
+  <text class="sub"   x="1030" y="352">1× TFT Display</text>
 
   <path class="edge" d="M 915 340 L 960 340" marker-end="url(#arrow)"/>
   <text class="edge-label" x="937" y="332">SPI</text>
