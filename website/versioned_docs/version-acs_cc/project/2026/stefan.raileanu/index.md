@@ -1,6 +1,6 @@
 # DJ Controller
 
-A standalone two-deck DJ controller running on the STM32U5, written in Rust.
+A standalone two-deck DJ controller running on the STM32U545RE, written in Rust.
 
 :::info
 
@@ -11,56 +11,25 @@ A standalone two-deck DJ controller running on the STM32U5, written in Rust.
 
 ## Description
 
-A fully standalone two-deck DJ controller built on the STM32U5 
-microcontroller, written in Rust using the Embassy async embedded framework.
-The board reads WAV audio files from an SD card and allows real-time mixing 
-between two decks.
+A fully standalone two-deck DJ controller built on the STM32U545RE microcontroller, written in Rust using the Embassy framework. The board reads WAV audio files from an SD card and performs real-time mixing between two decks.
 
-Each deck has its own jog wheel (a rotary encoder with a disc on top), three
-EQ knobs (bass, mid, high), a low and high-pass filter, a volume knob, and 
-dedicated buttons for Play/Pause, Cue, Loop, Sync, and Headphone Cue Select. 
-Two shared controls: a crossfader and a headphone volume knob. Each deck has 
-its own display showing track name, position, BPM and the loop, or the SD card
-file list when in browse mode.
+Each deck has its own jog wheel (a rotary encoder), three EQ knobs (bass, mid, high), a volume knob, and dedicated buttons for Play/Pause, Cue, Loop, Sync, and Headphone Cue Select. One shared TFT display shows track name, position, BPM, and loop state in play mode, or a scrollable file list in browse mode.
 
-Audio leaves the STM32U5 through its **internal DAC**: the main mix goes out via a 3.5mm 
-AUX jack into a **Marshall Middleton** speaker (using its built-in 50W amplifier), and the 
-cued deck is routed through a **TPA6132 headphone amplifier** to the headphone output.
+Audio leaves the STM32U545RE through its internal DAC: the main mix goes via a 3.5mm AUX jack into a Marshall Middleton speaker, and the cued deck is routed through a TPA headphone amplifier to the headphone output.
 
 ## Motivation
 
-I'm a techno enthusiast and wanted a project that combines the technical
-skills I'm learning with a hobby I already love.
+I'm a techno enthusiast and wanted a project that combines the technical skills I'm learning with a hobby I already love.
 
 ## Architecture
 
-The system is organized around four main architectural components: an **Input
-Handler** that aggregates all user controls, an **Audio Engine** that 
-streams, processes, and mixes audio in real time, a **Display Driver** that 
-renders per-deck UI, and an **Output Stage** that splits the final audio into 
-a main mix and a separate cue channel.
+The system is organized around three main components: an **Input Handler**, an **Audio Engine**, and a **Display Driver**.
 
-* **Input Handler** — reads rotary encoders via GPIO interrupts, 
-potentiometers via ADC + DMA, and buttons via GPIO. Maintains a per-deck 
-state machine that distinguishes jog-wheel pitch-bend (rotate only), 
-scrubbing (press + rotate), and mode switching (short press toggles between 
-play and browse).
+* **Input Handler** — reads rotary encoders (jog wheel seek and track browse), potentiometers (EQ bass/mid/high per deck, volume per deck), and buttons (Play/Pause, Cue, Loop, Sync, Headphone Cue).
 
-* **Audio Engine** — streams two WAV files from the SD card simultaneously over SPI 
-+ DMA. Each deck runs an independent DSP chain (3-band EQ + LPF + HPF as biquad 
-filters), then pitch/seek/loop/sync logic adjusts the read pointer or sample rate, 
-and a final mixer applies per-deck volume and the crossfader before pushing samples 
-to the STM32U5's internal DAC.
+* **Audio Engine** — streams two WAV files from SD card over SPI. Each deck runs an independent DSP chain (3-band biquad EQ: low-shelf bass at 200Hz, peaking mid at 1000Hz, high-shelf at 3000Hz), plus loop, cue, sync, and headphone cue routing logic. The internal DAC outputs the main mix on CH1 (Marshall) and the cued deck on CH2 (headphones).
 
-* **Display Driver** — receives playback state from the Audio Engine and UI 
-navigation events from the Input Handler. In play mode it renders track name, 
-position, BPM, and loop/sync state. In browse mode it renders a scrollable list of 
-WAV files from the SD card.
-
-* **Output Stage** — the STM32U5's internal DAC produces two analog channels: the main
-mix is sent over a 3.5mm AUX jack into a Marshall Middleton speaker (which has its own
-built-in 50W amplifier), and the cue channel is sent through a TPA6132 headphone
-amplifier to the headphones (used by the DJ to prepare the next transition).
+* **Display Driver** — one ILI9341 2.4" TFT display shows per-deck state. In browse mode: scrollable WAV file list with highlighted selection. In play mode: track name, BPM, progress bar, cue point marker, loop region overlay, and status indicators (SYNC, HP, LOOP, PAUSED).
 
 ![Architecture](images/architecture.svg)
 
@@ -70,65 +39,67 @@ amplifier to the headphones (used by the DJ to prepare the next transition).
 * Completed the documentation and ordered the hardware parts
 
 ### Week 28 April - 4 May
-* Connected all the parts to stm
+* Connected all the parts to STM32
 
 ### Week 5 - 11 May
+* Got basic WAV playback working over SPI + DAC
+* Added volumes per deck
 
 ### Week 12 - 18 May
+* Implemented dual-deck streaming with ping-pong buffer architecture
+* Added 3-band biquad EQ (bass/mid/high) per deck
 
 ### Week 19 - 25 May
+* Implemented browse mode with rotary encoder track selection
+* Added Play/Pause, Cue, Loop, Sync buttons
+* Added headphone cue routing
+* Added display with play mode and browse mode UI
+* Finalized hardware connections (design)
 
 ## Hardware
 
-The controller is built around the **STM32U5 Nucleo board**, which handles SD streaming, 
-DSP, display output, and input reading concurrently using Embassy's async runtime. Two WAV 
-streams are read from a microSD card over SPI with DMA so the CPU stays free for DSP. 
-Audio is generated by the **STM32U5's internal DAC** — no external DAC chip is used. The 
-main mix leaves the board through a **3.5mm AUX jack** and feeds a **Marshall Middleton** 
-speaker, which provides its own built-in 50W amplifier. The cue channel goes through a 
-**TPA6132 headphone amplifier** to the headphones (carrying only the cued deck).
+The controller is built around the **STM32U545RE Nucleo board**. Two WAV streams are read from a microSD card over SPI. Audio is generated by the **STM32U545RE's internal DAC**. The main mix goes through a **3.5mm AUX jack** into a **Marshall Middleton** speaker. The cue channel goes through a **TPA headphone amplifier** to the headphones.
 
-Each deck has a rotary encoder with a 3D-printed disc as a jog wheel, six potentiometers 
-(Bass / Mid / High EQ, LPF, HPF, Volume), and five push buttons (Play/Pause, Cue, Loop, 
-Sync, Headphone Cue Select). Shared controls are a crossfader and a headphone volume knob. 
-Two **ILI9341 2.4" TFT displays** (one per deck) connect over SPI and show playback state 
-in play mode and the file list in browse mode.
+Each deck has a rotary encoder used as jog wheel (seek in track) and browse wheel (select track). Six potentiometers per deck: Bass EQ, Mid EQ, High EQ, and Volume. Five buttons per deck: Play/Pause, Cue, Loop, Sync, Headphone Cue Select. One shared **ILI9341 2.4" TFT display** (split into two halves, one per deck) connects over SPI1.
 
 ### Schematics
 
 ![Schematics](images/dj_controller.webp)
 
+![dj_full](images/dj_full.webp)
+
+![dj](images/dj.webp)
+
+
+
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32U5 Nucleo Board](https://www.st.com/en/evaluation-tools/nucleo-u575zi-q.html) | Main microcontroller | — |
-| [TDA1308 Headphone Amplifier](https://www.emag.ro/amplificator-audio-stereo-pentru-casti-cu-tda1308-dc-3-6v-emg232/pd/DPSG9VYBM/?ref=fav_pd-title) | Headphone output | 24 RON |
-| [3.5mm Stereo Audio Jack (female) x2](https://ardushop.ro/en/electronics/2021-cjmcu-trrs-35mm-stereo-jack-module-6427854030856.html) | AUX output to speaker/headphone | 1.97 RON |
-| Marshall Middleton | Main speaker output via built-in 50W amplifier (AUX in) | — |
-| [Rotary Encoders ×2](https://ardushop.ro/en/electronics/1271-encoder-module-6427854018274.html) | Jog wheels — pitch-bend, scrubbing, browse | 10 RON |
-| [Potentiometers 10kΩ ×11](https://ardushop.ro/en/discrete-components/280-374-liniar-potentiometer-10k-50k-100k-6427854002952.html#/156-valoare_rezistenta-10k) | EQ Bass/Mid/High ×6, LPF ×2, HPF ×2, Headphone Vol ×1 | 1.31 x11 RON |
-| [Linear potentiometers x3](https://www.optimusdigital.ro/ro/componente-electronice-potentiometre/2420-modul-poteniometru-liniar.html)| Volume x 2, Crossfader x1 | 20 x3 RON|
-| [Push Buttons (×10)](https://ardushop.ro/en/buttons--switches/713-push-button-small-trough-hole-6427854009050.html) | Play/Pause ×2, Cue ×2, Loop ×2, Sync ×2, Headphone Cue Select ×2| 0.83 x10 RON |
-| [ILI9341 2.4" TFT Display (x2)](https://ardushop.ro/en/displays-and-leds/2534-lcd-tft-display-240x320-24-inch-il9341-touch-sd-6427854038630.html) | Per-deck display: track info, BPM, position, file list and SD module | 67 RON |
-| Micro sd card | storing the music | 40 RON |
-| [resistors](https://ardushop.ro/en/discrete-components/1444-set-rezistente-1-4w-600buc-30-valori-10r-1m-6427854021199.html), [capacitors](https://ardushop.ro/en/discrete-components/1299-set-electrolytic-capacitors-120pcs-12-values-022uf-470uf-6427854018779.html), [wires](https://ardushop.ro/en/wires-and-connectors/5-10-x-dupont-cables-male-male-10cm-6427854025869.html), [breadboard](https://ardushop.ro/en/electronics/2297-breadboard-830-points-mb-102-6427854012265.html), [leds](https://ardushop.ro/en/leds/293-468-5mm-led.html#/172-color-orange) | Debouncing, decoupling, wiring | 92 RON |
-| | | Total: 330 RON | 
+| STM32U545RE Nucleo Board | Main microcontroller | — |
+| TPA Headphone Amplifier module | Headphone cue output | 24 RON |
+| 3.5mm Stereo Audio Jack (female) ×2 | AUX output (Marshall) + headphone output | 4 RON |
+| Marshall Middleton | Main speaker via built-in amplifier (AUX in) | — |
+| Rotary Encoders ×2 | Jog wheel — seek in track, browse tracks | 10 RON |
+| Potentiometers 10kΩ ×8 | EQ Bass/Mid/High ×6, Volume ×2 | 10.48 RON |
+| Push Buttons ×10 | Play/Pause ×2, Cue ×2, Loop ×2, Sync ×2, HP Cue ×2 | 8.30 RON |
+| ILI9341 2.4" TFT Display ×1 | Track info, BPM, position, browse file list | 34 RON |
+| MicroSD card | Storing WAV audio files and BPM metadata | 40 RON |
+| Wires, breadboard, capacitors | Wiring and decoupling | 50 RON |
+| | | **Total: ~180 RON** |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rs](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main async runtime on STM32U5; drives SPI, internal DAC, ADC, and DMA peripherals concurrently |
-| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD card FAT filesystem driver | Reads WAV and `.cue` metadata files from the SD card |
-| [ili9341](https://crates.io/crates/ili9341) | ILI9341 TFT display driver | Drives the two per-deck displays over SPI |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Renders track info, BPM, loop/sync state, and the browse-mode file list |
-| [micromath](https://github.com/tarcieri/micromath) | Lightweight math for embedded | Biquad filter coefficient calculations for EQ, LPF, and HPF |
+| [embassy-rs](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main async runtime — drives SPI, DAC, ADC, DMA, GPIO EXTI concurrently |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD card FAT filesystem driver | Reads WAV files and companion BPM `.txt` files from SD card |
+| [mipidsi](https://crates.io/crates/mipidsi) | Display driver (ILI9341/ST7789) | Drives the TFT display over SPI1 |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Renders track name, BPM, progress bar, cue/loop markers, browse list |
+| [libm](https://crates.io/crates/libm) | Math functions for no_std | Biquad EQ coefficient calculations (sin, cos, pow, sqrt) |
 
 ## Links
 
-1. [STM32U5 Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)
+1. [STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)
 2. [Embassy — Async Embedded Rust](https://embassy.dev/)
-3. [Numark Mixtrack Platinum FX — reference DJ controller](https://www.numark.com/product/mixtrack-platinum-fx)
-4. [WAV file format specification](http://soundfile.sapp.org/doc/WaveFormat/)
-5. [Cookbook formulae for audio EQ biquad filter coefficients (Robert Bristow-Johnson)](https://www.w3.org/TR/audio-eq-cookbook/)
+3. [WAV file format specification](http://soundfile.sapp.org/doc/WaveFormat/)

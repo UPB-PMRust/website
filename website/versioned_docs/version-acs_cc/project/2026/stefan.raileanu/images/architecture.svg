@@ -50,7 +50,7 @@
 
   <rect class="mod" x="725" y="250" width="190" height="180" rx="10"/>
   <text class="title" x="820" y="338">Display Driver</text>
-  <text class="sub"   x="820" y="358">Per-deck UI</text>
+  <text class="sub"   x="820" y="358">UI</text>
 
   <!-- Internal arrows between modules -->
   <path class="edge-int" d="M 435 340 L 485 340" marker-end="url(#arrow)"/>
@@ -89,8 +89,8 @@
 
   <!-- ============== External: Displays (right) ============== -->
   <rect class="ext" x="960" y="305" width="140" height="70" rx="8"/>
-  <text class="title" x="1030" y="334">2× ILI9341</text>
-  <text class="sub"   x="1030" y="352">TFT Displays</text>
+  <text class="title" x="1030" y="334">ILI9341</text>
+  <text class="sub"   x="1030" y="352">TFT Display</text>
 
   <path class="edge" d="M 915 340 L 960 340" marker-end="url(#arrow)"/>
   <text class="edge-label" x="937" y="332">SPI</text>
