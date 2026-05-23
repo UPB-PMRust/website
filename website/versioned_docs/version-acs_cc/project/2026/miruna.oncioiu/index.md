@@ -57,6 +57,7 @@ The hardware architecture features two STM32 Nucleo-U545RE-Q boards configured i
 ![Mobile Car Schematic](./masina.webp)
 #### Remote Controller (Master) Schematic
 ![Remote Controller Schematic](./telecomanda.webp)
+![Assembled Robot](./hardware.webp)
 
 ### Bill of Materials
 
