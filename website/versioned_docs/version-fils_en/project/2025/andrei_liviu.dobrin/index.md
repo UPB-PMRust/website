@@ -59,6 +59,7 @@ Started working on my Simon Says game using a Raspberry Pi Pico2W and Rust. Chos
 ### Week 12 - 18 May
 Connected the LCD via I2C and displayed simple messages. Tested individual LEDs and the buzzer to confirm they work correctly. Began setting up the breadboard layout for the full game circuit. Verified power supply and pin assignments
 ### Week 19 - 25 May
+Integrated core hardware (keypad, 9 LEDs, buzzer on GP13) with the main Simon Says game logic, enabling random sequence generation, level progression, and player input checking. Successfully implemented distinct audio feedback via PWM. Also integrated the 16x2 I2C LCD to display dynamic game information, including current level, game state messages, and scores (current and high score).
 
 ## Hardware
 The Simon Says game is built around several key hardware components, each playing a crucial role in its functionality:
@@ -113,15 +114,28 @@ The format is
 
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
-
+| Library                 | Description                                                                                                | Usage in Simon Says Project                                                                                                                                                                 |
+| :---------------------- | :--------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `embassy-executor`      | Asynchronous task executor for `async/await`.                                                              | Runs the main game logic (`main` function) and the concurrent `keypad_scanner_task`.                                                                                                         |
+| `embassy-rp`            | Hardware Abstraction Layer (HAL) for Raspberry Pi RP2040/RP2350.                                           | Initializing the microcontroller (`init`); providing drivers/types for GPIO (LEDs, keypad), I2C (for LCD), PWM (for buzzer), and specific peripheral instances from its `peripherals` module. |
+| `embassy-time`          | Timekeeping, asynchronous delays (`Timer::after_millis`, `Timer::after_secs`), and the `Delay` struct.     | Used for game delays, LED on-times, keypad debounce timing, sound durations, and as the `Delay` provider for the LCD driver.                                                                  |
+| `embassy-sync`          | Asynchronous synchronization primitives (Mutexes, Channels, OnceLock).                                     | `Channel` for sending key presses; `Mutex` and `OnceLock` for safely initializing and sharing the LCD peripheral (`SHARED_GAME_LCD`). `CriticalSectionRawMutex` as the mutex type.      |
+| `embassy-futures`       | Utilities for working with Futures.                                                                        | `join::join` for concurrently playing a buzzer sound and lighting an LED.                                                                                                                    |
+| `heapless`              | `#![no_std]` data structures without dynamic memory allocation.                                             | `Vec` for storing the Simon Says LED sequence; `String` (aliased as `HString`) for formatting text to display on the LCD.                                                              |
+| `fixed`                 | Fixed-point number types (e.g., `FixedU16`, `U4`).                                                         | Used for the `divider` field in `embassy_rp::pwm::Config` to allow fractional clock division for precise PWM frequencies for the buzzer (as per your working buzzer example).                   |
+| `i2c-character-display` | Driver for character LCDs (like 16x2) connected via an I2C I/O expander (like PCF8574T).                  | Used to initialize and control your 16x2 LCD: `init()`, `clear()`, `home()`, `set_cursor()`, `print()`, and `backlight()`.                                                                |
+| `defmt`                 | An efficient logging framework for embedded systems.                                                       | Provides `defmt::info!`, `defmt::warn!`, `defmt::error!`, `defmt::debug!` for structured log messages to observe program flow and debug.                                                              |
+| `defmt-rtt`             | Backend for `defmt` enabling log output via RTT (Real-Time Transfer).                                      | Allows viewing `defmt` logs on your host computer.                                                                                                                                               |
+| `panic-probe`           | Panic handler that prints panic messages using `defmt`.                                                    | Ensures panic messages are logged via `defmt` if the program crashes.                                                                                                                          |
+| `cortex-m-rt`           | Minimal runtime for ARM Cortex-M microcontrollers.                                                         | Provides the entry point (`#[embassy_executor::main]` uses this) and basic runtime setup.                                                                                                   |
+| `critical-section`      | A crate for handling critical sections (disabling interrupts).                                             | Used by Embassy's synchronization primitives (`Mutex`, `Channel`) to ensure data integrity in concurrent contexts.                                                                         |
+| `rand` / `rand_core`    | Crates for random number generation. (`rand_core` defines traits like `RngCore`).                          | Although `SimplePrng` is currently used (which doesn't directly use `rand_core::RngCore` trait in its `impl`), these are in your `Cargo.toml` providing general RNG capabilities.            |
+| `core::fmt::Write`      | Trait for enabling formatted writing into buffers.                                                         | Used with `format_args!` and `HeaplessString` to prepare text for the LCD.                                                                                                                   |
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Full Rust Course](https://www.youtube.com/watch?v=BpPEoZW5IiY)
+2. [crates.io](https://crates.io/)
+2. [My Video Presenting the Project](https://www.youtube.com/watch?v=CTlhsGvXJ4Us)
+

@@ -159,6 +159,8 @@ Focused on implementing the remote control functionality and integrating it with
 
 ### Week 19 - 25 May
 
+Focused on putting everything together: updated all layouts, verified that TCP communication works correctly, and made sure async tasks run smoothly without issues. Focus was on ensuring the system behaves as expected during integration.
+
 ## Hardware
 
 ### Component Details
@@ -203,17 +205,30 @@ Here is the KiCad schematics. On the schematics Power Supply Module is denoted a
 | [Power Supply Module](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) | Power Supply | 4.69 RON |
 ## Software
 
-| Library | Description | Usage |
-|---------|-------------|-------|
-| [heapless](https://crates.io/crates/heapless) | Stack-allocated data structures | Creating fixed-size strings for LCD writing |
-| [embassy-time](https://crates.io/crates/embassy-time) | Timekeeping for async embedded | Delays, timeouts and scheduling |
-| [embassy-executor](https://crates.io/crates/embassy-executor) | Async/await executor | Managing concurrent tasks |
-| [embassy-sync](https://crates.io/crates/embassy-sync) | Synchronization primitives | Inter-task communication and resource sharing |
-| [micromath](https://crates.io/crates/micromath) | Sensor data processing |  |
-| [fixed](https://crates.io/crates/fixed) | Fixed-point math for sensors |  |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics primitives and text rendering | Drawing shapes, text and UI elements |
-| [ili9341](https://crates.io/crates/ili9341) | TFT LCD display driver | Controlling screen output and display settings |
-| [xpt2046](https://github.com/nullstalgia/mff-hr-v1/tree/master/xpt2046) | Resistive touch controller driver | Handling touch input and calibration |
+| Library                | Description                                   | Usage                                                              |
+|------------------------|-----------------------------------------------|--------------------------------------------------------------------|
+| embassy-rp             | RP2040 HAL and Embassy support                | Hardware abstraction, peripheral and SPI management, async runtime |
+| embassy-embedded-hal   | Embedded HAL traits and utilities             | Provides hardware abstraction traits for Embassy                   |
+| embassy-sync           | Async synchronization primitives              | Mutexes, signals, and shared state between async tasks             |
+| embassy-executor       | Async/await executor for embedded             | Runs async tasks and manages concurrency                           |
+| embassy-futures        | Utilities for async/await and futures         | Used for select, join, and other async combinators                 |
+| embassy-time           | Timekeeping, delays, and timers               | Delays, timeouts, and scheduling                                   |
+| embassy-net            | Embedded network stack                        | Handles TCP/UDP networking and DHCP for WiFi                       |
+| cyw43                  | WiFi chip driver                              | Provides WiFi connectivity for the RP2040                          |
+| defmt, defmt-rtt       | Logging and debug output                      | Efficient logging for embedded systems                             |
+| cortex-m-rt            | Cortex-M runtime support                      | Startup and interrupt vector table                                 |
+| panic-probe            | Panic handler for probe-run                   | Handles panics and outputs debug info                              |
+| embedded-graphics      | 2D graphics library                           | Drawing UI elements on the display                                 |
+| display-interface-spi  | SPI interface for displays                    | SPI communication with the ILI9341 display                         |
+| display-interface      | Display interface abstraction                 | Used by display drivers                                            |
+| heapless               | Fixed-capacity data structures                | Used for message buffers and queues                                |
+| embedded-hal-1         | Embedded HAL traits                           | Hardware abstraction for drivers                                   |
+| embedded-io-async      | Async IO traits                               | Async communication with peripherals                               |
+| static_cell            | Statically allocated runtime-initialized cell | Used for safe static initialization of peripherals                 |
+| embedded-storage       | Traits for non-volatile storage               | Access to non-volatile storage                                     |
+| ili9341                | ILI9341 display driver                        | Controls the TFT display                                           |
+| xpt2046                | XPT2046 touchscreen driver                    | Handles touchscreen input                                          |
+| embassy-lab-utils      | Project-specific utilities                    | Shared helpers and abstractions for this project                   |
 
 ## Links
 

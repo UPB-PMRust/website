@@ -53,6 +53,10 @@ I assembled the hardware setup on breadboards, connected both ESP32 boards via U
 button, and protective components. I began working on the software side, setting up the basic structure of the Rust project.
 I also started the software development and began designing the external casing of the lamp to match the decorative theme.
 ### Week 19 - 25 May
+This week I worked on integrating communication between the two ESP32 boards via UART. Although I wasn’t able to get the UART
+communication fully working yet, I focused on improving the simulator mode. I made a HTML page served by ESP32, which allows
+manual input of temperature and weather condition. This lets users test and simulate any weather condition directly from the
+browser. The LED ring updates immediately after submitting the form.
 
 ## Hardware
 
@@ -96,7 +100,6 @@ The format is
 |--------|--------|-------|
 | [ESP32 cu WiFi si Bluetooth 4.2](https://www.optimusdigital.ro/ro/placi-cu-bluetooth/4371-placa-de-dezvoltare-esp32-cu-wifi-i-bluetooth-42.html) | Main and secondary controller | [2 x 34,99 lei = 69,98 lei](https://www.optimusdigital.ro/ro/placi-cu-bluetooth/4371-placa-de-dezvoltare-esp32-cu-wifi-i-bluetooth-42.html) |
 | [WS2812 RGB LED Ring 24](https://www.optimusdigital.ro/ro/optoelectronice-altele/5623-inel-cu-24-led-uri-rgb-adresabile-ws2812.html) | RGB lighting | [23,18 lei](https://www.optimusdigital.ro/ro/optoelectronice-altele/5623-inel-cu-24-led-uri-rgb-adresabile-ws2812.html) |
-| [DHT22 Temp/Humidity Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-de-temperatura/1449-modul-senzor-de-temperatura-i-umiditate-dht22.html) | Optional local sensor | [23,12 lei](https://www.optimusdigital.ro/ro/senzori-senzori-de-temperatura/1449-modul-senzor-de-temperatura-i-umiditate-dht22.html) |
 | [Breadboard 830 points](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) | Connect all components | [4 x 9,98 lei = 39,92 lei](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
 | [Jumper Wires M-M 30cm](https://www.optimusdigital.ro/ro/fire-fire-mufate/882-set-fire-mama-mama-40p-30-cm.html) | Connections | [7,98 lei](https://www.optimusdigital.ro/ro/fire-fire-mufate/882-set-fire-mama-mama-40p-30-cm.html) |
 | [Jumper Wires F-F 30cm](https://www.optimusdigital.ro/ro/fire-fire-mufate/890-set-fire-tata-tata-40p-30-cm.html) | Connections | [9,99 lei](https://www.optimusdigital.ro/ro/fire-fire-mufate/890-set-fire-tata-tata-40p-30-cm.html) |
@@ -116,11 +119,12 @@ Total: ~200 de lei
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy](https://github.com/embassy-rs/embassy) | Async runtime for embedded Rust | Used for async execution, Wi-Fi, and peripheral control |
+| [esp-idf-svc](https://github.com/esp-rs/esp-idf-svc) | ESP-IDF service| Used for Wi-Fi, HTTP server |
 | [ws2812-rs](https://github.com/smart-leds-rs/ws2812-spi-rs) | WS2812 LED control | Drives RGB lighting effects |
 | [serde](https://github.com/serde-rs/serde) | Serialization framework | Used to parse JSON from API |
 | [serde_json](https://github.com/serde-rs/json) | JSON parsing | Parses weather data |
 | [esp-idf-hal](https://github.com/esp-rs/esp-idf-hal) | ESP32 hardware abstraction | For pin, UART, and GPIO access |
+| [log](https://docs.rs/log) | Logging macros | Used for debug/info/error messages in the console |
 
 ## Links
 
@@ -131,4 +135,3 @@ Total: ~200 de lei
 3. [Lab 03 - PWM & ADC](https://pmrust.pages.upb.ro/docs/acs_cc/lab/03)
 4. [Lab 07 - Wi-Fi](https://pmrust.pages.upb.ro/docs/acs_cc/lab/07)
 5. [ESP32 Rust Book](https://esp-rs.github.io/book/)
-

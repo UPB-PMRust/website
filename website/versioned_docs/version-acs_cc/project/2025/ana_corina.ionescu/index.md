@@ -1,7 +1,7 @@
-# Project Name
-Mini-sera inteligenta cu afisaj, alerta si ventilatie automata
+# Mini-sera inteligenta
+Sera cu control automat in functie de factorii externi
 
-:::info 
+:::info
 
 **Author**: Ionescu Ana-Corina 334CC \
 **GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/proiect-Corina0408)
@@ -13,8 +13,7 @@ Mini-sera inteligenta cu afisaj, alerta si ventilatie automata
 Acest proiect urmareste realizarea unei mini-sere inteligente care monitorizeaza conditiile de
 mediu si reactioneaza automat pentru a proteja plantele. Sistemul citeste temperatura, umiditatea
 si luminozitatea, afiseaza valorile pe un ecran LCD si semnaleaza situatiile critice prin LED-uri si
-buzzer. In plus, un ventilator este folosit - la apasarea unui buton se porneste ventilatia, iar la 
-urmatoarea apasare a butonului se opreste. 
+buzzer. In plus, un ventilator este folosit.
 
 ## Motivation
 
@@ -28,7 +27,7 @@ Sistemul este compus din urmatoarele **module arhitecturale**:
     Format din senzorul de temperatura si umiditate (DHT11) si senzorul de lumina (LDR), care masoara conditiile de mediu si trimit valorile catre celelalte module.
 
     - **Modul de afisare**
-    Preia informatiile de la modulul de monitorizare si le afiseaza pe un ecran LCD 16x2 cu interfata I2C.
+    Preia informatiile de la modulul de monitorizare si le afiseaza pe un ecran  cu interfata I2C.
 
     - **Modul de alerta**
     Verifica daca valorile senzorilor depasesc pragurile setate si activeaza componentele de avertizare:
@@ -38,11 +37,7 @@ Sistemul este compus din urmatoarele **module arhitecturale**:
         - In caz de valori normale: se aprinde LED-ul verde.
 
     - **Modul de ventilatie automata**
-    Controleaza un servomotor care activeaza sistemul de ventilatie in functie de apasarea unui buton:
-
-       -  La prima apasare: ventilatia se porneste (servo activ).
-
-       -  La a doua apasare: ventilatia se opreste (servo inactiv).
+    Daca temperatura depaseste un anumit prag, se porneste ventilatia
 
     - **Modul de control principal – Raspberry Pi**
     Coordoneaza toate modulele, citeste datele de la senzori, actualizeaza afisajul, genereaza alertele si controleaza ventilatia.
@@ -61,14 +56,21 @@ Sistemul este compus din urmatoarele **module arhitecturale**:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+Finalizarea cumpararii componentelor.
 
 ### Week 12 - 18 May
+Aranjarea componentelor pe placuta si testarea functionalitatii lor.
 
 ### Week 19 - 25 May
+Finalizarea codului pt alerta.
 
 ## Hardware
+- Raspberry Pi RP2350 (Pico 2W)
+- Senzor de lumina: APDS-9930 (I2C, 0x39)
+- Display OLED SSD1306 (I2C, 0x3C, 128x64 px)
+- GPIO 0 – SDA, GPIO 1 – SCL
+- Conexiuni optionale: LED, buzzer, etc. (pentru feedback de alerta)
 
-Detail in a few words the hardware used.
 
 ### Schematics
 
@@ -105,6 +107,17 @@ The format is
 |---------|-------------|-------|
 | [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded Rust | Used for efficient logging |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Asynchronous task executor | Used for async multitasking on embedded |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Embassy support for Raspberry Pi Pico (RP2040) | Used for I2C, interrupts and peripherals |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timer utilities | Used for delays and timers |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Async synchronization primitives | Used for mutexes and signals |
+| [embedded-hal-async](https://github.com/embassy-rs/embedded-hal-async) | Async traits for HAL | Used for async I2C communication |
+| [heapless](https://github.com/japaric/heapless) | Fixed-capacity data structures | Used for dynamic strings without heap |
+| [static-cell](https://github.com/embassy-rs/static-cell) | Single-assignment static memory cells | Used for static initialization of resources |
+| [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler | Used for debugging panics |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT backend for `defmt` | Used for real-time logging over RTT |
+| [core::fmt::Write](https://doc.rust-lang.org/core/fmt/trait.Write.html) | Core formatting trait | Used for writing formatted strings |
 
 ## Links
 

@@ -36,16 +36,28 @@ The system architecture comprises the following components:
   - *LM75B Temperature Sensors (x4):* Monitor the temperature of each wheel.
   - *MPU6050 Accelerometer and Gyroscope:* Track the car's orientation and movement.
 - **Actuators:**
-  - *DC Motors (x4):* Provide propulsion for the car.
-  - *Stepper Motor:* Controls the Drag Reduction System (DRS) mechanism.
+  - *DC Motor:* Provide propulsion for the car.
+ - *Stepper Motor:* Handles steering by adjusting the front wheel orientation in response to joystick input.
 - **Drivers:**
   - *L9110S Motor Drivers (x2):* Interface between the microcontroller and DC motors.
   - *ULN2003 Stepper Motor Driver:* Controls the stepper motor for DRS.
-- **Camera:** Captures live video feed for real-time monitoring.
 - **Web Server:** Hosts the interface displaying sensor data and live video.
 
 ![Diagram](Picture1.svg)
 
+## Log
+
+### Week 5 - 11 May
+
+During this week, the initial concept of the Formula 1 miniature car was developed. The components were selected and partially assembled. First tests focused on validating connectivity between the Pico, sensors, and motor drivers.
+
+### Week 12 - 18 May
+
+Hardware assembly was finalized. The initial LM35 analog temperature sensors were replaced with LM75B digital sensors to ensure accurate readings via I2C. All sensors and actuators were tested successfully on the breadboard.
+
+### Week 19 - 25 May
+
+The embedded software was completed. WebSocket data streaming, sensor acquisition, and motor control were fully implemented. The onboard camera functionality was removed to focus on performance and simplify system integration.
 
 ## Hardware
 
@@ -56,18 +68,14 @@ The hardware setup includes:
   - LM75B Temperature Sensors (x4)
   - MPU6050 Accelerometer and Gyroscope
 - **Actuators:**
-  - DC Motors (x4)
+  - DC Motor (x1)
   - Stepper Motor
 - **Drivers:**
-  - L9110S Motor Drivers (x2)
+  - L9110S Motor Driver
   - ULN2003 Stepper Motor Driver
-- **Camera:** Raspberry Pi Camera Module
-- **Power Supply:** 9V Batteries (x2)
+- **Power Supply:** 9V Battery
 
 ## Schematic
-
-At the moment, the temperature sensors used in the prototype are OKY3066-2 (LM35-based). However, they have shown inconsistent or unstable readings during testing. As a result, they will be replaced with LM75B digital temperature sensors, as indicated in the schematic, to improve reliability and I2C-based integration.
-
 
 ![Schematic made in Kicad](schematicnew.svg)
 
@@ -97,10 +105,12 @@ The software is developed entirely in Rust, utilizing the `embassy-rs` asynchron
 - **Motor Control:** PWM signals generated for precise motor operation.
 - **Sensor Data Acquisition:** I2C communication with temperature and motion sensors.
 - **Web Server:** Hosts a real-time dashboard displaying sensor data and live video feed.
+- **WebSocket Protocol:** Used to send and receive compact, real-time control and telemetry messages between the car and the remote control server.
 
 
 ## Links
 
-- [PixyCam Setup Guide](https://pixycam.com/start) – Used to successfully connect and configure the PixyCam 2 with the Raspberry Pi Pico 2W
+- [pygame Documentation](https://www.pygame.org/docs/) – Python joystick interface used to control the car
+
 
 

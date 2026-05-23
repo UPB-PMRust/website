@@ -45,13 +45,28 @@ I assembled all of the hardware and wrote code for debugging via USB, initializi
 
 ### Week 19 - 25 May
 
+I tried to initialize the SD card using the embedded-sdmmc crate, but it didn't work, so the save/load functionality is not implemented. Making a HTTP server didn't make sense without the SD card, because I wanted to store the game data on the Pico, not on a remote server.
+
+I spawned an embassy task in main for each of the peripherals: the vibration motor, joystick, buttons, buzzer and display. Each of these has its separate file, containing the task for initializing the respective peripheral, plus some additional functions as needed.
+
+By far the most code was needed for drawing the UI (in display.rs). I added 4 types of screens: the main menu, the game options, the minesweeper game itself, and the victory/defeat screen. The first 3 have 2 different functions each: one for drawing the UI elements, and another that handles user input and remembers state variables like what option/tile is selected.
+
+minesweeper.rs contains code for managing the game logic and state, independent of the UI.
+Cell represents a single tile state, Minesweeper represents the whole game board, and GameState contains additional metadata like a timer and win/loss flags.
+
+The hardest part of writing the software was having to selectively rerender only the parts of the screen that were changed most recently. I had to do this because redrawing the whole screen for every update was too slow, and it was annoying to wait a second between every move.
+
 ## Hardware
 
 The project utilizes a Raspberry Pi Pico W microcontroller as the central processing unit. User interaction is handled by a biaxial joystick for grid navigation and menu control, along with several push buttons for actions like placing flags, restarting, accessing the menu, and potentially other features. Visual feedback is provided through a 2.8" SPI LCD display (ILI9341 controller). Audio and haptic feedback are implemented using a passive buzzer and a vibration motor. Game state persistence and map storage are managed using a microSD card connected via SPI. The Pico W's wireless capability is used to host a local HTTP server, allowing saved maps to be viewed remotely. A second Pico is used as a debug probe (Picoprobe).
 
 Here are some pics to see how the project is assembled.
+
 ![Hardware_turned_off](Turned_off.webp)
-![Hardware_turned_on](Turned_on.webp)
+![Main Menu](main_menu.webp)
+![Game Menu](game_menu.webp)
+![Minesweeper](minesweeper.webp)
+![Game Over](game_over.webp)
 
 ### Schematics
 
@@ -86,19 +101,19 @@ The format is
 
 ## Software
 
-| Library                                                                        | Description                                                                                           | Usage                                                                                              |
-| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [embassy-executor](https://github.com/embassy-rs/embassy)                      | async/await executor designed for embedded usage                                                      | Runs and manages all asynchronous tasks (input handling, display updates, networking, game logic). |
-| [embassy-rp](https://github.com/embassy-rs/embassy)                            | Embassy Hardware Abstraction Layer (HAL) for the Raspberry Pi RP2040 microcontroller                  | Interfacing with Pico W hardware: GPIO (buttons, joystick, buzzer, motor), SPI (LCD, SD card).     |
-| [embassy-time](https://github.com/embassy-rs/embassy)                          | Instant and Duration for embedded no-std systems, with async timer support                            | Implementing delays, timeouts, debouncing inputs, potentially game timers.                         |
-| [embassy-net](https://github.com/embassy-rs/embassy)                           | Async TCP/IP network stack for embedded systems                                                       | Providing the underlying networking capabilities for the HTTP server.                              |
-| [cyw43](https://github.com/embassy-rs/embassy)                                 | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W.                              | Enabling WiFi connectivity via the Pico W's onboard wireless chip.                                 |
-| [picoserve](https://github.com/sammhicks/picoserve)                            | An async no_std HTTP server suitable for bare-metal environments                                      | Implementing the HTTP server to serve saved game maps over WiFi.                                   |
-| [defmt](https://github.com/knurling-rs/defmt)                                  | A highly efficient logging framework that targets resource-constrained devices, like microcontrollers | Debug logging during development via the debug probe.                                              |
-| [mipidsi](https://github.com/almindor/mipidsi)                                 | MIPI Display Command Set compatible generic driver usage                                              | Low-level driver for communicating with the ILI9341 LCD controller over SPI.                       |
-| [embedded_graphics](https://github.com/embedded-graphics/embedded-graphics)    | Embedded graphics library for small hardware displays                                                 | Drawing the game grid, menus, text, and other UI elements on the LCD.                              |
-| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | A basic SD/MMC driver for Embedded Rust.                                                              | Reading from and writing to the microSD card for game save/load functionality.                     |
-| [oorandom](https://hg.sr.ht/~icefox/oorandom)                                  | A tiny, robust PRNG implementation.                                                                   | Generating random numbers for placing mines on the game board.                                     |
+| Library                                                                                   | Description                                                                                           | Usage                                                                                              |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [embassy-executor](https://github.com/embassy-rs/embassy)                                 | async/await executor designed for embedded usage                                                      | Runs and manages all asynchronous tasks (input handling, display updates, networking, game logic). |
+| [embassy-rp](https://github.com/embassy-rs/embassy)                                       | Embassy Hardware Abstraction Layer (HAL) for the Raspberry Pi RP2040 microcontroller                  | Interfacing with Pico W hardware: GPIO (buttons, joystick, buzzer, motor), SPI (LCD, SD card).     |
+| [embassy-time](https://github.com/embassy-rs/embassy)                                     | Instant and Duration for embedded no-std systems, with async timer support                            | Implementing delays, timeouts, debouncing inputs, potentially game timers.                         |
+| [embassy-net](https://github.com/embassy-rs/embassy)                                      | Async TCP/IP network stack for embedded systems                                                       | Providing the underlying networking capabilities for the HTTP server.                              |
+| [cyw43](https://github.com/embassy-rs/embassy)                                            | Rust driver for the CYW43439 WiFi chip, used in the Raspberry Pi Pico W.                              | Enabling WiFi connectivity via the Pico W's onboard wireless chip.                                 |
+| [picoserve (not used)](https://github.com/sammhicks/picoserve)                            | An async no_std HTTP server suitable for bare-metal environments                                      | Implementing the HTTP server to serve saved game maps over WiFi.                                   |
+| [defmt](https://github.com/knurling-rs/defmt)                                             | A highly efficient logging framework that targets resource-constrained devices, like microcontrollers | Debug logging during development via the debug probe.                                              |
+| [mipidsi](https://github.com/almindor/mipidsi)                                            | MIPI Display Command Set compatible generic driver usage                                              | Low-level driver for communicating with the ILI9341 LCD controller over SPI.                       |
+| [embedded_graphics](https://github.com/embedded-graphics/embedded-graphics)               | Embedded graphics library for small hardware displays                                                 | Drawing the game grid, menus, text, and other UI elements on the LCD.                              |
+| [embedded-sdmmc (not used)](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | A basic SD/MMC driver for Embedded Rust.                                                              | Reading from and writing to the microSD card for game save/load functionality.                     |
+| [oorandom](https://hg.sr.ht/~icefox/oorandom)                                             | A tiny, robust PRNG implementation.                                                                   | Generating random numbers for placing mines on the game board.                                     |
 
 ## Links
 

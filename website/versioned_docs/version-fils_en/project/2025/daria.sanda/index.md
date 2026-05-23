@@ -39,6 +39,20 @@ I then sewed the sensor and the motor onto a harness, allowing the device to be 
 I did the schematic in KiCad and I tried simple codes to see if the connections were correct and if all components were working properly.
 
 ### Week 19 - 25 May
+I configured the push button to act as a stop control for the device, allowing users to halt operations when needed. Additionally, I set up the sensor to enable the accelerometer to start recording data. When the sensor detects a position that deviates from the calibrated "correct" position, the system activates both the LED and motor to provide immediate feedback.
+
+
+### Week 26 - 31 May
+I've added a buzzer on GPIO 18, using PWM to control it. I also implemented user input functionality, allowing each user to calibrate the device to their own correct position. This makes the system more personalized and accurate for individual use.
+I enhanced the functionality of the push button with multi-action controls:
+**Single press**: Stops the LED, buzzer, and motor immediately.
+**Double press**: Restarts the system, reactivating the LED, buzzer, and motor.
+**Long press**: Initiates the calibration process. During this time, the LED blinks for a few seconds to indicate that calibration is in progress.
+Also, the cable connections proved to be unstable, requiring frequent adjustments. Additionally, the motor needed regular fixing to maintain reliable operation.
+
+![Hardware3](./buzzer.webp)
+![Hardware4](./motoras.webp)
+
 
 ## Hardware
 ![Hardware1](./hardware1.webp)

@@ -36,6 +36,8 @@ This week, I finished assembling all the hardware for my robot. I mounted all th
 
 ### Week 19 - 25 May
 
+This week, I completed the sensor reading code using a multiplexer and addressed a faulty channel by remapping it in software. I also finished the motor control code. After I tested both codes, I merged the sensor and motor code into a single program. With that, the core functionality of my robot is now working. 
+
 ## Hardware
 
 <!--Detail in a few words the hardware used.-->
@@ -96,6 +98,12 @@ The format is
 | [gpio](https://docs.embassy.dev/embassy-stm32/git/stm32c011d6/gpio/index.html) | General-purpose Input/Output module | Used for controlling GPIO pins |
 | [ADC](https://docs.embassy.dev/embassy-rp/git/rp2040/adc/index.html) | Analog-to-digial converter module | Used for controlling ADC pins |
 | [defmt](https://github.com/knurling-rs/defmt) | Compact logging crate for embedded systems | Used for debugging |
+| embassy-executor | Async Runtime | Enables async runtime and task scheduling on embedded systems |
+| pwm | PWM Module | For PWM motor speed control |
+| embassy-time | Timing Utility| For delays, timing, and async timers |
+| defmt-rtt | Logging Output | Provides Real-Time Transfer logging output over USB |
+| panic-probe | Panic Handler | Handles panics in no_std environments safely |
+
 
 ## Links
 

@@ -15,13 +15,21 @@ Modern elevators can waste time and energy by stopping at unnecessary floors or 
 I chose this project because it addresses a real-world need for smarter, more efficient building systems. Elevators are critical for accessibility and convenience, and optimizing their operation can have a significant impact on energy use and user experience. This project combines my interest in automation and control with the challenge of creating a practical solution that benefits everyday life.
 
 ## Architecture 
-![alt text](scheme.svg) \
+
+![alt text](scheme.svg) 
+=======
+
 
 ## Main Components
 
 ### 🟦 Input Module: Floor Request Buttons
 - **Function:** Simulate user requests for specific floors.
 - **Details:** Each button is wired to a GPIO input on the Raspberry Pi Pico 2W.
+
+
+### 🟨 Input Module: MFRC522 RFID Module
+- **Function:** Simulate card-based access.
+- **Details:** The MFRC522 module is connected to the Raspberry Pi Pico 2W via SPI and GPIO.
 
 ### 🟪 Controller Module: Raspberry Pi Pico 2W
 - **Function:** Central brain that processes button inputs, manages the elevator request queue, determines optimal direction, and issues movement commands.
@@ -41,6 +49,7 @@ I chose this project because it addresses a real-world need for smarter, more ef
 | **Pico 2W Logic**| GPIO Outputs        | Control LEDs and stepper motor driver      |
 | **A4988 Driver** | Stepper Motor Pins  | Translate Pico signals to motor movement   |
 | **LEDs**         | GPIO Outputs        | Indicate elevator position & direction     |
+| **MFRC522**      | SPI & GPIO          | Read RFID cards for priority access        |
 
 Schematic Overview:
 - Buttons → **Pico 2W** (GPIO Inputs)
@@ -87,7 +96,8 @@ The **hardware components** used in this project are:
 9. 🔔 **Buzzer**  
    *Provides auditory feedback for floor arrivals and events.*
 
----
+10. 🟨 **MFRC522 RFID Module**  
+    *Simulate card-based access.*
 
 These components combine to create an interactive, physical model of a smart elevator system—enabling the practical exploration of efficient control algorithms, real-time feedback, and responsive user interaction.
 
@@ -118,17 +128,22 @@ The format is
 | [NEMA 17 Stepper Motor](https://www.optimusdigital.ro/en/stepper-motors/5057-17hs4401-stepper-motor-17-a-40-ncm.html?search_query=17HS4401&results=1) | Motor for the elevator | [45 RON](https://www.optimusdigital.ro/en/stepper-motors/2926-gm12-15byc-micro-gear-stepper-motor-130.html?search_query=stepper&results=151) |
 | [A4988 Stepper Motor Driver](https://www.optimusdigital.ro/en/stepper-motor-drivers/108-a4988-stepper-motor-driver.html) | Driver for the stepper motor | [20 RON](https://www.optimusdigital.ro/en/stepper-motor-drivers/108-a4988-stepper-motor-driver.html) |
 | [Buzzer (5V, 5mm)](https://www.optimusdigital.ro/en/speakers/1201-buzzer-5v-5mm.html) | Auditory feedback for floor arrival and other events | [5 RON](https://www.optimusdigital.ro/en/buzzers/12513-pcb-mounted-active-buzzer-module.html?search_query=buzzer&results=86) |
-| **Total** | | **150 RON** |
+| [MFRC522 RFID Module](https://www.optimusdigital.ro/en/wireless-rfid/67-modul-cititor-rfid-mfrc522.html) | Card-based access or priority call | [10 RON](https://www.optimusdigital.ro/en/wireless-rfid/67-modul-cititor-rfid-mfrc522.html) |
+| **Total** | | **160 RON** |
 
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rs](https://github.com/embassy-rs/embassy) | Async/await for embedded Rust | Main framework for asynchronous operations on the Raspberry Pi Pico 2W |
-| [rp-pico](https://github.com/rp-rs/rp-pico) | HAL for Raspberry Pi Pico | Hardware abstraction layer for the Pico 2W microcontroller |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer | Provides traits for embedded devices |
-| [defmt](https://github.com/knurling-rs/defmt) | Debugging framework | Logging and debugging utilities |
-| [embassy-time](https://docs.embassy.dev/embassy-time/) | Time management | Handling delays and timers in an async context |
-| [embassy-executor](https://docs.embassy.dev/embassy-executor/) | Async executor | Running async tasks on the microcontroller |
+| [embassy-executor](https://docs.embassy.dev/embassy-executor/) | Async runtime for embedded systems | Runs async tasks on the microcontroller |
+| [embassy-net](https://docs.embassy.dev/embassy-net/) | Networking stack for embedded systems | Provides networking capabilities (TCP/IP, etc.) |
+| [embassy-rp](https://docs.embassy.dev/embassy-rp/) | Hardware abstraction layer for Raspberry Pi Pico | Low-level access to Pico peripherals |
+| [embassy-time](https://docs.embassy.dev/embassy-time/) | Time-related utilities for embedded systems | Async timers, delays, and timeouts |
+| [static-cell](https://docs.rs/static_cell/latest/static_cell/) | Static memory allocation | Enables safe static data storage |
+| [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | Logging over RTT (Real-Time Transfer) | Real-time logging for debugging |
+| [panic-probe](https://docs.rs/panic-probe/latest/panic_probe/) | Panic handler for debug probes | Captures panics for debugging via probe |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded systems | Efficient debug output |
+| [embedded-hal-bus](https://docs.rs/embedded-hal-bus/latest/embedded_hal_bus/) | Hardware abstraction layer bus implementations | Shared bus abstractions (I2C, SPI, etc.) |
+| [mfrc522](https://crates.io/crates/mfrc522) | Driver for the MFRC522 RFID reader | Controls and interfaces with RFID module |
 

@@ -78,7 +78,9 @@ The **microSD card module** stores the image, while WiFi can send it to a remote
 - Documented all necessary pin connections for the Pico board in the project setup.
 
 
-### Week  -  May
+### Week 3  -  May 20-27
+- Implemented the software for the hardware setup. 
+
  
 
 ## Hardware
@@ -147,19 +149,59 @@ The **microSD card module** stores the image, while WiFi can send it to a remote
 
 
 ## Software
+![System architecture diagram](./software_scheme.webp)
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy‑rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2040 HAL + async executor | Low‑level access to GPIO, ADC, I²C, SPI, timers |
-| [embedded‑hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Common trait layer used by almost all drivers |
-| [esp‑wifi](https://github.com/esp-rs/esp-wifi) | Wi‑Fi stack for Pico 2W | Connects to WLAN, sends images via HTTP/Telegram |
-| [embassy‑net](https://github.com/embassy-rs/embassy/tree/main/embassy-net) | Async TCP/UDP stack | Networking primitives used together with esp‑wifi |
-| [hd44780‑driver](https://github.com/JohnDoneth/hd44780-driver) | LCD1602 driver over I²C | Prints speed & threshold on the display |
-| [ov2640](https://github.com/blacksmithgu/ov2640) | OV2640 camera driver | Captures JPEG images on overspeed |
-| [embedded‑sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT‑FS for microSD | Saves captured images locally |
-| [heapless](https://github.com/japaric/heapless) | Fixed‑capacity buffers | Stores image data & message queues without malloc |
-| [fugit](https://github.com/EmbassyEmbedded/fugit) | Time‑keeping utilities | Delay & timestamp calculations |
-| [microfft](https://github.com/jblondin/microfft) | Lightweight FFT | Extracts Doppler frequency for speed computation |
+| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2040 HAL + async executor support | Low-level access to GPIO, I²C, timers and board initialization (init, Input/Output, I2C) |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor for embedded | `#[embassy_executor::main]` entry point, task scheduling |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Async timers and delays | `Timer::after(...)` and `Delay` types for non-blocking waits |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Underlying trait layer used by embassy-rp for GPIO/I²C interfaces |
+| [defmt-rtt](https://github.com/knurling-rs/defmt/tree/main/defmt-rtt) | Real-time logging over RTT | `defmt::info!` for printing debug/log messages via probe |
+| [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler that logs via RTT | Catches panics and reports stack trace over RTT |
+| [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | HD44780-based LCD over I²C | Drives the 16×2 character display (`lcd.clear`, `lcd.write_str`) |
+
+## Detailed Design
+
+
+### 1. Reference Speed Control
+- **Libraries used**: `embassy-rp::gpio`, `embassy-time`  
+- **Responsibilities**:  
+  - Read “+” and “–” buttons with 50 ms debounce (`Timer::after`)  
+  - Increment/decrement the `ref_speed` variable 
+  - Update the LCD only when `ref_speed` changes  
+
+### 2. Measurement Control
+- **Libraries used**: `embassy-rp::gpio`, `embassy-executor`  
+- **Responsibilities**:  
+  - Toggle measurement on/off with the “Start” button  
+  - Manage `measuring` and `alerted` flags to coordinate measurement cycles and one-time alerts  
+
+### 3. Doppler Sensor Task
+- **Libraries used**: `embassy-rp::gpio`, `embassy-time`  
+- **Responsibilities**:  
+  - Sample the HB100 IF pin for `GATE_MS = 200 ms`, counting falling edges  
+  - Compute Doppler frequency `f_d = pulses * (1000 / GATE_MS)`  
+  - Apply threshold filter (`MIN_F_HZ = 80 Hz`)  
+  - Convert to speed in km/h: `v = 0.5 * f_d * λ * 3.6`  
+
+### 4. Display Manager
+- **Libraries used**: `embassy-rp::i2c`, `hd44780-driver`, `heapless::String`  
+- **Responsibilities**:  
+  - Initialize I²C and the 16×2 HD44780 LCD over address  
+  - Clear display, position cursor, and write formatted “Ref: X km/h” and “Cur: Y km/h” lines  
+  - Use `heapless::String<16>` to build strings without heap allocation  
+
+### 5. Alert System
+- **Libraries used**: `embassy-rp::gpio`, `embassy-time`  
+- **Responsibilities**:  
+  - On `measuring && current_speed > ref_speed && !alerted`:  
+   - Generate 100 PWM cycles on the buzzer 
+   - Blink the red LED for 500 ms  
+   - Clear the current‐speed line on the LCD  
+   - Stop measuring and set `alerted = true`  
+ 
+
 
 ## Links
 

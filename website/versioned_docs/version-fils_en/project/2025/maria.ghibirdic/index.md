@@ -95,7 +95,7 @@ I started to search for the necessary components, looking for inspiration online
 ### Week 12 - 18 May
 Observing the overall development of my project, I decided to add a few functionalities to my project, aiming for a more veritable result.
 ### Week 19 - 25 May
-
+This week, I integrated the MAX30102 heart rate sensor via I²C and added a dedicated Heart Rate screen to the smartwatch. The display now shows live raw data from the sensor, along with a heart icon. I also fixed screen rendering issues to ensure each screen refreshes cleanly and independently. Debugging included resolving I²C read conflicts and properly handling sensor initialization errors.
 ## Hardware
 
 1. **Microcontroller**  
@@ -157,6 +157,8 @@ The Kicad scheme of the project:
 A picture of the project:
 
 ![](smartwath-circuit.webp)
+![](poza-proiect_resized.webp)
+![](poza-proiect-2_resized.webp)
 
 ### Bill of Materials
 

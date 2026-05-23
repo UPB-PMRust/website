@@ -49,7 +49,7 @@ flowchart
 ```
 
 ---
----
+
 # Bibliography
 for this section
 
@@ -57,7 +57,16 @@ for this section
    - Chapter 12 - *Peripherals*
      - Chapter 12.7 - *USB*
 
-2. *[USB Made Simple](https://www.usbmadesimple.co.uk/)*
+2. **STMicroelectronics**, *[STM32U545RE Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)*
+   - Chapter 71 - *Universal serial bus full-speed host/device interface
+(USB)*
+
+3.  **BeyondLogic**, *[USB in a NutShell](https://www.beyondlogic.org/usbnutshell/usb1.shtml)*
+
+4. **Ben Eater**, *[How does a USB keyboard work?](https://www.youtube.com/watch?v=wdgULBpRoXk)*
+5. **Ben Eater**, *[How does USB device discovery work?](https://www.youtube.com/watch?v=N0O5Uwc3C0o)*
+
+6. *<a href="/pdf/USBMadeSimple.pdf">USB Made Simple</a>*
 
 ---
 layout: two-cols
@@ -1023,30 +1032,56 @@ Explanation: This string descriptor corresponds to **Configuration 1**. The stri
 ---
 ---
 # Embassy API
-for RP2350, setup the device
+for RP2350 and STM32U545RE, setup the device
 
+````md magic-move
 ```rust {1,4-6|2,8-14|4-6,15|all}
 use embassy_rp::usb::{Driver, InterruptHandler};
-use embassy_usb::Config;
+use embassy_usb::Config as UsbConfig;
 
 bind_interrupts!(struct Irqs {
     USBCTRL_IRQ => InterruptHandler<USB>;
 });
 
-let mut config = Config::new(0xc0de, 0xcafe);
+let mut config = UsbConfig::new(0xc0de, 0xcafe);
 config.manufacturer = Some("Embassy");
 config.product = Some("USB sender receiver");
 config.serial_number = Some("12345678");
 config.max_power = 100;
 config.max_packet_size_0 = 64;
 
-let driver = Driver::new(p.USB, Irqs);
+let driver = Driver::new(peripherals.USB, Irqs);
 ```
+
+```rust 
+use embassy_stm32::usb::{Driver, InterruptHandler};
+use embassy_usb::Config as UsbConfig;
+
+bind_interrupts!(struct Irqs {
+    USB => InterruptHandler<USB>;
+});
+
+let mut config = UsbConfig::new(0xc0de, 0xcafe);
+config.manufacturer = Some("Embassy");
+config.product = Some("USB sender receiver");
+config.serial_number = Some("12345678");
+config.max_power = 100;
+config.max_packet_size_0 = 64;
+
+let driver = Driver::new(peripherals.USB, Irqs, peripherals.PA12, peripherals.PA11);
+```
+````
+
+<div v-after>
+
+> JP3 has to be moved to `USB USER`
+
+</div v-after>
 
 ---
 ---
 # Embassy API
-for RP2350, setup the descriptors
+for RP2350 and STM32U545RE, setup the descriptors
 
 ```rust {4-8|2,4-12|1,14-21}
 use embassy_usb::msos::{self, windows_version};
@@ -1075,7 +1110,7 @@ builder.msos_feature(msos::RegistryPropertyFeatureDescriptor::new(
 ---
 ---
 # Embassy API
-for RP2350, setup the device's function and start
+for RP2350 and STM32U545RE, setup the device's function and start
 
 ```rust {3|3,4|3-5|3-6|3-7|11|14|all}
 // Add a vendor-specific function (class 0xFF), and corresponding interface,
@@ -1097,7 +1132,7 @@ let usb_run = usb.run();
 ---
 ---
 # Embassy API
-for RP2350, use the USB device
+for RP2350 and STM32U545RE, use the USB device
 
 ```rust {1,18|1,2,17,18|3,4|5,15|6,7,14,8,13|9-11|22|all}
 let echo_run = async {

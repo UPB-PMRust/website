@@ -38,7 +38,8 @@ pen-and-paper game turned digital like Tic-Tac-Toe.
 - ### 4x4 Button Matrix
   * Handles inputs for X and O placements, game variant selection and restart.
 - ### Passive Buzzer
-  * Used to play different notes.
+  * Used to play the background song.
+  * The song is Lost Woods(Saira's Song) from The Legend of Zelda: Ocarina of Time.
 - ### LEDs
   * Two LEDs, green and red.
   * Lights up according to winner.
@@ -67,6 +68,10 @@ pen-and-paper game turned digital like Tic-Tac-Toe.
   * Finished hardware assembly.
 
 ### Week 19 - 25 May
+  * Finished documentation.
+  * Translated the sheet music for Lost Woods to note frequecies and durations.
+  * Spent the week writing the code for the device.
+  * Ironed out all the bugs by the end of the week.
 
 ## Hardware
 
@@ -125,6 +130,6 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
+1. [Link to short demo](https://www.youtube.com/shorts/w8CUQvX3xd8)
+2. [Link to the sheet music for Lost Woods from Ocarina of Time](https://musescore.com/user/2114686/scores/780391)
 ...

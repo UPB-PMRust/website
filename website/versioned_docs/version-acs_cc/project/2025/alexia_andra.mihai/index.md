@@ -11,7 +11,7 @@ A small device that reads your heart rate and plays matching sound feedback.
 
 
 ## Description  
-PulseBeats is a portable embedded device built with a Raspberry Pi Pico W that monitors the user’s heart rate using the MAX30102 sensor. It provides real-time visual and audio feedback through an LCD display and a passive speaker. The goal is to offer a simple way to reflect biometric signals in an engaging way.
+PulseBeats is a portable embedded device built with a Raspberry Pi Pico W that monitors the user’s heart rate using the KY-039 sensor. It provides real-time visual and audio feedback through an LCD display and a passive speaker. The goal is to offer a simple way to reflect biometric signals in an engaging way.
 
 
 
@@ -68,7 +68,7 @@ Main components of the system:
 
 
 - **Optional UI (Buttons, Rotation Angle Sensor)**  
-  - **Buttons** are used for starting/stopping measurement or sound.  
+  - **Buttons** are used for starting/stopping sound.  
   - **Rotation Angle Sensor** (Potentiometer-based) provides analog input for adjusting volume.
 
 
@@ -98,13 +98,15 @@ Ordered additional components needed for the project. Set up a development envir
 Completed the hardware assembly phase of the project. Connected all components according to the planned schematic and performed individual testing of each module to ensure proper functionality.
    
 ### Week 19 – 25 May
-   
+I developed code for each individual component separately and then integrated everything into a complete, functional program that meets all the required specifications. During the process, I addressed issues caused by unstable power supply to ensure reliable operation. 
+I also replaced the MAX30100 sensor with KY-039 because I discovered that no compatible crate worked properly.
+Additionally, I made efforts to arrange the components in a more organized and aesthetically pleasing manner.
 
 ## Hardware  
 
 
 - **Raspberry Pi Pico W** – The main microcontroller that reads sensor data, controls output devices, and handles logic.
-- **MAX30100 Pulse Sensor** – Detects heart rate using infrared light and communicates via I2C.
+- **MAX30100 Pulse Sensor (unused)** – Detects heart rate using infrared light and communicates via I2C.
 - **KY-039 Pulse Sensor** – Alternative analog finger pulse sensor that detects heartbeats using infrared light reflection.
 - **1602 LCD Display (I2C)** – Displays heart rate, system messages, or prompts in real time.
 - **DFPlayer Mini** – MP3 audio playback module used to play sound files stored on a microSD card.
@@ -117,10 +119,10 @@ Completed the hardware assembly phase of the project. Connected all components a
 
 ![PulseBeats Circuit Schematic](pulsebeats-schematic.svg)
 
-![poza1](poza1.webp)
-![poza2](poza2.webp)
-![poza3](poza3.webp)
-![poza4](poza4.webp)
+![poza7](poza7.webp)
+![poza8](poza8.webp)
+![poza9](poza9.webp)
+
 
 ## Bill of Materials  
 
@@ -150,14 +152,23 @@ Completed the hardware assembly phase of the project. Connected all components a
 |---------|-------------|-------|
 | [embassy-rs](https://github.com/embassy-rs/embassy) | Async multitasking framework for embedded systems | Used to manage asynchronous tasks |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer for embedded systems | Used to interface with embedded peripherals generically |
-| [max3010x](https://github.com/almindor/max3010x) | Driver for MAX30100/MAX30102 pulse oximeter sensors | Used to read heart rate and SpO₂ data |
-| [dfplayer-rs](https://github.com/samcrow/dfplayer-rs) | Library for controlling the DFPlayer Mini MP3 module | Used for audio playback via serial communication |
-| [hd44780-driver](https://github.com/eldruin/hd44780-driver) | LCD driver for HD44780-compatible displays over I2C | Used to show text on LCD1602 screens |
+| [dfplayer-async](https://crates.io/crates/dfplayer-async) | Library for controlling the DFPlayer Mini MP3 module | Used for audio playback via serial communication |
+| [lcd1602-diver](https://crates.io/crates/lcd1602-diver)       | Simple LCD1602 I2C driver                      | Provides display control for messages on the LCD       |
+| [defmt](https://github.com/knurling-rs/defmt)                 | Lightweight logging for embedded systems       | Logs runtime information via RTT                       |
+| [defmt-rtt](https://github.com/knurling-rs/defmt)             | Real-Time Transfer (RTT) backend for `defmt`   | Transfers logs from the device to the host             |
+| [panic-probe](https://github.com/knurling-rs/panic-probe)     | Panic handler for embedded Rust with `defmt`   | Handles and logs panics efficiently                    |
+| [embassy-time](https://docs.rs/embassy-time)                  | Time and delays for async Embassy tasks        | Handles timers, delays, and time measurements          |
+| [embassy-sync](https://docs.rs/embassy-sync)                  | Lightweight async synchronization primitives   | Provides channels and mutexes for task comms           |
+| [static\_cell](https://docs.rs/static_cell)                   | Safe static memory allocations                 | Used to initialize peripherals with `'static` lifetime |
 
 ---
 
 ## Links  
-TBD
+https://crates.io/crates/dfplayer-async
+https://sensorkit.joy-it.net/en/sensors/ky-039
+https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299
+
+
 
 
 

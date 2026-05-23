@@ -69,8 +69,9 @@ Integrated the joystick with the servo motor through custom control code, allowi
 
 
 ### Week 19 – 25 May
+Completed the physical structure of the crane using cardboard, ensuring stability and accessibility to all components. Successfully integrated all hardware elements — joystick, servo motor, stepper motor with ULN2003 driver, and control buttons — under the final unified control code. The system now allows simultaneous and responsive control of both the crane arm (servo) and vertical lift (stepper) based on user input.
 
-TO DO
+
 
 ## Components
 
@@ -126,13 +127,13 @@ TO DO
 
 ## Software
 
-| Library                                                                                           | Description          | Usage                                                        |
-| ------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------ |
-| [embassy-rp](https://github.com/embassy-rs/embassy)                                               | RP2040 HAL           | Async GPIO, PWM (servo), timers                              |
-| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal)                               | HAL Traits (async)   | Abstracție pentru GPIO, PWM, input polling                   |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal)                                     | HAL Traits (sync)    | Control basic devices like stepper, joystick, buttons        |
-| [stepper](https://crates.io/crates/stepper)                                                       | Stepper motor driver | Control of stepper motor movement                            |
-| [servo-pwm](https://crates.io/crates/servo-pwm) _(sau direct PWM din embassy)_                    | Servo motor control  | Generare semnal PWM pentru controlul poziției servomotorului |
-| [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging Framework    | Real-time embedded debugging over RTT                        |
-| [panic-probe](https://github.com/knurling-rs/panic-probe)                                         | Panic Handler        | Diagnostic panic messages compatibile cu `defmt`             |
+| Library                                                                                           | Description           | Usage                                                                 |
+| ------------------------------------------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------- |
+| [embassy-rp](https://github.com/embassy-rs/embassy)                                               | RP2040 HAL            | Async control of GPIO, PWM for servo, ADC for joystick, timers       |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal)                                     | HAL Traits (sync)     | Generic GPIO and PWM abstraction for portability and compatibility   |
+| [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Logging Framework     | Real-time embedded logging over RTT                                  |
+| [panic-probe](https://github.com/knurling-rs/panic-probe)                                         | Panic Handler         | Diagnostic panic messages compatible with `defmt`                    |
+| [fixed](https://docs.rs/fixed)                                                                    | Fixed-point arithmetic| Used to accurately configure the PWM `divider`                       |
+| [embassy-time](https://github.com/embassy-rs/embassy)                                             | Async Timers          | Precise non-blocking delays for servo and stepper control            |
+
 

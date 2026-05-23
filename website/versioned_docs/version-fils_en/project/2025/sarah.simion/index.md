@@ -34,24 +34,20 @@ I added a debugger and I tried testing the wiring to the display with a simple c
 
 ### Week 19 - 25 May
 
+I added all components and I started working on the games. After I finished the snake game, the most problematic error I encountered was setting the thresholds of the joystick, just to realize the x axys wasnt working so I had to change the joystick.
+
 ## Hardware
 
 This are the hardware parts that I would like to use:
 
-- Raspberry Pi Pico 2W (main microcontroller)
+- Raspberry Pi Pico 2W (main microcontroller) + one used as a debugger
 - LCD SPI 1.8"(128x160) Display
-- TP4056 Lipo Charger Module
-- 300 mAh Battery
-- KCD10-101 Switch
-- PS2 Joystick Module and a few buttons
-- simple PCB boards
+- PS2 Joystick Module and a button
 
 
 ![Alt text](pic3.webp)
 
 ![Alt text](pic4.webp)
-
-![Alt text](pic5.webp)
 
 
 ### Schematics
@@ -60,23 +56,11 @@ This are the hardware parts that I would like to use:
 
 ### Bill of Materials
 
-<!-- Fill out this table with all the hardware components that you mi>
-
-The format is 
-```
-| [Device](link://to/device) | This is used ... | [price](link://to/s>
-
-```
-
--->
 
 | Device | Usage | Price |
 |--------|--------|-------|
 | [Raspberry Pi Pico 2W](https://datasheets.raspberrypi.com/picow/pico-2-w-pinout.pdf) | Main microcontroller board | [40 lei](https://www.optimusdigital.ro/en/raspberry-pi-boards/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico&results=36) |
 | [LCD SPI 1.8" (128x160) Display](https://www.openimpulse.com/blog/wp-content/uploads/wpsc/downloadables/1.8-SPI-LCD-Module-datasheet.pdf) | Used to visually display information or interface elements. | [29 lei](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/1311-modul-lcd-spi-de-18-128x160.html?search_query=Modul+LCD+SPI+de+1.8%27%27+%28128x160%29&results=3) |
-| [TP4056 Lipo Charger Module](https://static.chipdip.ru/lib/977/DOC002977110.pdf) | Charges a single-cell LiPo battery via micro USB. | [6 lei](https://www.optimusdigital.ro/ro/electronica-de-putere-incarcatoare/7534-incarcator-tp4056-cu-micro-usb-pt-baterie-lipo-1a-cu-protectie-pentru-circuite.html?search_query=Incarcator+TP4056+cu+MICRO+USB+pt.+Baterie+LiPo+%281A%29+cu+Prote&results=1) |
-| [3.7V 300mAh Battery] | Powers the system | [will get one from a lantern at home] |
-| [KCD10-101 Switch](https://www.ncr.hk/uploads/Switches/Rocker_Switch/KCD1-101F.pdf) | Toggles power. | [2 lei](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/7377-comutator-kcd10-101.html?search_query=Comutator+KCD10-101&results=1) |
 | [PS2 Joystick Module](https://naylampmechatronics.com/img/cms/Datasheets/000036%20-%20datasheet%20KY-023-Joy-IT.pdf) | Provides directional input and control options. | [4 lei](https://www.robofun.ro/componente/modul-joystick-ps2.html) |
 | [Simple PCB Boards] | Base for soldering and connecting components. | [had at home] |
 | [Buttons](https://components101.com/switches/push-button) | For control options | [2x 2 lei](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1114-buton-cu-capac-rotund-rou.html?search_query=%09Buton+cu+Capac+Rotund+Ro%C8%99u&results=1) |
@@ -89,8 +73,12 @@ The format is
 |---------|-------------|-------|
 | [rp-hal](https://github.com/rp-rs/rp-hal) | Hardware Abstraction Layer for the RP2040 microcontroller | Provides access to RP2040 peripherals |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for embedded systems without a display server | Renders shapes, text, and images on the display |
+| [rand](https://github.com/rust-random/rand) | Random generator | Used to make random values for games |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | A set of traits for embedded hardware abstraction in Rust | Provides generic interfaces for timers, digital I/O, SPI, etc |
-| [st7789](https://github.com/almindor/st7789) | Driver crate for ST7789-based LCD displays | Drives the display with embedded-graphics support |
+| [st7735](https://github.com/almindor/st7789) | Driver crate for ST7735-based LCD displays | Drives the display with embedded-graphics support |
+| [heapless](https://github.com/rust-embedded/heapless) | Fixed-capacity data structures without dynamic memory allocation | Enables usage of vectors, strings, and other collections without a heap |
+| [mipisdi](https://github.com/almindor/mipidsi) | Driver for MIPI DSI compatible displays like ST7735 | Interfaces MIPI DSI displays with embedded-graphics support |
+| [ufmt](https://github.com/knurling-rs/ufmt) | Lightweight, no_std-friendly formatting crate | Enables efficient string formatting with minimal binary size |
 
 ## Links
 

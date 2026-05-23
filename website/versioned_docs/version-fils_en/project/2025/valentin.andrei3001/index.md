@@ -4,7 +4,7 @@ A rotative solar panel that moves toward the sun.
 :::info 
 
 **Author**: Andrei Valentin-Alexandru \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-ValiRupe
+**GitHub Project Link**: https://github.com/ValiRupe
 
 :::
 
@@ -45,11 +45,11 @@ I did the documentation part and bought some of the components ( I already had s
 
 ### Week 12 - 18 May
 
-I assembled the hardware parts, I did the KiCAD scheme, I managed progress with the picotool.
+I assembled the hardware parts, I did the KiCAD scheme, I managed progress with the picotool ( picotool didn't work either so i bought another pico as a debugger which didn't work either. I settled on an actual debugger ) .
 
-![Pic1](./pic1.webp)
-![Pic2](./pic2.webp)
-![Pic3](./pic3.webp)
+[Pic1](pic1.webp)
+[Pic2](pic2.webp)
+[Pic3](pic3.webp)
 
 ### Week 19 - 25 May
 
@@ -73,10 +73,9 @@ Sensor for temperature - NTC 100k
 
 
 ### Schematics 
-![Scheme](./scheme.webp)
-![Scheme-electric](./solar.svg)
+[Scheme](scheme.webp)
+[Scheme-electric](solar.svg)
 
-Place your KiCAD schematics here.
 
 ### Bill of Materials
 
@@ -107,12 +106,12 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-rp/embassy-executor](https://github.com/embassy-rs/embassy) | Embassy async functions | The core of the project necessary for it's functioning |
+| [embassy-rp::adc](https://github.com/embassy-rs/embassy) | ADC functionality | Thermoresistor and photoresistors |
+| [embassy-rp::pwm](https://github.com/embassy-rs/embassy) | PWM support | Implementing the servomotor and the regulator for the accumulator |
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [Solar powered pi pico](https://www.youtube.com/watch?v=molEMt655YQ)
-

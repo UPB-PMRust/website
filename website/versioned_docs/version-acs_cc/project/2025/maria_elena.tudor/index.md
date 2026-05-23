@@ -10,7 +10,7 @@ A coin-operated music player that plays Romanian pop hits from the 2000s and dis
 
 ## Description
 
-This project combines the nostalgic feel of classic jukeboxes with a curated playlist of Romanian pop music from the 2000s. Users insert a coin to unlock playback; track information (title, artist, duration, release year) is shown on an OLED display. Physical buttons allow play/pause, previous/next and volume control.
+This project combines the nostalgic feel of classic jukeboxes with a curated playlist of Romanian pop music from the 2000s. Users insert a coin to unlock playback; track information (title and artist) is shown on an OLED display. Physical buttons allow play/pause, previous/next, volume control and shuffling the playlist.
 
 ## Motivation
 
@@ -18,23 +18,25 @@ At every party I attend, Romanian hits from the 2000s always come on—and I lov
 
 ## Architecture
 
-![Schematic diagram](schematic.webp)
+![Schematic diagram](diagrama.webp)
+
+The player reads WAV files from an SD card, decodes and streams audio via I²S implemented in PIO, displays track information on an SSD1306 OLED, and supports play/pause, volume control, next/previous, and shuffle buttons. A simple ultrasonic “coin” sensor starts playback when a coin is detected.
 
   **Microcontroller Raspberry Pi Pico 2W** runs embedded Rust firmware, coordinating all peripherals.
   - **Tasks**:
-	- Handles peripheral I/O (SPI, I²C, GPIO, PWM)
-	- Manages shuffle queue and metadata parsing
+	- Handles peripheral I/O (SPI, GPIO, I2S)
+	- Manages shuffle queue and WAV file parsing
 	- Debounces buttons & validates coin input
 
- **OLED Display** shows metadata over I2C (song title, artist name, duration).
+ **OLED Display** shows metadata over I2C (song title, artist name).
 
  **Tactile Buttons** read GPIO inputs for user controls.
 
- **Coin Validator Sensor** detects insertion of a valid coin/token and signals the microcontroller to unlock playback for one track.
+ **Coin Validator Sensor** detects insertion of a valid coin/token and signals the microcontroller to unlock playback.
 
- **Audio Amplifier + Speaker** decodes MP3 through I2S and drives speaker via PWM.
+ **Audio Amplifier + Speaker** decodes WAV through I2S and streams the audio.
 
- **SD Card Module** stores MP3 files; accessed over SPI.
+ **SD Card Module** stores WAV files; accessed over SPI.
 
 ## Log
 
@@ -48,6 +50,7 @@ I managed to do the sensor and the display this week.
 I managed basic reading from the SD card and sending audio output to a speaker, then I started working on making all the components interact with one another and work at the same time. Lastly, I added the buttons.
 
 ### Week 19 - 25 May
+I worked on being able to go through the playlist of songs as I previously could only listen to one at a time. I also handled all the problems that I could find in the code and tried optimising the audio output as much as possible. I started working on a case for the project and added new songs.
 
 ## Hardware
 

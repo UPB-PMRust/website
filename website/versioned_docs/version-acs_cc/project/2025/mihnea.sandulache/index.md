@@ -74,6 +74,10 @@ Began putting all the pieces into place and designed the structure of the funnel
 ![diagram](Real_wiring2.webp)
 
 ### Week 19 - 25 May
+
+Finished the code by calibrating the color sensor. Since the sensor was not accurately detecting the green color, I decided to change it into yellow since I had some extra yellow candies left. I also added some extra messages on the LCD so the user knows when to drop the candy. Here is a [video](https://drive.google.com/file/d/1kdtDkNmV4OftlH76OdGOdWxUx6d_tafh/view?usp=sharing) of the final product in action.
+
+![diagram](Final_project.webp)
  
 
 ## Hardware
@@ -132,8 +136,6 @@ The format is
 | [Servomotor](https://datasheetspdf.com/datasheet/SG90.html) | Servomotor | [14 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=servomotor&results=119) |
 
 
-
-
 ## Software
 
 | Library | Description | Usage |
@@ -143,6 +145,12 @@ The format is
 | [lcd1602-diver](https://crates.io/crates/lcd1602-diver) | LCD display | Used for controlling the LCD display|
 | [cortex-m](https://github.com/rust-embedded/cortex-m) | Provides low-level APIs for ARM Cortex-M processors | Interrupt handling and system control|
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Asynchronous executor for embedded systems | Used for managing tasks and scheduling|
+
+The general flow of the programme is the following: drop the candy under the TCS230 color sensor, wait for the candy to set still. The sensor reads the frequency of each color component (red, green, blue) and uses these values to do an euclidean distance between the current reading and 3 reference readings, which have been previously calculated averaging 5 readings for each candy color.
+
+The color with the smallest distance is the one considered the candy to be. A message is printed on the LCD screen and an LED is turned on to indicate the color of the candy. Meanwhile, the two servomotors rotate accordingly and let the candy drop. After 2 seconds, the servos return to their initial position, the screen is cleared and the LEDs are turned off and the process can be repeated.
+
+![diagram](Software_diagram.webp)
 
 ## Links
 

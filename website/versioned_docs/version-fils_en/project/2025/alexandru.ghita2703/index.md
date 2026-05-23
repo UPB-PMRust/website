@@ -3,7 +3,7 @@ A simple autonomous parking prototype using Raspberry Pi Pico 2W, Rust and Embas
 
 :::info 
 
-**Author**: Ghita Alexandru-Catalin
+**Author**: Ghita Alexandru-Catalin \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/project-GhitaAlexandruCatalin
 
 :::
@@ -41,6 +41,7 @@ Built the car and developed stable automatic parking algorithm with PWM motor co
 ### Week 12 - 18 May
 Calibrated the parking stages duration (to make sure the car parks as good as possible), integrated Wi-Fi support and added web interface plan with special parking maneuver detection.
 ### Week 19 - 25 May
+Created the web page and the server on the Pico to control the maneuvres of the car (Start searching, Start parking, Auto parking)
 
 ## Hardware
 
@@ -89,14 +90,19 @@ The format is
 | [`smoltcp`](https://crates.io/crates/smoltcp) | Lightweight TCP/IP stack | Manages TCP connections for the web server |
 | [`static_cell`](https://crates.io/crates/static_cell) | Static memory allocator | Safe global resource allocation (e.g., networking stack) |
 | [`embedded-hal`](https://crates.io/crates/embedded-hal) | Hardware Abstraction Layer | Abstract interface for motors, sensors and peripherals |
+| [`embedded_io_async`](https://crates.io/crates/embedded-io-async) | Async traits for I/O operations | Used for async socket read/write operations |
+| [`core::sync::atomic`](https://doc.rust-lang.org/core/sync/atomic/index.html) | Atomic types for concurrency | Safe flag sharing between web server and parking logic |
 | [`defmt`](https://crates.io/crates/defmt), [`defmt-rtt`](https://crates.io/crates/defmt-rtt) | Efficient embedded logging | Low-overhead logging for debugging |
 | [`panic-probe`](https://crates.io/crates/panic-probe) | Panic handler for no_std | Lightweight handler for crash diagnostics |
-| [`heapless`](https://crates.io/crates/heapless) | Heap-free data structures | Useful for HTTP handler and message queues |
+| [`heapless`](https://crates.io/crates/heapless) | Heap-free data structures | Useful for HTTP response buffers and internal strings |
+| [`embassy_lab_utils`](https://github.com/UPB-PMRust/embassy-lab-utils) | Wi-Fi and network stack initialization helpers | Provides `init_wifi!()` and `init_network_stack()` macros |
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [Real life inspiration](https://newatlas.com/how-self-parking-works/46684/)
-2. [Arduino model](https://youtu.be/IpaVJD0ne1I?si=TsgtYaTl4377ByxE)
+1. [YouTube link with the working project](https://www.youtube.com/watch?v=kilFwHMVLwo)
+2. [Real life inspiration](https://newatlas.com/how-self-parking-works/46684/)
+3. [Arduino model](https://youtu.be/IpaVJD0ne1I?si=TsgtYaTl4377ByxE)
 

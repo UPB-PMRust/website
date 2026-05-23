@@ -1,5 +1,6 @@
 # Pet AutoFeeder
 
+Pet AutoFeeder is a smart automatic feeding system for pets.
 
 :::info 
 
@@ -45,6 +46,8 @@ The project has the following architecture:
     During the second week, I assembled the hardware on a breadboard. This included connecting the Raspberry Pi Pico 2W to the servo motor, weight sensor, ultrasonic distance sensor, LEDs, buzzer, and pushbutton. I also verified the electrical connections and ensured proper power distribution.
 
 *   **Week 19 - 25 May**
+    I implemented the core firmware using the Embassy async runtime in Rust. This included integration of all sensors (HX711, HC-SR04, DS3231), servo control, overfeed protection, buzzer and LED alerts, manual pause via button, and timestamped logging.
+
 
 ## HARDWARE
 
@@ -87,18 +90,40 @@ The **Raspberry Pi Pico 2W** serves as the central controller for the Pet AutoFe
 
 ## Software
 
+![alt text](SoftwareDiagram.svg)
+
+Pet AutoFeeder - Internal Function Summary
+
+- `bcd_to_decimal`: Convert BCD from RTC to decimal
+- `angle_to_pulse`: Servo angle to PWM
+
+- `read_time`: Get time from DS3231
+- `measure_distance`: Check reservoir level (HC-SR04)
+- `Hx711` methods: Read food bowl weight
+
+- `rotate_servo`: Dispense food via servo
+- `should_block_servo`: Avoid overfeeding
+- `update_weight_leds`: Show LED status
+
+- `handle_buzzer_blink`: Alert for empty reservoir
+- `stop_buzzer_and_start_pause`: Silence with button
+- `reset_servo_block_state`: Reset servo/buzzer state
+
+- Main loop: Monitors, dispenses, alerts, timestamps
+
+
 | Library           | Description                                                | Usage in Project                                                                           |
 | :---------------- | :--------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
-| [rp2040-hal](https://github.com/rp-rs/rp-hal)      | Hardware Abstraction Layer for RP2040.                     | Controls Pico's GPIO (LEDs, Button), PWM (Servo, Buzzer), I2C (RTC), PIO (if WS2812 used).    |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal)    | Standard traits for embedded hardware interaction.         | Provides the standard API traits implemented by `rp2040-hal` and used by peripheral drivers. |
-| [embedded-io](https://github.com/rust-embedded/embedded-hal)     | Standard traits for I/O operations (Read/Write).         | Provides standard I/O interfaces, potentially used by sensor or future comms crates.       |
-| [cortex-m-rt](https://github.com/rust-embedded/cortex-m)     | Runtime support for ARM Cortex-M.                          | Handles basic microcontroller startup, interrupt vector setup, and program entry point.      |
-| [panic-halt](https://github.com/korken89/panic-halt)      | Simple panic handler for `no_std`.                         | Halts the CPU on unrecoverable errors during development/operation.           |
-| [fugit](https://github.com/korken89/fugit)           | Types for time duration and frequency.                     | Used for specifying delays, PWM settings, and time intervals for RTC logic.                |
-| [hx711](https://github.com/jonas-hagen/hx711)          | Driver for HX711 load cell amplifier.                      | Interfaces with the HX711 chip to read data from the bowl's weight sensor.      |
-| [ds3231](https://github.com/eldruin/ds323x-rs)          | Driver for DS3231 Real-Time Clock module.                  | Communicates with the DS3231 RTC to track time for enforcing feeding intervals.  |
-| [defmt](https://github.com/knurling-rs/defmt)           | Highly efficient logging framework for embedded.           | Provides fast, formatted logging capabilities crucial for debugging embedded code.         |
-| [defmt-rtt](https://github.com/knurling-rs/defmt)       | RTT backend for `defmt`.              | Transmits `defmt` log messages to the host computer via a debug probe connection.          |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async/await executor for embedded systems.                 | Provides the async runtime for running concurrent tasks (sensor reading, servo control, etc.). |
+| [embassy-futures](https://github.com/embassy-rs/embassy)  | Utilities for working with futures in no_std environments. | Enables async programming patterns and future composition for embedded applications.        |
+| [embassy-time](https://github.com/embassy-rs/embassy)     | Timekeeping, delays and timeouts for Embassy.             | Handles time-based operations like feeding intervals, delays, and timestamp logging.       |
+| [embassy-rp](https://github.com/embassy-rs/embassy)       | Embassy HAL for RP2040/RP2350 microcontrollers.           | Controls Pico's GPIO (LEDs, Button), PWM (Servo, Buzzer), I2C (RTC), and other peripherals. |
+| [defmt](https://github.com/knurling-rs/defmt)             | Highly efficient logging framework for embedded.          | Provides fast, formatted logging capabilities crucial for debugging embedded code.         |
+| [defmt-rtt](https://github.com/knurling-rs/defmt)         | RTT backend for defmt logging.                            | Transmits defmt log messages to the host computer via a debug probe connection.           |
+| [fixed](https://crates.io/crates/fixed)                   | Fixed-point arithmetic library.                           | Handles precise mathematical calculations without floating-point operations.              |
+| [cortex-m](https://github.com/rust-embedded/cortex-m)     | Low-level access to Cortex-M processors.                  | Provides low-level ARM Cortex-M specific functionality and register access.              |
+| [cortex-m-rt](https://github.com/rust-embedded/cortex-m)  | Runtime support for ARM Cortex-M.                         | Handles basic microcontroller startup, interrupt vector setup, and program entry point.  |
+| [panic-probe](https://crates.io/crates/panic-probe)       | Panic handler that integrates with probe-run.             | Provides error reporting and debugging support when the program panics during development. |
 
 ## Links
 

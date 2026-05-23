@@ -43,6 +43,7 @@ There are two LEDs that show what’s going on: the green one lights up when eve
 This week I bought the rest of the components for the project. I finished the circuit design using KICad and completed the architecture of the project. I also built a stand for the DC motor. In addition, I worked on the code for the project, specifically for the screen to display the temperature and pressure.
 
 ### Week 20 - 26 May
+This week, I completed the code, adding new elements to the project. I also designed a case for the project and finished a stand for my DC motor. Additionally, I incorporated all the sensors and the display into the new case that I designed using a 3D printer.
 
 ## Hardware
 
@@ -166,8 +167,17 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy/tree/main/embassy-rp) | RP2040 Peripherals | Used for accessing the peripherals|
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | RP2040 Peripherals | Used to interface with GPIO, I2C, SPI, and peripherals like pins |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor for embedded | Used to spawn and manage async tasks |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Shared bus and helper traits | Used to wrap and share I2C bus access |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timer and delays for async systems | Used for time-based delays  |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Channel and mutex synchronization | Used to send messages between tasks using Channel |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded | Used for efficient debug logging |
+| [tsl256x](https://github.com/JoshMcguigan/tsl256x) | Driver for TSL2561 light sensor | Used to read ambient light values over I2C |
+| [max7219-driver](https://github.com/apollolabsdev/stm32-nucleo-f401re/tree/main/Drivers/) | MAX7219 LED driver | Used to control 7-segment LED display |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler for embedded Rust | Used to handle and log panics in embedded environments |
+| [static_cell](https://github.com/embassy-rs/static-cell) | Safe statics with interior mutability | Used for static initialization of resources |
+
 
 ## Links
 
@@ -175,4 +185,5 @@ The format is
 
 1. [Connect BMP280 to Raspberry Pi Pico/Pico W - Measure Temperature and Atmospheric Pressure](https://www.youtube.com/watch?v=XSfjpErsxfs)
 2. [Raspberry Pi Pico Temperature Controlled](https://www.youtube.com/watch?v=8kfROSQYDWI)
+3. [ClimaControl Youtube Video](https://youtube.com/shorts/8xx2ET8vLQo?feature=share)
 ...

@@ -17,7 +17,7 @@ layout: section
 ---
 ---
 # Practical
-- How to use the Raspberry Pi Pico
+- How to use the STM32 Nucleo-U545RE-Q
   - Affordable
   - Powerful processor
   - Good documentation

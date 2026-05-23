@@ -10,7 +10,7 @@ An MP3 player with button controls, a menu for song selection, and a display sho
 
 ## Description
 
-This MP3 player, built around the Raspberry Pi Pico 2W microcontroller, enables playback of MP3 files stored on a microSD card. It features five tactile buttons for intuitive control—play/pause, next/previous track, and volume up/down, plus an additional button to return to a navigable menu where users can browse and select songs. A 1.3″ I2C OLED display delivers real-time updates, showing the current track title, playback status, and a menu interface. Playback is handled by a DFPlayer Mini module interfaced via UART. An on-board LED, driven by PWM from the Pico, provides a visual volume indicator that brightens or dims in direct proportion to the current volume setting. Power is supplied by a 5V Samsung charger, ensuring reliable, portable performance.
+This MP3 player, built around the Raspberry Pi Pico 2W microcontroller, enables playback of MP3 files stored on a microSD card. It features five tactile buttons for intuitive control—play/pause, next/previous track, and volume up/down, plus an additional button to return to a navigable menu where users can browse and select songs. A 1.3″ I2C OLED display delivers real-time updates, showing the current track title, playback status, and a menu interface. Playback is handled by a DFPlayer Mini module interfaced via UART. An on-board LED, driven by PWM from the Pico, provides a visual volume indicator that brightens or dims in direct proportion to the current volume setting. Power is supplied by a 5V Samsung charger or a power bank, ensuring reliable, portable performance.
 
 ## Motivation
 
@@ -26,7 +26,7 @@ This project draws inspiration from the nostalgia of early portable MP3 players,
 - **Microcontroller ↔ Buttons**: GPIO6–10 as inputs for the playback and volume control buttons, and GPIO21 for the back to menu button used to eturn to the song selection menu.
 - **Microcontroller ↔ LED Indicator**: GPIO11 configured for PWM output, connected to a green LED through a 220Ω resistor, with brightness dynamically adjusted based on volume level.
 - **DFPlayer Mini ↔ Speaker**: DFPlayer output connected to the 4Ω/3W speaker.
-- **Power**: 5V Samsung charger connected to VSYS of the Raspberry Pi Pico 2W, supplying 5V directly DFPlayer Mini VCC.
+- **Power**: 5V Samsung charger/Power Bank connected to VSYS of the Raspberry Pi Pico 2W, supplying 5V directly DFPlayer Mini VCC.
 
 ## Log
 
@@ -45,6 +45,15 @@ Below are some pictures showing the current state of the project. The first pict
 ![Picture 2](mp3_player_pic_2.webp)
 
 ### Week 19 - 25 May
+Configured the display to show a menu with the songs from the list. The user can navigate through the songs and select one, with the selected song highlighted by a white rectangle. The next and prev buttons are used for navigation between songs, while the play/pause button is used to play the selected song. After playing a song, the display shows its details (name, artist and the next song in the list) along with the current volume. The song information updates automatically when a new song starts playing. In order to see the status of the playing song (playing/paused), a symbol is displayed: a triangle when the song is paused and two rectangles when the song is playing - similar to YouTube or other music players. I also configured the menu button that when pressed, stops the currently playing song and goes back to the menu, where the user can select another song. After using a better USB cable, I managed to make the project work with the power bank (by adding 220Ω resistors like I tried in the previous week). [Here](https://youtu.be/CsgfrlmEkdk) is the link for the project demo video.
+
+The images below show the final state of the project. The first shows the menu, the second shows the display when a song is playing and the third shows the display when a song is paused.
+
+![Picture 3](mp3_player_pic_3.webp)
+
+![Picture 4](mp3_player_pic_4.webp)
+
+![Picture 5](mp3_player_pic_5.webp)
 
 ## Hardware
 
@@ -80,6 +89,7 @@ The format is
 | [4Ω/3W Speaker](https://docs.rs-online.com/6abb/A700000011931840.pdf) | Outputs the audio playback | [11 RON](https://tehnoelectric.ro/difuzoare/1307-12159-difuzor-50x18mm-4-3w.html) |
 | [OLED 1.3" Display](https://cdn.awsli.com.br/945/945993/arquivos/1.3inch_IIC_OLED_Module_MC130GX&MC130VX_User_Manual_EN.pdf) | Displays song info and player status | [30 RON](https://www.electrospot.ro/display-oled-13-alb-128x64) |
 | Samsung charger | Provides power to the breadboard setup | Already owned |
+| HAMA PD10 201719 | Power Bank that provides power to the breadboard setup | [Already owned](https://altex.ro/baterie-externa-hama-pd10-201719-20000mah-2xusb-c-1xusb-a-gri/cpd/AIS201719/) |
 | [Buttons](https://www.farnell.com/datasheets/2343587.pdf) | User input for controlling playback and volume | [5 x 0.36 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html) |
 | [Resistors](https://www.farnell.com/datasheets/3111754.pdf) | Resistors used for buttons | [10 x 0.10 RON](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/853-rezistor-025w-51k.html) |
 | [LED](https://www.farnell.com/datasheets/1519875.pdf) | LED used for volume information | [1 RON](https://www.optimusdigital.ro/en/leds/38-5-mm-green-led-with-difused-lens.html) |

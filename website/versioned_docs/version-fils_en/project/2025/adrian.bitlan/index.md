@@ -101,6 +101,8 @@ In the second week, I connected the MFRC522 RFID reader and the LCD1602 I2C disp
 
 ### Week 19 - 25 May
 
+Integrated all components: RFID, keypad, LCD, LEDs, servo, and buzzer. Finalized logic and behavior for access granted/denied. System fully functional and stable.
+
 ## Hardware
 
 • **Raspberry Pi Pico 2W** → Acts as the central controller, coordinating all inputs and outputs for access control.  
@@ -163,6 +165,8 @@ The format is
 | [embedded-hal-async](https://docs.rs/embedded-hal-async/latest/embedded_hal_async/) | Async traits for embedded-hal | Enables async I2C, SPI, and GPIO interfaces for peripheral drivers |
 | [defmt](https://docs.rs/defmt/latest/defmt/) | Lightweight logging for embedded systems | Used to debug the system without printing over serial |
 | [defmt-rtt](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | Logging backend via RTT | 	Sends logs through debug probes to the host for analysis |
+| [hd44780-driver](https://crates.io/crates/hd44780-driver) | Driver for HD44780-based character LCDs | Controls the LCD1602 display to show messages via I2C (like access granted/denied) |
+| [mfrc522](https://crates.io/crates/mfrc522) | Driver for MFRC522 RFID readers | Reads and interprets RFID card UIDs over SPI for access control logic |
 
 ## Links
 

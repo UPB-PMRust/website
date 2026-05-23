@@ -13,11 +13,9 @@ An interactive reaction and strategy game inspired by casino experiences.
 DoubleUp! is an interactive game where the user must react quickly and make strategic decisions to double their points.
 
 
-+ The user presses the start button to begin the game.
++ The user is welcomed by a "DoubleUp!" message on the screen, accompanied by a test sound.
 
-+ In the first phase, a green LED lights up randomly within a preset interval (maximum 30 seconds). The user must quickly press the reaction button.
-
-+ If the user presses in time, they enter the "doubling" mode; otherwise, a points penalty is applied.
++ The user has two options to bet from the initial 100 points (10/20 p), he can reset the credits by pressing the "reset" button.
 
 + In the doubling mode, the user bets points and chooses between two buttons (Red/Blue), each accompanied by a corresponding LED.
 
@@ -62,9 +60,6 @@ The architecture of DoubleUp! is centered around the following key components:
 
 ### Week 5 - 11  May
 I have documented each hardware component and carefully tried to place them correctly, linking them to my Raspberry Pi Pico 2W. The setup included connecting the display, buttons, LEDs, resistors, speaker, DFPlayer Mini, and level converter. This phase required close attention to details and deeply tested my creativity.
-
-### Week 12 - 18  May
-I tested each individual component to ensure they worked with the correct parameters and set up the proper environment for software implementation. The main challenge was rendering images and text on the display, which required significant debugging of the SPI communication protocol. Additionally, fixing the speaker system proved challenging due to voltage compatibility issues between the Pico and DFPlayer Mini, which was resolved using the level converter.
 
 ![diagram](Hardware1_resized.webp)
 ![diagram](Hardware2_resized.webp)
@@ -156,6 +151,8 @@ The format is
 
 
 ## Software
+
+![diagram](software-diagram.webp)
 
 | Library | Description | Usage |
 |---------|-------------|-------|
