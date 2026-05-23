@@ -33,7 +33,7 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ## Architecture
 
-![architecture](arch.webp)
+![architecture](images/arch.webp)
 
 
 
@@ -41,31 +41,26 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 <!-- write every week your progress here -->
 
-### Week 5 - 30 March 
-Decided the project theme and searched for informations.
+### Week 5 - 30 March: decided the project theme and searched for informations.
 
 
-### Week 6 - 6 April
-Bought all the components and soldered the raspberry pi and started creating the prototype.
+
+### Week 6 - 6 April: bought all the components and soldered the raspberry pi and started creating the prototype.
 
 
-### Week 7 - 13 April 
-Started on the documentation. 
+### Week 7 - 13 April: started on the documentation. 
 
 
-### Week 8 - 20 April
-Started on the hardware and software milestones of the project. 
+### Week 8 - 20 April: started on the hardware and software milestones of the project. 
 
 
-### Week 9 - 27 April 
-Edited the documentation to submit the first milestone. 
+### Week 9 - 27 April: edited the documentation to submit the first milestone. 
 
-### Week 10 - 4 May
-Submitted the documentation and made the necessary changes.
+### Week 10 - 4 May: I submitted the documentation and made the necessary changes.
 
-### Week 11 - 11 May
+### Week 11 - 11 May: i finished the software milestone.
 
-### Week 12 - 18 May
+### Week 12 - 18 May: i submitted the software milestone.
 
 
 ## Hardware
@@ -78,10 +73,10 @@ RGB LEDs (2x): Provide visual feedback—colors change (e.g., green to red) base
 
 Buzzers (2x): Emit sound alerts that increase in frequency as the object gets closer, enhancing the warning system.
 
-![Hardware](h1.webp)
-![Hardware](h2.webp)
-![Hardware](h3.webp)
-![Hardware](h4.webp)
+![Hardware 1](./images/h1.webp)
+![Hardware 2](./images/h2.webp)
+![Hardware 3](./images/h3.webp)
+![Hardware 4](./images/h4.webp)
 
 
   
@@ -90,7 +85,7 @@ Buzzers (2x): Emit sound alerts that increase in frequency as the object gets cl
 
 Schematic of the project on KiCad Application.
 
-![Schematic of the project with using KiCad](sch.svg)
+![Schematic of the project with using KiCad](images/sch.svg)
 
 
 
