@@ -1,0 +1,54 @@
+[package]
+name = "parking_sensor"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[[bin]]
+name = "parking_sensor"
+path = "src/main.rs"
+
+[dependencies]
+embassy-executor   = { version = "0.7", features = ["task-arena-size-32768", "arch-cortex-m", "executor-thread", "defmt", "integrated-timers"] }
+embassy-rp         = { version = "0.3", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
+embassy-time       = { version = "0.4", features = ["defmt", "defmt-timestamp-uptime"] }
+embassy-sync       = { version = "0.6", features = ["defmt"] }
+embassy-futures    = { version = "0.1" }
+
+# I2C async
+embedded-hal-async = "1"
+embedded-hal       = "1"
+
+# LCD 1602 over I2C (PCF8574 backpack)
+ag-lcd             = { version = "0.2", default-features = false }
+port-expander      = "0.7"
+
+defmt              = "0.3"
+defmt-rtt          = "0.4"
+panic-probe        = { version = "0.3", features = ["print-defmt"] }
+
+cortex-m           = { version = "0.7", features = ["inline-asm"] }
+cortex-m-rt        = "0.7"
+static_cell        = "2"
+fixed              = "1"
+fixed-macro        = "1"
+
+[profile.dev]
+debug             = 2
+debug-assertions  = true
+opt-level         = 1
+overflow-checks   = true
+
+[profile.release]
+debug             = 2
+debug-assertions  = false
+opt-level         = "s"
+overflow-checks   = false
+lto               = "fat"
+codegen-units     = 1
+
+# cargo build/run
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "probe-rs run --chip RP2040 --protocol swd"
+
+[build-dependencies]
