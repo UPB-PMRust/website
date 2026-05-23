@@ -1,6 +1,6 @@
 # DJ Controller
 
-A standalone two-deck DJ controller running on the STM32U545RE, written in Rust.
+A standalone two-deck DJ controller running on the STM32U5, written in Rust.
 
 :::info
 
@@ -11,11 +11,11 @@ A standalone two-deck DJ controller running on the STM32U545RE, written in Rust.
 
 ## Description
 
-A fully standalone two-deck DJ controller built on the STM32U545RE microcontroller, written in Rust using the Embassy framework. The board reads WAV audio files from an SD card and performs real-time mixing between two decks.
+A fully standalone two-deck DJ controller built on the STM32U5 microcontroller, written in Rust using the Embassy framework. The board reads WAV audio files from an SD card and performs real-time mixing between two decks.
 
 Each deck has its own jog wheel (a rotary encoder), three EQ knobs (bass, mid, high), a volume knob, and dedicated buttons for Play/Pause, Cue, Loop, Sync, and Headphone Cue Select. One shared TFT display shows track name, position, BPM, and loop state in play mode, or a scrollable file list in browse mode.
 
-Audio leaves the STM32U545RE through its internal DAC: the main mix goes via a 3.5mm AUX jack into a Marshall Middleton speaker, and the cued deck is routed through a TPA headphone amplifier to the headphone output.
+Audio leaves the STM32U5 through its internal DAC: the main mix goes via a 3.5mm AUX jack into a Marshall Middleton speaker, and the cued deck is routed through a TPA headphone amplifier to the headphone output.
 
 ## Motivation
 
