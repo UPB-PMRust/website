@@ -135,7 +135,7 @@ Currently, the entire console is prototyped on breadboards using jumper wires to
 ### Schematics
 
 <!-- Place your KiCAD or similar schematics here in SVG format. -->
-Uploading Soon!
+![Schematic](schematic.svg)
 
 ### Bill of Materials
 
