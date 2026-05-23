@@ -28,17 +28,23 @@ I wanted a permanent, always-on control panel for my desktop that doesn't depend
 Finalized project idea, chose components, and had the theme approved. Ordered W5500 module and ILI9341 display. Drafted the architecture and started reading embassy-net documentation.
 
 ### Week 5 - 11 May
-
+Connected the modules, and ran some tests on them. Also did schematics, cleared some issues with connections,
+tested and moved every submodule into it's own spi channel( display - spi1, touch - spi2, w5500 - spi3).
 ### Week 12 - 18 May
+Ran extensive testing, and started software development with an http server ran, with OTP auth, to control device
+from the internet. Also testing some touch calibration and different refresh rates, to finalize software for the screen.
 
 ### Week 19 - 25 May
 
 ## Hardware
 
+ILI 9341 Display with touch - display info and buttons for controlling PC
+
+W5500 - connecting to LAN for sendind WOL magic packets and also communicating with PC after turn-on
 
 ### Schematics
 
-To be added at Hardware Milestone (Week 11).
+![Architecture Diagram](./images/schematics.webp)
 
 ### Bill of Materials
 
