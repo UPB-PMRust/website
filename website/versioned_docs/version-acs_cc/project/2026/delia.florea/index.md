@@ -2,8 +2,10 @@
 A remote-controlled smart car with Bluetooth control and onboard photo capture.
 
 :::info
+
 Author: Florea Delia Cristina \
 GitHub Project Link: https://github.com/UPB-PMRust-Students/acs-project-2026-Deliutz
+
 :::
 
 ## Description
