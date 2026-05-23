@@ -1,4 +1,4 @@
-/* Raspberry Pi Pico / RP2040 memory layout */
+/* Raspberry Pi Pico WH/ RP2040 memory layout */
 MEMORY {
     /* NOTE: RP2040 boots from external QSPI flash.
        The first 256 bytes are reserved for the second-stage bootloader. */

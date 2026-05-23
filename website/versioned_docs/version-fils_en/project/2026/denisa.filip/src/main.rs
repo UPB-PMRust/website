@@ -42,8 +42,8 @@ async fn main(_spawner: Spawner) {
 
     let i2c0 = I2c::new_async(
         p.I2C0,
-        p.PIN_5,  // SCL – GPIO 5
-        p.PIN_4,  // SDA – GPIO 4
+        p.PIN_5,  
+        p.PIN_4,  
         Irqs,
         {
             let mut cfg = I2cConfig::default();

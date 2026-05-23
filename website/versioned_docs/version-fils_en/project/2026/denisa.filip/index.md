@@ -58,9 +58,9 @@ It’s built around the Raspberry Pi Pico and programmed in Rust, which not only
 
 ### Week 10 - 4 May: I submitted the documentation and made the necessary changes.
 
-### Week 11 - 11 May: i finished the software milestone.
+### Week 11 - 11 May: I finished the software milestone.
 
-### Week 12 - 18 May: i submitted the software milestone.
+### Week 12 - 18 May: I submitted the software milestone.
 
 
 ## Hardware

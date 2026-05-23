@@ -13,7 +13,7 @@ pub fn make_beep_config() -> PwmConfig {
     let wrap = (SYS_CLK_HZ / BEEP_FREQ_HZ).saturating_sub(1) as u16;
     let mut cfg = PwmConfig::default();
     cfg.top = wrap;
-    cfg.compare_a = wrap / 2; // 50 % duty
+    cfg.compare_a = wrap / 2; 
     cfg
 }
 

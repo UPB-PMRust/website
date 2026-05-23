@@ -1,4 +1,4 @@
-# Parking Sensor – Raspberry Pi Pico W (Rust / Embassy)
+# Parking Sensor – Raspberry Pi Pico WH (Rust / Embassy)
 
 Smart parking sensor system using digital IR obstacle modules, RGB LEDs, passive buzzers and an LCD 1602 display.
 

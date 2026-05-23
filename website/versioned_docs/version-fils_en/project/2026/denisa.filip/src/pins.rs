@@ -1,4 +1,4 @@
-
+//pin.rs
 pub const I2C0_SDA: u8 = 4;
 pub const I2C0_SCL: u8 = 5;
 

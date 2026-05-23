@@ -26,7 +26,7 @@ impl Zone {
 
     pub fn beep_period_ms(self) -> u64 {
         match self {
-            Zone::Clear   => 0,    // silent
+            Zone::Clear   => 0,    
             Zone::Warning => 600,  // slow beep
             Zone::Danger  => 150,  // rapid beep
         }
