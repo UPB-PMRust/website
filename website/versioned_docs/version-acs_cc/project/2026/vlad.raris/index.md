@@ -96,19 +96,19 @@ Servomotoarele sunt alimentate dintr-o sursă externă de 5V. Masa sursei extern
 
 Test de calibrare pentru servomotorul de bază: deși modelul era marcat ca servo de 180°, în teste s-a comportat ca un servo cu rotație continuă, rotindu-se necontrolat. Acest test a fost folosit pentru diagnosticarea problemei și pentru ajustarea strategiei de control.
 
-<video controls preload="metadata" style={{width: '100%', maxWidth: '720px', aspectRatio: '16 / 9', background: '#111'}}>
+<video controls preload="metadata" width="720" height="405">
   <source src={require('./servo-180-grade.mp4').default} type="video/mp4" />
 </video>
 
 Demonstrație reușită:
 
-<video controls preload="metadata" style={{width: '100%', maxWidth: '720px', aspectRatio: '16 / 9', background: '#111'}}>
+<video controls preload="metadata" width="720" height="405">
   <source src={require('./demo-reusit.mp4').default} type="video/mp4" />
 </video>
 
 Test nereușit folosit pentru calibrare:
 
-<video controls preload="metadata" style={{width: '100%', maxWidth: '720px', aspectRatio: '16 / 9', background: '#111'}}>
+<video controls preload="metadata" width="720" height="405">
   <source src={require('./test-esuat.mp4').default} type="video/mp4" />
 </video>
 
