@@ -48,8 +48,6 @@ The project requires components that are energy-efficient and small enough to be
 
 ### Schematics
 
-TBD
-
 ![Schematic diagram](schema.svg)
 
 ### Photos
