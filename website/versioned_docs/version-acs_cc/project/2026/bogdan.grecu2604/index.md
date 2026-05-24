@@ -84,7 +84,3 @@ The project utilizes a Raspberry Pi Pico 2 as the main microcontroller, leveragi
 | `panic-probe` | Panic handler that reports panic information via probe. | Used on ARM targets to surface panic messages during development. |
 | `rp235x-hal` | HAL for RP2350-based Raspberry Pi Pico 2 boards. | Provides GPIO, ADC, PWM, I2C, timer, and USB support for the RP2350 target. |
 
-
-
-
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/yNS7YZsE)
