@@ -92,25 +92,12 @@ Servomotoarele sunt alimentate dintr-o sursă externă de 5V. Masa sursei extern
 
 ![Coș cu panou gri](./cos-panou.webp)
 
-### Video
+### Video-uri Demonstrative
 
-Test de calibrare pentru servomotorul de bază: deși modelul era marcat ca servo de 180°, în teste s-a comportat ca un servo cu rotație continuă, rotindu-se necontrolat. Acest test a fost folosit pentru diagnosticarea problemei și pentru ajustarea strategiei de control.
-
-<video controls preload="metadata" width="720" height="405">
-  <source src={require('./servo-180-grade.mp4').default} type="video/mp4" />
-</video>
-
-Demonstrație reușită:
-
-<video controls preload="metadata" width="720" height="405">
-  <source src={require('./demo-reusit.mp4').default} type="video/mp4" />
-</video>
-
-Test nereușit folosit pentru calibrare:
-
-<video controls preload="metadata" width="720" height="405">
-  <source src={require('./test-esuat.mp4').default} type="video/mp4" />
-</video>
+* ["Servo 180° - for fun"](https://drive.google.com/file/d/13tZFudmJhNiFWu0m0lhWfMDMGThURpQ5/view?usp=drivesdk)
+* [Demonstrație reușită](https://drive.google.com/file/d/14ZFsCu5ksannp7YFIYeAPAVJ2f8IaCr6/view?usp=drivesdk)
+* [Demonstrație reușită - variantă secundară](https://drive.google.com/file/d/1i56UOJDGOkpOpUaxo5dSThQmxMWrgyWk/view?usp=sharing)
+* [FAIL](https://drive.google.com/file/d/1GY5G6cucbEqx1XnDZaNeN2WKPweZJbyK/view?usp=sharing)
 
 ## Jurnal de Proiect
 
