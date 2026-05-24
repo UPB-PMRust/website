@@ -13,6 +13,7 @@ A robotic pan-tilt turret capable of detecting targets and launching projectiles
 
 A smart robotic turret made using a STM32 NUCLEO board that acts as the main controller. The system uses a pan-tilt mechanical bracket driven by two MG996R servo motors to aim. An HC-SR04 ultrasonic sensor is mounted on the moving arm to detect the distance to a target. Once the target is within range, the Nucleo board triggers the flywheel launcher, which consists of two high-speed DC motors with rubber wheels that shoot the projectile. 
 The entire system is powered by a LiPo battery, using an LM2596 step-down module to safely provide 5V to the servos and sensor.
+Added a joystick to the project so now I can manually control the turret and shoot the projectile by pressing the joystick button
 
 ## Motivation
 
@@ -47,7 +48,7 @@ to the step down module and the DC motors. The hardware is ready
 and can fully function.
 
 ### Week 19 - 25 May
-
+Wrote the code that has 2 modes one for am auto mode which tries to detect an object as precise as possible and a manual mode where I have a joystick to guide the turret.
 ## Hardware
 
 The project uses the Nucleo board as the brain. It receives echo pulses from the HC-SR04 sensor. After processing the distance, it sends PWM signals to the Pan and Tilt MG996R servos. It also controls a motor driver (L298N/L293D) to activate the dual DC motors for the launcher. The LM2596 acts as a power regulator.
