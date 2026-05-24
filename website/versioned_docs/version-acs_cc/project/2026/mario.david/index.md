@@ -75,11 +75,13 @@ The project uses:
 - Buttons  
 - Breadboard and wires  
 
-![Hardware Assembly](comp.webp)
+![Hardware Assembly](./comp.webp)
+<img src="./comp.webp" width="700" />
 ---
 
 ## Schematics
-![Smartcash](schematic.webp)
+![Smartcash](./shematic.webp)
+<img src="./schematic.webp" width="700" />
 ---
 
 ## Bill of Materials
