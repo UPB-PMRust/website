@@ -109,10 +109,7 @@ I've finally mounted everything into the structure, and replaced external 830p b
 
 ![Final Hardware](final_hardware.webp)
 
-The mechanical part of the project is polished now, and I am ready to move on to polishing the firmware before the PM fair.
-
-### Week 14
-To be continued...
+A few software tweaks, and thats it, the project is finished!
 
 ## Hardware
 
@@ -120,7 +117,9 @@ The "brain" of the system is **STM32 microcontroller** and the "eyes" of the sys
 
 The sensor has 3 terminals: *Vcc, GND* and *OUT*. *OUT* is high by default, and the sensor pulls it low only if there is something on the way of the beam (e.g. banknote)
 
-Other main components are the **LCD display**, that is used as the information output; **DC motor and driver**, for pushing the banknote on the way of the sensor's beam; and the buttons for user interaction.
+Other main components are the **LCD display**, that is used as the information output; **DC motor and driver**, for pushing the banknote on the way of the sensor's beam; and the buttons and keypad for user interaction.
+
+The initial plan was then the banknote would just fly through the sensor slit, however there was an issue with Romanian Lei banknotes: the polymer simply did not block the beam, so the sensor did not react to them at all. It worked fine with other currencies, but since I want this machine to be universal, I slightly changed the architecture: the banknote bumps into a piece of plastic, that moves a bit in the sensor slit and immediately returns to it's previous position. This creates a rising edge that gets handled by the STM.
 
 ![Hardware schematic](hardware.webp)
 
