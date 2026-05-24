@@ -50,7 +50,7 @@ The project requires components that are energy-efficient and small enough to be
 
 TBD
 
-<!-- ![Schematic diagram](schematics.svg) -->
+![Schematic diagram](schema.svg)
 
 ### Photos
 
