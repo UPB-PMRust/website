@@ -4,7 +4,7 @@ A fast autonomous line-following car
 
 :::info
 
-**Author:** Sorana-Ioana Ulmeanu \
+**Author:** Sorana-Ioana Ulmeanu
 
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-soranaulm
 
@@ -12,7 +12,7 @@ A fast autonomous line-following car
 
 ## Description
 
-Ferris Goes Vroom is an autonomous line-following car that tracks a black line on a white surface, aiming for the fastest possible lap time. The car uses a row of IR sensors mounted under the chassis to detect the line position, and a PID controller continuously adjusts the speed of the two DC motors to stay on track and minimize lap time. A small OLED display shows real-time information such as current speed and system state.
+Ferris Goes Vroom is an autonomous line-following car that tracks a black line on a white surface. The car uses a 5-channel IR sensor module mounted under the chassis to detect the line position, and adjusts the two DC motors to stay on track. A small OLED display shows real-time information such as line detection state and speed. An MPU6050 accelerometer estimates the current speed by integrating acceleration over time.
 
 What sets this project apart is the use of **Rust** with the **Embassy** async framework on an STM32 microcontroller — an uncommon choice in the embedded world, but one that brings memory safety and high performance. A set of colored LEDs provides real-time visual feedback about the system state: line detected, line lost, or maximum speed reached.
 
@@ -30,49 +30,18 @@ its own little way.
 
 The system is organized into four main modules that run concurrently as Embassy async tasks:
 
-**Sensor Subsystem:** Three to five TCRT5000 IR sensors are mounted transversally under the car. They read the surface reflectivity and return digital values depending on whether they detect the black line or the white background. The combined readings are used to compute the line position error relative to the car's center.
+**Sensor Subsystem:** A TCRT5000 5-channel IR sensor module is mountedunder the front of the chassis. Each channel reads surface reflectivity — black surfaces absorb IR (digital LOW) and white surfaces reflect it (digital HIGH). The combined pattern of S1–S5 readings determines the line position relative to the car center.
 
 **PID Control Engine:** The control engine receives the error value from the sensor subsystem every few milliseconds and computes a correction using proportional, integral, and derivative terms. This correction is applied differentially to the two motors: if the car drifts right, the left motor speeds up and the right motor slows down, and vice versa. The three PID constants (Kp, Ki, Kd) are tuned experimentally on the real track.
 
-**Motor Drive Subsystem:** An L298N dual H-bridge driver receives PWM signals from the STM32 and translates them into motor voltages. The two DC motors are independently controlled, allowing the car to steer by varying the speed difference between left and right.
+**Motor Drive Subsystem:** An L298N dual H-bridge driver receives PWM signals from two STM32 timer channels (TIM2_CH3 and TIM3_CH1) and independently drives the two DC motors. Speed is controlled differentially — when turning, the outer motor runs at 100% duty cycle while the inner motor runs at 50%, allowing smooth cornering. For sharp corrections, one motor stops completely.
 
-**LED Feedback Module:** Three LEDs connected to GPIO output pins indicate the current system state. Green lights when the line is detected and tracking is active. Red lights when the line is lost and the car is searching. Blue lights when the car is running at maximum speed.
+**LED Feedback Module:** Three 5mm LEDs indicate the current system state: red lights when no line is detected and the car is stopped, blue lights when the line is detected and tracking is active, and green lights when the car is moving forward on the line.
 
-**Display Module:** A 0.96" SSD1306 OLED display connected via I2C shows real-time information including current speed, system state (tracking / line lost), and lap time.
+**Display & Speed Module:** A 0.96" SSD1306 OLED display connected via I2C shows real-time line detection state. An MPU6050 accelerometer, also connected via I2C, estimates speed by integrating the X-axis acceleration (ax) over time with dt = 50ms.
 
-### Architecture Diagram
-
-```
-+--------------------------------------------------+
-|              STM32 Nucleo-U545RE-Q               |
-|                                                  |
-|   +------------------+   +--------------------+  |
-|   |  PID Controller  |   |  LED Feedback Task |  |
-|   |  (error → PWM)   |   |  (state → GPIO)    |  |
-|   +--------+---------+   +---------+----------+  |
-|            |                       |             |
-+------------|------------------------|-------------+
-             |                       |
-             v                       v
-   +------------------+       +--------------+
-   |  L298N Motor     |       |  LEDs x3     |
-   |  Driver (PWM)    |       |  Green/Red/  |
-   +--------+---------+       |  Blue        |
-            |                 +--------------+
-     +------+------+
-     v             v     +------------------+
- +--------+   +--------+ |  OLED SSD1306    |
- | Motor  |   | Motor  | |  (I2C)           |
- | Left   |   | Right  | +------------------+
- +--------+   +--------+
-     ^
-     |
- +------------------+
- | IR Sensors       |
- | TCRT5000 x3-5    |
- | (GPIO Input)     |
- +------------------+
-```
+#### Block Diagram
+![Block Diagram](schema_bloc_ferris.svg)
 
 ### Communication Protocols
 
@@ -80,8 +49,7 @@ The system is organized into four main modules that run concurrently as Embassy 
 |----------|-------|
 | **GPIO Input** | Reading IR sensors, computing line position |
 | **GPIO Output** | Controlling LEDs |
-| **ADC** | Reading analog IR sensor values for precise line position |
-| **PWM (TIM)** | Controlling motor speed via L298N |
+| **PWM (TIM)** | Controlling motor speed via L298N ENA/ENB |
 | **I2C** | Communication with SSD1306 OLED display |
 
 ## Log
@@ -90,29 +58,29 @@ The system is organized into four main modules that run concurrently as Embassy 
 Defined the project concept and architecture. Researched and selected the hardware components needed for the build. Started working on the project documentation.
 
 ### Week 2
-*(coming soon)*
+Verified each component one by one. Assembled the hardware — mounted the chassis, connected the TCRT5000 sensor module, L298N motor driver, OLED display, MPU6050, LEDs, and LiPo battery.
 
 ### Week 3
-*(coming soon)*
+Wrote test code to verify all components working together — sensor readings, motor control, LED feedback, OLED display, and MPU6050 speed estimation.	
 
 ### Week 4
-*(coming soon)*
+Finalized the project software with complete line-following logic. Finalized documentation and assembled all components in their final positions on the car.
 
 ## Hardware
 
 The project is built around the **STM32 Nucleo-U545RE-Q**, featuring an ARM Cortex-M33 core running at 160MHz with 256KB of SRAM and 2MB of Flash, and an integrated ST-LINK/V3E debugger for easy flashing and RTT logging from Rust.
 
-Three to five **TCRT5000 IR reflectance sensors** are mounted in a row under the front of the chassis. Each sensor emits infrared light and reads back the reflection — black surfaces absorb IR (digital LOW) and white surfaces reflect it (digital HIGH). The combined pattern of readings is used to compute the signed error of the line position relative to the car center.
+**A TCRT5000 5-channel IR sensor module is mounted under the front of the chassis is mounted in a row under the front of the chassis. Each sensor emits infrared light and reads back the reflection — black surfaces absorb IR (digital LOW) and white surfaces reflect it (digital HIGH). The combined pattern of readings is used to compute the signed error of the line position relative to the car center.
 
-An **L298N dual H-bridge motor driver** receives PWM signals from two STM32 timer channels and independently drives the two **DC motors with gearboxes**. The speed difference between the motors is the steering mechanism — no servo is needed.
+A **L298N dual H-bridge motor driver** receives PWM signals from two STM32 timer channels and independently drives the two **DC motors with gearboxes**. The speed difference between the motors is the steering mechanism — no servo is needed.
 
-Three **5mm LEDs** (green, red, blue) with 220Ω current-limiting resistors are connected to GPIO output pins and provide live system state feedback.
+Three 5mm LEDs (green, red, blue) with 220Ω current-limiting resistors are connected to GPIO output pins: red lights when no line is detected and the car stops, blue lights when the center sensors are aligned on the line, and green lights when the motors are running.
 
 A **0.96" SSD1306 OLED display** is connected via I2C and shows real-time data: current speed, system state, and lap time.
 
-A **LiPo 7.4V battery** powers the system autonomously. The L298N has a built-in 5V regulator that powers the logic side, while the motors are driven directly from the battery voltage.
+A LiPo 7.4V battery powers the system autonomously. A HW-286 step-down regulator converts the 7.4V battery voltage to 5V to power the STM32 Nucleo, while the motors are driven directly from the battery voltage through the L298N.
 
-The car chassis is either a commercial kit or a custom 3D-printed frame that holds all components in a compact and balanced layout. All components are connected on a breadboard with jumper wires.
+The car chassis is either a commercial kit that holds all components in a compact and balanced layout. All components are connected on a breadboard with jumper wires.
 
 ## Schematics
 
@@ -122,17 +90,21 @@ The car chassis is either a commercial kit or a custom 3D-printed frame that hol
 
 | Device | Usage | Price |
 |--------|-------|-------|
-| STM32 Nucleo-U545RE-Q | Main microcontroller | Provided by university |
-| TCRT5000 IR Sensor x5 | Line detection | ~15 RON |
-| L298N Motor Driver | Dual DC motor control | ~15 RON |
-| DC Motor with gearbox x2 | Car propulsion | ~30 RON |
-| OLED Display SSD1306 0.96" | Real-time info display | ~20 RON |
-| LED 5mm x3 (green, red, blue) | Visual feedback | ~3 RON |
-| Resistors 220Ω x3 | LED current limiting | ~1 RON |
-| LiPo Battery 7.4V | Autonomous power supply | ~40 RON |
-| Car chassis kit | Mechanical structure | ~35 RON |
-| Breadboard + jumper wires | Prototyping connections | ~15 RON |
-| **Total** | | **~174 RON** |
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | Provided by university |
+| [TCRT5000 5-channel IR module](https://www.bitmi.ro/senzori-electronici/senzor-tcrt5000-cu-5-canale-pentru-urmarirea-liniei-10796.html) | Line detection | 16.99 RON |
+| [L298N Motor Driver](https://www.bitmi.ro/module-electronice/modul-driver-l298n-cu-punte-h-dubla-pentru-motoare-dc-stepper-10400.html) | Dual DC motor control | 11.99 RON |
+| [OLED Display SSD1306 0.96](https://www.bitmi.ro/electronica/ecran-oled-0-96-cu-interfata-iic-i2c-10488.html) | Real-time info display | 18.98 RON |
+| [LED 5mm x3 (green, red, blue)](https://sigmanortec.ro/led-5mm-galben?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72MHJfsM4OIBiavb31HceLdF0&gclid=Cj0KCQjww8rQBhDjARIsAE43KPPO91ZgWIrvTmxOFl-4Ef-DNobrKq3cDYaIEEjsULWql3iUzyc6cKkaAs_6EALw_wcB) | Visual feedback | 0.9 RON |
+| [Resistors(kit)](https://sigmanortec.ro/kit-rezistori-30-valori-20-bucati?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72MHJfsM4OIBiavb31HceLdF0&gclid=Cj0KCQjww8rQBhDjARIsAE43KPOJp4UTmhwNo1vMdQtHna5V_TJA_fCljqShhdf_jti3jHOmUQJVbQcaAoqzEALw_wcB) 220Ω x3 | LED current limiting | 15.16 RON |
+| [LiPo Battery 7.4V](https://www.emag.ro/baterie-gens-ace-g-tech-soaring-1000mah-7-4v-30c-2s1p-xt60-kxg0060208/pd/D5RNQWMBM/?utm_medium=ios&utm_campaign=share%20product&utm_source=mobile%20app) | Autonomous power supply | ~61.35 RON |
+| [2WD Car chassis kit](https://sigmanortec.ro/Kit-sasiu-masina-2WD-urmaritor-linie-p172447939?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72MHJfsM4OIBiavb31HceLdF0&gclid=Cj0KCQjww8rQBhDjARIsAE43KPOyOr5N7Gfx9LmCz1uGRrUwDUqEOnw8INjrzhQ2fKjxNQONSaTV7eAaAsCHEALw_wcB) | Mechanical strcuture |  41.21 RON |
+| [Breadboard 400](https://www.bitmi.ro/componente-electronice/breadboard-400-puncte-pentru-montaje-electronice-rapide-10633.html) | Prototyping connections | 6.99 RON |
+| [Jumper wires](https://www.bitmi.ro/electronica/40-fire-dupont-mama-mama-30cm-10503.html) | Prototyping connections(M-M, T-T, M-T) | 22.97 RON |
+| [XT60 pigtail cable, male-female, 20cm](https://www.emag.ro/set-2-bucati-mufa-xt60-tata-mama-cablu-siliconic-lungime-20-cm-36073-36173/pd/D6J19QMBM/?utm_source=mobile%20app&utm_medium=ios&utm_campaign=share%20product) | Battery connector | 27.39 RON |
+| [Black electrical tape](https://www.leroymerlin.ro/produse/banda-izolatoare-emos-19-mm-x-20-m-neagra-12085101.html?gclsrc=aw.ds&gad_source=1&gad_campaignid=22336169660&gbraid=0AAAAADwsS17jrlpcrXuL23b_yI2DmuFCj&gclid=Cj0KCQjww8rQBhDjARIsAE43KPO4Wb-Vk0dmpN3WlYYbxvbQjEA4Wd0Gpz1hDJzQXPEn98giooNR63UaAraTEALw_wcB) | Track line for car | 6.49 RON |
+| [M3 screws + nuts set](https://www.leroymerlin.ro/produse/suruburi-metrice-cu-cap-inecat-otel-m3-x-16-mm-10721620.html) | Chassis assembly | ~2 RON |
+| [Double-sided adhesive tape](https://www.leroymerlin.ro/produse/banda-dublu-adeziva-moment-power-fix-rezistenta-pana-120-kg-19-mm-x-1-5-m-alb-10575495.html?utm_source=google&utm_medium=cpc&utm_campaign=pmax&utm_content=materiale-constructii-vopsea&gad_source=1&gad_campaignid=22294857356&gbraid=0AAAAADwsS15SufdSsaTf_GoXFaVDVDdK6&gclid=Cj0KCQjww8rQBhDjARIsAE43KPM1ds0XzksdQLlTxEfcRNbOyKP_eLKT_-IymxFJXnC3-K9lwMZFNCYaAoT_EALw_wcB) | Component mounting | ~19.98 RON |
+| [HW-286 Step-down regulator](https://www.emag.ro/modul-convertor-coborator-dc-4v-38v-5a-reglabil-1-25v-36v-eficienta-96-putere-75w-protectie-scurtcircuit-pentru-sisteme-diy-si-alimentare-electronica-an7/pd/D19FC1YBM/?cmpid=145971&utm_source=google&utm_medium=cpc&utm_campaign=(RO:Whoop!)_3P-Y_%3e_Jucarii_hobby&utm_content=79559831474&gad_source=1&gad_campaignid=2078923891&gbraid=0AAAAACvmxQihs2WnLDXuriZW-vXAynmTp&gclid=Cj0KCQjww8rQBhDjARIsAE43KPP-zRUIV2l8rovl47pTQG0Q9itRJF-HGXpiUrw259kevNvRdie3-iwaAtLBEALw_wcB) | Voltage regulation 7.4V to 5V | ~15 RON |
 
 ## Software
 
@@ -153,9 +125,7 @@ The car chassis is either a commercial kit or a custom 3D-printed frame that hol
 
 - [STM32 Nucleo-U545RE-Q Documentation](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html)
 - [Nucleo-U545RE-Q User Manual](https://www.st.com/resource/en/user_manual/um3062-stm32u3u5-nucleo64-boards-mb1841-stmicroelectronics.pdf)
-- [Labs](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab)
-- [SSD1306 Driver Documentation](https://docs.rs/ssd1306/latest/ssd1306/)
-- [embedded-graphics Documentation](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
-- [TCRT5000 Datasheet](https://4donline.ihs.com/images/VipMasterIC/IC/VISH/VISH-S-A0023695319/VISH-S-A0023695322-1.pdf?hkey=61A2E4C270F0397D049F8F05BD4F1054)
-- [L298N Datasheet](https://4donline.ihs.com/images/VipMasterIC/IC/SGST/SGST-S-A0019207369/SGST-S-A0019207369-1.pdf?hkey=61A2E4C270F0397D049F8F05BD4F1054)
-- [SSD1306 Datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf)
+- [SSD1306 Driver Documentation](https://docs.arduino.cc/libraries/ssd1306/)
+- [TCRT5000 Datasheet](https://www.vishay.com/docs/83760/tcrt5000.pdf)
+- [L298N Datasheet](https://www.st.com/resource/en/datasheet/l298.pdf)
+- [HW-286 Datasheet](https://www.mantech.co.za/ProductInfo.aspx?Item=15M7625&srsltid=AfmBOopv679_kLveY5yQmN0XXcmfyDvMhncTeTYx8qqII-04p-BZZxNV)
