@@ -73,8 +73,11 @@ Place your KiCAD or similar schematics here in SVG format.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Basic hardware library | Used to set up the ADC input pins for the LDR sensors, the PWM output pins for the servo motors, and the UART serial port for the Bluetooth module. |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Code runner | Used to run the main asynchronous loop of the program without freezing the board. |
+| [defmt](https://github.com/knurling-rs/defmt) | Console printing tool | Used to print the motor angles and raw sensor light values to the laptop screen for debugging and calibration. |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | CPU utilities and delays | Used to add hardware-level pauses in the code to give the physical servo motors enough time to reach their target angles. |
+| [heapless](https://github.com/rust-embedded/heapless) | Data structures | Used to create fixed-capacity strings for packaging the angle and sensor telemetry data before transmitting it over Bluetooth. |
 
 ## Links
 
