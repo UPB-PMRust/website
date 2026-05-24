@@ -63,6 +63,12 @@ show green/tellow feedback on screen
 show attempts on screen 
 win/lose screen
 
+=======
+
+### Week 12 - 18 May
+
+### Week 19 - 25 May
+
 
 
 ## Hardware
@@ -70,9 +76,12 @@ The project is built on a Raspberry Pi Pico platform with peripheral components 
 ### Schematics
 <!-- ![KiCAD Schematic](kicad_img.svg) -->
 ![KiCAD Schematic](proiect_wordle4.svg)
+
 lose_screen
 ![ game_screen](game_screen.svg)
 ![ lose_screen](lose_screen.svg)
+=======
+
 
 ### Bill of Materials
 
