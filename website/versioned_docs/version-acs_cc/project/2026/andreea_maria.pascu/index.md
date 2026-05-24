@@ -67,12 +67,12 @@ Completed initial documentation. Hardware components ordered and received.
 Connected all hardware components on the breadboard. Verified that each component powers up correctly and tested basic communication (SPI bus with the display and SD card module, ADC input from the microphone amplifier).
 
 ### Week 11 - 17 May
-Implemented basic ADC sampling and verified signal integrity using the MAX9814 module.
+Implemented basic ADC sampling and verified signal integrity using the MAX9814 module. Encountered issues related to sampling frequency versus signal bandwidth, which affected FFT stability and required further tuning of acquisition parameters.
 
 ### Week 18 - 24 May
-Completed full firmware implementation and host-side tooling: ADC sampling pipeline,
-FFT + peak extraction, fingerprint generation and matching, UI state machine, and
-Python scripts for audio capture, WAV conversion, and SD card flashing.
+Continued integration and refinement of the firmware and host-side tooling. Stabilized ADC acquisition after previous sampling issues and validated consistent FFT.
+
+Completed full system implementation including ADC sampling pipeline, FFT + peak extraction, fingerprint generation and matching, UI state machine, and Python host scripts for audio capture, WAV conversion, and SD card flashing.
 
 ## Hardware
 
@@ -114,44 +114,46 @@ Python scripts for audio capture, WAV conversion, and SD card flashing.
 
 The firmware runs on the STM32 Nucleo-U545RE-Q using Rust and Embassy. Host-side tooling is in Python.
 
-### Firmware architecture
+### Processing pipeline
 
-The main loop runs as a single Embassy task and handles UI state, ADC sampling, FFT processing, fingerprint matching, and display output.
+1. Audio is captured from the MAX9814 microphone using the STM32 ADC in fixed-size windows. Each window is preprocessed by removing DC offset to stabilize the signal before analysis.
 
-**Audio capture** - samples the MAX9814 output via ADC1 at ~6.5 kHz. Each 512-sample window has its DC offset removed before being passed to the FFT stage.
+2. The signal is converted into the frequency domain using a 512-point FFT. A windowing function is applied to reduce spectral leakage and improve peak stability.
 
-**FFT and peak extraction** - applies a Hann window on each 512-sample buffer, then runs `microfft::rfft_512`. The spectrum is split into four frequency bands and the dominant bin in each band is selected as a peak. Silent windows are discarded.
+3. The resulting spectrum is reduced to a compact set of dominant frequency peaks, which serve as the main features of each audio window.
 
-**Fingerprint generation** - pairs peaks within a ±5-window time delta into 32-bit hashes encoding `(f_anchor, f_target, Δt)`. The full database is loaded from the SD card at boot and kept in RAM.
+4. These features are combined across short time intervals to form robust audio fingerprints that capture consistent frequency relationships.
 
-**Matching** - builds a time-offset histogram between live and database hashes using fuzzy matching (±2 bins, ±1 time unit). The song with the highest cluster score above 20 is declared a match.
+5. The generated fingerprints are compared against a precomputed database loaded from the SD card at startup, and a similarity score is computed for each reference song.
 
-**Display** - a 3-option menu (Identify / Visualizer / Library) rendered on the ST7735 over SPI. The Identify screen drives the full record → match → result flow.
+6. The song with the highest stable matching score above a predefined threshold is selected as the final result and displayed on the TFT screen.
 
 ### Database loading
 
-At boot, the device reads up to `NUM_SONGS` binary files (`SONG1.BIN`, `SONG2.BIN`, …) from the SD card. Each file contains 188 × 512 bytes of 8-bit unsigned audio sampled at 6590 Hz. Peaks and fingerprints are extracted and stored in a static `DATABASE` array in RAM.
+At startup, the device loads precomputed audio fingerprints from multiple binary files stored on the SD card. Each file corresponds to a reference song and is processed into an in-memory database used for real-time matching during execution.
 
 ### Host tooling
 
 | Script | Purpose |
 |---|---|
-| `wav_to_bin.py` | Resamples a WAV to 6590 Hz, converts to 8-bit unsigned, outputs a 188 × 512 byte `.BIN` file |
-| `check_bin.py` | Prints per-window dominant band for a `.BIN` file - sanity check before flashing |
-| `flash_songs.py` | Sends `.BIN` files to the MCU over UART with per-chunk checksum + ACK handshake |
-| `capture_audio.py` | Captures live ADC output from the MCU over UART and saves it as a WAV for offline analysis |
+| `wav_to_bin.py` | Converts a WAV file into the binary format used by the embedded system. It also resamples audio to 6590 Hz and encodes it as 8-bit unsigned data. |
+| `check_bin.py` | Performs a quick validation of processed `.BIN` files by printing dominant frequency bands per window, used for sanity checking before deployment. |
+| `flash_songs.py` | Transfers prepared `.BIN` audio files to the STM32 device over UART, ensuring reliable transmission using chunk-based acknowledgements. |
+| `capture_audio.py` | Receives live ADC audio data from the microcontroller over UART and saves it as a WAV file for offline analysis and debugging. |
 
 ### Libraries
 
-| Library | Description | Usage |
+|### Libraries
+
+| Library | Purpose | Usage |
 |---|---|---|
-| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Embassy HAL for STM32 | ADC, SPI, GPIO, timers |
-| [microfft](https://crates.io/crates/microfft) | FFT for `no_std` | Real-valued 512-point FFT on audio windows |
-| [mipidsi](https://crates.io/crates/mipidsi) | ST7735 SPI display driver | TFT display control |
-| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics for embedded | Text and shape rendering on the display |
-| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | SD card + FAT filesystem | Reading `.BIN` song files from SD card |
-| [heapless](https://crates.io/crates/heapless) | Stack-allocated collections | `Vec` for peaks and fingerprints without `alloc` |
-| [embedded-hal-bus](https://crates.io/crates/embedded-hal-bus) | Shared SPI bus | `RefCellDevice` for sharing SPI between display and SD card |
-| [libm](https://crates.io/crates/libm) | `no_std` math | `cosf` for Hann window computation |
+| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Embedded runtime for STM32 | Hardware abstraction (ADC, SPI, GPIO, timers) |
+| [microfft](https://crates.io/crates/microfft) | Lightweight FFT library for `no_std` systems | Audio signal processing |
+| [mipidsi](https://crates.io/crates/mipidsi) | Display driver for SPI screens | TFT display control |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | Graphics library for embedded devices | Rendering UI elements on the display |
+| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | SD card + FAT filesystem support | Loading audio data from storage |
+| [heapless](https://crates.io/crates/heapless) | Fixed-capacity data structures | Memory-safe buffers for embedded constraints |
+| [embedded-hal-bus](https://crates.io/crates/embedded-hal-bus) | Shared peripheral access | SPI bus sharing between devices |
+| [libm](https://crates.io/crates/libm) | Math functions for `no_std` environments | Basic signal processing math (e.g. windowing) |
 
 1. [Shazam algorithm overview](https://www.toptal.com/algorithms/shazam-it-music-processing-fingerprinting-and-recognition)
