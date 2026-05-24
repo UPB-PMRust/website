@@ -77,7 +77,7 @@ The robot is built on a 2WD chassis powered by two DC motors with Hall encoders,
  
 ![Hardware](masina-slam.webp)
 
-![Video](https://drive.google.com/file/d/1XOovrqZ5_l_vMKnRxfIBl36JoMaDF0Ii/view?usp=sharing)
+[Video](https://drive.google.com/file/d/1XOovrqZ5_l_vMKnRxfIBl36JoMaDF0Ii/view?usp=sharing)
 
 ### Schematics
 
