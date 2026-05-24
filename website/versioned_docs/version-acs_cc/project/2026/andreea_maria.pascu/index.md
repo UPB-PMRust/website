@@ -141,7 +141,6 @@ At startup, the device loads precomputed audio fingerprints from multiple binary
 | `flash_songs.py` | Transfers prepared `.BIN` audio files to the STM32 device over UART, ensuring reliable transmission using chunk-based acknowledgements. |
 | `capture_audio.py` | Receives live ADC audio data from the microcontroller over UART and saves it as a WAV file for offline analysis and debugging. |
 
-### Libraries
 
 | Library | Purpose | Usage |
 |---|---|---|
@@ -153,5 +152,7 @@ At startup, the device loads precomputed audio fingerprints from multiple binary
 | [heapless](https://crates.io/crates/heapless) | Fixed-capacity data structures | Memory-safe buffers for embedded constraints |
 | [embedded-hal-bus](https://crates.io/crates/embedded-hal-bus) | Shared peripheral access | SPI bus sharing between devices |
 | [libm](https://crates.io/crates/libm) | Math functions for `no_std` environments | Basic signal processing math (e.g. windowing) |
+
+### Links
 
 1. [Shazam algorithm overview](https://www.toptal.com/algorithms/shazam-it-music-processing-fingerprinting-and-recognition)
