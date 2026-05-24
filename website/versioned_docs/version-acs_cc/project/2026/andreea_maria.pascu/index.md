@@ -116,17 +116,17 @@ The firmware runs on the STM32 Nucleo-U545RE-Q using Rust and Embassy. Host-side
 
 ### Processing pipeline
 
-1. Audio is captured from the MAX9814 microphone using the STM32 ADC in fixed-size windows. Each window is preprocessed by removing DC offset to stabilize the signal before analysis.
+1. **Audio is captured** from the MAX9814 microphone using the STM32 ADC in fixed-size windows. Each window is **preprocessed** by removing DC offset to stabilize the signal before analysis.
 
-2. The signal is converted into the frequency domain using a 512-point FFT. A windowing function is applied to reduce spectral leakage and improve peak stability.
+2. The signal is **converted into the frequency domain** using a 512-point FFT. A windowing function is applied to reduce spectral leakage and improve peak stability.
 
-3. The resulting spectrum is reduced to a compact set of dominant frequency peaks, which serve as the main features of each audio window.
+3. The resulting spectrum is reduced to a **compact set of dominant frequency** peaks, which serve as the main features of each audio window.
 
 4. These features are combined across short time intervals to form robust audio fingerprints that capture consistent frequency relationships.
 
-5. The generated fingerprints are compared against a precomputed database loaded from the SD card at startup, and a similarity score is computed for each reference song.
+5. The generated fingerprints are **compared against a precomputed database** loaded from the SD card at startup, and a similarity score is computed for each reference song.
 
-6. The song with the highest stable matching score above a predefined threshold is selected as the final result and displayed on the TFT screen.
+6. The song with the **highest stable matching score** above a predefined threshold is selected as the final result and displayed on the TFT screen.
 
 ### Database loading
 
@@ -142,8 +142,6 @@ At startup, the device loads precomputed audio fingerprints from multiple binary
 | `capture_audio.py` | Receives live ADC audio data from the microcontroller over UART and saves it as a WAV file for offline analysis and debugging. |
 
 ### Libraries
-
-|### Libraries
 
 | Library | Purpose | Usage |
 |---|---|---|
