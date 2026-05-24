@@ -1,5 +1,5 @@
 # Automated Coffee Maker
-A machine for iced coffee
+A machine for coffee
 
 :::info 
 
@@ -13,7 +13,7 @@ A machine for iced coffee
 
 ## Description
 
-The project is an automated coffee machine that allows the user to choose exactly how much sugar and coffee they want. The process is simple: you turn on the device with a button, select your desired quantities from the menu, and then press a start button. The system then pours the sugar, coffee, and water in the correct order and mixes them together. The result is a finished iced coffee.
+The project is an automated coffee machine that allows the user to choose exactly how much sugar and coffee they want. The process is simple: you turn on the device with a button, select your desired quantities from the menu, and then press a start button. The system then pours the sugar, coffee, and water in the correct order and mixes them together. The result is a finished coffee.
 
 ## Motivation
 
@@ -47,6 +47,8 @@ Making some snippets of code separately for the components. Trying out different
 Assembled the box for the automate. Completed the wiring for the project. Testing the coffee quantities.
 
 ### Week 18 - 23 May
+Assembled the mixer and upgraded the box. Sorted the wires and incorporated the distance sensor. Improved the overall appearance of the box.
+
 
 ## Hardware
 Major Components Used
@@ -62,7 +64,7 @@ The mixer: it is a motor that mixes the ingredients in the final stage.
 
 ### Schematics
 
-![KiCad Diagram](./images/schema_hardware.webp)
+![KiCad Diagram](./images/schema_hardware_kicad_1.webp)
 
 
 ### Bill of Materials
@@ -90,7 +92,15 @@ The format is
 | [Plexiglas ](https://www.leroymerlin.ro/produse/placi-plexiglas-si-pvc/876/placa-plexiglas-hobbyglass-25-x-50-cm-grosime-4-mm-transparenta/25354) | Making the circle where the cup stays | 15 RON |
 | [Wire ](https://www.temu.com/ro-en/120pcs-colorful--wire-kit-male-to-male-female-to-female-male-to-female-connectors-40pin-breadboard-jumper-cables-in-3-9-7-9-11-8-15-7-lengths-for-diy-projects-g-601099549601347.html?_oak_mp_inf=EMPcg6mm1ogBGiAwOTg3MzJmODVjODk0NDgwOTRiZmI2NjRjYTYzYmM0NyDSp5PI4TM%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F9a159653-cc4a-47a5-842b-7cc03d4e5e29.jpg&spec_gallery_id=3442&refer_page_sn=10009&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=MjAwMw&_oak_gallery_order=1793703736%2C2133695004%2C61436064%2C569981801%2C2012369665&search_key=jumper%20wire&refer_page_el_sn=200049&ab_scene=1&enable_vqr=0&refer_page_name=search_result&refer_page_id=10009_1778536201697_5g1y4mnl0l&_x_sessn_id=66c2ywi4n3) | Making the conexions | 20 RON |
 |[Charger 12V 2A](https://www.emag.ro/alimentator-12v-2a-st122a-504096/pd/DSYHVYBBM/?ref=history-shopping_485522869_18482_1)| The power of the project| 18 RON |
+|[Pulley](https://www.leroymerlin.ro/produse/scripete-cu-insurubare-standers-otel-zincat-6-x-25-mm-rezistenta-max-10-kg-negru-12150061.html)| For the movement of the mixer| 9 RON |
+|[Pulley wheel](https://www.leroymerlin.ro/produse/roata-scripete-standers-nailon-8-x-60-mm-neagra-12150110.html)| For the movement of the mixer| 7 RON |
 
+![Image 1](./images/imagine_macheta1.webp)
+
+
+![Image 2](./images/imagine_macheta2.webp)
+
+![Image 3](./images/imagine_macheta3.webp)
 
 
 
@@ -101,16 +111,27 @@ The format is
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware abstraction layer for the microcontroller | The interface for GPIO, PWM, and I2C peripherals|
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Task executor for async tasks | Managing parallel tasks for the pump, servos, and sensors |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Time management library | Handling delays  |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework | Used for printing status  |
 | [panic-probe](https://github.com/knurling-rs/panic-probe) | Panic handler | Used for handling errors |
 
+![Software Diagram](./images/schema_software.svg)
+
+The code is structured as a state machine, where every action is executed one at a time following the diagram flow. After finishing the coffee, the user can clean the mixer by putting in a new cup and waiting for the machine to pour clean water.
+
+For the part where the user needs to put or get the cup, the code waits while measuring the distance to the cup to see if it is present or not.
+
+User interaction is handled through the buttons and the LCD. The user selects the desired quantity using the buttons, and the LCD provides immediate visual feedback.
+Also the LCD shows the progress of the preparation.
+
+For the display, the LCD uses an I2C converter in order to communicate with the board. The code sends commands to set the cursor position, and then sends the ASCII number of the character in 2 different signals in order to put the letter on the screen.
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. [embassy](https://github.com/embassy-rs/embassy)
+2. [lcd1602](https://controllerstech.com/i2c-lcd-in-stm32/)
+3. [HD44780_convertor_configuration](https://cdn.sparkfun.com/assets/9/5/f/7/b/HD44780.pdf)
 
 ...
 
