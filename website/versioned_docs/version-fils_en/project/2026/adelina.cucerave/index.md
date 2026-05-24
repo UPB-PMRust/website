@@ -88,6 +88,10 @@ By building a system that gives instant feedback through lights and sounds, user
 
 ### Week 12:
 - Will start doing testing of hardware
+- Started thinking about software structure
+
+### Week 13:
+- Started writing the skeleton of the code, haven't yet figured how to upload it to the private github page
 
 ## Hardware
 
