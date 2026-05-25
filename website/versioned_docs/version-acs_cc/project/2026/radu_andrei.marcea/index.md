@@ -20,7 +20,7 @@ My main motivation was to build an autonomous system, and a dual-axis solar trac
 
 ## Architecture 
 
-![System Architecture Diagram](./Diagrama.svg)
+![System Architecture Diagram](./diagrama.svg)
 
 The project is divided into 4 main components: Input, Processing, Output, and Telemetry.
 
@@ -56,7 +56,7 @@ The project relies on the STM32 Nucleo-U545RE-Q as the core controller. The mech
 
 ### Schematics
 
-![Circuit Schematic](./Schematic.svg)
+![Circuit Schematic](./schematic.svg)
 
 ### Bill of Materials
 
