@@ -59,15 +59,15 @@ The structure is mounted on a custom wooden frame that keeps the lasers and sens
 
 ### Hardware Photos
 
-![Laser Harp Front View](images/LaserHarp2.webp)
+![Laser Harp Front View](images/laser_harp_2.webp)
 
-![Laser Harp Front View - Night](images/LaserHarp1.webp)
+![Laser Harp Front View - Night](images/laser_harp_1.webp)
 
-![Laser Alignment](images/LaserHarp5.webp)
+![Laser Alignment](images/laser_harp_5.webp)
 
-![Internal Circuit](images/LaserHarp4.webp)
+![Internal Circuit](images/laser_harp_4.webp)
 
-![Internal Circuit](images/LaserHarp3.webp)
+![Internal Circuit](images/laser_harp_3.webp)
 
 ### Schematics
 
