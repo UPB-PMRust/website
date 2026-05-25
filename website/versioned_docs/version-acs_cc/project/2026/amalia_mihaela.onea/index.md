@@ -64,20 +64,17 @@ The system is composed of the following main modules:
 - **Role**: Flyback protection for the electromagnet
 - **Connection**: In parallel with the electromagnet, reverse biased
 
-### 9. Resistors 220Ω (x64)
-- **Role**: Current-limiting resistors for LEDs
-
-### 10. LCD I2C 1602 (x1)
+### 7. LCD I2C 1602 (x1)
 - **Role**: Display the chess timer for both players
 - **Interface**: I2C (SDA, SCL)
 
-### 11. Power Supply 12V (x1)
+### 8. Power Supply 12V (x1)
 - **Role**: Power the stepper motors and electromagnet
 
-### 13. Capacitors 100µF (x2)
+### 9. Capacitors 100µF (x1)
 - **Role**: Stabilize voltage on the power supply lines
 
-### 14. Breadboard + Jumper Wires
+### 10. Breadboard + Jumper Wires
 - **Role**: Prototyping and connections
 
 ## Schematics
