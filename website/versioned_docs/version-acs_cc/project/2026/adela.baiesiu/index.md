@@ -121,3 +121,5 @@ The format is
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 - https://youtu.be/NPBCbTZWnq0?si=qws_AIqdEubiwgxn
+- https://embassy.dev/book/
+- https://github.com/embassy-rs/embassy
