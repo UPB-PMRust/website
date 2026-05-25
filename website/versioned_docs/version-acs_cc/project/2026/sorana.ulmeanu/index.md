@@ -13,7 +13,6 @@ A fast autonomous line-following car
 ## Description
 
 Ferris Goes Vroom is an autonomous line-following car that tracks a black line on a white surface. The car uses a 5-channel IR sensor module mounted under the chassis to detect the line position, and adjusts the two DC motors to stay on track. A small OLED display shows real-time information such as line detection state and speed. An MPU6050 accelerometer estimates the current speed by integrating acceleration over time.
-
 What sets this project apart is the use of **Rust** with the **Embassy** async framework on an STM32 microcontroller — an uncommon choice in the embedded world, but one that brings memory safety and high performance. A set of colored LEDs provides real-time visual feedback about the system state: line detected, line lost, or maximum speed reached.
 
 ## Motivation
@@ -38,7 +37,7 @@ The system is organized into four main modules that run concurrently as Embassy 
 
 **LED Feedback Module:** Three 5mm LEDs indicate the current system state: red lights when no line is detected and the car is stopped, blue lights when the line is detected and tracking is active, and green lights when the car is moving forward on the line.
 
-**Display & Speed Module:** A 0.96" SSD1306 OLED display connected via I2C shows real-time line detection state. An MPU6050 accelerometer, also connected via I2C, estimates speed by integrating the X-axis acceleration (ax) over time with dt = 50ms.
+**Display & Speed Module:** A 0.96 SSD1306 OLED display connected via I2C shows real-time line detection state. An MPU6050 accelerometer, also connected via I2C, estimates speed by integrating the X-axis acceleration (ax) over time with dt = 50ms.
 
 #### Block Diagram
 ![Block Diagram](schema_bloc.svg)
@@ -50,7 +49,8 @@ The system is organized into four main modules that run concurrently as Embassy 
 | **GPIO Input** | Reading IR sensors, computing line position |
 | **GPIO Output** | Controlling LEDs |
 | **PWM (TIM)** | Controlling motor speed via L298N ENA/ENB |
-| **I2C** | Communication with SSD1306 OLED display |
+| **ADC** | Reading analog IR sensor values for precise line position |
+| **PWM (TIM)** | Controlling motor speed via L298N |
 
 ## Log
 
