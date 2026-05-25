@@ -44,7 +44,7 @@ Uploaded the renders of the gimbal, as well as the link with the STL files for t
 
 The gimbal uses an STM32 Nucleo as the main microcontroller, running both the sensor fusion and PID control firmware as well as the FOC algorithms for the motors. Three brushless gimbal motors (one per axis) are driven by three individual FOC driver boards. An MPU-6050 module provides 6-DoF inertial measurements for sensor fusion. A joystick provides manual operator input for orientation control. Power is supplied by a 3S LiPo battery, with a buck converter regulating the logic-level voltages.
 
-The case for the gimbal and the platform are both inspired by [this website](https://howtomechatronics.com/projects/diy-arduino-gimbal-self-stabilizing-platform/). The modified case, with all the STL files and the case for the STM32 can be downloaded [here](./3d_prints/components.zip).
+The case for the gimbal and the platform are both inspired by [this website](https://howtomechatronics.com/projects/diy-arduino-gimbal-self-stabilizing-platform/).
 
 ### Schematics
 
