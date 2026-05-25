@@ -3,8 +3,8 @@ Portable voice recording and playback device using Raspberry Pi Pico.
 
 :::info
 
-**Author:** George Dobrescu (1221EBX, FILS)  
-**GitHub Project Link:** [PicoVoice Recorder](https://github.com/YOUR_LINK_HERE)
+**Author:** George Dobrescu (1221EB, FILS)  
+**GitHub Project Link:** [PicoVoice Recorder](https://github.com/George6017/website)
 
 :::
 
