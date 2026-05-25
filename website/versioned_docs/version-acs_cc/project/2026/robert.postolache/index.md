@@ -26,9 +26,10 @@ Smart Bin is built around an STM32U545RE-Q Nucleo board that coordinates all sen
    - humidity sensor
    - metal sensor
 3. Based on the readings, the microcontroller classifies the object as WET / DRY / METAL
-4. The fill level of the target container is checked (one infrared sensor per container)
-5. If the container is available: the stepper motor rotates the turntable to the correct position, the second servo releases the object
-6. The display shows feedback to the user about the classification result and if a container is full or not
+4. If the container is available: the stepper motor rotates the turntable to the correct position, the second servo releases the object
+5. The display shows feedback to the user about the classification result and if a container is full or not
+6. The fill level of the containers is checked (one infrared sensor per container)
+
 
 **Interfaces used:**
 - SPI: ST7735 LCD Display
@@ -39,7 +40,6 @@ Smart Bin is built around an STM32U545RE-Q Nucleo board that coordinates all sen
 ![Architecture Diagram](./arhitecture_final.webp)
 
 ## Log
-This will be updated as I continue developing the project
 
 ### Week 5 - 11 May
 I bought the hardware components, and mapped out the pin connections. I started testing each component with simple and minimal code. 
@@ -48,7 +48,7 @@ I bought the hardware components, and mapped out the pin connections. I started 
 I completed the initial testing for each component, and presented them to the lab assistant.
 
 ### Week 19 - 25 May
-TODO
+I started integrating the components, and writing the main logic for the project. I also assembled the final version for PM Fair.
 
 ## Hardware
 
@@ -62,12 +62,8 @@ TODO
 |--------|-------|-------|
 | [STM32U545RE-Q Nucleo](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Microcontroller | 90 RON |
 | [Servo Motor SG90 × 2](https://www.optimusdigital.ro/en/servomotors/26-sg90-micro-servo-motor.html?search_query=SG90&results=5) | Entry flap + platform trapdoor | 13,99 RON × 2 |
-| [TCRT5000 Reflective Photoelectric Sensor x 3](https://www.optimusdigital.ro/en/optical-sensors/42-tcrt5000-photoelectric-sensor.html?search_query=TCRT5000&results=4) | Container fill level detection | 1.49 RON × 3 |
-*OR*
 | [TCRT5000 Infrared Line Sensor Module with Adjustable Sensitivity x 3](https://www.optimusdigital.ro/en/optical-sensors/2415-modul-senzor-infrarou-de-linie-cu-sensibilitate-reglabila.html?search_query=TCRT5000&results=4) | Container fill level detection | 3.87 RON × 3 |
 | [ULN2003 Stepper Driver + 5V Stepper Motor](https://www.optimusdigital.ro/en/stepper-motors/101-stepper-motor-with-uln2003-driver.html?search_query=stepper&results=97) | Stepper motor control for turntable | 16.97 RON |
-| [HR202L Resistive Humidity Sensor](https://www.optimusdigital.ro/en/humidity-sensors/590-senzor-rezistiv-de-umiditate-hr202l.html?search_query=rain+sensor&results=46) | Humidity sensor for wet/dry | 3.99 RON |
-*OR*
  [Rain Sensor Module](https://www.optimusdigital.ro/en/humidity-sensors/5775-rain-sensor-module.html?search_query=rain+sensor&results=46) | Humidity sensor for wet/dry | 9.99 RON |
 | [Senzor inductiv de proximitate - LJ12A3-4-Z/BX](https://ardushop.ro/ro/senzori/2182-senzor-inductiv-de-proximitate-lj12a3-4-z-bx-6427854033659.html) | Inductive proximity sensor for metal detection | 15.57 RON |
 | [Senzor Ultrasonic de Distanță HC-SR04+](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?search_query=HC+SR04&results=15) | Ultrasonic sensor for hand detection | 14.99 RON |
@@ -76,6 +72,26 @@ TODO
 | Resistors assorted | Pull-ups, current limiting | 5 RON |
 
 ## Software
+
+### **Embassy framework**
+- embassy-executor
+- embassy-stm32
+- embassy-time
+- embassy-embedded-hal
+- embassy-sync
+
+### **Display**
+- mipidsi
+- display-interface-spi
+- embedded-graphics
+
+### **Hardware**
+- embedded-hal
+
+### Software Diagram
+![Software Diagram](software_diagram.svg)
+
+
 
 | Library | Description | Usage |
 |---------|-------------|-------|
@@ -88,6 +104,17 @@ TODO
 | [mipidsi](https://github.com/almindor/mipidsi) | Display driver for MIPI displays | ST7735 display driver |
 | [display-interface-spi](https://github.com/therealprof/display-interface) | SPI display interface | SPI communication with ST7735 |
 
+## Project Photos
+
+![photo1](photo1.webp)
+
+![photo2](photo2.webp)
+
+![photo3](photo3.webp)
+
+![photo4](photo4.webp)
+
+![photo5](photo5.webp)
 
 ## Links
 
