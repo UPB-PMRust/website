@@ -81,6 +81,12 @@ The project uses a modular design where different parts work together to control
 
 ### Week 11 May - 17 May
 
+* Completed the attack and movement mechanics.
+
+### Week 18 May - 24 May
+
+* Tested and improved the movement and overall gameplay.
+
 ## Hardware
 
 The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary boards (Raspberry Pi Pico H) to handle the game smoothly.
@@ -97,13 +103,17 @@ The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary bo
 
 ### Schematics
 
-![STM](images/schematichard.svg)
+![STM](images/schematic.webp)
 
 ### Photos
 
 ![STM](images/alimentare.webp)
 ![Controller](images/controller.webp)
 ![Teren](images/teren.webp)
+
+### Demo
+
+[Click here to watch the game demonstration on YouTube](https://youtube.com/shorts/OHXiuTB1oWg)
 
 ### Bill of Materials
 
@@ -141,7 +151,7 @@ The system uses one main controller (STM32 Nucleo-U545RE-Q) and two secondary bo
 
 | Library | Description | Usage |
 |--------|--------|-------|
-| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Hardware Abstraction Layer for STM32 microcontrollers | Used to control the motor pins, read the IR sensors and handle Serial communication |
+| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Hardware Abstraction Layer for STM32 microcontroller | Used to control the motor pins, read the IR sensors and handle Serial communication |
 | [embassy-rp](https://crates.io/crates/embassy-rp) | Hardware Abstraction Layer for the Raspberry Pi Pico | Used on the player boards to read the arcade buttons and drive the OLED displays |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | An async/await executor for embedded systems | Used to run multiple tasks at once, like moving the motor while checking for button presses |
 | [embedded-graphics](https://crates.io/crates/embedded-graphics) |	A 2D graphics library for embedded screens |	Used to draw the score on the OLED displays |
