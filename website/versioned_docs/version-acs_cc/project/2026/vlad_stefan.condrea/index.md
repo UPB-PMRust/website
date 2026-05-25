@@ -27,6 +27,34 @@ The Nucleo board processes the sensor data to determine if a target is present. 
 
 Power management is critical: a 7.4V LiPo battery supplies raw power to the motor driver for the DC motors. In parallel, the battery connects to an LM2596 Step-Down converter, which drops the voltage to a stable 5V to safely power the STM32 board, the HC-SR04 sensor, and the servo motors without frying them.
 
+
+### Main Architectural Components
+
+#### Target Detection System (Input Data)
+* **Role:** Continuously monitors the environment to detect potential targets and measure their exact distance from the turret.
+* **Components:** 1x HC-SR04 Ultrasonic Sensor mounted on the moving pan-tilt bracket.
+* **Logic:** The STM32 board sends a microsecond trigger pulse to the sensor, which then emits a sound wave. The board measures the duration of the returning echo signal to calculate the distance in real-time, feeding this data to the radar sweep algorithm.
+
+#### The Central Logic Controller (Processing)
+* **Role:** Acts as the brain of the system, executing the core algorithms, managing real-time hardware interrupts, and computing ballistic alignment (e.g., Center of Mass calculations and trigonometric offset compensation).
+* **Components:** STM32 Nucleo-U545RE-Q Development Board.
+* **Logic:** Uses the `embassy` framework for asynchronous programming. It simultaneously handles spatial data acquisition, updates motor states, and coordinates the precise timing sequence for the firing mechanism without blocking the CPU.
+
+#### Pan-Tilt Aiming System (Output)
+* **Role:** Responsible for the physical orientation of the turret, allowing it to sweep, track, and lock onto targets across both horizontal (X) and vertical (Y) axes.
+* **Components:** 2x MG996R High-Torque Servo Motors attached to a metal Pan-Tilt bracket.
+* **Logic:** The microcontroller generates precise PWM (Pulse Width Modulation) signals. By altering the duty cycle, the board commands the servos to perform a radar-like scan, adjusting their angles to center perfectly on the detected object.
+
+#### Flywheel Launcher System (Output)
+* **Role:** Engages and accelerates the firing mechanism to launch the projectile at the locked target.
+* **Components:** 1x L298N Motor Driver, 2x High-Speed DC Motors, and 2x Rubber Wheels.
+* **Logic:** Upon confirming a target lock, the STM32 sends digital control signals to the IN pins of the L298N driver to set the rotation direction (wheels spinning inwards to grip and propel the foam dart). The L298N acts as a heavy-duty switch, delivering the high current required by the DC motors for the firing sequence.
+
+#### Power Management Network
+* **Role:** Distributes safe and stable operating voltages to all logic and mechanical components, preventing system resets under high mechanical loads.
+* **Components:** 1x 7.4V LiPo Battery (Gens Ace 2S), 1x LM2596 Step-Down Module, and 1x LiPo Battery Tester/Buzzer.
+* **Logic:** The power distribution is split into two branches. The raw 7.4V from the LiPo battery is routed directly to the L298N driver to provide maximum torque to the DC motors. In parallel, the LM2596 module steps down the 7.
+
 ![Architecture Diagram](images/architecture.svg)
 
 ## Schematics
