@@ -85,6 +85,8 @@ The car chassis is either a commercial kit that holds all components in a compac
 ![](photo_1.webp)
 ![](photo_2.webp)
 
+[Demo](https://drive.google.com/file/d/15pEPNW_HupW3DtSfVHj9SexEdzAc97Xa/view?usp=sharing)
+
 ## Schematics
 
 ![Schematic](schematic.webp)
