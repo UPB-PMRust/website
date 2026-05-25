@@ -51,6 +51,10 @@ Main Architectural Components:
    - Logic: The LEDs light up in sequence to indicate the time left until the alarm is triggered.
 
 ![Architecture Diagram](./images/diagramapm.webp)
+![Front View](./images/front.webp)
+![Rear View](./images/rear.webp)
+![Top View](./images/top.webp)
+![Side View](./images/side.webp)
 
 ## Log
 
