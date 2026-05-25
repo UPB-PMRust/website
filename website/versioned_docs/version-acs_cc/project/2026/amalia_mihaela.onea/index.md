@@ -118,7 +118,7 @@ The system is composed of the following main modules:
 - Purchased plexiglass for the chess board surface
 - Purchased Neodymium magnets for the chess pieces
 - Assembled the chess board structure
-- 
+
 ## Software
 
 | Library | Description | Usage |
