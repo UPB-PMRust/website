@@ -40,7 +40,11 @@ Completed work on the first stage signal amplifier and successfully tested one c
 
 ### Week 5 - 11 May
 
+Successfully completed and tested the entire front-end circuit and finished building the hardware. Designed the schematic of the entire circuit.
+
 ### Week 12 - 18 May
+
+Created the software for reading the amplified signals using the ADC, processing the signal and displaying the relevant values on the I2C display.
 
 ### Week 19 - 25 May
 
@@ -89,12 +93,20 @@ The format is
 
 ## Software
 
-WIP
+The software is written in Rust using the embassy bare-metal asynchronous framework. It handles strict real-time data acquisition from the ADC, heavy Digital Signal Processing (DSP) for radar signals, and driving the graphical UI.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer (HAL) | Used to initialize and control the STM32 MCU peripherals, specifically the hardware ADC for reading radar pins and the I2C bus. |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async RTOS Executor | Used to run the main execution loop for the embedded application. |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timekeeping library | Used to create the 300µs Ticker for timing gaps between ADC radar samples. |
+| [microfft](https://crates.io/crates/microfft) | Fast Fourier Transform library | Executes the complex 256-bin FFT to transform the time signal into discrete Doppler speed bins. |
+| [micromath](https://crates.io/crates/micromath) | Fast embedded math library | Provides fast f32 approximations for trigonometry (cos, atan2, asin, sqrt) required for the cross-spectrum phase analysis and diagonal speed compensation. |
+| [num-complex](https://crates.io/crates/num-complex) | Complex number data structures | Required to store the real and imaginary voltage components used during the FFT and Blackman windowing prep. |
+| [ssd1306](https://crates.io/crates/ssd1306) | OLED display driver | Used to interface with and flush pixel data to the 0.96" OLED screen over I2C. |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing the geometric lines for the UI trajectory arrow and rendering the text fonts. |
+| [heapless](https://crates.io/crates/heapless) | Memory-safe data structures | Used for fixed-capacity, stack-allocated String buffers to format the speed and angle text without requiring a dynamic memory allocator. |
+| [defmt](https://github.com/knurling-rs/defmt) & [panic-probe](https://crates.io/crates/panic-probe) | Debugging and logging | Standard tooling used to handle panics and print highly efficient debug logs directly to the probe over RTT. |
 
 ## Links
 
