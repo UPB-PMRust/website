@@ -82,8 +82,8 @@ A LiPo 7.4V battery powers the system autonomously. A HW-286 step-down regulator
 
 The car chassis is either a commercial kit that holds all components in a compact and balanced layout. All components are connected on a breadboard with jumper wires.
 
-![](poza_1.svg)
-![](poza_2.svg)
+![](photo_1.svg)
+![](photo_2.svg)
 
 ## Schematics
 
