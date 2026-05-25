@@ -84,9 +84,9 @@ I always liked drones, wanted to build one but the classic quadcopter felt a bit
                                             3x Brushless Motors
 
     +-----------------------+          +----------------------------+
-    |  3x ESC 30A           |  PWM1 <--+  PA1 - Timer PWM Output    |
+    |  3x ESC 30A           |  PWM1 <--+  PB1 - Timer PWM Output    |
     |  (Signal Controllers) |  PWM2 <--+  PB5 - Timer PWM Output    |
-    |                       |  PWM3 <--+  PA6 - Timer PWM Output    |
+    |                       |  PWM3 <--+  PB4 - Timer PWM Output    |
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
@@ -95,29 +95,29 @@ I always liked drones, wanted to build one but the classic quadcopter felt a bit
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
-    |  ICM-20948            |  SCK  <--+  pin TBD                   |
-    |  (9-Axis IMU)         |  MOSI <--+  pin TBD                   |
-    |                       |  MISO -->+  pin TBD                   |
-    |                       |  CS   <--+  pin TBD                   |
+    |  ICM-20948            |  3V3  <--+  STM 3v3                   |
+    |  (9-Axis IMU)         |  GND  <--+  Common GND                |
+    |                       |  SCL  -->+  PB13	                    |
+    |                       |  SDA  <--+  PB14	                    |
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
-    |  BMP280               |  SCL <---+  pin TBD                   |
-    |  (Barometer)          |  SDA <-->+  pin TBD                   |
+    |  BMP280               |  SCL <---+  PC0	                    |
+    |  (Barometer)          |  SDA <-->+  PC1	                    |
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
-    |  ESP32-C3 FH4         |  TX   -->+  pin TBD                   |
-    |  (Wi-Fi/BT)           |  RX   <--+  pin TBD                   |
+    |  ESP32-C3 FH4         |  TX   -->+  PA9	                    |
+    |  (Wi-Fi/BT)           |  RX   <--+  PA10	                    |
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
-    |  HC-SR04              |  Trig <--+  pin TBD                   |
-    |  (Ultrasonic)         |  Echo -->+  pin TBD                   |
+    |  HC-SR04              |  Trig <--+  PC4	                    |
+    |  (Ultrasonic)         |  Echo -->+  PC5	                    |
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
-    |  Buzzer Modules       |  SIG  <--+  pin TBD                   |
+    |  Buzzer Modules       |  SIG  <--+  PC2/PC3                   |
     |                       |          |                            |
     +-----------------------+          +----------------------------+
 ```
@@ -132,6 +132,10 @@ I documented about the hardware and software part of the project, chose the comp
 Took measurements of the hardware, builded the frame from scratch and soldered all the wires I needed, the sensors, voltage dividers. 
 ### Week 8
 Connected the motors, servo, sensors to the STM32 to check they are working as intended.
+### Week 9-10
+Tried connecting the xbox one controller to the ESP32 and had issues with bluetooth while also checking the motors working along with the servo.
+### Week 11
+Completed the schematics and made bluetooth work.
 ## Hardware
 
 The main component is the Nucleo STM32U545RE-Q board that acts as the flight controller with data based from: BMP280 - measures the air pressure and determines how high is it, CM-20948 9 axis to get the acceleration, gyroscope and compass data, HC-SR04 to measure distance at low altitudes. ESP32-C3 FH4 super mini handles the Wi-Fi and Bluetooth connectivity in order to control the drone remotely. Three 30Amps ESCs to control each 2212 1000kV brushless motor. All of them are powered from a 2200mAh 11.1V 30C battery through a Matek Mini Power Hub and a voltage divider is put at the exit of the power distribution board to measure the voltage that comes out of the battery. Two passive buzzers are used to alert when battery is below a certain limit. 
@@ -142,7 +146,7 @@ The main component is the Nucleo STM32U545RE-Q board that acts as the flight con
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![KiCAD Schematic](./maproject.svg)
 
 ### Bill of Materials
 
