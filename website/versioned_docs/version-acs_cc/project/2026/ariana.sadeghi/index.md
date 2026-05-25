@@ -39,10 +39,10 @@ The main peripherals include:
 ## Physical Implementation
 Below are the layout views of the fully assembled automated sorting system, showcasing the conveyor alignment, sensor housing, and mechanical integration.
 
-![Overall System Assembly](./macheta_ansamblu.jpg)
+![Overall System Assembly]()
 *Figure 1: Overall assembly of the conveyor belt line and electronics integration.*
 
-![Sensing and Actuation Zone](./macheta_senzori.jpg)
+![Sensing and Actuation Zone]()
 *Figure 2: Close-up of the TCS34725 color sensor alignment and the SG90 sorting arm.*
 
 ## Bill of Materials
