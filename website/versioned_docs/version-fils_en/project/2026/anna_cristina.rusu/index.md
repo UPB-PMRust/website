@@ -79,10 +79,13 @@ the current balance.
 the vending machine, simulating a real-world contactless payment terminal.
 - **Power Supply Module:** A dedicated power regulation unit used to provide stable voltage and current to the servo motors, preventing electrical overload on the microcontroller.
 - **Battery Holder:** Provides a portable power source for the system.
-
+![Hardware image](./photo1.webp)
+![Hardware image](./photo2.webp)
+![Hardware image](./photo3.webp)
 ## Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Kicad schematic](./vending_machine.svg)
+
 
 ## Bill of Materials
 

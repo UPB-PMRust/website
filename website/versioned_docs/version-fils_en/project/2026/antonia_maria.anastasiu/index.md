@@ -27,33 +27,9 @@ The system uses a dual-controller architecture supported by an external vision s
 
 **Sensing & Input**: The HC-SR04 ultrasonic sensor is connected via GPIO, with a voltage divider on the ECHO pin to bring the 5V signal down to 3.3V for safe Pico operation. Two push buttons handle start and stop commands, also read as GPIO inputs with internal pull-up resistors.
 
-**Feedback**: A red and green LED pair gives immediate visual status: green for a registered plate, red for an unregistered one. A passive buzzer driven by PWM emits distinct tones to differentiate between the two outcomes. An OLED SSD1306 display connected via I2C shows the scanned plate number and its validation result in real time (FOUND OR NOT FOUND).
+**Feedback**: A red and green LED pair gives immediate visual status: green for a registered plate, red for an unregistered one. A passive buzzer driven by PWM emits distinct tones to differentiate between the two outcomes. An OLED SSD1306 display connected via SPI shows the scanned plate number and its validation result in real time (FOUND OR NOT FOUND).
 
 **Vision & OCR**: The SG90 servo motor, controlled via PWM, continuously rotates the ESP32-CAM to scan the area in front of the robot. Once a license plate is detected, the servo stops and the ESP32-CAM captures a still image. The image is transmitted over Wi-Fi via an HTTP POST request to a Python Flask server running on the development laptop. The server processes the image using EasyOCR and OpenCV, queries a SQLite database of registered vehicles and returns the validation result to the ESP32-CAM. The result is then forwarded to the Pico 2W over UART, which triggers the appropriate LED, buzzer and OLED response.
-
-```
-Laptop <================ USB ================> Picoprobe Debugger
-  ^                                                  |
-  |                                                  | SWD
-  |                                                  v
-  |      +------------------------------------ Pico 2W (Master)
-  |      |      |      |      |      |      |        |        |
-  |      |      v      v      v      v      v        v        v
-  |      |   HC-SR04 Buttons LEDs   OLED   SG90    Buzzer   ESP32-CAM
-  |      |   Sensor (Start/ (Status)Display Servo  (Audio)  (Camera)
-  |      |   (GPIO)  Stop)  (GPIO)  (I2C)  (PWM)   (PWM)    (UART)
-  |      |          (GPIO)                                  |
-  | WiFi |                                                  |
-  +------+--------------------------------------------------+
-         |
-         | GPIO (Control) & VSYS (5V Power)
-         |
-         v
-  L298N Motor Driver <---------- 7.4V ---------- 18650 Batteries x2
-         |
-         v
-    DC Motors (x4)
-```
 
 
 ## Log
@@ -71,6 +47,14 @@ Laptop <================ USB ================> Picoprobe Debugger
 * Moved on to integrating the accumulators, the push button, the L298N motor driver module and the HC-SR04 ultrasonic sensor.
 * By the end of this period the robot was able to move on its own, navigating with the help of the ultrasonic sensor without any manual intervention.
 
+### Week 9 - 10
+* Studied the SSD1306 OLED display, the servo motor and the passive buzzer, looking into their wiring requirements and how to interface them with the Raspberry Pi Pico 2W in Embassy/Rust.
+* Integrated all three components, wiring the display via SPI, the servo motor via PWM and the buzzer via PWM and implemented the firmware to drive each of them successfully.
+
+### Week 11
+* Studied the ESP32-CAM module, looking into its pinout, UART communication with the Raspberry Pi Pico 2W and the image capture workflow.
+* Integrated the ESP32-CAM into the system and set up a test Python server on the laptop for receiving and processing the camera feed, with the full pipeline currently under testing and near completion.
+
 ## Hardware
 
 **The Prototype Chassis**: The robot is built on a 4WD transparent chassis with DC motors driven by an L298N motor driver. Two Raspberry Pi Pico 2W boards handle control and feedback respectively. An ESP32-CAM with OV2640 2MP camera is used for image capture. An HC-SR04 ultrasonic sensor detects obstacles, while an SG90 servo motor rotates the camera during scanning.
@@ -79,7 +63,9 @@ Laptop <================ USB ================> Picoprobe Debugger
 
 ### Schematics
 
-![img](diagram.svg)
+![img](schematics_scanny.svg)
+
+![img](kicad_scanny_anastasiu_antonia_maria2.svg)
 
 ### Photos of the robot (in progress)
 
@@ -92,13 +78,13 @@ Laptop <================ USB ================> Picoprobe Debugger
 |-----------|-----------|------------|
 | HC-SR04 Ultrasonic | GPIO | TRIG: GP20, ECHO: GP22 (voltage divider), VCC: VSYS, GND: GND |
 | L298N Motor Driver | GPIO x4 | IN1: GP10, IN2: GP11, IN3: GP14, IN4: GP15 |
-| SSD1306 OLED | I2C | SDA: GP26, SCL: GP27 |
-| SG90 Servo | PWM | GP2 |
-| ESP32-CAM | UART | TX: GP4, RX: GP5 |
-| Picoprobe | SWD | SWDIO, SWCLK, GND |
+| SSD1306 OLED | SPI | GND, VCC, SCL: GP2, SDA: GP3, RST: GP6, D/C: GP7  |
+| SG90 Servo | PWM | GND, VCC, PWM: GP22|
+| ESP32-CAM | UART | GND, VCC: VBUS, TX: GP0, RX: GP1 |
+| Picoprobe | SWD | SWCLK: GP2 (Debugger), GND: GND, SWDIO: GP3 |
 | Start Button | GPIO input | GP16 |
 | Stop Button | GPIO input | GP17 |
-| Buzzer | PWM | GP3 |
+| Buzzer | PWM | GP8 |
 | Red LED | GPIO | GP13 |
 | Green LED | GPIO | GP12 |
 
@@ -106,23 +92,23 @@ Laptop <================ USB ================> Picoprobe Debugger
 
 | Device | Usage | Price |
 | :--- | :--- | :--- |
-| [Raspberry Pi Pico 2W](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=Raspberry+Pi+Pico+2W&results=24) (x2) | Main microcontroller and dedicated debugger | 79,32 RON |
-| [ESP32-CAM](https://3dstar.ro/modul-esp32-cam?search=ESP32-CAM) | Image capture and WiFi communication | 53,89 RON |
-| [Wheels with Motors (4x)](https://electronicmarket.ro/6v-250-rpm-motor-si-roti?search=roti) | Robot mobility | ~40-50 RON |
-| [L298N Dual Motor Driver](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=Modul+cu+Driver+de+Motoare+Dual+L298N+Rosu&results=1) | DC motor control | 10,99 RON |
-| [SG90 Servo Motor](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=SG90+Servo+Motor&results=5) | Camera rotation | ~15 RON |
-| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?search_query=ultrasonic&results=36) | Obstacle detection | ~7 RON |
-| [0.96" OLED Display (I2C)](https://www.emag.ro/afisaj-grafic-oled-128x64-0-96-inch-galben-albastru-3874784221572/pd/DGTRPXYBM/) | Status messages | ~20 RON |
-| [LEDs (Red + Green)](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/703-led-bicolor-de-3-mm-rosu-si-verde-cu-anod-comun.html?search_query=led&results=647) | Visual feedback | ~2 RON |
-| [Passive Buzzer](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=44) | Audio feedback | ~1 RON |
-| [Push Button](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=butoane&results=154) | Starts the patrol | ~0,40 RON |
-| [Samsung 18650 Battery (x2)](https://3dstar.ro/samsung-inr18650-35e-3450mah) | Power supply | 34,49 RON |
-| [Dual 18650 Battery Holder](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html?search_query=Suport+de+Baterii+2+x+18650&results=13) | Battery housing | 3,99 RON |
-| [18650 Dual Charger](https://www.optimusdigital.ro/ro/incarcatoare-de-baterii/11021-incarcator-1865026650-dublu-cu-cablu-usb-pentru-baterii-cu-litiu-ion.html?search_query=Incarcator+18650%2F26650+Dublu+cu+Cablu+USB%2C+pentru+Baterii+cu+Litiu-Ion&results=1) | Battery charging | 19,99 RON |
-| [CH340G USB to UART](https://www.optimusdigital.ro/ro/interfata-convertoare-usb-la-serial/13390-convertor-ch340g-la-uart.html?search_query=Convertor+USB+la+UART+CH340G+%28include+fire%29&results=1) | ESP32-CAM programming | 9,99 RON |
-| [Jumper Cables (40-Pin)](https://electronicmarket.ro/en-gb/20cm-40-pin-male-female-jumper-cables?search=jumper) | Interconnections | 8,28 RON |
-| [Breadboard](https://electronicmarket.ro/mb102-830-puncte-fara-lipire-breadboard?gad_source=1&gad_campaignid=21513542058&gclid=CjwKCAjwhqfPBhBWEiwAZo196soGjdhcFTfIfGurfH2ZG0kXDEjFNsB7Xt7is9KwAabWYRR28I3bUhoCvjAQAvD_BwE) | Prototyping | ~10 RON |
-| [Resistors](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/13607-set-rezistoare-110-rezistoare.html?search_query=rezistoare&results=59) | Circuit protection | ~5 RON |
+| [Raspberry Pi Pico 2W](https://pip-assets.raspberrypi.com/categories/610-raspberry-pi-pico/documents/RP-008307-DS-1-pico-datasheet.pdf?disposition=inline) (x2) | Main microcontroller and dedicated debugger | [79,32 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=Raspberry+Pi+Pico+2W&results=24) |
+| [ESP32-CAM](https://www.handsontec.com/dataspecs/module/ESP32-CAM.pdf) | Image capture and WiFi communication | [53,89 RON](https://3dstar.ro/modul-esp32-cam?search=ESP32-CAM) |
+| Wheels with Motors (4x) | Robot mobility | [~40-50 RON](https://electronicmarket.ro/6v-250-rpm-motor-si-roti?search=roti) |
+| [L298N Dual Motor Driver](https://www.handsontec.com/dataspecs/L298N%20Motor%20Driver.pdf) | DC motor control | [10,99 RON](https://www.optimusdigital.ro/ro/drivere-de-motoare-cu-perii/145-driver-de-motoare-dual-l298n.html?search_query=Modul+cu+Driver+de+Motoare+Dual+L298N+Rosu&results=1) |
+| [SG90 Servo Motor](https://handsontec.com/dataspecs/motor_fan/SG90-Servo.pdf) | Camera rotation | [~15 RON](https://www.optimusdigital.ro/ro/motoare-servomotoare/26-micro-servomotor-sg90.html?search_query=SG90+Servo+Motor&results=5) |
+| [HC-SR04 Ultrasonic Sensor](https://handsontec.com/dataspecs/sensor/SR-04-Ultrasonic.pdf) | Obstacle detection | [~7 RON](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?search_query=ultrasonic&results=36) |
+| 0.96" OLED Display (SPI) | Status messages | [23,68 lei RON](https://ardushop.ro/ro/display-uri-si-led-uri/1110-display-oled-128x64-096-spi-6427854015433.html?gad_source=1&gad_campaignid=17003133061&gclid=CjwKCAjwzevPBhBaEiwAplAxvmx5c89WB8_0vRTfqLx-0V1fACeIzFfYMkcxp5bNzUsGGoNpiqHJvRoC07IQAvD_BwE) |
+| LEDs (Red + Green) | Visual feedback | [~2 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/703-led-bicolor-de-3-mm-rosu-si-verde-cu-anod-comun.html?search_query=led&results=647) |
+| Passive Buzzer | Audio feedback | [~1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=44) |
+| Push Button | Starts the patrol | [~0,40 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=butoane&results=154) |
+| Samsung 18650 Battery (x2) | Power supply | [34,49 RON](https://3dstar.ro/samsung-inr18650-35e-3450mah) |
+| Dual 18650 Battery Holder | Battery housing | [3,99 RON](https://www.optimusdigital.ro/ro/suporturi-de-baterii/941-suport-de-baterii-2-x-18650.html?search_query=Suport+de+Baterii+2+x+18650&results=13) |
+| 18650 Dual Charger | Battery charging | [19,99 RON](https://www.optimusdigital.ro/ro/incarcatoare-de-baterii/11021-incarcator-1865026650-dublu-cu-cablu-usb-pentru-baterii-cu-litiu-ion.html?search_query=Incarcator+18650%2F26650+Dublu+cu+Cablu+USB%2C+pentru+Baterii+cu+Litiu-Ion&results=1) |
+| CH340G USB to UART | ESP32-CAM programming | [9,99 RON](https://www.optimusdigital.ro/ro/interfata-convertoare-usb-la-serial/13390-convertor-ch340g-la-uart.html?search_query=Convertor+USB+la+UART+CH340G+%28include+fire%29&results=1) |
+| Jumper Cables (40-Pin) | Interconnections | [8,28 RON](https://electronicmarket.ro/en-gb/20cm-40-pin-male-female-jumper-cables?search=jumper) |
+| Breadboard | Prototyping | [~10 RON](https://electronicmarket.ro/mb102-830-puncte-fara-lipire-breadboard?gad_source=1&gad_campaignid=21513542058&gclid=CjwKCAjwhqfPBhBWEiwAZo196soGjdhcFTfIfGurfH2ZG0kXDEjFNsB7Xt7is9KwAabWYRR28I3bUhoCvjAQAvD_BwE) |
+| Resistors | Circuit protection | [~5 RON](https://www.optimusdigital.ro/ro/componente-electronice-rezistoare/13607-set-rezistoare-110-rezistoare.html?search_query=rezistoare&results=59) |
 
 ## Software
 

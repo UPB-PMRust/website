@@ -28,6 +28,11 @@ Add here the schematics with the architecture of your project. Make sure to incl
 - brainstormed ideas for the jump mechanism 
 - a few roughs sketches on paper for now 
 ### Week 5 - 11 May
+- learned fusion 360 , finished 90% percent of the 3d render, only the injection mechanism and the camera cage are unfinished.
+- printed the base layer of the car, dropped it on the ground, it broke , 
+- decide to print it again and do some modification to add some resistance. 
+- started writing the code for the control of the motors 
+- soldered my picos
 
 ### Week 12 - 18 May
 
@@ -47,7 +52,7 @@ Inject:MG90S servo deploys the usb.
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic](projectnovackikad.svg)
 
 ### Bill of Materials
 
