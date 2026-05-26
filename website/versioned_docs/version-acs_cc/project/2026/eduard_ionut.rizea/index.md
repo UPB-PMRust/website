@@ -61,7 +61,7 @@ The project uses the Nucleo board as a flight controller. It receives data from 
 ### Schematics
 
 <!-- Place your KiCAD or similar schematics here in SVG format. -->
-![Schematic](images/schematic.webp)
+![Schematic](images/schematic1.webp)
 
 ### Bill of Materials
 
