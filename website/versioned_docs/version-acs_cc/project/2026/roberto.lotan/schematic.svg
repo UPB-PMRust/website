@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <style>
+      .mcu { fill: #e3f2fd; stroke: #1565c0; stroke-width: 2; }
+      .pump { fill: #fff3e0; stroke: #e65100; stroke-width: 1.5; }
+      .sense { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1.5; }
+      .ui { fill: #f3e5f5; stroke: #6a1b9a; stroke-width: 1.5; }
+      .pwr { fill: #ffebee; stroke: #b71c1c; stroke-width: 1.5; }
+      .title { font-size: 18px; font-weight: bold; fill: #111; }
+      .label { font-size: 14px; fill: #111; font-weight: bold; }
+      .sub { font-size: 11px; fill: #555; }
+      .wire { stroke: #333; stroke-width: 1.4; fill: none; }
+      .pwr-wire { stroke: #c62828; stroke-width: 1.8; fill: none; }
+    </style>
+  </defs>
+
+  <text x="450" y="30" text-anchor="middle" class="title">Shot Maker</text>
+
+  <!-- MCU -->
+  <rect class="mcu" x="350" y="220" width="200" height="100" rx="8"/>
+  <text x="450" y="260" text-anchor="middle" class="label">STM32 Nucleo</text>
+  <text x="450" y="280" text-anchor="middle" class="sub">U545RE-Q</text>
+
+  <!-- OLED -->
+  <rect class="ui" x="70" y="90" width="180" height="70" rx="6"/>
+  <text x="160" y="130" text-anchor="middle" class="label">OLED 128×64</text>
+
+  <!-- Buttons -->
+  <rect class="ui" x="70" y="200" width="180" height="70" rx="6"/>
+  <text x="160" y="240" text-anchor="middle" class="label">2× Buttons</text>
+
+  <!-- Load cell + HX711 -->
+  <rect class="sense" x="70" y="310" width="180" height="80" rx="6"/>
+  <text x="160" y="345" text-anchor="middle" class="label">Load Cell</text>
+  <text x="160" y="362" text-anchor="middle" class="sub">+ HX711</text>
+
+  <!-- Pump 1 -->
+  <rect class="pump" x="650" y="90" width="180" height="70" rx="6"/>
+  <text x="740" y="125" text-anchor="middle" class="label">Pump 1</text>
+  <text x="740" y="142" text-anchor="middle" class="sub">MOSFET + PWM</text>
+
+  <!-- Pump 2 -->
+  <rect class="pump" x="650" y="200" width="180" height="70" rx="6"/>
+  <text x="740" y="235" text-anchor="middle" class="label">Pump 2</text>
+  <text x="740" y="252" text-anchor="middle" class="sub">MOSFET + PWM</text>
+
+  <!-- Pump 3 -->
+  <rect class="pump" x="650" y="310" width="180" height="70" rx="6"/>
+  <text x="740" y="345" text-anchor="middle" class="label">Pump 3</text>
+  <text x="740" y="362" text-anchor="middle" class="sub">MOSFET + PWM</text>
+
+  <!-- Power -->
+  <rect class="pwr" x="350" y="420" width="200" height="60" rx="8"/>
+  <text x="450" y="455" text-anchor="middle" class="label">Power 12V / 5V</text>
+
+  <!-- Glass / output -->
+  <rect class="sense" x="70" y="420" width="180" height="60" rx="6"/>
+  <text x="160" y="455" text-anchor="middle" class="label">Glass on Scale</text>
+
+  <!-- Wires MCU left -->
+  <path class="wire" d="M350,250 L300,250 L300,125 L250,125" marker-end="url(#arr)"/>
+  <text x="285" y="145" class="sub">I2C</text>
+  <path class="wire" d="M350,270 L300,270 L300,235 L250,235" marker-end="url(#arr)"/>
+  <text x="285" y="225" class="sub">GPIO</text>
+  <path class="wire" d="M350,290 L300,290 L300,350 L250,350" marker-end="url(#arr)"/>
+  <text x="285" y="340" class="sub">DT/SCK</text>
+
+  <!-- Wires MCU right -->
+  <path class="wire" d="M550,250 L600,250 L600,125 L650,125" marker-end="url(#arr)"/>
+  <text x="605" y="145" class="sub">PWM</text>
+  <path class="wire" d="M550,270 L600,270 L600,235 L650,235" marker-end="url(#arr)"/>
+  <text x="605" y="225" class="sub">PWM</text>
+  <path class="wire" d="M550,290 L600,290 L600,345 L650,345" marker-end="url(#arr)"/>
+  <text x="605" y="340" class="sub">PWM</text>
+
+  <!-- Power lines -->
+  <path class="pwr-wire" d="M550,450 L860,450 L860,345 L830,345"/>
+  <path class="pwr-wire" d="M860,345 L860,235 L830,235"/>
+  <path class="pwr-wire" d="M860,235 L860,125 L830,125"/>
+  <text x="780" y="445" class="sub" fill="#c62828">+12V</text>
+
+  <path class="pwr-wire" d="M350,450 L40,450 L40,350 L70,350"/>
+  <path class="pwr-wire" d="M40,350 L40,235 L70,235"/>
+  <path class="pwr-wire" d="M40,235 L40,125 L70,125"/>
+  <text x="50" y="445" class="sub" fill="#c62828">+5V</text>
+
+  <!-- Pump output to glass -->
+  <path class="wire" d="M650,160 L580,160 L580,445 L250,445" stroke="#1976d2" stroke-width="1.6" marker-end="url(#arr)"/>
+  <path class="wire" d="M650,270 L575,270 L575,448 L250,448" stroke="#1976d2" stroke-width="1.6"/>
+  <path class="wire" d="M650,380 L570,380 L570,451 L250,451" stroke="#1976d2" stroke-width="1.6"/>
+  <text x="555" y="470" class="sub" fill="#1976d2">tubing</text>
+
+  <!-- Legend -->
+  <g transform="translate(40, 525)">
+    <rect class="mcu" x="0" y="-10" width="14" height="14"/>
+    <text x="20" y="2" class="sub">MCU</text>
+    <rect class="ui" x="70" y="-10" width="14" height="14"/>
+    <text x="90" y="2" class="sub">UI</text>
+    <rect class="sense" x="130" y="-10" width="14" height="14"/>
+    <text x="150" y="2" class="sub">Sensing</text>
+    <rect class="pump" x="220" y="-10" width="14" height="14"/>
+    <text x="240" y="2" class="sub">Pumps</text>
+    <rect class="pwr" x="300" y="-10" width="14" height="14"/>
+    <text x="320" y="2" class="sub">Power</text>
+  </g>
+</svg>
