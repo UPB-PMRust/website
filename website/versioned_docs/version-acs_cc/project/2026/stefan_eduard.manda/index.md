@@ -91,7 +91,15 @@ Schematica electrica a sistemului include conexiunile pentru bus-ul de date PDM(
 
 ## Software
 
-- TODO: se va adauga pe parcurs
+Tot codul e în Rust, în repo-ul de pe GitHub, cu **embassy** pentru partea de hardware (microfon, căști, ecran).
+
+Am făcut mai multe **programe de test**, ca să verific pas cu pas că merge fiecare piesă:
+
+| Program | La ce mă ajută |
+|---------|----------------|
+| `mic_listen` | Un microfon + căști — verific că aud ceva clar |
+| `mic_test` | Același mic, dar cu VU pe OLED |
+| `casti_oled` | Două microfoane + căști + ecran (stare voce/zgomot, direcție stânga/dreapta/față) |
 
 ## Links
 
