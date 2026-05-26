@@ -89,7 +89,6 @@ All components are connected using standard wires and connectors, and the mechan
 ![Schematic](./images/schematic.webp)
 
 
-
 ### Bill of Materials
 
 | Device | Usage | Price |
