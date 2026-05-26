@@ -2,6 +2,13 @@
 
 A smart medication locker with four independent compartments, controlled by an STM32 NUCLEO board and written in Rust.
 
+:::info 
+
+**Author**: Andrei Alexandrescu \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-AlexandrescuAndrei
+
+:::
+
 ## Description
 
 RustMed Locker is a small embedded system that works like a medication locker with four separate compartments. Each compartment is assigned to one dose from a daily schedule:
