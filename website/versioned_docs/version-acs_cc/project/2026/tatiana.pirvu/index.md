@@ -48,7 +48,11 @@ Ordered all hardware components.
 
 ### Week 9
 
-Stating writing the documentation page.
+Started writing the documentation page.
+
+### Week 11
+
+Finished testing and connecting all hardware modules. Added schematic to documentation.
 
 ## Hardware
 
@@ -57,7 +61,7 @@ User interaction is captured via four 6x6mm tactile push buttons configured as d
 
 ### Schematics
 
-* TODO: KiCad schematic to be added at Hardware Milestone (Week 11)
+![Schematic](./images/schematic.svg)
 
 ### Bill of Materials
 

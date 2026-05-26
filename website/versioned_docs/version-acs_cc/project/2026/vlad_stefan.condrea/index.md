@@ -28,6 +28,10 @@ Power management is critical: a 7.4V LiPo battery supplies raw power to the moto
 
 ![Architecture Diagram](images/architecture.svg)
 
+## Schematics
+
+![](images/schematic.svg)
+
 ## Log
 
 ### Week 20 - 26 April
@@ -38,6 +42,9 @@ Ordered all the components.
 Assembled the mechanical pan-tilt bracket. Fixed alignment issues with the tilt servo and bearing. 
 Attached the HC-SR04 sensor.
 ### Week 12 - 18 May
+Managed to power up all components by soldering all the wires needed
+to the step down module and the DC motors. The hardware is ready 
+and can fully function.
 
 ### Week 19 - 25 May
 
@@ -52,13 +59,19 @@ The project uses the Nucleo board as the brain. It receives echo pulses from the
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/) | Main Controller | Lab Provided |
-| [Metal Pan-Tilt Bracket](https://www.optimusdigital.ro/) | Mechanical structure for the arm | 45 RON |
-| [2 x MG996R Servo Motor](https://www.optimusdigital.ro/) | Aiming (Pan and Tilt axis) | 60 RON | 
-| [2 x DC Motor with Rubber Wheel](https://www.optimusdigital.ro/) | Flywheel projectile launcher | 30 RON |
-| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/) | Target detection and distance measuring | 10 RON |
-| [LM2596 Step-Down Module](https://www.optimusdigital.ro/) | Voltage regulator (Drops LiPo 7.4V to 5V) | 15 RON |
+| [Metal Pan-Tilt Bracket](https://sigmanortec.ro/montura-servomotor-suport-2-axe-pt-pentru-mg995-si-mg996r?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72P0RBDTzsoYnW7xbtEHmLu-M&gclid=CjwKCAjwq6DQBhBVEiwA4ZD5XGo8ZEvrJrp7pxcddITfEeIV8q1r4CSNJAeO291vYGJuu1YSFt7F8BoCTZ8QAvD_BwE) | Mechanical structure for the arm | 20 RON |
+| [2 x MG996R Servo Motor](https://sigmanortec.ro/servomotor-mg996r-360-grade-13kg) | Aiming (Pan and Tilt axis) | 60 RON | 
+| [2 x DC Motor](https://sigmanortec.ro/Motor-DC-3-6V-p125923622) | Flywheel projectile launcher | 8 RON |
+| [HC-SR04 Ultrasonic Sensor](https://www.emag.ro/senzor-de-distanta-cu-ultrasunete-elektroweb-hc-sr04-5v-dc-2-m-039/pd/DZYV7MYBM/?cmpid=146635&utm_source=google&utm_medium=cpc&utm_campaign=(RO:eMAG!)_3P_NO_SALES_%3e_Wearables_and_Gadgeturi&utm_content=82562655248&gad_source=1&gad_campaignid=2088939012&gbraid=0AAAAACvmxQgtjE8CIdP3iXDuTDxjEG6bT&gclid=CjwKCAjwq6DQBhBVEiwA4ZD5XIx8CzobJNMeapqsuDmqoS67Yd2IsWanyQbzr70As2FesWLuL1JPYxoCCJwQAvD_BwE) | Target detection and distance measuring | 14.5 RON |
+| [LM2596 Step-Down Module](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72P0RBDTzsoYnW7xbtEHmLu-M&gclid=CjwKCAjwq6DQBhBVEiwA4ZD5XKNrrhmSm3R1GB8O9yIKvwqtWC4PvtEcek8ielgc6SKG15oek4I2pxoC-zsQAvD_BwE) | Voltage regulator (Drops LiPo 7.4V to 5V) | 7 RON |
 | [L298N Motor Driver Module](https://www.optimusdigital.ro/) | Controls the DC motors for the launcher | 20 RON |
-| [LiPo Battery 7.4V](https://www.optimusdigital.ro/) | Main power supply | 60 RON |
+| [Baterie Gens Ace G-Tech](https://www.emag.ro/baterie-gens-ace-g-tech-soaring-1000mah-7-4v-30c-2s1p-xt60-kxg0060208/pd/D5RNQWMBM/?ref=history-shopping_486860698_3410_1) | Main power supply | 60 RON |
+| [Rotite cauciuc](https://www.optimusdigital.ro/ro/mecanica-roti/347-roata-de-20-mm-cu-cauciuc-pentru-ax-de-2-mm.html) | Rotite care sa propulseze proiectilul din burete | 10 RON |
+| [Fire dupont](https://www.emag.ro/set-10-fire-dupont-mama-tata-30cm-pentru-conexiuni-ai0305/pd/DRCXQ83BM/?ref=history-shopping_486860698_38837_2) | Fire pentru conecta componentele | 15 RON |
+| [Tester acumulator](https://sigmanortec.ro/tester-acumulatori-1s-8s-afisaj-si-buzzer?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72P0RBDTzsoYnW7xbtEHmLu-M&gclid=CjwKCAjwq6DQBhBVEiwA4ZD5XKXMtJKafM_lrj4lYL3c8VDChiT9p5kb4vToZBVscQi3ZkjAsjl4LRoCA4cQAvD_BwE) | Un buzzer care ma avertizeaza cand bateria este aproape sa se descarce | 10 RON |
+| [Incarcator](https://www.emag.ro/incarcator-de-echilibru-pentru-baterii-de-litiu-2s-3s-7-4v-11-1v-b3-lipo-10w-incarcator-compact-b3ac-nafpro-b3-7-4-11-1v-nafpro/pd/DH6R603BM/) | Pentru reincarcarea bateriei | 75 RON |
+
+
 
 
 ## Software
