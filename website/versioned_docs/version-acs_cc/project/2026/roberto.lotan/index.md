@@ -82,7 +82,6 @@ TOTAL: ~450 RON
 
 ## Links
 
-* [Lab Materials](https://pmi.acs.pub.ro/)
 * [About Rust](https://docs.rust-embedded.org/book/)
 * [Youtube](https://youtu.be/Z7GkGeZrb2Y)
 * [Youtube2](https://youtu.be/2DopvpNF7J4)
