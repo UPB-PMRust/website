@@ -5,7 +5,6 @@ Autonomous robot that follows a line using an infrared sensor array and controls
 :::info
 
 **Author**: Andrei Bem \
-
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-bemandrei
 
 :::
@@ -55,15 +54,11 @@ The L298N module receives control signals from the STM32 and drives the motors. 
 
 All grounds are connected together to ensure proper signal reference.
 
----
-
 ### Architecture Diagram
 
 ![Architecture Diagram](schematics/architecture.svg)
 
 ### Hardware photo
-
----
 
 ## Electrical Design and Connections
 
@@ -114,16 +109,12 @@ Outputs:
 
 Each output returns a digital signal indicating whether the line is detected.
 
----
-
 ### 3. STM32 Board Power
 
 The STM32 is powered separately from the motors:
 
 - VCC → Battery pack (logic supply)
 - GND → Common ground
-
----
 
 ### 4. Power System (VERY IMPORTANT)
 
@@ -139,8 +130,6 @@ Even though power is separated, **ALL GNDs MUST BE CONNECTED**:
 
 Without a common ground, the system will not function correctly.
 
----
-
 ### Functional Flow
 
 1. Sensors detect the line position  
@@ -149,8 +138,6 @@ Without a common ground, the system will not function correctly.
 4. STM32 sends commands to L298N  
 5. L298N drives motors  
 6. Robot adjusts movement continuously  
-
----
 
 ## Log
 
@@ -173,8 +160,6 @@ Implemented basic movement logic.
 
 Improved control logic and movement stability.  
 Worked on documentation and testing.
-
----
 
 ## Hardware
 
@@ -202,14 +187,10 @@ Supports all components.
 **Jumper Wires**  
 Electrical connections.
 
----
-
 ### Schematics
 We have schematic file mad with AUTODESK FUSION!
 
 ![Schematic diagram](schematics/fusion_schematic.svg)
-
----
 
 ### Bill of Materials
 
@@ -224,8 +205,6 @@ We have schematic file mad with AUTODESK FUSION!
 | Battery pack (STM32) | Power | 15 |
 | Jumper wires | Connections | 10 |
 | Chassis | Structure | 20 |
-
----
 
 ## Software
 
@@ -246,8 +225,6 @@ The firmware is implemented using embedded Rust.
 | Left sensors active | Turn left |
 | Right sensors active | Turn right |
 | No sensors active | Stop |
-
----
 
 ## Links
 
