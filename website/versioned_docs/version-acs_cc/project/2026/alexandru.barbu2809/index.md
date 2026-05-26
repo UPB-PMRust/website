@@ -21,7 +21,7 @@ I am deeply passionate about cars. Many of my previous solo projects have revolv
 ## Architecture 
 
 Project architecture schematic:
-[draw.io schema of the project](docs/schema-block-black-box.drawio.svg)
+[draw.io schema of the project](docs/schema-block-black-box.drawio.webp)
 
 The core of the system is a Kalman filter that performs sensor fusion between the accelerometer and the gyroscope. To eliminate noise, the filter records multiple readings over a 2-second interval, stabilizing the raw IMU signal before processing acceleration. Because these algorithms require complex linear algebra, a dedicated Rust mathematics crate handles all matrix multiplications.
 
@@ -30,7 +30,7 @@ Building upon this stabilized data, the system compares deceleration and impulse
 Additionally, the hardware includes two physical buttons to streamline testing and demo reruns: one safely ejects the SD card to prevent data corruption, while the other resets the IMU state to eliminate gyroscope drift and ensure a fresh start.
 
 Below is the state machine diagram of the project:
-[Image](docs/state-machine-release.drawio.svg)
+[Image](docs/state-machine-release.drawio.webp)
 
 Noteworthy graphs of my test runs can be found in the `README.md` of the software side of the project.
 
