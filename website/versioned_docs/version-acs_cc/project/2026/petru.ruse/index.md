@@ -58,6 +58,11 @@ Sistemul utilizează componente electromecanice solide pentru axele liniare, con
 ## Schematics
 ![Schema Electrica a Proiectului](schematic.svg)
 
+## Photos
+![Pista Cursa](./foto1.webp)
+![Shield si Sursa](./foto2.webp)
+![Placa, Breadboard si Ecran](./foto3.webp)
+
 ## Links
 * [Embassy Rust Documentation](https://embassy.dev/)
 * [A4988 Stepper Motor Driver Datasheet](https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf)
