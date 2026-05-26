@@ -32,7 +32,7 @@ The system architecture is divided into two main hardware-software modules:
    - **Processing**: Movement logic and motor speed calculation.
    - **Output**: PWM for Motor Driver, I2C for OLED and ToF Sensor.
 
-![System Architecture](./architecture_diagram.svg)
+![System Architecture](./arhitectura.svg)
 
 ## Log
 
@@ -44,9 +44,17 @@ The system architecture is divided into two main hardware-software modules:
 ### Week 20 - 26 April
 - Soldered header pins for the motor driver, OLED, and ToF sensor.
 - Verified power delivery from the 4xAA battery pack.
-- Completed 1st version of the documentation
+- Completed 1st version of the documentation.
 
 ### Week 27 - 03 May
+- Configured GPIO pins and basic PWM channels for driving the L298N motor controller.
+
+### Week 04 - 10 May
+- Connected the SSD1306 OLED display via I2C using the `embedded-graphics` library.
+- Integrated the VL53L0X Time-of-Flight (ToF) sensor.
+
+### Week 11 - 17 May
+- Developed the async UART communication tasks for the HC-05 modules.
 
 ## Hardware
 
@@ -57,6 +65,7 @@ The hardware architecture features two STM32 Nucleo-U545RE-Q boards configured i
 ![Mobile Car Schematic](./masina.webp)
 #### Remote Controller (Master) Schematic
 ![Remote Controller Schematic](./telecomanda.webp)
+![Assembled Robot](./hardware.webp)
 
 ### Bill of Materials
 
