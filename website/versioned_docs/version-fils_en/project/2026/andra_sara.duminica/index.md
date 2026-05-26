@@ -49,7 +49,7 @@ The system is structured as a set of interacting modules:
 
 The modules communicate through the microcontroller, which acts as the central unit coordinating all operations.
 
-![System Diagram](final_fiag.svg)
+![System Diagram](final_diag.svg)
 
 ---
 
