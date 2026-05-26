@@ -38,7 +38,7 @@ Acționează ca unitatea de control de înaltă performanță. Procesează intr�
    ![Schematic](schematic_mana_robotica.webp)
 
 ## Schematic in Fusion 360
-![Schematic_FUSION](schematic_mana_robotica_anastasia_stanciu.svg)
+![Schematic_FUSION](schematic_robotic_hand_anastasia_stanciu.svg)
 
 ## Log
 ### Week 14-20 april
