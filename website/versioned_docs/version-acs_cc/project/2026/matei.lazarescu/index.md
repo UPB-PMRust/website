@@ -43,7 +43,7 @@ Translating digital graphics into physical reality requires a deep understanding
 - Wrote the initial testing code and successfully got all three stepper motors spinning.
 
 ### May 18 - 24
-
+- Finished the software.
 
 
 ## Hardware
@@ -57,6 +57,7 @@ The physical movement is achieved using three **28BYJ-48 Stepper Motors**. These
 Power is managed separately to protect the microcontroller: the motors are powered by a dedicated **5V 2A Power Supply**, connected to the circuit using a **screw-terminal DC barrel jack adapter**. The power distribution and driver logic connections are routed on a **400-point breadboard** using standard **jumper wires**. The STM32 shares a common GND with the motor circuit but draws its own logic power via USB.
 
 ![Hardware_1](images/hardware_1.webp)
+![Hardware_2](images/hw2.webp)
 
 ### Bill of Materials
 

@@ -10,7 +10,7 @@
 
 ## Description
 
-This arcade game is built on STM32 using bare-metal Rust. It polls four buttons for real-time movement on a TFT LCD. The system tracks gameplay logic, including collision detection and scoring. Feedback is provided via three LEDs for lives and a PWM buzzer for sound effects. The project demonstrates full hardware-software integration—combining digital inputs, visual rendering, and sensory feedback in a memory-safe environment.
+This arcade game is built on STM32 using bare-metal Rust. It polls four buttons for real-time movement on a LCD module. The system tracks gameplay logic, including collision detection and scoring. Feedback is provided via three LEDs for lives and a PWM buzzer for sound effects. The project combines two arcade games (Snake and Dodge), real-time SPI display rendering, GPIO button input with debouncing, PWM music playback via passive buzzer with melodies stored on a microSD card, LED-based lives indicator, and flash memory persistence for high scores.
 
 
 ## Motivation
@@ -19,23 +19,26 @@ The motivation behind this project stems from a nostalgic passion for classic ar
 
 
 ## Architecture 
-
-The STM32 microcontroller serves as the central control unit, directing and managing all hardware components and executing the game logic developed in Rust.
-The four directional buttons are tactile switches connected directly to the STM32 GPIO pins to control the player's movement (Up, Down, Left, Right).
-OLED Display (SSD1306) is connected via SPI (or I2C) for real-time rendering of the game world, player character, and status messages.
-Life Indicator LEDs show the remaining player lives.
-Passive Buzzer: Connected to a pin for dynamic tone generation. It provides auditory cues for game events, such as losing a life.
-
+The STM microcontroller serves as the central control unit, directing and managing all hardware components and executing the game logic developed in Rust.
+The four directional buttons are tactile switches connected to STM32 GPIO pins with hardware pull-up resistors and software debouncing to control player movement (Up, Down, Left, Right). Two additional buttons handle game selection (Snake or Dodge) and reset.
+The  LCD display  is connected via SPI for real-time rendering of the game world, player character, score, and status messages.
+Three LEDs indicate the remaining player lives, turning off one by one as lives are lost.
+A passive buzzer connected to a GPIO pin provides PWM-driven audio feedback, playing melodies loaded from a microSD card connected via a secondary SPI bus.
+A microSD card module connected via SPI2 stores the game music, allowing melodies to be swapped without reflashing the firmware.
+Flash memory on the STM32 is used for persistent high score storage across power cycles.
 ![Project Architecture](./architecture.svg)
 
 ## Log
 
 
 ### Week 5 - 11 May
+Connected hardware components and written initial project documentation
 
 ### Week 12 - 18 May
+Implemented the snake game logic
 
 ### Week 19 - 25 May
+Finished dodge game logic and 3D printed the console
 
 ## Hardware
 
@@ -68,10 +71,15 @@ The system is powered by an STM32 microcontroller (ARM Cortex-M), utilizing its 
 | [st7735-lcd](https://github.com/almindor/st7735-lcd) | Display driver for ST7735 | Used for the 1.77" TFT display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing sprites and text |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Startup code and runtime | Bare-metal execution for STM32 |
+| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Hardware abstraction layer for STM32 microcontrollers | GPIO, SPI, Flash peripherals |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async task executor for embedded systems | Running game loop, music and button tasks concurrently |
+| [embassy-time](https://crates.io/crates/embassy-time) | Async timers and delays | Game tick timing, PWM note duration, debouncing |
+| [mipidsi](https://crates.io/crates/mipidsi) | Display driver for MIPI-compatible displays | ST7735S TFT LCD initialization and rendering |
 
 ## Links
 
 
 1. [The Embedded Rust Book](https://docs.rust-embedded.org/book/)
 2. [Cortex-M Guide](https://ferrous-systems.com/blog/rust-on-stm32/)
+3. [Super Mario melody code](https://github.com/robsoncouto/arduino-songs/blob/master/supermariobros/supermariobros.ino)
 
