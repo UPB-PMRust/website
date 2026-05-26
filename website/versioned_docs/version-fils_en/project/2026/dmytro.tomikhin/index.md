@@ -45,6 +45,24 @@ Main layers:
 - **Architecture Milestone:** Developed a dual-bus I2C architecture. Isolated the OLED display on I2C1 and the sensors on I2C2 to ensure high-speed display updates without interference from sensor polling tasks.
 - **Software Foundation:** Implemented asynchronous tasks using Embassy, allowing the system to poll light and weather data concurrently while updating the UI.
 
+### Week 10: IMU Integration and I2C Bus Optimization
+- **Hardware Expansion:** Integrated the BMI160 (6-axis Accelerometer and Gyroscope) into the sensor cluster.
+- **Bus Configuration:** Connected the BMI160 to the existing I2C2 bus alongside the AHT20+BMP280 module. By sharing the SCL and SDA lines, I optimized the pin usage. Verified that both devices operate correctly on the shared bus by addressing them via their unique I2C addresses.
+- **Functionality:** Implemented initial motion tracking to detect orientation changes, laying the groundwork for impact detection logic.
+
+### Week 11: SD Card Integration and Power Stability Troubleshooting
+- **Assembly:** Soldered the headers for the MicroSD card adapter using the soldering station to ensure reliable high-speed SPI communication.
+- **Technical Challenge:** Encountered system instability during SD card write operations. Heavy peak current consumption by the microSD card caused voltage drops (power sagging), which led to communication errors and "hangs" on the I2C bus shared by the sensors.
+- **Hardware Fix:** Resolved the instability by soldering two capacitors in parallel between the VCC and GND pins of the SD module:
+    - A 0.1 uF ceramic capacitor to filter out high-frequency noise.
+    - A 10 uF electrolytic capacitor to act as a local energy reservoir for peak current demands.
+- **Enclosure & Final Assembly:** To simulate a real-world "black box," I mounted the entire system into a protective enclosure. I precision-cut a dedicated opening in the case to allow the USB Type-C cable to connect directly to the ST-LINK port on the Nucleo board. This provides both stable power and a debugging interface while keeping the internal electronics secure.
+- **Result:** After implementing the decoupling capacitors, the I2C bus remained stable during simultaneous data logging and sensor polling, ensuring the reliability of the "black box" recording.
+
+![Week 11 progress](ma_project_photo1.webp)
+
+![Smart Package Monitoring System](ma_project_photo2.webp)
+
 ## Hardware
 
 Components:
@@ -55,14 +73,17 @@ Components:
     - BMI160 (3-axis Accelerometer & 3-axis Gyroscope - I2C/SPI).
 - **Display:** 0.96-inch OLED SSD1306 (I2C).
 - **Storage:** MicroSD Card Adapter (SPI) + 16GB MicroSD Card.
+- **Power Stability:**
+    - 0.1 uF Ceramic Capacitor (High-frequency noise filtering).
+    - 10 uF Electrolytic Capacitor (Power reservoir for SD card peak loads).
 
-The hardware architecture of the Smart Package Monitoring System utilizes an STM32 Nucleo-U545RE-Q microcontroller as its high-performance processing core, managing concurrent data streams through a multi-bus configuration. Environmental sensing is handled by an AHT20+BMP280 module for precise climate tracking and a KY-018 photoresistor for real-time light exposure detection via ADC. The system features a dedicated I2C1 bus for the SSD1306 OLED display to ensure smooth status visualization, and an independent I2C2 bus for the sensor cluster to prevent data contention. Reliable event logging is facilitated through a MicroSD adapter interfaced via SPI, providing non-volatile storage for comprehensive trip analysis.
+The hardware architecture of the Smart Package Monitoring System utilizes an STM32 Nucleo-U545RE-Q microcontroller as its high-performance processing core, managing concurrent data streams through a multi-bus configuration. Environmental sensing is handled by an AHT20+BMP280 module for climate tracking and a BMI160 inertial measurement unit for motion detection, both interfaced via a shared I2C2 sensor bus. Light exposure is monitored in real-time through a KY-018 photoresistor via ADC. The system features a dedicated I2C1 bus for the SSD1306 OLED display to ensure smooth status visualization and prevent data contention. Reliable event logging is facilitated through a MicroSD adapter interfaced via SPI. To ensure system stability during high-current SD card write operations, a decoupling pair of capacitors (0.1 uF and 10 uF) was integrated into the power rail to mitigate voltage sags and filter electrical noise.
 
 *The system architecture is designed to be modular. Thanks to the asynchronous nature of the Embassy executor, new components/functions might be integrated in future sprints with minimal changes to the core logic.
 
 ### Schematics
 
-To be added soon.
+![KiCad schematic](hardware.svg)
 
 ### Bill of Materials
 
@@ -76,6 +97,8 @@ To be added soon.
 | [MicroSD Adapter](https://www.silicon-power.com/knowledge-detail/microsd-spec/) | Interface for data logging to SD card | [~24 RON](https://www.emag.ro/2-bucati-micro-sd-tf-adaptor-pentru-carduri-viteza-mare-adaptor-convertor-pentru-carduri-micro-sd-transflash-tf-la-sd-sdhc-cititor-de-carduri-memory-stick-pentru-camera-foto-computer-memorii-interne-c/pd/D75GFJ3BM/) |
 | [16GB MicroSD Card](https://www.verbatim-europe.com/en/memory-cards/products/premium-u1-microsdhc-card-16gb-plus-adapter-44082) | Non-volatile storage for trip logs | Already owned |
 | [Breadboard (400 points)](https://en.wikipedia.org/wiki/Breadboard) | Prototyping | Already owned |
+| [Ceramic Capacitor (0.1 uF)](https://www.ato.com/0-1%CE%BCf-50v-ceramic-capacitor?srsltid=AfmBOopYidiz51fW6T777_wvdxPl3ARN3I6dckD3EeYyjs-IbhiDEwom) | High-frequency noise filtering for SD module. | Already owned |
+| [Electrolytic Capacitor (10 uF)](https://www.tme.eu/ro/details/gf1000_63-16/condensatoare-electrolitice-tht/samxon/egf108m1jk25rrshp/?brutto=1&currency=RON&utm_source=google&utm_medium=cpc&utm_campaign=RUMUNIA%20%5BPLA%5D%20CSS&utm_content=&campaign_id=10591401989&gad_source=1&gad_campaignid=10591401989&gbraid=0AAAAADyylhL6yC_Pdia26854Pta4dsauq&gclid=Cj0KCQjw2YDQBhD_ARIsAE1qeSfYn_iMik-NgFte4lnYWDGpT9tFi2TmCTVp-_NAVgWTYsOdtCGcnUsaAsPwEALw_wcB) | Power reservoir for SD card peak current demands. | Already owned |
 | [Jumper Wires Set (Male-Male, Male-Female, U-Shape Preformed)](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | Already owned |
 
 ## Software
