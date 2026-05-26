@@ -30,6 +30,11 @@ Security systems are a critical application for embedded devices, where memory l
 Finalized the hardware Bill of Materials (BOM), designed the system architecture block diagram, wrote the official documentation, and pushed the initial setup to the GitHub repository.
 ### Week 5 May - 11 May
 Finalized the physical breadboard prototyping and completed the detailed electrical schematics in KiCad. Updated the project documentation and synchronized all media assets for the repository.
+### Week 12 May - 18 May
+Configured the Embedded Rust environment using the `embassy-rs` framework. Implemented communication protocols for all peripherals, including SPI (RC522 RFID), GPIO (membrane keypad matrix), I2C (MPU6050, SSD1306 OLED), and async UART (ESP8266 HTTP server). All software subsystems were successfully unified under a safely shared `VaultState` Mutex.
+
+### Week 19 May - 25 May
+Performed the final physical assembly inside the vault enclosure. Conducted extensive hardware debugging to resolve I2C bus lockups and MCU resets during peak current draws. Resolved the issues by securing physical connections, minimizing wire crosstalk, and optimizing the servo PWM software logic to achieve a stable, continuous runtime.
 
 ## Hardware
 
@@ -61,20 +66,31 @@ The peripherals are organized into four functional subsystems:
 | [ESP8266 (ESP-01)](https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf) | WiFi Connectivity - Remote logging and status reporting | [15 RON](https://www.optimusdigital.ro/ro/wireless-wi-fi/12-modul-wifi-esp8266-esp-01.html) |
 | [SG90 Servo Motor](http://www.ee.ic.ac.uk/pjs102/projects/Control1/servo.pdf) | Locking Mechanism - Physical bolt actuation | [15 RON](https://www.cleste.ro/servomotor-sg90-9g.html) |
 | [Active Buzzer](https://www.farnell.com/datasheets/2171110.pdf) | Audio Feedback - Siren for alarms and key press tones | [5 RON](https://www.optimusdigital.ro/ro/audio-buzzere/125-buzzer-activ-5v.html) |
+| [MB102 Breadboard Power Supply](https://www.optimusdigital.ro/en/linear-regulators/61-breadboard-source-power.html) | Dedicated Power - External 5V/3.3V power source for the SG90 servo and ESP8266 | 7 RON |
 | **Auxiliary Components** | **Breadboard, Dupont wires, and decoupling capacitors** | **~30 RON** |
 
 ## Software
 
 | Library | Description | Usage |
-|---------|-------------|-------|
-| [rtic](https://rtic.rs/) | Concurrency Framework | Task scheduling, handling interrupts, and managing priorities (e.g., IMU alarm over display updates). |
-| [stm32u5xx-hal](https://github.com/stm32-rs/stm32u5xx-hal) | Hardware Abstraction Layer | Low-level control for the Nucleo-U5 (configuring I2C, UART for WiFi, and PWM for the Servo). |
-| [embedded-hal](https://crates.io/crates/embedded-hal) | Standard Traits | Standardized embedded interfaces allowing sensor drivers to communicate with the STM32. |
-| [mfrc522](https://crates.io/crates/mfrc522) | RFID Driver | Interface for reading RFID tags via SPI. |
-| [ssd1306](https://crates.io/crates/ssd1306) | Display Driver | Hardware interface for sending pixels to the OLED screen. |
-| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D Graphics Library | Rendering fonts, text, and UI elements (like the "Access Granted" message) on the OLED. |
-| [mpu6050](https://crates.io/crates/mpu6050) | IMU Driver | Reading accelerometer and gyroscope data to detect tampering and physical shocks. |
+|---|---|---|
+| [embassy-stm32](https://docs.embassy.dev/embassy-stm32/) | Asynchronous framework | Task scheduling, handling interrupts, and managing I2C, SPI, UART, PWM peripherals. |
+| [mfrc522](https://docs.rs/mfrc522/) | RFID Driver | Interface for authenticating master RFID cards via SPI. |
+| [ssd1306](https://docs.rs/ssd1306/) | OLED Display Driver | Hardware interface for sending pixel data to the system display. |
+| [heapless](https://docs.rs/heapless/) | Static data structures | Manages PIN buffers and HTML packets without dynamic heap memory allocation. |
+| [embedded-graphics](https://docs.rs/embedded-graphics/) | 2D Graphics Library | Renders text, fonts, and UI elements on the OLED interface. |
+| [embedded-hal](https://docs.rs/embedded-hal/) | Hardware Abstraction | Standardized traits for abstracting GPIO, I2C, and SPI peripherals. |
+| [defmt](https://docs.rs/defmt/) | Embedded Logger | Provides efficient debug logging over the RTT interface. |
+| [embassy-sync](https://docs.embassy.dev/embassy-sync/) | Synchronization | Implements Mutexes to safely share the VaultState across asynchronous tasks. |
 
+### Detailed Design
+
+The software architecture is built upon the `embassy-rs` asynchronous framework, allowing multiple subsystems to run concurrently without blocking the main execution thread. The logic is divided into highly specific, independent tasks:
+* **I2C Task:** Continuously polls the MPU6050 accelerometer for physical shocks and updates the SSD1306 OLED UI.
+* **PWM Task:** Controls the SG90 servo motor state (locked/unlocked) with optimized actuation to prevent unnecessary current draw.
+* **WiFi Task:** Manages the ESP8266 module via UART AT commands, hosting a local HTTP server for remote monitoring and override controls.
+* **Main Loop:** Handles the physical authentication layer by scanning for the RFID Master Card via SPI and reading the matrix keypad via GPIO interrupts.
+
+Inter-Process Communication (IPC) and synchronization between these concurrent tasks are achieved using a globally shared state (`VaultState` enum). This state is safely protected by a `Mutex` (`CriticalSectionRawMutex`), which eliminates data races at compile time and ensures that high-priority events, such as a tamper detection from the IMU, immediately force the entire system into an `Alarm` state.
 
 ## Links
 

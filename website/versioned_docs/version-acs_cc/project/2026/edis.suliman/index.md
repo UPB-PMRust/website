@@ -44,10 +44,31 @@ Architecture Overview:
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
+hardware acquisition
+debugger wiring and testing
+display wiring
+keypad wiring
+kicad schematic
+start implementing game loop in terminal
+
+### Week 4 - 10 May
+finish game loop in terminal
+correct display wiring
+display dummy test
+start using the display in the game loop
+
+### Week 11 - 18 May
+show cursor on screen
+show green/tellow feedback on screen
+show attempts on screen 
+win/lose screen
+
+=======
 
 ### Week 12 - 18 May
 
 ### Week 19 - 25 May
+
 
 
 ## Hardware
@@ -55,6 +76,12 @@ The project is built on a Raspberry Pi Pico platform with peripheral components 
 ### Schematics
 <!-- ![KiCAD Schematic](kicad_img.svg) -->
 ![KiCAD Schematic](proiect_wordle4.svg)
+
+lose_screen
+![ game_screen](game_screen.svg)
+![ lose_screen](lose_screen.svg)
+=======
+
 
 ### Bill of Materials
 
