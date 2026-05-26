@@ -87,6 +87,8 @@ Main Components:
 | Passive buzzer | Beeps when the MQ-3 threshold is exceeded | GPIO (PA8) |
 | Breadboard + jumper wires | Prototyping connections | — |
 
+![HardwareImage](images/hw_img.webp)
+
 ### Schematics
 
 ![Schematic](images/schematic.svg)
