@@ -169,7 +169,6 @@ Nucleo board. Started enclosure design in Fusion 360.
 
 ### Schematics
 
-* TODO: KiCad schematic to be added at Hardware Milestone (Week 11)
 ![KiCad schematic](./images/kikad-deskcal.webp)
 
 ### Bill of Materials
@@ -191,12 +190,11 @@ The format is
 | [BME280 Barometric Sensor Module](https://www.optimusdigital.ro/en/pressure-sensors/1354-modul-senzor-barometric-de-presiune-bme280.html) | Measures local temperature, humidity and pressure | ~34 RON |
 | [WS2812B RGB LED Ring (16 LEDs)](https://www.optimusdigital.ro/en/others/749-inel-de-led-uri-rgb-ws2812-cu-16-led-uri.html) | Visual meeting alerts with animated color patterns | ~20 RON|
 | [Passive Buzzer 3.3V](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html) | Audio alerts before and during meetings | ~13 RON|
-| Potentiometer Mono 50kΩ | Page navigation via ADC | ~7 RON|
 | [Tactile Button 6x6x6mm](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html) (x2) | Snooze reminder and UI interaction | ~3 RON|
 | [Jumper Wires M-F 40p 20cm](https://www.optimusdigital.ro/ro/fire-fire-mufate/92-fire-colorate-mama-tata-40p.html) | Component interconnections | ~10 RON|
 | [Jumper Wires F-F 10p 20cm](https://www.optimusdigital.ro/ro/fire-fire-mufate/91-fire-colorate-mama-mama-10p.html) (x2) | Component interconnections | ~10 RON|
 | [Breadboard 170 points](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/246-mini-breadboard-colorat.html) | Prototyping connections | ~3 RON|
-| 3D-printed PLA enclosure | Houses all components | TBD |
+| 3D-printed PLA enclosure | Houses all components | provided by faculty |
 
 ## Software
 
@@ -224,7 +222,7 @@ The format is
 2. [ILI9341 datasheet](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf)
 3. [WS2812B datasheet](https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf)
 4. [BME280 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf)
-5. [Google Calendar API Python quickstart](https://developers.google.com/calendar/api/quickstart/python)
+5. [News API documentation](https://newsapi.org/docs)
 6. [OpenWeatherMap API](https://openweathermap.org/api)
 7. [embedded-graphics examples](https://github.com/embedded-graphics/examples)
 8. [KiCad EDA for schematics](https://www.kicad.org)

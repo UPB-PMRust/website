@@ -38,16 +38,23 @@ Ordered the hardware components.
 
 Assembled the project and did the wiring.
 
-### Week 4 May - 10 May
+### Week 4 - 10 May
 
 Finished the hardware.
 
+### Week 11 - 17 May
+
+Finished the software. I had a few issues communicating throught the bluetooth module, but I found out it was a hardware issue.
 
 <!-- ### Week 19 - 25 May -->
 
 ## Hardware
 
 The project uses a STM32 Nucleo-U545RE board as the main microcontroller. A motor driver shield (L293D-based) is used to control four DC motors for the platform. The robotic arm is actuated using multiple servo motors (MG995 and SG90), while an electromagnet module is used for object manipulation. A Bluetooth module (HC-05) enables wireless control, and an RC522 RFID module is used for NFC-based user authorization. An RGB LED provides visual feedback. The system is powered by a 5V supply and assembled on a custom 3D-printed structure.
+
+![FrontView](images/front_view.webp)
+![SideView](images/side_view.webp)
+![Board](images/board.webp)
 
 ### Schematics
 
@@ -106,6 +113,7 @@ The format is
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
 1. https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab
+2. https://www.emcu-homeautomation.org/how-to-use-the-adafruit-motor-shield-on-stm32-nucleo/
 
 <!-- 1. [link](https://example.com)
 2. [link](https://example3.com)
