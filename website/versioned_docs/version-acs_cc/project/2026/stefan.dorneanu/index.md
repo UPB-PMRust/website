@@ -51,6 +51,7 @@ Completed testing of all remaining individual components. Successfully obtained 
 3D printed a custom enclosure for the system, housing the NUCLEO board, display, GPS module and all connected components. Completed the full software implementation — all tasks are running in parallel and fully integrated. The OLED navigation with the joystick is functional across all 4 screens. The system is now fully operational as a standalone bicycle GPS datalogger.
 
 ![progress_pic2](images/progress_week2.webp)
+![progress_pic3](images/photo3.webp)
 
 ## Hardware
 
