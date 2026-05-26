@@ -26,7 +26,7 @@ Three LEDs indicate the remaining player lives, turning off one by one as lives 
 A passive buzzer connected to a GPIO pin provides PWM-driven audio feedback, playing melodies loaded from a microSD card connected via a secondary SPI bus.
 A microSD card module connected via SPI2 stores the game music, allowing melodies to be swapped without reflashing the firmware.
 Flash memory on the STM32 is used for persistent high score storage across power cycles.
-![Project Architecture](./architecture.svg)
+![Project Architecture](./architecture.webp)
 
 ## Log
 
@@ -43,12 +43,13 @@ Finished dodge game logic and 3D printed the console
 ## Hardware
 
 The system is powered by an STM32 microcontroller (ARM Cortex-M), utilizing its SPI, GPIO, and PWM peripherals to interface with external components.
+![Project hardware1](./poza3.webp)
 ![Project hardware1](./poza1.webp)
 ![Project hardware2](./poza2.webp)
 
 ### Schematics
 
-![Project Schematic](./schematica.svg)
+![Project Schematic](./schematica.webp)
 
 ### Bill of Materials
 
