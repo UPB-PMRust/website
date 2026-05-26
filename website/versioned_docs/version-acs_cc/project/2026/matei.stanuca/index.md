@@ -27,15 +27,29 @@ The system operates in three main stages:
 
 3. Execution Layer: STM32 coordinates six A4988 drivers to perform the moves.
 
-![Arhitecture](images/schematics.webp)
+![Arhitecture](images/Arhitecture.webp)
 
 ## Log
 
-### Week 5 - 11 May
+### Week 21 - 27 April
 
-### Week 12 - 18 May
+Found components and refined strategy.
 
-### Week 19 - 25 May
+### Week 27 - 03 May
+
+Started testing each stepper + driver.
+
+### Week 03 - 10 May
+
+First try with IDA* algorithm (unsuccessfully due to low RAM)
+
+### Week 10 - 17 May
+
+The steppers started rotating the cube.
+
+### Week 17 - 24 May
+
+Rubik Cube solved.
 
 ## Hardware
 
