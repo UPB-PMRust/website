@@ -66,6 +66,9 @@ returns automatically via the spring. The solenoid is powered from the 12V suppl
 
 An **HC-SR501 PIR sensor** triggers MCU wake-up via external interrupt (EXTI0, PA0). An HC-SR04 ultrasonic sensor is placed at the tube entrance (TRIG=PA1, ECHO=PA4) to confirm ball presence. A **128x64 I2C OLED display** (SH1106, 1.3") shows system state and mode(SCL=PB6, SDA=PB7). **Three tactile buttons** allow mode selection and manual control.
 
+![Images](images/1.webp)
+![Images](images/2.webp)
+
 ### Schematics
 
 ![Schematics Diagram](images/schema.webp)
