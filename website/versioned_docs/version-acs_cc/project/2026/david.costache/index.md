@@ -44,7 +44,13 @@ I have assembled the hardware components on a breadboard and started prototyping
 I have securely mounted the hardware components onto their dedicated support structure, ensuring a clean, organized, and nice layout. The setup now features proper cable management and perfectly aligned sensors, giving the physical prototype a polished, final look. With the hardware architecture completely stabilized and visually refined, my focus has now shifted to the software development phase. I am currently writing and testing the firmware.
 
 ### Week 19 - 25 May
+During this final week, I focused on system stabilization and achieving a polished, professional finish for the prototype.
+I completed the core firmware integration, ensuring reliable data acquisition from all sensors (HX711, BME680, and ADC).
+Successfully integrated the buzzer and RGB LED logic, creating a clear feedback system for fruit quality assessment.
 
+![Project image](images/1.webp)
+![Project image](images/3.webp)
+![Project image](images/2.webp)
 
 ## Hardware
 The core of VERIT-SCAN is a **NUCLEO-U545RE-Q** board, built around the STM32U545RE (ARM Cortex-M33, 160 MHz, 512 KB flash, 272 KB SRAM) with an integrated ST-Link V3 debugger. The board exposes four I²C buses, two UARTs, a 12-bit ADC, and a 14-bit ADC — the latter is used for the DIY conductivity channel, where two stainless-steel electrodes in contact with the fruit flesh form a voltage divider with a 10 kΩ precision reference resistor.
