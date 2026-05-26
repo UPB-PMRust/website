@@ -51,6 +51,7 @@ Am stabilit ideea de proiect și am primit aprobarea că este ok.
 ### Week 7-8
 
 Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs.
+Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs.
 
 ### Week 9
 
@@ -58,11 +59,11 @@ Mi-au venit piesele și m am apucat să scriu documentația.
 
 ### Week 11
 
-Am terminat montajul pe breadboard și am făcut schema în KiCad (microfoane, DAC, OLED).
+Am termiant circuitul si am facut schema in KiCad (microfoane, DAC, Oled).
 
-### Week 12–13
+### Week 12-13
 
-Am scris cod de test în Rust: mai întâi un singur microfon + căști, apoi OLED, apoi două microfoane cu afișare pe ecran. Încă lucrez la al treilea/al patrulea canal ca să ajung la array-ul complet de 4
+Am scris cod de test in Rust: mai intai un singur microfon + casti, apoi OLED, apoi 2 microfoane. Inca lucrez la al treilea/al patrulea canal ca sa ajung la array ul complet de 4.
 
 ## Hardware
 
@@ -91,15 +92,15 @@ Schematica electrica a sistemului include conexiunile pentru bus-ul de date PDM(
 
 ## Software
 
-Tot codul e în Rust, în repo-ul de pe GitHub, cu **embassy** pentru partea de hardware (microfon, căști, ecran).
+Tot codul e in Rust, cu ambassy pentru partea de harware.
 
-Am făcut mai multe **programe de test**, ca să verific pas cu pas că merge fiecare piesă:
+Am mai multe programe de test:
 
-| Program | La ce mă ajută |
-|---------|----------------|
-| `mic_listen` | Un microfon + căști — verific că aud ceva clar |
-| `mic_test` | Același mic, dar cu VU pe OLED |
-| `casti_oled` | Două microfoane + căști + ecran (stare voce/zgomot, direcție stânga/dreapta/față) |
+'mic_listen' - un microfon + casti - verific ca aud ceva clar
+'mic_test' - acelasi microfon, dar cu VU pe OLED
+'casti_oled' - 2 microfoane + casti + ecran
+
+Pe scurt: microfoanele dau PCM la 16kHz, il trimit la DAC pt casti, iar in paralel calculez nivelul pentru oled. Beamforming-ul complet pe toate cele 4 canale e inca in dezvoltare - acum merge bine lantul de baza si varianta cu 2 microfoane.
 
 ## Links
 
