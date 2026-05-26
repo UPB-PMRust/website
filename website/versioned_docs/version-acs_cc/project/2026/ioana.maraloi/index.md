@@ -50,6 +50,8 @@ Finished hardware assembly and created the KiCad schematic.
 Successfully tested LCD display output, GPS communication and verified MPU6050 sensor.
 
 ### Week 19 - 25 May
+Created multiple operating states: daily mode, sport mode, and a confirmation state for saving workouts.
+Finished software implementation. Integrated SD card support for persistent workout storage(GPX format). Tested gps by walking around campus. 
 
 ## Hardware
 
@@ -60,7 +62,8 @@ An MPU6050 accelerometer module is used to detect motion and enable step countin
 A 2.4" display is used to present real-time data to the user, including activity statistics and system status. User input is handled through push buttons, allowing mode switching and interaction.
 
 Workout data is stored using a microSD card module, enabling later analysis. Additional components such as LEDs are used for status indication, while a breadboard, jumper wires, and resistors are used for prototyping and circuit connections.
-
+![alt text](pm_final.webp)
+![alt text](harta_pm.webp)
 ### Schematics
 ![alt text](proiect_pm_kicad_final.svg)
 ### Bill of Materials
@@ -82,12 +85,10 @@ The format is
 | [MPU6050 GY-521 accelerometer module](https://www.emag.ro/modul-giroscop-mpu-6050-gy-521-accelerometru-arduino-3-axe-2-1-cm-x-1-1-cm-x-0-3-cm-albastru-c7/pd/DL3G1QYBM/) | Measures motion and is used for step detection |  32 RON |
 | [MicroSD Card Module ](https://www.emag.ro/modul-de-expansiune-micro-sd-card-de-memorie-tf-pentru-arduino-dh000036/pd/DP8QQL3BM/) | Reads and writes data to the microSD card for storing workout logs | 19 RON |
 | [GPS Module NEO6MV2 ](https://sigmanortec.ro/Modul-GPS-6MV2-p125423363) | Provides location data for tracking distance, speed, and route | 30 RON |
-| microSD Card 8GB | Stores workout data and GPS logs | 20 RON |
+| microSD Card 8GB | Stores workout data and GPS logs | 40 RON |
 |Push button| User input for mode switching and interaction| 5 RON |
-| LEDs | Status indication and debugging | 5 RON |
 | Breadboard + Jumper Wires | prototyping and connecting components | 30 RON |
-| Resistors | Used for LEDs and buttons | 10 RON |
-
+| SD card reader with usb adaptor| read data from sd card | 36 RON |
 ## Software
 
 | Library | Description | Usage |
@@ -95,9 +96,8 @@ The format is
 | embassy-rs | Async embedded framework for Rust | Task scheduling and async execution |
 | embassy-stm32 | STM32 HAL for embassy | UART, SPI, I2C, GPIO peripheral communication |
 | defmt | Embedded logging framework | Debug messages in terminal |
-| panic-probe | Panic handler for embedded Rust | Debugging runtime crashes |
 | embedded-graphics | 2D graphics library | Drawing text and interface elements on LCD |
-
+| embedded_sdmmc | SD library | Used for writing gpx data on SD card |
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
@@ -105,6 +105,7 @@ The format is
 1. https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab
 2. https://docs.embassy.dev/
 3.  https://docs.rs/embassy-stm32/latest/embassy_stm32/
-
+4. https://randomnerdtutorials.com/guide-to-neo-6m-gps-module-with-arduino/
+5. https://docs.rs/embedded-sdmmc/latest/embedded_sdmmc/
 <!-- 2. [link](https://example3.com)
 ... -->
