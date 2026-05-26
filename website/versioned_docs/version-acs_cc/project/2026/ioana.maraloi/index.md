@@ -38,7 +38,8 @@ Main architecture components:
 ![alt text](schema_pm_ioana_maraloi.svg)
 
 ## Log
-
+![alt text](pm_final.webp)
+![alt text](<harta_pm.webp>)
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
@@ -62,8 +63,6 @@ An MPU6050 accelerometer module is used to detect motion and enable step countin
 A 2.4" display is used to present real-time data to the user, including activity statistics and system status. User input is handled through push buttons, allowing mode switching and interaction.
 
 Workout data is stored using a microSD card module, enabling later analysis. Additional components such as LEDs are used for status indication, while a breadboard, jumper wires, and resistors are used for prototyping and circuit connections.
-![alt text](pm_final.jpeg)
-![alt text](harta_proiect.png)
 ### Schematics
 ![alt text](proiect_pm_kicad_final.svg)
 ### Bill of Materials
