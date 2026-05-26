@@ -56,10 +56,15 @@ UI Controller (Joystick)
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-- Initial idea was a reflex-based system.
-- Pivoted to thermal imaging after feedback.
-- Selected MLX90640 as core sensor.
-- Studied MLX90640 communication and frame format.
+- Got the hardware working on the breadboard.
+- Next step is moving to a protoboard with soldering.
+- The thermal camera is running, but I am still tuning it to work perfectly.
+- The app menu is still buggy, but I will handle that next week.
+
+<div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'nowrap', margin: '1.5rem 0' }}>
+     <img src="https://ionescuandrei.tech/pm1.jpg" alt="Thermal camera prototype 1" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+     <img src="https://ionescuandrei.tech/pm2.jpg" alt="Thermal camera prototype 2" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+</div>
 
 ### Week 12 - 18 May
 - Defined system blocks and data flow.
@@ -77,28 +82,8 @@ The system uses an STM32 NUCLEO-U545RE-Q for development, an MLX90640 thermal se
 
 ### Schematics
 
-<svg width="820" height="260" viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project hardware schematic overview">
-  <rect x="10" y="20" width="170" height="70" fill="none" stroke="black"/>
-  <text x="95" y="60" text-anchor="middle" font-size="14">MLX90640 (I2C)</text>
+![Thermal camera hardware schematic](./assets/thermal_cam_good%20resolution.svg)
 
-  <rect x="250" y="20" width="220" height="100" fill="none" stroke="black"/>
-  <text x="360" y="60" text-anchor="middle" font-size="14">STM32 NUCLEO-U545RE-Q</text>
-  <text x="360" y="82" text-anchor="middle" font-size="12">Main Controller</text>
-
-  <rect x="540" y="20" width="160" height="70" fill="none" stroke="black"/>
-  <text x="620" y="60" text-anchor="middle" font-size="14">TFT Display (SPI)</text>
-
-  <rect x="540" y="110" width="160" height="60" fill="none" stroke="black"/>
-  <text x="620" y="145" text-anchor="middle" font-size="14">microSD (SPI)</text>
-
-  <rect x="250" y="160" width="220" height="70" fill="none" stroke="black"/>
-  <text x="360" y="200" text-anchor="middle" font-size="14">Joystick + WiFi (UART)</text>
-
-  <line x1="180" y1="55" x2="250" y2="55" stroke="black"/>
-  <line x1="470" y1="55" x2="540" y2="55" stroke="black"/>
-  <line x1="470" y1="120" x2="540" y2="140" stroke="black"/>
-  <line x1="360" y1="120" x2="360" y2="160" stroke="black"/>
-</svg>
 
 ### Bill of Materials
 
