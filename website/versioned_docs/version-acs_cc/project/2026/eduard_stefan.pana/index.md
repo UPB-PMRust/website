@@ -86,15 +86,54 @@ The core of the system is the **STM32 Nucleo-64 (STM32U545RE)**, chosen for its 
 * **Vibration Motor Module:** Provides haptic feedback on scroll events.
 * **5V USB Power Bank:** Portable power source.
 
+![Wireing](./images/project_on_breadboard.webp)
+
 ## Bill of Materials (Hardware)
 
-1. 1x STM32 Nucleo-64 Development Board (STM32U545RE)
-2. 1x PCM5102A Module (used only for its 3.5mm jack)
-3. 1x MicroSD Card Reader Module (SPI, 5V supply, 3.3V logic) + MicroSD card formatted FAT32 GroundStudio
-4. 1x 2.4" Color TFT LCD Display (ILI9341 driver)
-5. 1x MPR121 Capacitive Touch Module
-6. 1x Tactile push-button 6x6mm (THT)
-7. 1x Vibration motor module (3.0–5.3V DC, ~60 mA)
-8. 1x USB Power Bank (5V output)
-9. 2x 100Ω resistors, 2x 100nF (104) ceramic capacitors for DAC output coupling
-10. 1x Breadboard (830 tie-points) and assorted Dupont jumper wires (M-M, M-F)
+| Device | Usage | Price |
+|--------|-------|-------|
+| [STM32 Nucleo U545RE-Q](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) | The main microcontroller running the NucleoPod firmware | 110.00 RON |
+| [PCM5102A DAC Module](https://www.emag.ro/modul-convertor-dac-pcm5102-2-1-vrms-tehnologie-directpathtm-dimensiuni-compacte-dh000056/pd/DM6QQL3BM/?ref=history-shopping_487416477_255937_1) | Used to decode the audio signal (I2S to Analog) and provide the high-quality 3.5mm jack | 42.00 RON |
+| [MicroSD Card Reader Module](https://ardushop.ro/ro/module/1553-groundstudio-microsd-module-6427854023056.html) | SPI module used to read the `.WAV` audio files and `.BMP` album covers | 8.00 RON |
+| [MicroSD Card](https://www.emag.ro/search/microsd+16gb) | Formatted to FAT32 to store the uncompressed music and images | 20.00 RON |
+| [2.4" TFT LCD Display (ILI9341)](https://ardushop.ro/ro/electronica/1348-modul-lcd-24-cu-spi-controller-ili9341-6427854019523.html) | Used as the graphical user interface for the MP3 Player | 67.00 RON |
+| [MPR121 Capacitive Touch Module](https://ardushop.ro/ro/senzori/984-modul-senzor-capacitiv-mpr121-6427854013279.html) | Used to read the 8 copper pads that make up the Haptic Touch Wheel | 10.00 RON |
+| [Tactile push-button 6x6mm](https://ardushop.ro/ro/butoane--switch-uri/713-buton-mic-push-button-trough-hole-6427854009050.html) | Used as the physical center Select / Play / Pause button | 0.50 RON |
+| [Vibration Motor Module](https://www.emag.ro/comutator-de-vibratii-pwm-pentru-motor-modul-senzor-motor-pentru-jucarii-motor-dc-vibrator-pentru-telefon-mobil-pentru-kitul-diy-arduino-uno-mega2560-r3-741050524275/pd/D69LHM2BM/?ref=history-shopping_487417681_245879_1) | Used to provide physical haptic feedback (clicks) when scrolling the touch wheel | 29.00 RON |
+| [Resistors 100Ω](https://www.optimusdigital.ro/en/search?s=100+ohm+resistor) x2 | Used alongside the capacitors for the DAC output audio coupling | 0.10 RON |
+| [Capacitors 10nF](https://www.optimusdigital.ro/en/search?s=100nf+capacitor) x2 | Used alongside the resistors for the DAC output audio coupling | 0.20 RON |
+| [Breadboard 830 tie-points](https://sigmanortec.ro/Breadboard-830-puncte-p125425574) | Used as the base to safely prototype and wire all electronic components | 12.00 RON |
+| [Dupont Jumper Wires](https://ardushop.ro/ro/fire-si-conectori/8-10-x-fire-dupont-mama-tata-20cm-6427854039200.html) | Assorted wires (M-M, M-F) used to connect the modules to the Nucleo board | 10.00 RON |
+
+
+## Software
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 microcontrollers | Provides hardware abstraction for peripherals: DAC (audio playback), SPI (Display & SD card), I2C (Touch wheel), GPIO, and Timers. |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded | Manages and schedules concurrent asynchronous tasks (e.g., separating the haptic vibration motor task from the main audio playback loop). |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Time and delay primitives | Provides precise timing and delays required for display initialization, button debouncing, and haptic feedback duration. |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | ARM Cortex-M core crates | Used for low-level core processor operations, such as unmasking the NVIC interrupts for the audio hardware timer. |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) / [panic-probe](https://github.com/knurling-rs/panic-probe) | Debugging & Panic handler | Catches fatal system errors (panics) and safely logs them to the host console via the RTT (Real-Time Transfer) debug interface. |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Draws the entire graphical user interface: anti-flicker text rendering, control buttons (rectangles), and the progress bar (circles and lines). |
+| [tinybmp](https://github.com/embedded-graphics/tinybmp) | BMP image parser | Performs bit-level decoding of uncompressed `bgr24` images (Album Covers) so they can be rendered on the display. |
+| [mipidsi](https://github.com/almindor/mipidsi) | Display driver for MIPI DSI / SPI | Initializes and controls the ILI9341 TFT display, configuring screen orientation, pixel color formats, and SPI communication. |
+| [embedded-hal-bus](https://github.com/rust-embedded/embedded-hal) | SPI Bus sharing | Creates an `ExclusiveDevice` for the display, ensuring proper management of the Chip Select (CS) pin on the shared SPI bus. |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc) | SD/MMC file system | Enables navigation of the FAT32 file system on the SD card, directory iteration (handling 8.3 short names), and efficient byte-level reading for WAV and BMP files. |
+| [heapless](https://github.com/japaric/heapless) | Data structures without dynamic allocation | Manages fixed-capacity vectors for the playlist and string formatting (such as playback time tracking) directly on the stack, safeguarding the limited RAM. |
+
+![Software](./images/display_photo.webp)
+
+## Links
+
+1. [https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab](https://embedded-rust-101.wyliodrin.com/docs/acs_cc/category/lab)
+2. [wav files downloader](https://www.cutyt.com/yt-wav)
+3. [downloader for album cover](https://spotidownloader.com/en19)
+4. [https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2043%20-%20WAV%20Player](https://github.com/MYaqoobEmbedded/STM32-Tutorials/tree/master/Tutorial%2043%20-%20WAV%20Player)
+5. [https://github.com/MabezDev/embedded-fatfs](https://github.com/MabezDev/embedded-fatfs)
+6. [online wav conversion tool](https://g711.org/)
+7. [ffmpeg - tool for transforming wav file from 16-bit to 8-bit](https://ffmpeg.org/ffmpeg.html)
+8. [perfboard soldering](https://www.youtube.com/watch?v=5tydtZl95dE)
+9. [DMA for SD with a 12-bit DAC logic](https://www.youtube.com/watch?v=fY4CHt99SuY)
+10. [wav player exemple](https://www.youtube.com/watch?v=QPmFvSFyIbs&t=1301s)
+11. [audio player exemple](https://www.youtube.com/watch?v=Eki52Y2Ou5s&t=931s)
