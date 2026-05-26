@@ -9,9 +9,10 @@ A wired animatronic toy that translates console commands into synchronized movem
 
 ## Description
 
-This project consists of an interactive animatronic system designed to demonstrate embedded hardware control through multi-sensory outputs. The physical structure is built around a 40-50 cm plush teddy bear, whose limbs have been detached at the major joints — shoulders, elbows, hips and knees — and reattached via external servo motor mounts, allowing precise and independent articulation of each limb.
-The input stage utilizes a wired console where user commands are captured through tactile button presses. Each button corresponds to a specific limb, sound or predefined animation routine, allowing the user to trigger individual movements. These routines can also incorporate synchronized audio playback, combining mechanical motion and sound into cohesive, expressive animations.
-During the processing stage, the STM32 Nucleo-U545RE-Q microcontroller translates these digital signals to evaluate logic, initiate specific motor actuation routines and fetch stored audio files. The output stage is multi-sensory: it produces precise mechanical limb articulation, outputs pre-recorded audio playback and uses light modulation to create a glowing, pulsating "heartbeat" effect in the toy's chest.
+This project consists of an interactive animatronic system designed to demonstrate embedded hardware control through multi-sensory outputs. The physical structure is built around a 40 cm plush teddy bear, laid flat on a backing panel where the development board and breadboards are mounted for stability. Rather than modifying the bear's structure, each limb is actuated through an external string-pull mechanism: individual servo motors are mounted on the panel and connected via thin strings to 
+the skelet of the shoulders, elbows, hips and knees of the bear, pulling each joint into position when the corresponding servo rotates.
+The input stage utilizes a wired console where user commands are captured through tactile button presses. Each button corresponds to a specific limb, sounds or predefined animation routine, allowing the user to trigger individual movements. These routines can also incorporate synchronized audio playback, combining mechanical motion and sound into cohesive, expressive animations.
+During the processing stage, the STM32 Nucleo-U545RE-Q microcontroller translates these digital signals to evaluate logic, initiate specific motor actuation routines and fetch stored audio files. The output stage is multi-sensory: it produces precise mechanical limb articulation through the string-pull servo system, outputs pre-recorded audio playback and uses light modulation to create a glowing, pulsating "heartbeat" effect in the toy's chest.
 
 ## Motivation
 
@@ -32,7 +33,7 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 - *GPIO*: Used to read button inputs from the wired console.
 
 **Inputs**:     
-    - A wired console with tactile buttons connects to the STM32 via GPIO, allowing the user to trigger individual limb movements and predefined animation routines.
+    - A wired console with tactile buttons connects to the STM32 via GPIO, allowing the user to trigger individual limb movements, predefined animation routines or audio files from the SD card through the DFPlayerMini.
 
 **Outputs**: 
     - *PCA9685 PWM Driver*: Receives commands from the STM32 via I2C and generates PWM signals for all 8 servos simultaneously.
@@ -59,10 +60,13 @@ The *hardware system* is centered around the STM32 microcontroller, which proces
 - Created first drafts for the TeddyBot
 
 ### Week 12 - 18 May
-- Implemented the asynchronous control logic using the Embassy framework
-- Configured and successfully integrated all 8 servo motors into the system
+- Implemented the asynchronous control logic for the heartbeat light
+- Configured and successfully integrated all 8 servo motors into the system through buttons
+- Initialized the DFPlayer Mini module via UART and prepared the SD card with multiple audio tracks
 
 ### Week 19 - 25 May
+- Developed synchronized, choreographed animation routines ("The Hug" and "Happy Dance") combining parallel multi-servo actuation with contextual audio feedback
+- Reorganized the PCA9685 PWM channel mapping to physically isolate the left and right hemisphere wiring, significantly optimizing Teddy's cable management
 
 ## Hardware
 
