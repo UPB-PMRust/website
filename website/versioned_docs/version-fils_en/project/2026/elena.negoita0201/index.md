@@ -1,9 +1,3 @@
----
-id: index
-title: Color Parking Car
-sidebar_label: Color Parking Car
----
-
 # COLOR PARKING CAR
 An autonomous four-wheel-drive robot programmed in Rust that parks based on color cues.
 
@@ -58,6 +52,8 @@ The Sensor Processing Module acts as the "eyes," constantly feeding processed en
 The system uses a 4WD chassis driven by independent DC motors, powered by a 3.7V Li-ion battery setup, and utilizes a dedicated RGB sensor for environmental awareness. 
 
 ### Schematics
+
+![Hardware Schematic](./Schematic.svg)
 
 ### Bill of Materials
 
