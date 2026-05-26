@@ -50,7 +50,7 @@ Am stabilit ideea de proiect și am primit aprobarea că este ok.
 
 ### Week 7-8
 
-Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs și să fac un prototip de case pt tot proiectul in Fusion360.
+Am dat comanda de piese de pe AliExpress și am început să caut documentația embassy-rs.
 
 ### Week 9
 
@@ -58,8 +58,11 @@ Mi-au venit piesele și m am apucat să scriu documentația.
 
 ### Week 11
 
-Am termiant circuitul si mai urmeaza sa i fac un case printat 3d sau un prototip de cutie pt a fi ergonomic
+Am termiant circuitul si am facut schema in KiCad (microfoane, DAC, Oled).
 
+### Week 12-13
+
+Am scris cod de test in Rust: mai intai un singur microfon + casti, apoi OLED, apoi 2 microfoane. Inca lucrez la al treilea/al patrulea canal ca sa ajung la array ul complet de 4.
 
 ## Hardware
 
@@ -88,7 +91,15 @@ Schematica electrica a sistemului include conexiunile pentru bus-ul de date PDM(
 
 ## Software
 
-- TODO: se va adauga pe parcurs
+Tot codul e in Rust, cu embassy pentru partea de harware.
+
+Am mai multe programe de test:
+
+'mic_listen' - un microfon + casti - verific ca aud ceva clar
+'mic_test' - acelasi microfon, dar cu VU pe OLED
+'casti_oled' - 2 microfoane + casti + ecran
+
+Pe scurt: microfoanele dau PCM la 16kHz, il trimit la DAC pt casti, iar in paralel calculez nivelul pentru oled. Beamforming-ul complet pe toate cele 4 canale e inca in dezvoltare - acum merge bine lantul de baza si varianta cu 2 microfoane.
 
 ## Links
 
