@@ -36,6 +36,8 @@ Tested hardware components, soldered MPU pins and built the hardware.
 
 ### Week 12 - 18 May
 
+Developed the software and tested it. Some tweaks are needed.
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -82,12 +84,23 @@ The format is
 
 ## Software
 
-Work in progress..
-
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Async HAL for STM32 (GPIO, I²C, ADC, PWM, EXTI) | Board init, peripherals, and drivers for the STM32U545 |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async/await executor for embedded | Runs `main`, encoder/button tasks, and the application loop |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Timers and delays | Round timing, debounce, random wait, and frame pacing |
+| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync) | Sync primitives for Embassy | Mutex around the shared I²C bus |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Adapters between Embassy and `embedded-hal` | `I2cDevice` for OLED, EEPROM, and MPU on one bus |
+| [ssd1306](https://github.com/rust-embedded-community/ssd1306) | Display driver for SSD1306 OLED | 128×64 OLED over I²C |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Menus, game UI, text, and the false-start mark |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | I²C trait used by EEPROM and MPU drivers |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient embedded logging | Debug logs (rounds, false starts, sensor values) |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT transport for defmt | Sends log output to the debug probe |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Cortex-M support crate | Low-level CPU access (e.g. `nop` during ADC sampling) |
+| [cortex-m-rt](https://github.com/rust-embedded/cortex-m-rt) | Runtime for Cortex-M | Reset vector and runtime startup |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler | Prints panics over defmt on the probe |
+| [heapless](https://github.com/rust-embedded/heapless) | Collections without heap allocation | Fixed-size `Vec` and `String` for profiles and UI |
+| [static_cell](https://github.com/embassy-rs/static-cell) | `'static` initialization helper | Stores the shared I²C bus for the firmware lifetime |
 
 ## Links
 
