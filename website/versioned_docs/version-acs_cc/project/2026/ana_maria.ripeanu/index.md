@@ -52,9 +52,9 @@ Finished the software. I had a few issues communicating throught the bluetooth m
 
 The project uses a STM32 Nucleo-U545RE board as the main microcontroller. A motor driver shield (L293D-based) is used to control four DC motors for the platform. The robotic arm is actuated using multiple servo motors (MG995 and SG90), while an electromagnet module is used for object manipulation. A Bluetooth module (HC-05) enables wireless control, and an RC522 RFID module is used for NFC-based user authorization. An RGB LED provides visual feedback. The system is powered by a 5V supply and assembled on a custom 3D-printed structure.
 
-![FrontView](images/front_view.svg)
-![SideView](images/side_view.svg)
-![Board](images/board.svg)
+![FrontView](images/front_view.webp)
+![SideView](images/side_view.webp)
+![Board](images/board.webp)
 
 ### Schematics
 
