@@ -43,12 +43,13 @@ Finished dodge game logic and 3D printed the console
 ## Hardware
 
 The system is powered by an STM32 microcontroller (ARM Cortex-M), utilizing its SPI, GPIO, and PWM peripherals to interface with external components.
+![Project hardware1](./poza3.webp)
 ![Project hardware1](./poza1.webp)
 ![Project hardware2](./poza2.webp)
 
 ### Schematics
 
-![Project Schematic](./schematica.svg)
+![Project Schematic](./schematica.webp)
 
 ### Bill of Materials
 
