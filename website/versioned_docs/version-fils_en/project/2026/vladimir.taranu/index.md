@@ -173,7 +173,7 @@ The dashboard's interface is controlled by a resistive touchscreen processed by 
 ![Meas](main_device.webp)
 
 Inside the box:
-![Box](box_inside.webp)
+![Box](box_inside.webp)
 
 Pages:
 ![Page](main_w.webp)
@@ -185,15 +185,15 @@ Pages:
 
 #### Dashboard device
 
-![Dash](dashboard_1.webp)
-![Dash](dashboard_2.webp)
-![Dash](dashboard_3.webp)
-![Dash](dashboard_4.webp)
-![Dash](dashboard_5.webp)
-![Dash](dashboard_6.webp)
-![Dash](dashboard_7.webp)
-![Dash](dashboard_8.webp)
-![Dash](dashboard_9.webp)
+![Dash](dashboard_1.webp)
+![Dash](dashboard_2.webp)
+![Dash](dashboard_3.webp)
+![Dash](dashboard_4.webp)
+![Dash](dashboard_5.webp)
+![Dash](dashboard_6.webp)
+![Dash](dashboard_7.webp)
+![Dash](dashboard_8.webp)
+![Dash](dashboard_9.webp)
 
 ### Video
 
