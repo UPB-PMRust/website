@@ -58,11 +58,11 @@ Developed the game software, including the game logic, screen display and button
 ### Week 18 - 24 May
 - Video: https://youtube.com/shorts/Yu7dfRNBbo0
 
-<img src="main_menu.webp" alt="Main menu" width="200">
-<img src="settings.webp" alt="Settings" width="200">
-<img src="take_picture.webp" alt="Take picture" width="200">
-<img src="puzzle.webp" alt="Puzzle" width="350">
-<img src="win.webp" alt="Win" width="300">
+<img src="main_menu.webp" alt="Main menu" width="200" />
+<img src="settings.webp" alt="Settings" width="200" />
+<img src="take_picture.webp" alt="Take picture" width="200" />
+<img src="puzzle.webp" alt="Puzzle" width="350" />
+<img src="win.webp" alt="Win" width="300" />
 
 
 ## Hardware
