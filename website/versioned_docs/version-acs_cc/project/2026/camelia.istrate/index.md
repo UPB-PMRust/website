@@ -38,7 +38,7 @@ The system is divided into the following main components:
   - manages operating modes (manual, record, playback)
   - communicates with external modules
 
-- **Memory Buffer**:
+- **Memory Buffer (implemented in STM32 RAM)**:
   - stores recorded servo positions over time during record mode
   - provides stored data during playback mode
 
@@ -65,10 +65,16 @@ In this period, I researched the hardware requirements for the project, identifi
 During this week, I focused on developing the project documentation.
 
 ### Week 4 - 10 May
+In this period, I received the first ordered components, printed the 3D parts required for the robotic arm structure, and placed additional orders for the remaining hardware components.
 
 ### Week 11 - 17 May
+During this week, the last ordered components arrived. I focused on the hardware part of the project, assembled the main mechanical structure, connected the electronic components, and tested the basic wiring.
 
 ### Week 18 - 24 May
+In this week, I implemented the software part of the project in Rust, tested the interaction between the potentiometers, buttons, PCA9685 driver, and servo motors, and verified that the main functionalities worked correctly. I also mounted all components on the final support structure.
+
+![Image1](./images/project1.webp)
+![Image2](./images/project2.webp)
 
 ## Hardware
 
