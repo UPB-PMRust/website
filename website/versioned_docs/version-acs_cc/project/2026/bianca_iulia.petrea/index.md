@@ -37,14 +37,27 @@ The project is built as a motion mirroring system between the controller and the
 - Finalized project theme and received approval.
 - Researched and ordered all hardware components (IMU, servos, SD module, IR sensor).
 
-### Week 4 - 8 May
+### Week 4 - 10 May
 - Mapped all pin connections between the Nucleo board, sensors, and actuators.
 
 ### Week 12 - 18 May
 - Started developing the software implementation in Rust.
 - Set up the main code structure and began integrating peripheral drivers.
 
-### Week 19 - 25 May
+### Week 18 - 24 May
+- Implemented the final core control loop featuring asynchronous multitasking powered by Embassy.
+- Developed a robust digital signal processing pipeline for the MPU6050: added a digital deadzone filter (800 units threshold) to suppress MEMS noise, and an exponential moving average low-pass filter (0.80/0.20 split) to ensure smooth, organic servo actuation.
+- Added a sudden movement detection routine (3000 units threshold) to dynamically trigger game activation and capture the starting timestamp.
+- Completed the persistence layer over SPI using a multi-layered abstraction stack ('ExclusiveDevice', 'SdCard', and 'VolumeManager') to safely parse past records and append new scores into 'scor.txt' under a FAT32 file system.
+- Finished integration of the hardware IR sensor and spawned an independent background executor task to handle the victory beep sequence via bit-banged PWM square waves (1kHz) on the buzzer pin upon maze completion.
+- Conducted final mechanical assembly and wiring, securing a stable, standalone runtime operation.
+
+### Final Project Setup
+![Overhead view of the mechanical labyrinth platform](images/proiect_final2.webp)
+*Figure 1: Full assembly showing the mechanical platform and the handheld controller unit.*
+
+![Detail view of the servo mechanics and electronics](images/proiect_final1.webp)
+*Figure 2: Detail of the 2-axis gimbal mechanism powered by SG90 servos.*
 
 ## Hardware
 
