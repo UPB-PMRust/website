@@ -3,7 +3,8 @@ A smart system that automatically prepares drink shots based on user selection.
 
 :::info
 
-**Author**: Lotan Roberto-Gabriel  
+**Author**: Lotan Roberto-Gabriel  \
+
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-Adamura1
 
 :::
