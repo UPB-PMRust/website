@@ -31,13 +31,24 @@ As a photography and videography enthusiast, I have always been fascinated by ho
 
 Initial upload with the description, motivation, BOM and architecture scheme.
 
+### Week 4 - 10 April
+
+Added the KiCad schematic with the pinout for the STM32.
+
+### Week 18 - 24 April
+
+Uploaded the renders of the gimbal, as well as the link with the STL files for the case.
+
+
 ## Hardware
 
 The gimbal uses an STM32 Nucleo as the main microcontroller, running both the sensor fusion and PID control firmware as well as the FOC algorithms for the motors. Three brushless gimbal motors (one per axis) are driven by three individual FOC driver boards. An MPU-6050 module provides 6-DoF inertial measurements for sensor fusion. A joystick provides manual operator input for orientation control. Power is supplied by a 3S LiPo battery, with a buck converter regulating the logic-level voltages.
 
+The case for the gimbal and the platform are both inspired by [this website](https://howtomechatronics.com/projects/diy-arduino-gimbal-self-stabilizing-platform/).
+
 ### Schematics
 
-![Diagram](./images/schematic.webp)
+![Diagram](./images/schem.webp)
 
 ### Bill of Materials
 
@@ -61,12 +72,22 @@ The format is
 | 3S LiPo battery (x1) | Main power source (~11.1 V) | [90 RON](https://www.aliexpress.com/item/1005007883555706.html?spm=a2g0o.order_list.order_list_main.20.21ef1802e31OeE) |
 | Buck converter (x1) | Steps down battery voltage to 5 V / 3.3 V for logic | [14 RON](https://www.aliexpress.com/item/1005009823447391.html?spm=a2g0o.order_list.order_list_main.10.21ef1802e31OeE) |
 
+## Renders
+
+![Diagram](./images/Render.webp)
+![Diagram](./images/Exploded_Render.webp)
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Embassy HAL for STM32 | GPIO, I2C, ADC, PWM timers on the Nucleo |
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Embassy HAL for STM32 | Manages low-level hardware abstractions including I2C telemetry, ADC analog pins, GPIO states, and complementary high-speed PWM timers on the Nucleo. |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async runtime executor for Embassy | Handles the main task allocation and spawning architecture (`Spawner`) for asynchronous resource execution. |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Modern time keeping and delay tracking library | Provides the deterministic async `Timer` abstraction to enforce the strict 10ms execution loop. |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient, deferred logging framework for embedded systems | Provides macro definitions (`info!`, `debug!`) to serialize telemetry strings without wasting MCU cycle performance. |
+| [defmt-rtt](https://github.com/knurling-rs/defmt) | SEGGER Real-Time Transfer (RTT) logging target | Directs the serialized logging packets through the physical debug probe link to your computer's terminal. |
+| [panic-probe](https://github.com/knurling-rs/panic-probe) | Embedded panic handler tailored for hardware debugging | Catches standard execution panics and forces them directly out through the RTT channel alongside accurate stack trace prints. |
+| [micromath](https://github.com/tarkah/micromath) | Lightweight, fast `no_std` math library | Empowers the firmware with advanced floating-point trigonometry functions (`atan2`, `sqrt`) required for complementary sensor fusion. |
 
 ## Links
 
