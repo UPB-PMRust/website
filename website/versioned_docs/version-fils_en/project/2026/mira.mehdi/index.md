@@ -43,6 +43,9 @@ This system is built using **STM32 NUCLEO-U545RE-Q** which coordinates all funct
 The system is built around the STM32 NUCLEO-U545RE microcontroller, which acts as the main controller responsible for processing data and coordinating all modules. Two NFC readers are used to scan the vehicle’s NFC tag at the payment and exit stations for verification. Two SG90 servo motors control the opening and closing of the entry and exit barriers, while a LCD display shows system messages such as payment status. A green LED indicates successful payment and access approval, whereas a red LED with a buzzer signals payment denied. An ultrasonic sensor detects vehicle presence at the entrance to open the berrier, and an IR sensor detects coin insertion at the payment station. However, all the coennections are on the breadboard and using jumper wires.
 
 ## Schematics
+![Schematic diagram](kicad.svg)
+![Schematic diagram](hardware.webp)
+
 
 
 

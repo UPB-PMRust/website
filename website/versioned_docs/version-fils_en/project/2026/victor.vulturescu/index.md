@@ -74,9 +74,12 @@ The command center is powered through USB, either from a laptop or an external p
 
 The system is divided into a stationary sensing and planning node and a mobile execution node. The stationary node observes the environment from above and sends movement commands wirelessly, while the vehicle node focuses only on receiving commands and controlling the motors.
 
+![stationary](stationary_node.webp)
+![mobile](mobile_node.webp)
+
 ### Schematics
 
-Will be added after the final wiring and architecture diagrams are completed.
+![kicad](rc_car_kicad.svg)
 
 ### Bill of Materials
 
