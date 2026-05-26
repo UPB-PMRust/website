@@ -51,7 +51,6 @@ Am stabilit ideea de proiect și am primit aprobarea că este ok.
 ### Week 7-8
 
 Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs.
-Am dat comanda de piese de pe AlieExpress și am început să caut documentația embassy-rs.
 
 ### Week 9
 
@@ -92,7 +91,7 @@ Schematica electrica a sistemului include conexiunile pentru bus-ul de date PDM(
 
 ## Software
 
-Tot codul e in Rust, cu ambassy pentru partea de harware.
+Tot codul e in Rust, cu embassy pentru partea de harware.
 
 Am mai multe programe de test:
 
