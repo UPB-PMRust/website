@@ -33,7 +33,7 @@ The system is composed of the following main modules:
 - **Power Supply**: A 12V external power supply powers the stepper motors and electromagnet. A voltage regulator steps down to 5V for the logic components.
 
 ### Block Diagram
-![SchemaBloc](schemaBloc.webp)
+![SchemaBloc](schemabloc.webp)
 
 
 ## Hardware
@@ -79,7 +79,7 @@ The system is composed of the following main modules:
 
 ## Schematics
 
-![Schematic](schematiculMeu.webp)
+![Schematic](schematiculmeu.webp)
 
 
 ## Bill of Materials
