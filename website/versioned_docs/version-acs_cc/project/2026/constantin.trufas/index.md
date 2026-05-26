@@ -92,7 +92,7 @@ To handle physical action, an IRF520 MOSFET triggers a solenoid piston. The enti
 | Step-down Converter | Steps down 12V to 5V | [6.69 RON](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) |
 | Stepper Expansion Board | Simplifies wiring between the driver and the motor | [9.97 RON](https://sigmanortec.ro/placa-expansiune-driver-motor-stepper-drv8825-si-a4988-5v) |
 | TFT Display | Shows real-time radar data and system telemetry | [30.64 RON](https://sigmanortec.ro/display-tft-13-ips-spi-65k-culori-lcd-st7789v-240x240-7p) |
-| Solenoid Piston | Provides the mechanical strike when a target is detected | [24.74 RON](https://sigmanortec.ro/piston-electromagnetic-jf-0530b-cu-solenoid-6v-push-pull) |
+| Solenoid Piston | Provides the mechanical strike when a target is detected | [24.74 RON](https://sigmanortec.ro/piston-electromagnetic-jf-0530b-cu-solenoid-12v-push-pull) |
 | Rotary Potentiometer | Allows manual adjustment of the turret's vertical tilt angle | [13.65 RON](https://sigmanortec.ro/modul-potentiometru-rotativ-10k-liniar-3-5v) |
 | 12V 5A Power Adapter | The main power source for the entire turret system | [50.70 RON](https://www.emag.ro/alimentator-12v-5a-cu-mufa-5-5-2-1-mm-cablu-de-alimentare-inclus-ev-5a/pd/DY6PTDBBM/) |
 | DC Female Jack Adapter | Connects the power adapter to the breadboard wires | [4.14 RON](https://www.emag.ro/mufa-alimentare-mama-cu-surub-201801013096/pd/D9FK8GBBM/) |
