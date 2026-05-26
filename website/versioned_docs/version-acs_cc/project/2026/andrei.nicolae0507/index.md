@@ -48,7 +48,7 @@ The project requires components that are energy-efficient and small enough to be
 
 ### Schematics
 
-![Schematic diagram](schema.svg)
+![Schematic diagram](schema.webp)
 
 ### Photos
 
