@@ -56,7 +56,7 @@ Sistemul utilizează componente electromecanice solide pentru axele liniare, con
 | **defmt** | Logging framework | Depanarea stărilor sistemului și a datelor de pe senzorul ADC. |
 
 ## Schematics
-![Schema Electrica a Proiectului](schematic.svg)
+![Schema Electrica a Proiectului](image.webp)
 
 ## Photos
 ![Pista Cursa](./foto1.webp)
