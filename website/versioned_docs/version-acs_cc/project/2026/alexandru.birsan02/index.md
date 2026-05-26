@@ -23,6 +23,7 @@ The idea came to me because I have previously studied architecture and have alwa
 ## Architecture 
 
 ![Diagram](./images/diagram.svg)
+![Schematic](./images/schematic.svg)
 
 ## Log
 

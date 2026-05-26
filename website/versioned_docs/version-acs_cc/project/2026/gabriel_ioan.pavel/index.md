@@ -1,6 +1,6 @@
 # Transmițător și traducător de cod Morse
-Transmițător care emite un caracter în cod Morse și un receptor ce îl primește
-și îl decodifică pentru a-l afișa pe un ecran.
+Transmițător care emite un caracter în cod Morse, un nod bridge WiFi/UART și un receptor
+ce îl decodifică și îl afișează pe un ecran.
 
 :::info 
 
@@ -14,54 +14,72 @@ GitHub Project Link: https://github.com/UPB-PMRust-Students/acs-project-2026-gab
 ## Description
 
 Ideea proiectului este comunicarea unidirecțională prin cod Morse, implementată la nivel bare-metal.
-Arhitectura este separată în două noduri complet izolate fizic, comunicarea realizându-se exclusiv prin
-intermediul frecvenței de 433MHz folosind modularea OOK (On-Off Keying).
+Arhitectura cuprinde trei noduri interconectate prin WiFi UDP și UART.
 
-1. Nod emițător - Raspberry Pi Pico: Gestionează interfața cu utilizatorul. Microcontrollerul folosește
-un pin ADC pentru a citi tensiunea unui potențiometru, mapând valoarea citită pe un index corespunzător
-unei litere din alfabetul englez. La declanșarea unei întreruperi externe (apăsarea lungă a butonului), litera
-selectată este codificată în semnale Morse (puncte și linii) și transmisă în eter prin pinul de date
-al modulului RF.
-2. Nod receptor - STM32: Gestionează captarea, filtrarea și afișarea datelor. Deoarece receptoarele RF
-de 433MHz generează zgomot alb în absența unui semnal, nodul receptor folosește detecția fronturilor
-și filtre software bazate pe praguri de timp pentru a izola semnalul util. Odată ce o secvență Morse
-validă este identificată, aceasta este decodificată și trimisă via SPI către un ecran LCD de 1.44''
-pentru afișare.
+1. Nod emițător - Raspberry Pi Pico 2W: Gestionează interfața cu utilizatorul. Microcontrollerul creează
+un punct de acces WiFi și folosește un pin ADC pentru a citi tensiunea unui potențiometru, mapând valoarea
+citită pe un index corespunzător unuia din cele 28 de semnale disponibile: SPACE, cele 26 de litere ale
+alfabetului englez și semnalul special CLEAR. La apăsarea scurtă a butonului, buzzerul redă codul Morse
+al literei selectate. La apăsarea lungă, semnalul este transmis nodului bridge printr-un protocol ARQ
+(Automatic Repeat reQuest) stop-and-wait, cu retrimitere automată în cazul pierderii pachetelor.
+
+2. Nod bridge - Heltec Wireless Stick V3: Asigură puntea de comunicație dintre transmițător și receptor.
+Se conectează la rețeaua WiFi creată de Pico 2W, participă la protocolul ARQ (echo al datelor, confirmare
+finală) și, la finalizarea cu succes a schimbului, trimite codul Morse prin UART nodului receptor.
+
+3. Nod receptor - STM32 Nucleo-U545RE-Q: Primește secvențele Morse prin UART pe PA3 (LPUART1_RX), le
+decodifică și le afișează pe un ecran LCD de 1.44''. Ecranul este împărțit în trei zone: linia 1 afișează
+permanent eticheta „READY", linia 2 afișează ultimul cod Morse primit brut (ex. `.-`), iar de la linia 3
+în jos se acumulează literele decodificate cu reîmpachetare automată. La primirea semnalului SPACE (`/`)
+se inserează un spațiu; două SPACE consecutive mută cursorul la începutul liniei următoare. La primirea
+semnalului CLEAR, afișajul și bufferul sunt șterse complet.
 
 Logica este realizată cu ajutorul frameworkului `embassy` pentru a facilita execuția de cod
-asincron, permițând procesarea non-blocantă a semnalelor radio și actualizarea ecranului
+asincron, permițând procesarea non-blocantă a comunicațiilor și actualizarea ecranului
 fără a recurge la un sistem de operare în timp real complex.
 
 ## Motivation
 
-Am ales acest proiect din interesul pentru transmiterea semnalelor prin unde radio
-folosind sisteme integrate, vizând înțelegerea la nivel fizic a comunicațiilor wireless
-nesecurizate și neprotocolate. Din pasiunea pentru protocoalele de comunicații, am
-luat decizia de a nu folosi module cu protocoale integrate (precum cele Bluetooth),
-implementând astfel manual logica de timing, sincronizare și filtrare necesară.
+Am ales acest proiect din interesul pentru comunicațiile wireless implementate la nivel
+bare-metal, vizând înțelegerea practică a stivelor de comunicații fără abstracțiile unui
+sistem de operare. Am optat pentru WiFi UDP în locul TCP, implementând manual un protocol
+de confirmare ARQ (Automatic Repeat reQuest) stop-and-wait cu timeout și retrimitere, cu
+scopul de a înțelege mecanismele de bază ale fiabilității în transmisiile de date fără a
+recurge la soluții de protocol gata implementate.
 
 ## Architecture 
 
-1. Nod emițător
-- Input: Potențiometru conectat la un pin ADC. Se folosește de un filtru trece-jos
-pentru a reduce zgomotul electric, facilitând maparea valorilor la cele 26 de litere
-ale alfabetului englez. Un task asincron ascultă și actualizează constant caracterul într-o variabilă.
-- Activare: Un task asincron așteaptă apăsarea lungă a unui buton pentru a transmite litera
-selectată. Apăsarea scurtă a acestuia activează buzzer-ul care va reprezenta prin sunet
-codul Morse al literei selectate.
-- Transmisie: Odată ce butonul este apăsat lung, microcontrollerul citește litera și generează
-timingurile high/low pentru a transmite "punctele" și "liniile", pentru a fi transmise
-de modulul RF, care are o antenă legată. În timpul transmisiei, un LED verde stă aprins.
+1. Nod emițător (Raspberry Pi Pico 2W)
+- Input: Potențiometru conectat la un pin ADC. Se folosește un filtru trece-jos pentru a reduce
+zgomotul electric, facilitând maparea valorilor pe 28 de poziții: SPACE (prima poziție), cele 26
+de litere ale alfabetului englez și CLEAR (ultima poziție).
+- Activare: Un task asincron diferențiază apăsarea scurtă (redare Morse local prin buzzer) de
+cea lungă (transmisie WiFi). La apăsarea lungă, microcontrollerul intră în secvența ARQ și
+blochează orice alt input pe durata ei.
+- Transmisie ARQ: Nodul trimite codul Morse prin UDP, așteaptă echo-ul de confirmare de la nodul
+bridge (cu timeout de 5s și retrimitere automată). La primirea echo-ului corect, trimite confirmarea
+finală „OK", așteaptă „OK" înapoi de la bridge. LED-ul verde rămâne aprins pe toată durata
+secvenței ARQ și se stinge la finalizarea transmisiei.
 
-2. Nod receptor
-- Recepție: Modulul receptor RF cu o antenă captează semnalul. Se folosește un
-divizor de tensiune pentru a coborî tensiunea de 5V de la modul la 3.3V pentru ca semnalul
-să fie primit de microcontroller printr-un pin GPIO.
-- Decodificare: Un task asincron bazat pe EXTI monitorizează fronturile de semnal pe PA0.
-Un algoritm de discriminare a duratei impulsurilor clasifică perioadele de high/low în "puncte"
-(100ms), "linii" (300ms) sau zgomot/pauze, adăugând secvențele valide într-un buffer de decodificare.
-- Afișare: Odată ce un mesaj este decodificat, un task asincron trimite prin interfața SPI caracterul
-către ecranul de 1.44\'\'.
+2. Nod bridge (Heltec Wireless Stick V3)
+- Recepție WiFi: Nodul rulează în modul STA, conectat la rețeaua creată de Pico 2W (IP static
+169.254.1.2), și ascultă pe portul UDP 5000.
+- Protocol ARQ: Implementează o mașină de stări cu două stări (WAITING_DATA / WAITING_OK). La
+primirea datelor, trimite echo; la primirea confirmării „OK" de la Pico, trimite codul Morse
+prin UART și confirmă înapoi cu „OK". Dacă primește „OK" în starea WAITING_DATA (caz de pierdere
+a confirmării), răspunde cu „OK" fără a mai trimite pe UART.
+- Transmisie UART: Trimite secvența Morse pe GPIO4, conectat prin cablu la PA3 al STM32.
+
+3. Nod receptor (STM32 Nucleo-U545RE-Q)
+- Recepție UART: Ascultă pe PA3 — LPUART1_RX (AF8) pe STM32U545; pinul D0 de pe conectorul
+Nucleo-U545RE-Q. UART blocking cu loop strâns byte-cu-byte pentru a evita Overrun Error.
+- Decodificare: Tabel `MORSE_TABLE[28]` indexat pozițional (SPACE la index 0, A–Z la 1–26,
+CLR la 27). Semnalul SPACE (`/`) inserează un spațiu în buffer; două SPACE consecutive mută
+cursorul la începutul liniei următoare. La primirea „CLR", afișajul și bufferul sunt șterse.
+- Afișare: Ecranul este împărțit în trei zone fixe: linia 1 (y=10) afișează permanent „READY",
+linia 2 (y=20) afișează ultimul cod Morse primit brut, iar de la linia 3 în jos (y=30–110)
+se acumulează literele decodificate cu reîmpachetare automată (FONT_6X10, 21 caractere/linie,
+9 linii). La umplerea completă a bufferului, conținutul este derulat în sus cu o linie.
 
 ## Log
 
@@ -83,11 +101,38 @@ către ecranul de 1.44\'\'.
 
 ### Week 12 - 18 May
 
+În urma unor teste am conclus că modulul RF de recepție este defect. Având
+acasă un Heltec Wireless Stick V3, am decis înlocuirea modulelor RF cu WiFi.
+Schimbări:
+
+- (/) Înlocuit RF cu WiFi.
+- (+) Adăugat Heltec Wireless Stick V3 pe schema de recepție.
+- (/) Modificat documentație.
+- (-) Eliminat componentele neutilizate din scheme și de pe plăcile de testare.
+- (+) Scris firmware pentru Pico.
+- (+) Scris firmware pentru Heltec.
+- (+) Scris firmware pentru STM.
+
+Altele:
+
+- Testat transmisie de pachete prin UDP între Pico și Heltec, cu confirmare
+hardware (LED și buzzer).
+
+În urma unor teste pentru a verifica protocolul, am observat că ecranul Heltecului
+este defect. Din acest motiv, am făcut următoarele modificări:
+
+- (/) Mutat logică ecran din Heltec in STM.
+- (-) Eliminat logică ecran din firmware Heltec.
+
 ### Week 19 - 25 May
+
+- (/) Actualizat documentație.
+- (+) Adăugat posibilitatea de a scrie spații sau de trecere pe urmatorul rand, folosind
+  un caracter nou la transmisie.
 
 ## Hardware
 
-Proiectul folosește două microcontrollere, un ecran SPI, o pereche de module RF,
+Proiectul folosește trei microcontrollere/module de procesare, un ecran SPI,
 un buzzer, un LED, condensatori și rezistori.
 
 ### Schematics
@@ -109,28 +154,34 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | Microcontroller pentru emitere | [32 RON](https://ardushop.ro/ro/raspberry-pi/513-raspberry-pi-pico-6427854006004.html) |
-| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Microcontroller pentru recepție | ~125 RON |
-| [Pereche emițător-receptor RF 433MHz](https://www.optimusdigital.ro/ro/ism-433-mhz/252-pereche-emitator-si-receptor-rf-433-mhz.html) | Pereche pentru transmisie prin radio | [9 RON](https://www.emag.ro/emitator-si-receptor-rf-433-mhz-radiofrecventa-ai196/pd/DXV1WGMBM/?ref=sponsored_products_search_f_b_1_1&recid=recads_1_5eeb774327d821d1507dab10e3a073b16b434e24323b157c1df591be8cee1ca6_1777052118&aid=624c1c25-3c92-11f1-801c-06eaf0d4245d&oid=58895050&scenario_ID=1) |
+| [Raspberry Pi Pico 2W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) | Microcontroller emițător, punct de acces WiFi | ~52 RON |
+| [Heltec Wireless Stick V3](https://heltec.org/project/wireless-stick-v3/) | Nod bridge WiFi → UART | ~70 RON |
+| [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Microcontroller receptor | ~125 RON |
 | [1.44'' SPI LCD](https://www.optimusdigital.ro/ro/optoelectronice-lcd-uri/2167-lcd-de-144-pentru-stc-stm32-i-arduino.html) | Ecran pentru output | 43 RON |
 | Potențiometru rotativ | Selectare de litere | ~10 RON |
-| [2x Placă de testare 70x90](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/232-cablaj-de-test.html) | Plăci pentru cele două noduri | 2x 3 RON |
-| [ANT1204F002R0433A](https://www.digikey.ro/en/products/detail/pulse-electronics/ANT1204F002R0433A/3927193) | Antene | ~3 RON |
+| [2x Placă de testare 70x90](https://www.optimusdigital.ro/ro/prototipare-cablaje-de-test/232-cablaj-de-test.html) | Plăci pentru componentele externe ale celor două noduri | 2x 3 RON |
 | Condensatoare 100nF | Filtre trece-jos | ~0.2 RON / buc. |
-| Rezistențe 220, 1k, 2k | Divizor de tensiune + rezistență pentru anumite componente | ~ 0.15 RON / buc. |
+| Rezistențe 220Ω, 1kΩ | Rezistență LED + bază tranzistor buzzer | ~0.15 RON / buc. |
 | [Tranzistor 2N2222](https://www.optimusdigital.ro/en/transistors/935-transistor-npn-2n2222-to-92.html) | Tranzistor NPN pentru a comanda buzzerul de la un pin GPIO | 0.17 RON |
 | [Buzzer](https://www.optimusdigital.ro/en/buzzers/12247-3-v-or-33v-passive-buzzer.html) | Feedback selectare caracter | 1 RON |
-| [LED Verde](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/697-led-verde-de-3-mm-cu-lentile-difuze.html) | Feedback transmisie | 0.39 RON |
+| [LED Verde](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/697-led-verde-de-3-mm-cu-lentile-difuze.html) | Feedback confirmare transmisie ARQ | 0.39 RON |
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy) | Framework async bare-metal pentru RP2040 | Abstractizare hardware pentru Pico: ADC, GPIO, PWM, timere |
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Framework async bare-metal pentru STM32 | Abstractizare hardware pentru STM32: EXTI, SPI, GPIO, timere |
-| [embassy-executor](https://github.com/embassy-rs/embassy) | Executor async pentru sisteme embedded | Rularea task-urilor asincrone pe ambele noduri |
-| [embassy-time](https://github.com/embassy-rs/embassy) | Ceas async pentru sisteme embedded | Măsurarea duratei impulsurilor RF și temporizări non-blocante |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Bibliotecă de grafică 2D pentru sisteme embedded | Randarea textului pe ecranul LCD |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Framework async bare-metal pentru RP2040 | ADC, GPIO, PIO pentru Pico 2W |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Framework async bare-metal pentru STM32 | UART, SPI, GPIO pentru STM32 |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Executor async pentru sisteme embedded | Rularea task-urilor asincrone pe toate nodurile |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Ceas async pentru sisteme embedded | Timeout-uri ARQ și temporizări non-blocante |
+| [embassy-net](https://github.com/embassy-rs/embassy) | Stack de rețea async pentru sisteme embedded | UDP și gestionare stivă IP pe Pico 2W și Heltec |
+| [cyw43 / cyw43-pio](https://github.com/embassy-rs/embassy) | Driver WiFi pentru cipul CYW43439 (Pico 2W) | Inițializare chip WiFi, mod AP |
+| [esp-hal](https://github.com/esp-rs/esp-hal) | HAL bare-metal pentru ESP32 | Periferice hardware pentru Heltec: UART, timer |
+| [esp-rtos](https://github.com/esp-rs/esp-rtos) | Executor async și runtime pentru ESP32 | Rularea task-urilor Embassy pe Heltec (echivalent embassy-executor pentru ESP) |
+| [esp-radio](https://github.com/esp-rs/esp-radio) | Driver WiFi pentru ESP32 | Conectare WiFi în mod STA pe Heltec |
+| [esp-alloc](https://github.com/esp-rs/esp-alloc) | Alocator de heap pentru ESP32 | Heap necesar pentru stiva de rețea și drivere WiFi pe Heltec |
+| [embedded-io](https://github.com/rust-embedded/embedded-hal) | Trăsături I/O sincrone pentru sisteme embedded | Scrierea pe UART în Heltec bridge (`Write::write_all`) |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | Bibliotecă de grafică 2D pentru sisteme embedded | Randarea textului pe LCD |
 | [mipidsi](https://crates.io/crates/mipidsi) | Driver generic pentru display-uri MIPI DSI/SPI | Inițializarea și controlul ecranului ST7735S de 1.44'' |
 | [embedded-hal-bus](https://github.com/rust-embedded/embedded-hal) | Utilitar pentru partajarea bus-urilor hardware | Împachetarea bus-ului SPI cu pinul CS pentru driver-ul mipidsi |
-| [static_cell](https://github.com/embassy-rs/static-cell) | Alocare statică sigură în Rust | Alocarea buffer-ului de display fără heap și fără `static mut` |
+| [static_cell](https://github.com/embassy-rs/static-cell) | Alocare statică sigură în Rust | Alocarea resurselor de rețea și display fără heap și fără `static mut` |
