@@ -44,9 +44,13 @@ Ordered all hardware components (GPS module, accelerometer/gyroscope MPU-6050, b
 
 Completed testing of all remaining individual components. Successfully obtained the first GPS fix outdoors after tuning the UART communication and analyzing NMEA sentences in real time. Tested the SD card module (SPI communication, FAT32 initialization, file write and read-back verification). Added a KY-023 analog joystick to the project for OLED screen navigation, tested ADC reading on both axes and button input. Reallocated several GPIO pins to avoid conflicts between the SD card SPI bus and the joystick ADC inputs. Started development of the main integrated project combining all components into 6 parallel async Embassy tasks.
 
-![progress pic](images/progress_pic.svg)
+![progress_pic](images/progress_week1.webp)
 
 ### Week 19 - 25 May
+
+Designed and 3D printed a custom enclosure for the system, housing the NUCLEO board, display, GPS module and all connected components. Completed the full software implementation — all tasks are running in parallel and fully integrated. The OLED navigation with the joystick is functional across all 4 screens. The system is now fully operational as a standalone bicycle GPS datalogger.
+
+![progress_pic2](images/progress_week2.webp)
 
 ## Hardware
 
