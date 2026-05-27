@@ -49,6 +49,7 @@ Ordered all of the components.
 ### Week 19 - 25 May
 
 ## Software
+Uploaded the software on github classroom.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
