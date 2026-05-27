@@ -77,7 +77,7 @@ Continued working on hardware
 ![Orion Hardware 9/x](./images/ma9.webp)
 ![Orion Hardware 10/x](./images/ma10.webp)
 ### Week 18 - 24 May
-
+![Orion Hardware 11/x](./images/ma11.webp)
 ## Hardware
 
 Orion’s hardware is built around a multi-processor architecture to separate real-time control from high-bandwidth data handling. The STM32 acts as the primary core, executing Async Rust logic to process safety data and motor vectors. Connectivity is managed via a dedicated ESP32 module, while a separate ESP32-CAM is utilized specifically for environmental image capture.
@@ -168,23 +168,31 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [Rust](https://www.rust-lang.org/) | Systems programming language | Core implementation |
-| [cortex-m](https://crates.io/crates/cortex-m) | ARM Cortex-M low-level access | Register and interrupt control |
-| [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Runtime support | Startup and interrupt handling |
-| [embedded-hal](https://crates.io/crates/embedded-hal) | Hardware abstraction layer | Peripheral interfaces |
-| [embassy-executor](https://crates.io/crates/embassy-executor) | Async executor | Runs concurrent tasks |
-| [embassy-time](https://crates.io/crates/embassy-time) | Time management | Delays and scheduling |
-| [embassy-stm32](https://crates.io/crates/embassy-stm32) | STM32 HAL | GPIO, UART, PWM control |
-| [embassy-sync](https://crates.io/crates/embassy-sync) | Synchronization primitives | Task coordination |
-| [heapless](https://crates.io/crates/heapless) | Fixed-size data structures | Memory-safe buffers |
-| [defmt](https://crates.io/crates/defmt) | Logging framework | Debugging output |
-| [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT transport | Real-time logs |
-| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler with logging | Debugging crashes |
-| [nb](https://crates.io/crates/nb) | Non-blocking abstractions | Peripheral communication |
-| [esp-hal](https://crates.io/crates/esp-hal) | ESP32 hardware abstraction | Control of ESP32 peripherals |
-| [esp-radio](https://crates.io/crates/esp-radio) | Wireless communication stack | WiFi/BLE communication |
-| [smoltcp](https://crates.io/crates/smoltcp) | Embedded TCP/IP stack | Networking for ESP32 |
-| [esp-alloc](https://crates.io/crates/esp-alloc) | Heap allocator for ESP | Dynamic memory on ESP32 |
+| [Rust](https://www.rust-lang.org/) | Systems programming language | Core implementation for STM32 and ESP32 firmware |
+| [cortex-m](https://crates.io/crates/cortex-m) | ARM Cortex-M low-level access | Register access, interrupts, and processor utilities |
+| [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Runtime support for Cortex-M | Startup code and interrupt vector handling |
+| [embedded-hal](https://crates.io/crates/embedded-hal) | Embedded hardware abstraction layer | Generic interfaces for GPIO, PWM, UART, and peripherals |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async task executor | Concurrent embedded task scheduling |
+| [embassy-time](https://crates.io/crates/embassy-time) | Embedded timing utilities | Delays, timers, and scheduling |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | Async utility library | Future combinators and async helpers |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Synchronization primitives | Shared-state coordination between async tasks |
+| [embassy-stm32](https://crates.io/crates/embassy-stm32) | STM32 hardware abstraction layer | GPIO, UART, timers, PWM, and sensor interfacing |
+| [embedded-io-async](https://crates.io/crates/embedded-io-async) | Async embedded I/O traits | Asynchronous communication interfaces |
+| [static_cell](https://crates.io/crates/static_cell) | Static memory utilities | Safe static initialization for embedded systems |
+| [defmt](https://crates.io/crates/defmt) | Lightweight embedded logging framework | Debugging and runtime logging |
+| [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT logging transport | Real-time debug output |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler with logging support | Embedded crash diagnostics |
+| [esp-hal](https://crates.io/crates/esp-hal) | ESP32 hardware abstraction layer | Control of ESP32 peripherals and hardware |
+| [esp-radio](https://crates.io/crates/esp-radio) | Wireless communication stack | Wireless communication and connectivity |
+| [esp-alloc](https://crates.io/crates/esp-alloc) | Heap allocator for ESP chips | Dynamic memory allocation on ESP32 |
+| [esp-backtrace](https://crates.io/crates/esp-backtrace) | ESP32 panic and backtrace handler | Error reporting and debugging |
+| [esp-println](https://crates.io/crates/esp-println) | ESP serial logging utilities | Serial debugging output |
+| [esp-bootloader-esp-idf](https://crates.io/crates/esp-bootloader-esp-idf) | ESP-IDF compatible bootloader | ESP32 firmware startup and boot support |
+| [esp-rtos](https://crates.io/crates/esp-rtos) | RTOS integration for ESP chips | Async runtime and multitasking support |
+| [bt-hci](https://crates.io/crates/bt-hci) | Bluetooth HCI implementation | Low-level Bluetooth communication |
+| [trouble-host](https://crates.io/crates/trouble-host) | Embedded Bluetooth host stack | BLE communication and GATT services |
+| [MIT App Inventor](https://appinventor.mit.edu/) | Visual mobile app development platform | Android application for robot control and interaction |
+| [embassy-net](https://crates.io/crates/embassy-net) | Embedded networking stack | TCP/IP networking and camera streaming support |
 
 
 ## Links
