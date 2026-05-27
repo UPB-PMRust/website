@@ -11,20 +11,18 @@ An embedded project that simulates a real-life parking, using a barrier to allow
 :::
 
 ## Description
-This project is designed to be a model of a real-life parking; it uses two ultrasonic sensor to detect cars approaching a barrier (operated by a SG90 servomotor), both entering and exiting the parking, opening the barrier for exiting cars and opening the barrier for entering cars if they are authorized to enter, witch is ascertained by an ESP32-CAM. If the parking is full, the barrier will not open for any cars attempting to enter. The computations and processing are all done by the microcontroller (STM32-NUCLEO-U545RE-Q).
+This project is designed to be a model of a real-life parking; it uses two ultrasonic sensor to detect cars approaching a barrier (operated by a SG90 servomotor), both entering and exiting the parking, opening the barrier for exiting cars and opening the barrier for entering cars. If the parking is full or blocked (entry can be temporarly blocked via a button), the barrier will not open for any cars attempting to enter. A buzzer will play a sound effect when a car tries to enter/exit. The number of available parking slots is shown by 4 LEDs that will be lit for free spaces and unlit for occupied spaces. The computations and processing are all done by the microcontroller (STM32-NUCLEO-U545RE-Q).
 
 ## Motivation
 I chose this project because it is a real-life application witch can help me learn rust better, as it help me understand subjects such as real-time sensor integration; it was also suggested to me by a coleague as beeing a reliable project idea.
 
 ## Architecture
 
-![System Architecture](./maarchbun.svg)
+![System Architecture](./maarchupdated.svg)
 
 Input: 
 
 *HC-SRO4* ultrasonic sensor will receive signals to see the ditance of a car from the sensor and will send the signals through a GPIO pin
-
-*ESP32-CAM* will detect authorized vehicles trying to enter and send a signal when one is seen
 
 Processing:
 
@@ -34,7 +32,9 @@ Output:
 
 *SG90 servomotor* will receive signals to open/close a barrier when a car enters/exits
 
-*LED* will be used to see that the system works properly
+*status LEDs* a green and a red led will be set high/low depending on whether the barrier is open or closed
+
+*parking space LEDs* 4 yellow LEDs will be set high/low depending on the number of available parking spots.
 
 ## Log
 
@@ -52,10 +52,20 @@ The problem with the servomotor got fixed after I got some batteries to power it
 
 ### Week 4 May - 10 May
 
-After more debugging I finally found the problem with the sensor and fixed it - to be continued
+After more debugging I finally found the problem with the sensor and fixed it; I added the second sensor and transitioned from the testing code to the code for the final parking system - spent some time doing research on how to write the code, and more time debugging/fixing errors and unexpected problems
+
+### Week 11 May - 17 May
+More software - base form of the project was completed; also rearanged things on the breadboard, as it was a bit messy. Towards the week's end, I started looking into implementing authorization via an ESP-CAM. After some hours, it became clear that I would not be able to finish such a feature in time, due to forgetting an important hardware component neccesary for the implementation, but mostly due to a lack of time as next week I had to focus on other projects/examinations.
+
+### Week 18 May - 24 May
+Not much done during the week due to a lack of time because of other projects/examinations; I got some cardboard for the actual parking lot and started adding some extra things - a buzzer that would play tunes for succesful entry/exit, 4 LED's to show parking availability and a button to block the barrier from opening. Rearranged stuff again due to lack of space on the breadboard, also attached servo to make the barrier stationary.
+
+### Week 25 May - Pm fair
+Started week by revising code - to be continued
 
 ## Hardware
 
+picture will be updated soonly
 ![Hardware picture](./mahardware.webp)
 
 *STM32-NUCLEO-U545RE-Q* will do computatiosn, signals processing and transmit data to the laptop
@@ -64,12 +74,15 @@ After more debugging I finally found the problem with the sensor and fixed it - 
 
 *SG90 servo motor* will open/close the barrier
 
-*ESP32-CAM* will scan incoming vehicles and check for authorization
-
 *LED* will provide visual feedback during testing
+
+*Buzzer* will play different chimes for succesful entry/exit and for failed entry
+
+*Button* will temporarly block the barrier from beeing opened
 
 ## Schematics
 
+to be updated
 ![KiCAD Schematics](./kicadmabun2.svg)
 
 ## Bill of Materials
@@ -79,7 +92,6 @@ After more debugging I finally found the problem with the sensor and fixed it - 
 | STM32-NUCLEO-U545RE-Q | microcontroller | borrowed from politehnica
 | [HC-SRO4 ultrasonic sensor x 2](https://www.emag.ro/set-2-senzori-distanta-ultrasonic-digital-3-3-5v-45x20x15mm-multicolor-9344435370736/pd/DCPK2H3BM/?ref=history-shopping_484549223_232871_1)          | measuring distance from barrier  | 36 Lei
 | [SG90 servo motor x 4](https://www.emag.ro/set-servomotor-sg90-unghi-de-lucru-180-grade-4-bucati-3874783591898/pd/DLHDYTYBM/?ref=history-shopping_484549223_157633_1)   | moving the barrier       | 48 Lei
-| [ESP32-CAM](https://www.emag.ro/microcontroler-esp32-cam-cu-ov2640-wi-fi-si-camera-bluetooth-5v-5904162804207/pd/DSTDNLMBM/?ref=history-shopping_485848746_38837_1) |   checks vehicles for authorization   | 67 Lei
 | [Breadboard kit](https://www.emag.ro/kit-electronica-pentru-incepatori-cu-modul-esp8266-si-placa-d1-compatibil-cu-arduino-ideal-pentru-proiecte-diy-be000116/pd/D15YQF3BM/?ref=history-shopping_484549223_206277_1)         | Connecting components   | 124 Lei
 | [female-male wires](https://www.emag.ro/10-x-fire-dupont-mama-tata-20cm-ai306-s459/pd/DZJ66JBBM/?ref=history-shopping_485848746_38837_2)   | connecting components   | 1 Leu
 | [female-female wires](https://www.emag.ro/10-x-fire-dupont-mama-mama-10cm-ai310-s450/pd/DWF66JBBM/?ref=history-shopping_485848746_38837_3)   | connectign components   | 2 Lei
@@ -104,4 +116,17 @@ After more debugging I finally found the problem with the sensor and fixed it - 
 
 ## Links
 
-coming soon
+[Sensor documentation](https://web.eece.maine.edu/~zhu/book/lab/HC-SR04%20User%20Manual.pdf)
+[Sensor tutorial](https://projecthub.arduino.cc/Isaac100/getting-started-with-the-hc-sr04-ultrasonic-sensor-7cabe1)
+[Sensor tutorial](https://controllerstech.com/hcsr04-ultrasonic-sensor-and-stm32/)
+[Servomotor documentation](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf)
+[STM documentation](https://www.st.com/en/evaluation-tools/stm32-nucleo-boards/documentation.html)
+[Servomotor tutorial](https://www.electronics-lab.com/project/using-sg90-servo-motor-arduino/)
+[Buzzer tutorial](https://controllerstech.com/interface-passive-buzzer-with-stm32/)
+[Buzzer help](https://www.omnicalculator.com/other/note-frequency)
+[Rust Book](https://docs.rust-embedded.org/book/)
+[Embassy Intro](https://embassy.dev/)
+[PullUp resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors)
+[Pin Map](https://embedded-rust-101.wyliodrin.com/docs/fils_en/lab/02)
+[Other](https://embedded-rust-101.wyliodrin.com/docs/fils_en/category/lab)
+
