@@ -39,11 +39,30 @@ The main peripherals include:
 ## Physical Implementation
 Below are the layout views of the fully assembled automated sorting system, showcasing the conveyor alignment, sensor housing, and mechanical integration.
 
-![Overall System Assembly]()
+![Overall System Assembly](./project.webp)
 *Figure 1: Overall assembly of the conveyor belt line and electronics integration.*
 
-![Sensing and Actuation Zone]()
-*Figure 2: Close-up of the TCS34725 color sensor alignment and the SG90 sorting arm.*
+![Sensing Zone and Optical Shield](./color_sensor.webp)
+*Figure 2: Close-up of the TCS34725 color sensor featuring a custom paper shield to block ambient light reflections.*
+
+![Sensing Zone with Object](./object_sensor.webp)
+*Figure 3: Color sensor actively scanning an object passing underneath on the conveyor belt.*
+
+![Stepper Motor Drive](./step_motor.webp)
+*Figure 4: The 28BYJ-48 stepper motor and mechanical coupling driving the conveyor belt.*
+
+![Sorting Servo Arm](./servo_in_action.webp)
+*Figure 5: SG90 servomotor configured as the sorting arm, positioned to intercept rejected items.*
+
+![TFT Interface](./object_display_color.webp)
+*Figure 6: The 1.8" SPI TFT display providing real-time visual feedback of the detected colors.*
+
+![TFT Interface Close-up](./display.webp)
+*Figure 7: Close-up view of the TFT screen displaying active color recognition.*
+
+![STM32 Nucleo Wiring](./stm32.webp)
+*Figure 8: The STM32 Nucleo board handling all I2C, SPI, and PWM signals asynchronously.*
+
 
 ## Bill of Materials
 
