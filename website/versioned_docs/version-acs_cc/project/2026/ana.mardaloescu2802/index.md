@@ -61,6 +61,9 @@ Prepared system for firmware implementation and hardware testing.
 - The DS3231 real-time clock module communicates over I2C and ensures every log entry carries an accurate date and time even after the device is powered off and back on.
 - The Bluetooth module handles wireless data transfer to an Android phone over a USART serial link.
 - The RGB LED is driven directly from three GPIO pins through current-limiting resistors and lights up green, yellow, or red depending on how the current measurement compares to the stored personal best.
+![Hardware overview](1.webp)
+![Hardware detail](2.webp)
+![Hardware connections](3.webp)
 
 ### Schematics
 
