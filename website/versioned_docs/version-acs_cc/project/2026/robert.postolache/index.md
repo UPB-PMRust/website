@@ -2,7 +2,7 @@
 
 :::info
 
-**Author:** Robert Postolache 
+**Author:** Robert Postolache \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-RobertP1021
 
 :::
