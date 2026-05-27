@@ -11,41 +11,38 @@ A playable mini piano with multiple modes built on the STM32 Nucleo-U545RE-Q.
 
 ## Description
 
-A fully functional mini piano built on the STM32 Nucleo-U545RE-Q microcontroller. The user can press one of 8 buttons, each mapped to a musical note (C4 to C5). The corresponding note is played through a passive buzzer via PWM, and a display shows the current note being played. The device supports multiple operating modes: free play, practice mode (press the notes shown on the display in time), learning mode (the device guides you through a song), octave shifting, and a record & replay feature. Performance data is sent to a PC via USB serial.
+A fully functional mini piano built on the STM32 Nucleo-U545RE-Q microcontroller. The user can press one of 8 buttons, each mapped to a musical note (C4 to C5). The corresponding note is played through a passive buzzer via PWM, and an LCD display shows the current note being played. The device supports three operating modes: free play (press any button to hear the note), learning mode (the device plays a melody and guides you to repeat it), and challenge mode (press the correct note shown on the display before time runs out). A mode button switches between the three modes.
 
 ## Motivation
 
-Music and embedded systems are two areas of personal interest. This project combines both by building a functional musical instrument from scratch using low-level hardware control in Rust. Adding interactive modes like practice and learning makes it more than just a toy — it becomes a tool for actually learning music.
+Music and embedded systems are two areas of personal interest. This project combines both by building a functional musical instrument from scratch using low-level hardware control in Rust. Adding interactive modes like learning and challenge makes it more than just a toy — it becomes a tool for actually learning music.
 
 ## Architecture
 
 The project is structured around the following main components:
 
-- **Input Module** — 8 tactile buttons (one per note C4–C5) plus 2 extra buttons for octave shift and mode switching
-- **Sound Module** — Passive buzzer driven by PWM; frequency is set according to the active note and octave
-- **Display Module** — LCD display showing the current note, active mode, and prompts for practice/learning modes
-- **USB Serial Module** — Sends note events and session performance data to a PC over USB
-- **Mode Controller** — State machine managing transitions between Free Play, Practice, Learning, and Record/Replay modes
-- **Record/Replay Module** — Stores a sequence of button presses with timestamps and replays them
-
-```
-[Buttons x8] ──► [Mode Controller] ──► [Sound Module (PWM Buzzer)]
-[Mode Button]        │                ──► [Display Module (LCD)]
-[Octave Button]      │                ──► [USB Serial (PC)]
-                     └──► [Record/Replay Buffer]
-```
+- **Input Module** — 8 tactile buttons (one per note C4–C5) plus 1 mode button
+- **Sound Module** — Passive buzzer driven by PWM; frequency is set according to the active note
+- **Display Module** — LCD display showing the current note, active mode, and prompts for learning/challenge modes
+- **Mode Controller** — State machine managing transitions between Free Play, Learning, and Challenge modes
 
 ## Log
 
 ### Week 5 - 11 May
 
+Decided on the project idea: a mini piano with multiple modes built on the STM32 Nucleo-U545RE-Q. Selected components and submitted the draft for approval.
+
 ### Week 12 - 18 May
+
+Set up the development environment (Rust, embassy-rs, probe-rs on Windows). Got the first LED blinking on the board confirming the toolchain works. Connected the passive buzzer and tested PWM tone output. Started connecting buttons one by one and testing GPIO input.
 
 ### Week 19 - 25 May
 
+Connected all 8 note buttons, mode button, and LCD display via I2C. Implemented Free Play, Learning, and Challenge modes in Rust using embassy-rs. LCD shows note names and current mode. All components tested and working together.
+
 ## Hardware
 
-The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight tactile 6x6x6 push buttons are wired to GPIO input pins with 220Ω pull-down resistors. A passive 3.3V buzzer is connected to a PWM-capable timer output pin. The lab LCD display is connected via I2C. Two additional buttons handle octave shifting and mode switching. The RGB LED on the Nucleo board provides visual feedback while a note is active.
+The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight tactile 6x6x6 push buttons are wired to GPIO input pins with internal pull-up resistors enabled in software. A passive buzzer is connected to a PWM-capable timer output pin (PA0, TIM2). The lab LCD display (16x2 with I2C backpack HW-061) is connected via I2C on pins PB6 (SCL) and PB7 (SDA). One additional button handles mode switching. The onboard LED provides visual feedback while a note is active.
 
 ### Schematics
 
@@ -56,22 +53,21 @@ The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight ta
 | Device | Usage | Price |
 | --- | --- | --- |
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller | provided by lab |
-| [Passive Buzzer 3.3V](https://www.optimusdigital.ro/en/buzzers/635-3-v-or-33v-passive-buzzer.html) | Play tones via PWM | [0.99 RON × 3 = 2.97 RON](https://www.optimusdigital.ro) |
-| [Tactile Button 6x6x6](https://www.optimusdigital.ro/en/buttons-switches/97-6x6x6-push-button.html) | Note input (8) + mode/octave (2) | [0.36 RON × 16 = 5.76 RON](https://www.optimusdigital.ro) |
-| LCD Display | Show note and mode info | ~15 RON |
+| [Passive Buzzer 3.3V](https://www.optimusdigital.ro/en/buzzers/635-3-v-or-33v-passive-buzzer.html) | Play tones via PWM | 0.99 RON |
+| [Tactile Button 6x6x6](https://www.optimusdigital.ro/en/buttons-switches/97-6x6x6-push-button.html) | Note input (8) + mode (1) | 0.36 RON x 9 = 3.24 RON |
+| LCD Display 16x2 with I2C backpack | Show note and mode info | ~15 RON |
 | Breadboard | Wiring components | ~10 RON |
 | Jumper wires | Connections | ~8 RON |
-| Resistors 220Ω | Current limiting for buttons | ~3 RON |
 
 ## Software
 
 | Library | Description | Usage |
 | --- | --- | --- |
-| [embassy-rs](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for async tasks, GPIO, PWM, I2C, USB |
+| [embassy-rs](https://github.com/embassy-rs/embassy) | Async embedded framework for Rust | Main framework for async tasks, GPIO, PWM, I2C |
 | [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | STM32 HAL for Embassy | Hardware access for STM32 Nucleo-U545RE-Q |
-| [embassy-usb](https://github.com/embassy-rs/embassy/tree/main/embassy-usb) | USB device stack for Embassy | USB serial (CDC ACM) for sending data to PC |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction layer traits | Standard traits for GPIO, PWM, I2C |
-| [heapless](https://github.com/rust-embedded/heapless) | Static data structures (no heap) | Used for the record/replay note buffer |
+| [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | LCD driver for HD44780 displays | Used to control the 16x2 LCD via I2C |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework for embedded | Debug logging over RTT |
 
 ## Links
 
