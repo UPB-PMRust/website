@@ -17,18 +17,18 @@ The primary motivation for this project was to transition from classic, sequenti
                 |  RTC Module |                         | Displays (SPI)|
                 |  Real-Time  |                         | Multiple TFT/ |
                 '-------------'                         | OLED          |
-                      ^                                 '---------------'
-                      | (I2C)                                   ^
-                      v                                         | (SPI 1 & 2)
-.-------------.                 .-------------------.           v     .-------------.
+                                                        '---------------'
+                      | (I2C)                                   
+                      |                                       | (SPI 1 & 2)
+.-------------.                 .-------------------.                 .-------------.
 | HC-05 (UART)|                 |                   |                 | WS2812 Ring |
-|  Bluetooth  |<---(RX/TX)----->|  AWARE-GUIN Core  |<----(SPI @3MHz)>|  RGB LEDs   |
+|  Bluetooth  |  ---(RX/TX)-----|  AWARE-GUIN Core  |----(SPI @3MHz)  |  RGB LEDs   |
 | Comm Module |                 | (STM32 Nucleo-U5) |                 | Expressions |
 '-------------'                 |                   |                 '-------------'
                                 '-------------------'
-                      ^                                         ^
+                                                              
                       | (I2C / ADC)                             | (PWM Signal)
-                      v                                         v
+                                                             
                 .-------------.                         .---------------.
                 |  Multiple   |                         | Servo Motors  |
                 |   Sensors   |                         |  Mechanical   |
