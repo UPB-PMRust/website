@@ -6,13 +6,8 @@ An interactive, physical desktop dashboard that monitors PC hardware telemetry i
 
 :::info
 
-
-
-**Author:** Balasa Emilian-Valentin \
-
-**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
-
-
+**Author**: Balasa Emilian-Valentin \
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-EmilianBalasa
 
 :::
 
@@ -62,8 +57,7 @@ The project revolves around the **STM32 NUCLEO-U545RE-Q** microcontroller acting
 
 
 
-!\[Project System Architecture](./architecture.svg)
-
+![Architecture Diagram](architecture.drawio.svg)
 
 
 ## Log
@@ -88,18 +82,47 @@ Since the hardware components are still in transit, I focused on planning and do
 
 
 
+### Week 10-11
+Received the physical components and successfully assembled the complete hardware circuit on the breadboard, including the custom driving circuit for the haptic motor. Validated the electrical connections and successfully tested the I2C communication with the OLED and the PWM signal generation for the servo motors. On the software side, completed approximately 80% of the embedded Rust firmware using the `embassy-rs` framework, establishing the core asynchronous task structure and peripheral initialization. The final 3D-printed enclosure and the final software refinements are the remaining steps.
+
+
+
+### Week 12-13
+Focused heavily on the software implementation and the mechanical design of the enclosure. On the software side, the embedded Rust firmware is now approximately 85% complete. The core asynchronous tasks utilizing the `embassy-rs` framework are fully functional: the UART Bluetooth task successfully receives and parses PC telemetry, the hardware PWM channels accurately drive the servo gauges, and the I2C OLED display updates dynamically based on the rotary encoder's menu state. The logic for the visual (WS2812B) and haptic alarms is also fully integrated. Only a few minor software tweaks and fine-tuning remain.
+
+On the mechanical side, I successfully finished designing the custom 3D enclosure in Blender. Utilizing the precise caliper measurements taken previously, I employed non-destructive Boolean modifiers to ensure a perfect fit for the STM32 Nucleo board, the breadboard, the OLED screen, and the front-panel analog gauges.
+
+![Blender Design - Custom Analog Gauge Dial](blender_dial.webp)
+*Detail of the custom gauge dial design, featuring the tachometer-style graduations, numbers, and the temperature redline.*
+
+![Blender 3D Enclosure - Unassembled Main Body](blender_enclosure.webp)
+*The 3D enclosure model prior to the final assembly, showing the main body without the gauge needles and back cover.*
+
+
+
 ## Hardware
 
 
 
-The logic runs on 3.3V and 5V. Most components interface directly with the STM32 pins. However, the 3V coin vibration motor draws too much current for a standard GPIO pin. To fix this, I designed a simple driving circuit: the GPIO pin switches an NPN transistor (2N2222) via a 1k Ohm base resistor, allowing external current to power the motor. A 1N4007 flyback diode is placed parallel to the motor to protect the microcontroller.
+The system architecture relies on the **STM32 NUCLEO-U545RE-Q** as the central processing unit, interfacing with multiple peripherals across distinct communication protocols. The setup utilizes I2C for the SSD1306 OLED, asynchronous UART for the HC-06 Bluetooth module, hardware PWM channels for the SG90 analog gauges, and EXTI interrupts for the rotary encoder.
 
+Power management is strictly divided into two rails. A **5V power rail** supplies the high-current components (HC-06 module, WS2812B LED stick, and the servo motors) directly from the USB source to prevent brownouts. A secondary **3.3V logic rail** safely powers the display, the encoder, and the STM32 logic core.
+
+While most digital modules interface directly with the STM32 GPIO pins, the 3V coin vibration motor draws significantly more current than a standard microcontroller pin can safely source. To solve this, I designed a low-side switching circuit: the MCU outputs a control signal to the base of a **2N2222 NPN transistor** via a 1kΩ resistor. Furthermore, a **1N4007 flyback diode** is placed in parallel with the motor's inductive load to suppress high-voltage spikes (back-EMF) and protect the microcontroller.
 
 
 ## Schematics
+The complete electrical circuit was designed using KiCad EDA, detailing all net labels, power rails, and the custom haptic driving circuit.
+![Schema Electrica](schema.svg)
 
-Place your KiCAD or similar schematics here in SVG format.
 
+
+## Device Photo
+Below is a photograph of the physical prototype assembled on the breadboard, showcasing the overall component placement and the dual-voltage wiring.
+
+**Note:** The system is currently in the functional prototyping phase. The final step of the hardware development involves migrating these components from the breadboard into a custom-designed, 3D-printed desktop enclosure.
+
+![Breadboard Prototype](poza.webp)
 
 
 ## Bill of Materials
@@ -115,7 +138,7 @@ Place your KiCAD or similar schematics here in SVG format.
 |[3V Coin Vibration Motor](https://www.adafruit.com/product/1201)|Haptic alarm system|18.51 RON|
 |[WS2812B RGB LED Stick](https://www.adafruit.com/product/1426)|Visual alarm system|14.18 RON|
 |[Breadboard (Large)](https://www.optimusdigital.ro/)|Prototyping base|19.52 RON|
-|[Dupont Cables (M-M \& M-F)](https://www.optimusdigital.ro/)|Interconnections|38.33 RON|
+|[Dupont Cables (M-M & M-F)](https://www.optimusdigital.ro/)|Interconnections|38.33 RON|
 |[2N2222, 1k Resistor, 1N4007](https://www.optimusdigital.ro/)|Motor driving circuit components|36.55 RON|
 
 

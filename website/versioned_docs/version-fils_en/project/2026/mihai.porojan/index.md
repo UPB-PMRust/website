@@ -38,14 +38,21 @@ I will have to resort to using a sharpie on the orange and white face of the cub
 ### Week 9 
 Decided on using Kociemba's algorithm on my laptop to generate the solution because of memory constraints.
 
+### Week 10 
+Received the 3d printed parts from the support lab and finished two of the four clamp systems , two of the sliders 
+broke so i will need to wait until i buy two more and assemble the rest of the project.
+
 ## Hardware
 My project is based around the STM32U5 provided at the lab to take the solution generated on my computer using Kociemba's algorithm and control the rotating clamps. The 4 clamps are designed with a pair of 
 SG90 servos each, one servo moves the clamp away and towards the cube, while the other rotates the face of the cube 90 or 180 degrees.
-The color of each piece of the cube is detected using the TCS34725 color sensor seated in a small box separate from the main mechanism to ensure no external interference with the sensor.
+The color of each piece of the cube is detected using the TCS34725 color sensor seated separately  from the main mechanism to ensure no external interference with the sensor.
+
+### Photos
+![Photos](project_photo.webp)
 
 
 ### Schematics
-Todo
+![Schematics](schematics.svg)
 
 ### Bill of Materials
 
