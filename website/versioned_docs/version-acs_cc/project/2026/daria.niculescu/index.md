@@ -99,7 +99,7 @@ Completed the documentation.
 
 ### Electric Circuit for one pin
 
-![Scheme](./images/schema.png)
+![Scheme](./images/schema.webp)
 
 ## Software
 
