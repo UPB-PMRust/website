@@ -32,8 +32,10 @@ Recently, I repurposed that old piggy bank as a unique gift wrap for a friend. T
 Successfully acquired all necessary hardware components and completed the technical documentation review for each module. Completed the wiring for all components on the breadboard and performed functional tests to ensure signal integrity and proper communication with the STM32 board. Finalized the structural design of the box using balsa wood. Built the technical compartment for the electronics.
 
 ### Week 12 - 18 May
+Finalized the core software architecture and integrated the primary control logic, achieving a fully functional Minimum Viable Product with the TFT display and the servo motor. Thought about new software features and logic enhancements, focusing on increasing user interactivity and expanding the project's overall complexity by introducing multiple gameplay levels and designing an algorithm capable of generating a new maze on the screen for each attempt.
 
 ### Week 19 - 25 May
+Developed a custom coordinate reading algorithm via the SPI protocol for the touchscreen interface, while also implementing a dedicated exit mechanism to allow users to quit the maze game. Additionally, enhanced the game's hard difficulty setting by configuring a timer-driven passive buzzer to emit a ticking sound effect, successfully increasing gameplay tension and inducing player stress.
 
 ## Hardware
 
@@ -63,8 +65,8 @@ Successfully acquired all necessary hardware components and completed the techni
 | [TFT SPI Display 2.4'' ILI9341](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | The display | [55 RON](https://www.emag.ro/display-tft-spi-2-4-inch-240x320-lcd-cu-touchscreen-driver-st7789v-arduino-emg178/pd/DXZMBSYBM) |
 | [HW131 Breadbord Power Supply](https://www.handsontec.com/dataspecs/mb102-ps.pdf) | The power supply fo servo motor | [5 RON](https://www.optimusdigital.ro/ro/electronica-de-putere-stabilizatoare-liniare/61-sursa-de-alimentare-pentru-breadboard.html) |
 | Passive Buzzer | Triggered when the box opens | [1 RON](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html) |
-| 400 points Breadboard | Triggered when the box opens | [14 RON](https://sogest.ro/accesorii-multimetre/placa-test-breadboard-400) |
-| Wires | - | - |
+| 400 points Breadboard | Centralizes power rails and distributes electrical connections to all modules | [14 RON](https://sogest.ro/accesorii-multimetre/placa-test-breadboard-400) |
+| Wires | Provide point-to-point electrical connections | - |
 
 
 
@@ -75,13 +77,21 @@ Successfully acquired all necessary hardware components and completed the techni
 |--------|--------|-------|
 | [Raspberry Pi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html) | The microcontroller | [35 RON](https://www.optimusdigital.ro/en/raspberry-pi-boards/12394-raspberry-pi-pico-w.html) |
 
-
+-->
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display | -->
+| `embassy-stm32` | Async hardware abstraction layer for STM32 | Used to initialize the MCU, clocks (PLL), SPI, I2C, and PWM peripherals. |
+| `embassy-time` | Async time utilities | Used for delays and timers (`Timer::after_secs`, `Delay`). |
+| `embedded-graphics` | 2D graphics library | Used for drawing the shapes, lines, text, and colors onto the display. |
+| `mipidsi` | Display driver for SPI displays | Used to initialize and control the ILI9341 display model. |
+| `display-interface-spi` | SPI display interface protocol glue | Connects the display driver with the underlying hardware SPI bus. |
+| `embedded-hal-bus` | SPI and I2C sharing utilities | Provides `ExclusiveDevice` to manage SPI bus ownership. |
+| `defmt` & `defmt-rtt` | Highly efficient logging framework | Used for real-time terminal debugging (`info!`, `error!`). |
+| `panic-probe` | Panic handler for embedded devices | Catches crashes and prints the stack trace via the probe interface. |
+| `cortex-m` | Low-level access to Cortex-M processors | Provides core-level utilities and architecture support. |
+| `profont` | Custom pixel font library | Provides the `PROFONT_24_POINT` font style for clear on-screen text. |
 
 ## Links
 
