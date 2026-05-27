@@ -49,7 +49,7 @@ The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight ta
 
 ### Schematics
 
-<!-- KiCad schematic will be added here -->
+![Schematic](MA2_PROJECT.svg)
 
 ### Bill of Materials
 
