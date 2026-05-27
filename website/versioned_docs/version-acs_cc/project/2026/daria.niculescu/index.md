@@ -95,7 +95,10 @@ Completed the documentation.
 | **Cuplaj 5x8mm** | Mechanical motor-shaft connection | ~ 10 lei |
 | **Glue gun** | Insulating mechanical fastening | borrowed |
 | **LED-uri 5mm & 3mm** | Point-source lighting for the constellation map | ~27 lei |
-**Total:** 
+
+
+### Schematics
+![Scheme](./images/schematics.svg)
 
 ### Electric Circuit for one pin
 
