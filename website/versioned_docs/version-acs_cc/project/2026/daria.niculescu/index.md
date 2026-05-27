@@ -35,19 +35,19 @@ The project is divided into a few main parts that work together.
 
 ## Gallery
 **Step 1**
-![Photo](./images/step1.jpeg)
+![Photo](./images/step1.webp)
 
 **Step 2**
-![Photo](./images/step2.jpeg)
+![Photo](./images/step2.webp)
 
 **Step 3**
-![Photo](./images/step4.jpeg)
+![Photo](./images/step4.webp)
 
 **Step 4**
-![Photo](./images/step5.png)
+![Photo](./images/step5.webp)
 
 **Step 5**
-![Photo](./images/step6.png)
+![Photo](./images/step6.webp)
 
 ## Video Demonstration
 [Watch the project demo here](https://drive.google.com/drive/folders/1OKeiW1OGHsNHTvHbE8E_I3Dv4BRAlutm?usp=drive_link)
