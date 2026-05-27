@@ -48,10 +48,16 @@ Created the software for reading the amplified signals using the ADC, processing
 
 ### Week 19 - 25 May
 
+Created mounts/stands for each hardware component.
+
 ## Hardware
 
 The hardware features a custom Analog Front-End (AFE) bridging the 24GHz K-LC7 sensor and the STM32. Because the raw radar signals are in the microvolt range, the AFE utilizes LMV772 low-noise op-amps in a two-stage active amplifier configuration.
 By placing precision passives (1% resistors and C0G capacitors) in the negative feedback loops, the circuit forms an active low-pass filter. This actively suppresses high-frequency environmental noise while applying a massive 73 dB (~4,467x) voltage gain, boosting microscopic reflections to a readable 0–3.3V range. To guarantee signal integrity, an LT1763 ultra-low-noise LDO provides clean 3.3V power, driving a voltage divider that establishes a 1.65V virtual ground. This biases the op-amps so the AC radar waves can swing symmetrically without clipping above 3.3V and below GND.
+
+![Frontend](./images/frontend.webp)
+![Topdown-view](./images/topdown-view.webp)
+![Front-view](./images/front-view.webp)
 
 ### Schematics
 
