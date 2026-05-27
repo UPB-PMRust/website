@@ -55,6 +55,11 @@ MAIN ARCHITECTURE COMPONENTS:
 
 ### Week 11 - 18 May
 
+* final hardware
+
+### Week 18 - 25
+
+* finalized software and full functionality
 
 ## Hardware
 * STM32 Nucleo-U545RE-Q
@@ -69,11 +74,10 @@ MAIN ARCHITECTURE COMPONENTS:
 
 ### Schematics
 ![Schematics](./images/schematic.svg)
-![Schematics](./images/hardware.webp)
+![Schematics](./images/hardware1.webp)
 ### Bill of Materials
 
 | [Device](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) | Used for tension adjustment | [price](7 ron) |
-| [Device](https://sigmanortec.ro/Motor-DC-mini-angrenaje-metal-N20-100RPM-p125711198) | The motors | [price](46 ron) |
 | [Device](https://sigmanortec.ro/shield-motoare-pentru-wemos-d1-mini-i2c-dual-motor-tb6612fng) | Motor driver | [price](47 ron) |
 | [Device](https://sigmanortec.ro/servomotor-sg90-360-continuu) | Servomotor | [price](13 ron) |
 | [Device](https://sigmanortec.ro/Senzor-urmarire-linie-IR-p126025109) | IR sensor | [price](12 ron) |
@@ -88,12 +92,10 @@ MAIN ARCHITECTURE COMPONENTS:
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard hardware abstraction traits for embedded systems | Used to keep hardware interfaces modular |
 | [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging framework for embedded systems | Used for debugging firmware behavior |
 | [panic-probe](https://github.com/knurling-rs/probe-run/tree/main/panic-probe) | Panic handler for embedded Rust | Used for debugging runtime errors |
-| [heapless](https://github.com/rust-embedded/heapless) | Fixed-capacity data structures without dynamic allocation | Used for command buffers and path data |
-| [serde](https://github.com/serde-rs/serde) | Serialization framework | Used for encoding and decoding commands |
-| [postcard](https://github.com/jamesmunns/postcard) | Compact binary serialization format for embedded systems | Used for sending drawing commands from the PC to the STM32 |
-| [image](https://github.com/image-rs/image) | Image processing library for Rust | Used on the PC side for loading and processing input images |
-| [serialport](https://github.com/serialport/serialport-rs) | Cross-platform serial communication library | Used on the PC side for USB serial communication with the robot |
-| [clap](https://github.com/clap-rs/clap) | Command-line argument parser | Used on the PC side for configuring image input and serial port |
+| [opencv-python](https://github.com/opencv/opencv-python) | Computer vision library | Image loading, edge detection, contour extraction |
+| [numpy](https://github.com/numpy/numpy) | Numerical computing library | Image array manipulation |
+| [pyserial](https://github.com/pyserial/pyserial) | Serial communication library | USB serial communication with STM32 |
+
 
 
 
