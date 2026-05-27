@@ -31,13 +31,13 @@ Main architecture components:
 - Main control: STM32 Nucleo (rental) running the lock logic and state machine.
 - Output: SG90 servo for lock movement, LCD1602 (I2C) for messages, passive buzzer for alerts.
 - Network side: ESP32 DevKitC for logging and possible admin reset/dashboard.
-- Wiring setup: STM32 connects through a small interface protoboard (female headers), then to the main protoboard where modules are connected.
+- Wiring setup: STM32 connects through a 7x9 interface protoboard (female headers), then to a second 7x9 main protoboard where modules are connected.
 
 How components connect:
 - Keypad, button, and endstop send inputs to the STM32.
 - STM32 controls the servo, buzzer, and LCD.
 - ESP32 communicates with STM32 over serial/UART for logging/admin features.
-- Components are assembled on protoboard/PCB prototyping boards using silicone stranded wires.
+- Components are assembled on two 7x9 protoboard/PCB prototyping boards using silicone stranded wires.
 
 ### Software State Machine
 
@@ -58,9 +58,9 @@ Input Block (3x4 Keypad, Admin Button, Mechanical Endstop)
         v
 STM32 Nucleo (Main Control: PIN + State Machine)
         |
-        | via small interface protoboard (female headers)
+        | via 7x9 interface protoboard (female headers)
         v
-Main Protoboard (distribution for components)
+Main 7x9 Protoboard (distribution for components)
    |                 |                    |
    | I2C             | PWM                | GPIO/PWM
    v                 v                    v
@@ -84,17 +84,17 @@ Researched smart lockbox implementations and decided on the final project direct
 Updated the hardware plan and replaced several components: breadboard with protoboard, 4x4 keypad with 3x4 keypad, reed switch with mechanical endstop, and active buzzer with passive buzzer. Ordered all required parts and checked compatibility.
 
 ### Week 8
-Defined the interface-board approach to avoid soldering on the rental STM32 board (female header bridge to the main protoboard). Added ESP32 networking scope for event logging and possible admin PIN reset flow.
+Defined the interface-board approach to avoid soldering on the rental STM32 board (female header bridge through a dedicated 7x9 protoboard). Added ESP32 networking scope for event logging and possible admin PIN reset flow.
 
 ## Hardware
 
 The lockbox prototype uses a mixed setup with reusable university hardware and purchased modules.
 The STM32 board is provided by the university as free rental (must be returned after project completion).
-The rest of the circuit is assembled using protoboard/PCB prototyping boards and silicone stranded wires.
+The rest of the circuit is assembled using two 7x9 protoboard/PCB prototyping boards and silicone stranded wires.
 
 ### Schematics
 
-TODO: add KiCAD (or similar) schematic SVG in this folder and reference it here.
+![Smart Lockbox schematic](./hardware.svg)
 
 ### Bill of Materials
 
@@ -102,10 +102,13 @@ TODO: add KiCAD (or similar) schematic SVG in this folder and reference it here.
 |--------|--------|-------|
 | STM32 development board (university borrow) | Main controller board for firmware development and peripheral control | 0 RON (borrowed) |
 | [Placa dezvoltare ESP32-DevKitC, ESP32-WROOM-32D, 38P](https://sigmanortec.ro/placa-dezvoltare-esp32-devkitc-esp32-wroom-32d-38p) | Networking/logging module and potential admin dashboard support | 42.56 RON |
-| [Placa PCB prototipare o fata 5x7](https://sigmanortec.ro/Placa-PCB-prototipare-o-fata-5x7-p159914959) | Small interface protoboard used between STM32 and the main wiring board | 2.95 RON |
-| [Placa PCB prototipare fata dubla 7x9cm](https://sigmanortec.ro/Placa-PCB-prototipare-fata-dubla-7x9cm-p125747328) | Main (big) protoboard used for the rest of the components | 5.76 RON |
+| [Placa PCB prototipare fata dubla 7x9cm](https://sigmanortec.ro/Placa-PCB-prototipare-fata-dubla-7x9cm-p125747328) x2 | Two 7x9 protoboards: one interface board between STM32 and the wiring, and one main board for the rest of the components | 11.52 RON (total) |
 | [Bara 40 pini 2.54 tata](https://sigmanortec.ro/Bara-40-pini-2-54-tata-p126025250) | Header pins for module interconnection | 2.06 RON |
-| [Bara pini 40p mama 2.54mm, pin rotund, segmentabil](https://sigmanortec.ro/bara-pini-40p-mama-254mm-pin-rotund-segmentabil) x3 | Female headers for detachable wiring/interfaces | 7.08 RON (total) |
+| [Header de Pini Mama 8p 2.54 mm](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4161-header-de-pini-mama-8p-254-mm.html?search_query=0104210000035056&results=1) x2 | Female headers for detachable wiring/interfaces | 0,98 RON |
+| [Header de Pini Mama 10p 2.54 mm](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4162-header-de-pini-mama-10p-254-mm.html?search_query=0104210000035063&results=1) | Female headers for detachable wiring/interfaces | 3,27 RON |
+| [Header de Pini Mama 2p 2.54 mm](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4140-header-de-pini-mama-2p-254-mm.html?search_query=0104210000034998&results=1) x2 | Female headers for detachable wiring/interfaces | 0,78 RON |
+| [Header de Pini Mama de 2.54 mm 2 x 19p](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/8517-header-de-pini-mama-de-254-mm-2-x-19p.html?search_query=0104210000056457&results=1) x2 | Female headers for detachable wiring/interfaces | 1.78 RON |
+| [Header de Pini Mama 6p 2.54 mm](https://www.optimusdigital.ro/ro/componente-electronice-headere-de-pini/4156-header-de-pini-mama-6p-254-mm.html?search_query=0104210000035032&results=1) | Female headers for detachable wiring/interfaces | 0,49 RON |
 | [Tastatura numerica 4x3, 12 butoane](https://sigmanortec.ro/tastatura-numerica-4x3-12-butoane) | PIN entry keypad (3x4) | 18.76 RON |
 | [Buton 12x12x7.3](https://sigmanortec.ro/Buton-12x12x7-3-p160373654) | Local control/input button | 1.33 RON |
 | [Endstop mecanic SS-5GL2](https://sigmanortec.ro/Endstop-mecanic-SS-5GL2-p136284192) | Position sensing (replaces reed switch) | 5.23 RON |
