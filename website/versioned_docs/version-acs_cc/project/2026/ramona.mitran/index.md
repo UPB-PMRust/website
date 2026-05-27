@@ -1,12 +1,14 @@
 # IoT Weather-Station: Meteo and Air Quality Monitor
 A smart IoT station for monitoring weather and air quality, featuring acoustic alerts and a live cloud dashboard.
 
-**Author**: Mitran Ramona Luminița  
+**Author**: Mitran Ramona Luminița \
 **GitHub Project Link**: [UPB-PMRust-Students/acs-project-2026-mnoramona](https://github.com/UPB-PMRust-Students/acs-project-2026-mnoramona)
 
 ## Description
 
-This project consists of an IoT station capable of measuring environmental parameters and displaying them in real-time on an online dashboard (Adafruit IO). The system reads temperature and atmospheric pressure (via I2C), measures UV ray intensity (via ADC), and monitors air quality by detecting CO2, ammonia, benzene, and smoke using an MQ-135 sensor. When safety thresholds are exceeded, a buzzer triggers distinct acoustic alarms depending on the specific hazard. Additionally, two physical push-buttons are integrated into the system using software debouncing algorithms (polling). One button allows the user to force an immediate data upload to the cloud, while the second acts as a "Mute/Snooze" switch, silencing the acoustic alarms for 5 minutes if the user acknowledges the hazard.
+This project consists of an IoT station capable of measuring environmental parameters and displaying them in real-time on an online dashboard (Adafruit IO). The system reads temperature and atmospheric pressure (via I2C), measures UV ray intensity (via ADC), and monitors air quality by detecting CO2, ammonia, benzene, and smoke using an MQ-135 sensor. When safety thresholds are exceeded, a buzzer triggers distinct acoustic alarms depending on the specific hazard. 
+
+Additionally, two physical push-buttons are integrated into the system using software debouncing algorithms (polling). The primary button features dual functionality: a short press toggles a continuous data upload mode (every 15 seconds), while a long press (3 seconds) calibrates the gas sensor by setting a new clean-air reference zero. The second button acts as a "Mute/Snooze" switch, silencing the acoustic alarms for 1 minute if the user acknowledges the hazard.
 
 ## Motivation
 
@@ -18,12 +20,14 @@ The system is built around a central microcontroller that interfaces with variou
 * **Processing Unit (ESP32):** Reads sensor data, applies digital filters and business logic (mapping ADC voltages for the UV and MQ-135 sensors), and manages the Wi-Fi connection.
 * **Digital Input Module (I2C):** The BME280 sensor communicates bidirectionally over the I2C bus (SDA/SCL) to provide precise temperature, humidity, and pressure data.
 * **Analog Input Module (ADC):** The ML8511 (UV) and MQ-135 (Air Quality) sensors output a variable voltage that is read by the ESP32's ADC pins.
-* **Digital Input Module (Buttons & Polling):** Two push-buttons are connected to digital pins configured with internal pull-up resistors. Instead of hardware interrupts (which proved susceptible to breadboard electrical noise), the system uses a non-blocking polling method with a software debounce algorithm (`millis()`) to accurately register "Force Upload" and "Mute/Snooze" commands.
+* **Digital Input Module (Buttons & Polling):** Two push-buttons are connected to digital pins with internal pull-up resistors. The system uses a non-blocking polling method (millis()):
+    * *Button 1:* Short press toggles continuous 15-second data upload; Long press (3s) calibrates the MQ-135 zero baseline.
+    * *Button 2:* Triggers a 1-minute alarm snooze.
 * **Local Output Module:** A buzzer provides immediate acoustic feedback, generating specific patterns:
     * *Gas Alarm (Siren):* Continuous long beeps when dangerous gas levels are detected (MQ-135 raw > 1000).
     * *Temperature Alarm:* 3 rapid, sharp beeps when ambient temperature exceeds 28°C.
-    * *Confirmation Beep:* A single short beep triggered when data is successfully uploaded to the cloud via the physical button.
-* **Cloud Module:** Adafruit IO receives JSON/MQTT payloads and visualizes the data on live charts and gauges.
+    * *Status Beep:* Short beeps for upload toggle confirmation, and a rapid burst pattern for successful gas sensor calibration.
+* **Cloud Module:** Adafruit IO receives JSON/MQTT payloads and visualizes the data on live charts.
 
 ## Log
 
@@ -42,12 +46,18 @@ The system is built around a central microcontroller that interfaces with variou
 ### Week 18 - 24 May
 * Finalized code logic, cleaned up the project structure, and completed the final testing.
 
+### Week 25 - 27 May
+* Implemented short/long press logic for continuous MQTT upload toggling and real-time MQ-135 gas sensor zeroing.
+* Added 1-minute snooze functionality and aggressive buzzer patterns for noisy environments.
+
 ## Hardware
 The project utilizes an ESP32 microcontroller due to its native Wi-Fi capabilities and generous pinout. The selected sensors cover both digital communication (BME280) and analog voltage reading (ML8511 and MQ-135). Two push-buttons serve as input triggers for cloud uploads and alarms, and a buzzer adds a layer of local user interaction.
 
 ### Schematics
 
 ![Schematics](./schematics.webp)
+
+![Schematics](./SCH_Schematic1_1-P1_2026-05-27.svg)
 
 ### Bill of Materials
 
