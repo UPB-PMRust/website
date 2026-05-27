@@ -59,7 +59,7 @@ The project relies on the STM32 Nucleo-U545RE-Q as the core controller. The mech
 ![Circuit Schematic](./schematic.svg)
 
 ### Photo
-![Photo](./poza.jpeg)
+![Photo](./poza.webp)
 
 ### Bill of Materials
 
