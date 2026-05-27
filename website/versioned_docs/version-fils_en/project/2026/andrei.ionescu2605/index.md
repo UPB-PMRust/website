@@ -56,10 +56,15 @@ UI Controller (Joystick)
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-- Initial idea was a reflex-based system.
-- Pivoted to thermal imaging after feedback.
-- Selected MLX90640 as core sensor.
-- Studied MLX90640 communication and frame format.
+- Got the hardware working on the breadboard.
+- Next step is moving to a protoboard with soldering.
+- The thermal camera is running, but I am still tuning it to work perfectly.
+- The app menu is still buggy, but I will handle that next week.
+
+<div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'nowrap', margin: '1.5rem 0' }}>
+     <img src="https://ionescuandrei.tech/pm1.jpg" alt="Thermal camera prototype 1" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+     <img src="https://ionescuandrei.tech/pm2.jpg" alt="Thermal camera prototype 2" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+</div>
 
 ### Week 12 - 18 May
 - Defined system blocks and data flow.
