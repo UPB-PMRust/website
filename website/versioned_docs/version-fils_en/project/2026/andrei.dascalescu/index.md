@@ -63,7 +63,7 @@ The system relies on an STM32 Nucleo board as the central processing unit, expan
 |--------|--------|-------|
 | [STM32U545RE Nucleo](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The main microcontroller running the Rust logic | [~110 RON](#) |
 | [SPI TFT Display (ST7789/ILI9341)](https://www.optimusdigital.ro/) | The screen used to render the robot's face | [~40 RON](#) |
-| [7-LED WS2812 Ring](https://www.optimusdigital.ro/) | Luminous feedback / Mood lighting | [~15 RON](#) |
+| .[Display OLED, 128 x 64 px, 0.96", Interfata I2C, SPI, SH1106, 3.3 V, Multicolor](https://www.emag.ro/) |[~31 RON](#) |
 | [I2C Sensor Module](https://www.optimusdigital.ro/) | Gathering environmental data | [~20 RON](#) |
 | Dupont Wires & Breadboard | Physical connections between components | [~25 RON](#) |
 
