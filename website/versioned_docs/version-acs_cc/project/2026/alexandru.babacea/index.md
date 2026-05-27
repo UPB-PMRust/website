@@ -25,6 +25,8 @@ The system architecture comprises the following modules:
 - Actuation Module: Controls the physical movement using two Nema 17 stepper motors and a powerful electromagnet.
 - Detection Module: A grid of 64 magnetic Reed sensors read via external multiplexers, compensating for the limited GPIO pins on the microcontroller.
 
+![block_diagram](./assets/block_diagram.webp)
+
 ## Log
 
 ### Weeks March 16th - March 29th
@@ -36,17 +38,25 @@ Prepared the physical structure by cutting the V-slot aluminum profiles and the 
 ### Weeks April 13th - April 26th
 Installed the CoreXY mechanical drive system, including pulleys, timing belts, and the Nema 17 stepper motors. Developed and executed the initial test scripts to validate motor movement and control via the A4988 drivers.
 
+### Weeks April 27th - May 10th
+Finalized the physical enclosure by adding the side walls and the top playing surface complete with the chess sticker. Installed the initial piece detection matrix, wiring and validating the first two rows of reed switches through a multiplexer. Furthermore, integrated the transistor-controlled electromagnet and successfully executed the first physical test to move a piece.
+
+### Week May 11th - May 17th
+Connect all reed switches to the MUXs and the STM32 Nucleo. Reprint the 3D chess pieces to make them lighter and use only one magnet. Write the software to read all reed switches and mirror all the moves that the white player makes.
+
 ## Hardware
 
 The hardware setup includes an STM32 microcontroller, 64 magnetic Reed sensors for piece detection, two Nema 17 stepper motors for the CoreXY movement and a 12V electromagnet to physically drag the pieces.
 
 ### Schematics
 
-![block_diagram](./assets/block_diagram.webp)
+![block_diagram](./assets/schematics.webp)
 
-### Photo
+### Photos
 
-![frame_photo](./assets/frame_photo.webp)
+| Frame | Components |
+| :---: | :---: |
+| ![frame_photo](./assets/frame_photo.webp) | ![components_photo](./assets/components_inside_box.webp) |
 
 ### Bill of Materials
 
@@ -59,9 +69,7 @@ The hardware setup includes an STM32 microcontroller, 64 magnetic Reed sensors f
 | TIP122 Transistor + Diode | Electromagnet control | 5 RON | - |
 | Reed Sensor | Piece detection matrix | 64 x 1.86 RON | [Link](https://sigmanortec.ro/en/magnetic-reed-switch-n-o)
 | CD74HC4067 Multiplexer | Sensor matrix reading | 4 x 4.76 RON | [Link](https://sigmanortec.ro/Modul-multiplexor-16-canale-p126258652)
-| LCD Display | User interface | 12 RON | [Link](https://sigmanortec.ro/LCD-1602-p125700685)
 | Endstop limit switch | Axis calibration (homing) | 2 x 5.23 RON | [Link](https://sigmanortec.ro/Endstop-mecanic-SS-5GL2-p136284192)
-| Push button | UI control | 2 x 1.33 ron | [Link](https://sigmanortec.ro/en/button-12x12x73)
 | V-slot profiles and belts | Mechanical frame | 5 x 24.79 RON | [Link](https://www.emag.ro/profil-aluminiu-v-slot-20x20-50cm-negru-pentru-constructii-3d-5905832546328/pd/DBP10N3BM/?cmpid=146733&utm_source=google&utm_medium=cpc&utm_content=79559759954&utm_campaign=(RO:Whoop!)_3P-Y_%3e_Utilaje_si_materiale_de_constructii_order_test&gad_source=1&gad_campaignid=2078923426&gclid=Cj0KCQjwkrzPBhCqARIsAJN460lV6vih-NN5hh__M_T-HASOowbW36AljFTTpLsIYPJTcgxXrF2SGokaAhDlEALw_wcB)
 | Mini V wheels | Smooth movement along the axes | 93,68 RON | [Link](https://www.emag.ro/set-de-role-kit-de-roti-mini-v-hw1214wk/pd/DQBXRGMBM/?cmpid=146055&utm_source=google&utm_medium=cpc&utm_campaign=(RO:eMAG!)_3P_NO_SALES_%3e_Imprimante,_scanere_and_consumabile&utm_content=85337494034&gad_source=1&gad_campaignid=7971894862&gclid=Cj0KCQjwkrzPBhCqARIsAJN460kJ9blGKkHQRf67tIr1FPX4YvTQLGhOdl1p8ifyoAWFnInp7YoXALoaAifsEALw_wcB)
 | Neodymium magnets | Inside the chess pieces | 37.92 RON | [Link](https://www.emag.ro/set-50-magneti-neodim-universali-diverse-activitati-8x2-mm-rotund-argintiu-dactylionr-dactylion-10142/pd/D26HTPYBM/?ref=ohs_buy_again_481488949)
