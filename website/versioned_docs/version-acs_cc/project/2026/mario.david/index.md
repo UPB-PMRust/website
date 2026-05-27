@@ -4,8 +4,7 @@ A smart cash register with product scanning, real-time alerts, and business moni
 
 :::info
 
-**Author:** David Adrian-Mario  
-**Group:** 331 CC  
+**Author:** David Adrian-Mario  \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/acs-project-2026-mariodavid3
 
 :::
