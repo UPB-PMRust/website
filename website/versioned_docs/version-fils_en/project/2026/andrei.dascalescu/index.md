@@ -1,6 +1,8 @@
-#AWARE-GUIN
-:::info 
+# AWARE-GUIN
+
 An interactive companion robot developed on STM32 using Async Rust (Embassy).
+
+:::info 
 **Author**: Dăscălescu Andrei \
 **GitHub Project Link**: [AWARE-GUIN Repository](https://github.com/UPB-PMRust-Students/fils-project-2026-yvcc28s62s-cmd)
 :::
