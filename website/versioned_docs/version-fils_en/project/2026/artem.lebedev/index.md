@@ -49,7 +49,11 @@ Awaiting arrival of remaining components, added minor changes in the hardware by
 
 ### Week 12 - 18 May
 
+Gathered all the hardware, proceed to create first prototypes. Replace the IRF-3205 for DL-4184 module due to not working transistor. 
+
 ### Week 19 - 25 May
+
+Changed SSD1306 screen for 1602A 5V. Made the shell of the machine.
 
 ## Hardware
 
@@ -66,13 +70,19 @@ Coffee powder is dispensed through a mechanical gate controlled by the SG90 serv
 | GPIO23 | Button – Espresso | Tactile button → GND |
 | GPIO22 | Button – Double Espresso | Tactile button → GND |
 | GPIO21 | Button – Americano | Tactile button → GND |
-| GPIO5 | Solenoid valve control | IRF3205 Gate (via 1KΩ) |
-| GPIO20 | I2C SCL | SSD1306 SCL |
-| GPIO19 | I2C SDA | SSD1306 SDA |
-| GPIO2 | Servo PWM (LEDC) | SG90 signal wire |
-| GPIO1 | Water level sensor | Float switch → GND |
-| GPIO18 | Buzzer | Active buzzer |
-| 3.3V | Power | SSD1306 VCC, SG90 VCC, Float switch |
+| GPIO2 | Solenoid valve control | Load DL-4184|
+| GPIO06 | RC | A1602 |
+| GPIO07 | E | A1602 |
+| GPIO08 | D4 | A1602 |
+| GPIO09 | D5 | A1602 |
+| GPIO10 | D6 | A1602 |
+| GPIO11 | D7 | A1602 |
+| GPIO5 | Servo PWM (LEDC) | SG90 signal wire |
+| GPIO3 | Water level sensor | Float switch → GND |
+| GPIO19 | Buzzer | Active buzzer |
+| 3.3V | Power | SG90 VCC, Float switch |
+| 5V | Power | A1602 |
+| 12V | Power | Solenoid, DL-4184 |
 | GND | Common ground | All GND rails |
 
 ### Schematics
@@ -85,17 +95,21 @@ Coffee powder is dispensed through a mechanical gate controlled by the SG90 serv
 | ESP32-C6 | Main microcontroller | 50 RON |
 | Solenoid Valve 12V N/C | Water flow control | 45 RON |
 | IRF3205PBF MOSFET | Solenoid valve driver | 6 RON |
+| DL-4184 MOSFET module | Solenoid valve driver | 6 RON |
 | Resistor 1KΩ and 10KΩ | 1 RON |
 | Servo SG90 | Coffee powder gate control | 13.5 RON |
 | OLED SSD1306 0.96" I2C | Status display | 15 RON |
+| A1602 screen | Status display | 10 RON |
 | Float Switch Liquid Level Sensor | Water tank monitoring | 30 RON |
 | Food-grade plastic container 1–2L (×2) | Water and coffee powder tanks | 30 RON |
 | Silicone tube (thermoresistant) | Water delivery from tank to cup | 25 RON |
+| Silicone hermetic | Water delivery from tank to cup | 35 RON |
 | Tactile push buttons (×3) | Mode selection | 5 RON |
 | Breadboard 830 points | Prototyping platform | 10 RON |
-| Dupont jumper wires (M-M, M-F set) | Component connections | 10 RON |
+| Dupont jumper wires (M-M, M-F, F-F set) | Component connections | 25 RON |
 | 12V 2A DC power adapter | Powers solenoid valve | 20 RON |
-| **TOTAL** | | **260.5 RON** |
+| Wood for shelf |  | 40 RON |
+| **TOTAL** | | **366.5 RON** |
 
 ***
 
@@ -109,7 +123,6 @@ Coffee powder is dispensed through a mechanical gate controlled by the SG90 serv
 | `embassy-time` | Async time utilities | `Timer::after()` for precise dispensing durations |
 | `embedded-hal` | Hardware abstraction traits | Standard interface for GPIO and PWM |
 | `embedded-hal-async` | Async hardware abstraction traits | `wait_for_falling_edge()` for button and sensor input |
-| `ssd1306` | SSD1306 OLED display driver | Renders status messages on the 0.96" display |
 | `embedded-graphics` | 2D graphics primitives | Text rendering on the OLED display |
 | `esp-backtrace` | Panic handler with serial output | Debugging — prints panic traces over UART |
 | `esp-println` | `println!` macro over UART | Logging timing and sensor values during development |
