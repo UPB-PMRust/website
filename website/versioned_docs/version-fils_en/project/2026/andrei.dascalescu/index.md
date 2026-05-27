@@ -2,11 +2,11 @@
 
 An interactive companion robot developed on STM32 using Async Rust (Embassy).
 
-:::info 
-**Author**: Dăscălescu Andrei \
+:::info
+**Author**: Dăscălescu Andrei
+
 **GitHub Project Link**: [AWARE-GUIN Repository](https://github.com/UPB-PMRust-Students/fils-project-2026-yvcc28s62s-cmd)
 :::
-
 
 ## Description
 AWARE-GUIN is an intelligent desktop companion designed to react to its environment through visual expressions and light feedback. The "brain" of the project is a state-of-the-art STM32U5 microcontroller, programmed exclusively in Rust. The system runs on the `Embassy` asynchronous framework, concurrently managing an SPI display for the face/UI, a smart LED ring (NeoPixel) for expressing moods, and I2C sensors for gathering environmental data.
