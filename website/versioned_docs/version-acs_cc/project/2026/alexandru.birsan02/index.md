@@ -25,6 +25,7 @@ The idea came to me because I have previously studied architecture and have alwa
 ![Diagram](./images/diagram.svg)
 ![Schematic](./images/schematic.svg)
 
+
 ## Log
 
 ### Week 27 - 30 April
@@ -33,52 +34,63 @@ Wrote initial documentation and made the first diagram while ordering the parts.
 
 ### Week 12 - 18 May
 
+Received all hardware components. Assembled the physical frame using a 60x80cm wooden board and mounted the two NEMA 17 stepper motors at 51.8cm apart. Wired the A4988 drivers directly to the STM32 Nucleo using dupont wires and a breadboard. Successfully tested basic stepper motor movement using Embassy async Rust firmware.
+
 ### Week 19 - 25 May
+
+Implemented full polargraph kinematics (inverse kinematics using polar-to-cartesian conversion). Added G-Code parser over UART (USART1 at 115200 baud) using BufferedUart. Implemented line interpolation with 1mm segments for smooth curves. Added SG90 servo pen lift control (M3/M5 commands). Successfully tested drawing a square using a Python script to stream G-Code from a .ngc file.
 
 ## Hardware
 
-The Polargraph is powered by an external 12V DC source to ensure constant torque for the stepper motors. For development purposes, the STM32 Nucleo is tethered via USB for real-time G-Code streaming and debugging
+The Polargraph is powered by an external 12V DC source to ensure constant torque for the stepper motors. For development purposes, the STM32 Nucleo is tethered via USB for real-time G-Code streaming and debugging. I also used a buck converter to give a steady current to the servo motor directly from the outlet converted to 3v3 because the connection on the stm 3v3 did not give suffiecient current. 3D printed a gondola that houses the servo motor(pen lifter) and the pen itself that is held up by the belts with
+2 anchor points. Built a frame for the panel to stay upright and the electronic equipment to be held onto the back of it.
 
 ### Schematics
+
+![Schematic](./images/schematic.svg)
 
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 | :--- | :--- | :--- |
-| [STM32 Nucleo-U545](https://www.st.com/en/microcontrollers-microprocessors/stm32u545.html) | Main Controller (Brain of the project) | [Owned] |
+| [STM32 Nucleo-U545](https://www.st.com/en/microcontrollers-microprocessors/stm32u545.html) | Main Controller (Brain of the project) | Owned |
 | [NEMA 17 Stepper Motor (1.7A)](https://www.optimusdigital.ro/ro/motoare-pas-cu-pas/106-motor-pas-cu-pas-nema-17-40mm-17a.html) | Axis movement (2 pieces required) | [130 RON](https://www.optimusdigital.ro) |
-| [TMC2208 Stepper Driver](https://www.optimusdigital.ro/ro/drivere-motoare-pas-cu-pas/2753-driver-motor-pas-cu-pas-tmc2208.html) | Silent motor control (2 pieces required) | [90 RON](https://www.optimusdigital.ro) |
+| [A4988 Stepper Driver](https://sigmanortec.ro/) | Motor control (2 pieces required) | [20 RON](https://sigmanortec.ro) |
+| [A4988 Expansion Board](https://sigmanortec.ro/) | Driver carrier with DIP microstepping and terminal block | [10 RON](https://sigmanortec.ro) |
 | [SG90 Micro Servo](https://www.optimusdigital.ro/ro/servomotoare/9-servomotor-sg90.html) | Pen lift mechanism | [15 RON](https://www.optimusdigital.ro) |
 | [12V 5A Power Supply](https://www.optimusdigital.ro/ro/surse-de-alimentare/123-sursa-de-alimentare-12v-5a.html) | External power for stepper motors | [55 RON](https://www.optimusdigital.ro) |
 | [GT2 Pulleys & Belt Kit](https://www.optimusdigital.ro/ro/curele-si-fulii/145-fulie-gt2-20-dinti-5mm.html) | Mechanical transmission system | [40 RON](https://www.optimusdigital.ro) |
 | [Breadboard MB-102](https://www.optimusdigital.ro/ro/prototipare/10-breadboard-830-puncte.html) | Prototyping and circuit connections | [15 RON](https://www.optimusdigital.ro) |
 | [Jumper Wires M-M / F-M](https://www.optimusdigital.ro/ro/fire-conectori-si-socluri/894-set-fire-tata-tata-65-buc.html) | Connecting components to Nucleo | [15 RON](https://www.optimusdigital.ro) |
-| [DC Jack Adapter](https://www.optimusdigital.ro/ro/fire-conectori-si-socluri/124-mufa-dc-mama-cu-terminal-block.html) | Connecting the 12V supply to breadboard | [5 RON](https://www.optimusdigital.ro) |
-| [Capacitor Kit (100uF)](https://www.optimusdigital.ro/ro/componente-pasive/220-condensator-electrolitic-100uf-35v.html) | Power spike protection for drivers | [5 RON](https://www.optimusdigital.ro) |
+| [DC Jack Adapter](https://www.optimusdigital.ro/ro/fire-conectori-si-socluri/124-mufa-dc-mama-cu-terminal-block.html) | Connecting the 12V supply | [5 RON](https://www.optimusdigital.ro) |
+| [Capacitor 100uF](https://www.optimusdigital.ro/ro/componente-pasive/220-condensator-electrolitic-100uf-35v.html) | Power spike protection for drivers | [5 RON](https://www.optimusdigital.ro) |
+
 
 
 ## Software
 
 | Library | Description | Usage |
 | :--- | :--- | :--- |
-| [stm32u5xx-hal](https://github.com/stm32-rs/stm32u5xx-hal) | Hardware Abstraction Layer | Managing GPIO for motor control, UART for G-Code streaming, and Timers for pulse generation. |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Embedded Abstraction Traits | Provides a standard interface for peripheral drivers, ensuring modular and testable code. |
-| [micromath](https://github.com/tarkentat/micromath) | Fast Math Library | Used for efficient fixed-point and floating-point square root calculations in the Inverse Kinematics engine. |
-| [cortex-m-rt](https://github.com/rust-embedded/cortex-m-rt) | Startup and Runtime | Handles the entry point and reset handler for the ARM Cortex-M33 processor. |
-| [panic-halt](https://github.com/rust-embedded/panic-halt) | Panic Handler | Provides a simple panic strategy that halts the processor in case of critical software errors. |
-
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Async HAL for STM32 | GPIO for motor control, BufferedUart for G-Code streaming, PWM for servo |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded | Entry point and task runner |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Async timers | Precise delays for step pulses |
+| [defmt](https://github.com/knurling-rs/defmt) | Logging framework | Debug logging via RTT |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler | Sends panic info through probe-rs |
+| [libm](https://github.com/rust-lang/libm) | Math library for no_std | sqrtf and ceilf for inverse kinematics |
+| [embedded-io-async](https://github.com/rust-embedded/embedded-hal) | Async IO traits | Read/Write on BufferedUart |
 
 #### Host Software & Toolchain
 
 To transform digital images into physical drawings, the project uses a multi-step toolchain:
 
-1. **Vectorization/G-Code Generation**: I use DrawingBotV3 (or Inkscape with G-Code extensions). These tools allow me to convert standard images (JPG/PNG) into paths using algorithms like *Squiggle*, *TSP (Travelling Salesman Problem)*, or *Stippling*.
-2. **Path Optimization**: The software generates a list of G-Code commands (`G0`, `G1`) which represent coordinates in a Cartesian system.
+1. **G-Code Generation**: Inkscape with G-Code extensions convert images (JPG/PNG) into paths using algorithms to give out the .ngc file that is required the polargraph to know where it should go.
+2. **G-Code Streaming**: A Python script streams the generated `.ngc` file over USB serial (USART1 at 115200 baud) to the STM32, waiting for `ok\r\n` acknowledgement after each command before sending the next.
 
 ## Links
 
-1. [DrawingBotV3](https://drawingbotv3.com/) - The primary software for G-Code generation.
-2. [Polargraph Physics](https://github.com/euphy/polargraph/wiki/Polargraph-physics) - Detailed explanation of the inverse kinematics involved.
-3. [TMC2208 Datasheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC220x_TMC2224_datasheet_Rev1.09.pdf) - Technical specifications for the motor drivers.
-4. [Example](https://www.youtube.com/watch?v=aiw3hkDvp-M) - Working example
+1. [Inkscape](https://inkscape.org/) - Vector graphics editor used for G-Code generation.
+2. [Inkscape G-Code Extension](https://github.com/martymcguire/inkscape-unicorn) - Extension for exporting paths as G-Code (.ngc) files.
+3. [Polargraph Physics](https://github.com/euphy/polargraph/wiki/Polargraph-physics) - Detailed explanation of the inverse kinematics involved.
+4. [A4988 Datasheet](https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf) - Technical specifications for the motor drivers.
+5. [Example](https://www.youtube.com/watch?v=aiw3hkDvp-M) - Working example
