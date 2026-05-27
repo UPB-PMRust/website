@@ -44,6 +44,10 @@ Connected all 8 note buttons, mode button, and LCD display via I2C. Implemented 
 
 The project uses the STM32 Nucleo-U545RE-Q as the main microcontroller. Eight tactile 6x6x6 push buttons are wired to GPIO input pins with internal pull-up resistors enabled in software. A passive buzzer is connected to a PWM-capable timer output pin (PA0, TIM2). The lab LCD display (16x2 with I2C backpack HW-061) is connected via I2C on pins PB6 (SCL) and PB7 (SDA). One additional button handles mode switching. The onboard LED provides visual feedback while a note is active.
 
+![Hardware overview](hardware_1.webp)
+
+![Hardware detail](hardware_2.webp)
+
 ### Schematics
 
 ![Schematic](MA2_PROJECT.svg)
