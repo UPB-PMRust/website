@@ -98,7 +98,7 @@ Completed the documentation.
 
 
 ### Schematics
-![Scheme](./images/schematics.svg)
+![Scheme](./images/schematics.webp)
 
 ### Electric Circuit for one pin
 
