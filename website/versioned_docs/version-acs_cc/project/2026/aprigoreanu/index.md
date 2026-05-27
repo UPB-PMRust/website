@@ -40,8 +40,12 @@ Researched mechanical solutions for Braille pins
 - Built the circuit
 
 ### Week 12 - 18 May
+- Tested all components
+- Wrote software part of the project
 
 ### Week 19 - 25 May
+- Fixed last minute issues
+- Finishing touches
 
 ## Hardware
 
@@ -85,6 +89,11 @@ Researched mechanical solutions for Braille pins
 |---------|-------------|-------|
 | [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Hardware Abstraction Layer | HAL for bridging interaction between STM32 MCU and Rust software |
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor | Schedules and runs async tasks |
+| [embassy_time](https://docs.rs/embassy-time/latest/embassy_time/) | Timers and delays | Delays for LCD initialization and SPI device |
+| [embassy_sync](https://docs.embassy.dev/embassy-sync/0.8.0/default/index.html) | Synchronization primitives for inter-task communication | Used to coordinate events between tasks |
+| [embedded_hal_bus ](https://docs.rs/embedded-hal-bus/latest/embedded_hal_bus/) | Allows bus sharing between devices | Wraps SPI bus so that SD card driver can read it |
+| [hd44780_driver ](https://docs.rs/hd44780-driver/latest/hd44780_driver/) | Driver for HD44780 LCD display | Interface to HD44780 LCD |
+| [embedded_sdmmc ](https://docs.rs/embedded-sdmmc/latest/embedded_sdmmc/) | SD card filesystem driver | Allows reading from SD card |
 | [defmt](https://github.com/knurling-rs/defmt) | Console printing | Allows printing to console for debug purposes |
 
 ## Links
