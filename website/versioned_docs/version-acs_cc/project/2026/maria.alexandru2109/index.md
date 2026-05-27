@@ -52,9 +52,17 @@ Integrated the OV7670 camera module and established the video capture routine
 Finalized peripheral integration: connected and configured the touch controller, buzzer and buttons. Implemented external interrupts (EXTI) for the hardware buttons to ensure responsive input handling.
 
 ### Week 11 - 17 May
+Developed the game software, including the game logic, screen display and button controls.
 
 
 ### Week 18 - 24 May
+- Video: https://youtube.com/shorts/Yu7dfRNBbo0
+
+<img src="main_menu.webp" alt="Main menu" width="200" />
+<img src="settings.webp" alt="Settings" width="200" />
+<img src="take_picture.webp" alt="Take picture" width="200" />
+<img src="puzzle.webp" alt="Puzzle" width="350" />
+<img src="win.webp" alt="Win" width="300" />
 
 
 ## Hardware
@@ -66,7 +74,7 @@ Finalized peripheral integration: connected and configured the touch controller,
 - **VGA Camera OV7670 640 x 480px**: Captures images input for the system
 - **Microswitches TC-1212T (12x12x7.3mm):** Mechanical tactile switches used for the directional pad and user action buttons
 - **Acoustic buzzer for microcontrollers:** Provides auditory feedback and sound effects for various game events
-- **DC-DC Step-up Module 1-5V to 5V:** A voltage regulator that boosts the fluctuating battery power to provide a stable 5V output for the microcontroller and display
+
 
 ### Schematics
 
@@ -86,9 +94,6 @@ Finalized peripheral integration: connected and configured the touch controller,
 | [Button cap for microswitch - Green (1x)](https://www.drot.ro/platforma-arduino/1183-buton-pentru-mikroswitch-verde-12-x-12-x-7-3-mm.html) | Plastic cap for microswitch (Green) | [1.30 RON](https://www.drot.ro/platforma-arduino/1183-buton-pentru-mikroswitch-verde-12-x-12-x-7-3-mm.html) |
 | [Button cap for microswitch - Yellow (1x)](https://www.drot.ro/platforma-arduino/1184-buton-pentru-mikroswitch-galben-12-x-12-x-7-3-mm.html) | Plastic cap for microswitch (Yellow) | [1.30 RON](https://www.drot.ro/platforma-arduino/1184-buton-pentru-mikroswitch-galben-12-x-12-x-7-3-mm.html) |
 | [Button cap for microswitch - White (1x)](https://www.drot.ro/platforma-arduino/1185-buton-pentru-mikroswitch-alb-12-x-12-x-7-3-mm.html) | Plastic cap for microswitch (White) | [1.30 RON](https://www.drot.ro/platforma-arduino/1185-buton-pentru-mikroswitch-alb-12-x-12-x-7-3-mm.html) |
-| [4x AA Battery Holder SBH-341-2A (1x)](https://www.comf-hk.com/storage/SBH-341-2A-Data-Sheet.pdf) | Power supply holder for 4x AA batteries | [8.72 RON](https://www.drot.ro/platforma-arduino/1436-suport-pentru-patru-baterii-aa-sbh-341-2a.html) |
-| [DC-DC Step-up Module 1-5V to 5V 500mA (1x)](https://www.ti.com/product/TPS61241) | Voltage regulator to provide stable 5V | [7.19 RON](https://www.drot.ro/platforma-arduino/1699-modul-step-up-dc-dc-de-la-1-5v-la-5v-500ma.html) |
-| [Plexiglass mount for OV7670 camera module (2x)](https://www.drot.ro/platforma-arduino/123946-suport-pentru-modulul-de-camera-ov7670-plexiglas.html) | Physical mount for the camera module | [7.42 RON](https://www.drot.ro/platforma-arduino/123946-suport-pentru-modulul-de-camera-ov7670-plexiglas.html) |
 
 
 ## Software
@@ -100,10 +105,12 @@ Finalized peripheral integration: connected and configured the touch controller,
 | [embassy-time](https://github.com/embassy-rs/embassy)| Time library | Used for measuring the game time and for adding small delays |
 | [embassy_executor](https://github.com/embassy-rs/embassy) | Task manager | Used for reading user input and updating the screen at the same time |
 | [embassy-sync](https://github.com/embassy-rs/embassy) | Async synchronization | Used for communicating between the display task and buttons/touch task |
-| [embedded-hal] (https://github.com/rust-embedded/embedded-hal) | Standard hardware rules | Defines standard interfaces |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard hardware rules | Defines standard interfaces |
 | [panic-probe](https://github.com/knurling-rs/probe-run/tree/main) | Error handling | Stops the program if the code crashes |
 | [defmt]() | Logging library | Used for printing debug messages to the computer |
 | [rand]() | Random number generator | Used for shuffling the puzzle board pieces |
+
+
 
 ## Links
 

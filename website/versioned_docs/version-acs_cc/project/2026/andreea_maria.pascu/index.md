@@ -141,6 +141,7 @@ At startup, the device loads precomputed audio fingerprints from multiple binary
 | `flash_songs.py` | Transfers prepared `.BIN` audio files to the STM32 device over UART, ensuring reliable transmission using chunk-based acknowledgements. |
 | `capture_audio.py` | Receives live ADC audio data from the microcontroller over UART and saves it as a WAV file for offline analysis and debugging. |
 
+### Libraries
 
 | Library | Purpose | Usage |
 |---|---|---|
@@ -156,3 +157,7 @@ At startup, the device loads precomputed audio fingerprints from multiple binary
 ### Links
 
 1. [Shazam algorithm overview](https://www.toptal.com/algorithms/shazam-it-music-processing-fingerprinting-and-recognition)
+2. [Microphone module datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX9814.pdf)
+3. [Documentation for using ADC on the STM32U5](https://www.st.com/content/ccc/resource/training/technical/product_training/group1/2a/84/42/de/d3/72/44/87/STM32U5-Analog-ADC-DAC_ADC-DAC/files/STM32U5-Analog-ADC-DAC_ADC-DAC.pdf/_jcr_content/translations/en.STM32U5-Analog-ADC-DAC_ADC-DAC.pdf)
+4. [Documentation crate for FFT in Rust (microfft)](https://docs.rs/microfft/latest/microfft/)
+5. [Embassy-rs Documentation](https://embassy.dev/)
