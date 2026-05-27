@@ -57,7 +57,7 @@ The project utilizes an ESP32 microcontroller due to its native Wi-Fi capabiliti
 
 ![Schematics](./schematics.webp)
 
-![Schematics](./SCH_Schematic1_1-P1_2026-05-27.svg)
+![Schematics](./SCH_Schematic1_1-P1_2026-05-27.webp)
 
 ### Bill of Materials
 
