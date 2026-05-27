@@ -35,14 +35,14 @@ Choosing this project was because of a mix of my interest in mathematics, signal
 
 **Disclaimer: This project was partailly changed as you probably saw (previously, a DSP and sound visualiser) because of my AMAZING soldering skills and AMAZING electronics knowledge (I burnt my first DAC and couldn't get the 2nd one to work properly...) I suspected many things, including low impedance headphones, but none of my fixes quite worked and reached a good conclusion. So I did what an engineer would and found another way to use the components I already had in Week 2**
 #### Week I
-    This week was a week of just learning stuff, understanding and, well headaches with the clock tree diagram from the official stm datasheet... I needed to understand the MSIS and Master Clock and PLL math so I can run my board at 160Mhz for the purpose of running the Screen at a smoother 20Mhz.
-    I configured the PLL by the end of the week, set up the Mic and read a lot about buffers (ring buffers, DMA)
+This week was a week of just learning stuff, understanding and, well headaches with the clock tree diagram from the official stm datasheet... I needed to understand the MSIS and Master Clock and PLL math so I can run my board at 160Mhz for the purpose of running the Screen at a smoother 20Mhz.
+I configured the PLL by the end of the week, set up the Mic and read a lot about buffers (ring buffers, DMA)
 #### Week II
-    Week 2 I thought about my project (this was the week where I realised I couldn't possibly get my DAC work and I tried a lot of DMA fixes and everything I could find online...)
-    After pivoting to this Visualiser and Game Idea I mapped out a state machine and how the display would work and the game logic for optimizing SPI so It doesn't run at 2 frames per second. I thought about how the pipes of the game would appear/dissapear so I don't update the display at every game event(moving forward, pipes appearing on-screen, dying, etc) 
+Week 2 I thought about my project (this was the week where I realised I couldn't possibly get my DAC work and I tried a lot of DMA fixes and everything I could find online...)
+After pivoting to this Visualiser and Game Idea I mapped out a state machine and how the display would work and the game logic for optimizing SPI so It doesn't run at 2 frames per second. I thought about how the pipes of the game would appear/dissapear so I don't update the display at every game event(moving forward, pipes appearing on-screen, dying, etc) 
 #### Week III
-    Final week(this was a packed week):
-    Added DC Cut Off filter. Layered out my files and directories to be easy to access and read. Soldered everything together on a perfboard again and actually got better audio. Added game logic and Visualiser logic (optimized for the SPI display). Final polishes and good luck to me! 
+Final week(this was a packed week):
+Added DC Cut Off filter. Layered out my files and directories to be easy to access and read. Soldered everything together on a perfboard again and actually got better audio. Added game logic and Visualiser logic (optimized for the SPI display). Final polishes and good luck to me! 
 
 
 ## Hardware
