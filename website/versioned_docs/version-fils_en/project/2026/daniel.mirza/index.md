@@ -5,7 +5,7 @@ A two-player Battleship game running on devices having a 4" touchscreen display 
 :::info
 
 **Author**: Mîrza Daniel \
-**GitHub Project Link**: <https://github.com/UPB-PMRust-Students/fils-project-2026-Danum1z>
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Danum1z
 
 :::
 
@@ -150,7 +150,7 @@ graph TD
 
 ### Week 14
 
-- Finally received the longwaited PCB
+- Finally received the long-awaited PCB
 
 ## Hardware
 
