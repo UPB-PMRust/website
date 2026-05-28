@@ -1,0 +1,66 @@
+(kicad_sch
+  (version 20231120)
+  (generator eeschema)
+  (paper "A3")
+  (title_block
+    (title "Smartwatch DIY - Raspberry Pi Pico 2W")
+    (date "2026-05-27")
+    (rev "1.0")
+    (company "DIY Embedded Rust Project")
+  )
+
+  (lib_symbols)
+
+  (text "PICO 2W" (at 100 50 0) (effects (font (size 3 3) (bold yes))))
+  (text "GC9A01 DISPLAY" (at 230 50 0) (effects (font (size 3 3) (bold yes))))
+  (text "DS3231 RTC" (at 230 130 0) (effects (font (size 3 3) (bold yes))))
+  (text "MAX30102" (at 230 210 0) (effects (font (size 3 3) (bold yes))))
+  (text "MPU6050" (at 230 290 0) (effects (font (size 3 3) (bold yes))))
+  (text "TP4056" (at 230 370 0) (effects (font (size 3 3) (bold yes))))
+
+  (text "SPI1 SCK -> GP10" (at 155 58 0) (effects (font (size 1.5 1.5))))
+  (text "SPI1 TX  -> GP11" (at 155 64 0) (effects (font (size 1.5 1.5))))
+  (text "DC       -> GP8"  (at 155 70 0) (effects (font (size 1.5 1.5))))
+  (text "CS       -> GP9"  (at 155 76 0) (effects (font (size 1.5 1.5))))
+  (text "RST      -> GP12" (at 155 82 0) (effects (font (size 1.5 1.5))))
+
+  (text "I2C0 SDA -> GP26" (at 155 138 0) (effects (font (size 1.5 1.5))))
+  (text "I2C0 SCL -> GP27" (at 155 144 0) (effects (font (size 1.5 1.5))))
+
+  (text "I2C1 SDA -> GP26" (at 155 218 0) (effects (font (size 1.5 1.5))))
+  (text "I2C1 SCL -> GP27" (at 155 224 0) (effects (font (size 1.5 1.5))))
+
+  (text "I2C SDA  -> GP26" (at 155 298 0) (effects (font (size 1.5 1.5))))
+  (text "I2C SCL  -> GP27" (at 155 304 0) (effects (font (size 1.5 1.5))))
+  (text "AD0      -> 3V3"  (at 155 310 0) (effects (font (size 1.5 1.5))))
+
+  (text "OUT+ -> VSYS" (at 155 378 0) (effects (font (size 1.5 1.5))))
+  (text "BAT+ -> LiPo+" (at 155 384 0) (effects (font (size 1.5 1.5))))
+
+  (text "BTN1 -> GP14" (at 100 340 0) (effects (font (size 1.5 1.5))))
+  (text "BTN2 -> GP15" (at 100 346 0) (effects (font (size 1.5 1.5))))
+
+  (wire (pts (xy 148 60) (xy 228 60)))
+  (wire (pts (xy 148 140) (xy 228 140)))
+  (wire (pts (xy 148 220) (xy 228 220)))
+  (wire (pts (xy 148 300) (xy 228 300)))
+  (wire (pts (xy 148 380) (xy 228 380)))
+
+  (rectangle (start 85 40) (end 148 360)
+    (stroke (width 0.5) (type solid)) (fill (type none)))
+
+  (rectangle (start 228 40) (end 320 100)
+    (stroke (width 0.5) (type solid)) (fill (type none)))
+  (rectangle (start 228 120) (end 320 160)
+    (stroke (width 0.5) (type solid)) (fill (type none)))
+  (rectangle (start 228 200) (end 320 240)
+    (stroke (width 0.5) (type solid)) (fill (type none)))
+  (rectangle (start 228 280) (end 320 320)
+    (stroke (width 0.5) (type solid)) (fill (type none)))
+  (rectangle (start 228 360) (end 320 400)
+    (stroke (width 0.5) (type solid)) (fill (type none)))
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)
