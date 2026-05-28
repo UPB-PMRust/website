@@ -179,7 +179,7 @@ The format is
 | [bmp280-rs](https://crates.io/crates/bmp280-rs) | Barometer driver | Converts raw air pressure readings |
 | [pid](https://crates.io/crates/pid) | Loop Control | It calculates thrust to stabilize the drone |
 | [micromath](https://crates.io/crates/micromath) | Advanced math library | Provides optimized math functions to calculate tilt and orientation|
-| [trouble-host]([https://crates.io/crates/ahrs](https://crates.io/crates/trouble-host)) | BLE helper| Handles BLE connections on ESP32C3 |
+| [trouble-host](https://crates.io/crates/trouble-host) | BLE helper| Handles BLE connections on ESP32C3 |
 | [cortex-m](https://crates.io/crates/cortex-m) | Cortex low-level support | Low-level CPU features on the STM32U545RE-Q |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Cortex-M runtime | Startup/interrupt |
 | [defmt](https://crates.io/crates/defmt) | Logging framwork | Structured logging from firmware |
