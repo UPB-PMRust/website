@@ -49,13 +49,19 @@ The system uses the following hardware components:
 - STM32 microcontroller  
 - Ultrasonic sensor  
 - Sound sensor  
-- 2x SG90 Servo motors  
+- 3x SG90 Servo motors  
 - OLED display  
 - Breadboard and jumper wires  
 
 ### Schematics
 
-(Add your KiCAD schematics here if available)
+#### Circuit Prototype
+
+![Circuit Prototype](./circuit.webp)
+
+#### KiCAD Schematic
+
+![KiCAD Schematic](./stm32_flower_project.svg)
 
 ### Bill of Materials
 
@@ -64,7 +70,7 @@ The system uses the following hardware components:
 | STM32 Nucleo board | Main controller | ~120 RON |
 | Ultrasonic Sensor (HC-SR04) | Distance detection | ~10 RON |
 | Sound Sensor (KY-038) | Audio input | ~5-10 RON |
-| SG90 Servo Motors (x2) | Stem movement (2 axes) | ~20 RON |
+| SG90 Servo Motors (x3) | Flower petal and stem movement | ~30 RON |
 | ⁠SSD1306 OLED Display | Visual output | ~25 RON |
 | Breadboard | Prototyping | ~20 RON |
 | Jumper wires | Connections | ~15 RON |
