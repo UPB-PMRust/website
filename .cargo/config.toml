@@ -1,0 +1,9 @@
+[target.thumbv8m.main-none-eabihf]
+runner = "probe-rs run --chip RP2350A"
+rustflags = [
+  "-C", "link-arg=--nmagic",
+  "-C", "link-arg=-Tlink.x",
+]
+
+[build]
+target = "thumbv8m.main-none-eabihf"
