@@ -55,7 +55,7 @@ The arm is built around an STM32 F446RE (NUCLEO-F446RE) as the central controlle
 
 ![System Workflow Diagram](./workflow.webp)
 
-![CAD Model](./CAD.webp)
+![CAD Model](./cad.webp)
 
 
 ### Bill of Materials
