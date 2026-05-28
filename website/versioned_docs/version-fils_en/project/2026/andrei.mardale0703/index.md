@@ -138,6 +138,7 @@ All peripheral components communicate with the microcontroller primarily over th
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Timekeeping and async delays | Timers for code expiry countdown and debouncing |
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor for embedded systems | Runs all concurrent Embassy tasks |
 | [embassy-futures](https://github.com/embassy-rs/embassy/tree/main/embassy-futures) | Utilities for async embedded futures | Selecting between async events and composing task logic |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard embedded hardware abstraction traits | Common blocking traits used by drivers and peripherals |
 | [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async embedded hardware abstraction traits | Async I2C traits used by the async drivers |
 | [embedded-storage](https://github.com/rust-embedded-community/embedded-storage) | Storage abstraction traits for embedded devices | Used for storing the master key in flash |
 | [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Embassy adapters for embedded-hal traits | Shared async I2C bus access |
