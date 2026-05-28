@@ -78,7 +78,7 @@ The project is built around the Raspberry Pi Pico 2W (RP2350) which provides GPI
 
 ### Schematics
 
-![PicoReflex Schematic](./picoflex.png)
+![PicoReflex Schematic](./picoflex.webp)
 ### Bill of Materials
 
 | Device | Usage | Price |
