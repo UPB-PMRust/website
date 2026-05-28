@@ -21,6 +21,8 @@ The smartwatch communicates with its peripherals using two standard protocols: S
 
 The project was built step-by-step: hardware assembly on breadboard → MicroPython testing to verify connections → Rust firmware development → final integration.
 
+![DIY Smartwatch Hardware](hardware.jpeg)
+
 ### Key Features
 
 - Real-time clock display read from DS3231 RTC (backed by CR2032 battery)
@@ -78,6 +80,8 @@ All components were sourced online from AliExpress, Romanian electronics shops, 
 ## 3. Hardware Connections
 
 The system uses two communication buses: SPI1 for the high-speed display, and I2C for all sensors (shared bus). Power (3.3V) is provided by the Pico 2W's onboard LDO regulator, fed by the LiPo battery via TP4056.
+
+![KiCad Schematic](schematic.png)
 
 ### 3.1 Display — GC9A01 (SPI1)
 
