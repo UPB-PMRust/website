@@ -1,0 +1,24 @@
+[package]
+name = "wav-player-pico2w"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+embassy-rp = { version = "0.10", features = [
+    "rp235xa",                  # Correct for Pico 2W
+    "time-driver",
+    "critical-section-impl",
+] }
+
+embassy-executor = { version = "0.7", features = ["task-arena-size-32768", "arch-cortex-m", "executor-thread"] }
+embassy-time = { version = "0.4", features = ["defmt"] }
+embassy-sync = "0.6"
+cortex-m-rt = "0.7"
+
+defmt = "1.0"
+defmt-rtt = "1.0"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+embedded-hal-bus = "0.2"
+embedded-sdmmc = "0.8"
+heapless = "0.8"
