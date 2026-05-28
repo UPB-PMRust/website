@@ -111,7 +111,7 @@ Still waiting for my buck converter in order to start testing.
 
 # Hardware
 
----
+![Schematics](./selfbalancingrobot.svg)
 
 # Bill of Materials
 

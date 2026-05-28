@@ -12,7 +12,7 @@ A 4WD smart robotic rover powered by an STM32 Nucleo board, featuring mecanum wh
 
 The goal of this project is to build a 4WD smart robotic rover powered by an STM32 Nucleo board. The core software logic will be organized as a simple state machine, transitioning smoothly between the AUTONOMOUS_FORWARD, AUTONOMOUS_AVOID, MANUAL_CONTROL, SMART_REVERSE, LATERAL_PARKING, and STANDBY states based on sensor inputs, Wi-Fi commands, or physical hardware interrupts.
 
-The car operates in two primary modes: an autonomous mode where it navigates independently using a front-facing ultrasonic sensor to detect and avoid obstacles, and a manual mode where it is piloted remotely. Thanks to the upgraded 4WD mecanum wheels, the rover is capable of omnidirectional movement, allowing for advanced maneuvers such as lateral parking. 
+The car operates in two primary modes: an autonomous mode where it navigates independently using a front-facing ultrasonic sensor to detect and avoid obstacles, and a manual mode where it is piloted remotely. Thanks to the upgraded 4WD mecanum wheels, the rover is capable of omnidirectional movement, allowing for advanced maneuvers such as lateral parking. 
 
 For teleoperation, an ESP8266 module acts as a Wi-Fi bridge, allowing the user to control the rover's movements remotely. Additionally, the rover features an acoustic parking assist. When reversing, a rear-facing ultrasonic sensor continuously monitors the distance to obstacles behind the car, triggering a passive buzzer to beep faster as it approaches a wall. The user can switch between autonomous and manual modes via the Wi-Fi app, or by pressing the physical blue USER button on the Nucleo board as an instant failsafe override.
 
