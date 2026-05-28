@@ -32,14 +32,18 @@ interface.
 
 ## Motivation
 
-This project was chosen to explore how embedded systems, robotics, and Rust can be combined
-into a complete, real-world application. It provides hands-on experience with controlling
-hardware components like motors and sensors while also implementing higher-level features such
-as WiFi communication and a browser-based interface. Building a fully standalone system that
-can be controlled remotely helps in understanding how modern IoT devices operate without
-external dependencies. Additionally, it offers valuable insight into debugging
-hardware-software interactions and lays the groundwork for extending the project with more
-advanced capabilities like autonomous navigation and obstacle avoidance.
+This project was chosen to explore how embedded systems, robotics, and Rust can be combined into a complete, real-world application. It provides hands-on experience with controlling hardware components like motors and sensors while also implementing higher-level features such
+as WiFi communication and a browser-based interface. Building a fully standalone system that can be controlled remotely helps in understanding how modern IoT devices operate without
+external dependencies. Additionally, it offers valuable insight into debugging hardware-software interactions and lays the groundwork for extending the project with more advanced capabilities like autonomous navigation and obstacle avoidance.
+A self-contained WiFi-enabled robotic car powered by the ESP32-C3 microcontroller. The system hosts its own wireless network, letting a phone or laptop connect directly and control the vehicle through a simple web interface. A dual-channel TB6612FNG motor driver manages the left and right motors independently, enabling forward, reverse, and turning movements.
+A time-of-flight sensor (VL53L0X) monitors distance to obstacles, while a servo motor can rotate the sensor to scan the environment. The device exposes live telemetry (movement status, distance readings, safety flags) in the browser and uses a buzzer to signal warnings such as approaching obstacles.
+The software is fully implemented in Rust and runs directly on the microcontroller, integrating motor control, networking, and real-time feedback into a compact and autonomous embedded system.
+
+## Motivation
+
+This project was chosen to explore how embedded systems, robotics, and Rust can be combined into a complete, real-world application. 
+It provides hands-on experience with controlling hardware components like motors and sensors while also implementing higher-level features such as WiFi communication and a browser-based interface. 
+Building a fully standalone system that can be controlled remotely helps in understanding how modern IoT devices operate without external dependencies. Additionally, it offers valuable insight into debugging hardware-software interactions and lays the groundwork for extending the project with more advanced capabilities like autonomous navigation and obstacle avoidance.
 
 ## Architecture 
 
@@ -107,6 +111,36 @@ Camera Stream URL
         |
         v
 Displayed inside Web Interface
+=======
+WiFi Client (Phone / Laptop)
+     |
+     | HTTP Requests
+     v
+Web Control Interface
+     |
+     v
+Control Logic (ESP32-C3)
+     |
+     +--[ GPIO ]-----------> Buzzer (Alert / Warning)
+     |
+     +--[ PWM ]------------> Servo Motor (Scan Direction)
+     |
+     +--[ GPIO + PWM ]-----> Motor Driver (TB6612FNG)
+     |                          |
+     |                          +--> DC Motor Left
+     |                          |
+     |                          +--> DC Motor Right
+     |
+     +--[ I2C ]---------------> Distance Sensor (VL53L0X)
+     |                          |
+     |                          v
+     |                    Distance Data
+     |
+     v
+Telemetry & Safety Layer
+     |
+     v
+Web Response (Real-time Status)
 ```
 
 
@@ -153,6 +187,14 @@ The hardware is built around an ESP32-WROOM development board, which acts as the
 ### Schematics
 
 ![Schematics](./car-4wd-esp32_kicad_v6.svg)
+=======
+## Hardware
+
+The hardware setup is built around the ESP32-C3 microcontroller, which acts as the main control unit and provides WiFi connectivity. A TB6612FNG motor driver is used to control two DC motors for movement (left and right). A VL53L0X time-of-flight distance sensor is connected via I2C for obstacle detection, while a servo motor is used to rotate the sensor for environmental scanning. An active buzzer provides audio feedback for alerts. The system is powered by a battery pack with a voltage regulator, and all components are connected using jumper wires on a prototyping setup.
+
+### Schematics
+
+![Schematics](./kicadcarbotc3.svg)
 
 ### Bill of Materials
 
