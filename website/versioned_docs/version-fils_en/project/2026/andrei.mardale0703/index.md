@@ -69,7 +69,7 @@ All I2C components share the same bus.
 
 The device is composed of the following physical components:
 - STM32 NUCLEO-U545RE-Q (STM32U545 MCU): serves as the main processing unit. It interfaces with all peripherals via I2C and GPIO, and provides UART and USB connectivity.
-- SSD1306 (SSD1306 OLED Display (128x64, I2C): used to display the current account label, TOTP code, and remaining validity time.
+- SSD1306 (SSD1306 OLED Display (128x64, I2C)): used to display the current account label, TOTP code, and remaining validity time.
 - DS3231 RTC (I2C): provides accurate timekeeping required for TOTP generation and maintains time across power cycles using a CR2032 backup battery.
 - AT24C256 EEPROM (I2C): external non-volatile memory used to store account data.
 - TTP223 Capacitive Touch Sensors (x2): provide user input through touch interaction, supporting short and long presses.
