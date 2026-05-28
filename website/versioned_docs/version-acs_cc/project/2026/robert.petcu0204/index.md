@@ -44,7 +44,7 @@ flowchart TB
 
     Power[9V / 3A Power Supply]
     Buck[LM2596 Buck Converter]
-    Rail[5V / 6V Servo Rail]
+    Rail[5V Servo Rail]
 
     Phone -->|Bluetooth| HC05
     HC05 -->|UART| STM32
@@ -76,7 +76,7 @@ flowchart TB
 - Researched multiple project ideas.
 - Chose the Bluetooth Nerf Turret as my project idea.
 
-### Week 7 - 20 April
+### Weeks 7 - 20 April
 
 - Researched the hardware components needed for the project.
 - Estimated the total cost of the electronic components.
@@ -85,6 +85,11 @@ flowchart TB
 ### Week 21 - 28 April
 
 - Ordered the hardware components.
+
+### Weeks 29 April - 12 May 
+
+- Tested the main hardware components individually, including the DC motor, servomotor, UART communication and the Bluetooth communication setup.
+- Connected and tested multiple components together to validate the power distribution and the interaction between the STM32 board, the servo motor and the HC-05 module.
 
 ## Hardware
 
@@ -95,12 +100,16 @@ flowchart TB
 5. Logic-level MOSFET - an electronic switch used to control the DC motors.
 6. Flyback diode - a protection diode used in the motor circuit.
 7. LM2596 buck converter - a step-down voltage regulator.
-8. External 9V / 2.5A+ power supply - the main power source for the motors and servos.
+8. External 9V / 3A power supply - the main power source for the motors and servos.
 9. 3D printed turret structure - the mechanical frame of the project.
 10. Foam darts - the projectiles launched by the turret.
 11. Wires, connectors, screws and rubber bands - assembly and connection materials.
 
 ### Schematics
+
+The following schematic shows the electrical connections between the STM32 control unit, the HC-05 Bluetooth module, the servomotors, the DC motors, the MOSFET driver and the LM2596 power converter.
+
+![Bluetooth Nerf Turret schematic](./images/newschematic.webp)
 
 ### Bill of Materials
 
