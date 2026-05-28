@@ -59,8 +59,8 @@ The system architecture revolves around the STM32 microcontroller (Nucleo board)
 ![SmartPark Schematic](./schematic.svg)
 
 ## Images of the project 
-![Image1](./proiect1.webp)
-![Image2](./proiect3.webp)
+![Image1](./image1.webp)
+![Image2](./image2.webp)
 
 ## Hardware
 The system is centered around an STM32 Nucleo MCU. For input, I am using IR proximity sensors for vehicle detection and a 4x4 Matrix Keypad for secure PIN entry. Outputs consist of an SG90 Servo Motor driven by a PWM signal to actuate the barrier, alongside Red and Green LEDs for real-time status and occupancy feedback via digital GPIO.
