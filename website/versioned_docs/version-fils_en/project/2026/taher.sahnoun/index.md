@@ -27,15 +27,50 @@ The Raspberry Pi Pico 2W acts as the central controller, coordinating all periph
  - **Async Embassy** — concurrent task handling for timers, input, display, and WiFi
  - **WiFi** — score reporting and remote leaderboard access
 
-## Log
+## Weekly Log
 
-### Week 5 - 11 May
+### Week 1 - Project Setup & Hardware Planning
+- Defined project concept: PicoReflex GP, an F1-inspired reaction-time game console
+- Selected main hardware: Pico 2W, OLED, MPU sensor, LEDs, buttons, buzzer, potentiometer, SD card module
+- Planned game modes: Classic, Survival, Tilt, Sequence, Ghost, and Race
+- Set up Rust project structure and initial embedded dependencies
 
-Decided on the project topic. Researched components needed for the Raspberry Pi Pico 2W reflex trainer. Planned the architecture and identified required libraries for Embassy-rs.
+### Week 2 - Basic Hardware Bring-up
+- Tested LEDs, buttons, buzzer, and OLED separately
+- Fixed OLED I2C timing issues using slower I2C and timing register tweaks
+- Confirmed button wiring with internal pull-ups
+- Added basic reaction-time display on OLED
 
-### Week 12 - 18 May
+### Week 3 - Core Game Modes
+- Implemented Classic mode with random LED, button input, reaction time, lives, and rounds
+- Added Survival mode with decreasing timeout
+- Added Tilt mode using MPU accelerometer directions
+- Added hearts, round display, win/lose screens, average reaction time, and buzzer feedback
 
-### Week 19 - 25 May
+### Week 4 - Difficulty & Extra Modes
+- Added potentiometer-based difficulty with three levels: Easy, Medium, Hard
+- Added Sequence mode with LED pattern memory gameplay
+- Added Ghost mode with saved best scores per difficulty
+- Added erase controls for Ghost records using mode button + game buttons
+
+### Week 5 - SD Card & Persistence
+- Tested SD card communication over SPI-style GPIO pins
+- Switched to raw SD sector storage after FAT-style writing was unreliable
+- Saved Race leaderboard, player names, run count, last score, and Ghost records
+- Verified saved data survives unplug/replug when SD wiring is stable
+
+### Week 6 - WiFi Dashboard & Race Mode
+- Added Pico 2W WiFi dashboard hosted directly from the Pico
+- Created Race mode with one fixed difficulty for fair public competition
+- Added live leaderboard with editable player names
+- Improved dashboard for phone use and reduced refresh rate to avoid overloading Pico WiFi
+
+### Week 7 - Final Polish & 3D Enclosure
+- Added 3-2-1 START countdown before games
+- Improved OLED screens with hearts, difficulty bars, Ghost best display, and small visual accent
+- Added final Ghost hard mode mixing button, tilt, and sequence challenges
+- Designed and built the 3D enclosure for the console
+- Adjusted wiring layout to fit inside the printed case and prepared final assembly for presentation
 
 ## Hardware
 
@@ -43,8 +78,7 @@ The project is built around the Raspberry Pi Pico 2W (RP2350) which provides GPI
 
 ### Schematics
 
-![PicoReflex Schematic](https://raw.githubusercontent.com/UPB-PMRust-Students/fils-project-2026-taherdaringa-maker/main/picoflex.svg)
-
+![PicoReflex Schematic](./picoflex.png)
 ### Bill of Materials
 
 | Device | Usage | Price |
