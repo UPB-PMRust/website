@@ -50,6 +50,12 @@ As such, I chose this project due to its nature and complexity, as I strongly be
 ### Week 9
 Working on the documentation.
 
+### Week 10
+Got the prints, this is tough. Broke a pin already, the tolerances were not a joke. Will use the universal repair tool, superglue. 
+
+### Week 11
+Still working at the build; it feels like a battle, and I am losing.
+
 ## Hardware
 
 The system uses **AD8232** EKG sensors, repurposed for EMG due to the high cost of specialised sensors. 
@@ -60,9 +66,19 @@ Everything is processed by an **STM32U545 Nucleo** microcontroller. **MG90S** se
 
 Generic string and elastic materials will be used for the tendons, such as fishing line for the flexors and springs for the extensors.
 
+<center>
+![Prototype](prototype.webp)
+</center>
+
+<center>
+![Hand build](hand.webp)
+</center>
+
 ### Schematics
 
-TODO
+<center>
+![Schematic](kicad.svg)
+</center>
 
 ### Bill of Materials
 
@@ -102,3 +118,4 @@ The format is
 1. [Advanced version with high-end EMG sensors](https://www.youtube.com/watch?v=KSP4o_WCqVs)
 2. [OpenBionics](https://openbionics.com/en/)
 3. [OpenBionics open-source designs](https://github.com/OpenBionics/Prosthetic-Hands)
+4. [InMoov](https://inmoov.fr/)
