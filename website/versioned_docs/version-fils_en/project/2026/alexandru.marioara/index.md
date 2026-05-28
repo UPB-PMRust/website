@@ -70,7 +70,7 @@ The core of the digital audio player is the STM32U545RE microcontroller, which h
 For the audio output, the internal DAC of the STM32 generates an 8-bit PCM raw signal. Because this signal includes a DC offset of approximately 1.6V, a 10µF electrolytic capacitor is placed in series to act as an AC coupling filter, blocking the direct current and allowing only the audio waveform to pass. The filtered, AC-coupled signal is then routed directly into the PAM8403 Class-D audio amplifier for playback.
 
 For the audio output, the internal DAC of the STM32 generates an 8-bit PCM raw signal. Because this signal includes a DC offset of approximately 1.6V, a 10µF electrolytic capacitor is placed in series to act as an AC coupling filter, blocking the direct current and allowing only the audio waveform to pass.
-![Hardware](./hardware.webp)
+![Hardware](./circuit.webp)
 
 ### Schematics
 ![Schematics](./kicad.svg)
