@@ -8,15 +8,15 @@ name = "smartwatch2"
 path = "src/main.rs"
 
 [dependencies]
-embassy-executor = { version = "0.5", features = ["arch-cortex-m", "executor-thread"] }
-embassy-time = { version = "0.3", features = ["tick-hz-1_000_000"] }
-embassy-rp = { version = "0.1", features = ["time-driver", "critical-section-impl", "unstable-pac"] }
+rp235x-hal = { version = "0.2", features = ["critical-section-impl", "rt"] }
+cortex-m = { version = "0.7", features = ["inline-asm"] }
+cortex-m-rt = "0.7"
 embedded-graphics = "0.8"
 embedded-graphics-core = "0.4"
 heapless = "0.8"
+embedded-hal = "1.0"
 panic-halt = "0.2"
-cortex-m = { version = "0.7", features = ["inline-asm"] }
-cortex-m-rt = "0.7"
+fugit = "0.3"
 
 [profile.dev]
 opt-level = 1
