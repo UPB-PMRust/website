@@ -223,79 +223,52 @@
 <path transform="matrix(.24,0,0,.24,0,0)" d="M1475.0899 850.03579 1160.9612 933.8677 1077.1292 619.73898 1391.2579 535.90707 1475.0899 850.03579Z"/>
 </clipPath>
 <clipPath id="clip_75">
-<path transform="matrix(.24,0,0,.24,0,0)" d="M519.8062 557.911H616.28128V654.38607H519.8062Z"/>
-</clipPath>
-<clipPath id="clip_76">
-<path transform="matrix(.24,0,0,.24,0,0)" d="M568.04379 557.911C541.4029 557.911 519.8062 579.5077 519.8062 606.14859 519.8062 632.78939 541.4029 654.38607 568.04379 654.38607 594.6846 654.38607 616.28128 632.78939 616.28128 606.14859 616.28128 579.5077 594.6846 557.911 568.04379 557.911Z"/>
-</clipPath>
-<clipPath id="clip_77">
-<path transform="matrix(.24,0,0,.24,124.56,133.68)" d="M0 0H98V98H0Z"/>
-</clipPath>
-<clipPath id="clip_78">
 <path transform="matrix(.24,0,0,.24,444.47999,191.04)" d="M0 0H133V115H0Z"/>
 </clipPath>
-<clipPath id="clip_79">
+<clipPath id="clip_76">
 <path transform="matrix(.24,0,0,.24,559.68,333.12)" d="M0 0H224V115H0Z"/>
 </clipPath>
-<clipPath id="clip_80">
-<path transform="matrix(.24,0,0,.24,222.23999,320.63999)" d="M0 0H209V115H0Z"/>
+<clipPath id="clip_77">
+<path transform="matrix(.24,0,0,.24,194.87999,320.63999)" d="M0 0H436V115H0Z"/>
 </clipPath>
-<clipPath id="clip_81">
+<clipPath id="clip_78">
 <path transform="matrix(.24,0,0,.24,0,0)" d="M2702.791 80.075908H3138.6197V700.48086H2702.791Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_82">
+<clipPath id="clip_79">
 <path transform="matrix(.24,0,0,.24,648.48,19.199999)" d="M0 0H437V621H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_83">
+<clipPath id="clip_80">
 <path transform="matrix(.24,0,0,.24,0,0)" d="M2747.5277 109.507808H3093.8836V646.4048H2747.5277Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_84">
+<clipPath id="clip_81">
 <path transform="matrix(.24,0,0,.24,659.27999,26.16)" d="M0 0H347V538H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_85">
+<clipPath id="clip_82">
 <path transform="matrix(.24,0,0,.24,664.56,50.64)" d="M0 0H305V334H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_86">
+<clipPath id="clip_83">
 <path transform="matrix(.24,0,0,.24,724.56,206.15999)" d="M0 0H122V88H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_87">
+<clipPath id="clip_84">
 <path transform="matrix(.24,0,0,.24,438.24,396.47999)" d="M0 0H176V244H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_88">
+<clipPath id="clip_85">
 <path transform="matrix(.24,0,0,.24,559.44,385.19999)" d="M0 0H225V114H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_89">
+<clipPath id="clip_86">
 <path transform="matrix(.24,0,0,.24,293.04,120.479999)" d="M0 0H267V230H0Z" clip-rule="evenodd"/>
 </clipPath>
-<clipPath id="clip_90">
-<path transform="matrix(.24,0,0,.24,0,0)" d="M638.4209 557.911H734.89596V654.38607H638.4209Z"/>
-</clipPath>
-<clipPath id="clip_91">
-<path transform="matrix(.24,0,0,.24,0,0)" d="M686.65847 557.911C660.0176 557.911 638.4209 579.5077 638.4209 606.14859 638.4209 632.78939 660.0176 654.38607 686.65847 654.38607 713.29928 654.38607 734.89596 632.78939 734.89596 606.14859 734.89596 579.5077 713.29928 557.911 686.65847 557.911Z"/>
-</clipPath>
-<clipPath id="clip_92">
-<path transform="matrix(.24,0,0,.24,153.12,133.68)" d="M0 0H97V98H0Z"/>
-</clipPath>
-<clipPath id="clip_93">
-<path transform="matrix(.24,0,0,.24,0,0)" d="M756.7792 557.911H853.2542V654.38607H756.7792Z"/>
-</clipPath>
-<clipPath id="clip_94">
-<path transform="matrix(.24,0,0,.24,0,0)" d="M805.0167 557.911C778.37588 557.911 756.7792 579.5077 756.7792 606.14859 756.7792 632.78939 778.37588 654.38607 805.0167 654.38607 831.65756 654.38607 853.2542 632.78939 853.2542 606.14859 853.2542 579.5077 831.65756 557.911 805.0167 557.911Z"/>
-</clipPath>
-<clipPath id="clip_95">
-<path transform="matrix(.24,0,0,.24,181.44,133.68)" d="M0 0H98V98H0Z"/>
-</clipPath>
-<clipPath id="clip_96">
+<clipPath id="clip_87">
 <path transform="matrix(.24,0,0,.24,0,0)" d="M875.1375 557.911H971.61257V654.38607H875.1375Z"/>
 </clipPath>
-<clipPath id="clip_97">
+<clipPath id="clip_88">
 <path transform="matrix(.24,0,0,.24,0,0)" d="M923.37509 557.911C896.7342 557.911 875.1375 579.5077 875.1375 606.14859 875.1375 632.78939 896.7342 654.38607 923.37509 654.38607 950.01589 654.38607 971.61257 632.78939 971.61257 606.14859 971.61257 579.5077 950.01589 557.911 923.37509 557.911Z"/>
 </clipPath>
-<clipPath id="clip_98">
+<clipPath id="clip_89">
 <path transform="matrix(.24,0,0,.24,210,133.68)" d="M0 0H97V98H0Z"/>
 </clipPath>
-<clipPath id="clip_99">
-<path transform="matrix(.24,0,0,.24,156.23999,100.079998)" d="M0 0H205V115H0Z"/>
+<clipPath id="clip_90">
+<path transform="matrix(.24,0,0,.24,198.23999,100.799999)" d="M0 0H163V115H0Z"/>
 </clipPath>
 </defs>
 <g>
@@ -490,7 +463,7 @@
 </g>
 </g>
 <g clip-path="url(#clip_67)">
-<text fill="#b7fcff" xml:space="preserve" transform="matrix(.7502827 0 0 .7502827 82.4541 178.45294)" font-size="18.66" font-family="Canva Sans"><tspan y="47" x="43.015626 59.877305 73.72374 85.71184">MG90</tspan></text>
+<text fill="#b7fcff" xml:space="preserve" transform="matrix(.7502827 0 0 .7502827 82.4541 178.45294)" font-size="18.66" font-family="Canva Sans"><tspan y="47" x="38.359376 55.221055 69.06749 81.05559 94.155048">MG90s</tspan></text>
 <text fill="#b7fcff" xml:space="preserve" transform="matrix(.7502827 0 0 .7502827 82.4541 178.45294)" font-size="18.66" font-family="Canva Sans"><tspan y="73" x="44.96875 56.38295 67.09572 74.85701 85.31467">Servo</tspan></text>
 </g>
 <g clip-path="url(#clip_68)">
@@ -513,46 +486,37 @@
 </g>
 </g>
 </g>
+<g>
 <g clip-path="url(#clip_75)">
-<g clip-path="url(#clip_76)">
-<g>
-<g clip-path="url(#clip_77)">
-<path transform="matrix(.09044537,0,0,.09044537,124.75349,133.89864)" d="M0 0H256V256H0Z" fill="#fffc00"/>
-</g>
-</g>
-</g>
-</g>
-<g>
-<g clip-path="url(#clip_78)">
 <text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 444.56095 191.01343)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="0 47.42389 97.86841">SPI</tspan></text>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_79)">
+<g clip-path="url(#clip_76)">
 <text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 557.07626 333.08988)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="11.046875 67.9857 121.79068 172.7638">UART</tspan></text>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_80)">
-<text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 191.9732 320.55784)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="118.640628 169.08515 241.35372">PWM</tspan></text>
+<g clip-path="url(#clip_77)">
+<text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 191.97319 320.55784)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="12.46875 71.484317 93.91249 137.22078 159.64896 192.00746 235.91988 259.85838 278.09544 338.2437 386.4228">Digital Out</tspan></text>
 </g>
 </g>
-<g clip-path="url(#clip_81)">
+<g clip-path="url(#clip_78)">
 <g>
-<g clip-path="url(#clip_82)">
+<g clip-path="url(#clip_79)">
 <path transform="matrix(.40858943,0,0,.40858943,648.6698,19.218216)" d="M0 0H256V364H0Z"/>
 </g>
 </g>
 </g>
-<g clip-path="url(#clip_83)">
+<g clip-path="url(#clip_80)">
 <g>
-<g clip-path="url(#clip_84)">
+<g clip-path="url(#clip_81)">
 <path transform="matrix(.32470874,0,0,.32470874,659.4066,26.281874)" d="M0 0H256V397H0Z" fill="#b4b4b4"/>
 </g>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_85)">
+<g clip-path="url(#clip_82)">
 <text xml:space="preserve" transform="matrix(.18630973 0 0 .18630973 662.6494 50.466615)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="132.57813 186.57189 231.2772">BLE</tspan></text>
 <text xml:space="preserve" transform="matrix(.18630973 0 0 .18630973 662.6494 50.466615)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="192" x="11.078125 65.222919 113.62851 162.10962 194.46813 226.03369 274.43928 298.37779 322.31629 367.58796">Controller</tspan></text>
 <text xml:space="preserve" transform="matrix(.18630973 0 0 .18630973 662.6494 50.466615)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="300" x="84.8125 135.25702 184.04019 232.44579 281.22895">Phone</tspan></text>
@@ -560,58 +524,40 @@
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_86)">
+<g clip-path="url(#clip_83)">
 <text xml:space="preserve" transform="matrix(.19662881 0 0 .19662881 716.7164 206.12857)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="41.703126 95.696887 140.4022">BLE</tspan></text>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_87)">
+<g clip-path="url(#clip_84)">
 <text xml:space="preserve" transform="matrix(.18146163 0 0 .18146163 432.8865 396.3721)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="48.9375 99.38202 171.65059">PWM</tspan></text>
 <text xml:space="preserve" transform="matrix(.18146163 0 0 .18146163 432.8865 396.3721)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="192" x="30.34375 76.10629 101.40407 172.65319 213.39394">TIM14</tspan></text>
 <text xml:space="preserve" transform="matrix(.18146163 0 0 .18146163 432.8865 396.3721)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="300" x="68.03125 122.17604 183.0795">CH1</tspan></text>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_88)">
+<g clip-path="url(#clip_85)">
 <text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 557.07626 385.09025)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="10.9375 64.74248 123.75804 177.90283">ADC1</tspan></text>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_89)">
+<g clip-path="url(#clip_86)">
 <text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 284.29603 120.355648)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="35.53125 94.546817 116.97499 160.28328 182.71146 215.06996 258.98237">Digital</tspan></text>
 <text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 284.29603 120.355648)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="192" x="88.890628 149.03893 197.21797">Out</tspan></text>
 </g>
 </g>
-<g clip-path="url(#clip_90)">
-<g clip-path="url(#clip_91)">
+<g clip-path="url(#clip_87)">
+<g clip-path="url(#clip_88)">
 <g>
-<g clip-path="url(#clip_92)">
-<path transform="matrix(.09044537,0,0,.09044537,153.22101,133.89864)" d="M0 0H256V256H0Z" fill="#fffc00"/>
-</g>
-</g>
-</g>
-</g>
-<g clip-path="url(#clip_93)">
-<g clip-path="url(#clip_94)">
-<g>
-<g clip-path="url(#clip_95)">
-<path transform="matrix(.09044537,0,0,.09044537,181.627,133.89864)" d="M0 0H256V256H0Z" fill="#fffc00"/>
-</g>
-</g>
-</g>
-</g>
-<g clip-path="url(#clip_96)">
-<g clip-path="url(#clip_97)">
-<g>
-<g clip-path="url(#clip_98)">
+<g clip-path="url(#clip_89)">
 <path transform="matrix(.09044537,0,0,.09044537,210.033,133.89864)" d="M0 0H256V256H0Z" fill="#fffc00"/>
 </g>
 </g>
 </g>
 </g>
 <g>
-<g clip-path="url(#clip_99)">
-<text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 139.87557 99.98585)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="64.4375 109.14282 156.60448 215.62004">LEDs</tspan></text>
+<g clip-path="url(#clip_90)">
+<text xml:space="preserve" transform="matrix(.25664673 0 0 .25664673 176.96219 100.780048)" font-size="77.33" font-family="Canva Sans" font-weight="bold"><tspan y="84" x="83.640628 128.34595 175.8076">LED</tspan></text>
 </g>
 </g>
 </g>
