@@ -80,11 +80,19 @@ The device is powered by two series-connected 18650 lithium-ion cells (~7.4V com
 
 All peripheral components communicate with the microcontroller primarily over the shared I2C bus.
 
-### Hardware photos
+### Hardware photos (initial)
 
 ![Hardware Photo 1](photo_1.webp)
 
 ![Hardware Photo 2](photo_2.webp)
+
+### Hardware photos (final)
+
+![Final Hardware Photo Front](hardware_v2_front.webp)
+
+![Final Hardware Photo Back](hardware_v2_back.webp)
+
+![Example of working TOTP generation](demo.webp)
 
 ### Schematics
 
