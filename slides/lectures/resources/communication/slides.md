@@ -53,7 +53,7 @@ safely share data between tasks
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="../executor/isr_executor.svg" class="rounded">
 </div>
 
@@ -65,7 +65,7 @@ safely share data between tasks
 
 # Blocking Mutex
 
-no `.await` allowed while the mutex is held
+no `.await` allowed while the Blocking Mutex is held
 
 ```rust{1|3-5|7-14|10-14|all}
 use embassy_sync::blocking_mutex::Mutex;
@@ -88,7 +88,7 @@ async fn task1() {
 ---
 
 # Async Mutex
-`.await` is allowed while the Mutex is held, it will release the Mutex while `await`ing
+`.await` is allowed while the Mutex is held
 
 ```rust{1|3-5|7-14|10-14|all}
 use embassy_sync::mutex::Mutex;

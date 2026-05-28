@@ -7,6 +7,7 @@ ARM: MPU, RISC-V: PMP
 ---
 layout: two-cols
 ---
+
 # Memory Protection
 
 <style>
