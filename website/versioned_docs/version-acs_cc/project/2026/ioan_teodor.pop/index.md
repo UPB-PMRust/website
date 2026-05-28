@@ -15,8 +15,7 @@ BayPanel is an embedded device that fits into a standard 2.5" HDD bay slot of a 
 
 ## Motivation
 
-I wanted a permanent, always-on control panel for my desktop that doesn't depend on the PC being awake — something physical that sits in the case itself. Existing software solutions require the OS to be running. By putting the management logic on a microcontroller with its own Ethernet connection, the panel stays functional for Wake-on-LAN even when the PC is off, and the display shows status without needing the host to render anything. It also gave me a good reason to work with Ethernet, async networking, and SPI displays in embedded Rust.
-
+I wanted a permanent, always-on control panel for my desktop that doesn't depend on the PC being awake — something physical that sits in the case itself. Existing software solutions require the OS to be running. By putting the management logic on a microcontroller with its own Ethernet connection, the panel stays functional for Wake-on-LAN even when the PC is off, and the display shows status without needing the host to render anything. 
 ## Architecture
 
 ![Architecture Diagram](./images/architecture.webp)
@@ -28,17 +27,42 @@ I wanted a permanent, always-on control panel for my desktop that doesn't depend
 Finalized project idea, chose components, and had the theme approved. Ordered W5500 module and ILI9341 display. Drafted the architecture and started reading embassy-net documentation.
 
 ### Week 5 - 11 May
+Connected the modules, and ran some tests on them. Also did schematics, cleared some issues with connections,
+tested and moved every submodule into it's own spi channel( display - spi1, touch - spi2, w5500 - spi3).
 
 ### Week 12 - 18 May
+Ran a full round of hardware bring-up tests on the board: ADC + PWM sanity check (joystick on PA0 driving a PWM channel on PB10), W5500 SPI diagnostics, NTP time sync over UDP, and touch/refresh-rate sweeps on the ILI9341. Once the I/O was stable, i started development on the OTP web server
 
 ### Week 19 - 25 May
 
+Switched the display to a new layout that shows CPU temperature, CPU / RAM / GPU usage as live bars plus the host IP, instead of the previous text-only stats screen.
+
+Wrote a small Rust agent that runs on the host PC (`telemetry-host`) and pushes telemetry to the Nucleo over UDP on port 9000. It reads CPU temp from `/sys/class/thermal`, CPU usage from `/proc/stat`, RAM from `/proc/meminfo`, and auto-detects the GPU usage source (NVIDIA via `nvidia-smi`, AMD via `gpu_busy_percent`, Intel via `gt_act_freq_mhz`). The same agent also listens on UDP 9001 for commands coming back from the board — it handles `SHUTDOWN` (tries `systemctl poweroff`, `loginctl poweroff`, `shutdown -h now`, `sudo shutdown` in order) and runs any other payload as a shell command via `sh -c`.
+
+On the board, finished a web management server (`wol_web`) on port 80 with TOTP authentication.
+After login you get a page where you set the target MAC address for Wake-on-LAN, fire the magic packet to the broadcast address on UDP/9, and send arbitrary shell commands to the host agent — the board forwards them over UDP/9001 to `telemetry-host`, which executes them with `sh -c`. The live telemetry coming from the host is also rendered on the page next to the WoL controls, with a small weather box.
+
+[Demo: WOL working](https://drive.google.com/file/d/1UOepdDAg94WhN73oBUqqC3or3rJajF9G/view?usp=sharing)
+
 ## Hardware
 
+ILI 9341 Display with touch - display info and buttons for controlling PC
+
+W5500 - connecting to LAN for sendind WOL magic packets and also communicating with PC after turn-on
+
+![Hardware wiring](./images/hardware.webp)
+
+### Housing
+
+I added a 3D-printed housing for the display. I started from the [Housing display 3.2 inch TFT LCD display module ILI9341](https://www.printables.com/model/1435870-housing-display-32-inch-tft-lcd-display-module-ili) model and modified it to fit the Nucleo board and to add a hole for the Ethernet connector.
+
+![Final assembly front](./images/final1.webp)
+
+![Final assembly angle](./images/final2.webp)
 
 ### Schematics
 
-To be added at Hardware Milestone (Week 11).
+![Architecture Diagram](./images/schematics.webp)
 
 ### Bill of Materials
 
@@ -68,4 +92,5 @@ To be added at Hardware Milestone (Week 11).
 
 ## Links
 
-1. [link](https://example.com)
+1. [Housing display 3.2 inch TFT LCD display module ILI9341](https://www.printables.com/model/1435870-housing-display-32-inch-tft-lcd-display-module-ili) — base model for the 3D-printed housing
+2. [Demo: WOL working](https://drive.google.com/file/d/1UOepdDAg94WhN73oBUqqC3or3rJajF9G/view?usp=sharing) — test of Wake-on-LAN powering on the PC

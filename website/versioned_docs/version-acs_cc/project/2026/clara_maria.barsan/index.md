@@ -47,20 +47,27 @@ The architecture of this custom 3D printer controller is designed as a standalon
 <!-- write your progress here every week -->
 
 ### Weeks 23 March - 12 April
-Chose the project idea, researched components, and ordered hardware.
+Chose the project idea, researched components, and ordered the hardware.
 
-### Week 13 - 26 April
+### Weeks 13 - 26 April
 Assembled the frame and the Y axis.
 
-### Week 27 April - 10 May
+### Weeks 27 April - 10 May
 Finished the Z axis and parts of the X axis.
 
 ### Week 11 - 17 May
 Structured and organized the hardware schematic in EasyEDA and soldered the physical hardware components using a soldering iron.
 
+### Week 18 - 24 May
+Installed all remaining hardware components, then developed and tested the firmware.
+
 ## Hardware
 
 This custom 3D printer utilizes an STM32 Nucleo-U545RE-Q microcontroller as the core processing unit. The motion system features NEMA 17 stepper motors driven by ultra-silent TMC2209 modules, with axis limits detected by reliable SS-5GL2 mechanical endstops. Thermal actuation for the MK3 heated bed and MK8 extruder is safely managed by optoisolated external MOSFETs and continuously monitored by NTC 100k thermistors. To ensure signal integrity, the system employs a dual-isolated power architecture—a 5V power bank for logic circuits and a 24V 20A PSU for high-current loads. The entire setup operates independently of a PC using an SPI Micro SD Card module, with all custom signal routing soldered onto a double-sided FR4 prototype PCB.
+
+![Hardware](hardware.webp)
+![Front_side](front_side.webp)
+![Back_side](back_side.webp)
 
 ### Schematics
 
@@ -97,13 +104,28 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [defmt](https://github.com/knurling-rs/defmt) | Efficient deferred formatting framework for microcontrollers | Used for low-overhead logging (info!, warn!, trace!) and formatting custom errors (SdError) |
+| [defmt_rtt](https://github.com/knurling-rs/defmt) | Debugging backends | Transmits defmt logs over the debug probe |
+| [panic_probe](https://github.com/knurling-rs/probe-run/tree/main) | Panic handler | Cleanly handles hardware panics/crashes and exits the debugging session with an error code |
+| [embassy-stm32](https://github.com/embassy-rs/embassy/tree/main/embassy-stm32) | Hardware Abstraction Layer (HAL) for STM32 microcontrollers | Provides the hardware drivers for the SPI bus (Spi), GPIO pins (Output), and blocking modes |
+| [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Time and delay abstractions for the Embassy framework | Provides the Delay implementation required by the SD card initialization process |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard hardware abstraction (HAL) traits for Rust embedded systems | Provides the Pwm trait required to control the duty cycle and enable the heater signals (Hotend and Bed) |
+| [embedded-hal-bus](https://github.com/rust-embedded/embedded-hal) | Bus sharing and management utilities for embedded-hal | Provides ExclusiveDevice to manage the SPI Chip Select (CS) pin automatically during transactions |
+| [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | SD/MMC card driver and FAT16/FAT32 file system implementation | Used to initialize the physical SD card, manage volumes, read directories, and read files |
+| [core](https://github.com/rust-lang/rust/tree/main/library/core) | The dependency-free foundation of the Rust standard library | Used for primitive types (&[u8], f32), Option, and basic slice manipulation without requiring dynamic memory allocation (no heap/alloc) |
+| [libm](https://github.com/rust-lang/libm) | A port of MUSL's math library to pure Rust | Provides essential mathematical functions (like natural logarithm logf) for no_std environments, as microcontrollers lack the standard library's math features |
+| [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async runtime for embedded systems | Allows multiple tasks (e.g., heating and printing) to run concurrently on a single CPU core without an OS |
+| [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Synchronization primitives | Provides the async Mutex used to safely share target temperatures between tasks without data races |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Low level access to Cortex-M processors | Required by the runtime to handle critical sections, interrupts, and low-level CPU operations specific to the ARM architecture |
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
-...
+1. [Idea](https://www.youtube.com/watch?v=og1506q67mo)
+2. [Printer Hardware](https://www.youtube.com/watch?v=hORwhyP58FE&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=7)
+3. [X-Axis Components Installation](https://www.youtube.com/watch?v=MgbjTq3Q-bI&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=2)
+4. [Y-Axis Components Installation](https://www.youtube.com/watch?v=nEHKKb_pfoc&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=3)
+5. [Z-Axis Components Installation](https://www.youtube.com/watch?v=MSuzXK-uvY8&list=PLyYZUiBHD1QjaYx7eCEW8zXvsgwEbAykY&index=4)
+6. [Extruder Assembly Mount](https://www.youtube.com/watch?v=hxFhZji7b7E)

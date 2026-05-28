@@ -36,6 +36,12 @@ These are the current KiCAD diagrams for the project depicting the power distrib
 ![KiCAD diagram first](./kicad__karaoke.webp)
 
 
+These are the current KiCAD diagrams for the project depicting the power distribution and the different protocols used for communication inbetween the STM32 board and the separate peripherals (The motor driver & encoder combos, the IMU, the joystick control, the screen and an additional vibration motor)
+
+![KiCAD diagram first](./kicad_first.svg)
+
+![KiCAD diagram second](./kicad_second.svg)
+
 ## Main components:
 
 ## Log
