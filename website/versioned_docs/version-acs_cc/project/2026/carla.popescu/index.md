@@ -1,4 +1,5 @@
 # Smart Access Control System
+A laser-based intrusion detection system.
 
 :::info
 
@@ -13,7 +14,7 @@ A laser-based smart access control system built on the Nucleo-STM32U545RE-Q boar
 
 ## Motivation
 
-I was inspired by a YouTube video of an analog laser alarm circuit and wanted to recreate it in a more modern, complex, and functional way using embedded Rust. The project gave me the opportunity to explore real-time embedded programming with Rust and Embassy, while building something visually striking for a live presentation. Unlike a simple PIR motion sensor, the laser beam creates a clear, visible security barrier that makes the demo immediately understandable and impressive. The added RFID access control layer transforms a simple alarm into a complete, realistic security system.
+I was inspired by a YouTube video of an analog laser alarm circuit and wanted to recreate it in a more modern, complex, and functional way using embedded Rust. The project gave me the opportunity to explore real-time embedded programming with Rust and Embassy, while building something that has real practical value — a low-cost security system suitable for protecting small spaces such as rooms, drawers, or storage areas. Unlike a simple PIR motion sensor, the laser beam creates a clear, visible security barrier that makes the system easy to understand and deploy. The added RFID access control layer transforms a simple alarm into a complete, realistic security system.
 
 ## Architecture
 
@@ -36,10 +37,26 @@ The system operates as a state machine with the following states:
 ## Log
 
 ### Week 5 - 11 May
+Gathered all the necessary components and set up the development environment 
+(Rust + Embassy). Started with the basic hardware setup: connected the laser 
+module and LDR to the breadboard and verified the ADC readings. Implemented 
+the software baseline calibration for the LDR.
+
+![Early hardware setup](images/week1.webp)
 
 ### Week 12 - 18 May
+Integrated the SSD1306 OLED display over I2C and the RC522 RFID module over 
+SPI. Implemented the access control logic: admin card recognition, grace 
+period, and wrong attempt counter. Connected the buzzer via PWM.
+
+![OLED displaying startup message](images/week2.webp)
+![Full system on breadboard](images/week2_2.webp)
 
 ### Week 19 - 25 May
+Finalized and tested all components together. Assembled everything into a box 
+for the presentation. The laser beam, alarm, RFID access control, and OLED 
+display all work correctly together.
+
 
 ## Hardware
 
@@ -49,7 +66,7 @@ The system operates as a state machine with the following states:
 | KY-008 Laser Module | 1 | Emits the laser beam (650nm, 5V) |
 | LDR Photoresistor (5528) | 1 | Detects laser beam interruption via ADC |
 | RC522 RFID Module | 1 | Reads MIFARE cards via SPI |
-| MIFARE Classic 1K Cards | 5 | 1 admin + 3 users + 1 invalid test card |
+| MIFARE Classic 1K Cards | 2 | 1 admin + 1 invalid test card |
 | SSD1306 OLED Display (0.96") | 1 | Displays system status via I2C |
 | Active Buzzer (5V) | 1 | Sounds the alarm |
 | BC547 NPN Transistor | 1 | Drives the buzzer from 3.3V GPIO |
@@ -63,6 +80,8 @@ The system operates as a state machine with the following states:
 | Jumper wires (M-M, M-F) | ~50 | Connections |
 
 ## Schematics
+
+![Schematic](images/schematic.webp)
 
 ## Bill of Materials
 
@@ -94,7 +113,7 @@ The system operates as a state machine with the following states:
 | [embassy-time](https://docs.embassy.dev) | Async timers | Grace period timing, debounce |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware Abstraction Layer | Portable hardware interface traits |
 | [ssd1306](https://crates.io/crates/ssd1306) | OLED display driver | Rendering text and status messages |
-| [mfrc522](https://crates.io/crates/mfrc522) | RFID driver | Reading MIFARE Classic 1K card UIDs |
+| rc522 (custom driver) | Custom RC522 SPI driver | Reading MIFARE Classic 1K card UIDs via SPI |
 | [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library | Text rendering on OLED display |
 
 ## Links
