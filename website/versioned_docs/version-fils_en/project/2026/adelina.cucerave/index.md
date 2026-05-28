@@ -92,6 +92,11 @@ By building a system that gives instant feedback through lights and sounds, user
 
 ### Week 13:
 - Started writing the skeleton of the code, haven't yet figured how to upload it to the private github page
+- Realised one piezo might be broken, no time to replace it
+- Rest of the pieces I needed arrived
+
+### Week 14:
+- Piezo sensors and LED rings work (sort of), there is still a lot of optimization to be done
 
 ## Hardware
 
@@ -164,6 +169,12 @@ The format is
 | [heapless](https://github.com/rust-embedded/heapless) | Memory-efficient data structures | Storing high scores or last hits without using dynamic memory. |
 | [panic-probe](https://github.com/knurling-rs/probe-run) | Panic handler | Error debugging. |
 **TBC
+
+## Software Description
+
+For the software architecture, I chose to implement an event-driven system using the embassy-rs asynchronous framework. This allows the STM32 microcontroller to handle multiple tasks concurrently without blocking. Rather than relying on shared global variables (can lead to memory safety issues and tight coupling) the system uses "message passing". Independent tasks communicate exclusively by sending data through strictly typed asynchronous channels. Because of this, for ex if the TFT display takes a few milliseconds to draw a frame, it never blocks the sensing tasks from instantly registering a new physical hit.
+
+The system is strictly divided into three modular layers: Input, Logic, and Output. The Input layer acts as the sensory node; dedicated tasks continuously sample raw ADC values from the piezoelectric sensors, filter out electrical noise, and fire clean "HitEvents" into the system's channels. The Logic layer serves as the central brain, where the main game task listens for these events, evaluates them against the timing and scoring rules, and dispatches commands. Finally, the Output layer acts as the hardware translator. Dedicated peripheral tasks sit idle until commanded, utilizing Direct Memory Access (DMA) and SPI to blast complex visual data to the WS2812 LED rings and the ST7735 screen without taxing the main processor. This approach ensures that the hardware remains completely independent from the core game logic.
 
 ## Links
 
