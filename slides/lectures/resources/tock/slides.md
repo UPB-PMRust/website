@@ -97,6 +97,7 @@ flowchart LR
 ---
 layout: two-cols
 ---
+
 # Tock Binary Format
 stores
 
@@ -104,17 +105,18 @@ stores
 - the **binary code** and **data**
 - **credential** footers
 
-<img src="./tbf.svg" class="rounded" />
+<img src="./tbf.svg" class="rounded" style="background: white; padding: 5px" />
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px">
   <img src="./tbf-tlv.svg" class="w-87 rounded" />
 </div>
 
 ---
 layout: two-cols
 ---
+
 # Memory Layout
 for the RP2040
 
@@ -138,11 +140,12 @@ for the RP2040
 
 :: right ::
 
-<img src="./tock-layout.svg" class="w-64 rounded" />
+<img src="./tock-layout.svg" class="w-64 rounded" style="background: white; padding: 5px" />
 
 ---
 layout: two-cols
 ---
+
 # Memory Layout
 for the RP2040 at runtime
 
@@ -165,7 +168,7 @@ Applications are **not allowed** to access the **kernel's memory** or **the peri
 
 :: right ::
 
-<img src="./tock-layout-runtime.svg" class="w-80 rounded" />
+<img src="./tock-layout-runtime.svg" class="w-80 rounded" style="background: white; padding: 5px" />
 
 ---
 ---
@@ -363,6 +366,7 @@ in the app's folder and open the .lst file.
 ---
 layout: two-cols
 ---
+
 # System Calls
 
 0. Yield
@@ -376,7 +380,7 @@ layout: two-cols
 
 :: right ::
 
-<img src="./syscall_pattern.svg" class="rounded" />
+<img src="./syscall_pattern.svg" class="rounded" style="background: white; padding: 5px" />
 
 ---
 ---
@@ -512,7 +516,6 @@ void upcall(int arg1, int arg2, int arg3, void* userdata)
 </div>
 
 ---
----
 
 # 0: Yield
 
@@ -520,85 +523,29 @@ Yield transitions the current process from the Running to the Yielded state.
 
 ```rust
 // waits for the next upcall
-// The process will not execute again until another upcall re-schedules the
-// process.
+// The process will not execute again until another upcall re-schedules the process.
 yield()
 
 // does not wait for the next upcall
-// If a process has no enqueued upcalls, the
-// process immediately re-enters the Running state.
-yield_no_wait()
+// If a process has no enqueued upcalls, the process immediately re-enters the Running state.
+yield_no_wait() -> u32
+
+// waits for a specific upcall
+yield_wait_for(driver_num: u32, subscribe_num: u32) -> YieldWaitForReturn
 ```
 
 ## Return
 
 *yield*: None
 
-*yield_no_wait*:
-  - 1 - *upcall* ran
-  - 0 - there was no queued *upcall* function to execute
+*yield_no_wait*: (`1` - *upcall* ran, `0` - there was no queued *upcall* function to execute)
+
+*yield_wait_for*: three `u32` values, the callback's arguments
 
 ---
 layout: two-cols
 ---
-# Scheduler
-using command, subscribe and yield
 
-<div align="center">
-<img src="./scheduler.svg" class="w-110 rounded" />
-how the scheduler works
-</div>
-
-:: right ::
-
-<div align="center">
-<img src="./system_call.svg" class="w-100 rounded" />
-how drivers work
-</div>
-
----
----
-
-# 3 and 4: AllowRead(Write/Only)
-
-Allow shares memory buffers between the kernel and application.
-
-```rust {*}{lines: false}
-allow_readwrite(driver: u32, allow_number: u32, pointer: usize, size: u32) -> Result<ReadWriteAppSlice, (ReadWriteAppSlice, ErrorCode)>
-allow_readonly(driver: u32, allow_number: u32, pointer: usize, size: u32) -> Result<ReadWriteAppSlice, (ReadWriteAppSlice, ErrorCode)>
-```
-
-<div grid="~ cols-2 gap-3">
-
-<div>
-
-**Arguments**
-
- - `driver`: integer specifying which driver to use
- - `allow_number`: driver-specific integer specifying the purpose of this
-   buffer
- - `pointer`: pointer to the buffer in the process memory space
-   - null pointer revokes a previously shared buffer
- - `size`: the length of the buffer
-
-</div>
-
-<div>
-
-**Return**
-- The previous allowed buffer or NULL
-- Errors
-   - `NODEVICE` if `driver` does not refer to a valid kernel driver.
-   - `NOSUPPORT` if the driver exists but doesn't support the `allow_number`.
-   - `INVAL` the buffer referred to by `pointer` and `size` lies completely or
-partially outside of the processes addressable RAM.
-
-</div>
-</div>
-
----
-layout: two-cols
----
 # System Call Pattern
 
 <v-clicks>
@@ -615,4 +562,4 @@ layout: two-cols
 
 :: right ::
 
-<img src="./syscall_pattern.svg" class="rounded" />
+<img src="./syscall_pattern.svg" class="rounded" style="background: white; padding: 5px" />
