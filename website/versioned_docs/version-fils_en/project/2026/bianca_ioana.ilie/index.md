@@ -1,10 +1,10 @@
-# Project Name
+# Aura Cube
 An interactive, IoT-enabled smart cube that is inspired by the classic Magic 8-Ball.
 
 :::info
 
 **Author**: Ilie Bianca-Ioana \
-**GitHub Project Link**: https://github.com/UPB-PMRust/fils-project-2026-biancaioana-ilie
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-biancaioana-ilie
 
 :::
 
@@ -20,7 +20,7 @@ I chose this project because it is a highly interactive and fun way to explore e
 ## Architecture 
 
 The architecture is built around a single System-on-Chip that handles both peripheral control and networking.
-![Aura Cube Architecture Schematic](./architecture_auracube.svg)
+![Aura Cube Architecture Schematic](./architecture.webp)
 
 The Central Controller -> Raspberry Pi Pico 2W
 This is the core of the project. It acts as the central hub that processes all incoming sensor data, manages the power states, drives the display and LEDs, and handles the wireless internet connection.
@@ -47,10 +47,7 @@ The Power Management System
 This isolates the raw battery from the sensitive microcontroller to ensure safe operation.
 
 - Batteries: 
-The raw, mobile energy source for the cube.
-
-- TP4056 with Protection: 
-Acts as the middleman. It takes the Battery Power safely in, handles recharging and protects the battery from over-discharging, and outputs a steady line of System Power to run the Pico.
+The raw, mobile energy source for the cube. 3 AA Alcaline batteries connected in series which will send 4.5V to the Microcontroller.
 
 The External Network
 - ZenQuotes API: 
@@ -60,11 +57,13 @@ A remote web server. The Pico uses its onboard Wi-Fi chip to reach out to the in
 ## Log
 
 
-### Week 5 - 11 May
+### Week 7 - 10 April
 
 After my project was approved, I finalized the component list. Initially I was using an STM32 and an ESP32, but after receiving advice from my tutors, I decided to switch to a Raspberry Pi Pico 2W. I ordered everything, and began studying each component. I conducted a few experiments with the components to both test their functionality and learn more through practical exercises.
 
 ### Week 12 - 18 May
+
+The KiCAD schematic is completed, featuring an upgraded design with dual 74HC595 shift registers. Both the code and the physical assembly development are currently underway. Furthermore, I've started taking the necessary measurements for the 3D modeling of the cube's exterior design. 
 
 ### Week 19 - 25 May
 
@@ -74,11 +73,11 @@ The hardware setup centers around a Raspberry Pi Pico 2W, which serves as the ma
 
 To display the output, an OLED screen is wired to the Pico 2W. The OLED display, along with the motion and light sensors, communicate with the microcontroller. The system uses the ambient lux data from the BH1750 to dynamically adjust the OLED's display mode (dark or light contrast) based on the room's current lighting conditions.
 
-Because the cube is a standalone IoT device, it is powered by rechargable batteries rather than a constant USB connection. To ensure stable operation and safe recharging, a TP4056 charging board with built-in protection is utilized.
+Because the cube is a standalone IoT device, it is powered by batteries rather than a constant USB connection.
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic](./schematic.webp)
 
 ### Bill of Materials
 
@@ -89,8 +88,8 @@ Place your KiCAD or similar schematics here in SVG format.
 | [BH1750 Digital Light Sensor](https://www.optimusdigital.ro/en/sensors-light/bh1750-digital-light-sensor.html) | Ambient light sensing for display mode | 13 RON |
 | [0.96" SSD1306 (128x64) I2C](https://www.optimusdigital.ro/en/displays-oled/096-oled-display.html) | Displaying the quotes | 20 RON |
 | 5mm Clear Blue & Purple LEDs | Visual "thinking" feedback | 5 RON |
-| 3.7V 1000mAh LiPo Battery | Mobile power supply | 20 RON |
-| TP4056 with Protection | Battery charging board | 10 RON |
+| 3xAA Alcaline Batteries | Mobile power supply | 20 RON |
+| 74HC595 | IC | 5 RON |
 | Resistors (220 ohm), Wires, Breadboard | Basic electronic prototyping | 30 RON |
 
 
@@ -110,3 +109,4 @@ Place your KiCAD or similar schematics here in SVG format.
 1. [ZenQuotes API](https://zenquotes.io/)
 2. [Embassy Framework Documentation](https://embassy.dev/)
 3. [Raspberry Pi Pico W Rust Guide](https://reltech.substack.com/p/getting-started-with-rust-on-a-raspberry)
+4. [Guide to Embedded Rust Programming on Raspberry Pi Pico 2 (RP2350)](https://pico.implrust.com/pico2-pinout.html)
