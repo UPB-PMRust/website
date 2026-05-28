@@ -43,6 +43,7 @@ The hardware setup includes an STM32 for motor and sensor control, an ESP32 for 
 ### Schematics
 
 /Users/ddmihai/Documents/website/website/versioned_docs/version-fils_en/project/2026/david.deaconescu/imagine.webp
+
 /Users/ddmihai/Documents/website/website/versioned_docs/version-fils_en/project/2026/david.deaconescu/kicad.webp
 ### Bill of Materials
 
