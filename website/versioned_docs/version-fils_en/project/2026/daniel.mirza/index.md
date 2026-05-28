@@ -17,8 +17,8 @@ Each player places a fleet of 5 ships on a 10×10 grid, then takes turns firing 
 
 The game features three special mechanics, each usable once per game:
 
-- **Sonar Scan**: hold the action button for 3 seconds to reveal a 3×3 area of the enemy grid for 2 seconds
-- **Airstrike**: double-press the action button to instantly sink an entire enemy ship
+- **Sonar Scan**: hold the action button for 1.5 seconds to reveal a 3×3 area of the enemy grid for 1 second
+- **Airstrike**: double-press the action button within a 300 ms window to instantly sink an entire enemy ship
 - **Ferris Repair**: named after Ferris the Rust mascot — fully repair a damaged ship and move it to a new position
 
 The entire game logic is written as a `no_std` Rust library (`game-core`) that compiles for both the real MCU and a desktop simulator built with `embedded-graphics-simulator`.
@@ -136,7 +136,21 @@ graph TD
 
 ### Week 12 - 13
 
-- _to be continued..._
+- Sent the PCB files for production to JLCPCB
+- Updated the KiCAD images for the web documentation page
+- PCB files sent to JLCPCB for production
+- Implemented the full simulator game loop `main.rs` with two-player local split-screen
+- Built `display.rs` which renders both player panels, grids, ships,  hit/miss markers, specials
+- Implemented `input.rs` with keyboard-to-InputEvent mapping with timing logic
+- Implemented `fake_network.rs` to simulate the NRF24L01+ link between two players as in-process channel pair
+- Wired all three special abilities end-to-end in the simulator: Sonar Scan, Airstrike, and Ferris Repair
+- Fixed numerous game logic bugs across `game-core` (placement validation, cursor and key press behavior, view toggle, Ferris Repair, Airstrike, Sonar Scan, radar sync, game states)
+- Playtested full games including all specials, edge cases, and win conditions
+- Still waiting for the PCB to arrive
+
+### Week 14
+
+- Finally received the longwaited PCB
 
 ## Hardware
 
