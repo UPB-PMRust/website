@@ -55,6 +55,8 @@ Gathered all the hardware, proceed to create first prototypes. Replace the IRF-3
 
 Changed SSD1306 screen for 1602A 5V. Made the shell of the machine.
 
+![Shell] (Shell.webp)
+
 ## Hardware
 
 The system is built around the ESP32-C6 SuperMini microcontroller, which manages all inputs and outputs over GPIO, PWM (LEDC), and I2C. Two food-grade plastic containers (1–2L) serve as the water and coffee powder tanks, each mounted above the dispensing point to allow gravity-fed flow.
