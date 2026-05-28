@@ -33,10 +33,10 @@ iCEE recieves, remodels signals and output power through a multi-layered async a
     * **Acoustic Mapper**: Calculates precision timing for the 6 buzzers based on engine firing orders.
 3.  **Output Layer**:
     * **Audio Synthesis**: High-frequency digital pulses sent to 6 buzzers to mimic cylinder explosions.
-    * **Visual Feedback**: Real-time rendering of telemetry and power plots on the TFT screen via SPI.
-    * **Power Simulation**: DC Motor speed control via PWM.
+    * **Visual Feedback**: Menu and current gear on the TFT screen via SPI, LED Visuals for the "exhaust".
+    * **Power Simulation**: DC Motor speed control & servo steering via PWM.
 
-![Architecture Schematic](./MA2.svg)
+![Architecture Schematic](./ma2.svg)
 
 ## Log
 
@@ -44,13 +44,16 @@ iCEE recieves, remodels signals and output power through a multi-layered async a
 
 ### Week 5 - 11 May
 
-Assembled everything on the breadboard, created an unpolished software variant, set up the bluetooth connection.
+Assembled everything on the breadboard, created an unpolished software variant, set up the bluetooth connection. 
 
 ### Week 12 - 18 May
 
-Assembled the components on proto-boards, added more bluetooth funcionalities, started working on the chasis
+Assembled and soldiered the components on proto-boards, added more bluetooth funcionalities, started working on the chasis and on the custom sound PCB. Found an old used power bank, done all the computations to make sure it can sustain the entire system without making it crash. I have also soldiered and tested the custom sound PCB.
 
 ### Week 19 - 25 May
+
+I took all the measurements of the components, placed them in an optimised way on the chasis not to be too overcrowded and easily accessible in case something needs replacement or repair. Used the old power bank using the two USB power channels, one for the stm and all the digital components, the other one for the inductive components (Servo + the driver with the motors). I have used both the channels because a high spike in current draw could reset the STM32 Nucleo board. In this way, the motors draw current from a different cell.
+
 
 ## Hardware
 
@@ -58,11 +61,13 @@ Built around the STM32 Nucleo G0B1RE, iCEE uses an array of six passive buzzers 
 
 ### Photos
 
-![First Hardware Prototype (One Motor, 4 Buzzers)](./MA3.webp)
+![First Hardware Prototype (One Motor, 4 Buzzers)](./ma3.webp)
+![First Hardware Prototype (One Motor, 4 Buzzers)](./ma4.webp)
+![First Hardware Prototype (One Motor, 4 Buzzers)](./ma5.webp)
 
 ### Schematics
 
-![iCEE System Schematic](./MA.svg)
+![iCEE System Schematic](./ma5.svg)
 
 ### Bill of Materials
 
@@ -78,18 +83,18 @@ The format is
 
 | Device | Usage | Price |
 |--------|-------|-------|
-| [STM32 Nucleo G0B1RE](https://www.st.com/en/evaluation-tools/nucleo-g0b1re.html) | The main microcontroller unit | [120 RON](https://ardushop.ro/ro/plci-de-dezvoltare/2411-stmicroelectronics-nucleo-g0b1re-6427854012296.html) |
-| [JDY-18 BLE Module](https://ardushop.ro/ro/comunicatie/2018-modul-bluetooth-42-jdy-18-6427854030764.html) | Wireless communication with phone app | [22 RON](https://ardushop.ro/ro/comunicatie/2018-modul-bluetooth-42-jdy-18-6427854030764.html) |
+| [STM32 Nucleo G0B1RE](https://www.st.com/en/evaluation-tools/nucleo-g0b1re.html) | The main microcontroller unit | [120.00 RON](https://ardushop.ro/ro/plci-de-dezvoltare/2411-stmicroelectronics-nucleo-g0b1re-6427854012296.html) |
+| [JDY-18 BLE Module](https://ardushop.ro/ro/comunicatie/2018-modul-bluetooth-42-jdy-18-6427854030764.html) | Wireless communication with phone app | [22.00 RON](https://ardushop.ro/ro/comunicatie/2018-modul-bluetooth-42-jdy-18-6427854030764.html) |
 | [ST7735 1.8" TFT Display](https://ardushop.ro/ro/electronica/2124-modul-lcd-spi-128x160-6427854032546.html) | Real-time telemetry and menu interface | [24.5 RON](https://ardushop.ro/ro/electronica/2124-modul-lcd-spi-128x160-6427854032546.html) |
 | [ACS712 Current Sensor (5A)](https://ardushop.ro/ro/electronica/345-556-modul-senzor-curent-5a-20a-30a.html#/106-amperaj_maxim-5a) | Motor load monitoring for dynamic RPM | [13.30 RON](https://ardushop.ro/ro/electronica/345-556-modul-senzor-curent-5a-20a-30a.html#/106-amperaj_maxim-5a) |
-| [Custom PCB 6 Buzzers Module & Current Amplifier]() | (Developed using KiCAD) Cylinder sound synthesis | [150 RON]() |
-| [6x NPN Transistors](https://ardushop.ro/ro/circuite-integrate/374-599-tranzistor-to92-npn-pnp-alege-modelul.html#/214-valoare_tranzistor-2n2222) | Used for the cusotm PCB | [5 RON](https://ardushop.ro/ro/circuite-integrate/374-599-tranzistor-to92-npn-pnp-alege-modelul.html#/214-valoare_tranzistor-2n2222) |
-| [4x LEDs](https://ardushop.ro/ro/led-uri/293-471-led-5mm.html#/5-culoare-galben) | Visual Synthesis | [5 RON](https://ardushop.ro/ro/led-uri/293-471-led-5mm.html#/5-culoare-galben) |
-| [Resistors](https://ardushop.ro/ro/componente-discrete/1444-set-rezistori-1-4w-600buc-30-valori-10r-1m-6427854021199.html) | Resistors for the Custom PCB + Spares | [14 RON](https://ardushop.ro/ro/componente-discrete/1444-set-rezistori-1-4w-600buc-30-valori-10r-1m-6427854021199.html) |
+| [Custom PCB 6 Buzzers Module & Current Amplifier]() | (Developed using KiCAD) Cylinder sound synthesis | [150.00 RON]() |
+| [6x NPN Transistors](https://ardushop.ro/ro/circuite-integrate/374-599-tranzistor-to92-npn-pnp-alege-modelul.html#/214-valoare_tranzistor-2n2222) | Used for the cusotm PCB | [5.00 RON](https://ardushop.ro/ro/circuite-integrate/374-599-tranzistor-to92-npn-pnp-alege-modelul.html#/214-valoare_tranzistor-2n2222) |
+| [4x LEDs](https://ardushop.ro/ro/led-uri/293-471-led-5mm.html#/5-culoare-galben) | Visual Synthesis | [5.00 RON](https://ardushop.ro/ro/led-uri/293-471-led-5mm.html#/5-culoare-galben) |
+| [Resistors](https://ardushop.ro/ro/componente-discrete/1444-set-rezistori-1-4w-600buc-30-valori-10r-1m-6427854021199.html) | Resistors for the Custom PCB + Spares | [14.00 RON](https://ardushop.ro/ro/componente-discrete/1444-set-rezistori-1-4w-600buc-30-valori-10r-1m-6427854021199.html) |
 | [TB6612FNG Motor Driver](https://ardushop.ro/ro/motoare-si-drivere/517-modul-diver-de-motoare-dual-tb6612fng-6427854006028.html) | DC Motor power management | [26.45 RON](https://ardushop.ro/ro/motoare-si-drivere/517-modul-diver-de-motoare-dual-tb6612fng-6427854006028.html) |
 | [2x DC Motor 3-6V](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html) | Drivetrain powertrain simulation | [7.20 RON](https://ardushop.ro/ro/electronica/752-motor-dc-3v-6v-cu-reductor-1-48-6427854009609.html) |
 | [MG90S Servo](https://sigmanortec.ro/servomotor-mg90s-angrenaje-aluminiu?SubmitCurrency=1&id_currency=2&srsltid=AfmBOopUyBd_iW5poJ3Q4mwor-S4SfekIXNHqTUcPEHa6mvhV8qMQUNfjog) | Steering System | [20.00 RON](https://sigmanortec.ro/servomotor-mg90s-angrenaje-aluminiu?SubmitCurrency=1&id_currency=2&srsltid=AfmBOopUyBd_iW5poJ3Q4mwor-S4SfekIXNHqTUcPEHa6mvhV8qMQUNfjog) |
-| [3x Proto Board](https://ardushop.ro/ro/breadboards-pcb-expansions/1413-placa-pcb-prototipare-fata-dubla-5x7-6427854020703.html) | Steering System | [12.00 RON](https://ardushop.ro/ro/breadboards-pcb-expansions/1413-placa-pcb-prototipare-fata-dubla-5x7-6427854020703.html) |
+| [3x Proto Board](https://ardushop.ro/ro/breadboards-pcb-expansions/1413-placa-pcb-prototipare-fata-dubla-5x7-6427854020703.html) | Auxiliary PCBs | [12.00 RON](https://ardushop.ro/ro/breadboards-pcb-expansions/1413-placa-pcb-prototipare-fata-dubla-5x7-6427854020703.html) |
 
 
 
