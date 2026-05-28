@@ -19,23 +19,23 @@ for this section
 2. **Paul Denisowski**, *[Understanding I2C](https://www.youtube.com/watch?v=CAvawEcxoPU)*
 
 ---
----
+
 # I2C
 a.k.a *I square C*
 
 - Used for communication between integrated circuits
 - Sensors usually expose an *SPI* and an *I2C* interface
 - Two device types:
-  - *controller* (master) - initiates the communication (usually MCU)
-  - *target* (slave) - receive and transmit data when the *controller* requests (usually the sensor)
+  - *controller* (ex _master_) - initiates the communication (usually MCU)
+  - *target* (ex _slave_) - receive and transmit data when the *controller* requests (usually the sensor)
 
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./i2c_network.svg" class="rounded w-120">
 </div>
 
 ---
----
+
 # Wires & Addresses
 
 - *SDA* - **S**erial **DA**ta line - carries data from the **controller** to the **target** or from the **target** to the **controller**
@@ -54,7 +54,7 @@ a.k.a *I square C*
 <img src="./i2c_example.svg" class="rounded w-12f0">
 </div>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./i2c_network.svg" class="rounded w-120">
 </div>
 
