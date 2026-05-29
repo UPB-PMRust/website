@@ -1,0 +1,45 @@
+<svg width="900" height="500" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="black"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="white"/>
+
+  <text x="450" y="45" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold">
+    Smart Parking Sensor Architecture
+  </text>
+
+  <rect x="70" y="190" width="190" height="90" rx="15" fill="white" stroke="black" stroke-width="3"/>
+  <text x="165" y="225" text-anchor="middle" font-family="Arial" font-size="22">Ultrasonic</text>
+  <text x="165" y="255" text-anchor="middle" font-family="Arial" font-size="22">Sensor</text>
+
+  <rect x="355" y="175" width="200" height="120" rx="15" fill="white" stroke="black" stroke-width="3"/>
+  <text x="455" y="225" text-anchor="middle" font-family="Arial" font-size="24">STM32</text>
+  <text x="455" y="255" text-anchor="middle" font-family="Arial" font-size="24">Board</text>
+
+  <rect x="690" y="95" width="160" height="80" rx="15" fill="white" stroke="black" stroke-width="3"/>
+  <text x="770" y="143" text-anchor="middle" font-family="Arial" font-size="24">LEDs</text>
+
+  <rect x="690" y="235" width="160" height="80" rx="15" fill="white" stroke="black" stroke-width="3"/>
+  <text x="770" y="283" text-anchor="middle" font-family="Arial" font-size="24">Buzzer</text>
+
+  <rect x="690" y="365" width="160" height="80" rx="15" fill="white" stroke="black" stroke-width="3"/>
+  <text x="770" y="413" text-anchor="middle" font-family="Arial" font-size="24">User</text>
+
+  <line x1="260" y1="235" x2="355" y2="235" stroke="black" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="307" y="215" text-anchor="middle" font-family="Arial" font-size="16">Echo time</text>
+
+  <line x1="555" y1="215" x2="690" y2="135" stroke="black" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="625" y="160" text-anchor="middle" font-family="Arial" font-size="16">Visual feedback</text>
+
+  <line x1="555" y1="255" x2="690" y2="275" stroke="black" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="620" y="295" text-anchor="middle" font-family="Arial" font-size="16">Audio feedback</text>
+
+  <line x1="770" y1="315" x2="770" y2="365" stroke="black" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="820" y="345" text-anchor="middle" font-family="Arial" font-size="16">Warning</text>
+
+  <path d="M455 295 L455 390 L165 390 L165 280" fill="none" stroke="black" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="310" y="415" text-anchor="middle" font-family="Arial" font-size="16">Trigger pulse</text>
+</svg>
