@@ -1,43 +1,43 @@
-# Ali coffee
-Coffee vending machine with drinks selection options, based on ESP-32-C6 chip.
+# Ali lemon
+lemonade vending machine with drinks selection options, based on ESP-32-C6 chip.
 
 :::info
 
 **Author:** Artem Lebedev (group 1221EB, FILS) \
-**GitHub Project Link:** [Ali coffee](https://github.com/UPB-PMRust-Students/fils-project-2026-artemlebedev)
+**GitHub Project Link:** [Ali lemonade](https://github.com/UPB-PMRust-Students/fils-project-2026-artemlebedev)
 
 :::
 
 ## Description
 
-This project is a coffee vending machine capable of creating a variety of coffee drinks using a gravity- and time-based dispenser of hot water and instant coffee. To implement this idea, we'll use a solenoid valve for the water tank, a servo motor with a flap for the coffee container, drink selection buttons, and a host of additional features: an LCD screen displaying the brewing process and water level, a buzzer to notify when the coffee is ready, and a float sensor to indicate when the water level is low. At the core of all these devices will be an ESP32-C6 chip; the enclosure will be a wooden T-shaped structure.
+This project is a lemonade vending machine capable of creating a variety of lemonade drinks using a gravity- and time-based dispenser of hot water and instant lemonade. To implement this idea, we'll use a solenoid valve for the water tank, a servo motor with a flap for the lemonade container, drink selection buttons, and a host of additional features: an LCD screen displaying the brewing process and water level, a buzzer to notify when the lemonade is ready, and a float sensor to indicate when the water level is low. At the core of all these devices will be an ESP32-C6 chip; the enclosure will be a wooden T-shaped structure.
 
 ## Motivation
 
-My desire to build a coffee machine, rather than any other device, is easy to explain – I'm a big fan of this aromatic drink, and if I'm going to do anything, it's going to be something I personally wouldn't shy away from using. Of course, my design is a far cry from a professional coffee machine, but at the same time, I think it will provide worthy competition to the machines dotted around campus.
+My desire to build a lemonade machine, rather than any other device, is easy to explain – I'm a big fan of this aromatic drink, and if I'm going to do anything, it's going to be something I personally wouldn't shy away from using. Of course, my design is a far cry from a professional lemonade machine, but at the same time, I think it will provide worthy competition to the machines dotted around campus.
 
 ## Architecture
 
 The system is organized into three functional layers:
 
 **Input Layer**
-- Three tactile push buttons select the drink mode: Espresso, Double Espresso, or Americano.
+- Three tactile push buttons select the drink mode: Standard, Extra Sweet, or Not-so-sweet.
 - A float switch liquid level sensor monitors the water tank and signals when it is empty.
 
 **Control Layer**
 - The ESP32-C6 SuperMini runs the main async task loop via Embassy.
-- On button press, a mode-specific timing profile is selected, and serving coffee and water for the correct duration starts.
+- On button press, a mode-specific timing profile is selected, and serving sugar with lemon acid and water for the correct duration starts.
 - The water sensor is polled continuously; if the tank is empty, dispensing is blocked and the display shows a warning.
 
 **Output Layer**
-- A 12V solenoid valve (normally closed) controls water flow from the tank to the cup, driven by an IRF540N MOSFET with a 100Ω gate resistor.
-- A servo motor (SG90) opens and closes a mechanical gate on the coffee powder container.
+- A 12V solenoid valve (normally closed) controls water flow from the tank to the cup, driven by an DL-4184 MOSFET module gate resistor.
+- A servo motor (SG90) opens and closes a mechanical gate on the sugar/acid powder container.
 - An SSD1306 OLED display (0.96", I2C) shows brewing status and warnings.
 
 All components share a common ground. The 12V rail powers the solenoid valve and is supplied by an external 12V 2A DC adapter. The ESP32-C6 is powered via USB.
 
 ## Diagram
-![Ali_coffee_schematics](ali_coffee_schematics.webp)
+![Ali_lemon_schematics](ali_lemon_schematics.webp)
 
 ## Log
 
@@ -55,15 +55,15 @@ Gathered all the hardware, proceed to create first prototypes. Replace the IRF-3
 
 Changed SSD1306 screen for 1602A 5V. Made the shell of the machine.
 
-![Shell] (Shell.webp)
+![Shell](Shell.webp)
 
 ## Hardware
 
-The system is built around the ESP32-C6 SuperMini microcontroller, which manages all inputs and outputs over GPIO, PWM (LEDC), and I2C. Two food-grade plastic containers (1–2L) serve as the water and coffee powder tanks, each mounted above the dispensing point to allow gravity-fed flow.
+The system is built around the ESP32-C6 SuperMini microcontroller, which manages all inputs and outputs over GPIO, PWM (LEDC), and I2C. Two food-grade plastic containers (1–2L) serve as the water and lemonade powder tanks, each mounted above the dispensing point to allow gravity-fed flow.
 
 Water flow is controlled by a 12V normally-closed solenoid valve. When the ESP32-C6 pulls the MOSFET gate high, the valve opens and hot water flows through a silicone tube into the cup. The MOSFET (IRF540N) is connected with a 100Ω resistor on the gate to limit switching transients.
 
-Coffee powder is dispensed through a mechanical gate controlled by the SG90 servo. At rest, the gate is closed. When activated, the servo rotates 90° to open the gate, powder falls by gravity, and the servo returns to close it after the timed duration.
+Lemonade powder is dispensed through a mechanical gate controlled by the SG90 servo. At rest, the gate is closed. When activated, the servo rotates 90° to open the gate, powder falls by gravity, and the servo returns to close it after the timed duration.
 
 ### Pin Connections
 
@@ -88,7 +88,7 @@ Coffee powder is dispensed through a mechanical gate controlled by the SG90 serv
 | GND | Common ground | All GND rails |
 
 ### Schematics
-![KiCAD schematics](coffee_machine.svg)
+![KiCAD schematics](lemonade_machine.svg)
 
 ## Bill of Materials
 
@@ -99,11 +99,11 @@ Coffee powder is dispensed through a mechanical gate controlled by the SG90 serv
 | IRF3205PBF MOSFET | Solenoid valve driver | 6 RON |
 | DL-4184 MOSFET module | Solenoid valve driver | 6 RON |
 | Resistor 1KΩ and 10KΩ | 1 RON |
-| Servo SG90 | Coffee powder gate control | 13.5 RON |
+| Servo SG90 | Lemonade powder gate control | 13.5 RON |
 | OLED SSD1306 0.96" I2C | Status display | 15 RON |
 | A1602 screen | Status display | 10 RON |
 | Float Switch Liquid Level Sensor | Water tank monitoring | 30 RON |
-| Food-grade plastic container 1–2L (×2) | Water and coffee powder tanks | 30 RON |
+| Food-grade plastic container 1–2L (×2) | Water and lemonade powder tanks | 30 RON |
 | Silicone tube (thermoresistant) | Water delivery from tank to cup | 25 RON |
 | Silicone hermetic | Water delivery from tank to cup | 35 RON |
 | Tactile push buttons (×3) | Mode selection | 5 RON |
