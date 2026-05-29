@@ -17,7 +17,7 @@ I chose this project because it combines precise motor control, real-time data a
 
 ## Architecture
 
-![System Architecture Diagram](./schematic.svg)
+![System Architecture Diagram](./schematic.webp)
 
 Main software and system components:
 - **Scanning Module**: reads distance from VL53L0X via I2C (or generates mock ghost-room data when the sensor is unavailable) and steps the motor via GPIO in a strict ping-pong sweep.
