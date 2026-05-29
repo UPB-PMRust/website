@@ -104,6 +104,6 @@ The project is built entirely in Rust (no_std) utilizing the asynchronous Embass
 
 ## Links
 1. [Rust Embassy Documentation](https://embassy.dev/)
-2. [Embedded Graphics](docs.rs/embedded-graphics/latest/embedded_graphics/)
-3. [Crates.io - Storage](crates.io/crates/embedded-sdmmc)
+2. [Embedded Graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+3. [Crates.io - Storage](https://crates.io/crates/embedded-sdmmc)
 4. [Reading .WAV files](https://www.youtube.com/watch?v=5F6Y1Ttpg-A)
