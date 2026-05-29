@@ -143,7 +143,7 @@ It's not a real parser, but it works because the JSON is always well-formed and 
 
 **A note on intellectual property:** Although this is a faculty project, I retain all intellectual property rights to it since it was built on my own, without any university funding or resources. The code and designs are public here on GitHub, but I made this because I think it's genuinely cool, and I'd love to develop it into a real product one day.
 
-**Acknowledgements:** Thanks to Alacrity Education, the organization I founded with other students, for supporting me in all steps of this journey and helping me stay (almost) sane this semester <3.
+**Acknowledgements:** Thanks to Alacrity Education, the organization I founded with other students, for supporting me in all steps of this journey and helping me stay (almost) sane this semester.
 
 ## Links
 
