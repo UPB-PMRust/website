@@ -73,7 +73,7 @@ use eight_bit_processor::print;
 
 static hello: &str = "Hello World!";
 
-#[start]
+#[entry]
 fn start() {
     print(hello);
 }
