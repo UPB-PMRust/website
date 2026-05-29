@@ -1,9 +1,12 @@
 # Physical Music Blocks for Teaching Algorithmic Thinking PoC
 A physical programming interface allowing visually impaired children to learn algorithmic thinking by composing music using magnetic blocks.
 
+:::info 
 
 **Author**: Iris-Alexandra Vavilov \
 **GitHub Project Link**: [link_to_github](https://github.com/UPB-PMRust-Students/fils-project-2026-unirisel)
+
+:::
 
 ## Description
 
