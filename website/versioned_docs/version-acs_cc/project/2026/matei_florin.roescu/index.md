@@ -34,6 +34,7 @@ Main Components:
 Created documentation and bill of materials
 
 ### Week 5 - 11 May
+Created Schematic and assembled breadboard and hardware components
 
 ### Week 12 - 18 May
 
@@ -51,7 +52,7 @@ Hardware used:
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic](ping_pong.svg)
 
 ### Bill of Materials
 

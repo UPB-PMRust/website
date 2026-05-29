@@ -1,0 +1,100 @@
+<svg width="520" height="740" viewBox="0 0 520 740" xmlns="http://www.w3.org/2000/svg">
+  <title>Software Flow – Automated Drink Dispenser</title>
+  <rect width="520" height="740" fill="#ffffff"/>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#444441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- START -->
+  <ellipse cx="260" cy="40" rx="80" ry="24" fill="#534AB7" stroke="#26215C" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff" x="260" y="45" text-anchor="middle" dominant-baseline="central">START / Reset</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="64" x2="260" y2="94" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- STATE: IDLE -->
+  <rect x="155" y="94" width="210" height="50" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="13" font-weight="500" fill="#042C53" x="260" y="113" text-anchor="middle" dominant-baseline="central">Stare: IDLE</text>
+  <text font-family="sans-serif" font-size="11" fill="#0C447C" x="260" y="131" text-anchor="middle" dominant-baseline="central">Afișează meniu pe OLED</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="144" x2="260" y2="174" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- DECISION: Encoder rotit? -->
+  <polygon points="260,174 370,214 260,254 150,214" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="12" font-weight="500" fill="#633806" x="260" y="208" text-anchor="middle" dominant-baseline="central">Encoder rotit?</text>
+  <text font-family="sans-serif" font-size="11" fill="#633806" x="260" y="224" text-anchor="middle" dominant-baseline="central">(IRQ GPIO)</text>
+
+  <!-- NO → loop back left -->
+  <line x1="150" y1="214" x2="100" y2="214" stroke="#444441" stroke-width="1.5"/>
+  <line x1="100" y1="214" x2="100" y2="119" stroke="#444441" stroke-width="1.5"/>
+  <line x1="100" y1="119" x2="155" y2="119" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text font-family="sans-serif" font-size="11" fill="#444441" x="88" y="210" text-anchor="middle">Nu</text>
+
+  <!-- YES arrow down -->
+  <line x1="260" y1="254" x2="260" y2="284" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text font-family="sans-serif" font-size="11" fill="#444441" x="272" y="272">Da</text>
+
+  <!-- STATE: SELECTING -->
+  <rect x="145" y="284" width="230" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="13" font-weight="500" fill="#04342C" x="260" y="303" text-anchor="middle" dominant-baseline="central">Stare: SELECTING</text>
+  <text font-family="sans-serif" font-size="11" fill="#085041" x="260" y="321" text-anchor="middle" dominant-baseline="central">Ajustează cantitate (ml) pe OLED</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="334" x2="260" y2="364" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- DECISION: Buton apăsat? -->
+  <polygon points="260,364 380,404 260,444 140,404" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="12" font-weight="500" fill="#633806" x="260" y="398" text-anchor="middle" dominant-baseline="central">Buton apăsat?</text>
+  <text font-family="sans-serif" font-size="11" fill="#633806" x="260" y="414" text-anchor="middle" dominant-baseline="central">(SW GPIO)</text>
+
+  <!-- NO → loop back -->
+  <line x1="140" y1="404" x2="90" y2="404" stroke="#444441" stroke-width="1.5"/>
+  <line x1="90" y1="404" x2="90" y2="309" stroke="#444441" stroke-width="1.5"/>
+  <line x1="90" y1="309" x2="145" y2="309" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text font-family="sans-serif" font-size="11" fill="#444441" x="78" y="400" text-anchor="middle">Nu</text>
+
+  <!-- YES arrow down -->
+  <line x1="260" y1="444" x2="260" y2="474" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text font-family="sans-serif" font-size="11" fill="#444441" x="272" y="462">Da</text>
+
+  <!-- ACTION: Citește tara -->
+  <rect x="145" y="474" width="230" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="13" font-weight="500" fill="#26215C" x="260" y="493" text-anchor="middle" dominant-baseline="central">Citește TARA (HX711)</text>
+  <text font-family="sans-serif" font-size="11" fill="#3C3489" x="260" y="511" text-anchor="middle" dominant-baseline="central">Target = Tara + Cantitate</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="524" x2="260" y2="554" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- STATE: POURING -->
+  <rect x="145" y="554" width="230" height="64" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="13" font-weight="500" fill="#4A1B0C" x="260" y="572" text-anchor="middle" dominant-baseline="central">Stare: POURING</text>
+  <text font-family="sans-serif" font-size="11" fill="#712B13" x="260" y="589" text-anchor="middle" dominant-baseline="central">Pompă ON (GPIO HIGH)</text>
+  <text font-family="sans-serif" font-size="11" fill="#712B13" x="260" y="606" text-anchor="middle" dominant-baseline="central">Citire continuă HX711 + OLED</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="618" x2="260" y2="648" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- DECISION: Greutate >= Target? -->
+  <polygon points="260,648 400,680 260,712 120,680" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="12" font-weight="500" fill="#633806" x="260" y="674" text-anchor="middle" dominant-baseline="central">Greutate ≥ Target?</text>
+  <text font-family="sans-serif" font-size="11" fill="#633806" x="260" y="690" text-anchor="middle" dominant-baseline="central">(HX711 task async)</text>
+
+  <!-- NO → loop back to POURING -->
+  <line x1="120" y1="680" x2="70" y2="680" stroke="#444441" stroke-width="1.5"/>
+  <line x1="70" y1="680" x2="70" y2="586" stroke="#444441" stroke-width="1.5"/>
+  <line x1="70" y1="586" x2="145" y2="586" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text font-family="sans-serif" font-size="11" fill="#444441" x="58" y="676" text-anchor="middle">Nu</text>
+
+  <!-- YES → DONE -->
+  <line x1="400" y1="680" x2="450" y2="680" stroke="#444441" stroke-width="1.5"/>
+  <line x1="450" y1="680" x2="450" y2="719" stroke="#444441" stroke-width="1.5"/>
+  <line x1="450" y1="719" x2="360" y2="719" stroke="#444441" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text font-family="sans-serif" font-size="11" fill="#444441" x="432" y="673">Da</text>
+
+  <!-- STATE: DONE -->
+  <ellipse cx="260" cy="719" rx="95" ry="18" fill="#534AB7" stroke="#26215C" stroke-width="1"/>
+  <text font-family="sans-serif" font-size="13" font-weight="500" fill="#ffffff" x="260" y="724" text-anchor="middle" dominant-baseline="central">DONE → Pompă OFF → Reset</text>
+</svg>

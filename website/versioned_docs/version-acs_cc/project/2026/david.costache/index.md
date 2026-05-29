@@ -2,7 +2,7 @@
 A multi-sensor fresh fruit quality analyzer with data fusion from 4 physical domains
 
 **Author**: Costache David \
-**GitHub Project Link** : [Github](https://github.com/costache-david/VERIT-SCAN)
+**GitHub Project Link**: [Github](https://github.com/UPB-PMRust-Students/acs-project-2026-david08mihai)
 
 ## Description
 VERIT-SCAN is a non-destructive fresh fruit quality analyzer that fuses measurements from four independent physical domains — aroma (VOC + humidity), firmness (elastic deformation under controlled force), apparent density (mass / laser-estimated volume), and electrical conductivity — into a single Overall Quality Score. The results are displayed locally on an OLED screen with RGB LED feedback and streamed via UART to a host PC for logging and plotting.
@@ -37,8 +37,19 @@ Data flow: Sensors → Acquisition Tasks → (Embassy Channel) → Fusion Task �
 ## Log
 ### Week 5 - 11 May
 
+I have assembled the hardware components on a breadboard and started prototyping the software architecture. Unfortunattely, the sensors weren't soldered properly, which caused a delay and force me to redo the wiring.
+
 ### Week 12 - 18 May
+
+I have securely mounted the hardware components onto their dedicated support structure, ensuring a clean, organized, and nice layout. The setup now features proper cable management and perfectly aligned sensors, giving the physical prototype a polished, final look. With the hardware architecture completely stabilized and visually refined, my focus has now shifted to the software development phase. I am currently writing and testing the firmware.
+
 ### Week 19 - 25 May
+During this final week, I focused on system stabilization and achieving a polished, professional finish for the prototype.
+I completed the core firmware integration, ensuring reliable data acquisition from all sensors (HX711, BME680, and ADC).
+Successfully integrated the buzzer and RGB LED logic, creating a clear feedback system for fruit quality assessment.
+
+![Project image](images/hardware_photo.webp)
+
 
 ## Hardware
 The core of VERIT-SCAN is a **NUCLEO-U545RE-Q** board, built around the STM32U545RE (ARM Cortex-M33, 160 MHz, 512 KB flash, 272 KB SRAM) with an integrated ST-Link V3 debugger. The board exposes four I²C buses, two UARTs, a 12-bit ADC, and a 14-bit ADC — the latter is used for the DIY conductivity channel, where two stainless-steel electrodes in contact with the fruit flesh form a voltage divider with a 10 kΩ precision reference resistor.
@@ -46,7 +57,7 @@ The core of VERIT-SCAN is a **NUCLEO-U545RE-Q** board, built around the STM32U54
 Three digital sensors share a single I²C bus: **BME680** (VOC + humidity + temperature + pressure), **VL53L0X** (time-of-flight laser distance, used both for firmness-via-deformation and for height/volume estimation), and an **SSD1306 0.96" OLED** for local display. An **HX711** 24-bit ADC interfaces the 1 kg load cell, which is used both for weighing and for monitoring the controlled force applied during the non-destructive firmness test. User feedback comes from a common-cathode **RGB LED** driven by three PWM channels and a passive **buzzer** driven by a timer PWM. Communication with the host PC uses **USART2**, exposed transparently as a Virtual COM Port through the on-board ST-Link, so no external USB-to-UART adapter is needed.
 
 ### Schematics
-*(KiCAD schematic to be added as SVG.)*
+![Schematic Diagram](images/schematic.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
@@ -94,4 +105,3 @@ Three digital sensors share a single I²C bus: **BME680** (VOC + humidity + temp
 8. [The Embassy Book](https://embassy.dev/book/)
 9. [Rust Workshop UPB — Embassy on STM32U545](https://rust.ipworkshop.ro/docs/embassy/)
 10. [embassy-stm32 on crates.io](https://crates.io/crates/embassy-stm32)
-11. [Non-destructive fruit firmness measurement methods — review](https://www.sciencedirect.com/science/article/abs/pii/S0925521410002802)

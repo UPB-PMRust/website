@@ -87,6 +87,19 @@ Received the physical components and successfully assembled the complete hardwar
 
 
 
+### Week 12-13
+Focused heavily on the software implementation and the mechanical design of the enclosure. On the software side, the embedded Rust firmware is now approximately 85% complete. The core asynchronous tasks utilizing the `embassy-rs` framework are fully functional: the UART Bluetooth task successfully receives and parses PC telemetry, the hardware PWM channels accurately drive the servo gauges, and the I2C OLED display updates dynamically based on the rotary encoder's menu state. The logic for the visual (WS2812B) and haptic alarms is also fully integrated. Only a few minor software tweaks and fine-tuning remain.
+
+On the mechanical side, I successfully finished designing the custom 3D enclosure in Blender. Utilizing the precise caliper measurements taken previously, I employed non-destructive Boolean modifiers to ensure a perfect fit for the STM32 Nucleo board, the breadboard, the OLED screen, and the front-panel analog gauges.
+
+![Blender Design - Custom Analog Gauge Dial](blender_dial.webp)
+*Detail of the custom gauge dial design, featuring the tachometer-style graduations, numbers, and the temperature redline.*
+
+![Blender 3D Enclosure - Unassembled Main Body](blender_enclosure.webp)
+*The 3D enclosure model prior to the final assembly, showing the main body without the gauge needles and back cover.*
+
+
+
 ## Hardware
 
 

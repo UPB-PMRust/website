@@ -11,7 +11,7 @@ A smart defense turret that uses 3D scanning to detect objects and launch a phys
 
 ## Description
 
-The project is an **Air Defense Turret** designed for continuous environment scanning and target interaction. The system is built around an STM32 Nucleo microcontroller, coordinating a dual-axis positioning system: a stepper motor that performs a 0° to 359° horizontal sweep and a servomotor for vertical pitch control.
+The project is an **Air Defense Turret** designed for continuous environment scanning and target interaction. The system is built around an STM32 Nucleo microcontroller, coordinating a dual-axis positioning system: a stepper motor that performs a 0° to 359° horizontal sweep and a servomotor for vertical pitch control. A YS-27 Hall effect sensor is integrated to precisely detect the position where the rotational sweep must stop.
 
 Distance detection is handled by a Time-of-Flight sensor, providing high-precision mapping as the turret pans. The system operates autonomously, identifying targets within its scanning arc and triggering a mechanical solenoid strike upon detection. Real-time system data and target telemetry are displayed on an integrated TFT screen. To ensure stable operation, the turret includes a dedicated power management circuit designed to handle the high-current requirements of the solenoid and drive motors.
 
@@ -28,16 +28,16 @@ The project is built like a team where every part has a specific job, all coordi
 Main Components:
 
 * **The Controller**: An STM32 Nucleo board acts as the central processor. It monitors sensors, processes user input and coordinates all motor movements.
-* **Power Supply**: A 12V source is distributed into three specific rails: 
-    * 12V for the stepper motor and solenoid;
-    * 6V for the servo;
-    * 5V for the logic circuits and sensors.
+* **Power Supply**: A 12V source is distributed into two specific rails: 
+    * 12V for the stepper motor;
+    * 5V for the logic circuits, servo and sensors.
 * **The Aiming System**: Enables dual-axis motion using a Stepper Motor for horizontal rotation (Pan) and a Servomotor for vertical positioning (Tilt), while a Potentiometer allows for manual calibration and fine-tuning.
 * **The Sensors**: A Distance Sensor provides real-time ranging data.
+* **The Endstop**: A YS-27 Hall effect sensor is used to find the exact position where the rotational sweep must stop.
 * **The Trigger**: A Solenoid Piston handles the mechanical firing. It is controlled via a MOSFET, which allows the microcontroller to safely switch the high-current 12V load.
-* **The Display**: A TFT Screen provides a real-time interface, showing target distance, system telemetry and operational status.
+* **The Display**: A TFT Screen provides a real-time interface.
 
-![Diagram](images/archi.svg)
+![Diagram](images/architect.svg)
 
 ## Log
 
@@ -56,18 +56,28 @@ Main Components:
 * This week was dedicated to hardware testing and physical assembly.
 * I focused on verifying the functionality of the sensors, motors and power management modules, ensuring all components integrated correctly during the build process.
 
+### Week 11 - 17 & 18 - 24 May
+* I resolved the solenoid issue to ensure the correct launch distance and force for the projectile.
+* I integrated the YS-27 Hall effect sensor to precisely detect the stopping position for the rotational movement.
+
+### Week 25 - 27 May
+* I finished the code implementation for the project.
+
 ## Hardware
 
-The project integrates high-performance components to achieve autonomous detection and response. The STM32 Nucleo acts as the brain, processing data from the VL53L1X ToF sensor to map the environment. Motion is handled by a Nema 17 stepper motor for precise horizontal scanning and an MG996R servomotor for manual vertical adjustment via a potentiometer.
+The project integrates high-performance components to achieve autonomous detection and response. The STM32 Nucleo acts as the brain, processing data from the VL53L1X ToF sensor to map the environment. Motion is handled by a Nema 17 stepper motor for precise horizontal scanning and an MG996R servomotor for manual vertical adjustment via a potentiometer. A YS-27 Hall effect sensor is integrated to precisely detect the position where the rotational sweep must stop.
 
-To handle physical action, an IRF520 MOSFET triggers a solenoid piston. The entire system is powered by a 12V 5A source, stabilized by LM2596 buck converters. Visual feedback is provided by a ST7789 TFT display, showing real-time radar telemetry.
+To handle physical action, an IRF520 MOSFET triggers a solenoid piston. The entire system is powered by a 12V 5A source, stabilized by a LM2596 buck converter. Visual feedback is provided by a ST7789 TFT display, showing real-time radar telemetry.
 
 ![Hardware_1](images/hardware_1.webp)
 ![Hardware_2](images/hardware_2.webp)
+![Hardware_3](images/hardware_3.webp)
+![Hardware_4](images/hardware_4.webp)
+
 
 ### Schematics
 
-![KiCad](images/kicad.svg)
+![KiCad](images/kicad.webp)
 
 ### Bill of Materials
 
@@ -75,19 +85,21 @@ To handle physical action, an IRF520 MOSFET triggers a solenoid piston. The enti
 |--------|--------|-------|
 | [STM32 Nucleo-64 Board](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Central processing unit that controls sensors and motors | [112.47 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
 | Distance Sensor | ToF sensor used for high-precision object detection | [60 RON](https://sigmanortec.ro/senzor-distanta-vl53l1x-ic-original-tof-3-5v) |
+| Hall Sensor Module YS-27 | Hall effect sensor used for precise rotational stop detection | [7 RON](https://www.optimusdigital.ro/en/hall-sensors/596-modul-cu-senzor-hall-ys-27.html?srsltid=AfmBOoo6Y0kpDOf3nXlSHnaXe9iB7Map2UxHYs6Uz77sfkQ2JNDdEwC4) |
 | Servomotor | Controls the vertical tilting of the turret | [29.51 RON](https://sigmanortec.ro/servomotor-mg996r-180-13kg) |
 | Stepper Motor | Drives the horizontal 360° rotation of the system | [91.62 RON](https://sigmanortec.ro/motor-pas-cu-pas-nema17-18-grade-42x42x48mm) |
 | Stepper Driver | Translates logic signals into power for the stepper motor | [8.09 RON](https://sigmanortec.ro/Driver-stepper-A4988-Radiator-p125711037) |
-| Step-down Converter | Steps down 12V to 5V/6V for logic and servo power | [2x 6.69 RON](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) |
+| Step-down Converter | Steps down 12V to 5V | [6.69 RON](https://sigmanortec.ro/Modul-coborator-tensiune-adjustabil-LM2596-DC-DC-4-5-40V-3A-p134532509) |
 | Stepper Expansion Board | Simplifies wiring between the driver and the motor | [9.97 RON](https://sigmanortec.ro/placa-expansiune-driver-motor-stepper-drv8825-si-a4988-5v) |
 | TFT Display | Shows real-time radar data and system telemetry | [30.64 RON](https://sigmanortec.ro/display-tft-13-ips-spi-65k-culori-lcd-st7789v-240x240-7p) |
 | Solenoid Piston | Provides the mechanical strike when a target is detected | [24.74 RON](https://sigmanortec.ro/piston-electromagnetic-jf-0530b-cu-solenoid-12v-push-pull) |
 | Rotary Potentiometer | Allows manual adjustment of the turret's vertical tilt angle | [13.65 RON](https://sigmanortec.ro/modul-potentiometru-rotativ-10k-liniar-3-5v) |
 | 12V 5A Power Adapter | The main power source for the entire turret system | [50.70 RON](https://www.emag.ro/alimentator-12v-5a-cu-mufa-5-5-2-1-mm-cablu-de-alimentare-inclus-ev-5a/pd/DY6PTDBBM/) |
 | DC Female Jack Adapter | Connects the power adapter to the breadboard wires | [4.14 RON](https://www.emag.ro/mufa-alimentare-mama-cu-surub-201801013096/pd/D9FK8GBBM/) |
-| IRF520 MOSFET Module | Electronic switch used to trigger the 12V solenoid | [12.60 RON](https://www.emag.ro/modul-bazat-pe-tranzistorul-n-mosfet-irf520-elektroweb-3-5-v-5-a-2-m-114/pd/DSGC35MBM/) |
+| IRF520 MOSFET Module | Electronic switch used to trigger the 6V solenoid | [12.60 RON](https://www.emag.ro/modul-bazat-pe-tranzistorul-n-mosfet-irf520-elektroweb-3-5-v-5-a-2-m-114/pd/DSGC35MBM/) |
 | Breadboard 170 points | - | [2x 2.42 RON](https://sigmanortec.ro/Breadboard-170-puncte-diferite-culori-p126177349) |
-| **Total** | - | **466.34 RON** |
+| Transistor NPN 2n2222 | Used to switch the MOSFET module | - |
+| **Total** | - | **466.93 RON** |
 
 ## Software
 
@@ -96,10 +108,15 @@ To handle physical action, an IRF520 MOSFET triggers a solenoid piston. The enti
 | [embassy-stm32](https://crates.io/crates/embassy-stm32) | Hardware Interface | Connects Rust code to physical pins |
 | [embassy-time](https://crates.io/crates/embassy-time) | Time Management | Handles delays for motor speed and timing |
 | [embassy-executor](https://crates.io/crates/embassy-executor) | Task Manager | Runs scanning and detection tasks simultaneously |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | Async Utilities | Joins asynchronous tasks together |
 | [defmt](https://crates.io/crates/defmt) | Debug Logging | Sends real-time status messages for debugging |
 | [panic-probe](https://crates.io/crates/panic-probe) | Error Handling | Reports crashes via the debug interface |
 | [vl53l1x-uld](https://crates.io/crates/vl53l1x-uld) | ToF Sensor Driver | Reads distance data from the sensor via I2C |
 | [st7789](https://crates.io/crates/st7789) | Display Driver | Controls the TFT screen over SPI |
+| [micromath](https://crates.io/crates/micromath) | Math library | Calculate mathematical functions |
+| [display-interface-spi](https://crates.io/crates/display-interface-spi) | SPI Interface | Handles SPI communication for the display |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | Graphics Library | Draws radar lines, circles and detection points |
+
 
 ## Links
 
