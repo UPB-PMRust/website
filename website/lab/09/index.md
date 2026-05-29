@@ -4,7 +4,7 @@ slug: /lab/09
 unlisted: true
 ---
 
-# 08 - Exceptions & Interrupts
+# 09 - Exceptions & Interrupts
 
 The purpose of this lab is to understand how exceptions and hardware interrupts work and how they can be used, how to set a hard fault handler,
 register interrupts and *use interrupts*  with embassy-rs.
