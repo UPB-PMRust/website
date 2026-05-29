@@ -164,6 +164,10 @@ Each player's device consists of:
 - **Passive buzzer**: Driven via PWM. Provides audio feedback for shots, hits, sinks, special abilities, and win/lose outcomes.
 - **Navigation buttons**: Arrow buttons (up/down/left/right) for cursor movement and ship placement, plus Action, View-Toggle, and Rotate buttons.
 
+### Prototype
+
+![Hardware Prototype](./images/hardware-prototype.webp)
+
 ### Schematics
 
 #### 1. Schematic Design
