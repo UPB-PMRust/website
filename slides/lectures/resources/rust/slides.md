@@ -100,16 +100,16 @@ int32_t, uint32_t
 ```rust
 u8, u16, u32, u64, u128
 i8, i16, i32, i64, i128
-usize //word size (eg - 32b for 32b processor)
-isize //word size (eg - 32b for 32b processor)
+usize // word size (eg - 32b for 32b processor)
+isize // word size (eg - 32b for 32b processor)
 
 //NOTES:
 char // 4 bytes != u8 //UTF-8 not ASCII like in C
-b"str" //ASCII string
-"str" UTF-8 string
+b"str" // ASCII string (slide)
+"str" // UTF-8 string (slice)
 
 's' // char
-b's' // u8
+b's' // u8 (ASCII char)
 ```
 
 ---
@@ -146,11 +146,11 @@ Safety evidence overhead: mandated reviews + traceability + V&V activities (ISO 
 
 - no null reference; the Rust compiler explicitly asks developers to check
 this;
-- no implicit cast, even adding a u32 to a u8 must be casted;
+- no implicit cast, even adding a `u32` to a `u8` must be casted;
 -  safe access to shared data across threads verified at compile time;
 - uses type states to move runtime checks to compile time and force
 developers to check;
-- clearly defined data types, unlike i8 or u128;
+- clearly defined data types, unlike `int` or `long`;
 - safe unions, that provide a safeguard to prevent wrong interpretation
 of data;
 - clear code organization into crates and modules;
