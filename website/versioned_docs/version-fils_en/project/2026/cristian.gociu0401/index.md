@@ -92,9 +92,9 @@ Pico W 3V3 → PCA9685 VCC, MPU6050 VCC, SSD1306 VCC
 
 ![Photo IRL1](./imagine.webp)
 
-![Photo Robot](./imagine_robot.webp)
+![Photo Robot](./imagine_robot_buna.webp)
 
-![Photo Board](./imagine_board.webp)
+![Photo Board](./imagine_board_buna.webp)
 
 ## Bill of Materials
 
