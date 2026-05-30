@@ -58,7 +58,7 @@ Ready to test the project for the first time, all components connected.
  
 ![img](project_1.webp)
 ![img](project_2.webp)
-![img](project%20_3.webp)
+![img](project_3.webp)
 
 ## Week 11 - 4 May
 Finished the Kicad schematic and started working on hardware.
