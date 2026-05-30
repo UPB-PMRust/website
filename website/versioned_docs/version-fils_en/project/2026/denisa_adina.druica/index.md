@@ -31,9 +31,15 @@ The motivation for this project came from my passion for gaming and technology. 
 <!-- write your progress here every week -->
 ### Week 5 - 11 May
 
+Started working on the 3D design for the bomb and started searching for other libraries that I could use for the project.
+
 ### Week 12 - 18 May
 
+Connected all the components using the Kicad scheme and I also made some small analog connectivities in order to test if the hardware was working.
+
 ### Week 19 - 25 May
+
+I finished connecting all the hardware and started working on implementing them in the 3d build.
 
 ## Hardware
 
@@ -73,12 +79,16 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [tm1637-embedded-hal](https://github.com/JadKHaddad/tm1637) | Display driver for the TM1637 chip | Translates game time into 7-segment LED patterns. |
+| [tm1637](https://github.com/JadKHaddad/tm1637) | Display driver for the TM1637 chip | Translates game time into 7-segment LED patterns. |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard hardware interfaces for Rust. | Provides the "rules" for pin and timer interaction. |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Mutex, Channel for shared state between tasks | Shared MISTAKE_COUNT, SOLVED_COUNT, GAME_OVER, the buzzer sound queue, and the display message between tasks safely |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async task runtime | Ran all 5 module tasks plus the game supervisor at the same time on the single core |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | For concurrent async operations | Let the morse blinker and button listener run concurrently inside one task, and let the sequence module wait on 4 buttons at once |
+| [cortex-m](https://crates.io/crates/cortex-m) | Used to intentionally trigger an Undefined Instruction exception | Provided the busy-wait delay at startup and the udf instruction that halts the chip cleanly when the game ends |
+| [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Startup/reset handler, interrupt vector table | Set up the chip's interrupt table and reset handler so the program starts correctly after flashing |
 | [dht-sensor](https://github.com/michaelbeaumont/dht-sensor) | Protocol Driver | Decodes the digital pulses from the DHT11 into temperature |
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | STM32-specific hardware implementation. | Controls the actual physical pins on the Nucleo U545. |
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | High-precision timekeeping library for embedded systems. | Manages the 5:00 countdown and handles the variable "tick" speed based on mistakes. |
-| [rand](https://github.com/rust-random/rand) | Random Selection | Picks a random word from your "Morse List" every time the game starts.|
 | [heapless](https://github.com/rust-embedded/heapless) | Static Storage | Stores the list of Morse words without needing a heap |
 
 ## Links
