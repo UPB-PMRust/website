@@ -35,6 +35,11 @@ The STM32 NUCLEO-U545RE-Q and the first batch of components arrived. After check
 ### Week 20 - 26 April
 Started putting the project documentation together. Created the architecture diagram showing how all the components connect to the microcontroller. Also began working on the KiCad schematic.
 
+### Week 27 April - 3 May
+Received the last order of components and finished the KiCad schematic.
+
+### Week 4 - 10 May
+Started working on hardware.
 
 
 ## Hardware
@@ -43,7 +48,7 @@ The hardware is built around the STM32 NUCLEO-U545RE-Q microcontroller, which co
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![img](kicad_rustrescue.svg)
 
 ### Bill of Materials
 
@@ -73,8 +78,10 @@ The format is
 | [Red LED (×2)](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/4-culoare-rosu) | Emergency flashing lights | [0.60 RON](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/4-culoare-rosu) |
 | [Transistor NPN 2n2222](https://www.optimusdigital.ro/en/transistors/935-transistor-npn-2n2222-to-92.html) | Switches the water pump circuit | [0.17 RON](https://www.optimusdigital.ro/en/transistors/935-transistor-npn-2n2222-to-92.html) |
 | [100nF Capacitor](https://ardushop.ro/ro/condensatori-tht/571-948-condensator-ceramic-50v-alege-valoarea.html#/348-capacitate-100_nf) | Filters noise from the water pump | [0.24 RON](https://ardushop.ro/ro/condensatori-tht/571-948-condensator-ceramic-50v-alege-valoarea.html#/348-capacitate-100_nf) |
-| [1KΩ Resistor](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Limits current to transistor base | [0.10 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
+| [1KΩ Resistor (×2)](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Limits current to transistor base and voltage divider for HC-SR04 ECHO pin | [0.20 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
+| [2KΩ Resistor](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Voltage divider for HC-SR04 ECHO pin | [0.10 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
 | [330Ω Resistor (×2)](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Limits current to LEDs | [0.20 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
+| [Diode 1N4007](https://www.optimusdigital.ro/en/diodes/7457-dioda-1n4007.html) | Flyback protection for water pump transistor | [0.49 RON](https://www.optimusdigital.ro/en/diodes/7457-dioda-1n4007.html) |
 | [Breadboard](https://www.aliexpress.com/item/1005008788953967.html?spm=a2g0o.order_list.order_list_main.41.c53218027nnulr) | Prototyping connections | [19.47 RON](https://www.aliexpress.com/item/1005008788953967.html?spm=a2g0o.order_list.order_list_main.41.c53218027nnulr) |
 | [Jumper wires](https://www.optimusdigital.ro/en/wires-with-connectors/93-separated-male-male-wires-20-cm-10-p.html?search_query=Separated+Male-Male+Wires+20+cm+-+10+p&results=18) | Electrical connections | [5.95 RON](https://www.optimusdigital.ro/en/wires-with-connectors/93-separated-male-male-wires-20-cm-10-p.html?search_query=Separated+Male-Male+Wires+20+cm+-+10+p&results=18) |
 | [18650 Battery (×2)](https://milnik.ro/format-18650/8173292-nk512-m29-lg-lg-inr18650-m29-2850mah-10a-7417940524771.html) | Power source | [20.00 RON](https://milnik.ro/format-18650/8173292-nk512-m29-lg-lg-inr18650-m29-2850mah-10a-7417940524771.html) |
