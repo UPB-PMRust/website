@@ -19,7 +19,7 @@ I chose this project because I always was interested in the design and mechanica
 
 ## Architecture
 
-![Arachne Architecture](./architecture_schematic.svg)
+![Arachne Architecture](./Architecture.svg)
 
 The system consists of three main components:
 
@@ -91,6 +91,10 @@ Pico W 3V3 → PCA9685 VCC, MPU6050 VCC, SSD1306 VCC
 ### Photos
 
 ![Photo IRL1](./imagine.webp)
+
+![Photo Robot](./imagine_robot.webp)
+
+![Photo Board](./imagine_board.webp)
 
 ## Bill of Materials
 
