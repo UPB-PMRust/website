@@ -47,6 +47,20 @@ I focused on stabilizing the raw data feed from the sensor, stripping out the no
 
 I performed a complete refactor of the core analysis functions and calibrated the system to align with reference standards. As a result, the approximation error has been reduced, achieving a high level of precision in data interpretation.
 
+### Week 11-12
+
+I added the possibility to switch between pages, adjusted the sizes of the objects on the screen. Also, the touch possibility was successfully added and properly tested. 
+
+### Week 13 
+
+Changed the formula for the SpO2 calculation. Fixed the timer and the display of the pulse graph. Minimised the pulse uncertainty as much as possible. Finished the project.
+
+![Log](hardware.webp "Hardware connections")
+
+I decided to make it look like real device user interacts with(the brains are hidden inside) and put it in the box for the PM fair demonstration.
+
+![Log](pmfair.webp "PM Fair demo")
+
 ## Hardware
 
 The hardware architecture of PulseOx utilizes an STM32U5 microcontroller as its high-performance processing core. Physiological sensing is handled by a MAX30102 high-sensitivity optical sensor, capturing both heart rate (BPM) and blood oxygen saturation (SpO2). The system features a TFT ST7789V display for real-time data visualization, capable of rendering complex signal waveforms alongside numerical measurements. User interaction is enhanced through an active buzzer for synchronized audio feedback and a tactile button interface for seamless measurement control.
