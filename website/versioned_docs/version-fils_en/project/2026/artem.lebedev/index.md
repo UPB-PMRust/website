@@ -55,7 +55,7 @@ Gathered all the hardware, proceed to create first prototypes. Replace the IRF-3
 
 Changed SSD1306 screen for 1602A 5V. Made the shell of the machine.
 
-![Shell](Shell.webp)
+![Shell](shell.webp)
 
 ## Hardware
 
