@@ -28,48 +28,46 @@ Main software and system components:
 - UI Controller: joystick-driven menus and capture actions.
 - Communication Module (optional): sends frames to mobile app via WiFi.
 
-How components connect:
-
-```
-MLX90640 Sensor
-     |
-     | I2C
-     v
-Sensor Acquisition Module
-     |
-     v
-Processing Pipeline
-     |
-     +---------------------> Storage Manager (microSD)
-     |
-     +---------------------> Communication Module (WiFi -> Mobile App)
-     |
-     v
-Rendering Engine -> TFT Display
-     ^
-     |
-UI Controller (Joystick)
-```
-
 ## Log
-
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
-- Initial idea was a reflex-based system.
-- Pivoted to thermal imaging after feedback.
-- Selected MLX90640 as core sensor.
-- Studied MLX90640 communication and frame format.
+- Got the hardware working on the breadboard.
+- Next step is moving to a protoboard with soldering.
+- The thermal camera is running, but I am still tuning it to work perfectly.
+- The app menu is still buggy, but I will handle that next week.
+
+<div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'nowrap', margin: '1.5rem 0' }}>
+     <img src="https://ionescuandrei.tech/pm1.jpg" alt="Thermal camera prototype 1" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+     <img src="https://ionescuandrei.tech/pm2.jpg" alt="Thermal camera prototype 2" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+</div>
 
 ### Week 12 - 18 May
-- Defined system blocks and data flow.
-- Selected peripherals: TFT display, microSD, joystick, optional WiFi.
-- Planned local processing pipeline (normalization and color mapping).
+- Tried to use I²C as the communication protocol for the MLX90640; failed due to missing 4.7 kΩ pull-up resistors on SDA/SCL.
+- Pivoted to the GY-MCU90640BAB bridge board which speaks UART (PA9 TX / PA10 RX, 115200 baud) — gives a reliable frame stream straight out of the box.
+- Boosted and tuned the thermal math and physics pipeline (dechess FPN correction, 3×3 median, spatial smoothing, auto-range).
 
 ### Week 19 - 25 May
-- Planned hardware integration order.
-- Planned first bring-up tests for I2C communication with MLX90640.
-- Planned display pipeline validation with test frames.
+- Finished the UI menu and all joystick controls (Up/Down/Left/Right + Press).
+- Tried to solder everything onto a protoboard — worked for one day, then the layout broke. Instead of chasing solder-joint debugging, migrated back to the breadboard.
+- Started enhancing the aesthetics with a custom box so the whole device looks like a real camera.
+- The AliExpress SD card module turned out to be dead — switched to the SD slot on the back of the TFT module. If the SD card still fails, the firmware now falls back to on-chip STM32 flash storage so captured photos persist across power cycles.
+
+<div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'nowrap', margin: '1.5rem 0' }}>
+     <img src="https://ionescuandrei.tech/final1.jpeg" alt="Thermal camera protoboard attempt" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+</div>
+
+### Week 26 May - 1 June
+- Built a professional-grade thermal image pipeline based on the FLIR Lepton AGC literature: percentile auto-range (P2/P98) with EMA-damped bounds, FLIR-style histogram-equalisation AGC with plateau clipping and a linear-percent term, temporal EMA frame blending for noise reduction, and switched the active palette to FLIR Ironbow.
+- Added per-screen joystick guidance legend bars on every UI screen so first-time users can operate the device without instructions.
+- Implemented a photo delete flow with a red confirmation modal (Right = prompt, Press = confirm, Left = cancel) — works for both the SD and on-chip flash backends.
+- Polished the menu UI: bigger title bar with accent line, roomier menu rows, friendlier item labels.
+- Force-pushed the cleaned-up state to GitHub and removed ~3500 stale `target/` build artefacts from version control.
+
+<div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'nowrap', margin: '1.5rem 0' }}>
+     <img src="https://ionescuandrei.tech/final2.jpeg" alt="Final thermal camera output 1" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+     <img src="https://ionescuandrei.tech/final3.jpeg" alt="Final thermal camera output 2" style={{ width: 'clamp(180px, 22vw, 260px)', height: 'auto', borderRadius: '14px', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18)' }} />
+</div>
 
 ## Hardware
 
@@ -77,28 +75,8 @@ The system uses an STM32 NUCLEO-U545RE-Q for development, an MLX90640 thermal se
 
 ### Schematics
 
-<svg width="820" height="260" viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project hardware schematic overview">
-  <rect x="10" y="20" width="170" height="70" fill="none" stroke="black"/>
-  <text x="95" y="60" text-anchor="middle" font-size="14">MLX90640 (I2C)</text>
+![Thermal camera hardware schematic](./assets/thermal_cam_good%20resolution.svg)
 
-  <rect x="250" y="20" width="220" height="100" fill="none" stroke="black"/>
-  <text x="360" y="60" text-anchor="middle" font-size="14">STM32 NUCLEO-U545RE-Q</text>
-  <text x="360" y="82" text-anchor="middle" font-size="12">Main Controller</text>
-
-  <rect x="540" y="20" width="160" height="70" fill="none" stroke="black"/>
-  <text x="620" y="60" text-anchor="middle" font-size="14">TFT Display (SPI)</text>
-
-  <rect x="540" y="110" width="160" height="60" fill="none" stroke="black"/>
-  <text x="620" y="145" text-anchor="middle" font-size="14">microSD (SPI)</text>
-
-  <rect x="250" y="160" width="220" height="70" fill="none" stroke="black"/>
-  <text x="360" y="200" text-anchor="middle" font-size="14">Joystick + WiFi (UART)</text>
-
-  <line x1="180" y1="55" x2="250" y2="55" stroke="black"/>
-  <line x1="470" y1="55" x2="540" y2="55" stroke="black"/>
-  <line x1="470" y1="120" x2="540" y2="140" stroke="black"/>
-  <line x1="360" y1="120" x2="360" y2="160" stroke="black"/>
-</svg>
 
 ### Bill of Materials
 
@@ -141,3 +119,4 @@ The system uses an STM32 NUCLEO-U545RE-Q for development, an MLX90640 thermal se
 3. [Embassy framework](https://embassy.dev)
 4. [MLX90640 Datasheet Page](https://www.melexis.com/en/product/MLX90640)
 5. [Project Inspo](https://youtu.be/2-_Wgspjkdw?si=q2qfbzEd-fa41ypF)
+6. [FLIR Lepton — Basic AGC for radiometric images](https://oem.flir.com/learn/discover/basic-agc-for-radiometric-lepton-images/) — the AGC / histogram-EQ pipeline driving the live thermal view is built on this.
