@@ -34,11 +34,19 @@ Rotates the sensor across a 0°–180° sweep, allowing spatial scanning of the 
 
 <!-- write your progress here every week -->
 
-### Week 5 - 11 May
+### Week 11 - 11 May
+
+Parts arrived and some we're faulty, needed time to reorder the parts and also adjusted some changes for what the project will have, costed extra time
 
 ### Week 12 - 18 May
 
-### Week 19 - 25 May
+Ordered parts, displays etc but decided to use a GUI on my laptop, so the project needed some readjustments, I had push buttons for control on the prototype for testing
+
+![Prototype](./Prototype.webp)
+
+### Week 14 - 25 May
+
+Reviewing final issues with my code, the components worked fine but the GUI had trouble recognising the ToF
 
 ## Hardware
 
@@ -57,7 +65,11 @@ Jump wires
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![WE schematic](./WE.webp)
+
+## Hardware Schematic
+
+![KiCad schematic](./KICAD.webp)
 
 ### Bill of Materials
 

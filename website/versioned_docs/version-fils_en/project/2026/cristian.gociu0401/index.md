@@ -96,6 +96,14 @@ Pico W 3V3 → PCA9685 VCC, MPU6050 VCC, SSD1306 VCC
 
 ![Photo Board](./imagine_board_buna.webp)
 
+### Schematics
+
+![KiCad Schematic](./spider_robot_design.svg)
+
+### Photos
+
+![Photo IRL1](./imagine.webp)
+
 ## Bill of Materials
 
 | Device | Usage | Price |
