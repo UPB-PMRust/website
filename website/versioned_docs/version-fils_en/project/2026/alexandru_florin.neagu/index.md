@@ -1,7 +1,7 @@
-# SteadyFrame
-A handheld 3-axis camera stabilizer controlled by an STM32 board and programmed in Rust.
+# KaraBox
+A Bluetooth-enabled karaoke device built around an STM32 brain board and an ESP32 wireless bridge, programmed primarily in Rust.
 
-:::info 
+:::info
 
 **Author**: Neagu Alexandru-Florin \
 **Group**: 1222EEB \
@@ -13,25 +13,28 @@ A handheld 3-axis camera stabilizer controlled by an STM32 board and programmed 
 
 ## Description
 
-This project represents a **3-axis camera stabilizer** designed to keep a relatively small DSLR/Mirrorless camera steady while the user is moving - My **Canon EOS R camera** paired with an **EF-S 18-55mm f/3.5-5.6 IS II Canon lens** (total weight: ~1kg). 
+This project represents a **karaoke device** that lets a user pick a song from their phone, stream it via bluetooth to a small dedicated speaker system, and see synchronized lyrics scroll on both their phone and a tiny on-device display - all while a separate display shows the temperature and a small fun LED matrix goes through different colours.
 
-The stabilizer uses an STM32 NUCLEO-U545RE-Q development board, an IMU sensor, brushless motors, motor drivers, a joystick and a LiPo battery.
+The system is split into **two physical boards** that cooperate over Bluetooth and SPI:
+
+- The **audio path** is a hardware-only board built around an MH-M38 Bluetooth audio receiver that drives a small amplifier and the speakers. The phone pairs to it directly.
+- The **brain board** runs a Rust firmware on an **STM32U545RE-Q**, drives a small **ST7789V TFT display**, a **MAX7219 8x8 LED matrix** and a **DHT22 temperature/humidity sensor**, and talks to an **ESP32-WROOM-32** over SPI. The ESP32 acts as the Bluetooth Classic bridge that hands lyrics and control commands from the phone to the STM32.
 
 ## Motivation
 
-I chose this project because I am currently learning videography and cinematography and the prices of camera equipment are simply too much for a freelancing student (even more than the price of the standalone components, *huh, that's unbelievable!*, **I know**, until you search for how much actually good equipment costs). As such, I have started on a quest of creating my own personal equipment, starting with maybe the most important tool - stabilization (because my hands aren't the steadiest out there and it makes a world of difference on film).
+I chose this project because karaoke is fun and my last project idea sadly died after my motor microcontrollers decided to not work and 2 of them were fried. Fortunately karaoke is even more fun!
 
-## Architecture 
+## Architecture
 
-This is the initial diagram, subject to change as I develop the project, regarding how I think my project should be organized/work:
+This is the diagram regarding how the project is organized:
 
-![Architecture diagram](./steadyframe.svg)
+![Architecture diagram first](./ss_kb_one.webp)
+![Architecture diagram second](./ss_kb_two.webp)
 
-These are the current KiCAD diagrams for the project depicting the power distribution and the different protocols used for communication inbetween the STM32 board and the separate peripherals (The motor driver & encoder combos, the IMU, the joystick control, the screen and an additional vibration motor)
+These are the current KiCAD diagrams for the project depicting the power distribution and the communication protocols between the STM32 brain board and its peripherals (the ST7789V display over SPI1, the MAX7219 matrix over SPI2, the ESP32 link over SPI3, and the DHT22 sensor on a single GPIO line with an external pull-up).w
 
-![KiCAD diagram first](./kicad_first.svg)
+![KiCAD diagram first](./kicad__karaoke.webp)
 
-![KiCAD diagram second](./kicad_second.svg)
 
 ## Main components:
 
@@ -44,7 +47,7 @@ Coming up with possible project ideas.
 
 ### Week 7: 6 - 12 April
 
-Conceptual stage, thinking how I would want my gimbal project to work, coming up with ideas regarding components and spending a **lot** of time looking for correct/compatible components, as I think this project is a bit complex for my current level of understading.
+Conceptual stage, thinking how I would want my gimbal project to work, coming up with ideas regarding components and spending a *lot* of time looking for correct/compatible components, as I think this project is a bit complex for my current level of understading.
 
 ### Week 8: 12 - 18 April
 
@@ -73,9 +76,17 @@ Finished designing the driver cages, still working on the rest of the components
 
 Finished the KiCAD schematic and submitted to Git branch for review by lab assistants. Worked on setting up motor drivers and motors with USB-C connection and integrated ODrive Python programs developed for MKS XDRive Mini. Still working on 3D design for arms and rails for coupling the 3 axis components.
 
+### Week 13: 18 - 23 May
+
+Things started going horribly wrong. 2 drivers fried, lots of components purchased and unusable, I ended up changing my project idea from SteadyFrame to KaraBox, the karaoke idea... Very little available working time.
+
+### Week 14: 25 - 30 May
+
+Components started arriving and I started assembly whenever I didnt have tests (mostly nights...)
+
 ## Hardware
 
-Hardware used for creating this project (list currently WIP): STM32 NUCLEO-U545RE-Q, GM5208-24 motors, MKS XDRIVE MINI drivers with AS5047P on board, ICM-20948 IMU, LiPo GENS ACE G-Tech Soaring 4S 14.8 V 2200mA battery with appropriate charger and 2 Axis Joystick. Photos of components will be added after they arrive (currently still being delivered).
+Hardware used for creating this project (list currently WIP): STM32 NUCLEO-U545RE-Q board, ESP32-WROOM-32 DevKit v1, MH-M38 Bluetooth audio receiver with onboard amplifier, ST7789V 2.8" TFT display, MAX7219 8x8 LED matrix, DHT22 temperature/humidity sensor, a small 4Ω 3W speaker pair, and a USB power bank for portability. Photos of the assembled prototype will be added as the build progresses.
 
 ### Schematics
 
@@ -84,7 +95,7 @@ Hardware used for creating this project (list currently WIP): STM32 NUCLEO-U545R
 #### --- WORK IN PROGRESS, NOT FINISHED ---
 <!-- Fill out this table with all the hardware components that you might need.
 
-The format is 
+The format is
 ```
 | [Device](link://to/device) | This is used ... | [price](link://to/store) |
 
@@ -94,47 +105,64 @@ The format is
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [STM32 NUCLEO-U545RE-Q](https://www.st.com/resource/en/data_brief/nucleo-c031c6.pdf) | The microcontroller - computes everything and sends the appropriate signals to all the components | [105 RON](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&utm_id=6470900573&utm_source=google&utm_medium=cpc&utm_marketing_tactic=emeacorp&gad_source=1&gad_campaignid=6470900573&gbraid=0AAAAADn_wf1J6XpRotkoYj96_ZbUSaPnH&gclid=Cj0KCQjw77bPBhC_ARIsAGAjjV8YyFRvdTHnnm_d9qDLFYVD-gl4i7w7_-Op_zdGssVpHLPnJSMNH3saAlkOEALw_wcB) |
-| [3x GM5208-24](https://tyi-model.en.made-in-china.com/product/owetZdnOMvTG/China-Iflight-Ipower-GM5208-24-Brushless-Gimbal-Motor-12-5mm-Metal-Plastic-Slipring-for-Drones-Remote-Control-Adapter-Upgrade.html) | The motors - stabilize the camera along the 3 axis and move in required directions when requested to | [702 RON](https://www.aliexpress.com/item/32900557812.html?spm=a2g0o.order_list.order_list_main.11.66b61802kM3UOQ) |
-| [3x MKS XDRIVE MINI with AS5047P on board](https://makerbase3d.com/product/makerbase-xdrive-mini-high-precision-brushless-servo-motor-controller-based-on-odrive3-6-with-as5047p-on-board/?srsltid=AfmBOooAoRHQBeOUDcw-KHU8tu3dG715gBSeGb9DsnB4TYA0q9W50RMU) | The motor drivers and encoders - understand motor position and rotation (magnetic rotary encoders) and communicates with the motors when to rotate in order to be stabilized or moved when requested to (drivers) | [534 RON](https://www.aliexpress.com/item/1005006480243178.html?spm=a2g0o.order_list.order_list_main.5.66b61802kM3UOQ#nav-specification) |
-| [AS5047P specs](https://look.ams-osram.com/m/d05ee39221f9857/original/AS5047P-DS000324.pdf) | The motor encoders | [included with drivers](https://www.aliexpress.com/item/1005006480243178.html?spm=a2g0o.order_list.order_list_main.5.66b61802kM3UOQ#nav-specification) |
-| [SN65HVD230](https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf?ts=1777190583955&ref_url=https%253A%252F%252Fwww.ti.com%252Fsitesearch%252Fen-us%252Fdocs%252Funiversalsearch.tsp%253FlangPref%253Den-US%2526nr%253D1%2526searchTerm%253Dsn65hvd230dr) | CAN communication module (transceiver) for motor drivers | [11 RON](https://sigmanortec.ro/modul-comunincare-can-sn65hvd230-33v?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72PYOVYYJVcWF-co_NlzFjur9&gclid=Cj0KCQjw77bPBhC_ARIsAGAjjV9MDgruKgz9tddDMBOUHy-TL0Vv_MkhyJ5ICtPL0P5spm6g2YHFDGQaAuh-EALw_wcB) |
-| [ICM-20948](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000189-icm-20948-v1.5.pdf) | The 9-Axis Inertial Measurement Unit - understands the position of the camera and helps the microcontroller understand required position and rotation changes | [37 RON](https://ardushop.ro/ro/groundstudio/1163-modul-9-axe-icm-20948-groundstudio-6427854000699.html) |
+| [STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The main board - runs the Rust firmware, drives the display and LED matrix, reads the sensor, and commands the ESP32 over SPI | [105 RON](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&utm_id=6470900573&utm_source=google&utm_medium=cpc&utm_marketing_tactic=emeacorp&gad_source=1&gad_campaignid=6470900573&gbraid=0AAAAADn_wf2Ze69Mgt017AUQG-reYmnQU&gclid=CjwKCAjw8uTQBhAdEiwAVvtJyoyoNvEEJ0kHJzDJIbrfFLwW7a67yCtoePbJmUCs3eXXRTMiaUHP2BoCqZEQAvD_BwE) |
+| [ESP32-WROOM-32 DevKit v1](https://documentation.espressif.com/esp32-wroom-32_datasheet_en.pdf) | The wireless bridge - exposes a Bluetooth Classic SPP server to the phone, forwards commands and lyrics to the STM32 over SPI3 | [35 RON](https://sigmanortec.ro/placa-dezvoltare-esp32-cu-wifi-si-bluetooth) |
+| [MH-M38 Bluetooth Audio Receiver](https://www.hadex.cz/files/documments/product/m424c-1774055138-kIOe.pdf) | The audio path - pairs with the phone as a standard A2DP sink and drives the speakers through its onboard amplifier; no firmware needed | [25 RON](https://sigmanortec.ro/modul-audio-bluetooth-42-ble-stereo-mh-m38-2x5w) |
+| [ST7789V 2.8" TFT Display (240x320, SPI)](https://newhavendisplay.com/content/datasheets/ST7789V.pdf) | The on-device UI - shows the current song title, artist, lyric line being sung, and the sensor readout | [59 RON](https://www.emag.ro/display-tft-spi-2-8-inch-240x320-lcd-cu-touchscreen-driver-st7789v-arduino-emg359/pd/DP347SYBM/?ref=history-shopping_489679109_221614_1) |
+| [MAX7219 8x8 LED Matrix](https://www.analog.com/media/en/technical-documentation/data-sheets/max7219-max7221.pdf) | The accent display - shows a heart icon when Bluetooth is paired, a VU bar while playing, and an idle animation otherwise | [12 RON](https://sigmanortec.ro/modul-matrice-led-8x8-max7219-5v) |
+| [DHT22 AM2302](https://cdn.sparkfun.com/assets/f/7/d/9/c/DHT22.pdf) | Environmental telemetry - shows current ambient conditions on the status bar (it gets surprisingly warm inside a karaoke enclosure) | [40 RON](https://sigmanortec.ro/senzor-temperatura-si-umiditate-dht22-am2302-original-modul) |
+| 2x 4Ω 3W speakers | The audio output, driven directly by the MH-M38's onboard amplifier | [30 RON]() |
 | [LiPo GENS ACE G-Tech Soaring 4S 14.8 V 2200mA](https://gensace.de/pages/lipo-battery-guide) | The battery - supplies power to all components | [150 RON](https://www.emag.ro/acumulator-lipo-gens-ace-g-tech-soaring-14-8-v-2200-ma-30c-xt60-men-ip-415004/pd/DF4XMTYBM/) |
 | [LM2596S](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | DC-DC Buck Step Down Convertor LM2596S 4.0~40V to 1.25-37V - for supplying correct voltage to STM32 board| [48 RON](https://www.emag.ro/modul-dc-dc-buck-step-down-lm2596s-dc-dc-4-0-40v-la-1-25-37v-regulator-de-tensiune-reglabil-cu-voltmetru-led-stlxy-741050522578/pd/DKNQT83BM/?ref=sponsored_products_search_f_b_1_5&recid=recads_1_b90d01a332c40f582acfccf6bf3bca72edcfc042cd11701d2d49ef94121cef69_1777211422&aid=549a3d7e-f438-11f0-801c-06eaf0d4245d&oid=302862900&scenario_ID=1) |
-| [Gens Ace iMars mini G-Tech](https://gensace.de/products/gens-ace-imars-mini-g-tech-usb-c-2-4s-60w-rc-battery-charger-with-power-supply-adapter-and-adpter-cable-eu) | The battery charger - charges the battery when needed | [245 RON](https://www.autorc.ro/incarcatoare-acumulatori/10560-incarcator-acumulatori-gens-ace-imars-mini-g-tech-usb-c-2-4s-60w.html) |
-| [2 Axis Joystick](https://www.laskakit.cz/user/related_files/joystick_module.pdf) | The joystick - human input to "move" (point) the camera in a specified direction | [6 RON](https://sigmanortec.ro/Modul-joystick-doua-axe-XY-p126458908#) |
-| [ST7789V](https://newhavendisplay.com/content/datasheets/ST7789V.pdf) | The LCD display - used for observing information displayed by the microcontroller regarding position and rotation, plus would help navigate a menu for parameters - lots of stuff to do here, not all figured out *yet* | [31 RON](https://sigmanortec.ro/display-tft-13-ips-spi-65k-culori-lcd-st7789v-240x240-7p) |
-| [Wires]() | No exact count, still figuring out | []() |
-| []() | Total: | [~1850 RON]() |
+| [Gens Ace iMars mini G-Tech](https://gensace.de/products/gens-ace-imars-mini-g-tech-usb-c-2-4s-60w-rc-battery-charger-with-power-supply-adapter-and-adpter-cable-eu) | The battery charger - charges the battery when needed | [245 RON]
+| Wires, perfboard, headers | No exact count, still figuring out | - |
+| | Total: | ~327 RON |
 
 
 
 ## Software
 
+| Library | Description | Usage in this project |
+|---------|-------------|------------------------|
+| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Hardware abstraction layer for STM32 microcontrollers | Main HAL used for GPIO, SPI, DMA, timers, and peripheral initialization on the STM32U545RE-Q |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async executor for embedded Rust | Provides the entry point and is still used to spawn the ESP32 SPI slave task |
+| [embassy-time](https://crates.io/crates/embassy-time) | Async timers and delays | Used for DHT22 polling, LED matrix animation timing, display retry loops, and startup delays |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Async synchronization primitives | Used for global channels between modules |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | Async combinators such as `join4` | Used in `main.rs` with `join4(...)` to run the DHT22 reader, main LCD display, LED matrix, and small temperature display concurrently |
+| [embassy-embedded-hal](https://crates.io/crates/embassy-embedded-hal) | Adapters between Embassy and embedded-hal traits | Allowss multiple devices to share the same SPI bus with separate chip-select pins |
+| [embedded-hal](https://crates.io/crates/embedded-hal) | Common embedded hardware abstraction traits | Used by the SPI device drivers |
+| [mipidsi](https://crates.io/crates/mipidsi) | MIPI-DCS display driver supporting ST7789 and other displays | Drives both ST7789V displays through SPI and provides display |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D drawing library for embedded displays | Used to draw text and clear screen regions on both ST7789V displays |
+| [heapless](https://crates.io/crates/heapless) | Fixed-capacity data structures for `no_std` systems | Used for fixed-size strings when formatting temperature and humidity text for the small display |
+| [defmt](https://crates.io/crates/defmt) | Compact logging framework for embedded devices | Used for logging startup messages, sensor values, display updates, SPI frame errors, and debugging information |
+| [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT transport backend for `defmt` | Sends `defmt` logs through the ST-Link RTT channel |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler for embedded Rust | Reports panics through the debug probe during development |
+
+For the **ESP32 side** of the project, the firmware is written in C++ on top of the Arduino-ESP32 framework, since the BT Classic SPP stack there is the most mature option available. The dependencies for that part are:
+
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-stm32](https://crates.io/crates/embassy-stm32) | HAL for STM32 microcontrollers, with drivers for GPIO, ADC, SPI, I2C, UART, timers, and CAN/FDCAN | Used as the main hardware abstraction layer for the STM32 NUCLEO-U545RE-Q, including IMU communication, joystick ADC reading, timers, and communication with the XDrive Mini controllers |
-| [embassy-executor](https://crates.io/crates/embassy-executor) | Async executor for embedded Rust | Used to run concurrent tasks such as IMU sampling, joystick reading, control-loop updates, and telemetry/debug tasks | # no heap is required and tasks are statically allocated.
-| [embassy-time](https://crates.io/crates/embassy-time) | Timekeeping, delays, and timeout utilities for Embassy-based applications | Used for periodic control-loop scheduling, sensor polling intervals, debounce timing and startup/calibration mode |
-| [embedded-hal](https://crates.io/crates/embedded-hal) | Common hardware abstraction traits for embedded systems | Used as the generic interface layer for reusable drivers, especially for the IMU and other peripherals |
-| [heapless](https://crates.io/crates/heapless) | static-friendly data structures that do not require dynamic memory allocation | Used for fixed-capacity queues, buffers, message passing, and storing small packets or samples without a heap |
-| [static_cell](https://crates.io/crates/static_cell) | Runtime-initialized static storage for no_std applications | Used for safely allocating shared static resources such as buses, drivers, and global state needed by Embassy tasks - apparently |
-| [defmt](https://crates.io/crates/defmt) | Compact logging framework | Used for debug logging, calibration output, fault reporting and runtime diagnostics during development | #for resource-constrained embedded targets
-| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler | Used to report panics cleanly during firmware development and debugging | #commonly used with probe-based embedded debugging 
-| [embedded-can](https://crates.io/crates/embedded-can) | Abstraction layer for CAN communication | Used for communication by the STM32 with the three XDrive Mini boards over CAN. |
-| [icm20948-rs](https://crates.io/crates/icm20948-rs)| Platform-agnostic driver for the ICM-20948 9-axis IMU | Used to initialize the ICM-20948, read accelerometer/gyroscope/magnetometer data, and expose it to the stabilization algorithm |
-NOT CONFIRMED YET:
-| [ili9341](https://crates.io/crates/ili9341) | Crates for display | Should be used for displaying information regarding position parameters and menu controls |
-| [Probably way more crates needed ] | Work in progress | - |
+| Arduino-ESP32 core | Espressif's official Arduino framework for the ESP32 | Provides the BluetoothSerial library (BT Classic SPP server) and the SPI master driver |
+| ArduinoJson 7 | JSON serialization and parsing for Arduino | Parses the line-JSON command protocol from the phone and serializes telemetry events back to it |
+
+For the **Android app**, the dependencies are:
+
+| Library | Description | Usage |
+|---------|-------------|-------|
+| Jetpack Compose | Modern declarative UI toolkit for Android | The entire UI (connection status, song picker, transport controls, lyrics view) |
+| AndroidX Lifecycle | ViewModel and lifecycle-aware components | Holds the playback state and survives configuration changes |
+| Kotlinx Coroutines | Structured concurrency for Kotlin | Drives the BT socket reader loop |
+| `android.bluetooth` (system) | Android's built-in Bluetooth Classic API | Opens the SPP RFCOMM socket to the ESP32 |
+
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [Additional CAN tutorials god help me](https://source-robotics.github.io/Spectral-BLDC-docs/apage7_can/)
-2. [Rust PID control](https://docs.rs/pid/latest/pid/)
-3. [FOC and Gimbal Stabilization](https://lup.lub.lu.se/luur/download?func=downloadFile&recordOId=9092924&fileOId=9094241)
-4. [IMU understanding](https://wolles-elektronikkiste.de/en/icm-20948-9-axis-sensor-part-i)
-5. [Powering help](https://howtomechatronics.com/projects/diy-arduino-gimbal-self-stabilizing-platform/)
+1. [Embassy book - the official guide for async Rust on embedded](https://embassy.dev/book/)
+2. [LRC lyrics file format reference](https://en.wikipedia.org/wiki/LRC_(file_format))
+3. [ESP32 BluetoothSerial library examples](https://github.com/espressif/arduino-esp32/tree/master/libraries/BluetoothSerial)
+4. [ST7789V datasheet and init sequence notes](https://newhavendisplay.com/content/datasheets/ST7789V.pdf)
+5. [mipidsi driver design write-up](https://github.com/almindor/mipidsi)
+6. [Bluetooth Classic SPP UUID and the standard service record format](https://learn.microsoft.com/en-us/windows-hardware/drivers/bluetooth/bluetooth-services)
 
 ...
