@@ -5,7 +5,7 @@ A 4 legged 3 degrees of freedom per leg spider robot controlled via WiFi, phone 
 
 
 **Author**: Gociu Cristian \
-**Github Project Link**: [Code](https://github.com/UPB-PMRust-Students/fils-project-2026-cristiang888/tree/main)
+**Github Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-cristiang888/tree/main
 
 :::
 
