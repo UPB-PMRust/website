@@ -45,6 +45,7 @@ The system is built around the STM32 NUCLEO-U545RE microcontroller, which acts a
 ## Schematics
 ![Schematic diagram](kicad.svg)
 ![Schematic diagram](hardware.webp)
+![Schematic diagram](full.hardware.jpeg)
 
 
 
