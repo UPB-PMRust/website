@@ -74,14 +74,14 @@ Defined the interface-board approach to avoid soldering on the rental STM32 boar
 ### Week 9-10
 Started putting together the hardware and moving from planning to real assembly. A big part of this stage was debugging early hardware issues, especially the LCD, which initially powered on but did not show text correctly.
 
-![LCD not working yet](./LCD_not_working.webp)
+![LCD not working yet](./lcd_not_working.webp)
 
 ### Week 11-12
 Continued debugging all hardware components until they became reliable. I discovered that I had badly soldered the I2C backpack onto the LCD, so I had to buy a new one and solder it again correctly on the second attempt. After that, I got almost all major components working on a breadboard, with the ESP being the first one I brought up successfully.
 
-![LCD working after fixing the backpack](./LCD_working.webp)
-![Second LCD working test](./LCD_working_2.webp)
-![ESP32 working on the breadboard](./ESP32_working.webp)
+![LCD working after fixing the backpack](./lcd_working.webp)
+![Second LCD working test](./lcd_working_2.webp)
+![ESP32 working on the breadboard](./esp32_working.webp)
 
 ### Week 13-14
 Implemented software testing modes through `FirmwareMode` and also built the ESP32 web admin panel. During final hardware assembly I badly soldered one keypad pin and burned the keypad, so I had to rethink the keypad concept and adapt the layout creatively using symbols instead of the original numeric-only interaction.
