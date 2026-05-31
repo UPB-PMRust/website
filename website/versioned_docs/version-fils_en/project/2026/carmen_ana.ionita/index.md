@@ -49,7 +49,7 @@ Worked on hardware assembly. Wired up the power system and the water pump transi
 
 ### Week 25 - 28 May
 Continued hardware assembly. Worked on mounting the components on the chassis and replaced the transistor circuit with a relay module for controlling the water pump. Made further progress on the firmware.
-![img](RustRescue.webp)
+![img](rustrescue.webp)
 
 ## Hardware
 
