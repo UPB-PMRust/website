@@ -42,20 +42,27 @@ I see that my processing loop(with CMSIS-DSP wherever possible) is down to 1200u
 
 I borrow a guitar, see that the circuit does in fact work with a real guitar, but, as expected, noise performance is not optimal. Couple this with time constraints and Mouser orders being thrown around groupchats left and right, I start designing a PCB to mitigate both issues. It takes a while but I manage to finish my schematics in time for my colleague's Mouser order. After doing that, I start laying out the PCB. I finished it in time for it to hopefully arrive and have time to assemble before the hardware deadline. I will continue developing code on the breadboard prototype in the meantime. The daughterboard isn't ready yet but will be in a day or two
 
+### Weeks 9-14
+
+A lot happened in these weeks, sorry to squeeze them all in but here is what happened in the meantime. I finished the daughterboard and went ahead and ordered all the PCBs, while waiting for them to arrive I played a bit more with the breadboard prototype(adding potentiometers to adjust effect parameters and such) but I hit a big brick wall when adding the screen. Because all the jumpers are in mid-air, turning on the screen would add a horrible really loud noise to my analog side. At this point I knew breadboard wasn't feasible, so I patiently waited for the PCBs. After they arrived, I spent two days(and nights) assembling them myself using the tools(Hot-Air, Soldering Station and Consumables) provided by the NGO where I'm a volunteer, Alacrity Education. Big shoutout to them for helping me with the tools and soldering advice needed.
+Anyway, after assembling them, I realized some little PCB mistakes I made(as you do, but they were very minor), so after fixing them I plugged it in and it worked! Noise performance was great so I kept on working with the code. Although noise is amazing at normal gain, when you add an effect like overdrive(which is basically what I have running right now), it amplifies the noise too(by up to 10x)! So I coded a noise-gate algorithm(inspired by Phil's Lab DSP youtube series) which cleverly mutes the volume when its below a certain threshold(a tad more complex than that actually), but it all works great! As I'm writing this I'm working on the little bonus mentioned above, lets see how it pans out!
+
 ## Hardware
 
-The core of the hardware is the Nucleo board. It slots into the main PCB, that houses the analogue front-end and slots for the ADC, DAC, bluetooth and all other modules. This PCB then connects using a ribbon cable to a daughter board that houses the main SSD1306 display, 5 potentiometers and a rotary encoder to navigate the menus(this can be replaced with three footswitches for ease of use). The main PCB uses a sig/gnd/gnd/sig 4 layer stackup to improve noise performance. The power is filtered quite a bit and the OpAmp at the core of the analogue frontend has its own separate 9V line provided by a low noise LDO ic. I routed it as carefully as possible to try and avoid unwanted noise caused by coupling and such. I saw the STM has a MicroSD peripheral so I added a slot cause why not.
+The core of the hardware is the Nucleo board. It slots into the main PCB, that houses the analogue front-end and slots for the ADC, DAC, bluetooth and all other modules. This PCB then connects using a ribbon cable to a daughter board that houses the main SH1106 display, 5 potentiometers and a rotary encoder to navigate the menus(this can be replaced with three footswitches for ease of use). The main PCB uses a sig/gnd/gnd/sig 4 layer stackup to improve noise performance. The power is filtered quite a bit and the OpAmp at the core of the analogue frontend has its own separate 9V line provided by a low noise LDO ic. I routed it as carefully as possible to try and avoid unwanted noise caused by coupling and such. I saw the STM has a MicroSD peripheral so I added a slot cause why not.
 
 ![Board Picture Front](./pedal_pcb_front.webp)
 ![Board Picture Back](./pedal_pcb_back.webp)
+![Daughterboard Picture Front](./daughterboard_front.webp)
+![Daughterboard Picture Back](./daughterboard_back.webp)
 
 
 ### Schematics
 
 ![Schematic Page 1](./pedal_sch_pg1.webp)
 ![Schematic Page 2](./pedal_sch_pg2.webp)
+![Daughterboard Schematic](./daughter_board_schematic.webp)
 
-Please excuse the second page as I haven't cleaned it up yet. Daughter board schematic TBA.
 
 ### Bill of Materials
 
@@ -75,7 +82,7 @@ The format is
 | [OPA2134PA](https://www.ti.com/lit/ds/symlink/opa2134.pdf?ts=1777032965339&ref_url=https%253A%252F%252Fwww.mouser.co.uk%252F) | The main IC in the analogue frontend | [32 RON](https://ro.mouser.com/ProductDetail/Texas-Instruments/OPA2134PAG4?qs=sjHPNSjTyn3iLz1rfWMlOA%3D%3D) |
 | [PCM1802 Module](https://www.ti.com/lit/ds/symlink/pcm1802.pdf?ts=1777070104907&ref_url=https%253A%252F%252Fro.mouser.com%252F) | The "digitizer" of the sound | [38 RON](https://www.aliexpress.com/item/1005006291500494.html?spm=a2g0o.order_list.order_list_main.36.2f221802rh5uHZ) |
 | [PCM5102A Module](https://www.ti.com/lit/ds/symlink/pcm5100a-q1.pdf?ts=1777022408260&ref_url=https%253A%252F%252Fwww.mouser.de%252F) | The "de-digitizer" of the sound | [22 RON](https://www.aliexpress.com/item/1005005713484762.html?spm=a2g0o.order_list.order_list_main.76.2f221802rh5uHZ) |
-| [SSD1306](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | The display | [20 RON](https://www.aliexpress.com/item/1005009166378984.html?spm=a2g0o.productlist.main.4.70076d49t8qos1&aem_p4p_detail=202604241537577012116885960001527165&algo_pvid=bd870748-c8e9-457d-b0ed-2d796542586b&pdp_ext_f=%7B%22order%22%3A%22281%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009166378984%7C_p_origin_prod%3A&search_p4p_id=202604241537577012116885960001527165_1) |
+| [SH1106](https://www.hpinfotech.ro/SH1106.pdf) | The display | [20 RON](https://www.aliexpress.com/item/1005009166378984.html?spm=a2g0o.productlist.main.4.70076d49t8qos1&aem_p4p_detail=202604241537577012116885960001527165&algo_pvid=bd870748-c8e9-457d-b0ed-2d796542586b&pdp_ext_f=%7B%22order%22%3A%22281%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009166378984%7C_p_origin_prod%3A&search_p4p_id=202604241537577012116885960001527165_1) |
 
 There are of course a lot more components on the PCB and daughterboard, but those are in the BOM files of the PCB.
 
@@ -83,9 +90,10 @@ There are of course a lot more components on the PCB and daughterboard, but thos
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [ssd1306](https://github.com/rust-embedded-community/ssd1306) | Display driver for SSD1306 | Used for the display for the pedal |
+| [sh1106](https://crates.io/crates/sh1106) | Display driver for SH1106| Used for the display for the pedal |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
 | [cmsis-dsp-pregenerated](https://github.com/samcrow/cmsis_dsp.rs) | Bindings to CMSIS DSP | Used to speed up filters and other DSP math |
+| [embassy-stm32](https://crates.io/crates/embassy-stm32) | Async Hardware Abstraction Layer (HAL) for STM32 | Used for hardware initialization and async peripheral control |
 
 ## Links
 
