@@ -87,7 +87,7 @@ const REG_ADDR: u8 = 0xf8;
 
 let mut buf = [0x00u8];
 
-i2c.write_read(
+i2c.blocking_write_read(
   DEVICE_ADDR, &[REG_ADDR], &mut buf
 ).unwrap();
 
@@ -112,7 +112,7 @@ let pressure_lsb = buf[1];
 </div>
 
 ---
----
+
 # Writing to a digital sensor
 using synchronous/asynchronous I2C to set up the `ctrl_meas` register of the BMP280 sensor 
 
@@ -128,7 +128,7 @@ const REG_ADDR: u8 = 0xf4;
 let value = 0b100_010_11;
 
 let buf = [REG_ADDR, value];
-i2c.write(DEVICE_ADDR, &buf).unwrap();
+i2c.blocking_write(DEVICE_ADDR, &buf).unwrap();
 ```
 
 ```rust {none|1|1,2|4,5|7,8|all}
