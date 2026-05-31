@@ -19,7 +19,7 @@ I chose this project because I always was interested in the design and mechanica
 
 ## Architecture
 
-![Arachne Architecture](./Architecture.svg)
+![Arachne Architecture](./architecture_now.svg)
 
 The system consists of three main components:
 
