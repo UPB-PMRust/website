@@ -27,7 +27,7 @@ Main software and system components:
 * **Button Handler Module**: Monitors two physical push buttons — one to start the session (triggering the stabilization phase) and one to fully reset the system back to its idle state.
 * **Logging and Debug Module**: Sends real-time sensor data and system status to a PC via UART/USB for graphing and monitoring using the companion Python script.
 
-![Architecture Diagram](./lie_detector_diagram.svg)
+![Architecture Diagram](./lie_detector_drawio.svg)
 
 ## Log
 
@@ -81,7 +81,7 @@ An RGB LED is driven via three PWM channels (PA6, PA7, PB0 on TIM3) to visually 
 | Device | Usage | Price |
 | :--- | :--- | :--- |
 | [STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Central Controller | 128 RON |
-| [Grove GSR Sensor](https://wiki.seeedstudio.com/Grove-GSR_Sensor/) | Stress Monitor | 40.18 RON |
+| [Grove GSR Sensor](https://wiki.seeedstudio.com/Grove-GSR_Sensor/) | Stress Monitor | 40.00 RON |
 | [Analog Pulse Sensor](https://robocraze.com/blogs/post/what-is-pulse-sensor) | Heart Rate Monitor | 15.4 RON |
 | [RGB LED](https://www.elprocus.com/what-is-three-rgb-led-and-its-working/) | Visual Indicator | 0.92 RON |
 | [Passive Buzzer](https://www.circuitbasics.com/what-is-a-buzzer/) | Audible Alarm | 1 RON |
