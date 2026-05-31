@@ -30,8 +30,6 @@ The main purpose of the project is to combine sensor acquisition, GPIO control, 
 
 ## Architecture
 
-![Architecture](./images/smart_parking_sensor_architecture.webp)
-
 The system is built around the STM32 Nucleo-U545RE-Q microcontroller board. The HC-SR04 ultrasonic sensor is used as the input module. The STM32 sends a trigger pulse to the sensor and measures the echo pulse duration in order to compute the distance.
 
 The measured distance is then classified into one of several warning states. Based on the selected state, the STM32 controls six LEDs, the buzzer output, and the OLED text display.
