@@ -1,7 +1,7 @@
 # Randomness-audited Wheel-of-Fortune
 A motorized wheel that randomly chooses its output and also proves how fair it is.
 
-:::info 
+:::info
 
 **Author**: Radu-Alexandru Vasilescu \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-vasilescuradu

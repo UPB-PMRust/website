@@ -44,13 +44,16 @@ iCEE recieves, remodels signals and output power through a multi-layered async a
 
 ### Week 5 - 11 May
 
-Assembled everything on the breadboard, created an unpolished software variant, set up the bluetooth connection.
+Assembled everything on the breadboard, created an unpolished software variant, set up the bluetooth connection. 
 
 ### Week 12 - 18 May
 
-Assembled the components on proto-boards, added more bluetooth funcionalities, started working on the chasis
+Assembled and soldiered the components on proto-boards, added more bluetooth funcionalities, started working on the chasis and on the custom sound PCB. Found an old used power bank, done all the computations to make sure it can sustain the entire system without making it crash. I have also soldiered and tested the custom sound PCB.
 
 ### Week 19 - 25 May
+
+I took all the measurements of the components, placed them in an optimised way on the chasis not to be too overcrowded and easily accessible in case something needs replacement or repair. Used the old power bank using the two USB power channels, one for the stm and all the digital components, the other one for the inductive components (Servo + the driver with the motors). I have used both the channels because a high spike in current draw could reset the STM32 Nucleo board. In this way, the motors draw current from a different cell.
+
 
 ## Hardware
 
@@ -59,6 +62,8 @@ Built around the STM32 Nucleo G0B1RE, iCEE uses an array of six passive buzzers 
 ### Photos
 
 ![First Hardware Prototype (One Motor, 4 Buzzers)](./ma3.webp)
+![First Hardware Prototype (One Motor, 4 Buzzers)](./ma4.webp)
+![First Hardware Prototype (One Motor, 4 Buzzers)](./ma5.webp)
 
 ### Schematics
 
