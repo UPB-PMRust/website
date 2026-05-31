@@ -1,6 +1,6 @@
 # SmartPark
 
-An intelligent parking management system based on STM32, utilizing ultrasonic sensors for detection and an LCD for real-time monitoring.
+An intelligent parking management system based on STM32, utilizing ultrasonic and IR sensors for detection and an LCD for real-time monitoring.
 
 :::info 
 **Author:** Minca Bianca-Mihaela \
@@ -9,7 +9,7 @@ An intelligent parking management system based on STM32, utilizing ultrasonic se
 :::
 
 ## Description
-This project implements an automated parking barrier system that integrates a keypad for secure PIN-based access. The system detects an approaching vehicle using an IR/proximity sensor and control the barrier arm via a PWM-controlled servomotor. When a valid PIN is entered on the keypad, a signal triggers the servo motor to open the gate. Once the vehicle enters the parking facility, a dedicated LED system guides the user to their specific reserved spot. Furthermore, each individual parking space is equipped with an IR sensor connected to color-coded LED indicators. These provide real-time visual feedback on the occupancy status of every spot. 
+This project implements an automated parking barrier system that integrates a keypad for secure PIN-based access. The system detects an approaching vehicle using an IR/proximity sensor and control the barrier arm via a PWM-controlled servomotor. When a valid PIN is entered on the keypad, a signal triggers the servo motor to open the barrier. Furthermore, each individual parking space is equipped with an IR sensor connected to color-coded LED indicators. These provide real-time visual feedback on the occupancy status of every spot. 
 
 ## Motivation
 Witnessing the daily frustration of drivers searching for available spots and the inefficiencies of manual entry systems inspired me to build an end-to-end automated parking solution from scratch. From a technical standpoint, this project allows me to combine multiple core microcontroller peripherals—such as PWM for precise servo actuation, GPIO matrices for keypad input, and External Interrupts for real-time IR sensing—into a single, cohesive ecosystem.
@@ -50,12 +50,17 @@ The system architecture revolves around the **STM32 microcontroller (Nucleo boar
 ```
 
 The system architecture revolves around the STM32 microcontroller (Nucleo board):
-1. **Input:*User credentials are captured via a Keypad matrix for secure PIN entry. Vehicle proximity and parking spot occupancy are monitored asynchronously using IR sensors connected via External Interrupts (EXTI) to ensure zero-latency detection.
+1. **Input:** User credentials are captured via a Keypad matrix for secure PIN entry. Vehicle proximity and parking spot occupancy are monitored asynchronously using IR sensors connected via External Interrupts (EXTI) to ensure zero-latency detection.
 2. **Processing:** The STM32 validates the entered PIN against reservation data and manages the parking state logic. Using the Embassy framework, the system concurrently tracks the barrier's position, processes keypad input, and updates the real-time availability of parking spots.
 3. **Output:** Movement is triggered via PWM (Pulse Width Modulation) to the Servomotor, which precisely actuates the barrier arm. Visual feedback is provided through a Multi-LED system: status indicators for the main gate and individual Red/Green LEDs to signal occupancy for each parking spot.
 
 ## Shematics
-(Will be put here)
+**KiCad Schematic** 
+![SmartPark Schematic](./schematic.svg)
+
+## Images of the project 
+![Image1](./image1.webp)
+![Image2](./image2.webp)
 
 ## Hardware
 The system is centered around an STM32 Nucleo MCU. For input, I am using IR proximity sensors for vehicle detection and a 4x4 Matrix Keypad for secure PIN entry. Outputs consist of an SG90 Servo Motor driven by a PWM signal to actuate the barrier, alongside Red and Green LEDs for real-time status and occupancy feedback via digital GPIO.
@@ -75,9 +80,19 @@ The firmware uses the Embassy framework to handle these components concurrently,
  * Started testing the USB
  * Started testing the components to see if works
 
-### Week 9 
+### Week 9 - 12
  * Encountered a problem, the ultrasonic sensor didn't work, looking for a substitute
+ * I have solved the problem with the ultrasonic sensor, it's working properly now
+ * Testing the esp01 and the other components related to the wifi to see if they can connect to the internet
+ * Finishing the box in which to put the project 
 
+### Week 13 
+ * Make the application in Python, HTML, CSS and JavaScript for the reservations of the spots
+ * Trying to connect the esp01 to the stm but encountered a problem, it doesn't send back the signal needed to light up the blue LEDs, looking for solutions
+
+### Week 14
+ * Finish the application and installed all the components on the box
+ * Didn't manage to make the wifi work, can just connect but can't connect to the server of the python app
 
 ## Bill of materials
 | Device | Usage | Price |

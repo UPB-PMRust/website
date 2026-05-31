@@ -41,6 +41,14 @@ Downloaded Fusion, learned how to use it and designed chassis and legs.
 
 The system uses a Raspberry Pi Pico W (RP2040) as the main controller and for WiFi, a PCA9685 16-channel as a servo driver, 12 MG90S servos as leg joints, a MPU6050 (GY-521) gyroscope for body orientation sensing and a 7.4V 2S LiPo battery as power source.
 
+### Schematics
+
+![KiCad Schematic](./spider_robot_design.svg)
+
+### Photos
+
+![Photo IRL1](./imagine.webp)
+
 ## Bill of Materials
 
 | Device | Usage | Price |
