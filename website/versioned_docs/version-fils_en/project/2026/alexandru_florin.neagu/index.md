@@ -18,7 +18,7 @@ This project represents a **karaoke device** that lets a user pick a song from t
 The system is split into **two physical boards** that cooperate over Bluetooth and SPI:
 
 - The **audio path** is a hardware-only board built around an MH-M38 Bluetooth audio receiver that drives a small amplifier and the speakers. The phone pairs to it directly.
-- The **brain board** runs a Rust firmware on an **STM32U545RE-Q**, drives a small **ST7789V TFT display**, a **MAX7219 8x8 LED matrix** and a **DHT22 temperature/humidity sensor**, and talks to an **ESP32-WROOM-32** over SPI. The ESP32 acts as the Bluetooth Classic bridge that hands lyrics and control commands from the phone to the STM32.
+- The **brain board** runs a Rust firmware on an **STM32U545RE-Q**, drives two small **ST7789V TFT displays**, a **MAX7219 8x8 LED matrix** and a **DHT22 temperature/humidity sensor**, and talks to an **ESP32-WROOM-32** over SPI. The ESP32 acts as the Bluetooth Classic bridge that hands lyrics and control commands from the phone to the STM32.
 
 ## Motivation
 
@@ -109,7 +109,6 @@ Hardware used for creating this project: STM32 NUCLEO-U545RE-Q board, ESP32-WROO
 
 
 ### Bill of Materials
-#### --- WORK IN PROGRESS, NOT FINISHED ---
 <!-- Fill out this table with all the hardware components that you might need.
 
 The format is
