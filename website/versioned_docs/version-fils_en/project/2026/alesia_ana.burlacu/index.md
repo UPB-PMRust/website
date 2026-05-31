@@ -53,6 +53,11 @@ I waited a while for my components to arrive, so until they did, I tried to find
 ![Hardware 1](hardware1.webp)
 ![Hardware 2](hardware2.webp)
 
+### Weeks 12 - 14
+After testing, I began assembling everything. I made holes in my wooden house then placed everything carefully. With the help of Alacrity Education, I managed to do some soldering for my parts and got some useful insights about working with hardware. Finally, I began working on the full functional code.
+
+![Hardware 3](hardware3.webp)
+
 ## Hardware
 
 The system is centered around an STM32 NUCLEO-U545RE-Q microcontroller. For user interaction, a 2.8” TFT touchscreen display (ILI9341) is used, communicating via SPI. Environmental data is collected using a DHT11 temperature and humidity sensor, an air quality sensor, and a light sensor, connected through digital and analog inputs.
