@@ -20,9 +20,9 @@ My hobby is music production. I have been doing ambiental, metal and digicore or
 
 ## Architecture 
 
-Add here the schematics with the architecture of your project. Make sure to include:
- - what are the main components (architecture components, not hardware components)
- - how they connect with each other
+<center>
+![Arhitecture](arhitecture.svg)
+</center>
 
 ## Log
 
@@ -34,24 +34,48 @@ The STM32 arrived. Played with it and everything worked fine. I also messed arou
 
 ### Week 20 - 26 April
 
-I ordered my own sensors and an LED display. Plan to make a working skeleton next week.
+I ordered my own sensors and an LED display. Plan to make a working skeleton.
+
+## Week 27 April - 3 May
+
+Spent my weekend celebrating May Day. Glory to all workers whose blood was shed fighting for our rights.
 
 ### Week 4 - 10 May
 
+It seems one of the HC-SR04+ sensors I have ordered is faulty (plan to check in with my colleagues, see if a replacement helps). Glad I spent an entire weekend evening not knowing what part of my code doesn't work. Did the KiCad schematic and got a WCMCU-1334 DAC from one of my colleagues.
+
+<center>
+![Early Hardware](components_early.svg)
+</center>
+
+Barely made the sensors work thus far, but I did figure out all the connections I need by KiCad and reading the documentation.
+
 ### Week 11 - 17 May
+
+It seemed that the sensors were not faulty. The DAC is though. A noisy output is better than nothing, at least.
 
 ### Week 18 - 24 May
 
+Programmed the majority of software. Getting out 2 waveforms and 2 effects is nice. It wasn't a pleasure, but it feels good to hit some of your goals.
+
+### Week 25 - 28 May
+
+Here comes the deadline. Crunch time to make the noise as low as possible. Even the professor said embassy isn't exactly good for low-latency stuff, but I tried my best. Making the last software and hardware adjustments to limit cable interference, frequency usage and buffer starvations that sometimes happen.
+
 ## Hardware
 
-- STM32U545
+- STM32U545 - the MCU
 - 2 x HC-SR04+ - sensors to detect distance to hands
-- "ST7735" LCD Display - used to show current effect and how much % it is applied to the wave. Also mine is most likely a knockoff.
+- "ST7735" LCD Display - used to show current effect. Also mine is most likely a knockoff.
+- WCMCU-1334 - DAC to convert the read data into an interpretation of a signal.
 
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+<center>
+![KiCad Schematic](theremin.svg)
+</center>
+
 
 ### Bill of Materials
 
@@ -70,19 +94,24 @@ The format is
 | [STM32U545](https://www.st.com/en/microcontrollers-microprocessors/stm32u535-545.html) | Microcontroller | [106 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
 | [2 x HC-SR04+](https://web.eece.maine.edu/~zhu/book/lab/HC-SR04%20User%20Manual.pdf) | Ultrasonic Sensors | [2 x 15 RON](https://www.optimusdigital.ro/en/ultrasonic-sensors/2328-senzor-ultrasonic-de-distana-hc-sr04-compatibil-33-v-i-5-v.html?search_query=HC-SR04+&results=15) |
 | ["ST7735 LCD"](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf) | Displaying effect information | [35 RON](https://www.optimusdigital.ro/en/lcds/8589-144-lcd-for-stc-stm32-and-arduino-boards-5-v.html?search_query=LCD&results=197) |
+| [WCMCU-1334 DAC](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-i2s-stereo-decoder-uda1334a.pdf) | Converting data to audio | [23 RON](https://www.aliexpress.com/i/1005001993192815.html) |
 
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
+| [embassy-stm32](https://docs.rs/embassy-stm32/latest/embassy_stm32/index.html) | Embassy for STM32 | Used for async stm32 tasks |
 | [ST7735](https://github.com/afiskon/stm32-st7735) | Display driver for ST7735S | Used for the display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [SAI](https://docs.rs/embassy-stm32/latest/embassy_stm32/sai/index.html) | Serial Audio Interface | Protocol used for writing to the DAC |
+| [SPI](https://docs.rs/embassy-stm32/latest/embassy_stm32/spi/index.html) | Serial Peripheral Interface | Protocol for Display communication |
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | Generic Display Driver | Used for my ease of use for the display |
+
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
 ...
