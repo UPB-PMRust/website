@@ -13,7 +13,7 @@ A Bluetooth-enabled karaoke device built around an STM32 brain board and an ESP3
 
 ## Description
 
-This project represents a **karaoke device** that lets a user pick a song from their phone, stream it via bluetooth to a small dedicated speaker system, and see synchronized lyrics scroll on both their phone and a tiny on-device display - all while a separate display shows the temperature and a small fun LED matrix goes through different colours.
+This project represents a **karaoke device** that lets a user pick a song from their phone, stream it via bluetooth to a small dedicated speaker system, and see synchronized lyrics scroll on both their phone and a on-device display - all while a separate display shows the temperature and a small fun LED matrix goes through different colours.
 
 The system is split into **two physical boards** that cooperate over Bluetooth and SPI:
 
@@ -103,7 +103,7 @@ Added photos during the building process and a final one with the box and the sp
 
 ## Hardware
 
-Hardware used for creating this project: STM32 NUCLEO-U545RE-Q board, ESP32-WROOM-32 DevKit v1, MH-M38 Bluetooth audio receiver with onboard amplifier, ST7789V 2.8" TFT display, ST7789V 1.3" TFT display, MAX7219 8x8 LED matrix, DHT22 temperature/humidity sensor, a 4Ω  speaker pair, and the power distribution with the RC car battery and the DC-DC step down converter setup I had to DIY.
+Hardware used for creating this project: STM32 NUCLEO-U545RE-Q board, ESP32-WROOM-32 DevKit v1, MH-M38 Bluetooth audio receiver with onboard amplifier, ST7789V 2.8" TFT display, ST7789V 1.3" TFT display, MAX7219 8x8 LED matrix, DHT22 temperature/humidity sensor, a 4Ω  speaker pair, and the power distribution with the RC car battery and the DC-DC step down converter setup I had to DIY in the meantime.
 
 ### Schematics
 
