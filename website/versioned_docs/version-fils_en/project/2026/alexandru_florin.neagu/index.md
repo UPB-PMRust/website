@@ -28,6 +28,7 @@ I chose this project because karaoke is fun and my last project idea sadly died 
 
 This is the diagram regarding how the project is organized:
 
+![Architecture diagram svg](./karabox.svg)
 ![Architecture diagram first](./ss_kb_one.webp)
 ![Architecture diagram second](./ss_kb_two.webp)
 
