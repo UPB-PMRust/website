@@ -1,5 +1,5 @@
 # KaraBox
-A Bluetooth-enabled karaoke device built around an STM32 brain board and an ESP32 wireless bridge, programmed primarily in Rust.
+A Rust programmed Bluetooth-enabled karaoke device built around an STM32 main board and an ESP32 wireless bridge.
 
 :::info
 
@@ -13,12 +13,12 @@ A Bluetooth-enabled karaoke device built around an STM32 brain board and an ESP3
 
 ## Description
 
-This project represents a **karaoke device** that lets a user pick a song from their phone, stream it via bluetooth to a small dedicated speaker system, and see synchronized lyrics scroll on both their phone and a on-device display - all while a separate display shows the temperature and a small fun LED matrix goes through different colours.
+This project represents a **karaoke device** that lets a user pick a song from their phone, stream it via bluetooth to a small dedicated speaker system, and see synchronized lyrics scroll on both their phone and a on-device display - all while a separate display shows the temperature and a small fun LED matrix goes through different colours!!
 
 The system is split into **two physical boards** that cooperate over Bluetooth and SPI:
 
 - The **audio path** is a hardware-only board built around an MH-M38 Bluetooth audio receiver that drives a small amplifier and the speakers. The phone pairs to it directly.
-- The **brain board** runs a Rust firmware on an **STM32U545RE-Q**, drives two small **ST7789V TFT displays**, a **MAX7219 8x8 LED matrix** and a **DHT22 temperature/humidity sensor**, and talks to an **ESP32-WROOM-32** over SPI. The ESP32 acts as the Bluetooth Classic bridge that hands lyrics and control commands from the phone to the STM32.
+- The **brain board** runs a Rust firmware on an **STM32U545RE-Q**, drives two small **ST7789V TFT displays**, a **MAX7219 8x8 LED matrix** and a **DHT22/AM2302 temperature/humidity sensor**, and talks to an **ESP32-WROOM-32** over SPI. The ESP32 acts as the Bluetooth Classic bridge that hands lyrics and control commands from the phone to the STM32.
 
 ## Motivation
 
@@ -32,7 +32,7 @@ This is the diagram regarding how the project is organized:
 ![Architecture diagram first](./ss_kb_one.webp)
 ![Architecture diagram second](./ss_kb_two.webp)
 
-These are the current KiCAD diagrams for the project depicting the power distribution and the communication protocols between the STM32 brain board and its peripherals (the ST7789V display over SPI1, the MAX7219 matrix over SPI2, the ESP32 link over SPI3, and the DHT22 sensor on a single GPIO line with an external pull-up).w
+These are the current KiCAD diagrams for the project depicting the power distribution and the communication protocols between the STM32 brain board and its peripherals (the ST7789V display over SPI2 and SPI3, each display, the MAX7219 matrix over SPI2, the ESP32 link over SPI1, and the DHT22 sensor on a single GPIO line.
 
 ![KiCAD diagram first](./kicad__karaoke.webp)
 
@@ -106,7 +106,7 @@ Added photos during the building process and a final one with the box and the sp
 
 ## Hardware
 
-Hardware used for creating this project: STM32 NUCLEO-U545RE-Q board, ESP32-WROOM-32 DevKit v1, MH-M38 Bluetooth audio receiver with onboard amplifier, ST7789V 2.8" TFT display, ST7789V 1.3" TFT display, MAX7219 8x8 LED matrix, DHT22 temperature/humidity sensor, a 4Ω  speaker pair, and the power distribution with the RC car battery and the DC-DC step down converter setup I had to DIY in the meantime.
+Hardware used for creating this project: STM32 NUCLEO-U545RE-Q board, ESP32-WROOM-32 DevKit v1, MH-M38 Bluetooth audio receiver with onboard amplifier, ST7789V 2.8" TFT display, ST7789V 1.3" TFT display, MAX7219 8x8 LED matrix, DHT22 temperature/humidity sensor, a 4Ω  speaker pair, and the power distribution with the LiPo battery and the DC-DC step down converter setup I had to DIY in the meantime.
 
 ### Schematics
 
@@ -135,7 +135,7 @@ The format is
 | [LiPo GENS ACE G-Tech Soaring 4S 14.8 V 2200mA](https://gensace.de/pages/lipo-battery-guide) | The battery - supplies power to all components | [150 RON](https://www.emag.ro/acumulator-lipo-gens-ace-g-tech-soaring-14-8-v-2200-ma-30c-xt60-men-ip-415004/pd/DF4XMTYBM/) |
 | [LM2596S](https://www.ti.com/lit/ds/symlink/lm2596.pdf) | DC-DC Buck Step Down Convertor LM2596S 4.0~40V to 1.25-37V - for supplying correct voltage to STM32 board| [48 RON](https://www.emag.ro/modul-dc-dc-buck-step-down-lm2596s-dc-dc-4-0-40v-la-1-25-37v-regulator-de-tensiune-reglabil-cu-voltmetru-led-stlxy-741050522578/pd/DKNQT83BM/?ref=sponsored_products_search_f_b_1_5&recid=recads_1_b90d01a332c40f582acfccf6bf3bca72edcfc042cd11701d2d49ef94121cef69_1777211422&aid=549a3d7e-f438-11f0-801c-06eaf0d4245d&oid=302862900&scenario_ID=1) |
 | [Gens Ace iMars mini G-Tech](https://gensace.de/products/gens-ace-imars-mini-g-tech-usb-c-2-4s-60w-rc-battery-charger-with-power-supply-adapter-and-adpter-cable-eu) | The battery charger - charges the battery when needed | [245 RON]
-| Wires, perfboard, headers | No exact count, still figuring out | - |
+| Wires, perfboards, headers | Lots of em | - |
 | | Total: | ~700 RON |
 
 
@@ -153,9 +153,9 @@ The format is
 | [embedded-hal](https://crates.io/crates/embedded-hal) | Common embedded hardware abstraction traits | Used by the SPI device drivers |
 | [mipidsi](https://crates.io/crates/mipidsi) | MIPI-DCS display driver supporting ST7789 and other displays | Drives both ST7789V displays through SPI and provides display |
 | [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D drawing library for embedded displays | Used to draw text and clear screen regions on both ST7789V displays |
-| [heapless](https://crates.io/crates/heapless) | Fixed-capacity data structures for `no_std` systems | Used for fixed-size strings when formatting temperature and humidity text for the small display |
-| [defmt](https://crates.io/crates/defmt) | Compact logging framework for embedded devices | Used for logging startup messages, sensor values, display updates, SPI frame errors, and debugging information |
-| [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT transport backend for `defmt` | Sends `defmt` logs through the ST-Link RTT channel |
+| [heapless](https://crates.io/crates/heapless) | Fixed-capacity data structures for `no_std` systems | Used for formatting temperature and humidity text for the small display |
+| [defmt](https://crates.io/crates/defmt) | Compact logging framework for embedded devices | Used for logging startup messages and debugging information |
+| [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT transport backend for `defmt` | Sends logs through the ST-Link RTT channel |
 | [panic-probe](https://crates.io/crates/panic-probe) | Panic handler for embedded Rust | Reports panics through the debug probe during development |
 
 For the **ESP32 side** of the project, the firmware is written in C++ on top of the Arduino-ESP32 framework, since the BT Classic SPP stack there is the most mature option available. The dependencies for that part are:
