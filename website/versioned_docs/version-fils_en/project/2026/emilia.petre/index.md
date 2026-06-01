@@ -70,7 +70,7 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 
 ![Hardware Photo](images/imagehardware.webp)
 
-! [Final Hand](images/finalhand.webp)
+![Final Hand](images/finalhand.webp)
 
 ### Schematics
 
@@ -115,5 +115,5 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 1. [Embassy Framework](https://embassy.dev/book/#_what_is_embassy)
 2. [STM32 Nucleo-U545RE-Q](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus/documentation.html)
 3. [MediaPipe Gesture Recognition](https://developers.google.com/mediapipe)
-5. [ESP-01 WiFi Module Information](https://www.espressif.com/)
+4. [ESP-01 WiFi Module Information](https://www.espressif.com/)
 
