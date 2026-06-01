@@ -72,8 +72,6 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 
 ![Final Hand](images/finalhand.webp)
 
-![Hardware Photo](images/imagehardware.webp)
-
 ### Schematics
 
 ![Hardware Schematic](images/kicademilia-2.svg)
