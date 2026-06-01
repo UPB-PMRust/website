@@ -63,7 +63,8 @@ Arrival of most components. Realised I need for the CAN bus a twisted pair insul
 
 ### Week 11: 3 - 9 May
 
-Finished designing the driver cages, still working on the rest of the components. Cable arrived. Realised my drivers have small can cables which I need to further connect to perfboards to fulfill CAN Bus conditions. Starting thinking about the KiCAD schematic and the different communication protocols required for pin connections between the board and the peripherals.
+Finished designing the driver cages, still working on the rest of the components. Cable arrived. Realised my drivers have small can cables which I need to further connect to perfboards to fulfill CAN Bus conditions. 
+Starting thinking about the KiCAD schematic and the different communication protocols required for pin connections between the board and the peripherals.
 
 ![photo_first](./motors.webp)
 
@@ -74,7 +75,8 @@ Finished designing the driver cages, still working on the rest of the components
 
 ### Week 12: 10 - 16 May
 
-Finished the KiCAD schematic and submitted to Git branch for review by lab assistants. Worked on setting up motor drivers and motors with USB-C connection and integrated ODrive Python programs developed for MKS XDRive Mini. Still working on 3D design for arms and rails for coupling the 3 axis components.
+Finished the KiCAD schematic and submitted to Git branch for review by lab assistants. Worked on setting up motor drivers and motors with USB-C connection and integrated ODrive Python programs developed for MKS XDRive Mini. 
+Still working on 3D design for arms and rails for coupling the 3 axis components.
 
 ### Week 13: 18 - 23 May
 
@@ -84,7 +86,7 @@ Things started going horribly wrong. 2 drivers fried, lots of components purchas
 
 Components started arriving and I started assembly whenever I didnt have tests (mostly nights...). Managed to get everything working, relatively well.
 
-Added photos during the building process and a final one with the box and the speakers from after the PM Fair.
+Added photos during the building process and a final one with the box and the speakers from after the PM Fair with the cardboard box prototype.
 
 ![photo_one](./photo_one.webp)
 
