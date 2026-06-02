@@ -50,6 +50,14 @@ The components arrived. I started individual hardware validation by testing the 
 
 Started the core software implementation. I initialized the Embassy async runtime on the STM32U5 and set up the I2C and UART peripherals. I began implementing the driver logic for the HX711 to convert raw differential signals into weight data. Additionally, I designed the initial hardware layout on the breadboard, focusing on minimizing signal noise for the load cell to ensure accurate measurements.
 
+### Week 10-12
+
+During testing, the physical load cell started showing massive calibration drift and unexpected signal noise, making accurate hardware measurements impossible. To prevent a complete project deadlock right before the deadline, I decided to pivot the system's architecture toward a software-defined inventory solution. I rewrote the core state machine in the Android application to track the dry ingredients mathematically through user-driven transactions ("Use Product" and "Refill Product" loops). The STM32U5 board was kept active as our environmental guardian, continuously querying the AHT21 sensor to ensure storage parameters don't endanger food safety.
+
+### Week 14 (Final Implementation)
+
+The final week was all about making the communication between the STM32 chip and the phone rock-solid. I implemented a dedicated background thread in Kotlin to listen to the LPUART1 stream and parse the incoming data frames (`T:XX.X|H:XX.X|ALERT:XX`) cleanly at 9600 baud. On the mobile side, I also redesigned the UI layout to fix a major UX issue: the soft keyboard was blocking the inputs. By shifting the input forms into the upper part of the screen, the layout stayed perfectly visible even during typing. The loop now runs smoothly under the Rust Embassy runtime, combining manual precision tracking with live environmental alerts.
+
 ## Hardware
 
 The project is based on the STM32U575RE-Q (Nucleo-64), an ultra-low-power ARM Cortex-M33 microcontroller. It uses a 5kg Load Cell with an HX711 amplifier for precision weighing, and an AHT21 sensor for humidity/temperature monitoring. Connectivity is handled by an HC-05 Bluetooth module. The system is powered by a 6xAA battery holder via the DC Jack for portability.
