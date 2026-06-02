@@ -83,6 +83,8 @@ Injector: MG90S servo deploys the USB.
 
 ### Schematics
 
+![Project Diagram](projectnovackikad.svg)
+
 ### Bill of Materials
 
 | Device | Usage | Price |

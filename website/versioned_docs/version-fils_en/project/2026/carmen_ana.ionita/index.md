@@ -20,7 +20,7 @@ The inspiration behind this project is my father, who is a firefighter. Knowing 
 
 ## Architecture 
 
-The STM32 Nucleo-U545RE-Q is the central component of the system. It reads data from three flame sensors and the HC-SR04 ultrasonic sensor via GPIO, and from the MQ-2 smoke sensor via ADC. Based on this input, it controls the L298N motor driver and the water pump via GPIO, the buzzer via PWM, and the OLED display via I2C. The entire system is powered by two 18650 batteries (7.4V), with a buck converter (LM2596) stepping the voltage down to 5V for the microcontroller and sensors.
+The STM32 Nucleo-U545RE-Q is the central component of the system. It reads data from three flame sensors, the MQ-2 smoke sensor and the HC-SR04 ultrasonic sensor via GPIO. Based on this input, it controls the L298N motor driver and the water pump via GPIO, the buzzer via PWM, and the OLED display via I2C. The entire system is powered by two 18650 batteries (7.4V), with a buck converter (LM2596) stepping the voltage down to 5V for the microcontroller and sensors.
 
 ![img](architecture_rustrescue.svg)
 
@@ -41,10 +41,19 @@ Received the last order of components and finished the KiCad schematic.
 ### Week 4 - 10 May
 Started working on hardware.
 
+### Week 11 - 17 May
+Started working on the firmware. Set up the Embassy project and tested the flame sensors and the smoke sensor.
+
+### Week 18 - 24 May
+Worked on hardware assembly. Wired up the power system and the water pump transistor circuit. Replaced the motors. Continued firmware development, adding support for the ultrasonic sensor and the OLED display.
+
+### Week 25 - 28 May
+Continued hardware assembly. Worked on mounting the components on the chassis and replaced the transistor circuit with a relay module for controlling the water pump. Made further progress on the firmware.
+![img](rustrescue.webp)
 
 ## Hardware
 
-The hardware is built around the STM32 NUCLEO-U545RE-Q microcontroller, which connects to all the other components. Three IR flame sensors and an HC-SR04 ultrasonic sensor are wired via GPIO, the flame sensors to detect where the fire is coming from, and the ultrasonic sensor to avoid obstacles along the way. The MQ-2 smoke sensor connects via ADC to detect smoke in the surroundings. For movement, four BO motors are controlled through an L298N motor driver using PWM signals. A passive buzzer produces a siren sound via PWM, and two red LEDs are used as visual alerts via GPIO. The SSD1306 OLED display communicates over I2C and shows the current system state of the robot in real time. The water pump is switched on and off through a 2N2222 NPN transistor driven by a GPIO pin. The entire system is powered by two 18650 batteries in series (7.4V), brought down to 5V by an LM2596 buck converter.
+The hardware is built around the STM32 NUCLEO-U545RE-Q microcontroller, which connects to all the other components. Three IR flame sensors and an HC-SR04 ultrasonic sensor are wired via GPIO, the flame sensors to detect where the fire is coming from, and the ultrasonic sensor to avoid obstacles along the way. The MQ-2 smoke sensor connects via GPIO to detect smoke in the surroundings. For movement, four BO motors are controlled through an L298N motor driver using PWM signals. A passive buzzer produces a siren sound via PWM, and two red LEDs are used as visual alerts via GPIO. The SSD1306 OLED display communicates over I2C and shows the current system state of the robot in real time. The water pump is switched on and off through a relay module driven by a GPIO pin. The entire system is powered by two 18650 batteries in series (7.4V), brought down to 5V by an LM2596 buck converter.
 
 ### Schematics
 
@@ -76,10 +85,7 @@ The format is
 | [Water tank / bottle] | Water reservoir for the pump | [N/A] |
 | [Passive Buzzer](https://www.aliexpress.com/item/1005007274812383.html?spm=a2g0o.order_list.order_list_main.5.c53218027nnulr) | Emits siren sound | [1.34 RON](https://www.aliexpress.com/item/1005007274812383.html?spm=a2g0o.order_list.order_list_main.5.c53218027nnulr) |
 | [Red LED (×2)](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/4-culoare-rosu) | Emergency flashing lights | [0.60 RON](https://ardushop.ro/ro/led-uri/293-467-led-5mm.html#/4-culoare-rosu) |
-| [Transistor NPN 2n2222](https://www.optimusdigital.ro/en/transistors/935-transistor-npn-2n2222-to-92.html) | Switches the water pump circuit | [0.17 RON](https://www.optimusdigital.ro/en/transistors/935-transistor-npn-2n2222-to-92.html) |
-| [100nF Capacitor](https://ardushop.ro/ro/condensatori-tht/571-948-condensator-ceramic-50v-alege-valoarea.html#/348-capacitate-100_nf) | Filters noise from the water pump | [0.24 RON](https://ardushop.ro/ro/condensatori-tht/571-948-condensator-ceramic-50v-alege-valoarea.html#/348-capacitate-100_nf) |
-| [1KΩ Resistor (×2)](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Limits current to transistor base and voltage divider for HC-SR04 ECHO pin | [0.20 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
-| [2KΩ Resistor](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Voltage divider for HC-SR04 ECHO pin | [0.10 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
+| [Relay Module with One Channel (5 V Power) - Red](https://www.optimusdigital.ro/en/relay-modules/54-modul-cu-releu-5-v.html?search_query=Relay+Module+with+One+Channel+%285+V+Power%29+-+Red&results=8) | Switches the water pump circuit | [9.07 RON](https://www.optimusdigital.ro/en/relay-modules/54-modul-cu-releu-5-v.html?search_query=Relay+Module+with+One+Channel+%285+V+Power%29+-+Red&results=8) |
 | [330Ω Resistor (×2)](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) | Limits current to LEDs | [0.20 RON](https://www.optimusdigital.ro/en/resistors/13607-resistor-set-110-resistors.html?search_query=resistor+330&results=21) |
 | [Diode 1N4007](https://www.optimusdigital.ro/en/diodes/7457-dioda-1n4007.html) | Flyback protection for water pump transistor | [0.49 RON](https://www.optimusdigital.ro/en/diodes/7457-dioda-1n4007.html) |
 | [Breadboard](https://www.aliexpress.com/item/1005008788953967.html?spm=a2g0o.order_list.order_list_main.41.c53218027nnulr) | Prototyping connections | [19.47 RON](https://www.aliexpress.com/item/1005008788953967.html?spm=a2g0o.order_list.order_list_main.41.c53218027nnulr) |
@@ -98,7 +104,7 @@ The format is
 | [embassy-time](https://github.com/embassy-rs/embassy) | Async time utilities | Delays and timeouts |
 | [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives | Communication between tasks |
 | [ssd1306](https://github.com/rust-embedded-community/ssd1306) | OLED display driver | Drives the SSD1306 display over I2C |
-| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Interface for peripherals |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for rendering text on the OLED display |
 | [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async hardware abstraction traits | Async interface for peripherals |
 | [defmt](https://github.com/knurling-rs/defmt) + [defmt-rtt](https://github.com/knurling-rs/defmt) | Debug logging | Lightweight logging over RTT |
 | [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler | Panic handler with defmt output |

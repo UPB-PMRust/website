@@ -10,7 +10,7 @@ A virtual pet that lives, grows, and misses you when you're away
 
 ## Description
 
-A Tamagotchi (digital pet) built on the STM32 NUCLEO-U545RE-Q microcontroller, programmed entirely in Rust. The system uses a finite state machine with concurrent async tasks. It provides visual feedback via an OLED screen, audio feedback via a PWM-driven passive buzzer, and accepts input via three physical buttons (Feed, Play, Sleep). The pet's state (hunger, happiness, fatigue) degrades over time using the microcontroller's internal RTC, so the pet continues to age even when the device is idle.
+A Tamagotchi (digital pet) built on the STM32 NUCLEO-U545RE-Q microcontroller, programmed entirely in Rust. The system uses a finite state machine with 11 distinct pet states and 5 concurrent async tasks running on the Embassy framework. It provides visual feedback via an SH1106 OLED screen with custom pixel-art animations, audio feedback via a PWM-driven passive buzzer with unique melodies per state, and accepts input via three physical buttons (Feed, Play, Sleep). The pet's stats (hunger, happiness, fatigue) decay over time, driving state transitions and triggering warning sounds.
 
 ## Motivation
 
@@ -22,7 +22,7 @@ I chose this project because it combines several embedded systems concepts (asyn
 
 The main components of the system are:
 - **STM32 NUCLEO-U545RE-Q** — main microcontroller with internal RTC running Embassy/Rust
-- **SSD1306 OLED screen** — displays the pet's current state via I2C
+- **SH1106 OLED screen** — displays the pet's current state via I2C
 - **3 push buttons** — user input (Feed, Play, Sleep) via EXTI interrupts
 - **Passive buzzer + transistor** — audio feedback via hardware PWM
 
@@ -40,12 +40,19 @@ Set up the development environment and started experimenting with Embassy on the
 ### Week 10 - 11
 Developed the KiCad schematic and assembled the prototype for the project.
 
+### Week 12
+Implemented the pet FSM, display rendering, button input, and PWM audio.
+
+### Week 13
+Debugged async task interactions. Tuned gameplay parameters and finalized the hardware assembly.
+
 ## Hardware
 
-The project uses the STM32 NUCLEO-U545RE-Q as the main microcontroller. An SSD1306 OLED screen is connected via I2C. Three push buttons handle user input and a passive buzzer driven by a transistor provides audio feedback. Time tracking is handled by the microcontroller's built-in RTC.
+The project uses the STM32 NUCLEO-U545RE-Q as the main microcontroller. An SH1106 OLED screen is connected via I2C. Three push buttons handle user input and a passive buzzer driven by a transistor provides audio feedback.
 
 ![Hardware photo](hardware.webp)
 
+![Final project photo](finalproject.webp)
 ## Schematics
 
 ![KiCad Schematic](schematic.webp)
@@ -55,7 +62,7 @@ The project uses the STM32 NUCLEO-U545RE-Q as the main microcontroller. An SSD13
 | Device | Usage | Price |
 |--------|-------|-------|
 | STM32 NUCLEO-U545RE-Q | Main microcontroller | — |
-| SSD1306 OLED screen | Graphical interface | 20 RON |
+| SH1106 OLED screen | Graphical interface | 20 RON |
 | 3x Push buttons | User input (Feed/Play/Sleep) | 5 RON |
 | Passive buzzer + transistor | Audio feedback | 6 RON |
 | Jumper wires + breadboard | Assembly | 15 RON |
@@ -64,10 +71,13 @@ The project uses the STM32 NUCLEO-U545RE-Q as the main microcontroller. An SSD13
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| `embassy-stm32` | Async HAL for STM32 | I2C, EXTI, Timers, RTC |
-| `embassy-time` | Async time management | Managing concurrent tasks |
+| `embassy-stm32` | Async HAL for STM32 | I2C, EXTI, TIM3 PWM, RCC |
+| `embassy-executor` | Async task executor | 5 concurrent tasks, cooperative scheduling |
+| `embassy-time` | Async time management | Timers, tick scheduling, debounce |
+| `embassy-sync` | Sync primitives | Mutex, Channel for shared state |
 | `embedded-graphics` | 2D graphics library | Drawing to the OLED display |
-| `ssd1306` | Display driver for SSD1306 | Used for the OLED screen |
+| `sh1106` | Display driver for SH1106 | Used for the OLED screen |
+| `embedded-hal 0.2` | Hardware | PWM trait for buzzer control |
 | `defmt` | Logging framework | Debugging |
 
 ## Links
