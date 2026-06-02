@@ -91,6 +91,12 @@ Final push: the hand was complete, the assembly looked good, the mechanics ran s
 For the future students taking this class, please do **demo videos**. You never know when things might go wrong. Installed an I2C module for the servo control, things ran great until they did not. Functional code, got a video of the servos moving, after which we got smoke coming out of the module. Safe to say, I was toast. Document your progress, stuff happens.
 
 
+### Week 10
+Got the prints, this is tough. Broke a pin already, the tolerances were not a joke. Will use the universal repair tool, superglue. 
+
+### Week 11
+Still working at the build; it feels like a battle, and I am losing.
+
 ## Hardware
 
 The system uses **AD8232** EKG sensors, repurposed for EMG due to the high cost of specialised sensors. 
@@ -107,6 +113,14 @@ Two tendons per finger, both via braided fishing line (strongest I could find in
 
 <center>
 ![Rock On](rockon.webp)
+</center>
+
+<center>
+![Prototype](prototype.webp)
+</center>
+
+<center>
+![Hand build](hand.webp)
 </center>
 
 ### Schematics

@@ -24,37 +24,31 @@ I chose this project because access control systems are widely used in offices a
 * **Servo Motor SG90** — Actuator that opens the barrier via PWM when access is granted.
 * **OLED Display** — Shows student name and entry time via the I2C interface.
 * **LED Array** — Visual indicator that simulates student movement toward the gate.
-* **Buzzer + KY-029 LED** — Feedback system: Buzzer and Red LED for "Access Denied", Green LED for "Access Granted".
+* **Buzzer +  RGB LED** — Feedback system: Buzzer and Red LED for "Access Denied", Green LED for "Access Granted".
 
 ```mermaid
 graph TD
     RFID[MFRC522 RFID Reader] -- SPI --> MCU[STM32 Nucleo-U545RE]
     MCU -- PWM --> Servo[SG90 Servo Motor]
     MCU -- I2C --> OLED[OLED Display]
-    MCU -- GPIO --> LED[KY-029 LED & LED Array]
+    MCU -- GPIO --> LED[RGB LED & LED Array]
     MCU -- GPIO --> Buzzer[Active Buzzer]
 ```
 
 
 ## Log
 
-### Week 5 – 7 
+### Week 4 – 7
 
 Brainstormed project ideas and defined the concept of an RFID-based school access system. Researched required components and planned the overall architecture.
 
-### Week 7 – 8 
+### Week 7 – 9
 
-Discussed the project with the lab assistant. Selected key components (RFID reader, servo motor, OLED display) and set up the development environment.
+Discussed the project with the lab assistant. Selected key components (RFID reader, servo motor, OLED display) and ordered all hardware components.
 
-### Week 19 – 25 May
+### Week 9 – 13
 
-Started implementation:
-
-* connected and tested the MFRC522 RFID reader
-* implemented card detection and ID reading
-* set up communication between peripherals (SPI, I2C, GPIO)
-* began integrating the OLED display for showing student data
-* tested basic servo control for gate simulation
+Started implementation: connected and tested the MFRC522 RFID reader, implemented card detection and ID reading, set up communication between peripherals (SPI, I2C, GPIO), integrated the OLED display, tested servo control and calibrated motor positioning.
 
 
 ## Hardware
@@ -63,7 +57,7 @@ Started implementation:
 * **Input**: MFRC522 RFID Reader (Reads student cards via SPI)
 * **Output**: SG90 Servo Motor (Barrier control via PWM)
 * **Display**: OLED Display (Shows student info via I2C)
-* **Feedback**: Buzzer + KY-029 LED (Audio-visual status indicators)
+* **Feedback**: Buzzer + RGB LED Common Cathode (Audio-visual status indicators)
 * **Visual Indicator**: LED Array (Simulates movement toward the gate)
 
 ### Schematics
@@ -78,7 +72,7 @@ Started implementation:
 | [MFRC522 RFID Reader](https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf) | Reads student card IDs via SPI and sends them to the STM32 | [18.98 RON](https://www.bitmi.ro/module-electronice/modul-rfid-rc522-13-59mhz-cu-card-si-tag-10468.html) |
 | [Servo Motor SG90](https://web.arduino.cc/widgets/docs/datasheets/SG90Servo.pdf) | Controls the physical barrier via PWM when access is granted | [9.99 RON](https://www.bitmi.ro/produse?c=Servomotor+SG90%2C) |
 | [OLED Display 0.96"](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Shows student name, current time, and entry count via I2C | [15.69 RON](https://www.bitmi.ro/componente-electronice/ecran-oled-0-96-cu-interfata-iic-i2c-10488.html) |
-| [KY-029 LED Module](https://sensorkit.enjoyneering.com/m/Sensorkit_v1.0_EN.pdf) | Dual-color LED used as a Green/Red status indicator | [4.99 RON](https://www.bitmi.ro/electronica/modul-led-2-culori-5mm-ky-029-10666.html) |
+| [RGB LED Common Cathode](https://www.optimusdigital.ro/en/leds/483-rgb-led-common-cathode.html) | Green/Red status indicator for access granted/denied | [1 RON](https://www.optimusdigital.ro/en/leds/483-rgb-led-common-cathode.html) |
 | [Active Buzzer 5V](https://static.generation-robots.com/media/produit/p-10-857-module-buzzer-passif-v2-gravity-pour-arduino-dfrobot-datasheet.pdf) | Provides an auditory alert for denied access attempts | [3.24 RON](https://www.bitmi.ro/electronica/modul-buzzer-activ-compatibil-arduino-10397.html) |
 | [Breadboard 830p](https://vakits.com/sites/default/files/Solderless%20Breadboard%20Datasheet.pdf) | Used for making physical circuit connections between components | [13.99 RON](https://www.bitmi.ro/electronica/breadboard-830-puncte-mb-102-10500.html) |
 
