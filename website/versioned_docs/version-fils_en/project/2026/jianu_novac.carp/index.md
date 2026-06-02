@@ -82,6 +82,7 @@ Sensing: VL53L0X measuring altitude, and MPU6050 monitors stability and landing 
 Injector: MG90S servo deploys the USB.
 
 ### Schematics
+
 ![Project Diagram](projectnovackikad.svg)
 
 ### Bill of Materials

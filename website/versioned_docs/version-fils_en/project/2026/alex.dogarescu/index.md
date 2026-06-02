@@ -48,17 +48,25 @@ It seems one of the HC-SR04+ sensors I have ordered is faulty (plan to check in 
 ![Early Hardware](components_early.svg)
 </center>
 
-Only made the sensors work thus far, but I did figure out all the connections I need by KiCad and reading the documentation.
+Barely made the sensors work thus far, but I did figure out all the connections I need by KiCad and reading the documentation.
 
 ### Week 11 - 17 May
 
+It seemed that the sensors were not faulty. The DAC is though. A noisy output is better than nothing, at least.
+
 ### Week 18 - 24 May
+
+Programmed the majority of software. Getting out 2 waveforms and 2 effects is nice. It wasn't a pleasure, but it feels good to hit some of your goals.
+
+### Week 25 - 28 May
+
+Here comes the deadline. Crunch time to make the noise as low as possible. Even the professor said embassy isn't exactly good for low-latency stuff, but I tried my best. Making the last software and hardware adjustments to limit cable interference, frequency usage and buffer starvations that sometimes happen.
 
 ## Hardware
 
-- STM32U545
+- STM32U545 - the MCU
 - 2 x HC-SR04+ - sensors to detect distance to hands
-- "ST7735" LCD Display - used to show current effect and how much % it is applied to the wave. Also mine is most likely a knockoff.
+- "ST7735" LCD Display - used to show current effect. Also mine is most likely a knockoff.
 - WCMCU-1334 - DAC to convert the read data into an interpretation of a signal.
 
 
@@ -93,13 +101,17 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
+| [embassy-stm32](https://docs.rs/embassy-stm32/latest/embassy_stm32/index.html) | Embassy for STM32 | Used for async stm32 tasks |
 | [ST7735](https://github.com/afiskon/stm32-st7735) | Display driver for ST7735S | Used for the display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [SAI](https://docs.rs/embassy-stm32/latest/embassy_stm32/sai/index.html) | Serial Audio Interface | Protocol used for writing to the DAC |
+| [SPI](https://docs.rs/embassy-stm32/latest/embassy_stm32/spi/index.html) | Serial Peripheral Interface | Protocol for Display communication |
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | Generic Display Driver | Used for my ease of use for the display |
+
+
 
 ## Links
 
 <!-- Add a few links that inspired you and that you think you will use for your project -->
 
-1. [link](https://example.com)
-2. [link](https://example3.com)
 ...
