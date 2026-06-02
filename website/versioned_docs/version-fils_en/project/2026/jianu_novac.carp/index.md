@@ -29,6 +29,11 @@ Add here the schematics with the architecture of your project. Make sure to incl
 * A few rough sketches on paper for now.
 
 ### Week 5 - 11 May
+- learned fusion 360 , finished 90% percent of the 3d render, only the injection mechanism and the camera cage are unfinished.
+- printed the base layer of the car, dropped it on the ground, it broke , 
+- decide to print it again and do some modification to add some resistance. 
+- started writing the code for the control of the motors 
+- soldered my picos
 
 * Learned Fusion 360, finished 90% of the 3D render; only the injection mechanism and the camera cage are unfinished.
 * Printed the base layer of the car, dropped it on the ground, and it broke.
