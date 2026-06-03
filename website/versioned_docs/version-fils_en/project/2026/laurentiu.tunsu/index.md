@@ -62,6 +62,20 @@ The architecture is divided into five primary logical subsystems that operate co
 - **Issue:** Encountered display flickering and persistent white-screen errors when trying to initialize the ILI9341 shield. 
 - **Fix:** After a few hours of troubleshooting the software, I discovered the root cause was actually the hardware wiring. The data pins on the display were arranged in an unconventional order (D2 through D7, followed by D0 and D1, rather than a standard sequential D0 to D7). Rewiring the 8-bit bus to match this exact layout immediately resolved the issue.
 
+### Week 9 - 11 - Performance Improvements
+- **Issue:** Extremely low frame rate when running the primitive implemented raycaster, caused by the standard blocking GPIO writes over the 8 bit parallel interface which put high load on the CPU.
+- **Fix:** Implemented a custom display driver to bypass the standard CPU bound bit banging. Offloaded the display communication to the RP2350's PIO (Programmable I/O) by writing a custom timing program to send the data. Paired this PIO program with DMA (Direct Memory Access), streaming the frame buffers asynchronously from RAM to the screen. This dropped CPU rendering overhead to near zero, dramatically increasing the raycaster's framerate.
+
+### Week 12 - 13 - Texture Work
+- Designed a custom 320x576 all in one texture in Photoshop to optimize and save memory. It packs every 16-bit RGB565 asset into one sprite sheet: the wall textures, enemy sprites, collectible items, HUD elements, and menu overlays. 
+- Also set up strict color keying to avoid the transparency/anti aliasing artifacts.
+
+### Week 14 - Final Polishing
+- Added the final mechanics, such as saving and loading the game state. The menu rendering has been completely switched from embedded graphics to a custom texture blitter to get rid of a massive crash bug, allowing for a fully functional and stable UI.
+- Several improvements have been made to the engine architecture, including a new movement collision buffer to prevent camera clipping, optimized memory safety for static variables, and corrected sprite coordinates for menus and overlays.
+- Integrated new gameplay features: a final dedicated victory screen, step based Line of Sight raycasting for accurate weapon hit registration, partial consumption logic for items, and an asynchronous PWM audio task toggleable via a new Options menu.
+
+
 ## Hardware
 
 **Current Prototype & Future Plans:**
@@ -130,7 +144,10 @@ Currently, the entire console is prototyped on breadboards using jumper wires to
 ![Debug Probe](debug.webp)
 ![Circuit 1](circuit1.webp)
 ![Circuit 2](circuit2.webp)
-
+![Console 1](console_1.webp)
+![Console 2](console_2.webp)
+![Console 3](console_3.webp)
+![Console 4](console_4.webp)
 
 ### Schematics
 
@@ -170,11 +187,14 @@ The format is
 | [embassy-rp](https://github.com/embassy-rs/embassy) | Async bare-metal HAL | Manages the RP2350 hardware registers, I2C peripherals, PWM audio, and GPIO pins. |
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor | Runs the main asynchronous game engine loop and handles hardware interrupts. |
 | [ili9341](https://crates.io/crates/ili9341) | Display driver | Initializes the ILI9341 TFT screen and provides the low-level rendering commands. |
-| [display-interface-parallel-gpio](https://crates.io/crates/display-interface-parallel-gpio) | Parallel bus interface | Binds the 8 GPIO data lines into a standard 8080-style high-speed write interface for the display. |
-| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library | Used for drawing the 2D menu interface, HUD text, and basic screen clearing. |
+| [display-interface-parallel-gpio](https://crates.io/crates/display-interface-parallel-gpio) | Parallel bus interface | Binds the 8 GPIO data lines into a standard 8080-style high-speed write interface for the display. Used in the early stages of the project. |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics library | Used for drawing the 2D menu interface, HUD text, and basic screen clearing. Used in the early/mid stages of the project, being replaced later by a custom drawing driver. |
 | [micromath](https://crates.io/crates/micromath) | Fast math library | Provides highly optimized floating-point approximations (sin, cos, tan) absolutely critical for real-time 3D raycasting. |
-| [ads1x1x](https://crates.io/crates/ads1x1x) | I2C ADC Driver | Facilitates communication with the external ADS1115 to precisely read the twin analog joysticks. |
+| [fixed](https://crates.io/crates/fixed) | Fixed point arithmetic | Provides fixed-point numeric types for fast, deterministic math operations without relying on a hardware floating point unit. |
+| [fixed-macro](https://crates.io/crates/fixed-macro) | Fixed point macros | Allows for the creation of fixed-point constants at compile time, eliminating runtime parsing overhead. |
+| [static_cell](https://crates.io/crates/static_cell) | Static Memory Allocation | StaticCell is a heapless, no_std utility that reserves memory at compile time and initializes it at runtime to provide a safe 'static reference. |
 | [defmt](https://github.com/knurling-rs/defmt) | Deferred formatting | Provides highly efficient serial logging to the PC via the Picoprobe debugger without bloating the game's binary size. |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler | Catches system panics and routes the error message and backtrace over the debugging probe, integrating seamlessly with defmt. |
 | [cortex-m](https://crates.io/crates/cortex-m) | ARM core access | Grants low-level access to the processor, including the assembly wfi command used to halt the CPU during idle cycles to maximize battery efficiency. |
 | [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc) | SPI SD Card & FAT Toolbox | Allows the Rust engine to read files from the SD card using the SPI0 peripheral |
 

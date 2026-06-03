@@ -25,7 +25,7 @@ The motivation behind the project was my interests in aerospace and CAD modellin
 ## Design Concept
 
 <center>
-![RoverCAD](RoverCAD.webp)
+![RoverCAD](cad.webp)
 </center>
 
 **View the 3D model on Onshape**: https://cad.onshape.com/documents/5f14d6b2b58ea1de1b963c7e/w/1fe714927cde1f63024d6414/e/a3d36fc78328462c12924175?renderMode=0&uiState=69cfa1ff11451da0736ff72f
@@ -33,24 +33,41 @@ The motivation behind the project was my interests in aerospace and CAD modellin
 ## Architecture 
 
 <center>
-![PowerDiagram](PowerDiagram.webp)
+![PowerDiagram](power_diag.webp)
 </center>
 
 <center>
-![CommDiagram](CommDiagram.webp)
+![CommDiagram](comm_diag.webp)
 </center>
 
 ## Log
-
--- TO DO --
 
 <!-- write your progress here every week -->
 
 ### Week 5 - 11 May
 
+Got a first prototype working. The rover can be controlled with a smartphone, but no other peripherals are installed yet. For now, only the motor drivers and their motors are connected to the ESP32. Also, the power cables from the battery are connected to a master switch, after which they split in two power rails: 12V for the motors and a 5V from the buck converter for the ESP. The 6V converter will be connected later when adding the servos.
+
+<center>
+![Side](side_view.webp)
+</center>
+
+<center>
+![Top](top_view.webp)
+</center>
+
 ### Week 12 - 18 May
 
+Printed the final design and installed all peripherals. They don't work together yet, but each was tested individually. The screen displays the information for the user to connect to the network.
+
+<center>
+![NewDesign](cadnou.webp)
+</center>
+
+
 ### Week 19 - 25 May
+
+Did debugging, sensor calibration and tried to make everything work together. Not right there yet, cables are very crowded and it is hard to find which one disconnected.
 
 ## Hardware
 
@@ -68,9 +85,9 @@ An additional temperature/humidity sensor on board might also provide informatio
 displayed/saved together with the sample measurements in the logs of the database.
 
 ### Schematics
--- TO DO --
-
-Place your KiCAD or similar schematics here in SVG format.
+<center>
+![Schem](schem.svg)
+</center>
 
 ### Bill of Materials
 
@@ -109,7 +126,18 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
--- TO DO --
+| [esp-hal](https://github.com/esp-rs/esp-hal) | Hardware Abstraction Layer for ESP chips | Used to configure and control the ESP32's hardware peripherals |
+| [esp-alloc](https://github.com/esp-rs/esp-alloc) | Global allocator for ESP chips | Provides dynamic memory allocation |
+| [esp-backtrace](https://github.com/esp-rs/esp-println) | Exception and panic handler | Used for debugging |
+| [esp-println](https://github.com/esp-rs/esp-println) | Serial printing utility | Used to print debugging information  to the serial terminal |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded systems | Runs the background tasks concurrently |
+| [embassy-net](https://github.com/embassy-rs/embassy) | TCP/IP network stack | Used to create web sockets and run the HTTP web server |
+| [esp-radio](https://github.com/esp-rs/esp-wifi-sys) | Wi-Fi driver | Used to host the Rover-AP acces point |
+| [edge-dhcp](https://github.com/sysgrok/edge-net) | DHCP server implementation | Automatically assigns IP addresses to devices that connect to the rover's Wi-Fi network. |
+| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [mipidsi](https://github.com/almindor/mipidsi) | Display driver | Manages SPI communication for the ST7789 display |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Hardware abstraction traits | Provides standard trait definitions |
+
 
 
 ## Links
@@ -118,4 +146,5 @@ The format is
 
 1. [3D Printed Rover Idea](https://www.reddit.com/r/3Dprinting/comments/1qiuvb8/i_designed_a_fully_3dprintable_rover_family_with/)
 2. [3D Printed Rover with Robotic Arm Idea](https://www.printables.com/model/678307-esp32-cam-rover-with-robotic-arm)
+3. [Building a Wifi-controlled car with Rust and ESP32](https://jamesmcm.github.io/blog/esp32-wifi-tank/)
 ...
