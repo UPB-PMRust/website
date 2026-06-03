@@ -3,7 +3,7 @@
 A hardware digital audio player built on STM32 using Rust and internal DAC audio processing.
 
 :::info
-**Author:** Alexandru Marioara \
+**Author:** Marioara Alexandru \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-StrumfoAlex
 :::
 
@@ -62,10 +62,15 @@ The system architecture revolves around the STM32U545RE microcontroller:
 ## Log
 * **Week 1 - 9:** Finalized component list, established architecture using the internal DAC to avoid I2S complexity, and set up the documentation website.
 * **Week 9 - 11:** Assembling the hardware circuit. Initializing the code on the board and verifying the components. Making the KiCad schematics.
-* **Week 11 - ...:** (...)
+* **Week 11 - 14:** Finishing the code and testing each function of the project. Making short ajustment in the hardware for a better performing. Finishing the documentation website.
 
 ## Hardware
-The project uses a mix of digital sensors and analog amplification to achieve audio playback.
+The core of the digital audio player is the STM32U545RE microcontroller, which handles file reading, user interface, and audio signal generation. Storage is managed via a MicroSD card module communicating over the SPI protocol, while visual feedback is provided by an SSD1306 OLED display connected via I2C. User input for navigating the playlist and controlling playback is handled through a rotary encoder.
+
+For the audio output, the internal DAC of the STM32 generates an 8-bit PCM raw signal. Because this signal includes a DC offset of approximately 1.6V, a 10µF electrolytic capacitor is placed in series to act as an AC coupling filter, blocking the direct current and allowing only the audio waveform to pass. The filtered, AC-coupled signal is then routed directly into the PAM8403 Class-D audio amplifier for playback.
+
+For the audio output, the internal DAC of the STM32 generates an 8-bit PCM raw signal. Because this signal includes a DC offset of approximately 1.6V, a 10µF electrolytic capacitor is placed in series to act as an AC coupling filter, blocking the direct current and allowing only the audio waveform to pass.
+![Hardware](./circuit.webp)
 
 ### Schematics
 ![Schematics](./kicad.svg)
@@ -99,3 +104,6 @@ The project is built entirely in Rust (no_std) utilizing the asynchronous Embass
 
 ## Links
 1. [Rust Embassy Documentation](https://embassy.dev/)
+2. [Embedded Graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+3. [Crates.io - Storage](https://crates.io/crates/embedded-sdmmc)
+4. [Reading .WAV files](https://www.youtube.com/watch?v=5F6Y1Ttpg-A)
