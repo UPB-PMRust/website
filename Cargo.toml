@@ -1,0 +1,28 @@
+[package]
+name = "smartwatch2"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "smartwatch2"
+path = "src/main.rs"
+
+[dependencies]
+rp235x-hal = { version = "0.2", features = ["critical-section-impl", "rt"] }
+cortex-m = { version = "0.7", features = ["inline-asm"] }
+cortex-m-rt = "0.7"
+embedded-graphics = "0.8"
+embedded-graphics-core = "0.4"
+heapless = "0.8"
+embedded-hal = "1.0"
+panic-halt = "0.2"
+fugit = "0.3"
+
+[profile.dev]
+opt-level = 1
+debug = 2
+
+[profile.release]
+opt-level = "z"
+debug = 2
+lto = true

@@ -34,3 +34,6 @@ index.html
 .remote-assets
 components.d.ts
 .idea/
+/target
+Cargo.lock
+*.uf2
