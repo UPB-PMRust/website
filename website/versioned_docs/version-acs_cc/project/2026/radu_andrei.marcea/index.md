@@ -36,7 +36,7 @@ The project is divided into 4 main components: Input, Processing, Output, and Te
 <!-- write your progress here every week -->
 
 ### Week 27 April - 4 May
-I researched the hardware requirements and ordered the necessary electronic components for the project. \
+I researched the hardware requirements and ordered the necessary electronic components for the project.
 
 ### Week 5 - 11 May
 I started writing the initial draft of the documentation and structured the main sections. \
@@ -48,7 +48,7 @@ I also connected the servo motors and the Bluetooth module to the STM32 board.
 
 ### Week 19 - 25 May
 I configured the ADC and PWM pins using the embedded Rust framework for control. \
-Finally, I implemented the UART data transmission. \
+Finally, I implemented the UART data transmission.
 
 ## Hardware
 
@@ -57,6 +57,9 @@ The project relies on the STM32 Nucleo-U545RE-Q as the core controller. The mech
 ### Schematics
 
 ![Circuit Schematic](./schematic.svg)
+
+### Photo
+![Photo](./poza.webp)
 
 ### Bill of Materials
 
