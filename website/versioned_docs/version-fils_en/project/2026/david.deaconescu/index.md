@@ -37,12 +37,14 @@ Bought components (Servo motors, LCD screen, Joystick, Esp32 and the STM32)
 Started work on the code in rust and assembled the directional light sensor
 
 ## Hardware
+![Hardware](hardware_sunstirling.webp)
 The hardware setup includes an STM32 for motor and sensor control, an ESP32 for connectivity, and a variety of sensors and actuators to track light and display system status. 
 +1
 
 ### Schematics
 
-/Users/ddmihai/Documents/website/website/versioned_docs/version-fils_en/project/2026/david.deaconescu/imagine.webp
+![Ilustratie](imagine.webp)
+![Schema kicad](kicad.webp)
 
 ### Bill of Materials
 
@@ -59,6 +61,7 @@ The hardware setup includes an STM32 for motor and sensor control, an ESP32 for 
 |Total|		|259 lei |
 
 ## Software
+![Software](software_sunstirling)
 |Library	|Description	|Usage|
 |___________|_______________|_____|
 |Embassy_time	|Async tasks and delays	|Timers for defining intervals at which tasks will be performed |
