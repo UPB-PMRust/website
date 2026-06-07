@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+     width="860px" height="520px" viewBox="0 0 860 520"
+     style="background: transparent; background-color: transparent;">
+  <defs>
+    <style type="text/css">
+      .box { stroke-width: 2px; }
+      .label { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; fill: #222; }
+      .label-bold { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; fill: #fff; font-weight: bold; }
+      .label-small { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 11px; fill: #555; }
+      .label-proto { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 11px; fill: #1565C0; font-weight: bold; }
+      .arrow { stroke-width: 1.8px; fill: none; marker-end: url(#arrowhead); }
+      .arrow-bidir { stroke-width: 1.8px; fill: none; marker-end: url(#arrowhead); marker-start: url(#arrowhead-start); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+    <marker id="arrowhead-start" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
+      <polygon points="10 0, 0 3.5, 10 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  CENTRAL: STM32 Nucleo Board                           -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="310" y="185" width="200" height="80" rx="8" ry="8"
+        fill="#1a1a2e" stroke="#e94560" class="box"/>
+  <text x="410" y="218" text-anchor="middle" class="label-bold">STM32 NUCLEO</text>
+  <text x="410" y="236" text-anchor="middle" class="label-bold" style="font-size:11px; fill:#e0e0e0;">U545RE-Q (Cortex-M33)</text>
+  <text x="410" y="254" text-anchor="middle" class="label-bold" style="font-size:10px; fill:#aaa;">Flight Controller</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  TOP-LEFT: Buttons (4)                                  -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="30" y="20" width="190" height="115" rx="6" ry="6"
+        fill="#16213e" stroke="#0f3460" class="box"/>
+  <text x="125" y="42" text-anchor="middle" class="label-bold" style="fill:#53a8b6;">🔘 Buttons</text>
+  <text x="125" y="60" text-anchor="middle" class="label-small" style="fill:#bbb;">Active-Low · Internal Pull-Up</text>
+  <text x="50" y="80" class="label-small" style="fill:#e0e0e0;">⏺ COPY        (PA0 / A0)</text>
+  <text x="50" y="95" class="label-small" style="fill:#e0e0e0;">⏺ RECREATE (PA1 / A1)</text>
+  <text x="50" y="110" class="label-small" style="fill:#e0e0e0;">⏺ SEL RIGHT (PA4 / A2)</text>
+  <text x="50" y="125" class="label-small" style="fill:#e0e0e0;">⏺ SEL LEFT   (PC3)</text>
+
+  <!-- Arrow: Buttons → MCU -->
+  <path d="M 220 95 L 290 95 Q 310 95 310 115 L 310 200 L 305 200" class="arrow" stroke="#53a8b6"/>
+  <text x="268" y="88" class="label-proto">GPIO</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  TOP-RIGHT: Mode LEDs (3)                               -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="600" y="20" width="200" height="105" rx="6" ry="6"
+        fill="#1a1a2e" stroke="#e94560" class="box"/>
+  <text x="700" y="42" text-anchor="middle" class="label-bold" style="fill:#e94560;">💡 Mode LEDs</text>
+  <text x="700" y="58" text-anchor="middle" class="label-small" style="fill:#bbb;">Active-High · 220Ω</text>
+  <text x="620" y="78" class="label-small" style="fill:#ff4444;">🔴 Red      — IR Mode    (PB0)</text>
+  <text x="620" y="95" class="label-small" style="fill:#44ff44;">🟢 Green — RFID Mode (PC1)</text>
+  <text x="620" y="112" class="label-small" style="fill:#4488ff;">🔵 Blue    — NFC Mode (PC0)</text>
+
+  <!-- Arrow: MCU → Mode LEDs -->
+  <path d="M 510 205 L 550 205 Q 560 205 560 155 L 560 75 Q 560 65 570 65 L 595 65" class="arrow" stroke="#e94560"/>
+  <text x="545" y="148" class="label-proto">GPIO</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  BOTTOM-RIGHT: RGB Status LED                           -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="600" y="380" width="220" height="115" rx="6" ry="6"
+        fill="#0f2040" stroke="#53c8ff" class="box" stroke-width="2"/>
+  <text x="710" y="402" text-anchor="middle" class="label-bold" style="fill:#53c8ff;">🌈 RGB Copy-Status LED</text>
+  <text x="710" y="418" text-anchor="middle" class="label-small" style="fill:#bbb;">Common-Cathode · 220Ω each</text>
+  <text x="620" y="440" class="label-small" style="fill:#ff6666;">R channel (PB10 / D6)</text>
+  <text x="620" y="457" class="label-small" style="fill:#66ff66;">G channel (PC6 / D9)</text>
+  <text x="620" y="474" class="label-small" style="fill:#6688ff;">B channel (PA10 / D1)</text>
+  <text x="620" y="490" class="label-small" style="fill:#999;">🟢 Solid = OK  🔴 Blink = Fail</text>
+
+  <!-- Arrow: MCU → RGB LED -->
+  <path d="M 510 255 L 560 255 Q 570 255 570 310 L 570 440 Q 570 450 580 450 L 595 450" class="arrow" stroke="#53c8ff"/>
+  <text x="548" y="365" class="label-proto">GPIO</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  LEFT-MIDDLE: IR Subsystem                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="30" y="180" width="200" height="100" rx="6" ry="6"
+        fill="#0f3460" stroke="#53a8b6" class="box" stroke-width="2"/>
+  <text x="130" y="202" text-anchor="middle" class="label-bold" style="fill:#53a8b6;">📡 IR Subsystem</text>
+  <text x="130" y="218" text-anchor="middle" class="label-small" style="fill:#bbb;">38 kHz Modulated</text>
+  <text x="50" y="240" class="label-small" style="fill:#e0e0e0;">IR Receiver  TSOP38038 (PC8)</text>
+  <text x="50" y="258" class="label-small" style="fill:#e0e0e0;">IR Emitter   KY-005 (PB3)</text>
+  <text x="50" y="274" class="label-small" style="fill:#aaa;">PWM TIM2_CH2 · 38kHz carrier</text>
+
+  <!-- Arrow: IR → MCU (bidirectional-like) -->
+  <path d="M 230 230 L 305 230" class="arrow-bidir" stroke="#53a8b6"/>
+  <text x="250" y="222" class="label-proto">GPIO/PWM</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  BOTTOM-LEFT: RFID RC522 Subsystem                      -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="30" y="330" width="220" height="110" rx="6" ry="6"
+        fill="#0f3460" stroke="#53a8b6" class="box" stroke-width="2"/>
+  <text x="140" y="352" text-anchor="middle" class="label-bold" style="fill:#53a8b6;">🏷️ RFID · RC522</text>
+  <text x="140" y="368" text-anchor="middle" class="label-small" style="fill:#bbb;">SPI1 · 13.56 MHz · ISO 14443-A</text>
+  <text x="50" y="390" class="label-small" style="fill:#e0e0e0;">SCK=PA5  MOSI=PA7  MISO=PA6</text>
+  <text x="50" y="408" class="label-small" style="fill:#e0e0e0;">CS=PB4 (D5)    RST=PA8 (D7)</text>
+  <text x="50" y="426" class="label-small" style="fill:#ffc107;">📡 Antenna · MIFARE / NTAG</text>
+
+  <!-- Arrow: RFID ↔ MCU -->
+  <path d="M 250 385 L 290 385 Q 300 385 300 340 L 300 255 L 305 255" class="arrow-bidir" stroke="#53a8b6"/>
+  <text x="270" y="310" class="label-proto" style="fill:#1565C0;">SPI</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  BOTTOM-CENTER: NFC PN532 Subsystem                     -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="310" y="380" width="220" height="110" rx="6" ry="6"
+        fill="#0f3460" stroke="#53a8b6" class="box" stroke-width="2"/>
+  <text x="420" y="402" text-anchor="middle" class="label-bold" style="fill:#53a8b6;">📱 NFC · PN532</text>
+  <text x="420" y="418" text-anchor="middle" class="label-small" style="fill:#bbb;">I2C1 · addr 0x24 · 13.56 MHz</text>
+  <text x="330" y="440" class="label-small" style="fill:#e0e0e0;">SDA=PB7 (D14)  SCL=PB6 (D15)</text>
+  <text x="330" y="458" class="label-small" style="fill:#e0e0e0;">IRQ=PB5 (opt)  RST=PC7 (opt)</text>
+  <text x="330" y="476" class="label-small" style="fill:#ffc107;">📡 Antenna · ISO 14443-A</text>
+
+  <!-- Arrow: NFC ↔ MCU -->
+  <path d="M 420 380 L 420 270" class="arrow-bidir" stroke="#53a8b6"/>
+  <text x="428" y="340" class="label-proto">I2C</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  TOP-CENTER: Power Supply                               -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="310" y="20" width="200" height="60" rx="6" ry="6"
+        fill="#2d2d2d" stroke="#ffc107" class="box" stroke-width="2"/>
+  <text x="410" y="45" text-anchor="middle" class="label-bold" style="fill:#ffc107;">⚡ USB Power (5V)</text>
+  <text x="410" y="62" text-anchor="middle" class="label-small" style="fill:#bbb;">3.3V rail to all components</text>
+
+  <!-- Arrow: Power → MCU -->
+  <path d="M 410 80 L 410 180" class="arrow" stroke="#ffc107"/>
+  <text x="418" y="130" class="label-small" style="fill:#ffc107;">3.3V / GND</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  RIGHT-MIDDLE: Ground Rail                              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="600" y="175" width="180" height="50" rx="6" ry="6"
+        fill="#2d2d2d" stroke="#ffc107" class="box"/>
+  <text x="690" y="198" text-anchor="middle" class="label-bold" style="fill:#ffc107;">⏚ Common GND Rail</text>
+  <text x="690" y="215" text-anchor="middle" class="label-small" style="fill:#bbb;">All components share GND</text>
+
+  <!-- Arrow: MCU → GND -->
+  <path d="M 510 225 L 595 200" class="arrow" stroke="#ffc107"/>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!--  RIGHT: State Machine description                       -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="600" y="252" width="230" height="105" rx="6" ry="6"
+        fill="#1a1a2e" stroke="#444" class="box" opacity="0.85"/>
+  <text x="715" y="274" text-anchor="middle" class="label-bold" style="fill:#e94560;">State Machine</text>
+  <text x="620" y="295" class="label-small" style="fill:#ccc;">Modes: IR → RFID → NFC</text>
+  <text x="620" y="312" class="label-small" style="fill:#ccc;">COPY: capture sensor signal</text>
+  <text x="620" y="329" class="label-small" style="fill:#ccc;">RECREATE: replay stored signal</text>
+  <text x="620" y="346" class="label-small" style="fill:#ccc;">SEL ◀/▶: cycle sensor mode</text>
+</svg>
