@@ -327,26 +327,6 @@ The temperature data is split and stored in three consecutive registers. The mea
 | 0x08 | `DATA_4 (TEMP_LSB_15_8)` | Contains the middle 8 bits (**temp[15:8]**) of the raw temperature measurement. |
 | 0x07 | `DATA_3 (TEMP_XLSB_7_0)` | Contains the least significant 8 bits (**temp[7:0]**) of the raw temperature measurement. |
 
-Based on the BMP390 datasheet, the temperature data registers have moved to addresses 0x07 through 0x09, and the resolution is now 24 bits.
-
-Here is the adapted content:
-
-Register DATA_3...DATA_5 (Temperature Data) (0x07...0x09)
-
-The temperature data is split and stored in three consecutive registers. The measurement output is an unsigned 24-bit value.
-
-Address	Name	Description
-0x09	DATA_5 (TEMP_MSB_23_16)	
-
-Contains the most significant 8 bits (temp[23:16]) of the raw temperature measurement.
-
-0x08	DATA_4 (TEMP_LSB_15_8)	
-
-Contains the middle 8 bits (temp[15:8]) of the raw temperature measurement.
-
-0x07	DATA_3 (TEMP_XLSB_7_0)	
-
-Contains the least significant 8 bits (temp[7:0]) of the raw temperature measurement.
 
 :::danger Important 
 Burst Read Required To guarantee data consistency (shadowing), you must use a single burst read to read all data registers at once. Reading registers individually may result in mixed data from different measurement cycles. 
