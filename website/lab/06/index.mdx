@@ -243,8 +243,8 @@ The BMP390 is a digital temperature and pressure sensor designed by Bosch. It ca
 
 You can find its datasheet containing more relevant information [here](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf).
 
-:::tip BMP280 Address
-The default I2C address of the BMP280 is `0x76`.
+:::tip BMP390 Address
+The default I2C address of the BMP390 is `0x76`.
 :::
 
 ### Register map
@@ -370,7 +370,7 @@ These are `u8`, `i8`, `u16`, and `i16` factory-calibrated parameters stored insi
 
 ### Temperature computation formula
 
-This formula is based on the **Compensation formula in fixed point** which can be found in section **8.5** of the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf).
+This formula is based on the **Compensation formula in fixed point** which can be found in section **8.5** of the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf).
 
 **Coefficient Conversion** before calculating the temperature, convert the raw NVM coefficients into floats using the scaling factors defined in **Section 8.4**:
 
@@ -421,7 +421,7 @@ The BMP390 is integrated already integrated in the lab board, having some of the
 
 ### Reading and writing to the BMP390
 
-Instructions on how to use I2C with the BMP280 can be found in the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf), at section 5.2.
+Instructions on how to use I2C with the BMP390 can be found in the [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf), at section 5.2.
 
 Before we start, we initialize the I2C driver with the pins and channel we will be using.
 
@@ -501,7 +501,7 @@ In section 5.2.1 and 5.2.2 of the datasheet, we get the information we need in o
 
 #### Reading a register
 
-![i2c_bmp280_read](images/i2c_bmp390_read.png)
+![i2c_bmp390_read](images/i2c_bmp390_read.png)
 
 To read the value of a register, we first need to send the BMP390 the address of the register we want to read. Afterwards, the sensor will send back the value of the register we requested.
 
@@ -532,20 +532,20 @@ This is explained in section 5.3 of the datasheet.
 
 #### Writing to a register
 
-![i2c_bmp280_write](images/i2c_bmp390_write.png)
+![i2c_bmp390_write](images/i2c_bmp390_write.png)
 
 To write to a register, we need to send the sensor a buffer containing pairs of register addresses and values we want to write to those registers. For example, if we wanted to write `0x00` to `REG_A`:
 
 ```rust
 let tx_buf = [REG_A, 0x00];
-i2c.write(BMP280_ADDR, &tx_buf).await.unwrap();
+i2c.write(BMP390_ADDR, &tx_buf).await.unwrap();
 ```
 
 If we wanted to write both `REG_A` and `REG_B` to `0x00`:
 
 ```rust
 let tx_buf = [REG_A, 0x00, REG_B, 0x00];
-i2c.write(BMP280_ADDR, &tx_buf).await.unwrap();
+i2c.write(BMP390_ADDR, &tx_buf).await.unwrap();
 ```
 
 ## AT24C256 EEPROM
