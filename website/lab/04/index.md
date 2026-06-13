@@ -507,3 +507,6 @@ However if the switch **S1** is pressed the state of traffic light changes immed
     Use a `PubSubChannel` to transmit the state of the traffic light from the LEDs task to both the buzzer and the servo motor tasks.
    :::
 
+## Solutions
+
+The lab's exercises solutions are available in the [lab-solutions](https://github.com/UPB-PMRust/lab-solutions/tree/main/lab04) repository.

@@ -78,14 +78,22 @@ I studied the technical documentation and datasheets for the PMS5003 UART sensor
 ### Week 7-8
 I began the hardware assembly phase by verifying each component's integrity upon arrival and setting up the initial breadboard prototype. This involved establishing the first communication links between the sensors and the STM32 via I2C and UART, while testing the MOSFET switching logic to ensure the high-power fan could be safely regulated by the microcontroller's PWM signal.
 
+### Week 9-11
+I completed the hardware assembly by integrating all peripherals with the STM32 Nucleo-U545RE-Q into a unified system. This involved interfacing the PMS5003 and AHT20+BMP280 sensors for real-time environmental data collection, connecting the I2C OLED for local status updates, and assembling the IRLZ44N MOSFET circuit to safely control the 12V fan via PWM. By establishing a common ground and stable power distribution through the DC barrel jack, the system is now fully interconnected, with the microcontroller successfully communicating across all sensor and actuator loops to form a functional prototype.
+
+### Week 12-14
+During this period, I finished writing and testing the Rust firmware for the STM32 Nucleo. The microcontroller now successfully reads live data from the environmental and dust sensors, displays the real-time stats on the OLED screen, and automatically controls the 12V fan speed based on air quality. The software is fully stable, and the air purifier is now operating autonomously.
+
 ## Hardware
 
 The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which interfaces with a Plantower PMS5003 laser sensor via UART for high-precision PM2.5 monitoring. Environmental context is provided by an AHT20 + BMP280 combo breakout (temperature, humidity, and pressure) and a 0.96" OLED display (SSD1306), both communicating over a shared I2C bus. The filtration is handled by a 12V DC fan and a HEPA filter, controlled through a custom motor drive circuit featuring an IRLZ44N logic level MOSFET, a 1N4007 flyback diode, and a 10kΩ pull-down resistor. The entire setup is powered by a 12V DC adapter and integrated on a standard 830 point breadboard.
 
+![Image1](./image1.webp)
+![Image2](./image2.webp)
+
 ## Schematics
 
-(KiCAD or similar schematics will be added here)
-
+![Schematics](./KicadScheme.svg)
 
 ## Bill of Materials
 
@@ -95,8 +103,8 @@ The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which inter
 | [Plantower PMS5003](https://cdn-shop.adafruit.com/product-files/3686/plantower-pms5003-manual_v2-3.pdf) | PM2.5 air quality sensing (UART) | [~172,83 RON](https://ro.mouser.com/ProductDetail/485-3686) |
 | [AHT20 + BMP280](https://sigmanortec.ro/modul-senzor-aht20-si-bmp280-temperatura-umiditate-presiune-28-5v) | Temperature, humidity, and pressure (I2C) | [~12,26 RON](https://sigmanortec.ro/modul-senzor-aht20-si-bmp280-temperatura-umiditate-presiune-28-5v) |
 | [0.96" OLED Display](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) | Visual data interface (I2C) | [~16,95 RON](https://sigmanortec.ro/display-oled-096-i2c-iic-alb) |
-| [12V PC Case Fan](https://www.emag.ro/ventilator-12v-80x80x25mm-rulment-long-life-76-4m3-h-ee80251bx-a99/pd/DTBDCBYBM/) | Air circulation and filtration | [~47 RON](https://www.emag.ro/ventilator-12v-80x80x25mm-rulment-long-life-76-4m3-h-ee80251bx-a99/pd/DTBDCBYBM/) |
-| [HEPA Filter](https://filtru-aspirator.compari.ro/irobot/roomba-800-900-series-filtru-hepa-p802881633/#) | Particulate removal | [~11 RON](https://filtru-aspirator.compari.ro/irobot/roomba-800-900-series-filtru-hepa-p802881633/#) |
+| 12V PC Case Fan | Air circulation and filtration | Already owned |
+| [2x HEPA Filter](https://www.fix-shop.ro/piese-de-schimb-irobot-roomba-irobot-roomba-900-series/irobot-roomba-800-900-series-filtru-hepa/?utm_source=compari.ro&utm_medium=cpc&utm_campaign=Filtre&utm_content=VACC-IRO-010) | Particulate removal | [~28 RON](https://www.fix-shop.ro/piese-de-schimb-irobot-roomba-irobot-roomba-900-series/irobot-roomba-800-900-series-filtru-hepa/?utm_source=compari.ro&utm_medium=cpc&utm_campaign=Filtre&utm_content=VACC-IRO-010) |
 | [IRLZ44N MOSFET](https://ro.mouser.com/datasheet/3/70/1/Infineon_IRLZ44N_DataSheet_v01_01_EN.pdf) | PWM fan power control | [~7,65 RON](https://ro.mouser.com/ProductDetail/942-IRLZ44NPBF) |
 | [1N4007 Diode](https://diotec.com/request/datasheet/1n4001.pdf) | Circuit protection (flyback) | [~0,65 RON](https://ro.mouser.com/ProductDetail/637-1N4007) |
 | [10kΩ Resistor](https://ro.mouser.com/datasheet/3/508/1/YAGEO_CFR_DATASHEET.pdf) | MOSFET gate pull-down | [~0,43 RON](https://ro.mouser.com/ProductDetail/603-CFR-25JT-52-10K) |
@@ -116,9 +124,9 @@ The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which inter
 | [embassy-time](https://github.com/embassy-rs/embassy) | Time and delay library | Handling delays and timeouts |
 | [ssd1306](https://github.com/adafruit/adafruit_ssd1306) | Display driver for OLED | Driving the visual display |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Rendering UI and text |
-| [aht20](https://github.com/Seeed-Studio/Seeed_Arduino_AHT20) | Environmental sensor driver | Reading humidity and temperature |
-| [bmp280-rs](https://github.com/pietgeursen/bmp280-rs) | Atmospheric pressure driver | Extracting barometric pressure data |
-| [pms5003](https://github.com/janjongboom/mbed-pms5003) | UART sensor parser | Processing PM2.5 concentration data |
+| [heapless](https://github.com/rust-embedded/heapless) | Static memory allocation | Safely formatting UI text strings without dynamic RAM allocation |
+| [embedded-hal-bus](https://github.com/rust-embedded/embedded-hal) | I2C Bus Manager | Safely sharing the physical I2C wires between the OLED and sensors |
+| [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler | Catching and reporting system faults to the debugger |
 | [defmt](https://github.com/knurling-rs/defmt) | Embedded logging framework | Efficiently logging debug data |
 | [defmt-rtt](https://github.com/knurling-rs/defmt) | RTT log transport | Sending logs to debugger |
 
@@ -127,3 +135,4 @@ The system is built around an STM32 Nucleo-U545RE-Q microcontroller, which inter
 1. [Embedded Rust 101 course labs](https://embedded-rust-101.wyliodrin.com/docs/fils_en/lab/01)
 2. [Embassy book](https://embassy.dev/book/#_what_is_embassy)
 3. [Nucleo-U545RE-Q user manual](https://www.st.com/resource/en/user_manual/um3062-stm32u5-nucleo64-board-mb1841-stmicroelectronics.pdf)
+4. [BMP280 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf)

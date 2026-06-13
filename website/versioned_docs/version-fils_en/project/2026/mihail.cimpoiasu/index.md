@@ -13,7 +13,7 @@ Open-source educational desktop robot arm prototype for K12 electronics and hard
 
 4-DOF desktop robot arm that serves as an initial prototype for an open-source educational kit similar to DOBOT Magician Lite. Its purpose is to introduce K12 students to electronics and hardware and will be further developed under PLEX's own programme for developing educational kits.
 
-For this course, the prototype should be able to precisely and reliably move in any XYZ direction, record movements using its potentiometers for repetitive sequences set by the user, and grab a payload of 400g under normal operation and up to 1000g under peak load. It will also be used as a showcase for PLEX components at local events.
+For this course, the prototype should be able to precisely and reliably move in any XYZ direction, record movements using its potentiometers for repetitive sequences set by the user, and have a payload of 400g under normal operation and up to 1000g under peak load.
 
 ## Motivation
 
@@ -55,7 +55,7 @@ The arm is built around an STM32 F446RE (NUCLEO-F446RE) as the central controlle
 
 ![System Workflow Diagram](./workflow.webp)
 
-![CAD Model](./CAD.webp)
+![CAD Model](./cad.webp)
 
 
 ### Bill of Materials
