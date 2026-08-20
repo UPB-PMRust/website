@@ -4,7 +4,7 @@ A touchless audio station that equalizes and controls music tracks using hand ge
 
 :::info
 **Author**: Mitrea Briana-Ștefania \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-briana1012
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-briana1012.git
 :::
 
 ## Description
@@ -33,13 +33,26 @@ The project is built on the STM32 Nucleo U545RE-Q using the Embassy asynchronous
 * Soldered extension pins to the sensors.
 * Reseached SAI pins.
 
+### Week 20 - 26 April 
+* Reserched equilizer logic and perfboards for prototyping
+* Re-soldered pins at 90 degrees.
+
+### Week 4 - 10 May
+* Made a fully functioning hardware.
+* Made KiCad schematic.
+* Tested the sensor creates (they work).
+
 ## Hardware
 
 The project uses a modular design with three "Sound Cubes" to separate sensors from the main control unit, preventing interference.
 
+![Theremin Sound Station Hardware](poza_hardware.webp)
+
 ### Schematics
 
-The project was designed in Altium Designer.
+The project was designed in KiCad 10.0.
+
+![Theremin Sound Station Schematic](theremin_sound_station.svg)
 
 ### Bill of Materials
 

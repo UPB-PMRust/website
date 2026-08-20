@@ -50,6 +50,7 @@ $$
 ---
 layout: two-cols
 ---
+
 # PWM
 generic device
 
@@ -79,7 +80,7 @@ $$
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./pwm.svg" class="rounded w-150">
 </div>
 
@@ -92,7 +93,10 @@ $$
 <div>
 
 - dimming an LED
+
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./pwm_led.gif" class="rounded w-90">
+</div>
 
 </div>
 
@@ -144,7 +148,7 @@ layout: two-cols
 <img src="./pwm_rp2350_pins.png" class="rounded w-150">
 </div>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="../rp2350/pico2w-pinout.svg" class="rounded w-70">
 
 </div>
