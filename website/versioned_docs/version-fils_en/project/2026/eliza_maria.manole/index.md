@@ -33,6 +33,10 @@ Researched the market for the adequate components for the RoboMop and placing al
 I received the components and tested them to ensure proper functionality.
 ### Week 9
 Starting to assemble the project.
+### Week 10-13
+I connected all the components together and tested each and every one of them in order to make sure that they work accordingly. Afterward, I flashed my code on the ESP32 and STM32 and debbuged it until I got the desired output. 
+### Week 14
+When I saw that my RoboMop worked, I assembled together all the remaining pieces and rearranged the layout to make sure that everything is perfect. 
 
 ## Hardware
 The physical pary of my project consists of the STM32U545RE-Q microcontroller as the main source of processing power. The ESP32 module enables the user to remotely communicate with the STM32 in order to give out commands.The ultrasonic sensors detect any unwanted objects in the way of the car, each wheel is powered by a motor and the most important part of the machine is the dual servo powered cleaning system that can move up and down and side to side in order for it to adapt to different cleaning scenarious.
@@ -40,6 +44,7 @@ The physical pary of my project consists of the STM32U545RE-Q microcontroller as
 ### Photos
 ![](images/robomop1.webp)
 ![](images/robomop2.webp)
+![](images/finalrobomopimage.webp)
 ### Schematics
 ![](images/robomop_manole_eliza.svg)
 ### Bill of Materials

@@ -1,41 +1,66 @@
 # AWARE-GUIN
+
 An interactive companion robot developed on STM32 using Async Rust (Embassy).
-:::info 
+
+:::info
+
 **Author**: [DASCALESCU ANDREI] \
-**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-yvcc28s62s-cmd]
+
+**GitHub Project Link**: [AWARE-GUIN Repository](https://github.com/UPB-PMRust-Students/fils-project-2026-yvcc28s62s-cmd)
+
 :::
+
 ## Description
 AWARE-GUIN is an intelligent desktop companion designed to react to its environment through visual expressions and light feedback. The "brain" of the project is a state-of-the-art STM32U5 microcontroller, programmed exclusively in Rust. The system runs on the `Embassy` asynchronous framework, concurrently managing an SPI display for the face/UI, a smart LED ring (NeoPixel) for expressing moods, and I2C sensors for gathering environmental data.
 
 ## Motivation
-The primary motivation for this project was to transition from classic, sequential embedded programming (C/C++) to the modern, memory-safe, and asynchronous ecosystem provided by Rust. AWARE-GUIN served as the perfect sandbox to explore advanced concepts such as cooperative multitasking on bare-metal hardware, direct hardware abstraction layer (HAL) manipulation, and real-world debugging of communication protocols (high-speed SPI and I2C).
+The primary motivation for this project was born from a desire to bridge digital pop culture and bare-metal hardware by bringing to life an interactive desktop companion. The aesthetic and personality of AWARE-GUIN were heavily inspired by a beloved character from the "Creative Monkeyz" sketches (massive respect and credits to Codin and Ramona Pop), combined with the chaotic, lovable energy of Gunter from *Adventure Time*. 
+
+Beyond the creative vision, this project served as an advanced technical sandbox to explore the modern, memory-safe embedded ecosystem provided by Rust. By leveraging the `Embassy` framework, the system pushes the boundaries of cooperative multitasking, implementing highly efficient, non-blocking asynchronous routines. It demands precise peripheral orchestration and direct Hardware Abstraction Layer (HAL) manipulation to manage high-speed SPI and I2C communication buses concurrently, ensuring deterministic execution and seamless sensory feedback.
 
 ## Architecture 
 ```text
-               [ DATA & TIME ]                          [ VISUAL DISPLAY ]
-                .-------------.                         .---------------.
-                |  RTC Module |                         | Displays (SPI)|
-                |  Real-Time  |                         | Multiple TFT/ |
-                '-------------'                         | OLED          |
-                      ^                                 '---------------'
-                      | (I2C)                                   ^
-                      v                                         | (SPI 1 & 2)
-.-------------.                 .-------------------.           v     .-------------.
-| HC-05 (UART)|                 |                   |                 | WS2812 Ring |
-|  Bluetooth  |<---(RX/TX)----->|  AWARE-GUIN Core  |<----(SPI @3MHz)>|  RGB LEDs   |
-| Comm Module |                 | (STM32 Nucleo-U5) |                 | Expressions |
-'-------------'                 |                   |                 '-------------'
-                                '-------------------'
-                      ^                                         ^
-                      | (I2C / ADC)                             | (PWM Signal)
-                      v                                         v
-                .-------------.                         .---------------.
-                |  Multiple   |                         | Servo Motors  |
-                |   Sensors   |                         |  Mechanical   |
-                |  (Env/IR)   |                         |  Actuation    |
-                '-------------'                         '---------------'
-                [ PERCEPTION ]                             [ ACTION ]
-
++-----------------+ +-----------------+ +-----------------+
+|    LEFT EYE     | | MAIN TFT ECRAN  | |    RIGHT EYE    |
+|  (SPI Display)  | |  (SPI Display)  | |  (SPI Display)  |
++-----------------+ +-----------------+ +-----------------+
+| VCC --- 3.3V    | | VCC --- 5V      | | VCC --- 3.3V    |
+| GND --- GND     | | GND --- GND     | | GND --- GND     |
+| SCK --- PB13    | | SCK --- PA5     | | SCK --- PC10    |
+| MOSI -- PB15    | | MOSI -- PA7     | | MOSI -- PC12    |
+| RES --- PC7     | | MISO -- PA6     | | RES --- PD2     |
+| DC  --- PC6     | | RES --- PB1     | | DC  --- PC8     |
+| CS  --- PC9     | | DC  --- PA4     | | CS  --- PB8     |
+|                 | | CS  --- PB0     | |                 |
+|                 | | LED --- 3.3V    | |                 |
++--------+--------+ +--------+--------+ +--------+--------+
+         |                   |                   |
+         +-------------------+-------------------+
+                             | (SPI Buses)
++---------------------------------------------------------+
+|                                                         |
+|                 STM32 NUCLEO-U5 BOARD                   |
+|                   (AWARE-GUIN CORE)                     |
+|                                                         |
++---------+-------------------------------------+---------+
+          |                                     |
+   (I2C & GPIO)                           (PWM Signals)
+          |                                     |
++---------+---------+                 +---------+---------+
+|    PERCEPTION     |                 |      ACTION       |
++-------------------+                 +-------------------+
+| [ BME280 Sensor ] |                 | [ Servo Motor 1 ] |
+| VIN --- 3.3V      |                 | VCC --- MB102 5V  |
+| GND --- GND       |                 | GND --- MB102 GND |
+| SDA --- PB7       |                 | SIG --- A0        |
+| SCL --- PB6       |                 |                   |
+|                   |                 | [ Servo Motor 2 ] |
+| [ TTP223 Touch ]  |                 | VCC --- MB102 5V  |
+| VIN --- 3.3V      |                 | GND --- MB102 GND |
+| GND --- GND       |                 | SIG --- A1        |
+| I/O --- PC0       |                 |                   |
++-------------------+                 +-------------------+
+```
 ## Log
 ### Week 5 - 11 May
 * Researched STM32U5 documentation and set up the Rust embedded toolchain (`probe-rs`, `defmt`).
@@ -63,7 +88,7 @@ The system relies on an STM32 Nucleo board as the central processing unit, expan
 |--------|--------|-------|
 | [STM32U545RE Nucleo](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The main microcontroller running the Rust logic | [~110 RON](#) |
 | [SPI TFT Display (ST7789/ILI9341)](https://www.optimusdigital.ro/) | The screen used to render the robot's face | [~40 RON](#) |
-| [7-LED WS2812 Ring](https://www.optimusdigital.ro/) | Luminous feedback / Mood lighting | [~15 RON](#) |
+| [Display OLED, 128 x 64 px, 0.96", Interfata I2C, SPI, SH1106, 3.3 V, Multicolor](https://www.emag.ro/) |We have two displays like this used for the eyes simulation. |[~31 RON](#) |
 | [I2C Sensor Module](https://www.optimusdigital.ro/) | Gathering environmental data | [~20 RON](#) |
 | Dupont Wires & Breadboard | Physical connections between components | [~25 RON](#) |
 

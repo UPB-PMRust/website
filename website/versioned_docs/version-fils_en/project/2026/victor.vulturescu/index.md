@@ -74,8 +74,13 @@ The command center is powered through USB, either from a laptop or an external p
 
 The system is divided into a stationary sensing and planning node and a mobile execution node. The stationary node observes the environment from above and sends movement commands wirelessly, while the vehicle node focuses only on receiving commands and controlling the motors.
 
-![stationary](stationary_node.webp)
-![mobile](mobile_node.webp)
+![stationary_nucleo](stationary_1.webp)
+![stationary_husky](stationary_2.webp)
+![mobile](mobile.webp)
+
+The track that the car will roam on will have a simple design, based on the color-recognition capabilities of the HuskyLens. Two labeled blocks, (id1), will serve as the start and end points of the path that the mobile node will follow. The green squares, (id0), represent the obstacles that the mobile node will need to avoid. Below is a rudimentary design of the track.
+
+![track](track_design.svg)
 
 ### Schematics
 

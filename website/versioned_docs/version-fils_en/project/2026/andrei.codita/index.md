@@ -14,7 +14,7 @@ A Real-Time Flight Control System for a Tricopter.
 
 ## Description
 
-A Real-Time Flight Control System written in Rust for a drone of type "Tricopter" build on a STM32U545RE-Q that reads data from multiple sensors such as: BMP280 for athmospheric pressure, CM-20948 as an inertial measurement unit. For communication through Wi-Fi/Bluetooth an ESP32-C3 FH4 super mini will be used. The ESP32 will receive the movement desired for the tricopter and will pass it to the Nucleo. A metal-gear servo is used to control the tilt of the rear motor and stabilize the drone. The frame is custom made from readily available materials.
+A Real-Time Flight Control System written in Rust for a drone of type "Tricopter" build on a STM32U545RE-Q that reads data from multiple sensors such as: BMP280 for athmospheric pressure, CM-20948 as an inertial measurement unit. For communication through Bluetooth an ESP32-C3 FH4 super mini will be used. The ESP32 will receive the movement desired for the tricopter and will pass it to the Nucleo. A metal-gear servo is used to control the tilt of the rear motor and stabilize the drone. The frame is custom made from readily available materials.
 
 ## Motivation
 
@@ -51,10 +51,10 @@ I always liked drones, wanted to build one but the classic quadcopter felt a bit
     |   |                                  +<-->| (Wi-Fi/UART)  |
     |   | [3-WIRE PHASE]                   |    +---------------+
     |   v                                  |
-    | +--------------+                     |    +---------------+
-    | | 3x BRUSHLESS |                     |    |   HC-SR04     |
-    | |1000kV MOTORS |                     +--- | (Trig/Echo)   |
-    | +--------------+                     |    +---------------+
+    | +--------------+                     |
+    | | 3x BRUSHLESS |                     |
+    | |1000kV MOTORS |                     |
+    | +--------------+                     |
     |                                      |
     | [5V BEC Out]                         |    +---------------+
     | (Servo Power)                        +--- |Buzzer Modules |
@@ -112,11 +112,6 @@ I always liked drones, wanted to build one but the classic quadcopter felt a bit
     +-----------------------+          +----------------------------+
 
     +-----------------------+          +----------------------------+
-    |  HC-SR04              |  Trig <--+  PC4	                    |
-    |  (Ultrasonic)         |  Echo -->+  PC5	                    |
-    +-----------------------+          +----------------------------+
-
-    +-----------------------+          +----------------------------+
     |  Buzzer Modules       |  SIG  <--+  PC2/PC3                   |
     |                       |          |                            |
     +-----------------------+          +----------------------------+
@@ -138,7 +133,7 @@ Tried connecting the xbox one controller to the ESP32 and had issues with blueto
 Completed the schematics and made bluetooth work.
 ## Hardware
 
-The main component is the Nucleo STM32U545RE-Q board that acts as the flight controller with data based from: BMP280 - measures the air pressure and determines how high is it, CM-20948 9 axis to get the acceleration, gyroscope and compass data, HC-SR04 to measure distance at low altitudes. ESP32-C3 FH4 super mini handles the Wi-Fi and Bluetooth connectivity in order to control the drone remotely. Three 30Amps ESCs to control each 2212 1000kV brushless motor. All of them are powered from a 2200mAh 11.1V 30C battery through a Matek Mini Power Hub and a voltage divider is put at the exit of the power distribution board to measure the voltage that comes out of the battery. Two passive buzzers are used to alert when battery is below a certain limit. 
+The main component is the Nucleo STM32U545RE-Q board that acts as the flight controller with data based from: BMP280 - measures the air pressure and determines how high is it, CM-20948 9 axis to get the acceleration, gyroscope and compass data. ESP32-C3 FH4 super mini handles the Bluetooth connectivity in order to control the drone remotely. Three 30Amps ESCs to control each 2212 1000kV brushless motor. All of them are powered from a 2200mAh 11.1V 30C battery through a Matek Mini Power Hub and a voltage divider is put at the exit of the power distribution board to measure the voltage that comes out of the battery. Two passive buzzers are used to alert when battery is below a certain limit. 
 
 ### Photos
 
@@ -184,7 +179,7 @@ The format is
 | [bmp280-rs](https://crates.io/crates/bmp280-rs) | Barometer driver | Converts raw air pressure readings |
 | [pid](https://crates.io/crates/pid) | Loop Control | It calculates thrust to stabilize the drone |
 | [micromath](https://crates.io/crates/micromath) | Advanced math library | Provides optimized math functions to calculate tilt and orientation|
-| [ahrs](https://crates.io/crates/ahrs) | Sensor data fusion | Combines Accelerometer, Gyro and Magnetometer data filtering out noise |
+| [trouble-host](https://crates.io/crates/trouble-host) | BLE helper| Handles BLE connections on ESP32C3 |
 | [cortex-m](https://crates.io/crates/cortex-m) | Cortex low-level support | Low-level CPU features on the STM32U545RE-Q |
 | [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Cortex-M runtime | Startup/interrupt |
 | [defmt](https://crates.io/crates/defmt) | Logging framwork | Structured logging from firmware |
@@ -196,7 +191,7 @@ The format is
 | [embassy-sync](https://crates.io/crates/embassy-sync) | Async synchronization | Channels to pass sensor data safely |
 | [embassy-stm32](https://crates.io/crates/embassy-stm32) | STM32 Hal | Hardware control |
 | [embassy-embedded-hal](https://crates.io/crates/embassy-embedded-hal) | Embassy enbedded-hal adapters | Lets embedded-hal based drivers work with Embassy objects | 
-
+| [rand_core](https://crates.io/crates/rand_core) | Random number generatotion | Pseudo-random numbers for algorithms |
 
 ## Links
 

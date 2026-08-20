@@ -31,9 +31,11 @@ Lecture 2
 - Memory Mapped I/O
   - GPIO Peripheral
 - Embedded Rust Stack
-- `embassy-rs`
+- `embassy`
 
-<!-- MMIO -->
+<!--
+MMIO
+-->
 
 ---
 src: ../../resources/mmio/slides.md

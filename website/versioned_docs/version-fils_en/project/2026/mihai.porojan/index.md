@@ -42,13 +42,17 @@ Decided on using Kociemba's algorithm on my laptop to generate the solution beca
 Received the 3d printed parts from the support lab and finished two of the four clamp systems , two of the sliders 
 broke so i will need to wait until i buy two more and assemble the rest of the project.
 
+### Week 14
+Color sensor broke so i have to resort to using the laptop camera for color detection.
+I finished assembling the project and began final tests.
+
 ## Hardware
 My project is based around the STM32U5 provided at the lab to take the solution generated on my computer using Kociemba's algorithm and control the rotating clamps. The 4 clamps are designed with a pair of 
 SG90 servos each, one servo moves the clamp away and towards the cube, while the other rotates the face of the cube 90 or 180 degrees.
-The color of each piece of the cube is detected using the TCS34725 color sensor seated separately  from the main mechanism to ensure no external interference with the sensor.
+The color of each piece of the cube is detected with my laptop camera using the nokwha crate.
 
 ### Photos
-![Photos](project_photo.webp)
+![Photos](hardware.webp)
 
 
 ### Schematics
@@ -69,7 +73,6 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 Nucleo-U545RE](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | Borrowed |
-| [TCS34725 Color Sensor](https://www.makerguides.com/tcs34725-rgb-color-sensor-with-arduino/) | Color detection |[49.82 RON](https://ardushop.ro/ro/senzori/1454-modul-senzor-de-culoare-tcs34725-6427854021342.html) |
 | [SG90 Servomotor (8x)](https://www.friendlywire.com/projects/ne555-servo-safe/SG90-datasheet.pdf) | Rotating the cube's faces and moving the clamps |[9.49 RON](https://sigmanortec.ro/Servomotor-SG90-limit-switch-p141662062) |
 | [Electronics Kit](https://www.optimusdigital.ro/ro/kituri/12026-kit-plusivo-pentru-introducere-in-electronica-0721248990075.html?search_query=Kit+Plusivo+pentru+Introducere+in+Electronica&results=3) |Breadboard,wires,resistors etc. |[39.99 RON](https://www.optimusdigital.ro/ro/kituri/12026-kit-plusivo-pentru-introducere-in-electronica-0721248990075.html?search_query=Kit+Plusivo+pentru+Introducere+in+Electronica&results=3) |
 
@@ -81,8 +84,9 @@ The format is
 | [embassy-executor](https://crates.io/crates/embassy-executor) | Async Executor | Used for drawing to the display |
 | [kociemba](https://crates.io/crates/kociemba) | Algorithm crate | Used for generating the solution on the computer |
 | [embassy-time](https://docs.embassy.dev/embassy-time/0.5.1/default/index.html) | Timer | Handles the pause between servo movements |
-| [tcs3472](https://crates.io/crates/tcs3472) | Color sensor driver | Read the colors from the detection module |
 | [defmt](https://defmt.ferrous-systems.com) | Logging framework | Debugging |
+| [nokwha](https://docs.rs/nokhwa/latest/nokhwa/) | Webcam Control | Color detection using the laptop camera |
+| [minifb](https://docs.rs/minifb/latest/minifb/) | Camera feed | Creates the webcam window and the grid|
 
 ## Links
 

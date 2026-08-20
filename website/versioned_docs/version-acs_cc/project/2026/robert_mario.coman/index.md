@@ -45,7 +45,7 @@ Based on the system diagram, the architecture is divided into the following logi
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![System Architecture Diagram](./images/schema_kicad.svg )
 
 ### Bill of Materials
 

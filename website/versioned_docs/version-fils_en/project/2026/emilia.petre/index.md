@@ -12,7 +12,7 @@ A robotic hand that plays rock, paper, scissors using AI gesture recognition
 
 ## Description
 
-The purpose of this project is to build an interactive robotic arm that plays Rock, Paper, Scissors using a STM32 Nucleo microcontroller and the Rust programming language. It utilizes a Python-based MediaPipe AI model for real-time gesture recognition via webcam and communicates the results to the hardware via UART. The robotic hand is 3D-printed and uses servo motors to physically mimic the 3 possibilities - rock, paper or scissors. An OLED display tracks the score. The system integrates asynchronous Rust (Embassy) for hardware control and an ESP module to enable remote scoreboard access via WiFi.
+The purpose of this project is to build an interactive robotic arm that plays Rock, Paper, Scissors using a STM32 Nucleo microcontroller and the Rust programming language. It utilizes a Python-based MediaPipe AI model for real-time gesture recognition via the laptop webcam and communicates the results to the hardware via UART. The robotic hand is 3D-printed and uses servo motors to physically mimic the 3 possibilities - rock, paper or scissors. An OLED display tracks the score. The system integrates an ESP module to enable remote scoreboard access via WiFi. The ESP receives the gesture via WiFi and also decides the hand's gesture.
 
 ## Motivation
 
@@ -47,11 +47,30 @@ This project combines Computer Vision and Embedded Rust, transforming digital ge
  - Completed the 3D printing process for the robotic hand
  - Started integrating the electronic components with the printed structure
 
+ ### Week 12
+
+ - I tested the ESP module and the movement of the servos. I encountered some difficulties in making the servos move the fingers properly. 
+ - Initially I planned to use an ESP01 module to simply display the score remotely over WiFi. It was not working great, the connection was sometimes flawed.
+
+ ### Week 13
+
+ -  I found an ESP32 at home randomly, so I decided to try that. At first I connected it to mu phone's hotspot. Because I don't have great mobile data, I switched to Access Point Mode and created a new WiFi Network, RoboHand. 
+ - I built the HTTP server, the player history, the score display. 
+ - I created the connection between the Python script and the ESP32 code. I made the ESP32 receive the gesture and decide what to play (randomly).
+ - The first option was to create a game in which the hand memorises the last moves and based on the previous choices of gesture, it computed the next propobaility. I decided it was too annoying for the user.
+
+ ### Week 14
+
+ - Finalised the connection between ESP32 and STM32. 
+ - Struggled to make all the fingers work properly moslty. 
+
 ## Hardware
 
-The hardware platform of the project is centered around the STM32 Nucleo-U545RE-Q development board, which acts as the main controller of the robotic arm. The SG90 servo motors are used to actuate the fingers of the hand and reproduce the rock, paper, and scissors gestures. A 0.96-inch SSD1306 OLED display connected through I2C is used to show the score and game status. Wireless connectivity is provided by an ESP-01 WiFi module communicating with the STM32 through UART. Gesture recognition is performed on a laptop using a USB webcam or the integrated camera. For prototyping and interconnections, a breadboard and jumper wires are used. The robotic hand itself is manufactured using 3D printing, while the system is powered by a 5V external power supply.
+The hardware platform of the project is centered around the STM32 Nucleo-U545RE-Q development board, which acts as the main controller of the robotic arm. The SG90 servo motors are used to move the fingers of the hand and reproduce the rock, paper, and scissors gestures. A 0.96-inch SSD1306 OLED display connected through I2C is used to show the game status (Win/Lose/Draw). Wireless connectivity is provided by an ESP32 (more like a last minute change) WiFi module communicating with the STM32 through UART. Gesture recognition is performed on a laptop using the integrated camera. For prototyping and interconnections, a breadboard and jumper wires are used. The robotic hand itself is manufactured using 3D printing, while the system is powered by a Lipo battery.
 
 ![Hardware Photo](images/imagehardware.webp)
+
+![Final Hand](images/finalhand.webp)
 
 ### Schematics
 
@@ -63,10 +82,9 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 | Device | Usage | Price |
 |---|---|---|
 | [STM32 Nucleo-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | Main microcontroller of the system | ~127 RON |
-| [SG90 Servo Motor](https://sigmanortec.ro/Servomotor-SG90-limit-switch-p141662062) | Controls the fingers of the robotic hand | ~ 5 x 10 RON |
+| [SG90 Servo Motor](https://sigmanortec.ro/Servomotor-SG90-limit-switch-p141662062) | Controls the fingers of the robotic hand | ~ 4 x 10 RON |
 | [OLED Display 0.96" SSD1306](https://sigmanortec.ro/Display-OLED-0-96-I2C-IIC-Albastru-p135055705) | Displays score and game status | ~ 17 RON |
-| [ESP-01 WiFi Module](https://sigmanortec.ro/Modul-Wifi-ESP8266-Transreceiver-p134711871) | Wireless communication and remote scoreboard access | ~ 21 RON |
-| [ESP-01 Adaptor Module](https://sigmanortec.ro/Modul-adaptor-pentru-ESP-01-ESP8266-5V-3-3V-p182230951) | Wireless communication and remote scoreboard access | ~ 10 RON |
+| ESP32-WROOM | Wireless communication and remote scoreboard access | owned|
 | [Breadboard (760 points)](https://sigmanortec.ro/Breadboard-760-puncte-p190992404) | Rapid prototyping and circuit connections | ~ 10 RON |
 | Jumper Wires Set | Electrical interconnections between modules | owned |
 | [LiPo Gens Ace 3S 11.1v 450mAh 30C](https://www.autorc.ro/acumulatori-baterii-lipo-life-nimh/5736-acumulator-lipo-gens-ace-3s-111v-450mah-30c-mufa-jst.html) | Powers servos and electronic modules | ~40 RON |
@@ -89,9 +107,6 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 | [panic-probe](https://crates.io/crates/panic-probe) | Panic handler for embedded debugging | Reports firmware crashes during development |
 | [defmt](https://crates.io/crates/defmt) | Lightweight embedded logging framework | Used for debug messages and diagnostics |
 | [defmt-rtt](https://crates.io/crates/defmt-rtt) | RTT transport for defmt logs | Sends debug output to the host PC |
-| [serialport](https://crates.io/crates/serialport) | Serial communication library for desktop Rust | Sends gesture recognition results from laptop to STM32 |
-| [serde](https://crates.io/crates/serde) | Serialization and deserialization framework | Converts structured data between formats |
-| [serde_json](https://crates.io/crates/serde_json) | JSON parsing library | Processes MediaPipe gesture data messages |
 | [mediapipe](https://ai.google.dev/edge/mediapipe/solutions/guide) | Real-time gesture recognition framework | Detects hand landmarks and classifies gestures |
 | [opencv-python](https://pypi.org/project/opencv-python/) | Computer vision library | Captures webcam frames and preprocesses images |
 
@@ -100,5 +115,5 @@ The hardware platform of the project is centered around the STM32 Nucleo-U545RE-
 1. [Embassy Framework](https://embassy.dev/book/#_what_is_embassy)
 2. [STM32 Nucleo-U545RE-Q](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus/documentation.html)
 3. [MediaPipe Gesture Recognition](https://developers.google.com/mediapipe)
-5. [ESP-01 WiFi Module Information](https://www.espressif.com/)
+4. [ESP-01 WiFi Module Information](https://www.espressif.com/)
 

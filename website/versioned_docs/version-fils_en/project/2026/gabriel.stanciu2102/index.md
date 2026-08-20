@@ -20,6 +20,17 @@ Overture comes loaded with features designed for the real world:
 
 When you set out to build a better machine, you need a "gold standard" to dethrone. My target is the [B.Braun Space Plus Perfusor](https://catalogs.bbraun.com/en-01/p/PRID00011858/spaceplus-perfusor?bomUsage=marketingDocuments). It is the shiny newer generation of the exact device we used on the ambulance. In reality, they mostly just slapped a touchscreen on the old hardware, but it remains the industry standard we are going up against.
 
+### Core Medical Features Explained
+
+When translating medical requirements into engineering specifications, certain industry-standard terms dictate the device's functionality. For readers without a clinical background, here is how the core features of Overture operate in the real world:
+
+* **Continuous Infusion (Flow Rate & VTBI):** The baseline function of the device. The operator sets a *Flow Rate* (e.g., 5 mL/h) and a *Volume To Be Infused* (VTBI). The device calculates the physics required to deliver this exact volume over time. This continuous precision is mandatory for life support medications (like noradrenaline) that have very short half-lives and require a perfectly stable concentration in the patient's bloodstream.
+* **Direct Bolus:** In an emergency, a patient's condition can crash instantly. A "bolus" is a rapid, manual override that pushes a concentrated dose of medication as fast as the hardware safely allows to achieve an immediate physiological effect. To prevent accidental and potentially lethal overdoses, Overture hardware-locks the bolus function to a strict 1 mL maximum window per button press. 
+* **KVO (Keep Vein Open):** When a primary infusion finishes, the IV line doesn't magically seal itself. Without forward pressure, a patient's blood can back up into the catheter and clot, ruining the venous access. The KVO feature automatically drops the motor's output to a bare minimum (typically 1–3 mL/h)—providing just enough positive pressure to keep the vein clear until medical staff can intervene.
+* **The Drug Library:** In a chaotic, high-stress environment, cognitive load is a massive risk factor. The drug library is a built-in database of standard medications, their concentrations, and safe dosage limits. It eliminates the need for operators to do complex mental math while a patient is crashing.
+* **Color-Coded UI:** Medical errors are often visual. Overture utilizes a strict color-coding system that mirrors international medical syringe labels (e.g., specific accent colors for vasopressors versus sedatives). This ensures that a split-second glance at the screen instantly confirms what class of drug is actively infusing.
+* **NFC Syringe Detection:** Manually inputting syringe dimension and drug concentrations takes time and introduces the risk of human error. By scanning an NFC sticker attached to the syringe, Overture instantly auto-populates the UI with the exact parameters, bridging the gap between physical drug preparation and digital execution.
+
 ## Motivation
 While I was working as a paramedic on the SMURD ambulances, I was constantly working with automatic perfusors. While they are workhorses in the EMT field, and are reliable machines, their user interfaces often feel like relics. During critical interventions where administering vasopressors like noradrenaline must be instant, navigating through clunky menus and non intuitive interfaces felt literally dangerous. The inspiration for Overture came from the realization that we shouldn't have to choose between extreme precision and intuitive design.
 
@@ -94,15 +105,128 @@ With all of that settled, here is the final completed PCB design.
 ![PCB 3D Viewer Front](pcb_fr.webp)
 ![PCB 3D Viewer Back](pcb_bk.webp)
 
+## Weeks 9-14
+After testing the initial 170x320 display, it became clear that a larger screen was necessary to guarantee instant readability in high-stress environments. Upgrading the display hardware required a complete UI overhaul. I restructured the embedded-graphics layouts to take advantage of the new real estate, resulting in a much cleaner visual hierarchy.
+![Revamped Design](revamped.svg)
+![Revamped Design2](revamped2.svg)
+To prevent critical errors, the UI integrates a strict color-coding system that mirrors standard medical syringe labels. Mapping specific drug classes to dedicated accent colors provides immediate visual confirmation, ensuring that even in a chaotic emergency, a split-second glance intuitively tells the operator exactly what medication is infusing.
+![Medication Labels](medication.svg)
+When the assembled PCB arrived from JLCPCB, I began a cautious testing process. Utilizing the test points I had integrated into the design, I first verified the STUSB4500 power delivery negotiation. Once the 20V line was confirmed stable, I tested the buck converter output, which successfully delivered a clean 3.3V to the logic rails. Only then did I initialize the ESP32-C6 and the TMC2209 stepper driver.
 
-## Hardware
+I designed a custom enclosure to securely house the PCB, display, and physical controls. The mechanical design required careful attention to spatial tolerances, ensuring everything fit compactly while keeping the NFC reader perfectly flush against the chassis for reliable scanning.
+![ratsnest](ratsnest.webp)
+![Final Box](final_box.webp)
+![Assembled Full](assembled.webp)
+
+## Software
+
+### Crates
+
+| Crate / Framework | Architectural Role |
+| :--- | :--- |
+| `esp-hal` | Hardware Abstraction Layer. The critical bridge between Rust and the raw ESP32-C6 silicon, managing GPIO, I2C, SPI, and the RMT peripheral. |
+| `esp-rtos` & Bootloader | Provides the underlying Real-Time Operating System integration to bridge the ESP32-C6 hardware with the async executor. |
+| `embassy` Ecosystem | The core async runtime (`executor`, `time`, `sync`, `embedded-hal`). Handles cooperative task scheduling, keeping the UI fully responsive while managing precise motor timing and inter-task communication. |
+| `tmc2209` | Handles UART register framing and CRC validation, allowing dynamic profile switching (e.g., StealthChop to SpreadCycle) for the stepper motor. |
+| `lcd-async` | Asynchronous driver for the ILI9488 display. Ensures that flushing the framebuffer over the SPI bus does not block the executor. |
+| `embedded-graphics` & `u8g2-fonts` | Core graphics libraries and bitmap assets used to render the UI grid, text, and alert overlays efficiently without requiring a heap. |
+| `esp-storage` & `embedded-storage` | Manages raw flash memory access to safely persist critical state—like carriage position and infused volume—across unexpected power losses. |
+| `heapless` | Provides fixed-capacity data structures (like strings and queues) strictly required in a `#![no_std]` environment where dynamic memory allocation is unavailable. |
+| `static_cell` & `critical-section` | Safe concurrency utilities. Used to statically allocate buffers and safely share hardware peripherals across different async tasks and interrupt contexts. |
+
+### Architecture
+The firmware is built as a lightweight, asynchronous embedded system running on the ESP32-C6. The architecture relies on the Embassy async framework operating on top of `esp_rtos`. This means the system uses cooperative multitasking rather than a classic RTOS with preemptive threads; tasks run until they hit an `.await` point, yielding control back to the executor. 
+
+To ensure rock-solid physical motion timing without UI-induced jitter, the software is strictly decoupled into distinct modules:
+* **`startup`**: Handles hardware bring-up, safety checks, and initialization.
+* **`app.rs`**: Manages the main UI loop, state machine, and high-level logic.
+* **`motor.rs`**: Owns the physical motion timing, stepping hardware, and motor tasks.
+* **Shared Modules**: Provide services for display rendering, dosing math, TMC UART, NFC, input polling, and flash persistence.
+
+
+**Boot and Startup Sequence** \
+Boot begins in `src/bin/main.rs`, the top-level async entry point created by `#[esp_rtos::main]`. Startup performs all critical safety checks before handing control to the interactive UI loop, executing in the following order:
+
+1.  Initializes the ESP HAL and starts the RTOS timer/executor support.
+2.  Loads persistent flash state via `PersistentStore`.
+3.  Initializes the display SPI and draws the startup/progress screen.
+4.  Creates the RMT (Remote Control) channel for STEP output on GPIO11.
+5.  Creates `MotorPins`, builds a `MotorClient`, and spawns the `motor_task`.
+6.  Configures physical inputs: Bolus, Back, homing switch, and rotary encoder (A, B, OK).
+7.  Initializes I2C devices and probes the STUSB4500 (USB-PD) and PN532 (NFC).
+8.  Initializes the TMC2209 stepper driver over UART and applies the custom driver profile.
+9.  Evaluates resume/homing decisions based on persistent memory.
+10. Enters the main `ui_task` loop.
+
+
+**Task Model & Async Scheduler** \
+There are two primary async execution contexts: `main` (which transitions into `ui_task`) and `motor_task`. 
+
+Because the scheduler is cooperative, code must reach yield points (e.g., `Timer::after_millis().await`, SPI/I2C operations, channel receives) to let other work run. Display updates over SPI or NFC polling over I2C take time. If motor pulses were generated by a busy loop in the UI code, these operations would create dangerous timing jitter. The architecture completely avoids this by moving motor pacing into a dedicated `motor_task` and offloading the actual STEP waveform generation to the ESP32's hardware RMT.
+
+
+**Motor Control & Hardware RMT Stepping** \
+The `motor_task` acts as the master motion scheduler. It directly owns the DIR and ENN pins, the RMT STEP channel, the current signed carriage position, and the active command state. 
+
+The UI **does not** step the motor directly. Instead, it sends logical commands (e.g., "run this many steps at this period") via a `MotorClient` channel. The motor task accepts the following commands: `Stop`, `SetPosition`, `Run` (Positioning, Delivery, DirectBolus, Tone).
+
+**RMT Hardware Acceleration** \
+The critical fix for high-rate, precision motion was moving the `MotorPins.step` from a standard GPIO output to an RMT TX channel. [RMT(Remote Control Transciever)](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/rmt.html) peripheral is a hardware module originally designed to generate the highly precise IR pulse trains used in television remotes. By cleverly repurposing this subsystem to drive our stepper motor, we offload the generation of step signals directly to the hardware, ensuring perfectly timed physical motion without ever lagging the software interface.
+* The `motor_task` generates `PulseCodes` (e.g., STEP high for `STEP_HIGH_US`, then STEP low for `period_us - STEP_HIGH_US`).
+* The RMT peripheral produces the physical pulse train entirely independently of the CPU.
+* This ensures that even if the CPU yields to process UI or I2C tasks, the pulse edges inside the RMT transaction remain perfectly hardware-timed.
+
+
+**UI Task and State Machine** \
+The main application state machine (`src/app.rs`) is a continuous async loop that polls inputs, updates state, sends motor commands, queries motor status, triggers flash saves, and draws screens. 
+
+The `AppScreen` enum manages the diverse interface views, including: `Syringe`, `Drug`, `PatientWeight`, `LoadAdjust`, `Prime`, `Setup`, `Pump`, and various alert overlays. The loop operates cooperatively, deliberately using short idle waits (e.g., `Timer::after_millis(5).await`) to prevent monopolizing the executor.
+
+
+**Delivery Scheduling and Dosing Math** \
+Delivery pacing is abstracted away from the UI loop. The UI prepares a dose, computes the required steps and period, and sends a command to the motor_task. While running, the UI periodically polls `apply_delivery_motor_status()` to track delivered steps and trigger state transitions. For instance, once the target Volume To Be Infused (VTBI) is reached, the state machine triggers the `KVO` (Keep Vein Open) state, automatically throttling the stepper motor down to a minimal continuous flow rate (typically 1-3 mL/h) to prevent the patient's IV line from clotting. Other critical transitions like `EndOfInfusion` or `SyringeEmpty` are handled with similar strict priority to guarantee patient safety.
+
+**Dosing Math (`src/dosing.rs`)** \
+Converts user-facing medical metrics into physical stepper commands:
+* Syringe inner diameter → Cross-sectional area.
+* Lead screw pitch (8 mm/rev) & microstepping (8x, 200 microsteps/mm) → Volume per step (uL/step).
+* Target volume → Total steps.
+* Flow rate → Step period interval.
+
+**Direct Bolus Safety** \
+Direct Bolus operates via a held-button delivery path. Once triggered, the motor commands a continuous `DirectBolus` run up to a strict 1 mL safety window. It runs continuously until 1 mL is delivered, the hard limit is reached, the button is released, or an alarm state occurs.
+
+
+**Display Rendering** \
+All graphics are handled in `src/display.rs` utilizing immediate-mode drawing into a frame buffer via the `embedded-graphics` crate. Because there is no retained UI tree, the code explicitly redraws changed areas, layering alerts and overlays directly over the dashboard values before flushing the frame over the SPI bus.
+
+**Persistence and Recovery** \
+Flash endurance is limited, so the system utilizes a smart persistence strategy (`src/persistent.rs`). The store saves a checksummed record containing syringe parameters, flow settings, carriage position, and delivery progress into a designated flash sector. It checks the `last_saved` state and only commits a flash erase/write cycle when the configuration actually changes. At the moment I am not doing any sort of wear leveling but there is logic in place to reduce the number of read/writes and I actually track the number of writes to the flash.
+
+**Recovery & Homing:**
+If the device resets with a syringe mounted, the startup sequence intercepts the standard boot to ask the user if they wish to resume. If confirmed, it uses the persistent carriage position and skips physical homing. This critical fail-safe prevents the system from blindly homing and potentially crushing a loaded syringe upon reboot.
+
+---
+
+**TMC2209 and Safety-Critical Boundaries** \
+The stepper driver is configured over single-wire UART. The system dynamically toggles between `StealthChop` (for silent, smooth homing and low-flow) and `SpreadCycle` (for maximum torque during fast delivery or bolus paths).
+
+**System Safety Boundaries:**
+* The UI never generates STEP edges; it only commands motion.
+* Carriage position is mathematically clamped to hard limits.
+* The physical homing switch interrupts and recalibrates the origin.
+* Direct manual bolus is hardware-locked to a maximum 1 mL window per press.
+* NFC and automated setups require explicit human confirmation.
+* Alarms strictly preempt and interrupt all normal delivery workflows.
+
+## Hardware List
 
 | Device | Comment | Price |
 |--------|--------|-------|
 |ESP-32-C6-N8| Microcontroller | 35 RON|
-|ST7789 Display|Visual interface|0 RON (had it on hand)|
+|ILI9488 Display|Visual interface|0 RON (had it on hand)|
 |NEMA 17 Stepper|Drives the syringe mechanism|	60 RON|
-|TMC2208 Driver	|used to drive the stepper|30 RON|
+|TMC2209 Driver	|used to drive the stepper|30 RON|
 |NFC Module|Scans medication data from syringe stickers|10 RON|
 |Bearings|LM8UU, 688ZZ|25RON|
 |Guide Rail|8mm x 315mm|30RON|
@@ -110,13 +234,9 @@ With all of that settled, here is the final completed PCB design.
 |Misc Hardware| Screws, bolts, nuts|10 RON|
 |PCB|with assembly|Living on the breadline for the next 2 months|
 
-
-## Software
-
-| Crate / Framework | Role |
-| :--- | :--- |
-| `esp-hal` | Hardware Abstraction Layer. The critical bridge between Rust and the raw ESP32-C6 silicon. |
-| `embassy` | Async runtime for embedded systems. Keeps the UI perfectly responsive while the stepper motor ticks away concurrently. |
-| `embedded-graphics` | Core graphics library used to draw the UI grid, text, and primitive shapes directly on the screen. |
-| `slint` | A declarative UI toolkit explored as a powerful alternative for building complex screen layouts. |
-| `st7789` | The dedicated driver crate responsible for pushing those carefully calculated pixels to the physical display. |
+## Links
+[B.Braun Space Plus Technical Data Sheet](https://ws.hybris.bbraun.com/bbraunocc/v2/bbraun/eDoc/QlRTMDAwMDAwMDAwMDAwMDAwMTAwMDIyMTc4OTAwMDAw?applicationKey=SAPPO) \
+[TMC2209 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/tmc2209_datasheet_rev1.09.pdf) \
+[RMT](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/rmt.html) \
+[Reference Video 1 - used to reverse engineer the interface](https://www.youtube.com/watch?v=5FsmhtknTp0&t=696s) \
+[B.Braun Training Videos Playlist](https://www.youtube.com/playlist?list=PLA4OWG_-fY-JLoj-bHIPiUU1SJquB9X8J)

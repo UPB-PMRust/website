@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
 slug: /tutorials/embassy
-description: How to install the prerequisites for embassy-rs
+description: How to install the prerequisites for embassy
 ---
 
-# Embassy-rs Setup
+# Embassy Setup
 
 Here, we will cover the steps needed in order to be able to compile and flash Rust applications for **STM32U545** and **RP2**s, the MCU (Microcontroller Unit) found in our **STM32 Nucleo-U545RE-Q** and **Raspberry Pi Pico** boards.
 
@@ -232,9 +232,9 @@ probe-rs run --chip RP2040 path/to/your/binary
 
 or you can use the **Run and Debug** view in Visual Studio Code. You will need to modify the `programBinary` path in the `.vscode/launch.json` config file to point to your binary file.
 
-## Building your first Embassy-rs project
+## Building your first Embassy project
 
-In this section, we will briefly go over the steps you need to take in order to get your first project using **Rust** and **Embassy-rs** going.
+In this section, we will briefly go over the steps you need to take in order to get your first project using **Rust** and **Embassy** going.
 
 ### Creating your crate
 
@@ -256,7 +256,7 @@ Due to the size constraints imposed on us (in our case, `2MB` of flash memory), 
 
 #### No `main` function
 
-Because we are using the **Embassy-rs** framework, we want to let it take care of the entry point of our program (because it has to do some complex operations, like allocating the `task-arena` and `executor` structures). For the moment, all we will need to do is add the `#![no_main]` attribute to `src/main.rs`.
+Because we are using the **Embassy** framework, we want to let it take care of the entry point of our program (because it has to do some complex operations, like allocating the `task-arena` and `executor` structures). For the moment, all we will need to do is add the `#![no_main]` attribute to `src/main.rs`.
 
 #### Toolchain setting
 
@@ -578,7 +578,7 @@ fn main() {
 
 :::info
 
-If you are using the `memory.x` provided by `embassy-rs` comment this part:
+If you are using the `memory.x` provided by `embassy` comment this part:
 
 ```rust
     let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());

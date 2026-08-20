@@ -34,13 +34,13 @@ Main Components:
 Created documentation, finalized the logic state machine concept, and defined the Bill of Materials.
 
 ### Week 5 - 11 May
-[In Progress]
+Acquired all the necessary components.
 
 ### Week 12 - 18 May
-[To be updated]
+Hardware deadline.
 
 ### Week 19 - 25 May
-[To be updated]
+Software deadline.
 
 ## Hardware
 
@@ -50,27 +50,27 @@ Hardware used:
 - **Buttons**: 4x Push buttons for entering the PIN and interacting with the menu.
 - **Analog Sensors**: 10k Potentiometer and an LDR (Light Dependent Resistor) module.
 - **DC Motors & Wheels**: 3V-6V DC Motors with a 2WD robot chassis.
-- **Motor Driver**: L298N module controls the speed and direction of the two DC motors.
+- **Motor Driver**: TB6612FNG dual motor driver module controls the speed and direction of the two DC motors.
 - **Servo Motor**: SG90 90-degree motor used for releasing the latch.
-- **Power Supply**: 2x 18650 Li-Ion batteries to power the L298N driver and motors.
+- **Power Supply**: 2x 18650 Li-Ion batteries to power the TB6612FNG driver and motors.
 
 ### Schematics
-
-TBD.
+Electronic design in Autodesk Fusion; pins indicated by labels.
+![Schematic](images/schematic.webp)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 | ------------------------------------------ | -------------------------------------------------------- | ----------------|
 | STM32 Nucleo-U545RE-Q | Microcontroller | [114.76 RON](https://ro.farnell.com/stmicroelectronics/nucleo-u545re-q/development-brd-32bit-arm-cortex/dp/4216396) |
-| Motor driver L298N | Controls DC Motors direction and speed | [12.00 RON](https://www.bitmi.ro/modul-driver-l298n-cu-punte-h-dubla-pentru-motoare-dc-stepper-10400.html?gad_source=1&gad_campaignid=22990790771&gbraid=0AAAAADLag-nuAoi3yuhR6LSwNjQ5iqQMp&gclid=Cj0KCQjwkrzPBhCqARIsAJN460m_WP2kPLRzmiw7AYIyL9DB74mZlgeQQ3BQJfOd9w9X08gYq0v_XN0aAqOEEALw_wcB) |
-| 2WD Robot Car Chassis Kit | Mechanical platform, wheels, and DC motors | [45.00 RON](https://www.emag.ro/sasiu-arduino-car-3874783591904/pd/D37L8DYBM/?cmpid=148238&utm_source=google&utm_medium=cpc&utm_campaign=(RO:Whoop!)_3P-Y_%3e_Jucarii_hobby&utm_content=79559830754&gad_source=1&gad_campaignid=2078923891&gbraid=0AAAAACvmxQiow8mBQZ-Asnn5CB6Zb728L&gclid=Cj0KCQjwkrzPBhCqARIsAJN460mom0uIhbaCQqcXeu6Fqw8I_TmADUQesVnb78eB7kMQxa7gcmkq1FUaAi0NEALw_wcB) |
+| Motor driver TB6612FNG | Controls DC Motors direction and speed | [13.27 RON](https://sigmanortec.ro/punte-h-dubla-driver-motor-tb6612fng-15v-1a-27-55v-logic) |
+| 2WD Robot Car Chassis Kit | Mechanical platform, wheels, and DC motors | [48.40 RON](https://sigmanortec.ro/Kit-sasiu-masina-2WD-urmaritor-linie-p172447939) |
 | LCD 1602 Display with I2C | Displays puzzle instructions and status | [24.20 RON](https://ardushop.ro/ro/display-uri-si-led-uri/2348-lcd-display-1602-verde-adaptor-i2c-6427854000996.html?gad_source=1&gad_campaignid=22058879462&gbraid=0AAAAADlKU-6DWqqRb1pFWG_2JFxC5XHy8&gclid=Cj0KCQjwkrzPBhCqARIsAJN460lQu8oDhC8rjvNPywRlIUqaMfLK2Nm0T-dX5h7RIm3_chVEMz8v0zQaAnr_EALw_wcB) |
 | Micro Servomotor SG90 | Unlocks the physical latch | [9.50 RON](https://sigmanortec.ro/Servomotor-SG90-limit-switch-p141662062?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72Okq9Nrnwsu4_ykIJCkGAPA8&gclid=Cj0KCQjwkrzPBhCqARIsAJN460lMq9jFqtZwJ0JriYhuUAXx6i20zws4fVgK2csO3WHhHg3Dq2AXKgUaAqyFEALw_wcB) |
 | Potentiometer 10k | Analog input for the calibration puzzle | [13.65 RON](https://sigmanortec.ro/modul-potentiometru-rotativ-10k-liniar-3-5v?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72Okq9Nrnwsu4_ykIJCkGAPA8&gclid=Cj0KCQjwkrzPBhCqARIsAJN460nR9i8yTdcC_fzbGDp5Be7-FZYNX5r4DQanP1FZm_5xu4lMI4W2CRoaAlX5EALw_wcB) |
 | LDR Light Sensor Module | Detects shadow for the third puzzle | [3.42 RON](https://sigmanortec.ro/Senzor-lumina-fotorezistor-p125423559?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72Okq9Nrnwsu4_ykIJCkGAPA8&gclid=Cj0KCQjwkrzPBhCqARIsAJN460nKTSKHE29bexAtdlbGSRPPKF4cznd8ReaMnvbvTHNgwq9iRahxjZIaAh0DEALw_wcB) |
 | Push Buttons | PIN input buttons | [2.00 RON](https://vectro.ro/produs/push-buton-fara-retinere-10x25mm/?utm_source=Google%20Shopping&utm_campaign=Vectro%20-%20Toate%20Produsele&utm_medium=cpc&utm_term=37393&gad_source=1&gad_campaignid=17091351278&gbraid=0AAAAAohTOtZfVyTu0DwpRsMGRwFri7Wo1&gclid=Cj0KCQjwkrzPBhCqARIsAJN460nQE4EabWMaePPcGzGUv2FquVXa5lZoUaTcv-mGjXSfCgI3DrCB2c4aAh4AEALw_wcB) |
-| 2x 18650 Batteries + Holder | Power supply for the L298N and motors | [36.00 RON](https://sigmanortec.ro/en/battery-holder-18650-2s) |
+| 2x 18650 Batteries + Holder | Power supply for the TB6612FNG and motors | [36.00 RON](https://sigmanortec.ro/en/battery-holder-18650-2s) |
 
 
 ## Software
@@ -85,5 +85,5 @@ TBD.
 
 ## Links
 
-1. [L298N Motor Driver Technical Tutorial](https://lastminuteengineers.com/l298n-dc-stepper-driver-arduino-tutorial/)
+1. [TB6612FNG Motor Driver Technical Tutorial](https://www.instructables.com/Driving-Small-Motors-With-the-TB6612FNG/)
 2. [Embassy-rs Documentation](https://embassy.dev/book/)

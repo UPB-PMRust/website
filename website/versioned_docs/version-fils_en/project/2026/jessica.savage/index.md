@@ -24,7 +24,7 @@ The whole system is built around an STM32 microcontroller. It receives commands 
 ![Scheme](imagejs.webp)
 
 ## Schematics
-\\wsl.localhost\Ubuntu\home\jessi\website\website\versioned_docs\version-fils_en\project\2026\jessica.savage\schema-jessica.webp
+![alt text](schema-jessica1.webp)
 
 ## Log
 
