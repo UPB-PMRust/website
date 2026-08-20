@@ -1,0 +1,62 @@
+<svg width="850" height="650" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="white"/>
+
+    <path d="M 130 110 L 130 150" fill="none" stroke="#ED1C24" stroke-width="2"/>
+
+    <path d="M 210 180 L 260 180 L 260 80 L 320 80" fill="none" stroke="#22B14C" stroke-width="2"/>
+    <path d="M 210 180 L 600 180" fill="none" stroke="#22B14C" stroke-width="2"/>
+    <path d="M 210 180 L 260 180 L 260 280 L 300 280" fill="none" stroke="#22B14C" stroke-width="3" stroke-dasharray="5,5"/>
+
+
+    <path d="M 400 240 L 400 110" fill="none" stroke="#00A2E8" stroke-width="2"/>
+    <path d="M 500 280 L 550 280 L 550 195 L 600 195" fill="none" stroke="#00A2E8" stroke-width="2"/>
+    <path d="M 350 320 L 350 360 L 230 360 L 230 400" fill="none" stroke="#00A2E8" stroke-width="2"/>
+    <path d="M 450 320 L 450 360 L 530 360 L 530 400" fill="none" stroke="#00A2E8" stroke-width="2"/>
+
+    <path d="M 480 70 L 600 70" fill="none" stroke="#ED1C24" stroke-width="2"/>
+    <path d="M 480 90 L 600 90" fill="none" stroke="black" stroke-width="2"/>
+    <path d="M 660 210 L 660 250" fill="none" stroke="#ED1C24" stroke-width="2"/>
+    <path d="M 700 210 L 700 250" fill="none" stroke="black" stroke-width="2"/>
+
+
+    <rect x="50" y="50" width="160" height="60" fill="#E6F5E9" stroke="black" stroke-width="2"/>
+    <text x="130" y="85" font-family="Arial" font-size="13" text-anchor="middle">Battery 3.6V (TP4056)</text>
+
+    <rect x="50" y="150" width="160" height="60" fill="#E6F5E9" stroke="black" stroke-width="2"/>
+    <text x="130" y="185" font-family="Arial" font-size="13" text-anchor="middle">5V Boost (MT3608)</text>
+
+    <rect x="320" y="50" width="160" height="60" fill="#FEECD2" stroke="black" stroke-width="2"/>
+    <text x="400" y="85" font-family="Arial" font-size="13" text-anchor="middle">Stepper Driver</text>
+
+    <rect x="600" y="50" width="160" height="60" fill="white" stroke="black" stroke-width="2"/>
+    <text x="680" y="85" font-family="Arial" font-size="13" text-anchor="middle">Stepper Motor</text>
+
+    <rect x="600" y="150" width="160" height="60" fill="white" stroke="black" stroke-width="2"/>
+    <text x="680" y="185" font-family="Arial" font-size="13" text-anchor="middle">DFPlayer Pro Audio</text>
+
+    <rect x="600" y="250" width="160" height="60" fill="white" stroke="black" stroke-width="2"/>
+    <text x="680" y="285" font-family="Arial" font-size="13" text-anchor="middle">Visaton Speaker</text>
+
+    <rect x="300" y="240" width="200" height="80" fill="#F4E9F7" stroke="black" stroke-width="2"/>
+    <text x="400" y="285" font-family="Arial" font-size="15" font-weight="bold" text-anchor="middle">Olimex RP2350</text>
+
+    <rect x="150" y="400" width="160" height="60" fill="#E1F2FB" stroke="black" stroke-width="2"/>
+    <text x="230" y="435" font-family="Arial" font-size="13" text-anchor="middle">Color (TCS34725)</text>
+
+    <rect x="450" y="400" width="160" height="60" fill="#E1F2FB" stroke="black" stroke-width="2"/>
+    <text x="530" y="435" font-family="Arial" font-size="13" text-anchor="middle">Presence (TCST1103)</text>
+
+
+    <line x1="50" y1="510" x2="100" y2="510" stroke="#00A2E8" stroke-width="2"/>
+    <text x="120" y="515" font-family="Arial" font-size="13" fill="#333">Controlled by RP2350 / 3V3 Powered Sensors</text>
+
+    <line x1="50" y1="540" x2="100" y2="540" stroke="#ED1C24" stroke-width="2"/>
+    <text x="120" y="545" font-family="Arial" font-size="13" fill="#333">Powered by the ~3.6V Li-Ion Battery</text>
+
+    <line x1="50" y1="570" x2="100" y2="570" stroke="#22B14C" stroke-width="2"/>
+    <text x="120" y="575" font-family="Arial" font-size="13" fill="#333">Powered by the 5V Boost Converter</text>
+
+    <line x1="50" y1="600" x2="100" y2="600" stroke="black" stroke-width="2"/>
+    <text x="120" y="605" font-family="Arial" font-size="13" fill="#333">Component specific wiring (Motor Phases / Audio)</text>
+
+</svg>

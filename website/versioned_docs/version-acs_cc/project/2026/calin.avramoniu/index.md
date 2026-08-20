@@ -33,7 +33,7 @@ Main Components:
 
 ## Maze layout
 
-![Maze Layout](./images/maze.webp)
+![Maze Layout](./images/updated_maze.webp)
 
 ## Log
 
@@ -53,6 +53,16 @@ Main Components:
  - Completed 1st version of the documentation
 
 ### Week 27 - 03 May
+ - Assembled the robot
+ - Tested robot components together
+ - Met the documentation deadline and presented it during the lab
+
+### Week 11 - 17 May
+ - Met the hardware deadline and presented it during the lab
+
+### Week 18 - 24 May
+ - Met the software deadline and presented it during the lab
+ - The robot now completes most of the labyrinth (only fine-tuning needed)
 
 ## Hardware
 
@@ -90,10 +100,11 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-stm32](https://github.com/embassy-rs/embassy) | Basic hardware library | Used to set up the input and output pins for the IR and Ultrasonic sensors. |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Basic hardware library | Used to set up the input and output pins for the IR and Ultrasonic sensors, and to generate PWM signals for controlling the motor speeds. |
 | [embassy-time](https://github.com/embassy-rs/embassy) | Time and delays | Used to measure how long it takes for the ultrasonic echo to come back, and to add small pauses in the code. |
 | [defmt](https://github.com/knurling-rs/defmt) | Console printing tool | Used to print the distances and sensor status (like "Clear" or "Blocked") to my laptop screen so I could test them. |
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Code runner | Used to run the main loop of the program without freezing the board. |
+| [panic-probe](https://crates.io/crates/panic-probe) | Panic handler | Used to catch program crashes (panics) and print the trace back to the console, making debugging easier. |
 
 ## Links
 

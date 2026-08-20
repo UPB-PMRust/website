@@ -3,54 +3,70 @@ A web-managed, dual-architecture smart clock that features asynchronous timekeep
 
 :::info
 
-**Student:** Stuparu Alessia-Ștefania \
-**GitHub Repository:** [https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu](https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu)
+**Author**: Stuparu Alessia-Ștefania \
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu](https://github.com/UPB-PMRust-Students/fils-project-2026-alessiastuparu)
 
 :::
 
-## 1. Project Description
+## Description
 
 **I am implementing an internet-connected alarm that features a dashboard for management, an internal asynchronous software RTC and a hardware interface that handles tactile button inputs while triggering a LED ring, a buzzer, and an MP3 audio module.**
 
 The system is split into 2 parts: a Wi-Fi-enabled chip that handles networking and UI, while an ARM-Cortex-M33 manages hardware tasks such as turning on the LED ring, sensors and audio outputs.
 
-## 2. Motivation
+## Motivation
 
 I chose to do this project because I wanted to build a practical, daily-use tool while learning about cross-architecture communication and asynchronous embedded Rust. By using the RP2350 and STM32U5, I can better grasp the concepts of memory safety, state synchronization and custom protocol design.
 
-## 3. Architecture
+## Architecture
 
 The system relies on two microcontrollers that work at the same time and communicate via a hardware UART bridge:
 
-* **The Raspberry Pi Pico 2W:** Represents the networking layer as it hosts an Embassy-based web server to receive user commands via HTTP.
+* **The Raspberry Pi Pico 2W:** Represents the networking layer as it hosts a MicroPython HTTP web server to receive user commands via HTTP.
 * **STM32:** Represents the control layer as it manages alarm state, local timekeeping, physical button inputs, and peripheral driving.
-* **Communication Protocol:** To keep the two chips in sync, I am using the postcard serialization format so that commands sent from the Pico 2W to the STM32 are interpreted without data corruption or memory errors.
+* **Communication Protocol:** To keep the two chips in sync, I am using a plain-text, newline-terminated UART protocol. The Pico 2W sends commands such as `SA:HH:MM` (set alarm), `SN` (snooze), `DA` (disable) and `ST:HH:MM:SS` (sync time). The STM32 sends telemetry back every 5 seconds in the format `T:{temp},AH:{hh},AM:{mm},AE:{0|1},AR:{0|1},CH:{hh},CM:{mm},CS:{ss}`.
 
 ![Architecture Diagram](./architecture.drawio.svg)
 
-## 4. Log
+## Log
 
 ### Weeks 1-7
 * Came up with the idea for the project and did needed research.
 * Finished the project proposal and selected hardware components.
 * Made final changes to the hardware part and ordered components.
 
-### Week 8 
+### Week 8
 * Set up the Cargo workspace for both of the architectures so it handles cross-compiling.
 * Designed the behavior of the chips and what each of them handles.
 * Created a shared directory library so that specific commands are understood by both chips.
 
 ### Week 9
-* Programmed the Pico 2W so that it acts like a Wi-Fi server and created the HTML/JS website.
-* Established the UART serial connection so the Pico W can send data to the STM32.
-* Programmed the STM32 to multitask. It ticks a clock in the background while listening for new commands, all while using a Mutex to share memory between tasks.
-* Completed the Documentation Milestone.
+* Implemented Pico 2W Wi-Fi connection logic, HTML/JS web server and dashboard.
+* Implemented STM32 UART listener, time sync and alarm setting from the dashboard.
+* Implemented internal software RTC and alarm state management on STM32.
 
-## 5. Hardware
+### Week 10
+* Implemented bidirectional UART telemetry between STM32 and Pico 2W.
+* Added buzzer driver with escalating alarm pattern and physical snooze/cancel buttons with EXTI interrupts.
+* Added ST7735 SPI display showing live clock, alarm status and temperature.
+* Configured STM32 PLL to 80MHz, added WS2812B LED ring sunrise simulation and full peripheral integration.
+* Set up minimal Wi-Fi AP server on Pico 2W.
+
+### Week 11
+* Switched Pico 2W firmware to MicroPython and implemented plain-text UART protocol.
+* Verified full system integration: UART bridge, live dashboard with real BME280 temperature, all peripherals working together.
+
+## Hardware
 
 The system uses a Nucleo STM32U545RE-Q as the main controller, a Raspberry Pi Pico 2W for Wi-Fi networking and web hosting, a 1.8" TFT LCD for time and temperature visualization, a BME280 sensor for environmental monitoring, a WS2812B LED ring for sunrise simulation, an active buzzer and a DFPlayer Mini with a 3W speaker for audible alarms and tactile buttons for manual hardware control.
 
-## 6. Bill of Materials
+![Hardware overview](./hardware1.webp)
+
+### Schematics
+
+![KiCad Schematic](./sunrisealarm.webp)
+
+### Bill of Materials
 
 | Device | Usage | Price |
 |--------|-------|-------|
@@ -69,24 +85,29 @@ The system uses a Nucleo STM32U545RE-Q as the main controller, a Raspberry Pi Pi
 | [Dupont Wires (M-M & M-F)](https://www.optimusdigital.ro/ro/fire-fire-mufate/214-fire-colorate-mama-mama-10p.html?search_query=Fire+Colorate+Mama-Tata+%2810p%29+20+cm&results=6) | Hardware interconnections | 19.24 RON |
 | [Nucleo STM32U545RE-Q](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D&srsltid=AfmBOoqXGPqxB13PvgWCZHddM_5qXjGqEcsqiVKHqEcfBJFRI1cYmjSH&_gl=1*1q1geh*_ga*dW5kZWZpbmVk*_ga_15W4STQT4T*dW5kZWZpbmVk*_ga_1KQLCYKRX3*dW5kZWZpbmVk) | Main logic and peripheral controller | 140 RON |
 
-## 7. Software
+## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-stm32](https://docs.embassy.dev/embassy-stm32/0.6.0/stm32u545re/index.html) | Hardware abstraction for STM32 | Used for configuring SPI, I2C, UART, and GPIO (for the tactile buttons) on the Nucleo |
-| [embassy-rp](https://docs.embassy.dev/embassy-rp/0.9.0/rp235xa/index.html) | Hardware abstraction for Pico 2W | Used for configuring the RP2350 peripherals |
-| [postcard](https://docs.rs/postcard-bytes/latest/postcard/) | no_std message serialization | Used to safely pack and unpack UART network commands between the two chips |
-| [cyw43](https://docs.rs/cyw43/latest/cyw43/) | Pico W Wi-Fi driver | Used to establish the wireless network connection |
-| [embassy-net](https://docs.rs/embassy-net/latest/embassy_net/index.html) | Asynchronous network stack | Used to serve the HTTP dashboard to the user |
-| [st7735-lcd](https://docs.rs/st7735-lcd/latest/st7735_lcd/) | SPI display driver | Used for drawing the clock UI and temperature to the 1.8" TFT screen |
-| [bme280-rs](https://docs.rs/bme280-rs/latest/bme280_rs/) | I2C sensor driver | Used to read room temperature and humidity |
-| [smart-leds](https://docs.rs/smart-leds/latest/smart_leds/) | Addressable LED API | Used to control the WS2812B ring for the sunrise simulation |
-| [dfplayer](https://docs.rs/dfplayer-async/latest/dfplayer_async/) | UART driver for DFPlayer Mini | Used to trigger MP3 audio playback for the alarm |
+| [embassy-executor](https://docs.embassy.dev/embassy-executor/0.10.0/cortex-m/index.html) | Async task executor | Runs all concurrent tasks on STM32 |
+| [embassy-time](https://docs.embassy.dev/embassy-time/0.5.1/default/index.html) | Async timekeeping | `Timer::after` and `with_timeout` for delays and I2C scan timeouts |
+| [embassy-sync](https://docs.embassy.dev/embassy-sync/0.5.0/default/index.html) | Sync primitives | `Mutex` for shared `ClockState` between all tasks |
+| [embedded-graphics](https://docs.rs/embedded-graphics/0.8.1/embedded_graphics/) | 2D graphics library | Text and shapes on the ST7735 display |
+| [st7735-lcd](https://docs.rs/st7735-lcd/0.9.0/st7735_lcd/#) | SPI display driver | ST7735 initialization and rendering |
+| [heapless](https://docs.rs/heapless/0.8.0/heapless/) | Fixed-capacity collections | `String<N>` for UART message formatting without heap allocation |
+| [cortex-m](https://docs.rs/cortex-m/latest/cortex_m/) | Cortex-M architecture utilities | `interrupt::free` for WS2812B bit-bang timing |
+| [defmt](https://docs.rs/defmt/0.3.5/defmt/) | Efficient embedded logging | Real-time debug output via RTT |
+| [defmt-rtt](https://docs.rs/defmt-rtt/0.4.0/defmt_rtt/) | RTT transport for defmt | Sends defmt logs over debug probe |
+| [panic-probe](https://docs.rs/panic-probe/0.3.1/panic_probe/) | Panic handler | Prints panic messages via probe |
+| [MicroPython network](https://docs.micropython.org/en/latest/library/network.html) | Wi-Fi management | Creates the `SunriseAlarm` access point on Pico 2W |
+| [MicroPython socket](https://docs.micropython.org/en/latest/library/socket.html) | TCP socket server | Serves the HTTP dashboard on port 80 |
 
-## 8. Links
+## Links
 
-1. [Embassy Framework Documentation](https://embassy.dev/book/)
-2. [Postcard Protocol Specification](https://docs.rs/postcard/0.6.0/postcard/)
-3. [The Rust on Embedded Devices Book](https://docs.rust-embedded.org/book/)
-4. [DFPlayer Mini Manual & AT Commands](https://picaxe.com/docs/spe033.pdf)
-5. [ST7735 Display Datasheet](https://www.alldatasheet.com/datasheet-pdf/pdf/326213/SITRONIX/ST7735.html)
+1. [Embassy Framework Book](https://embassy.dev/book/)
+2. [STM32U5 Series Reference Manual](https://www.st.com/resource/en/reference_manual/rm0456-stm32u5-series-armbased-32bit-mcus-stmicroelectronics.pdf)
+3. [BME280 Datasheet](https://www.alldatasheet.com/html-pdf/1132060/BOSCH/BME280/7373/41/BME280.html)
+4. [WS2812B Datasheet](https://www.alldatasheet.com/html-pdf/1179113/WORLDSEMI/WS2812B/566/1/WS2812B.html)
+5. [MicroPython Documentation](https://docs.micropython.org/en/latest/)
+6. [Raspberry Pi Pico 2W Documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico2)

@@ -76,6 +76,7 @@ Provided in SDK
 ---
 layout: two-cols-header
 ---
+
 # Public Key Infrastructure
 
 ::left::
@@ -93,13 +94,14 @@ layout: two-cols-header
 
 ::right::
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./public_key_encryption.svg" class="rounded">
-
-
+</div>
 
 ---
 layout: two-cols-header
 ---
+
 # Digital Signatures
 needs a *key pair* (RSA or ECS) and a *hashing algorithm*
 
@@ -125,7 +127,9 @@ Verifying
 
 ::right::
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./digital_signature.svg" class="rounded">
+</div>
 
 ---
 layout: two-cols

@@ -108,7 +108,7 @@ could a process stop the whole system?
 
 
 ---
----
+
 # Kernel Types
 from the **kernel and drivers** point of view
 
@@ -118,7 +118,7 @@ from the **kernel and drivers** point of view
 
 **Monolothic**
 
-<img src="./monolithic.svg" class="w-73 rounded" />
+<img src="./monolithic.svg" class="w-73 rounded" style="background: white; padding: 5px"/>
 
   - all drivers in the kernel
   - Windows, Linux, MacOS
@@ -130,7 +130,7 @@ from the **kernel and drivers** point of view
 
 **Microkernel**
 
-<img src="./microkernel.svg" class="w-80 rounded" />
+<img src="./microkernel.svg" class="w-80 rounded" style="background: white; padding: 5px" />
 
   - all drivers are applications
   - Minix
@@ -141,7 +141,7 @@ from the **kernel and drivers** point of view
 
 **Unikernel**
 
-<img src="./unikernel.svg" class="w-75 m-1 rounded" />
+<img src="./unikernel.svg" class="w-75 m-1 rounded" style="background: white; padding: 5px" />
 
   - the kernel is bundled with all the drivers and one single application
   - Unikraft/Linux
@@ -152,10 +152,10 @@ from the **kernel and drivers** point of view
 
 </div>
 
-
 ---
 layout: two-cols
 ---
+
 # System Call
 the OS API
 
@@ -197,6 +197,6 @@ The OS:
 
 :: right ::
 
-<img src="./system_call.svg" class="w-120 rounded" />
+<img src="./system_call.svg" class="w-120 rounded" style="background: white; padding: 5px" />
 
 <img src="./exceptions.svg" class="w-80 rounded overlap" />

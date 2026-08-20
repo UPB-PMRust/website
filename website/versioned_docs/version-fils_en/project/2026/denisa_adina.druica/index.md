@@ -22,7 +22,7 @@ The motivation for this project came from my passion for gaming and technology. 
 
 ![Bomb](bomb.svg)
 
-![Architecture](architecture.svg)
+![Architecture](architecture1.svg)
 
 
 
@@ -31,9 +31,15 @@ The motivation for this project came from my passion for gaming and technology. 
 <!-- write your progress here every week -->
 ### Week 5 - 11 May
 
+Started working on the 3D design for the bomb and started searching for other libraries that I could use for the project.
+
 ### Week 12 - 18 May
 
+Connected all the components using the Kicad scheme and I also made some small analog connectivities in order to test if the hardware was working.
+
 ### Week 19 - 25 May
+
+I finished connecting all the hardware and started working on implementing them in the 3d build.
 
 ## Hardware
 
@@ -41,7 +47,7 @@ The STM32 Nucleo-U545RE-Q acts as the high-performance "brain" managing the game
 
 ### Schematics
 
-
+![Kicad](kicad.svg)
 
 ### Bill of Materials
 
@@ -58,8 +64,8 @@ The format is
 | Device | Usage | Price |
 |--------|--------|-------|
 | [STM32 NUCLEO-U545RE-Q](https://www.st.com/en/evaluation-tools/nucleo-u545re-q.html) | The microcontroller | [125 RON](https://eu.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D) |
-| [SN74LS21DR](https://www.ti.com/lit/ds/symlink/sn74ls21.pdf?ts=1776868308732&ref_url=https%253A%252F%252Feu.mouser.com%252F) | 4:1 And Gate  | [2,5 RON](https://www.ti.com/lit/ds/symlink/sn74ls21.pdf?ts=1776868308732&ref_url=https%253A%252F%252Feu.mouser.com%252F) |
-| [SN74LS04N](https://www.ti.com/lit/ds/symlink/sn74ls04.pdf?ts=1776871706956&ref_url=https%253A%252F%252Fen.wikipedia.org%252F) | Not Gate | [3,5 RON RON](https://eu.mouser.com/ProductDetail/595-SN74LS04N) |
+| [SN74LS20N](https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74ls20) | 4:1 Nand Gate  | [10 RON](https://www.digikey.com/en/products/detail/texas-instruments/SN74LS20N/377790) |
+| [SN74LS04N](https://www.ti.com/lit/ds/symlink/sn74ls04.pdf?ts=1776871706956&ref_url=https%253A%252F%252Fen.wikipedia.org%252F) | Not Gate | [3,5 RON](https://eu.mouser.com/ProductDetail/595-SN74LS04N) |
 | [Square Buttons]() | Buttons | [0,92 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1117-buton-cu-capac-patrat-negru.html?search_query=butoane&results=154) |
 | [Led Display TM1637](https://www.datasheetcafe.com/tm1637-datasheet-pdf/) | 7 segment display | [8,99 RON](https://www.optimusdigital.ro/ro/optoelectronice-afisaje-led/1202-modul-display-led-cu-interfata-seriala-chip-tm1637-.html) |
 | [Temperature Sensor DHT11](https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf) | For the temperature module | [4,65 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-temperatura/584-senzor-de-temperatura-dht11.html?search_query=temperature&results=84) |
@@ -73,12 +79,16 @@ The format is
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [tm1637-embedded-hal](https://github.com/JadKHaddad/tm1637) | Display driver for the TM1637 chip | Translates game time into 7-segment LED patterns. |
+| [tm1637](https://github.com/JadKHaddad/tm1637) | Display driver for the TM1637 chip | Translates game time into 7-segment LED patterns. |
 | [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard hardware interfaces for Rust. | Provides the "rules" for pin and timer interaction. |
+| [embassy-sync](https://crates.io/crates/embassy-sync) | Mutex, Channel for shared state between tasks | Shared MISTAKE_COUNT, SOLVED_COUNT, GAME_OVER, the buzzer sound queue, and the display message between tasks safely |
+| [embassy-executor](https://crates.io/crates/embassy-executor) | Async task runtime | Ran all 5 module tasks plus the game supervisor at the same time on the single core |
+| [embassy-futures](https://crates.io/crates/embassy-futures) | For concurrent async operations | Let the morse blinker and button listener run concurrently inside one task, and let the sequence module wait on 4 buttons at once |
+| [cortex-m](https://crates.io/crates/cortex-m) | Used to intentionally trigger an Undefined Instruction exception | Provided the busy-wait delay at startup and the udf instruction that halts the chip cleanly when the game ends |
+| [cortex-m-rt](https://crates.io/crates/cortex-m-rt) | Startup/reset handler, interrupt vector table | Set up the chip's interrupt table and reset handler so the program starts correctly after flashing |
 | [dht-sensor](https://github.com/michaelbeaumont/dht-sensor) | Protocol Driver | Decodes the digital pulses from the DHT11 into temperature |
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | STM32-specific hardware implementation. | Controls the actual physical pins on the Nucleo U545. |
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | High-precision timekeeping library for embedded systems. | Manages the 5:00 countdown and handles the variable "tick" speed based on mistakes. |
-| [rand](https://github.com/rust-random/rand) | Random Selection | Picks a random word from your "Morse List" every time the game starts.|
 | [heapless](https://github.com/rust-embedded/heapless) | Static Storage | Stores the list of Morse words without needing a heap |
 
 ## Links

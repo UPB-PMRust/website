@@ -181,7 +181,7 @@ Write bytes to the `UART` (serial port) data register
 ```rust {1,2|3,4,7|5,6|all}
 // we use mut as we need to write to it
 const UART_TX: *mut u8 = 0x4003_4000 as *mut u8;
-// b".." means ASCII string (Rust uses UTF-8 strings by default)
+// b".." means ASCII string slice (Rust uses UTF-8 strings by default)
 for character in b"Hello, World".iter() {
 	// character is &char, so we use *character to get the value
 	unsafe { UART_TX.write(*character); }
@@ -246,7 +246,7 @@ use core::ptr::write_volatile;
 
 // we use mut as we need to write to it
 const UART_TX: *mut u8 = 0x4003_4000 as *mut u8;
-// b".." means ASCII string (Rust uses UTF-8 strings by default)
+// b".." means ASCII string slice (Rust uses UTF-8 strings by default)
 for character in b"Hello, World".iter() {
 	// character is &char, so we use *character to get the value
 	unsafe { write_volatile(UART_TX, *character); }
@@ -545,9 +545,9 @@ register_bitfields! {u32,
 }
 
 register_structs! {
-SysCtrl {
-  (0xed0c => aircr: ReadWrite<u32, AIRCR::Register>),
-}
+  SysCtrl {
+    (0xed0c => aircr: ReadWrite<u32, AIRCR::Register>),
+  }
 }
 
 let sys_ctrl = unsafe { &*(SYS_CTRL_ADDR as *const SysCtrl) }; // C: struct SysCtrl *sys_ctrl = SYS_CTRL_ADDR;

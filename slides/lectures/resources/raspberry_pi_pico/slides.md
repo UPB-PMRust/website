@@ -13,7 +13,7 @@ for this section
     - Subchapter 7.1 - *DNS - Domain Name System*
 
 ---
----
+
 # Raspberry Pi Pico W
 uses a discrete Wi-Fi chip
 
@@ -35,24 +35,25 @@ uses a discrete Wi-Fi chip
 
 </div>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./cyw43.svg" class="rounded w-120">
 </div>
 
 </div>
 
 ---
----
+
 # Tasks
 tasks that run when using Wi-Fi
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./wifi_tasks.svg" class="rounded">
 </div>
 
 ---
 layout: two-cols
 ---
+
 # CYW43439 API
 the embassy driver
 
@@ -88,7 +89,9 @@ let spi = PioSpi::new(
 
 :: right ::
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./firmware.svg" class="rounded">
+</div>
 
 ---
 ---
@@ -125,6 +128,7 @@ control
 ---
 layout: two-cols
 ---
+
 # Flash the firmware
 write the firmware to the wifi device
 
@@ -145,7 +149,9 @@ async fn wifi_task(/* ... */) -> ! {
 
 :: right ::
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./firmware_run.svg" class="rounded">
+</div>
 
 ---
 ---
@@ -194,7 +200,7 @@ match control.join_wpa2("network ssid", "network password").await {
 
 
 ---
----
+
 # Embassy Net
 *a smol TCP/IP stack*
 
@@ -209,7 +215,7 @@ match control.join_wpa2("network ssid", "network password").await {
 
 </div>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./smoltcp.svg" class="rounded w-120">
 </div>
 
@@ -315,11 +321,11 @@ match dns.get_host_by_name("www.example.com", AddrType::IPv4) {
 ```
 
 ---
----
+
 # TCP Server Socket
 listening for one single connection
 
-*smoltcp can only listen and accept one client*
+*a `smoltcp` `TcpSocket` instance can only listen for and accept one client at a time*
 
 ```rust {1,2|4,17|5|5,6|9-12|14}
 let mut rx_buffer = [0; 4096];

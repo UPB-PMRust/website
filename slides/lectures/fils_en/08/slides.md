@@ -60,6 +60,7 @@ src: ../../resources/mmu/slides.md
 ---
 layout: two-cols
 ---
+
 # Microcontroller (MCU)
 Integrated in embedded systems for certain tasks
 
@@ -70,7 +71,7 @@ Integrated in embedded systems for certain tasks
 - costs $0.1 - $25
 - uses **Memory Protection Unit**
 
-<img src="./pico2w.png" class="m-5 h-30 rounded">
+<img src="./pico2w.png" class="m-5 h-30 rounded" style="background: white; padding: 5px">
 
 
 :: right ::

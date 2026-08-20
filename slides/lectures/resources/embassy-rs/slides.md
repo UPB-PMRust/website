@@ -1,7 +1,8 @@
 ---
 layout: section
 ---
-# embassy-rs
+
+# embassy
 [Embedded Asynchronous](https://embassy.dev/)
 
 ---
@@ -80,7 +81,7 @@ async fn main(_spawner: Spawner) {
 
 </div>
 
-The `main` function is called by the embassy-rs framework, so it can exit.
+The `main` function is called by the `embassy` framework, so it can return.
 
 ---
 ---
@@ -136,7 +137,6 @@ async fn main(_spawner: Spawner) {
 
 ````
 
----
 ---
 
 # GPIO Output
@@ -195,7 +195,7 @@ async fn main(_spawner: Spawner) {
 
 </div>
 
-The `main` function is called by the embassy-rs framework, so it can exit.
+The `main` function is called by the `embassy` framework, so it can return.
 
 ---
 ---
