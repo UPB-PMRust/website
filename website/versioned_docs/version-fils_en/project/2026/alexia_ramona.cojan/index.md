@@ -3,7 +3,7 @@ An embedded game where players catch Pokémon by solving math equations.
 
 :::info
 **Author:** Cojan Alexia-Ramona \
-**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-0monia0  
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-0monia0
 :::
 
 ## Description 
