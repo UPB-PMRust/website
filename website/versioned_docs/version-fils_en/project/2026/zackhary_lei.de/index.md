@@ -4,7 +4,7 @@ A challenge of skill: navigate a metal loop through a wire maze without touching
 
 
 **Author**: Zackhary Lei Juanes De Vega \
-**GitHub Project Link**: [(https://github.com/ZackharyLei)]
+**GitHub Project Link**: [(https://github.com/UPB-PMRust-Students/fils-project-2026-ZackharyLei)]
 
 ## Description
 
