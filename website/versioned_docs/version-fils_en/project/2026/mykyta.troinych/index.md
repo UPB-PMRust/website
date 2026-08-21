@@ -5,7 +5,7 @@ A connected weather station powered by the Raspberry Pi Pico 2 W, featuring loca
 :::info
 
 **Author**: Mykyta Troinych \
-**GitHub Project Link**: [https://github.com/TrOyKa23/Environment-monitor](https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23)
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23](https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23)
 
 :::
 
