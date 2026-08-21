@@ -4,8 +4,8 @@ A connected weather station powered by the Raspberry Pi Pico 2 W, featuring loca
 
 :::info
 
-**Author**: TrOyKa23 \
-**GitHub Project Link**: https://github.com/TrOyKa23/Environment-monitor
+**Author**: Mykyta Troinych
+**GitHub Project Link**: [https://github.com/TrOyKa23/Environment-monitor](https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23)
 
 :::
 
@@ -71,7 +71,7 @@ Concurrent tasks are managed on the RP2350 chip using an async Rust environment:
 - Employed `embedded-sdmmc` to handle FAT filesystems and automate writing comma-separated log entries into `TEMPLOG.CSV` with proper column headers.
 - Synchronizing display output and storage updates.
 
-![Milestone 2](4.webp)
+![Milestone 3](4.webp)
 
 ### Milestone 4 — Async Network Stack & Server Sync
 
@@ -85,6 +85,20 @@ Concurrent tasks are managed on the RP2350 chip using an async Rust environment:
 - CSV entries now feature precise Date and Time fields (replacing raw uptime tallies) alongside pressure and temperature readings; writing is deferred until time synchronization completes to maintain uniform records from the start.
 - The UI header switches from a placeholder to the synchronized clock once network time is acquired.
 - Added hot-plug recovery for the MicroSD card: extracting and reinserting the card allows file operations to resume automatically without requiring a hard reset.
+
+### Milestone 6 - 3D Print 
+The custom enclosure for this project was designed from scratch using **Blender**. Since the primary focus of this initiative is learning embedded programming, asynchronous Rust, and networking, the current iteration of the case is a functional prototype. It is slightly flimsy and requires minor dimensional adjustments for a perfect fit, but it serves its purpose perfectly well for housing the components on a desk.
+
+- Design Challenges in Blender:
+Designing a functional electronic case in a polygonal modeling tool like Blender (rather than a parametric CAD tool) presented several specific challenges:
+
+- Wall Thickness & Rigidity: Finding the right balance for wall thickness was tricky. The current walls are a bit too thin (leading to the flimsy feel), and adding structural ribs or using the `Solidify` modifier without creating overlapping geometry required manual cleanup.
+- Component Tolerances: Fitting exact real-world dimensions for the Raspberry Pi Pico 2 W, the 2.4" ST7789 display, and the BME280 sensor required tight tolerances. Leaving exact cutouts for the Micro-USB cable and the MicroSD card slot often required manual vertex pushing, as Blender lacks parametric history.
+- Manifold Geometry: Ensuring the final mesh was completely watertight (manifold) for the slicer software without any flipped normals or internal faces.
+- Mounting Points: Designing internal standoffs and snap-fits for the components that are both printable without extensive supports and strong enough not to break off during assembly.
+
+![Milestone 5](5.webp)
+![Milestone 5](6.webp)
 
 ## Hardware
 
