@@ -56,58 +56,41 @@ The five buttons are connected to GPIO inputs configured with internal pull-up r
 The four LEDs and the passive buzzer are controlled through GPIO outputs.
 
 The OLED display communicates with the STM32 using the I2C protocol.
-![System Diagram](FINAL_DIAG.drawio.svg)
 
 ---
 
 ## Log
 
-### Week 5 – 11 May
+### Week 1
 
-- Defined the project idea and overall architecture
-- Chose the hardware components
-- Tested LEDs and push buttons on STM32
-- Tested OLED display communication over I2C
-- Implemented melody playback using PWM and passive buzzer
-- Implemented rhythm gameplay logic
+* Defined the main idea and rules of the Memory Game
+* Selected the required hardware components and assigned the STM32 GPIO pins
+* Connected and tested the four LEDs and their corresponding push buttons
+* Added the START button and implemented the idle state
+* Implemented the random sequence generation and stored the sequence for each level
+* Added the main game logic for displaying and checking the player sequence
+* Connected the passive buzzer and added different tones for each color
+* Connected the OLED display using I2C
+* Added the `PRESS START`, score, and `YOU WIN` screens
+* Added the LED animation while waiting for the game to start
+* Tested the complete game and fixed button debounce and game-over behavior
+* Added the automatic return to the idle state after the final score is displayed
+* Finalized the hardware connections and tested the complete system
 
-![Hardware Prototype](hardware_photo_f.webp)
-
-### Week 12 – 18 May
-
-- Implemented the OLED menu system
-- Added multiple songs and difficulty selection
-- Implemented score calculation and gameplay feedback
-- Added Memory Mode gameplay logic
-- Improved button handling and timing accuracy
-- Added high-score tracking system
-- Integrated OLED feedback screens and score display
-
-### Week 19 – 25 May
-
-- Added SG90 servo motor support
-- Implemented boot and high-score animations
-- Redesigned GPIO pin mapping and button layout
-- Improved gameplay stability and timing synchronization
-- Finalized hardware integration and debugging
-- Built the case for the components
-  
 ---
 
 ## Hardware
 
 The system uses the following hardware components:
 
-- STM32 Nucleo board  
-- Passive buzzer  
-- 6 LEDs (5 gameplay LEDs + 1 status LED) 
-- 5 Push buttons
-- SSD1306 OLED display (I2C)  
-- Breadboard and jumper wires
-- 2 SG90 servo motors
-- MB102 breadboard power supply module  
-- Header pins for cartridge system
-- Resistors
+- STM32 Nucleo board (STM32U545RETxQ)
+- 4 LEDs (White, Blue, Yellow, Red)
+- 5 Push buttons (1 START button + 4 color buttons)
+- 4x 220 Ω resistors
+- Passive buzzer
+- 0.96" OLED display (I2C)
+- Breadboard
+- Jumper wires
 
 ---
 
