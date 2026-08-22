@@ -192,7 +192,7 @@ The hardware is split into a lightweight handheld wand, a radio bridge and a sta
 
 ### Schematics
 
-![Kicad Schematic](schem.webp)
+![Kicad Schematic](schem.svg)
 
 ### Bill of Materials
 
