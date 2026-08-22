@@ -1,4 +1,4 @@
-# CD Storage and Retrieval System
+# CD Storage System
 An STM32 system-based CD storage that selects and ejects CDs using servo mechanisms.
 
 :::info
@@ -10,21 +10,21 @@ An STM32 system-based CD storage that selects and ejects CDs using servo mechani
 
 ## Description
 
-This project is a CD storage and retrieval system that is build on a stand where CDs are arranged on a rotating platform. In the center of the structure there is a stepper motor that rotates the entire stand.
-The system can be controlled by a joystick and a display or remotely via Bluetooth from a phone. Once a CD is selected, the stepper motor rotates the stand until the chosen CD reaches the front position. At this point, a servo motor is activated and pushes the CD outward for an easier access. 
+This project consists of a rotating stand designed to store multiple CDs. The CDs are arranged around the stand, and the system allows the user to select a specific CD using a menu displayed on a LCD. 
+When a CD is selected, a servo motor rotates the stand until the chosen CD reaches the front position. Once the CD is in the correct position, a second servo motor activates a mechanical arm that pushes it outward, making it easier for the user to remove it from the stand. The system provides a simple and organized way to store, select and retrive CDs. 
 
 ## Motivation
 
-I chose this project idea beacause i wanted to make something that accesses a CD collection easier and faster. Instead of manually searching through a stack of CDs, you cand simply browse for a desired album and the system will locate and present it.
+I chose this project idea because i wanted to make something that accesses a CD collection easier and faster. Instead of manually searching through a stack of CDs, you can simply browse for a desired album and the system will locate and present it.
 
 ## Architecture
 
-The whole system is built around an STM32 microcontroller. It receives commands either from the joystick-based local interface or through the Bluetooth module connected to a phone.
+The main controller is the STM32U545RE, which coordinates the LCD display, joystick and servo motors. The process starts with the selection menu displayed on the 1602 LCD, where the user can navigate through the available CDs using the HW-504 joystick. Once it's selected and confirmed, the microcontroller determines the corresponding position of the CD and sends a PWM control signal to the first SG90 servo motor. Once the correct position is reached, the microcontroller activates the second SG90 servo motor, which controls the mehanical arm.
 
-![Scheme](imagejs.webp)
+![alt text](arch.svg)
 
 ## Schematics
-![alt text](schema-jessica1.webp)
+![alt text](kicad.svg)
 
 ## Log
 
@@ -41,6 +41,7 @@ I came with the project idea and received a feedback.
 I received the components and started testing them to see if everything works.
 
 ## Hardware
+![alt text](project_.svg)
 
 | Device | Usage | Price |
 |--------|-------|-------|
@@ -48,11 +49,9 @@ I received the components and started testing them to see if everything works.
 |  1.44'' LCD | Displays CD slection menu | 34.99 RON |
 | Joystick Breakout Board | Navigates and selects options | 5.35 RON |
 | Breadboard 830 points MB-102 | Connects the components to the microcontroller | 24.83 RON |
-| Stepper motor | Moves the mechanism to position | 48.99 RON |
-| Servo motor | Pushes the CD | 13.99 RON |
+| Servo motor | Rotates the stand | 13.99 RON |
 | Wires (M-F and M-F) | Component Interconnections | 15 RON |
 | Resistors | Protects the components | 3.57 RON |
-| Active Buzzer | Audio feedback | 0.99 RON |
 | RGB LED | Status indicator | 0.99 RON |
 
 
