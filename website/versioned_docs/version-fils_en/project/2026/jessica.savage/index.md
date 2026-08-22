@@ -21,10 +21,10 @@ I chose this project idea because i wanted to make something that accesses a CD 
 
 The main controller is the STM32U545RE, which coordinates the LCD display, joystick and servo motors. The process starts with the selection menu displayed on the 1602 LCD, where the user can navigate through the available CDs using the HW-504 joystick. Once it's selected and confirmed, the microcontroller determines the corresponding position of the CD and sends a PWM control signal to the first SG90 servo motor. Once the correct position is reached, the microcontroller activates the second SG90 servo motor, which controls the mehanical arm.
 
-![alt text](arch.svg)
+![alt text](arch.webp)
 
 ## Schematics
-![alt text](kicad.svg)
+![alt text](kicad.webp)
 
 ## Log
 
@@ -41,7 +41,7 @@ I came with the project idea and received a feedback.
 I received the components and started testing them to see if everything works.
 
 ## Hardware
-![alt text](project_.svg)
+![alt text](project1.webp)
 
 | Device | Usage | Price |
 |--------|-------|-------|
