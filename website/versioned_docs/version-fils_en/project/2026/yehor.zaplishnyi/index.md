@@ -21,7 +21,7 @@ Playing games from a young age inspired me to create something new in the gaming
 	|	Laptop	|----------|	Stm F401RE	|-------|	Joystick	|  
 	-------------			-----------------		-----------------  
 	
-![Project photo](snake.jpg)  
+![Project photo](snake.webp)  
 ## Schematics   
 ![Snake Schematics](snake.svg.svg)  
 
