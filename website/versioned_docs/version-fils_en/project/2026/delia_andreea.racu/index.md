@@ -35,13 +35,23 @@ The ESP-01 connects to the local WiFi network and exposes a WebSocket server. Th
 ## Log
 
 ### Week 5 - 11 May
-- Decided on the final project idea: a physical MIDI controller with piano-layout keys, chord detection, and BPM sensing. The KiCad schematic for the IoT MIDI Controller has been completed and verified using the Electrical Rules Checker. Physical assembly on the breadboard has started, following the schematic design. The next step is to begin firmware development in Rust using the Embassy-RS framework.
 
-
+- Finalised the MIDI controller concept and main functionality.
+- Defined the hardware architecture and main firmware components.
 
 ### Week 12 - 18 May
 
+- Finalised the component selection and STM32U545 pin mapping.
+- Designed the initial breadboard connections for the OLED, buttons, potentiometers, RGB LED, and microphone.
+- Started setting up the Rust/Embassy development environment.
+
+
 ### Week 19 - 25 May
+
+- Started the OLED integration using the SSD1306 over I2C.
+- Confirmed I2C1 mapping: PB6 (SCL) and PB7 (SDA).
+- Created the initial OLED test firmware.
+- Started debugging the Rust toolchain and Embassy configuration.
 
 ![Work Progress](work_progress1.svg)
 ![Work Progress](work_progress1.1.svg)
