@@ -52,9 +52,15 @@ After the recording is done, the Pico uses its integrated **Wi-Fi** to send the 
 - successfully initialized the SSD1306 display using the `ssd1306` crate.   
 - started working on the harware
 
+### Week 10-13
+- decided to integrate a battery holder into the hardware design to make the system fully portable for ambient music recognition
+- analyzed the power consumption of the Raspberry Pi Pico 2 W and the microphone to ensure the selected battery can sustain long term operation
+-did the KiCad schematic to include the battery holder and the necessary power routing for independent operation
+-shifted the project focus towards a standalone device approach, eliminating the need for a constant USB power supply
+
 ### Schematics
 
-KiCAD schematics will be added here as soon as it's done.
+![KiCad](./schematics.webp)
 
 
 ## Bill of Materials
@@ -69,6 +75,8 @@ KiCAD schematics will be added here as soon as it's done.
 | USB-C Data Cable | For system programming and power supply | ~7 RON |
 | Starter Kit Electronics | Breadboard, push buttons, wires, resistors,etc | ~70 RON |
 | STM32 NUCLEO-U545RE-Q | Initial acquisition (initial architecture) | ~125 RON |
+| Male to Female Jumper Wire| Recent acquisition for hardware | ~20 RON |
+
 
 
 
@@ -86,7 +94,9 @@ The hardware components are selected to ensure a compact and efficient design fo
 
 - battery Holder: single-slot 18650 holder with lead wires for a secure and compact connection.
 
-- Li-ion Battery: allows portable use.
+- 3 x batteries AA.
+
+- Leds for design.
 
 
 

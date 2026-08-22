@@ -19,6 +19,7 @@ for this section
 ---
 layout: two-cols
 ---
+
 # ADC
 sampling an analog signal to an array of values
 
@@ -35,7 +36,7 @@ sampling an analog signal to an array of values
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./sampling_values.svg" class="rounded w-150">
 </div>
 
@@ -90,7 +91,7 @@ how the ADC works
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./adc.svg" class="rounded w-150">
 </div>
 
@@ -131,7 +132,7 @@ $$
 <img src="./adc_rp2040.png" class="rounded w-150">
 </div>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="../rp2350/pico2w-pinout.svg" class="rounded w-80">
 </div>
 

@@ -24,6 +24,7 @@ I decided to add the rhythm game component to make the experience more engaging 
 
 The system is designed as a high-speed, "real-time reactive" process that prioritizes low latency to ensure the harp feels like a real instrument. It all starts with the **STM32**’s high-speed GPIOs constantly monitoring the **phototransistors**. These sensors act as the "eyes" of the system, waiting for the exact moment a laser beam is interrupted. 
 The core logic is managed by the **Embassy** async executor, which acts as a sophisticated conductor, multitasking between several time-sensitive events. When a hand "plucks" a light string, the system immediately jumps into action: it triggers a precise **PWM** signal to the **passive buzzer** to generate the corresponding musical note, while simultaneously checking the timing against the "Piano Tiles" game logic. This happens in microseconds, ensuring that the sound and the visual feedback are perfectly in sync without any perceptible lag.
+![Diagrama](./laser_harp.svg)
 
 ## Log
 
@@ -45,6 +46,15 @@ The core logic is managed by the **Embassy** async executor, which acts as a sop
 - Set up the Rust development environment and the project page.
 - Started testing basic GPIO interrupts with the STM32 board.
 
+### Week 27 April - 3 May
+- Finalized the acquisition of all necessary components.
+- Revised the audio system: replaced the simple buzzer with 40mm 3W speakers and an audio amplifier module (including a potentiometer for volume control) for better sound quality.
+- Added a new feature: an LED strip for visual feedback, mounted above the harp to indicate which string needs to be played during the game.
+- Developed the core game logic and performed initial tests using a single laser diode and phototransistor setup.
+- Implemented a temporary testing phase where all virtual game strings respond to the single physical input, with audio output currently routed through the laptop.
+![Photo1](./hardware1.webp)
+![Photo1](./hardware2.webp)
+
 ## Hardware
 
 The hardware components are selected to ensure a low-latency and interactive musical experience:
@@ -60,7 +70,7 @@ The hardware components are selected to ensure a low-latency and interactive mus
 
 ### Schematics
 
-![Diagrama](./laser_harp.svg)
+![KiCad](./kicad.webp)
 
 
 ### Bill of Materials

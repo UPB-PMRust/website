@@ -53,6 +53,8 @@ The system uses a 4WD chassis driven by independent DC motors, powered by a 3.7V
 
 ### Schematics
 
+![Hardware Schematic](./Schematic.svg)
+
 ### Bill of Materials
 
 | Device | Usage | Price |

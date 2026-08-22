@@ -112,7 +112,7 @@
 
 
     +--------------------+          +-------------------------------+
-    |  Passive Piezo     |   +   -->|  GP15  (PWM slice 7B, pin 20) |
+    |  Passive Piezo     |   +   -->|  GP21  (PWM slice 7B, pin 27) |
     |  Buzzer            |          |        (via 100 Ohm series R) |
     |                    |   -   -->|  GND                          |
     +--------------------+          +-------------------------------+
@@ -176,8 +176,13 @@ Connection: internal to the Pico 2 W, driven over the PIO-SPI bus on four dedica
 
 USB Power Bank (per console): supplies 5 V into the Pico's VBUS via the USB-C port, powering the MCU, the display (on 5 V), and the 3V3 rail feeding the joystick.
 
-### Schematics
-To be added
+## Schematics
+
+### Hardware 
+![Radar Wars Hardware Setup](proiect_rust_hardware.webp)
+
+### Kicad Schematic
+![Radar Wars Schematic](rust_proiect.svg)
 
 ## Bill of Materials
 

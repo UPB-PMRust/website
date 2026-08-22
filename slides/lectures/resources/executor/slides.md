@@ -23,7 +23,7 @@ for this section
   - starts the Embassy scheduler
   - defines the `main` task
 - `#[embassy_executor::task]` - defines a new task
-  - `pool_size` -is *optional* and defines how many identical tasks can be spawned
+  - `pool_size` -is *optional* and defines how many identical tasks can be spawned at the same time
 - the `main` task
   - initializes the the `led`
   - spawns the `led_blink` task (adds to the scheduler)
@@ -67,8 +67,10 @@ async fn main(spawner: Spawner) {
 
 <div>
 
-- unless awaited, `async` functions are not executed
+- unless awaited, `async` functions are not executed [^async]
 - tasks have to use `.await` in loops, otherwise they block the scheduler
+
+[^async]: they are executed, but do not execute what you expect
 
 </div>
 
@@ -98,10 +100,10 @@ async fn main(spawner: Spawner) {
 </div>
 
 ---
----
+
 # How it works
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./executor.svg" class="rounded">
 </div>
 
@@ -114,6 +116,7 @@ async fn main(spawner: Spawner) {
 ---
 layout: two-cols
 ---
+
 # Priority Tasks
 
 <style>
@@ -143,7 +146,7 @@ layout: two-cols
 <v-click>
 
 ### RP2
-- use `SWI_IRQ_01` and `SWI_IRQ_01`
+- use `SWI_IRQ_0` and `SWI_IRQ_1`
 
 </v-click>
 
@@ -156,7 +159,7 @@ layout: two-cols
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./isr_executor.svg" class="rounded">
 </div>
 
@@ -172,7 +175,7 @@ layout: two-cols
 }
 </style>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./isr_executor.svg" class="rounded">
 </div>
 

@@ -3,7 +3,10 @@ An intelligent greenhouse automation system that monitors and controls the growi
 
 :::info
 
-**Author:** Yehor Zaplishnyi  \
+
+
+**Author:** Yehor Zaplishnyi \ 
+
 **GitHub Project:** [rust-grow](https://github.com/UPB-PMRust-Students/fils-project-2026-yehorzaplishnyi)
 
 :::
@@ -45,6 +48,14 @@ Ordered all hardware components. Currently waiting for delivery.
 ## Hardware
 
 The system is built around the STM32 Nucleo-64 board powered by a 5V supply. Sensors cover air quality, soil conditions, water level, and time scheduling. A fan and heater element are controlled together as a heating unit via a relay module.
+
+### Diagram
+
+![Rust-Grow Block Diagram](rust_grow_schema.svg)
+
+### Schematics 
+
+![Rust-Grow KiCad](ma.svg)
 
 ### Schematics
 
