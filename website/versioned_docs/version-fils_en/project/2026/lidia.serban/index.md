@@ -18,7 +18,7 @@ For this project, I put together a DIY parking sensor using an STM32U545 Nucleo.
 Honestly, the main reason I built this is because my car doesn't have parking sensors, and backing into tight spots without them can be a real headache. Instead of just dealing with it, I decided to build my own fix from scratch. Using the STM32U545 and Rust let me turn a practical everyday problem into a fun hands-on project to sharpen my embedded development skills while actually making my car a little bit smarter.
 
 ## Architecture 
-![architecture ](./schematics.svg)
+![architecture ](./schematics_2.svg)
 
 ## Hardware
 
