@@ -29,18 +29,31 @@ The system relies on the STM32 Nucleo as the central processor.
 - Project planning, component sourcing, and setting up the Rust toolchain for STM32.
 
 ### Week 12 - 18 May
-
+- Bent the thick copper wire for the maze. It was actually harder than I thought to make it hold its shape.
+- Put all the components on the breadboard and connected the pins to the Nucleo board.
+- Wrote some basic Rust code to test the I2C LCD screen and make the buzzer beep.
 
 ### Week 19 - 25 May
 
+- Finished the game logic and state machine using the Embassy framework.
+- Programmed the rotary encoder so players can scroll and type their names on the screen.
+- Got the SPI SD card working.
+- Tested the game with my university friends to see if the wire loop was too small or too hard. Everything works good now!
 
 ## Hardware
 
 The project uses an STM32 Nucleo board as the microcontroller. User interaction is handled by a KY-040 rotary encoder and a custom-bent copper wire track. Feedback is provided via a 0.96" OLED display and an active 5V buzzer. All data is saved on a microSD card via an SPI module.
 
+Here are the photos of the physical breadboard setup, the STM32U545 board, and the copper wire loop:
+
+![Hardware 1](./hardware1.webp)
+
+![Hardware 2](./hardware2.webp)
+
+
 ### Schematics
 
-*(To be uploaded upon completion of the circuit diagram)*
+![Schematic](./schematic.webp)
 
 ### Bill of Materials
 
