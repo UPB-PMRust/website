@@ -122,55 +122,61 @@ The manager starts in **dry-run mode by default**, so it prints the commands it 
 ## Log
 
 ### Week 8
-
-- **Research & Architecture Phase:** Completed research on the initial hardware and software architecture.
-- Investigated motion filtering and processing approaches for the MPU6050.
-- Selected **ESP-NOW** for low-latency communication between the wand and the receiving side.
-- Investigated OpenWRT administration interfaces and `ubus` for discovering and controlling logical network interfaces.
+* **Research & Architecture Phase:** Completed research on the hardware and software architecture.
+* Investigated Digital Signal Processing (DSP) and complementary filters for the MPU6050 sensor to accurately recognize hand gestures and filter out tremors.
+* Selected the **ESP-NOW** protocol for ultra-low latency wireless communication between the Wand and the Base Controller.
+* Explored the OpenWRT `ubus` HTTP API for executing remote network administration commands without relying on SSH.
 
 ### Week 9
-
-- **Hardware Procurement:** Finalized the Bill of Materials.
-- Ordered the ESP32-S3 SuperMini, ESP8266 NodeMCU, MPU6050, TP4056 modules, Li-Po battery, jumper wires and other prototyping hardware.
-- Prepared the first breadboard version of the system.
+* **Hardware Procurement:** Finalized the complete Bill of Materials (BOM).
+* Officially placed orders for all necessary hardware components (ESP32-S3 SuperMini, ESP8266 NodeMCU, MPU6050, TP4056 modules, Li-Po battery, jumper wires, etc.) from suppliers.
+* Currently awaiting delivery of the components to begin breadboard testing and initial hardware assembly.
 
 ### Week 10
+* Components have arrived and have started breadboard testing with some success.
+* Started writing software for the WIFI Wand, struggling with the MPU6050 and clean data from it.
 
-- Received the components and started breadboard testing.
-- Began implementing the WIFI Wand firmware.
-- Started capturing raw accelerometer and gyroscope data from the MPU6050 and investigating how to obtain stable gesture recognition.
+### Week 11 
+* Finalized hardware wiring and testing on a breadboard. Will need to start finishing the software side.
 
-### Week 11
+### Week 12 *(Current Week)*
+*(To be filled during development)*
 
-- Finalized the main breadboard wiring and hardware testing.
-- Continued implementation of the wand and controller software.
-- Confirmed the ESP32-S3, MPU6050, STM32 and OLED hardware paths needed for the final prototype.
+### Week 13
+*(To be filled during development)*
 
-### Week 12 — TinyML gesture recognition
+### Week 14
+*(To be filled during development)*
 
-- Added a dedicated gesture capture firmware for recording training samples directly from the wand.
-- Built an offline TensorFlow training pipeline for accelerometer + gyroscope recordings.
-- Replaced the original threshold-only approach with an **on-device CNN** compiled into the firmware using **MicroFlow**.
-- Added full **int8 quantization** so inference can run efficiently on the ESP32-S3.
-- Added motion gating, confidence filtering and a cooldown to reduce false/repeated casts.
+## Restanță
 
-### Week 13 — Wireless link and controller
+The work below was completed later, during the restanță period, and is intentionally kept separate from the original weekly progression above.
+
+### TinyML gesture recognition
+
+- Added dedicated gesture-capture firmware for recording training samples directly from the wand.
+- Built an offline TensorFlow training pipeline for accelerometer and gyroscope recordings.
+- Replaced the earlier threshold/filtering approach with an **on-device CNN** compiled into the ESP32-S3 firmware using **MicroFlow**.
+- Added full **int8 quantization** so inference can run efficiently on the microcontroller.
+- Added motion gating, confidence filtering and a cooldown to reduce false or repeated casts.
+
+### Wireless link and display controller
 
 - Implemented ESP-NOW broadcasting from the ESP32-S3 wand on channel 1.
-- Added the ESP8266 NodeMCU bridge to receive ESP-NOW packets and forward spell names through UART.
+- Added the ESP8266 NodeMCU bridge to receive ESP-NOW packets and forward spell names through UART and USB serial.
 - Implemented the STM32 controller firmware with Embassy, LPUART1 reception and SSD1306 OLED output.
 - Added OLED address probing, I2C diagnostics and a boot animation.
 - Reached a working end-to-end embedded path where a recognized gesture on the wand appears as the corresponding spell/action on the controller display.
 
-### Week 14 — OpenWRT integration
+### OpenWRT integration
 
-- Added the Python router manager for translating received spells into real OpenWRT actions.
+- Added the Python router manager for translating received spells into OpenWRT actions.
 - Added SSH communication using Paramiko and automatic logical-interface discovery using `ubus call network.interface dump`.
 - Implemented interface selection, `ifup`, `ifdown`, `iperf3` stress testing and OpenWRT configuration backups.
 - Added a safe dry-run mode and moved credentials/configuration into a gitignored `.env` file.
 - Added test/self-test paths to help debug the radio and downstream command pipeline independently from gesture recognition.
 
-## Current Status
+### Current status
 
 The embedded gesture path is working end to end: a gesture recognized on the ESP32-S3 is broadcast over ESP-NOW, received by the NodeMCU and displayed by the STM32 controller.
 
