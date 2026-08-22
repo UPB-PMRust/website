@@ -52,12 +52,26 @@ Provides a user-friendly interface for real-time monitoring and visualization of
 Finalized component research and ordered all necessary hardware. Waiting for delivery.
 Already had the microcontroller, some dummy thermistor and photoresistor and started testing software.
 
+### Week 8 - 9
+
+Soldered the sensors on the protoboard, RFM95(Lora module) didn't arrived yet. Finished KiCad schematic.
+
+### Week 10 - 11
+
+Soldered wires on LoRa module, wired every component, had a bit of trouble so the antenna is going to be an 8.6 cm copper wire.
+
 ## Hardware
 
+![img1](hardware_image1.webp)
+![img2](hardware_image2.webp)
+![img3](hardware_image3.webp)
+
 **Hardware Used**
-STM32 microcontroller, environmental sensors (soil moisture, temperature, humidity, light), LoRa transceiver (SX1276/SX1262), and a LoRa gateway for wireless data transmission(the gateway is a public one which is hosted on TTN).
+STM32 microcontroller, environmental sensors ( temperature, humidity, light ), LoRa transceiver (RFM96), and a LoRa gateway for wireless data transmission(the gateway is a public one which is hosted on TTN).
 
 ### Schematics
+
+![hardware_schematic](hardware_schematics.svg)
 
 ### Bill of Materials
 
@@ -71,10 +85,14 @@ The format is
 
 -->
 
-| Device                  | Usage                 | Price    |
-| ----------------------- | --------------------- | -------- |
-| Nucleo STM32            | The microcontroller   | BORROWED |
-| Kit Arduino Intermediar | I will use some parts | 360 RON  |
+| Device                  | Usage                  | Price    |
+| ----------------------- | ---------------------- | -------- |
+| Nucleo STM32            | The microcontroller    | BORROWED |
+| Kit Arduino Intermediar | I will use some parts  | 360 RON  |
+| KY-013                  | Sensor for temperature | 5 RON    |
+| KY-015                  | Sensor for humidty     | 7 RON    |
+| KY-018                  | Sensor for light       | 3 RON    |
+| LoRa Module RFM96       | LoRa Transceiver       | 80 RON   |
 
 ### Kit components that will be used
 

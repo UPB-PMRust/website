@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 600" width="100%" height="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="black" />
+    </marker>
+  </defs>
+
+  <style>
+    .box { fill: white; stroke: black; stroke-width: 2px; }
+    .text { font-family: Arial, sans-serif; font-size: 14px; fill: black; text-anchor: middle; dominant-baseline: middle; font-weight: bold; }
+    .label { font-family: Arial, sans-serif; font-size: 13px; fill: #222; text-anchor: middle; }
+  </style>
+
+  <rect class="box" x="50" y="120" width="160" height="60" rx="5" ry="5" />
+  <text class="text" x="130" y="150">Push Buttons</text>
+
+  <rect class="box" x="50" y="240" width="160" height="60" rx="5" ry="5" />
+  <text class="text" x="130" y="270">Potentiometer</text>
+
+  <rect class="box" x="50" y="360" width="160" height="60" rx="5" ry="5" />
+  <text class="text" x="130" y="390">LDR Module</text>
+
+  <rect class="box" x="430" y="230" width="160" height="80" rx="5" ry="5" />
+  <text class="text" x="510" y="270">STM32 Nucleo</text>
+
+  <rect class="box" x="800" y="20" width="180" height="60" rx="5" ry="5" />
+  <text class="text" x="890" y="50">12V/7.4V Power</text>
+
+  <rect class="box" x="800" y="140" width="180" height="60" rx="5" ry="5" />
+  <text class="text" x="890" y="170">LCD 1602 Display</text>
+
+  <rect class="box" x="800" y="240" width="180" height="60" rx="5" ry="5" />
+  <text class="text" x="890" y="270">TB6612FNG Motor Driver</text>
+
+  <rect class="box" x="800" y="360" width="180" height="60" rx="5" ry="5" />
+  <text class="text" x="890" y="390">DC Gear Motors</text>
+
+  <rect class="box" x="800" y="460" width="180" height="60" rx="5" ry="5" />
+  <text class="text" x="890" y="490">Servo Motor SG90</text>
+
+  <polyline points="210,150 360,150 360,250 424,250" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="285" y="150" dy="-8">Digital PIN</text>
+
+  <line x1="210" y1="270" x2="424" y2="270" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="317" y="270" dy="-8">Analog Value</text>
+
+  <polyline points="210,390 360,390 360,290 424,290" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="285" y="390" dy="-8">Analog Value</text>
+
+  <polyline points="590,245 740,245 740,170 794,170" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="665" y="245" dy="-8">I2C Data</text>
+
+  <line x1="590" y1="270" x2="794" y2="270" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="665" y="270" dy="-8">Motor Directions (PWM)</text>
+
+  <polyline points="590,295 740,295 740,490 794,490" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="665" y="295" dy="-8">PWM Signal</text>
+
+  <polyline points="980,50 1060,50 1060,270 986,270" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="1020" y="50" dy="-8">Power</text>
+
+  <line x1="890" y1="300" x2="890" y2="354" stroke="black" stroke-width="2" marker-end="url(#arrow)" />
+  <text class="label" x="950" y="332">Motor Power</text>
+
+</svg>

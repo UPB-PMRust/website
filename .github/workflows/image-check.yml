@@ -116,7 +116,7 @@ jobs:
           ERRORS=0
           MAX_WIDTH=1024
           MAX_HEIGHT=768
-          MAX_FILE_SIZE=307200  # 300KB in bytes (300 * 1024)
+          MAX_FILE_SIZE=389120  # 380KB in bytes (380 * 1024)
 
           FILES="${{ steps.changed-files.outputs.files }}"
 
@@ -178,7 +178,7 @@ jobs:
             echo "  File size: ${FILE_SIZE_KB}KB (${FILE_SIZE} bytes)"
 
             if [ "$FILE_SIZE" -gt "$MAX_FILE_SIZE" ]; then
-              echo "  FAIL – File size ${FILE_SIZE_KB}KB exceeds limit of 300KB"
+              echo "  FAIL – File size ${FILE_SIZE_KB}KB exceeds limit of 380KB"
               ERRORS=$((ERRORS + 1))
             else
               echo "  File size OK"

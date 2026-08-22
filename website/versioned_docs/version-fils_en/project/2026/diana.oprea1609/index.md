@@ -63,7 +63,10 @@ Overall, this project allows me to explore the intersection between embedded sys
 - Input Device: PS4 controller (user input via PC)
 - Connections: Jumper wires, connectors, electrodes (E1, E2)
 
+![Hardware](./hardware_diana_oprea.webp)
+
 ### Schematics
+![Schem](./project_diana.oprea1609.svg)
 
 ### Bill of Materials
 
