@@ -92,6 +92,7 @@ stabilizing the signal and adjusting it
 ---
 layout: two-cols
 ---
+
 # Counter
 increments a register at every clock cycle
 
@@ -109,7 +110,7 @@ increments a register at every clock cycle
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./counter.svg" class="rounded w-150">
 </div>
 
@@ -182,6 +183,7 @@ unsafe fn SysTick() {
 ---
 layout: two-cols
 ---
+
 # Alarm
 counter that triggers interrupts after a time interval
 
@@ -200,7 +202,7 @@ counter that triggers interrupts after a time interval
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./alarm.svg" class="rounded w-150">
 </div>
 
@@ -214,7 +216,7 @@ two timers, `TIMER0` and `TIMER1`
 
 <div>
 
-- store a 64 bit number (`reset` is 2<sup>64-1</sup> )
+- store a 64 bit number (`reset` is 2<sup>64</sup> - 1 )
 - start with `0` at (the peripheral's) reset
 - increment the number every μs
 - in practice fully monotonic (cannot over flow)
@@ -227,12 +229,11 @@ two timers, `TIMER0` and `TIMER1`
 
 </div>
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./alarm.svg" class="rounded w-150">
 </div>
 
 </div>
-
 
 ---
 layout: two-cols
@@ -250,7 +251,7 @@ const TIMERHR: *const u32 = 0x400b_0008;
 let time: u64 = unsafe {
     let low = read_volatile(TIMERLR);
     let high = read_volatile(TIMERHR);
-    high as u64 << 32 | low
+    (high as u64) << 32 | (low as u64)
 }
 ```
 
@@ -277,15 +278,15 @@ unsafe fn TIMER0_IRQ_0() { /* alarm fired */ }
 ```rust{1,10|2,11,12|3,4,13|all}
 const TIMERLR: *const u32 = 0x400b_000c;
 const ALARM0: *mut u32 = 0x400b_0010;
-// + 0x2000 is bitwise set
-const INTE_SET: *mut u32 = 0x400b_0040;
+// address + 0x2000 is bitwise set
+const INTE_SET: *mut u32 = 0x400b_2040;
 
 // set an alarm after 3 seconds
-let us = 3_0000_0000;
+let us = 3_000_000;
 
 unsafe {
     let time = read_volatile(TIMERLR);
-    // use `wrapping_add` as overflowing may panic
+    // use `wrapping_add` as + overflowing is UB
     write_volatile(ALARM0, time.wrapping_add(us));
     write_volatile(INTE_SET, 1 << 0);
 };

@@ -25,33 +25,8 @@ The choice of this project stems from a desire to explore Real-Time Systems and 
 3. Rust in Embedded: Leveraging Rust's ownership model and the Embassy async executor to manage multiple concurrent tasks (audio, visuals, and logic) without a traditional Operating System.
 
 ## Architecture 
-
 The system is centralized around the STM32F767ZI (Cortex-M7) which handles the high-speed game loop, user input debouncing, and peripheral data streaming.
-[POWER & DEBUGGING SECTION]
-      +-------------------+           +-------------------+
-      |      Host PC      |           |      Host PC      |
-      |   (Power Bank)    |           | (Serial Debugging)|
-      +---------+---------+           +---------^---------+
-                |                               |
-                | (5V USB)                      | [UART / VCP]
-                v                               v
-      +---------------------------------------------------+
-      |                                                   |
-      |             NUCLEO-F767ZI (Cortex-M7)             |
-      |              (Main Microcontroller)               |
-      |                                                   |
-      +--------+------------+------------+-----------+----+
-               |            |            |           |
-             [SPI]        [SPI]        [PWM]       [GPIO]
-               |            |            |           |
-               v            v            v           v
-      +------------+  +------------+  +---------+  +------------+
-      |  MAX7219   |  | 1.3" SH1106|  | 3x Pass.|  | 3x Buttons |
-      |  8x32 LED  |  | OLED Disp. |  | Buzzers |  | 1x Joystick|
-      |  Matrix    |  |            |  |         |  |            |
-      +------------+  +------------+  +---------+  +------------+
-       (Game Board)    (UI/Score)      (Audio)      (Controls)
-
+![System Architecture Picture](./architecture_ironbeats.drawio.svg)
 ## Log
 
 <!-- write your progress here every week -->
@@ -64,14 +39,16 @@ Hardware acquisition finalized (STM32, MAX7219, SH1106 OLED).
 Developed the project logic and power scheme as well as implemented basic GPIO blinky and serial logging for debuggin every component involved in the project.
 
 ### Weeks 8-10
+Finished the full hardware schematic in KiCad, including pin mapping for SPI peripherals and the joystick's voltage dividers. Resolved all Electrical Rules Check (ERC) conflicts and finalized the wiring for the buttons, buzzers, and displays.
 
 ### Weeks 10-12
-
+Integrated the hardware and architecture diagrams into the GitHub documentation and set up the project's README. Started the Rust implementation for button inputs, focusing on the 200ms software lockout logic to ensure accurate gameplay detection.
 ### Weeks 12-14
 
 ## Hardware
 
 IronBeats is a bare-metal Rust rhythm game powered by an STM32F767ZI microcontroller, ensuring precise gameplay timing. An 8x32 LED matrix serves as the vertical runway for falling notes, while a 1.3" OLED handles menus and leaderboards. Three tactile buttons let players catch notes in specific lanes, with three passive buzzers providing real-time audio feedback. A joystick controls UI navigation, and a 5V power bank safely drives the entire hardware system
+![Hardware Electric Scheme Picture](./schematic_ironbeats.svg)
 
 ### Schematics
 

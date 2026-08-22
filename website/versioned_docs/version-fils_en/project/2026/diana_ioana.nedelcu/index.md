@@ -1,4 +1,3 @@
-
 # Automatic Music Player and Advertising System
 An automated audio solution that blends background music with scheduled announcements using the RP2350 and Rust.
 
@@ -11,7 +10,7 @@ An automated audio solution that blends background music with scheduled announce
 
 ## Description
 
-The project consists of an automated audio playback system. It plays a continuous playlist of MP3 files from a microSD card. At predefined intervals (e.g., every 10–15 minutes), the system finishes the current song, switches to a folder for advertisements/announcements, plays one file, and then returns to the music playlist.
+The project consists of an automated audio playback system. It plays a continuous playlist of WAV files from a microSD card. At predefined intervals (e.g., every 10–15 minutes), the system finishes the current song, switches to a folder for advertisements/announcements, plays one file, and then returns to the music playlist.
 
 
 ## Motivation
@@ -30,7 +29,10 @@ The system follows a producer-consumer architecture managed by the Embassy execu
  - **I2S Driver (Consumer):** Uses the Pico's **PIO** to stream the PCM data to the PCM5102A DAC. It uses DMA (Direct Memory Access) to ensure playback doesn't stutter while the CPU is busy reading from the SD card.
  - **Timer Task:** Tracks the 10-15 minute intervals and signals the main task to switch directories.
  - **User Interface:** Handles GPIO interrupts from push buttons for volume adjustment and track skipping.
+
 ![Design](diagram.drawio.svg)
+
+---
 
 ## Log
 
@@ -41,20 +43,24 @@ The system follows a producer-consumer architecture managed by the Embassy execu
 - Decided to switch from MP3 to WAV to focus on high-throughput data handling.
 
 ### Week 19 - 25 May
-- Ordered components
+- Ordered components.
+
+---
 
 ## Hardware
 
 The project uses the **Raspberry Pi Pico 2W** (RP2350), which provides more processing power for audio handling. The **PCM5102A** DAC provides high-quality stereo output via an I2S interface.
 
+### Physical Setup
+![Hardware Setup](hardware.webp)
+
+### Schematics
+![Kicad Schematic](nedelcu_diana_kicad.svg)
 
 ### Software Data Flow
 1. **File System Task:** Reads raw WAV data chunks from the SD card into a shared memory buffer.
 2. **Audio Task:** Consumes the buffer and uses **DMA** to stream data to the PIO state machine, ensuring the I2S timing remains perfect.
 3. **Manager Task:** An async loop that tracks the 10-15 minute timer for advertisements and handles button interrupts to change the playback state.
-### Schematics
-
-*(To be added)*
 
 ### Bill of Materials
 
@@ -66,6 +72,8 @@ The project uses the **Raspberry Pi Pico 2W** (RP2350), which provides more proc
 | Push Buttons | Volume/Skip Controls | 3.60 lei (10pcs) |
 | Resistor set | Pull-ups and protection | 7.00 lei |
 
+---
+
 ## Software
 
 | Library | Description | Usage |
@@ -74,6 +82,8 @@ The project uses the **Raspberry Pi Pico 2W** (RP2350), which provides more proc
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async Executor | Managing concurrent audio streaming tasks |
 | [embedded-sdmmc](https://github.com/rust-embedded-community/embedded-sdmmc-rs) | FAT File System | Reading WAV files from the SD Card |
 | [pio](https://crates.io/crates/pio) | PIO Assembler | Creating the I2S protocol state machine |
+
+---
 
 ## Links
 

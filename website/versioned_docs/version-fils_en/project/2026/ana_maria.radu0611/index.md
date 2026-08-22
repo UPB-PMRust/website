@@ -52,6 +52,21 @@ I had an issue where my screen would stay white, regardless of the commands writ
 ### Week 4 - 10 May
 I had a problem where the buzzers were not working, but I fixed it. I finished the wiring, which will be slightly changed later on, and I finished the KiCAD schematic.
 
+![final wiring](wiring.webp)
+
+### Week 11 - 17 May
+I worked more on my code and decided to make separate files for pins, display, leds and buzzers, which created a few problems with the pins initialization. I was able to solve them and had to change the initial implementations of my components as well.
+
+### Week 18 - 24 May
+I had a problem with reading the joystick values and solved it using DMA. 
+
+Also, I needed to make the box used to carry the project look nicer and not have all the wires visible. This is why, I made some holes on the top part to have only the leds, display and joystick visible and left the buzzers on the breadboard. I covered the box in white sticker, which took two people and a lot of patience, then cut the holes again. After attaching the display and the joystick and wiring them, I realised that my wires are not long enough to connect the leds too from where they were initially on the breadboard. Here, I was faced with two choices: either order longer wires and pick them up the next day or move the led wires closer and the buzzers more to the side (they were in the middle). I spent the next hour rewiring them, only to then realise that my box would not close anymore. I was able to close it after a bit of struggle and then ran my code again to make sure that everything was working well and no wires were disconnected by mistake.
+
+### Week 25 - 29 May
+During the final week, I only worked on the code and finalized the game logic, as well as the other game effects.
+
+![final box](box.webp)
+
 
 ## Hardware
 
@@ -69,6 +84,8 @@ I had a problem where the buzzers were not working, but I fixed it. I finished t
 | [Blue LEDs](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/12237-led-albastru-de-5-mm.html?search_query=led+albastru&results=58) | Shows the remaining lives of the player | 0.87 RON |
 | [RGB LED](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/483-led-rgb-catod-comun.html?search_query=led+albastru&results=58) | Shows visual cues | 1 RON |
 | [Passive Buzzers](https://www.optimusdigital.ro/ro/audio-buzzere/12247-buzzer-pasiv-de-33v-sau-3v.html?search_query=buzzer&results=44) | Audio cues | 2 RON |
+| [Male-Female Jumper Wires](https://www.optimusdigital.ro/en/wires-with-connectors/214-fire-colorate-mama-mama-10p.html?search_query=male+to+female+wires&results=89) | Connection of devices to breadboard and microcontroller | 8 RON |
+| [Male-Male Jumper Wires](https://www.optimusdigital.ro/ro/fire-fire-mufate/93-fire-colorate-tata-tata-20cm.html?srsltid=AfmBOopz-AFHtwzfOEi-P-QewcvRUUoiXWLzARuhPmKm0ZhG_AUWEK1s) | Connection of devices to breadboard and microcontroller | 12 RON |
 
 
 ## Software
@@ -80,9 +97,12 @@ I had a problem where the buzzers were not working, but I fixed it. I finished t
 | [`embassy-executor`](https://github.com/embassy-rs/embassy) | The async runtime | Runs main game loop |
 | [`embassy-time`](https://github.com/embassy-rs/embassy) | Efficient for async embedded applications | Controls falling speed timing, delays and time durations |
 | [`defmt`](https://github.com/knurling-rs/defmt) | Efficient embedded logging framework | Debugs and tracks game changes |
+| [`defmt-rtt`](https://docs.rs/defmt-rtt/latest/defmt_rtt/) | Backend for `defmt` to output logs via probe-rs | Used in all files |
+| [`panic-probe`](https://docs.rs/panic-probe/latest/panic_probe/) | Panic handler that prints to defmt | Used in all files |
 | [`embedded-graphics`](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library for `no_std` embedded devices | Draws the apples, basket and score text |
 | [`embedded-hal`](https://github.com/rust-embedded/embedded-hal) | Traits for reading analog values and digital pins | Reads joystick axis and converts raw ADC values to screen positions |
-| [`st7735-lcd-rs`](https://github.com/sajattack/st7735-lcd-rs?tab=readme-ov-file) | Driver for ST7735-based TFT displays | Initializes the display, handles display commands |
+| [`mipidsi`](https://github.com/almindor/mipidsi) | Display driver to connect to TFT displays | Initializes and controls my ST7735 display |
+| [`heapless`](https://github.com/rust-embedded/heapless) | Stack allocated strings for `no_std` | Used for displaying text on start and game over screens |
 
 ## Links
 1. [Rust Embassy Book](https://embassy.dev/book/)

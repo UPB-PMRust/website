@@ -3,19 +3,13 @@ An embedded game where players catch Pokémon by solving math equations.
 
 :::info
 **Author:** Cojan Alexia-Ramona \
-**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-0monia0  
+**GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-0monia0
 :::
 
 ## Description 
 
 MiniMath Pocket Monsters is an embedded game in which the player explores a virtual enviroment and ecounters 
-Pokémon that can only be caught by solving mathematical equations. The player can move within the game either by using
-physical buttons or by using motion input from an accelerometer. When a Pokémon randomly appears, the player is prompted 
-with a mathematical equation that needs to be solved in a limited time. If the correct answer is given, the creature
-is successfully captured, otherwise, it escapes. The difficulty of the mathematical challenges varies depending on the rarity of the encountered Pokémon.
-There is also a score that shows how many Pokémon you caught, if u get one answer wrong, the score goes back to 0. 
-The game provides visual feedback from a TFT display, where the game environment and interactions are rendered, an additional display for auxilliary information such as score or status, as well as LEDs. 
-Audio feedback is given through a passive buzzer which provides sound effects during key events like successfuly capturing a Pokémon or losing it, and encounters.
+Pokémon that can only be caught by solving mathematical equations. The player can move within the game by using motion input from an accelerometer. When a Pokémon randomly appears, the player is prompted with a mathematical equation that needs to be solved in a limited time. If the correct answer is given, the creature is successfully captured, otherwise, it escapes. The difficulty of the mathematical challenges varies depending on the rarity of the encountered Pokémon. The game provides visual feedback from a TFT display, where the game environment and interactions are rendered and additional display for auxilliary information such as score or status. Audio feedback is given through a passive buzzer which provides sound effects during key events like successfuly capturing a Pokémon or losing it, and encounters.
 
 ## Motivation 
 
@@ -45,8 +39,7 @@ I purchased all the needed components, doing tests to make sure everything works
 The system is built around an STM32 microcontroller, which controls all the components and runs the main game logic.
 The TFT display is connected using SPI and is used to show the game itself, including the map, player, and interactions. The OLED display is connected through I2C and is used to display additional information such as score or messages.
 The MPU9250 sensor is also connected via I2C and is used to detect movement. The data from the accelerometer will be processed in order to detect walking patterns, which are then used to move the player in the game.
-User input is provided through push buttons connected to GPIO pins, allowing direct control of the game. A passive buzzer is also connected to a GPIO pin and is used to generate simple melodies during gameplay.
-LEDs will also be connected to GPIO pins through resistors and be used for debugging or simple visual feedback. All components are connected to the microcontroller using standard interfaces such as SPI, I2C, and GPIO.
+User input is provided through push buttons connected to GPIO pins, allowing direct control of the game. A passive buzzer is also connected to a GPIO pin and is used to generate simple melodies during gameplay. All components are connected to the microcontroller using standard interfaces such as SPI, I2C, and GPIO.
 
 ## Schematics
 

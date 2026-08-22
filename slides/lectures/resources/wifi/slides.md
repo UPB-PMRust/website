@@ -56,7 +56,7 @@ security
   - the **device** and the **AP** exchange a symmetric encryption key
 
 ---
----
+
 # Integrated Network Device
 the network device is integrated into the MCU
 
@@ -67,12 +67,12 @@ the network device is integrated into the MCU
 - it knows how to transmit and receive buffers (*L1*)
 - some devices know *L2*
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./integrated_network.svg" class="rounded">
 </div>
 
 ---
----
+
 # Discrete Network Device
 the network device is connected into the MCU
 
@@ -83,6 +83,6 @@ the network device is connected into the MCU
     - *L4* - provides TCP/UDP *sockets* 
     - *L7* - provides application functions (usually *HTTP* and *MQTT*)
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./discrete_network.svg" class="rounded">
 </div>

@@ -26,7 +26,7 @@ The system is composed of four main components that interact as follows:
 - **Input Handler**: reads either Wi-Fi UDP packets from the phone controller app or physical button GPIO states, and feeds movement/action commands into the game loop.
 - **Feedback Peripherals**: the RGB LED and buzzer respond to game events (damage, shooting, etc.) via PWM signals, managed as async Embassy tasks.
 
-    ![Schema arhitectura](schemaArchitecture.webp)
+    ![Schema arhitectura](schemaarchitecture.webp)
 
 ## Log
 
@@ -47,9 +47,11 @@ Began the software implementation. Set up the Embassy async runtime on the Pico 
 
 The project is built around the **Raspberry Pi Pico 2W** (RP2350), which handles all game logic, rendering, networking, and peripheral control. The display is a 2.4" 240×320 ILI9341 LCD connected over SPI. Six push buttons provide physical input controls (forward, backward, left, right, interact and shoot). An RGB LED and a passive buzzer handle visual and audio feedback respectively, both driven by PWM signals
 
+![hardware](hardware.webp)
+
 ### Schematics
 
-TODO
+![Imagine hardware](schemahardware.webp)
 
 ### Bill of Materials
 

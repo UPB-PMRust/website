@@ -14,10 +14,10 @@ for this section
     - Subchapter 1.4.2 - *The TCP/IP Reference Model*
 
 ---
----
+
 # TCP/IP Stack
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./tcp_ip_stack.svg" class="rounded">
 </div>
 
@@ -36,7 +36,7 @@ for this section
 </div>
 
 ---
----
+
 # Network Layer
 
 - Internet Protocol
@@ -45,12 +45,12 @@ for this section
   - *IPv6* - 128 bits
 - sends and receives *packets* from other devices remotely
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./packet.svg" class="rounded">
 </div>
 
 ---
----
+
 # Transport Layer
 
 - Two protocols
@@ -59,6 +59,6 @@ for this section
 - uses *Ports* to identify the destination and source application
 - sends and receives *packets*
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./transport.svg" class="rounded">
 </div>

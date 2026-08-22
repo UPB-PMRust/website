@@ -7,6 +7,7 @@ Universal Serial Bus
 ---
 layout: two-cols
 ---
+
 # Universal Serial Bus
 2.0
 
@@ -71,6 +72,7 @@ for this section
 ---
 layout: two-cols
 ---
+
 # USB
 
 <style>
@@ -89,7 +91,7 @@ layout: two-cols
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./usb_device.svg" class="rounded">
 </div>
 

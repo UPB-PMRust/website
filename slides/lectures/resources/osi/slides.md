@@ -17,11 +17,11 @@ for this section
     - Subchapter 1.4.1 - *The OSI Reference Model*
 
 ---
----
+
 # Standardized Interfaces
 7 layers, each one communicates with its counterpart
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./osi_stack.svg" class="rounded">
 </div>
 
