@@ -38,11 +38,14 @@ Finished 3d design of wing and tail structure.
 
 ## Hardware
 
-The flight controller is designed around a Raspberry pi pico 2W microcontroller which controls the servo motors and brushlless motor responsible for actuating the control surfaces and providing thrust. The microcontroller is further responsible with collecting and sending telemetry data to the ground station via the NRF24L01+ RF module. Telemetry data includes battery level and link quality.
+The flight controller is designed around a Raspberry pi pico 2W microcontroller which controls the servo motors and brushlless(via PWM) motor responsible for actuating the control surfaces and providing thrust. The microcontroller is further responsible with collecting and sending telemetry data to the ground station via the NRF24L01+ RF module(via SPI). Telemetry data includes battery level and link quality. The battery level will be measured by reading the battery voltage from the balance pins with a voltage divider to protect the sensitive analog pins of the raspberry pi. Reverse polarity protection is added using a P-channel  Mosfet.
 
 The Ground Station is centered around a Raspberry pi Zero 2W, who's main purpose is to take input from an XBOX360 controller and transmit it over to the drone. It also displays some telemetry data on the OLED display.
 
 ### Schematics
+
+![kicad_schematic](./images/drone.svg)
+![kicad_schematic](./images/ground_station.svg)
 
 ### Bill of materials
 

@@ -13,7 +13,7 @@ The Rust API for embedded systems
 
 | | |
 |-|-|
-| Framework | Tasks, Memory Management, Network etc. `embassy-rs`, `rtic` |
+| Framework | Tasks, Memory Management, Network etc. `embassy`, `rtic` |
 | BSC | Board Support Crate `embassy-rp`, `rp-pico`, `embassy-stm32` |
 | *HAL Implementation* | Uses the PAC and exports a standard HAL towards the upper levels `embassy-stm32` |
 | PAC | Accesses registers, usually created automatically from SVD files - `rp-pac`, `stm32-metapac` |
@@ -151,6 +151,9 @@ pub fn panic(_info: &PanicInfo) -> ! {
 ```rust {all}{startLine:18}
 #[entry]
 fn main() -> ! {
+
+  /* setup the clocks */
+
   let gpio_ctrl = (GPIOX_CTRL + 8 * PIN) as *mut u32;
   unsafe {
       write_volatile(gpio_ctrl, 5);
@@ -199,12 +202,11 @@ const RCC_AHB2ENR1: *mut u32 =
 
 ```rust{all}{startLine:20}
 #[panic_handler]
-pub fn panic(_info: &PanicInfo) -> ! {
-  loop { }
-}
+pub fn panic(_info: &PanicInfo) -> ! { loop { } }
 
 #[cortex_m_rt::entry]
 fn main() -> ! {
+  /* setup the clocks */
   unsafe {
     let mut val = read_volatile(RCC_AHB2ENR1);
     let val = val | (1 << PORT_x);

@@ -43,6 +43,8 @@ Ordered and gathered all necessary hardware components to ensure an organized an
 
 ### Week 12 - 18 May
 
+Assembled all hardware components on the breadboard. Connected the DHT22, BMP180, TEMT6000, soil moisture sensor, and piezoelectric vibration sensor to the Raspberry Pi Pico W. Verified all wiring connections and tested each sensor individually to confirm correct readings. Finalized the KiCad schematic.
+
 ### Week 19 - 25 May
 
 ## Hardware
@@ -62,6 +64,12 @@ All sensors connect to the microcontroller via GPIO pins using I2C and analog in
 ### Schematics
 
 ![KiCad Schematic](kicad.webp)
+
+### Photos
+
+![Plant with soil moisture sensor](part1_hardware.webp)
+![Sensors and wiring](part2_hardware.webp)
+![Raspberry Pi Pico W on breadboard](part3_hardware.webp)
 
 ### Bill of Materials
 

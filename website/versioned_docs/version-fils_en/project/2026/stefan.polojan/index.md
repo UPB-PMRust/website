@@ -20,6 +20,10 @@ Physical currency remains a vital part of daily life, but it presents a signific
 
 ![schematic](schematic.svg)
 
+![Kicad](kicad.webp)
+
+![Hardware](hardware.webp)
+
 The system is divided into four main subsystems coordinated by the RP2350 microcontroller:
 1. **Processing System:** Olimex RP2350-PICO2-XXL running bare-metal software written in Rust.
 2. **Portable Power System:** A Li-Ion 18650 battery managed by a TP4056 charging module, and an MT3608 step-up converter to ensure stable 5V power for the motor and audio.
