@@ -77,13 +77,39 @@ Nevermind, forget it, the double feed is not the final boss, the final boss turn
 From the software point of view, the logic is now reversed: we wait for rising edge, not for the falling one. With the new logic applied, due to motor vibration paper pendulum creates insane amount of false-triggers, so my next goal is to reconsider the pendulum material and position in order to minimize them. Increasing the debouncing interval may also resolve the issue.
 
 ### Week 12
-To be continued...
+I've made the new pendulum out of PET plastic, it works great. However, the false triggers still occur because the new logic is applied. The motor generates a lot of electromagnetic noice and voltage spikes. I've already defeated the voltage spikes with a 100nF capacitor, but for the case [EMI (elecromagnetic interference)](https://en.wikipedia.org/wiki/Electromagnetic_interference), I've just filtered the impulses in software, assuming that if the duration of a signal was less then 2ms it was coming from the motor, not from the sesor.
+
+For the old falling-edge logic it worked fine: `noice impulse` -> `EXTI falling edge` -> `sleep for 2ms` -> `check if the GPIO is still low`, wich would immediately rise back to high after the noice is gone.
+
+However, now, with a mechanical flag banknotes tend to jam or to get stuck in the slit from time to time, which keeps the sensor output high for a longer period of time. `noice impulse` -> `EXTI rising edge` -> `sleep for 2ms` -> `check if the GPIO is still high`, which is the case because the banknote is still there. Theoretically that issue could also occur with the old logic if the banknote got stuck in the slit, but on practice it only occured with the rising edges.
+
+To address this, it would be better to physically reduce the noice rather than make some complex filtering algorithms. After some research I found out that communication cables utilize a [twisted pair](https://en.wikipedia.org/wiki/Twisted_pair) to fight the elecromagnetic radiation. So I twisted the `motor<--->diriver` wires and the `sensor<--->breadboard` wires, and it actually helped a lot.
+
+I took a stack of 10 lei banknotes and decided that it is time for the first benchmark:
+| # | Outuput |
+|---|---------|
+| **Expected value** | **150** |
+| **1** | **150** |
+| 2 | 140 |
+| **3** | **150** |
+| 4 | 130 |
+| 5 | 120 |
+| 6 | 140 |
+| 7 | 130 |
+| **8** | **150** |
+| 9 | 130 |
+| 10 | 130 |
+
+There are no cases where the outuput is greater then 150, meaning that false triggers do not occur anymore. Therefore I consider EMI to be defeated by now, and for the rest of the values, the error is coming from the double feed.
+
+For the double feed, I glued up 3 sponges on the slit: 2 with insulating strip underneath for straightening the banknotes, and one with a toothpick sticked into it, acting as adjustable physical gate. After playing around with the toothpick and calibrating the debouncing configuration it works percise enough for now.
 
 ### Week 13
-To be continued...
+I've finally mounted everything into the structure, and replaced external 830p breadboard with 3 small internal breadboards.
 
-### Week 14
-To be continued...
+![Final Hardware](final_hardware.webp)
+
+A few software tweaks, and thats it, the project is finished!
 
 ## Hardware
 
@@ -91,7 +117,9 @@ The "brain" of the system is **STM32 microcontroller** and the "eyes" of the sys
 
 The sensor has 3 terminals: *Vcc, GND* and *OUT*. *OUT* is high by default, and the sensor pulls it low only if there is something on the way of the beam (e.g. banknote)
 
-Other main components are the **LCD display**, that is used as the information output; **DC motor and driver**, for pushing the banknote on the way of the sensor's beam; and the buttons for user interaction.
+Other main components are the **LCD display**, that is used as the information output; **DC motor and driver**, for pushing the banknote on the way of the sensor's beam; and the buttons and keypad for user interaction.
+
+The initial plan was then the banknote would just fly through the sensor slit, however there was an issue with Romanian Lei banknotes: the polymer simply did not block the beam, so the sensor did not react to them at all. It worked fine with other currencies, but since I want this machine to be universal, I slightly changed the architecture: the banknote bumps into a piece of plastic, that moves a bit in the sensor slit and immediately returns to it's previous position. This creates a rising edge that gets handled by the STM.
 
 ![Hardware schematic](hardware.webp)
 
@@ -123,13 +151,13 @@ The format is
 | [2x50 mm Shaft](https://en.wikipedia.org/wiki/Shaft_(mechanical_engineering)) | Shaft extention | 1 | [0.95 RON](https://www.optimusdigital.ro/en/metal-axes/312-ax-metalic-2x50-mm.html) |
 | [2 mm to 2 mm Coupling Hub](https://en.wikipedia.org/wiki/Coupling) | Shaft connections | 2 | [5.99 RON](https://www.optimusdigital.ro/en/coupling-hubs/451-2mm-to-2mm-coupling-hub.html) |
 | [Miniature Ball Bearing (2 mm Internal Diameter)](https://en.wikipedia.org/wiki/Bearing_(mechanical)) | Shaft support | 1 | [2.89 RON](https://www.optimusdigital.ro/en/bearings/402-rulment-in-miniatura-cu-diametru-interior-2-mm.html) |
-| [4x4 Push Button Keyboard Matrix](https://www.electronicwings.com/sensors-modules/4x4-keypad-module) | User input | 1 | [3.99 RON](https://www.optimusdigital.ro/en/touch-sensors/2441-tastatura-matriceala-4x4-cu-butoane.html) |
+| [4x4 Keypad](https://www.electronicwings.com/sensors-modules/4x4-keypad-module) | User input | 1 | [22.50 RON](https://www.conexelectronic.ro/senzori-si-module-pentru-platforme-de-dezvoltare/16456-TASTATURA-16-TASTE-MEMBRANE-SWITCH.html) |
 | [Button with Round Cover](https://en.wikipedia.org/wiki/Push-button) | Start / Reset / Edit buttons | 3 | [1.99 RON](https://www.optimusdigital.ro/en/buttons-and-switches/1114-red-button-with-round-cover.html) |
-| [Breadboard HQ (830 points)](https://en.wikipedia.org/wiki/Breadboard) | Prototyping | 1 | [9.98 RON](https://www.optimusdigital.ro/en/breadboards/8-breadboard-hq-830-points.html) |
-| [Breadboard Jumper Wires Set](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 1 | [7.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/12-breadboard-jumper-wire-set.html) |
-| [10 cm 10p Male-Female Wires](https://en.wikipedia.org/wiki/Jump_wire) | Wiring | 2 | [2.99 RON](https://www.optimusdigital.ro/en/wires-with-connectors/650-fire-colorate-mama-tata-10p.html) |
+| [10K Potentiometer](https://en.wikipedia.org/wiki/Potentiometer) | Adjusting the LCD contrast | 1 | [2.39 RON](https://www.optimusdigital.ro/en/potentiometers/12360-10k-wh148-variable-resistor-without-washer-and-nut.html) |
+| [Mini Breadboard](https://en.wikipedia.org/wiki/Breadboard) | Wiring | 3 | [2.19 RON](https://www.optimusdigital.ro/en/breadboards/248-syb-170-colored-mini-breadboard-green.html) |
+| [Jumpers, Resistors, Capacitros etc](https://en.wikipedia.org/wiki/Electronic_component) | Basic electronics | - | [~20 RON](https://www.optimusdigital.ro/en/) |
 | [Cardboard](https://en.wikipedia.org/wiki/Cardboard) | CAD (Cardboard Aided Design) | 1 | [4.40 RON](https://www.dedeman.ro/ro/cutie-depozitare-din-carton-ctft-435-420-x-330-x-210-mm/p/1045878) |
-| **Total** | | | **224.50 RON** |
+| **Total** | | | **~250 RON** |
 
 *was borrowed from the lab
 
@@ -146,6 +174,7 @@ The format is
 | [defmt](https://github.com/knurling-rs/defmt) | Logging framework for resource-constrained devices | Debug & Logging |
 | [defmt-rtt](https://github.com/knurling-rs/defmt) | defmt log messages over the RTT protocol | Debug & Logging |
 | [panic-probe](https://github.com/knurling-rs/defmt) | Panic handler that exits with an error code | Addressing errors |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | Low level access to Cortex-M processors | Embassy dependency |
 | [cortex-m-rt](https://github.com/rust-embedded/cortex-m) | Minimal runtime / startup for Cortex-M microcontrollers | Embassy dependency |
 | [hd44780-driver](https://github.com/JohnDoneth/hd44780-driver) | Driver HD44780 compliant displays | Displaying the output |
 | [heapless](https://github.com/rust-embedded/heapless) | `static` friendly data structures that don't require dynamic memory allocation | Displaying strings on the LCD properly |

@@ -14,6 +14,7 @@ for this section
 ---
 layout: two-cols
 ---
+
 # Future
 
 <style>
@@ -47,6 +48,8 @@ where
 }
 ```
 
+- simplified version of `Future`
+
 :: right ::
 
 ```mermaid
@@ -69,8 +72,8 @@ sequenceDiagram
 ```
 
 ---
----
-# Implementing a Future
+
+# Implementing a (simplified) Future
 
 <div grid="~ cols-2 gap-5">
 
@@ -216,7 +219,7 @@ async fn blink(mut led: Output<'static, PIN_X>) {
 }
 ```
 <div v-click="1">
-Rust rewrites
+Rust (kind of) rewrites
 
 ```rust {1-7|1-3,7|1,4-7|8-12|13-15|all}{lines: false}
 struct Blink {
@@ -272,12 +275,11 @@ impl Future for Blink {
 
 </div>
 
-
 ---
 
 # Async Rust
 
-- the Rust compiler rewrites `async` function into `Future`
+- the Rust compiler rewrites `async` functions into `Future`s
 - it does not know how to execute them
 - executors are implemented into third party libraries
 
@@ -299,10 +301,9 @@ fn main() -> ! {
 }
 ```
 
+---
 
----
----
-# Executor
+# Simplified Executor
 
 ```rust {1|4-16|5-12|14,15|all}
 static TASKS: [Option<impl Future>; N] = [None, N];
@@ -329,7 +330,7 @@ fn executor() {
 - an efficient executor will not poll all the tasks, it uses a `waker` that tasks use to signal the executor
 
 ---
----
+
 # The `Future` trait
 that Rust provides
 
@@ -348,10 +349,12 @@ trait Future {
 - `Pin` to `mut self`, which means that `self` cannot be moved
 - `Context` which provides the `waker`
   - tasks are polled only if they ask the executor (by using the `wake` function)
-- `embassy-rs` provides the execution engine
+- `embassy` provides the execution engine
 
 </div>
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./executor_w.svg" class="rounded">
+</div>
 
 </div>

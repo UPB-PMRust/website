@@ -1,5 +1,5 @@
 # Quadcopter
-A radio controled drone capable of pith roll and yaw.
+A radio controled drone capable of pitch roll and yaw.
 
 :::info 
 
@@ -29,7 +29,7 @@ These corrections are sent as signals to the four ESCs, which regulate the speed
 
 The 3S LiPo battery supplies power to the entire system.
 
-![Architecture Diagram](images/drone.svg)
+![Architecture Diagram](images/diagram.svg)
 
 ## Log
 
@@ -39,10 +39,20 @@ Got approval and researched the components.
 Ordered all of the components.
 
 ### Week 5 - 11 May
+Received all of the components. 
+Finished the design.
+Managed to connect the receiver and remote controller, and modify the signals based on the gyroscope's readings. 
 
 ### Week 12 - 18 May
+Joined the 3D pieces together.
+Started soldering the ESCs and Motors.
+Started soldering the squid cables that connect the ESC's and Nucleo to the battery. 
 
 ### Week 19 - 25 May
+Finished the squid cables and powered all the motors.
+Added independent PWM output to all four ESCs with 1000-2000µs pulses at 50Hz.
+Created a rudimetary stabilisation alogrithm using the pid crate.  
+![Schematic](images/drone.webp)
 
 ## Hardware
 
@@ -51,6 +61,7 @@ The project uses the Nucleo board as a flight controller. It receives data from 
 ### Schematics
 
 <!-- Place your KiCAD or similar schematics here in SVG format. -->
+![Schematic](images/schematic1.webp)
 
 ### Bill of Materials
 
@@ -79,6 +90,12 @@ The format is
 | Library | Description | Usage |
 |---------|-------------|-------|
 | [embassy-stm32](https://github.com/embassy-rs/embassy) | Hardware Abstraction Layer | Handling I2C, SPI, and PWM peripherals |    
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Async executor for embedded systems | Running the PWM reader, IMU/PID and mixer tasks concurrently on a single-threaded executor |
+| [pid](https://crates.io/crates/pid) | Generic PID controller implementation | Three independent rate-mode PID loops for roll, pitch, and yaw stabilization |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Timekeeping, delays, and timeouts | Fixed-rate scheduling of the 250 Hz PID loop, the 50 Hz mixer loop, and the 3 ms RC pulse timeout |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy) | Async adapters for embedded-hal traits | Bridging Embassy peripherals to standard embedded-hal interfaces |
+| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async traits for embedded peripherals | Type abstractions used by Embassy drivers |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Async synchronization primitives | Mutex-protected shared state for throttle and PID corrections between tasks |
 
 ## Links
 

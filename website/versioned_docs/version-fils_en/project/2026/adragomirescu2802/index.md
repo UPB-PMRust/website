@@ -55,6 +55,7 @@ The hardware is based on the Raspberry Pi Pico 2 W microcontroller. Six HC-SR04 
 
 ### Schematics
 
+![Schematic](smart_parking.svg)
 
 ### Bill of Materials
 

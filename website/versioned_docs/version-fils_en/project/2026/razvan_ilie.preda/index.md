@@ -46,9 +46,10 @@ Stepper Motor + Driver: Drives the conveyor belt.
 Servo Motors (x2): Used for sorting or gate control.
 Sensors: Color sensor (TCS34725), metal detector, weight sensor (load cell + HX711), and distance sensor for object detection.
 User Interface: LEDs, buttons, and buzzer for feedback and control.
+![Hardware](hardware.webp)
 
 ### Schematics
-
+![Kicad Schematic](kicadsch.svg)
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.

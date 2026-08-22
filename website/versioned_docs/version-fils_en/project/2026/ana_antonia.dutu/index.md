@@ -34,6 +34,15 @@ Started working on the hardware by assembling the drone frame and mounting the m
 ### Week 9-10
 I also started working on the software part of the project, mainly on the communication between the STM32 and the ESC using the DShot protocol for controlling the motors. I researched how the protocol works and how it can be implemented using the STM32 timers and DMA peripherals. At the same time, I began writing the first parts of the code in Rust using the Embassy framework, focusing on generating the DShot signals correctly and understanding how the ESC receives throttle commands
 
+### Week 10-11
+I soldered the rest of the components, I connected the MPU6050 and the BMP280 to the STM32. I also started to search for different  possibilities for programming the ESP32-cam.
+
+## Week 11-13
+I started to work mainly on the code. I created the code for the MPU6050 and for the barometer. I also created the stabilization system and the algorithm fro determining the altitude using the barometer. I also began to code the ESP32, configuring also the WIFI conexion between its camera and the computer. 
+
+## Week 14
+I finished everything and I wanted to make sure that the drone is ready to be presented. 
+
 ## Hardware
 
 The project uses an STM32 Nucleo U545RE-Q microcontroller for flight control, along with an ESP32-CAM module for WiFi video streaming and Bluetooth communication. It includes brushless motors with a 4-in-1 ESC, an MPU6050 IMU for motion sensing, and BMP280 and MAX6675 sensors for environmental data. Power is provided by a LiPo battery with a step-down converter, all mounted on a 5-inch drone frame with standard supporting components.
@@ -43,6 +52,9 @@ The project uses an STM32 Nucleo U545RE-Q microcontroller for flight control, al
 ![Hardware image](./drona1.webp)
 ![Hardware image](./drona2.webp)
 ![Hardware image](./drona4.webp)
+![Hardware image](./drone_final.webp)
+![Hardware image](./drone_final2.webp)
+
 
 ### Schematics
 

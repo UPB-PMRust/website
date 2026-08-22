@@ -102,6 +102,7 @@ Electrolytic Capacitors\
 ### Schematics
 
 ![Pet Feeder Architecture Schematic](petfeeder.svg)
+![Pet Feeder Image](components.webp)
 
 ### Bill of Materials
 

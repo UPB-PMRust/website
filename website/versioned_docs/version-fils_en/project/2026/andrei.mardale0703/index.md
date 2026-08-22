@@ -65,11 +65,27 @@ All I2C components share the same bus.
 - Attempted to use hardware-accelerated AES for encryption, but the STM32U545's AES peripheral is not exposed by the `embassy-stm32` library for this chip variant.
 - Tested `xchacha20poly1305`, encrypted and then decrypted a string and verified that I got the same output.
 
+### Week 9 - 11
+- Focused on incremental integration and testing of small vertical slices of functionality, including RTC communication, encrypted storage, display rendering, USB HID input, and asynchronous task coordination.
+
+### Week 12
+- Replaced the blocking `ds3231x` and `eeprom24x` drivers with async wrappers built on top of `embedded-hal-async`.
+- Prepared the components and wiring layout for final assembly on a protoboard.
+
+### Week 13
+- Soldered the components onto a protoboard. The first assembly attempt failed and required rewiring and reconstruction.
+- Successfully completed a functional hardware prototype after correcting wiring and soldering issues.
+- Performed additional hardware stability and connectivity testing.
+
+### Week 14
+- Successfully authenticated against a self-hosted Authentik server using the generated TOTP codes.
+- Prepared the project for final presentation and documentation.
+
 ## Hardware
 
 The device is composed of the following physical components:
 - STM32 NUCLEO-U545RE-Q (STM32U545 MCU): serves as the main processing unit. It interfaces with all peripherals via I2C and GPIO, and provides UART and USB connectivity.
-- SSD1306 (SSD1306 OLED Display (128x64, I2C): used to display the current account label, TOTP code, and remaining validity time.
+- SSD1306 (SSD1306 OLED Display (128x64, I2C)): used to display the current account label, TOTP code, and remaining validity time.
 - DS3231 RTC (I2C): provides accurate timekeeping required for TOTP generation and maintains time across power cycles using a CR2032 backup battery.
 - AT24C256 EEPROM (I2C): external non-volatile memory used to store account data.
 - TTP223 Capacitive Touch Sensors (x2): provide user input through touch interaction, supporting short and long presses.
@@ -80,9 +96,23 @@ The device is powered by two series-connected 18650 lithium-ion cells (~7.4V com
 
 All peripheral components communicate with the microcontroller primarily over the shared I2C bus.
 
+### Hardware photos (initial)
+
+![Hardware Photo 1](photo_1.webp)
+
+![Hardware Photo 2](photo_2.webp)
+
+### Hardware photos (final)
+
+![Final Hardware Photo Front](hardware_v2_front.webp)
+
+![Final Hardware Photo Back](hardware_v2_back.webp)
+
+![Example of working TOTP generation](demo.webp)
+
 ### Schematics
 
-KiCAD schematics will be added here as soon as they're done.
+![Schematic](schematic.svg)
 
 ### Bill of Materials
 
@@ -107,16 +137,24 @@ KiCAD schematics will be added here as soon as they're done.
 | [embassy-sync](https://github.com/embassy-rs/embassy/tree/main/embassy-sync)| Async-aware synchronisation primitives | Channels and signals for inter-task communication |
 | [embassy-time](https://github.com/embassy-rs/embassy/tree/main/embassy-time) | Timekeeping and async delays | Timers for code expiry countdown and debouncing |
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async task executor for embedded systems | Runs all concurrent Embassy tasks |
+| [embassy-futures](https://github.com/embassy-rs/embassy/tree/main/embassy-futures) | Utilities for async embedded futures | Selecting between async events and composing task logic |
+| [embedded-hal](https://github.com/rust-embedded/embedded-hal) | Standard embedded hardware abstraction traits | Common blocking traits used by drivers and peripherals |
+| [embedded-hal-async](https://github.com/rust-embedded/embedded-hal) | Async embedded hardware abstraction traits | Async I2C traits used by the async drivers |
+| [embedded-storage](https://github.com/rust-embedded-community/embedded-storage) | Storage abstraction traits for embedded devices | Used for storing the master key in flash |
+| [embassy-embedded-hal](https://github.com/embassy-rs/embassy/tree/main/embassy-embedded-hal) | Embassy adapters for embedded-hal traits | Shared async I2C bus access |
 | [embassy-usb](https://github.com/embassy-rs/embassy/tree/main/embassy-usb) | Async USB device stack | USB device initialisation and HID transport |
 | [usbd-hid](https://github.com/twitchyliquid64/usbd-hid) | USB HID descriptor and report types | HID reports for typing TOTP codes |
 | [ssd1306](https://github.com/rust-embedded-community/ssd1306) | Display driver for SSD1306 | Used for the display, displays codes, accounts |
+| [time](https://github.com/time-rs/time) | Date and time library | Converting to/from Unix timestamps |
 | [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
-| [ds323x](https://github.com/eldruin/ds323x-rs) | DS3231 RTC Driver | Used for writing and reading the time |
-| [eeprom24x](https://github.com/eldruin/eeprom24x-rs) | Driver for 24x series I2C EEPROMs | Reading and writing TOTP records to the AT24C256 |
+| [base32ct](https://github.com/RustCrypto/formats/tree/master/base32ct) | `no_std` Base32 encoding/decoding | Decoding Base32 TOTP secrets |
+| [zeroize](https://github.com/RustCrypto/utils/tree/master/zeroize) | Secure memory clearing | Used for clearing memory after decrypting/encrypting |
 | [chacha20poly1305](https://github.com/RustCrypto/AEADs/tree/master/chacha20poly1305) | XChaCha20-Poly1305 AEAD cipher | Encrypting and decrypting TOTP secrets |
 | [heapless](https://github.com/rust-embedded/heapless) | Static, fixed-capacity data structures | Strings and vecs without a heap allocator |
+| [static_cell](https://github.com/embassy-rs/static-cell) | Safe static memory initialisation | Creating static shared resources for Embassy tasks |
 | [defmt](https://github.com/knurling-rs/defmt) | Efficient logging framework for embedded targets | Structured debug logging over RTT |
 | [defmt-rtt](https://github.com/knurling-rs/defmt/tree/main/firmware/defmt-rtt) | RTT transport backend for defmt | Transmits defmt log output via RTT to a debug probe |
+| [cortex-m and cortex-m-rt](https://github.com/rust-embedded/cortex-m) | Low-level Cortex-M CPU support and runtime | Startup code, interrupt handling, critical sections, and runtime support |
 | [panic-probe](https://github.com/knurling-rs/defmt/tree/main/firmware/panic-probe) | Panic handler using probe-rs | Forwards panic messages to the debug probe via defmt |
 | [serialport](https://github.com/serialport/serialport-rs) | Cross-platform serial port library | UART communication between CLI and device |
 | [clap](https://github.com/clap-rs/clap) | Command line argument parser | Used for CLI argument parsing, defaults |

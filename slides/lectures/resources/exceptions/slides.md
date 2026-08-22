@@ -19,18 +19,26 @@ for this section
      - Section 8.2 - *Exception types+*
 
 ---
----
+
 # Processor Exceptions
 what happens if something does not work as required
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
+
 ![Exceptions](./exceptions.svg)
 
+</div>
+
 ---
----
+
 # ARM Cortex-M Exceptions
 what happens if something does not work as required
 
+<div align="center" style="background: white; padding: 5px" class="rounded">
+
 ![Exceptions](./cortex-m.svg)
+
+</div>
 
 ---
 
@@ -106,12 +114,11 @@ for this section
      - Section 11.7 - *Lockup*
 
 ---
----
 
 # ARM Cortex-M Interrupts
 some hardware device notifies the MCU
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./cortex-m-nvic.svg" class="rounded w-170">
 </div>
 
@@ -313,6 +320,7 @@ flowchart LR
 ---
 layout: two-cols
 ---
+
 # Boot
 
 <style>
@@ -375,7 +383,7 @@ The internal boot loader cannot be overwritten and assures that bricking the dev
 
 :: right ::
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./flash_address.svg" class="rounded w-70">
 </div>
 

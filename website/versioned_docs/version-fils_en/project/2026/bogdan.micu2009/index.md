@@ -129,6 +129,44 @@ The motivation for this project was to create a dedicated, self-contained physic
   3. **USB connectivity** - Dropped the USB-C breakout board idea and switched to using the STM32 User USB port for PC - MCU communication.
   4. **Firmware testing** - Extended the component testing code.
   5. **New issue** - Battery wires need to be soldered before use.
+  
+  ### Week 9 (Development)
+
+- Started the actual development:
+1. **Testing** -  Wrote test code for the display, RTC Module and Rotary Encoder.
+2. **Documentation** - Documented the crates that needed to be added for more security.
+
+### Week 10 (Development)
+
+- Continued the development process:
+1. **Testing** - Added test modules and helpers for the fingerprint sensor.
+2. **App flow** - Designed a State machine (Locked -> MenuBrowse -> ActionMenu -> ShowTotp) for the main use flow.
+
+### Week 11 (Development)
+
+- Continued the development process:
+1. **Main** - Finalized the first main prototype, a flow that integrates all sensors and is a skeleton for future improvements.
+2. **Power** - Removed the external battery (after soldering the cables and testing it) as the main power source. Instead, the device will receive power via USB.
+3. **To do** - Improve security, add memory protection and data verification.
+
+### Week 12 (Development)
+
+- Continued the development process:
+1. **Main** - Implemented memory protection, better security and data verification. Added a host CLI to send data through the terminal to the device.
+2. **3D Design** - Created a 3D Box render to store all of the components, making it a true embedded device.
+3. **To do** - Create a desktop app with GUI for easier usage. Improve overall app flow.
+
+### Week 13 (Development)
+
+- Continued the development process:
+1. **Desktop App** - Added the desktop app that uses the host to add and update account details on the device.
+2. **3D Print** - Printed the 3D Box and fit the components inside. The middle "floor" had to be removed because the cables did not fit properly.
+3. **To do** - Improve the app flow, add UI animations.
+
+### Week 14 (Finishing touches)
+
+- Finalized the development process:
+1. **In progress** - Updating the main code.
 
 ## Hardware
 
@@ -166,10 +204,13 @@ The project centres on a NUCLEO-U545RE-Q development board as the microcontrolle
 ### Photos
 
 ![Hardware setup - NUCLEO-U545RE-Q with OLED display, Rotary Encoder, DS3231 RTC module, and breadboard](hardware.webp)
+![Hardware setup V2 - Includes all sensors](hardware_v2.webp)
+![Hardware setup V3 - The entire device sitting inside the 3D-printed box](hardware_v3.webp)
 
 ### Schematics
 
 ![Schematics](./AIO_BiometricHardwareSecurityKey_Micu_Bogdan.svg)
+![3D Box Schematic](./box_3d_design.webp)
 
 ## Bill of Materials
 
@@ -201,6 +242,14 @@ The project centres on a NUCLEO-U545RE-Q development board as the microcontrolle
 | [`embedded-hal`](https://crates.io/crates/embedded-hal) | Hardware abstraction traits | Common interface gluing drivers to the Embassy HAL |
 | [`hmac`](https://crates.io/crates/hmac) | HMAC generic implementation | Computes HMAC-SHA1 as required by the TOTP (RFC 6238) algorithm |
 | [`sha1-smol`](https://crates.io/crates/sha1-smol) | Minimal SHA-1 implementation (no-std) | SHA-1 digest used inside HMAC for TOTP |
+| [`aes`](https://crates.io/crates/aes) | Pure Rust Advanced Encryption Standard (AES) | Encrypts and decrypts the password vault stored in the STM32's flash memory |
+| [`cipher`](https://crates.io/crates/cipher) | Traits for cryptographic ciphers | Provides the generic traits required to securely operate the AES cipher |
+| [`zeroize`](https://crates.io/crates/zeroize) | Securely zeros memory | Wipes the plaintext passwords and derived keys from RAM immediately after use to prevent memory-dump attacks |
+| [`heapless`](https://crates.io/crates/heapless) | no_std data structures without dynamic allocation | Manages fixed-capacity buffers for passwords, account lists, and UI strings without needing a heap allocator |
+| [`anyhow`](https://crates.io/crates/anyhow) | Flexible concrete error handling (for desktop app) | Simplifies error propagation and context management across UI events, file operations, and device communication |
+| [`eframe`](https://crates.io/crates/eframe) | Official framework for the egui library | Renders the cross-platform immediate-mode desktop interface for adding, editing, and managing vault entries |
+| [`serialport`](https://crates.io/crates/serialport) | Cross-platform serial port interface | Establishes a serial connection (UART over USB) to securely communicate and sync vault updates with the STM32 device |
+| [`clap`](https://crates.io/crates/clap) | Command Line Argument Parser | Parses arguments, flags, and subcommands for the host CLI tool to manage and sync the hardware vault from the terminal |
 
 ## Links
 
