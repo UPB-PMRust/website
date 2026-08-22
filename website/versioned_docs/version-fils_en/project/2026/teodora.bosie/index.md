@@ -41,6 +41,13 @@ I continued with the sensor testing and bumped into a frustrating issue with the
 ## Hardware
 The hardware platform of the project is centered around the STM32 Nucleo-U545RE-Q development board, which acts as the main MCU of the rover. Two 3V-6V DC gear motors are used for the differential drive propulsion, paired with a ball caster for stability, and are interfaced with the MCU via an L298N Dual H-Bridge motor driver. An array of four LDR photoresistors is utilized for 360-degree directional light tracking, alongside a GUVA-S12SD UV sensor for detecting high-intensity radiation and an HC-SR04 ultrasonic sensor for obstacle avoidance. Wireless connectivity for remote telemetry is provided by an ESP32 WiFi module.Energy harvesting and power management are handled by a 5V photovoltaic panel that trickle-charges an onboard 18650 Li-Ion battery via a TP4056 charger and an MT3608 step-up regulator. The mechanical structure of the rover itself is manufactured using a custom 3D-printed modular frame, featuring a two-tier chassis that houses the electronics and powertrain on the lower deck and a conical universal pot holder on the upper deck.
 
+### Photos
+![Photo 1](images/photo1.webp)
+![Photo 2](images/photo2.webp)
+![Photo 3](images/photo3.webp)
+![Photo 4](images/photo4.webp)
+
+
 ### Schematics
 
 ![KICAD Scheme](images/solar_final.svg)
