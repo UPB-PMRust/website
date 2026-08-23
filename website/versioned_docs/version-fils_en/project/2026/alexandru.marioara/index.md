@@ -3,7 +3,7 @@
 A hardware digital audio player built on STM32 using Rust and internal DAC audio processing.
 
 :::info
-**Author:** Alexandru Marioara \
+**Author:** Marioara Alexandru \
 **GitHub Project Link:** https://github.com/UPB-PMRust-Students/fils-project-2026-StrumfoAlex
 :::
 
@@ -61,21 +61,26 @@ The system architecture revolves around the STM32U545RE microcontroller:
 
 ## Log
 * **Week 1 - 9:** Finalized component list, established architecture using the internal DAC to avoid I2S complexity, and set up the documentation website.
-* **Week 9 - ...:** (soon...)
-* **Week ... - ...:** (...)
+* **Week 9 - 11:** Assembling the hardware circuit. Initializing the code on the board and verifying the components. Making the KiCad schematics.
+* **Week 11 - 14:** Finishing the code and testing each function of the project. Making short ajustment in the hardware for a better performing. Finishing the documentation website.
 
 ## Hardware
-The project uses a mix of digital sensors and analog amplification to achieve audio playback.
+The core of the digital audio player is the STM32U545RE microcontroller, which handles file reading, user interface, and audio signal generation. Storage is managed via a MicroSD card module communicating over the SPI protocol, while visual feedback is provided by an SSD1306 OLED display connected via I2C. User input for navigating the playlist and controlling playback is handled through a rotary encoder.
+
+For the audio output, the internal DAC of the STM32 generates an 8-bit PCM raw signal. Because this signal includes a DC offset of approximately 1.6V, a 10µF electrolytic capacitor is placed in series to act as an AC coupling filter, blocking the direct current and allowing only the audio waveform to pass. The filtered, AC-coupled signal is then routed directly into the PAM8403 Class-D audio amplifier for playback.
+
+For the audio output, the internal DAC of the STM32 generates an 8-bit PCM raw signal. Because this signal includes a DC offset of approximately 1.6V, a 10µF electrolytic capacitor is placed in series to act as an AC coupling filter, blocking the direct current and allowing only the audio waveform to pass.
+![Hardware](./circuit.webp)
 
 ### Schematics
-*(KiCAD schematic here later)*
+![Schematics](./kicad.svg)
 
 ### Bill of Materials
 | Device | Usage | Price |
 | ----------- | ----------- | ----------- |
 | STM32 Nucleo-U545RE | Main microcontroller (Brain) | 126 RON |
 | PAM8403 Amplifier | Amplifies the analog signal from the STM32 DAC | ~6 RON |
-| 52mm 4 Ohm Speaker | Audio output | ~20 RON |
+| 4 Ohm Speaker | Audio output | ~8 RON |
 | MicroSD Card Module | SPI storage for music files | ~5 RON |
 | 0.96" OLED Display | I2C UI Display | ~17 RON |
 | IR Receiver & Remote | Wireless user interface control | ~7 RON |
@@ -86,10 +91,19 @@ The project is built entirely in Rust (no_std) utilizing the asynchronous Embass
 
 | Library | Description | Usage |
 | ----------- | ----------- | ----------- |
-| `embassy-stm32` | Hardware Abstraction Layer | Controls peripherals (SPI, I2C, DAC, DMA, Timers, GPIO) |
-| `embedded-sdmmc` | FAT32 File System | Reading WAV files from the SD Card |
-| `ssd1306` | Display Driver | Controlling the OLED screen |
-| `embedded-graphics` | 2D Graphics | Rendering text and the audio visualizer UI |
+| [`embassy-stm32`](https://docs.embassy.dev/embassy-stm32/0.6.0/stm32c011d6/index.html) | Hardware Abstraction Layer | Controls peripherals (SPI, I2C, DAC, DMA, Timers, GPIO) |
+| [`embassy-executor`](https://crates.io/crates/embassy-executor) | Async Execution Environment | Manages asynchronous tasks and threads |
+| [`embassy-time`](https://crates.io/crates/embassy-time) | Time Management | Handles delays and timing (e.g., `Timer::after_millis`) |
+| [`embedded-sdmmc`](https://docs.rs/embedded-sdmmc/latest/embedded_sdmmc/) | FAT32 File System | Reading WAV files from the SD Card |
+| [`ssd1306`](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | Display Driver | Controlling the OLED screen |
+| [`embedded-graphics`](https://crates.io/crates/embedded-graphics) | Graphics Library | Renders text and UI elements on the display |
+| [`defmt`](https://crates.io/crates/defmt) | Logging Framework | Sends fast, low-overhead debug messages via USB |
+| [`panic-probe`](https://crates.io/crates/panic-probe) | Debugging Utility | Captures and reports critical errors (panics) |
+| [`infrared`](https://crates.io/crates/infrared) | IR Decoding | Decodes NEC protocol pulses from the remote control |
+
 
 ## Links
 1. [Rust Embassy Documentation](https://embassy.dev/)
+2. [Embedded Graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/)
+3. [Crates.io - Storage](https://crates.io/crates/embedded-sdmmc)
+4. [Reading .WAV files](https://www.youtube.com/watch?v=5F6Y1Ttpg-A)

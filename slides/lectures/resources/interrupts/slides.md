@@ -18,34 +18,45 @@ for this section
      - Section 8.2 - *Exception types+*
 
 ---
----
+
 # Processor Exceptions
 what happens if something does not work as required
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![Exceptions](./exceptions.svg)
 
-<!-- Just explain that MCU's have a special table where firmware can register functions that
-the processor calls in case of several events. -->
+</div>
+
+<!--
+Just explain that MCU's have a special table where firmware can register functions that
+the processor calls in case of several events.
+-->
 
 ---
----
+
 # Standard ARM Cortex-M Exceptions
 what happens if something does not work as required
 
+<div style="background: white; padding: 5px" class="rounded">
+
 ![Exceptions](./cortex-m.svg)
 
----
+</div>
+
 ---
 
 # ARM Cortex-M Interrupts
 some hardware device notifies the MCU
 
-<div align="center">
+<div align="center" style="background: white; padding: 5px" class="rounded">
 <img src="./cortex-m-nvic.svg" class="rounded w-170">
 </div>
 
-<!-- Interrupts are exceptions that are usually triggered by hardware when
-it needs attention.-->
+<!--
+Interrupts are exceptions that are usually triggered by hardware when
+it needs attention.
+-->
 
 ---
 

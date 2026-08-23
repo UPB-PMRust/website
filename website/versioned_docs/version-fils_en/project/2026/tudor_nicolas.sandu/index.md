@@ -1,5 +1,4 @@
-# Project Name
-Lumentra
+# Lumentra
 :::info 
 
 **Author**: Sandu Tudor Nicolas \
@@ -24,7 +23,7 @@ Main Components & Interconnections:
 - Tactile Performance Array: Mechanical arcade buttons connected via standard GPIO pins, used to send MIDI Note On/Off messages.
 - Gesture Sensor: A single VL53L0X Time-of-Flight (ToF) laser sensor connected to the I2C Bus. The distance read is mapped to MIDI   Control Change (CC) messages.
 - Internal Humanizer: The RP2350’s integrated TRNG peripheral is utilized to provide high-quality random data for non-deterministic MIDI velocity and panning.
-- Visual Interface: An ST7789 TFT display module connected to the high-speed SPI Bus to provide real-time visual feedback on active MIDI CC values and selected effects.
+- Visual Interface: An ST7735 TFT display module connected to the high-speed SPI Bus to provide real-time visual feedback on active MIDI CC values and selected effects.
 - Host PC Connection: The microcontroller's Native USB peripheral is configured as a native USB-MIDI Class Device, sending data directly to the DAW (e.g. FL Studio).
 
 +-------------------+             +-------------------+             +-----------------------+
@@ -34,7 +33,7 @@ Main Components & Interconnections:
                                   |                   |
 +-------------------+             | Logic Controller  |             +-----------------------+
 |  Tactile Input    |===GPIO======|   (Pico 2 W)      |====SPI======|   Visual Interface    |
-| (Arcade Buttons)  |             |                   |             | (ST7789 TFT Display)  |
+| (Arcade Buttons)  |             |                   |             |   (ST7735 Display)    |
 +-------------------+             |                   |             +-----------------------+
                                   |                   |
                                   |                   |             +-----------------------+
@@ -59,11 +58,13 @@ Main Components & Interconnections:
 
 ## Hardware
 
-The project is built around the Raspberry Pi Pico 2 W (featuring the dual-core ARM Cortex-M33 RP2350), selected for its excellent asynchronous Embassy Rust support and native USB capabilities. Gesture inputs are captured using a single, millimeter-accurate VL53L0X ToF laser sensor on the I2C bus. Performance input is handled by mechanical arcade buttons. Visual feedback is delivered via a 1.3" TFT LCD display driven by an ST7789 controller communicating over the SPI bus. To ensure a professional and durable musical instrument, the entire circuit will be permanently soldered onto a prototyped perfboard.
+The project is built around the Raspberry Pi Pico 2 W (featuring the dual-core ARM Cortex-M33 RP2350), selected for its excellent asynchronous Embassy Rust support and native USB capabilities. Gesture inputs are captured using a single, millimeter-accurate VL53L0X ToF laser sensor on the I2C bus. Performance input is handled by mechanical arcade buttons. Visual feedback is delivered via a 1.44" LCD display driven by an ST7735 controller communicating over the SPI bus. To ensure a professional and durable musical instrument, the entire circuit will be permanently soldered onto a prototyped perfboard.
+
+![Lumentra Hardware Photo](./pozama.webp)
 
 ### Schematics
 
-
+![Lumentra KiCad Schematic](./kicadschem.svg)
 
 ### Bill of Materials
 
@@ -81,7 +82,7 @@ The format is
 |--------|--------|-------|
 | [Raspberry Pi Pico 2 W](https://pip-assets.raspberrypi.com/categories/1088-raspberry-pi-pico-2-w/documents/RP-008304-DS-2-pico-2-w-datasheet.pdf?disposition=inline) | Main microcontroller running the native USB stack, I2C, and SPI logic. | [40 RON](https://www.optimusdigital.ro/ro/placi-raspberry-pi/13327-raspberry-pi-pico-2-w.html?search_query=raspberry+pi+pico+2+w&results=24) |
 | [VL53L0X ToF Sensor](https://www.st.com/resource/en/datasheet/vl53l0x.pdf) | Laser sensor to track hand distance for effect control. | [20 RON](https://sigmanortec.ro/Modul-VL53L0X-timp-de-zbor-p126182383?SubmitCurrency=1&id_currency=2&gad_source=1&gad_campaignid=23069763085&gbraid=0AAAAAC3W72PYOVYYJVcWF-co_NlzFjur9&gclid=Cj0KCQjw77bPBhC_ARIsAGAjjV-JC2lOul-OrYUwsBMv0o_3_mwhgKs6WroU0MGVofJ-gFerOj4XN-AaAguKEALw_wcB) |
-| [Display TFT ST7789](https://www.lcdwiki.com/1.3inch_IPS_Module)| Provides real-time visual feedback of MIDI values | [41 RON](https://electronix.ro/produs/display-tft-1-3-inch-st7789-negru/) |
+| [LCD Module with ST7735 Controller](https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf)| Provides real-time visual feedback of MIDI values | [41 RON](https://www.optimusdigital.ro/en/lcds/3552-modul-lcd-de-144-cu-spi-i-controller-st7735-128x128-px.html?search_query=1.44%22+SPI+LCD+Module+with+ST7735+Controller+%28128x128+px%29&results=2) |
 | [Arcade Buttons (4 pack)]() | Tactile mechanical input for sending Note On/Off messages. | [40 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1851-buton-arcade-iluminat-24mm-verde.html) |
 | [Resistors 10kΩ]() | Pull-down for buttons | [5 RON](https://www.optimusdigital.ro/en/resistors/1088-025w-10k-resistor.html?search_query=resistor+10k&results=17) |
 | [Perfboard] | Final assembly | [8 RON](https://www.optimusdigital.ro/en/protoboards/231-test-wiring-150-x-90-mm.html) |
@@ -94,9 +95,9 @@ The format is
 | [embassy-executor](https://github.com/embassy-rs/embassy/tree/main/embassy-executor) | Async Runtime | Core non-blocking peripheral management. |
 | [embassy-rp](https://docs.embassy.dev/embassy-rp/0.9.0/rp2040/index.html) | Hardware Abstraction | RP2350 specific GPIO, I2C, TRNG, and SPI configuration. |
 | [embassy-usb](https://docs.embassy.dev/embassy-usb/0.6.0/default/index.html) | USB Device Stack | Configuring the Pico's native hardware USB peripheral to communicate with the PC. |
-| [vl53l0x](https://github.com/almindor/st7789) | I2C driver for ToF sensor | Reading millimeter distance values from the laser sensor. |
+| [vl53l0x](https://www.st.com/resource/en/datasheet/vl53l0x.pdf) | I2C driver for ToF sensor | Reading millimeter distance values from the laser sensor. |
 | [usbd-midi](https://crates.io/crates/usbd-midi) | USB MIDI Class | Formats raw button and sensor data into standard USB-MIDI packets. |
-| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | ST7789 / SPI Driver | Handles the low-level initialization and SPI communication for the TFT screen. |
+| [mipidsi](https://docs.rs/mipidsi/latest/mipidsi/) | ST7735 / SPI Driver | Handles the low-level initialization and SPI communication for the TFT screen. |
 | [embedded-graphics](https://docs.rs/embedded-graphics/latest/embedded_graphics/) | 2D graphics library | Used for drawing shapes, text, and visual interface elements on the display. |
 
 ## Links

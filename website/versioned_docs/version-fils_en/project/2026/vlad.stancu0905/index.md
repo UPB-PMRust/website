@@ -1,11 +1,12 @@
+import Schematic from './schematicc.svg';
+
 # Autonomous Context-Aware Thermal Rover
 
 A mobile, dual-axis targeting and navigation system that autonomously patrols an environment, avoids obstacles, and tracks human heat signatures using Rust and the Embassy framework.
 
 :::info
 
-**Author**: Stancu Vlad-Gabriel \
-
+**Author**: Stancu Vlad-Gabriel <br /> 
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Vledituz
 
 :::
@@ -14,7 +15,7 @@ A mobile, dual-axis targeting and navigation system that autonomously patrols an
 The Autonomous Context-Aware Thermal Rover navigates using an ultrasonic sensor to avoid collisions. When the onboard 8x8 infrared matrix detects a heat signature, the rover halts its patrol, and a motorized pan-tilt turret locks onto the target. Depending on the ambient room lighting (detected via a photoresistor), the system dynamically switches between a passive observation mode and an active "Night Watch" mode, engaging a laser diode payload. Live telemetry and the thermal map are displayed on a local SPI LCD and streamed over Wi-Fi to a remote web dashboard.
 
 ## Motivation
-I was always fascinated with the world of security measures and embedded systems. I intend to make a project that would actually prove useful down the line after more work put into it in high risk areas such as museums, banks, etc.
+I was always fascinated with the world of security measures and embedded systems. I intend to make a project that would actually prove useful down the line after more work put into it in high risk areas such as museums, banks, etc.     
 
 ## Architecture
 The system relies on an STM32U545RE-Q acting as the central processing unit, running concurrent async tasks. 
@@ -35,11 +36,30 @@ Configuring PWM timers for the SG90 servos and the L298N motor driver; basic mov
 ### Weeks 7-8
 ADC polling for the LDR, SPI configuration for the ST7735 display.
 
+### Weeks 8-10
+Decided to purchase a dedicated acrylic plated chassis for the rover. I started with the mounting of the 4 DC Motors, The L298N driver and mounting the STM32 on the upper deck of the chassis.
+
+### Weeks 11-12
+Going through with the soldering of the smaller components onto perfboards to ensure a clean look and better connectivity.
+
 ## Hardware
-The rover's chassis will be created out of lego bricks to ensure it is both lightweight and sturdy. All components will be soldered on a prototyping board, with extension wires to make it aestethically more pleasing and allow breathing room for further expansion. The main sensor, the AMG8833, will be mounted at the very fron on a pan-tilt bracket with 2 SG90 servomotors to allow a wide scannable area.
+The rover's chassis is created out of 2 acrylic plates to ensure it is both lightweight and sturdy. All components except the STM32 MCU will be soldered on a prototyping board, with extension wires to make it aestethically more pleasing and allow breathing room for further expansion. The main sensor, the AMG8833, will be mounted at the very front on a pan-tilt bracket with 2 SG90 servomotors to allow a wide scannable area.
+
+### PHOTOS
+
+<div align="center">
+    <img src={require('./poza1.webp').default} alt="Rover build photo 1" width="100%" />
+    <br /><br />
+    <img src={require('./poza2.webp').default} alt="Rover build photo 2" width="100%" />
+    <br /><br />
+    <img src={require('./poza3.webp').default} alt="Rover build photo 3" width="100%" />
+</div>
 
 ### Schematics
-*(Insert your KiCAD schematic here in SVG format)*
+
+<div align="center">
+    <Schematic width="100%" height="auto" />
+</div>
 
 ### Bill of Materials
 

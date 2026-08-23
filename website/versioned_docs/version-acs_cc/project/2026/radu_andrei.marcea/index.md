@@ -12,7 +12,7 @@ Active dual-axis light tracking system using STM32 and embedded Rust.
 
 ## Description
 
-The Dual-Axis Solar Tracker is a hardware and software system that automatically orients a central platform towards the strongest light source in a given environment. It uses four light-dependent resistors (LDRs) to measure ambient light intensity across four quadrants. A microcontroller processes these inputs to calculate light differentials and drives two servo motors to adjust the platform's horizontal (pan) and vertical (tilt) alignment, ensuring it remains perpendicular to the light source.
+The Dual-Axis Solar Tracker is a hardware and software system that automatically orients a central platform towards the strongest light source in a given environment. It uses four light-dependent resistors (LDRs) to measure ambient light intensity across four quadrants. A microcontroller processes these inputs to calculate light differentials and drives two servo motors to adjust the platform's horizontal (pan) and vertical (tilt) alignment, ensuring it remains perpendicular to the light source. Telemetry data is transmitted via Bluetooth to a mobile application for real-time monitoring.
 
 ## Motivation
 
@@ -20,34 +20,35 @@ My main motivation was to build an autonomous system, and a dual-axis solar trac
 
 ## Architecture 
 
-![System Architecture Diagram](./arhitecture.svg)
+![System Architecture Diagram](./diagrama.svg)
 
-The project is divided into 4 main components: Input, Processing, Output, and Power.
+The project is divided into 4 main components: Input, Processing, Output, and Telemetry.
 
 **Main Components:**
 
-* **Input:** The four Light Dependent Resistors (LDRs) send analog voltage signals to the processing unit via the ADC (Analog-to-Digital Converter), and the UI Button sends calibration or reset signals via GPIO.
+* **Input:** The four Light Dependent Resistors (LDRs) send analog voltage signals to the processing unit via the ADC (Analog-to-Digital Converter).
 * **Processing:** The STM32 Nucleo board reads these signals asynchronously, calculates the horizontal and vertical light differentials, and determines the necessary angle adjustments. It then translates these actions into control signals (PWM) and sends them directly to the servo motors.
-* **Output:** The Pan and Tilt servo motors receive the PWM commands and execute the mechanical motion to physically align the solar tracker. Additionally, a Status LED receives GPIO signals to provide visual feedback on the system's state.
-* **Power:** There is a 5V power supply for the Processing Unit and the sensor array, and an external power source to safely provide the higher current required by the servo motors.
+* **Output:** The Pan and Tilt servo motors receive the PWM commands and execute the mechanical motion to physically align the solar tracker. 
+* **Telemetry & UI:** The microcontroller packages the calculated solar data and motor angles, transmitting them via a UART interface to a Bluetooth module. A paired mobile application receives this data stream, allowing the user to monitor the tracker's status wirelessly.
 
 ## Log
 
 <!-- write your progress here every week -->
 
-### Week 20 - 26 April
-
-* Researched project requirements and finalized the hardware component list.
-* Ordered the Pan-Tilt bracket, SG90 servos, LDRs, and required electronic components.
-* Finalized documentation draft.
-
 ### Week 27 April - 4 May
+I researched the hardware requirements and ordered the necessary electronic components for the project. \
 
 ### Week 5 - 11 May
+I started writing the initial draft of the documentation and structured the main sections. \
+Afterwards, I created the system architecture diagram and updated the final bill of materials.
 
 ### Week 12 - 18 May
+I assembled the mechanical pan-tilt bracket and wired the voltage dividers on the breadboard. \
+I also connected the servo motors and the Bluetooth module to the STM32 board.
 
 ### Week 19 - 25 May
+I configured the ADC and PWM pins using the embedded Rust framework for control. \
+Finally, I implemented the UART data transmission. \
 
 ## Hardware
 
@@ -55,7 +56,7 @@ The project relies on the STM32 Nucleo-U545RE-Q as the core controller. The mech
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Circuit Schematic](./schematic.svg)
 
 ### Bill of Materials
 
@@ -73,8 +74,11 @@ Place your KiCAD or similar schematics here in SVG format.
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [st7789](https://github.com/almindor/st7789) | Display driver for ST7789 | Used for the display for the Pico Explorer Base |
-| [embedded-graphics](https://github.com/embedded-graphics/embedded-graphics) | 2D graphics library | Used for drawing to the display |
+| [embassy-stm32](https://github.com/embassy-rs/embassy) | Basic hardware library | Used to set up the ADC input pins for the LDR sensors, the PWM output pins for the servo motors, and the UART serial port for the Bluetooth module. |
+| [embassy-executor](https://github.com/embassy-rs/embassy) | Code runner | Used to run the main asynchronous loop of the program without freezing the board. |
+| [defmt](https://github.com/knurling-rs/defmt) | Console printing tool | Used to print the motor angles and raw sensor light values to the laptop screen for debugging and calibration. |
+| [cortex-m](https://github.com/rust-embedded/cortex-m) | CPU utilities and delays | Used to add hardware-level pauses in the code to give the physical servo motors enough time to reach their target angles. |
+| [heapless](https://github.com/rust-embedded/heapless) | Data structures | Used to create fixed-capacity strings for packaging the angle and sensor telemetry data before transmitting it over Bluetooth. |
 
 ## Links
 
