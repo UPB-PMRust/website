@@ -736,7 +736,7 @@ The implemented system can:
 
 ### Hardware and Sensors
 
-![Hardware Implementation](./hardware.jpg)
+![Hardware Implementation](./hardware.webp)
 
 ## Challenges
 
