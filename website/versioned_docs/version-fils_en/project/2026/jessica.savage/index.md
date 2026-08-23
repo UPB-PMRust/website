@@ -24,7 +24,7 @@ The main controller is the STM32U545RE, which coordinates the LCD display, joyst
 ![alt text](arch.webp)
 
 ## Schematics
-![alt text](kicadjs-1.svg)
+![alt text](KC-jessica-1.svg)
 
 ## Log
 
