@@ -20,7 +20,7 @@ The primary motivation for this project is to explore embedded software developm
 The system architecture centers on the Raspberry Pi Pico 2 (RP2350), which manages the asynchronous state machine for the application flow (Menu > Game > Name Entry > Leaderboard).
 * **User Interface (Text):** A 16x2 Character LCD connected via a PCF8574T I2C backpack handles menus and displays millisecond-accurate timing data.
 * **Visual Stimulus:** A 20-LED WS2812B strip, driven in the background via the microcontroller's PIO and Direct Memory Access (DMA), provides the countdown sequence and reaction cues without blocking the main execution thread.
-* **User Input:** An illuminated arcade push button. The input logic distinguishes between short (<500ms) and long (>500ms) presses, implementing software debouncing to mitigate mechanical switch noise.
+* **User Input:** An illuminated arcade push button. The input logic distinguishes between short (&lt;500ms) and long (&gt;500ms) presses, implementing software debouncing to mitigate mechanical switch noise.
 * **Data Storage:** The `embedded-storage-async` library is used alongside `postcard` and `serde` to serialize leaderboard arrays and write them directly to the RP2350's Flash memory.
 
 ## Log
