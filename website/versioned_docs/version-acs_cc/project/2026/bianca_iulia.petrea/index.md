@@ -1,7 +1,7 @@
 # Labyrinth game
 A physical labyrinth platform that mirrors the orientation of a handheld Nucleo board using IMU sensors and servo actuation.
 
-:::info 
+:::info
 
 **Author**: PETREA Bianca-Iulia \
 **GitHub Project Link**: https://github.com/UPB-PMRust-Students/acs-project-2026-biancapetrea16
@@ -18,7 +18,7 @@ The project implements a physical 2-axis (X-Y) labyrinth platform driven by two 
 
 I chose this project to explore the concept of remote motion mirroring. It requires a precise synchronization between the handheld controller (IMU data processing) and the mechanical platform (PWM actuation).
 
-## Architecture 
+## Architecture
 
 The project is built as a motion mirroring system between the controller and the maze:
  - **Handheld Controller (Nucleo + IMU)**: Detects pitch and roll angles via I2C.
@@ -27,7 +27,7 @@ The project is built as a motion mirroring system between the controller and the
  - **End-of-Game Logic**: An IR sensor triggers the timer stop.
  - **Persistence Layer**: An SD card module stores the leaderboard via SPI.
 
- ![Architecture Diagram](images/architecture_diagram.svg)
+ ![Architecture Diagram](images/final_diagram.svg)
 
 ## Log
 
@@ -37,23 +37,42 @@ The project is built as a motion mirroring system between the controller and the
 - Finalized project theme and received approval.
 - Researched and ordered all hardware components (IMU, servos, SD module, IR sensor).
 
-### Week 4 - 8 May
+### Week 4 - 10 May
+- Mapped all pin connections between the Nucleo board, sensors, and actuators.
 
 ### Week 12 - 18 May
+- Started developing the software implementation in Rust.
+- Set up the main code structure and began integrating peripheral drivers.
 
-### Week 19 - 25 May
+### Week 18 - 24 May
+- Implemented the final core control loop featuring asynchronous multitasking powered by Embassy.
+- Developed a robust digital signal processing pipeline for the MPU6050: added a digital deadzone filter (800 units threshold) to suppress MEMS noise, and an exponential moving average low-pass filter (0.80/0.20 split) to ensure smooth, organic servo actuation.
+- Added a sudden movement detection routine (3000 units threshold) to dynamically trigger game activation and capture the starting timestamp.
+- Completed the persistence layer over SPI using a multi-layered abstraction stack ('ExclusiveDevice', 'SdCard', and 'VolumeManager') to safely parse past records and append new scores into 'scor.txt' under a FAT32 file system.
+- Finished integration of the hardware IR sensor and spawned an independent background executor task to handle the victory beep sequence via bit-banged PWM square waves (1kHz) on the buzzer pin upon maze completion.
+- Conducted final mechanical assembly and wiring, securing a stable, standalone runtime operation.
+
+### Final Project Setup
+![Overhead view of the mechanical labyrinth platform](images/proiect_final2.webp)
+*Figure 1: Full assembly showing the mechanical platform and the handheld controller unit.*
+
+![Detail view of the servo mechanics and electronics](images/proiect_final1.webp)
+*Figure 2: Detail of the 2-axis gimbal mechanism powered by SG90 servos.*
 
 ## Hardware
 
 The project uses the STM32 Nucleo-U545RE-Q board as the brain, connected to sensors for input and motors for output.
 
 ### Schematics
+The hardware connections are detailed below, routing all components to the STM32 Nucleo board. Power distribution is handled via a breadboard 5V and GND rail supplied by the Nucleo board (for testing) or an MB102 module (for portable use).
+
+![Schematics](images/labyrinth_schematic.svg)
 
 ### Bill of Materials
 
 <!-- Fill out this table with all the hardware components that you might need.
 
-The format is 
+The format is
 ```
 | [Device](link://to/device) | This is used ... | [price](link://to/store) |
 

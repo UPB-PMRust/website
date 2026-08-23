@@ -61,11 +61,19 @@ Rendering Engine -> 1.3" OLED Screen
 * Researched about the MQ-3 sensor
 * Started learning how to 3D model for the casing of the device
 
+### Week 10
+* 3D printed a box to build the project in
+* Tested the display for the first time
+
 ## Hardware
 
 The system is centered around the **STM32 NUCLEO-U545RE-Q** MCU. For output I am using an 1.3" OLED Display (SSD 1306 controller) using **I2C** for data transmission, a **passive buzzer** that gets a **PWM** signal, and an RGB LED that gets an oscilating **PWM** signal in the form of a 2D vector(since only red and blue are needed).
 
 The OLED Display will have animations for the 2 minute waiting time and in the case of alcohol being detected.
+
+# Photos
+
+![Components wired inside printed case](./hardw.webp)
 
 ## Schematics
 
@@ -94,6 +102,8 @@ The OLED Display will have animations for the 2 minute waiting time and in the c
 
   <line x1="510" y1="175" x2="580" y2="235" stroke="black" stroke-width="1.5"/>
 </svg>
+
+![KiCad Schematic](./schematic.svg)
 
 ## Bill of Materials
 

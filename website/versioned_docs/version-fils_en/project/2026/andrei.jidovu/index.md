@@ -93,25 +93,28 @@ Found a 3D schematic for the wheels and got it printed.
 Still waiting for my buck converter in order to start testing.
 
 ### Week 20 – 26 April
-(Work in progress)
+Waiting week, buck converter got lost and had to order a new one but eventually arrived.
 
 ### Week 27 April – 3 May
-(Work in progress)
+Testing week, the buck converter has a 0.03V error, but that should be fine.
+The robot chassis was supposed to be a cardboard box, but cardboard can't hold the weight, I have to learn how to 3d model a box
 
 ### Week 4 – 10 May
-(Work in progress)
+3d moddeling and learning week, found out how an "inverted pendulum" works, what formulas i should use, and finally finishing the last version of my robot chassis
 
 ### Week 11 – 17 May
-(Work in progress)
+Work week- the robot finally works. The code flashes fine, tries to balance but fails, i seem to be getting close. It could be the hardware or software. Online forums keep saying that a 60rpm motor is doable but hard, so i ordered 500 rpm motors to be sure. 
 
 ### Week 18 – 24 May
-(Work in progress)
+Robot finally works. The 60rpm motors worked by using a different "Bang-bang" logic compared to other robots. This makes the robot look more chaotic, but gives it more speed when controlling it.
+
+By the end of the week everything went downhill and the robot suddently stopped working. I suspected it's the chinese motor driver, but after replacing it nothing happened. I tested the motors to find out they worn out and had HUGE striction. New motors seem to need new logic and a lighter box. No time left since i didn't take into consideration the fact that such reliable motors would wear this qucikly. The problem might've been the bang-bang logic the motors weren't designed for.
 
 ---
 
 # Hardware
 
----
+![Schematics](./selfbalancingrobot.svg)
 
 # Bill of Materials
 
@@ -127,7 +130,7 @@ Still waiting for my buck converter in order to start testing.
 | Jumper wires | Connections | X lei |
 | Breadboard | Prototyping | X lei |
 
-Prices not added yet; some components may change.
+Prices not added, i lost the reciepts, but the robot with all the fails can easily reach 800 ron. It could've been doable with less, but I took it as more of a learning project and the sum doesn't bother me since i felt like i actually learned some valuable concepts in robotic engineering.
 
 ---
 
