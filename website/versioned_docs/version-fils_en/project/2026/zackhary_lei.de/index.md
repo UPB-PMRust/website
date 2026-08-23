@@ -53,7 +53,7 @@ Here are the photos of the physical breadboard setup, the STM32U545 board, and t
 
 ### Schematics
 
-![Schematic](./schematic.webp)
+![Schematic](./schematic.svg)
 
 ### Bill of Materials
 
