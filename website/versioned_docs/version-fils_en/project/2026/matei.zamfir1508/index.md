@@ -1,4 +1,4 @@
-# Reaction Timer Game
+# Reaction Timer System
 
 :::info
 **Author:** Matei Zamfir \
@@ -7,59 +7,62 @@
 
 ## Description
 
-The project is an advanced reaction timer game built on a Raspberry Pi Pico (RP2040) microcontroller. The device uses visual stimuli (an LED) and mechanical user input (push buttons) to evaluate how quickly a user can respond. The system runs a structured "Best of 3" game format where it measures reaction times across randomized delay periods, calculates the average performance score in real time, and actively monitors for premature responses (false starts). All menus, session data, and statistical feedback are provided visually through an OLED display.
+This project implements a hardware-based reaction timer using the Raspberry Pi Pico 2 (RP2350) microcontroller. The device utilizes programmable visual stimuli (a 20-LED WS2812B strip) and a mechanical arcade button to measure user response times in milliseconds. The system interface is operated entirely through a single input mechanism, utilizing duration-based presses (short presses for navigation, long presses for selection) to control the software flow.
+
+The firmware includes multiple operation modes, such as a "Classic Mode" for baseline reaction measurement, and a "Hardcore Mode" designed to test impulse control by introducing false visual cues. System menus, session data, and a character-entry interface are displayed on a 16x2 I2C Character LCD. Leaderboard data is serialized and written to a dedicated sector of the microcontroller's onboard non-volatile Flash memory to ensure persistence across power cycles.
 
 ## Motivation
 
-I chose this project in order to explore embedded systems through a highly interactive application focused on precise timing and state management. It combines real-time hardware input processing with microsecond-level hardware timers to accurately measure human reflexes. This makes it both a rigorous technical exercise in building a responsive, non-blocking state machine in Rust, and a practical, engaging tool for measuring reaction speed under varying conditions.
+The primary motivation for this project is to explore embedded software development using asynchronous Rust and the Embassy framework. The application integrates real-time hardware input processing, non-blocking state machines, and precise hardware timers. It serves as a practical case study in managing concurrent tasks—such as updating an I2C display, animating LEDs via Programmable I/O (PIO), and processing debounced hardware interrupts—without relying on traditional blocking routines.
 
 ## Architecture
 
-The core of the system is the Raspberry Pi Pico. It acts as the central control unit, managing the application state machine (Menu > Game > Results).
-* **Visual Output:** An OLED display connected via I2C/SPI provides the user interface, while a discrete LED serves as the primary reaction stimulus.
-* **User Input:** Two tactile push buttons are used to handle menu navigation and capture the exact moment of the user's physical response.
-* **Timing & Logic:** The internal random number generator creates unpredictable delays, and the hardware timers calculate the delta between the LED illuminating and the button press.
+The system architecture centers on the Raspberry Pi Pico 2 (RP2350), which manages the asynchronous state machine for the application flow (Menu > Game > Name Entry > Leaderboard).
+* **User Interface (Text):** A 16x2 Character LCD connected via a PCF8574T I2C backpack handles menus and displays millisecond-accurate timing data.
+* **Visual Stimulus:** A 20-LED WS2812B strip, driven in the background via the microcontroller's PIO and Direct Memory Access (DMA), provides the countdown sequence and reaction cues without blocking the main execution thread.
+* **User Input:** An illuminated arcade push button. The input logic distinguishes between short (&lt;500ms) and long (&gt;500ms) presses, implementing software debouncing to mitigate mechanical switch noise.
+* **Data Storage:** The `embedded-storage-async` library is used alongside `postcard` and `serde` to serialize leaderboard arrays and write them directly to the RP2350's Flash memory.
 
 ## Log
 
-**Week 30 March - 5 April**
-Explored multiple project ideas and decided on the concept for the reaction timer game.
-
-**Week 13 - 19 April**
-Researched the necessary components, defined the project scope, and finalized the hardware bill of materials.
-
-**Week 20 - 26 April**
-Drafted the initial project documentation, set up the repository, and planned the software architecture.
+**Step 1:** Hardware selection and circuit integration of the Pico 2, I2C LCD, WS2812B strip, and mechanical button.
+**Step 2:** Configuration of the Embassy async runtime and implementation of the time-sensitive input driver.
+**Step 3:** Implementation of hardware drivers (I2C display initialization and PIO WS2812B LED control).
+**Step 4:** Development of the non-blocking state machine, including core operation modes and false-start detection logic.
+**Step 5:** Integration of data serialization to enable persistent high-score storage on the RP2350's Flash memory.
 
 ## Hardware
 
-The system uses a Raspberry Pi Pico (RP2040) development board as the main microcontroller. Visual feedback is provided by an SSD1306 OLED display and a standard 5mm LED. User interaction is handled through two momentary push buttons. The system is powered via the Pico's USB connection and assembled on a standard prototyping breadboard using jumper wires.
+The hardware setup utilizes a Raspberry Pi Pico 2 (RP2350) development board as the central processing unit. Textual data is provided by a 16x2 LCD Display equipped with an I2C backpack to minimize pin usage. Visual stimuli are provided by a 20-LED WS2812B strip and the internal LED of the arcade button. User interaction is handled through one momentary push button. The system is powered via the Pico's USB connection (VBUS 5V) to adequately supply the LED strip.
+
+## Project Photo
+
+![Photo of the assembled physical project](img.webp)
 
 ## Schematics
 
-Work in progress..  
-Place your KiCAD or similar schematics here in SVG format.
+![KiCAD Schematic of the wiring](sch.svg)
 
 ## Bill of Materials
 
 ### Hardware
 
-| Device | Usage | Price |
+| Component | Usage | Estimated Cost |
 | :--- | :--- | :--- |
-| Raspberry Pi Pico | The microcontroller | ~30.00 RON |
-| OLED Display | Display - menu and statistical feedback | ~25.00 RON |
-| Push buttons (x2) | User input - menu control and reaction response | ~4.00 RON |
-| Standard LED | Visual stimulus | ~1.00 RON |
-| Resistor Kit | Circuit protection | ~15.00 RON |
-| Breadboard & Wires | Prototyping and connections | ~15.00 RON |
+| Raspberry Pi Pico 2 / Pico 2 W | Microcontroller (RP2350) | ~30.00 RON |
+| 16x2 Character LCD (w/ I2C Backpack) | Display for menus and timing data | ~25.00 RON |
+| WS2812B LED Strip (20 LEDs) | Programmable visual stimulus | ~15.00 RON |
+| Arcade Push Button (with LED) | Mechanical user input | ~15.00 RON |
+| Resistors (e.g., 220Ω, 10kΩ) | Current limiting & pull-up stabilization | ~2.00 RON |
+| Breadboard & Jumper Wires | Circuit prototyping and connections | ~15.00 RON |
 
 ### Software
 
 | Library | Description | Usage |
 | :--- | :--- | :--- |
-| `rp2040-hal` | Hardware abstraction layer for RP2040 | Used for configuring peripherals (GPIO, Timers, I2C/SPI) |
-| `cortex-m-rt` | Runtime support | Initializes the microcontroller and defines the entry point |
-| `embedded-hal` | Hardware abstraction traits | Provides standard interfaces for interacting with the LED and buttons |
-| `ssd1306` | Display driver | Used to send initialization commands and data to the OLED screen |
-| `embedded-graphics` | 2D graphics library | Used for drawing the UI text and shapes to the display |
-| `rand` | Random number generator | Used to create the unpredictable delay for the visual stimulus |
+| `embassy-rp` / `embassy-executor` | Async HAL & Runtime | Manages RP2350 peripherals (GPIO, PIO, I2C, Flash) and schedules async tasks. |
+| `i2c-character-display` | LCD Driver | Formats and transmits character data to the PCF8574T I2C backpack. |
+| `smart-leds` / `PIO` | LED Control Traits | Sends precise timing signals via PIO to control the WS2812B color strip. |
+| `embedded-storage-async` | Flash Memory Traits | Provides an asynchronous interface for reading and writing to the onboard Flash. |
+| `postcard` & `serde` | Serialization | Converts the internal data structures into byte arrays for non-volatile storage. |
+| `heapless` | Static Data Structures | Provides fixed-capacity strings (no heap allocation) for the user input system. |
