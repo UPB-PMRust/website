@@ -124,7 +124,7 @@ Each LED is connected to a GPIO output through a 220 Ω current-limiting resisto
 
 The hardware schematic was created using KiCad.
 
-![Hardware Schematic](project_sch(1).svg)
+![Hardware Schematic](project_sch.svg)
 
 The five push buttons are connected between their corresponding GPIO inputs and GND.
 
