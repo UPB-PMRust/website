@@ -1,11 +1,11 @@
-# R3X-3 Autonomous Rover
+# RustRover — Wi-Fi Rover with Live Radar
 
-A multi-mode autonomous rover with follow-me, patrol, sentry and tilt detection, controllable via IR remote.
+A teleoperated rover with a live ultrasonic radar display and automatic collision protection, driven from any phone via a self-hosted web interface.
 
 :::info 
 
 **Author**: Tita Matei Alexandru \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Matei13x13
+**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-Matei13x13.git
 
 :::
 
@@ -13,39 +13,21 @@ A multi-mode autonomous rover with follow-me, patrol, sentry and tilt detection,
 
 ## Description
 
-The R3X-3 is a 4-wheel-drive autonomous rover built on a Raspberry Pi Pico 2 and programmed in Rust using the embassy-rp async framework. It implements five operational modes: follow-me, patrol, sentry, expressive LED states and tilt/pickup detection, all switchable at runtime via an IR remote control.
+The rover runs as its own Wi-Fi access point (`RustRover`), so no external network is needed: the phone connects directly, receives an IP from a DHCP server written from scratch, and loads a control page served from the Pico's flash. The page offers a touch drive pad with differential steering and arc turns, a speed slider, headlights and horn buttons, and a live polar radar view drawn on a canvas from 37 distance measurements taken by an HC-SR04 sensor swept 0–180° on a servo.
 
-The rover uses a VL53L0X time-of-flight sensor mounted on a pan-tilt servo head to perform follow-me tracking, obstacle avoidance and sentry scanning. A second Raspberry Pi Pico carried by the user serves as an IR beacon for an alternative beacon-tracking follow mode. An MPU6050 IMU detects when the rover is picked up, tilted or stuck. WS2812B addressable LEDs provide expressive visual feedback for each rover state, and a passive buzzer delivers audio alerts for sentry intrusions and pickup alarms.
-
-## Motivation
-
-I chose this project because it combines several areas I want to learn deeply: embedded Rust on a modern microcontroller (the RP2350 in the Pico 2), real-time sensor fusion, async multitasking without an RTOS and basic robotics control.
-
-Building a rover with multiple distinct behavior modes forces me to design a clean state-machine architecture rather than the typical single-purpose hobby project. The IR beacon system adds a second microcontroller communicating with the first, which is a useful skill beyond a single-board project.
-
-The five modes are independent enough that I can ship the rover incrementally: even after just the first mode works, I have a functional robot, and each additional mode adds a clearly visible new capability.
+Safety is layered: a failsafe stops the motors if no command arrives for 500 ms (heartbeat from the page), an auto-brake refuses forward motion when the filtered front-arc distance drops below 15 cm (reverse stays allowed, and the horn beeps), and a hardware watchdog reboots the firmware within 3 seconds if it ever hangs or panics.
 
 ## Architecture
 
-The rover firmware is organized as a set of independent async tasks running concurrently on the Pico 2 under the embassy executor. A central shared rover state, protected by an async mutex, holds the current mode, sensor readings, orientation data and alert flags. Sensor tasks write to this state, and behavior tasks read from it.
+The firmware is a set of concurrent Embassy tasks over shared state, in `no_std` Rust:
+
+- **motor_task** — 20 ms control loop; reads the latest drive command from a `Signal`, applies the failsafe and auto-brake filters, and drives the L298N with four PWM channels at 20 kHz.
+- **radar_task** — steps the servo in 5° increments, pings the HC-SR04 (with timeouts and a ghost-echo filter), stores distances in a `Mutex<[u16; 37]>` and updates the atomic minimum front distance.
+- **web_task ×3** — HTTP server instances on port 80 (parallel sockets so drive commands never wait behind radar polls); routes: `/`, `/cmd`, `/radar`, `/light`, `/horn`.
+- **dhcp_server_task** — minimal single-lease DHCP server on UDP 67.
+- **body_task** — headlight GPIO and buzzer PWM; **cyw43_task / net_task** — Wi-Fi chip driver and TCP/IP stack runners; **watchdog_task** — feeds the hardware watchdog.
 
 ![Schematic diagram](diagram.svg)
-
-**Main architectural components:**
-
-- **Mode State Machine**: top-level controller that owns the current `RoverMode` enum (Follow, Patrol, Sentry, Idle, Manual). Receives mode-change requests from the IR remote decoder and dispatches to the appropriate behavior task.
-- **IR Remote Decoder**: listens on a dedicated IR receiver, decodes NEC protocol button codes from the remote and translates them into mode-change events or manual drive commands.
-- **Sensor Polling Task**: continuously reads VL53L0X distance, beacon-tracking IR receivers, IR obstacle sensors and MPU6050 orientation. Publishes to shared state.
-- **Head Sweep Task**: controls pan/tilt servos to sweep the ToF sensor for patrol scanning, sentry monitoring and follow-me search.
-- **Motor Control Task**: receives drive commands via channel, applies PWM ramping and drives the L298N. All motor commands flow through here so emergency stops are centralized.
-- **LED Animation Task**: runs at 30 FPS, reads current rover state, renders the appropriate animation pattern on the WS2812B strip and eye LED, drives the buzzer for alerts.
-- **IR Beacon Firmware (separate Pico)**: generates 38kHz PWM driving an IR LED with a recognizable burst pattern. Runs as a single async task on the second Pico, no other logic.
-
-The tasks communicate through:
-
-- **Shared state mutex** for sensor readings and rover mode (read by many tasks)
-- **Embassy channels** for motor commands and mode-change events (point-to-point messaging)
-- **Embassy signals** for instant notification of state changes (e.g. pickup alarm triggers immediate LED task wakeup)
 
 ## Log
 
@@ -53,57 +35,56 @@ The tasks communicate through:
 
 ### Week 5 - 11 May
 
+Toolchain bring-up (probe-rs, RP2350 linker setup, defmt), Embassy blink test, project skeleton: `Drive` command enum, `Signal`-based task communication, stub motor task verified over logs.
+
 ### Week 12 - 18 May
+
+Wi-Fi phase: cyw43 radio bring-up, open access point, static-IP network stack, hand-written DHCP server, HTTP server with embedded control page, touch drive pad with 200 ms command heartbeat and 500 ms failsafe. Chassis assembled, L298N wired, PWM motor control and differential drive working — full teleoperation from the phone.
 
 ### Week 19 - 25 May
 
+Radar phase: servo sweep, HC-SR04 measurement with echo timeouts and neighbor-based ghost filtering, `/radar` endpoint with live canvas radar in the UI, auto-brake on the front arc with horn alarm. Polish: headlights, horn, triple web-server instances to remove command latency, hardware watchdog. Debugged real hardware faults along the way (missing common ground, broken jumper wires, cold solder joints, power-bank auto-sleep).
+
 ## Hardware
 
-The rover is built on a generic 4WD acrylic chassis with four TT gear motors driven by an L298N dual H-bridge motor driver. The brain is a Raspberry Pi Pico 2, which handles all sensor reading, motor control and LED animation.
-
-A pan-tilt servo head carries a VL53L0X time-of-flight sensor that is swept across the front of the rover for follow-me, patrol and sentry scanning. Three IR receivers provide an alternative beacon-based following method, with the IR beacon emitter built on a second Raspberry Pi Pico that the user carries. A fourth IR receiver listens for commands from a handheld IR remote, used to switch modes and manually drive the rover. Two side-mounted IR obstacle sensors handle lateral collision avoidance.
-
-An MPU6050 6-axis IMU on the I2C bus detects tilt, slope, pickup events and stuck conditions. Visual feedback is provided by a WS2812B addressable RGB LED strip mounted as underglow, a red 5mm LED on the turret as an "eye" indicator and a passive piezo buzzer for audio alerts.
-
-Power is supplied by a battery routed through the L298N's onboard 5V regulator to the Pico, servos and LEDs.
+Raspberry Pi Pico 2 W (a second Pico 2 acts as SWD debug probe), 2WD chassis with two TT motors driven by an L298N (PWM on IN1–IN4, enables jumpered), SG90 servo sweeping an HC-SR04 ultrasonic sensor (ECHO level-shifted through a 10 kΩ/22 kΩ divider), headlight LED and passive buzzer. Motors are powered from an AA battery pack through the L298N; the Pico, servo and sensor run from a 5 V power bank; all grounds share one rail.
 
 ### Schematics
 
-Place your KiCAD or similar schematics here in SVG format.
+![Schematic diagram](rover.svg)
 
 ### Bill of Materials
 
 | Device | Usage | Price |
 |--------|--------|-------|
-| [Raspberry Pi Pico 2](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) | Main rover brain, runs all firmware tasks | [30 RON](https://www.optimusdigital.ro/) |
-| [4WD Robot Chassis Kit](https://www.optimusdigital.ro/) | Acrylic platform, 4× TT motors, wheels and hardware, the physical rover body | [20 RON](https://www.optimusdigital.ro/) |
-| [L298N Dual Motor Driver](https://www.st.com/en/motor-drivers/l298.html) | Dual H-bridge that drives the 4 TT motors with PWM speed control and direction | [10 RON](https://www.optimusdigital.ro/ro/punti-h/1061-driver-de-motoare-l298n-dual-h-bridge.html) |
-| [VL53L0X ToF Sensor](https://www.st.com/en/imaging-and-photonics-solutions/vl53l0x.html) | Laser distance sensor used for follow-me stop distance, patrol obstacle detection and sentry scanning | [17 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-distanta/3380-modul-vl53l0x-timp-de-zbor.html) |
-| [MPU6050 IMU](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6050/) | 6-axis accelerometer and gyroscope that detects pickup, slopes and stuck conditions | [14 RON](https://www.optimusdigital.ro/ro/senzori-senzori-de-acceleratie/93479-modul-cu-accelerometru-i-giroscop-mpu6050-pini-lipii.html) |
-| [HX1838 IR Receiver Kit (×3)](https://www.optimusdigital.ro/) | 38kHz IR receiver with remote, 3 receivers used for beacon tracking plus 1 for IR remote control input | [21 RON](https://www.optimusdigital.ro/) |
-| [IR Obstacle Sensor (×2)](https://www.optimusdigital.ro/ro/senzori-senzori-optici/996-senzor-infrarosu-de-obstacole.html) | Side-mounted reflective IR proximity sensors for lateral collision avoidance | [6 RON](https://www.optimusdigital.ro/ro/senzori-senzori-optici/996-senzor-infrarosu-de-obstacole.html) |
-| [SG90 Micro Servo (×2)](https://www.optimusdigital.ro/ro/motoare-servo-motoare/26-servo-motor-sg90.html) | Pan and tilt servos for the head, sweeps the ToF sensor for scanning | [12 RON](https://www.optimusdigital.ro/ro/motoare-servo-motoare/26-servo-motor-sg90.html) |
-| [WS2812B LED Strip](https://www.optimusdigital.ro/ro/leduri/) | Addressable RGB underglow that shows expressive state animations | [4 RON](https://www.optimusdigital.ro/ro/leduri/) |
-| [5mm 940nm IR LED](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/708-led-infrarosu-de-5-mm-cu-lungime-de-unda-940-nm.html) | Beacon emitter LED, driven at 38kHz by the carried Pico | [1 RON](https://www.optimusdigital.ro/ro/optoelectronice-led-uri/708-led-infrarosu-de-5-mm-cu-lungime-de-unda-940-nm.html) |
-| [5mm Red LED + 220Ω resistor](https://www.optimusdigital.ro/) | Turret "eye" indicator for alert and state visualization | [1 RON](https://www.optimusdigital.ro/) |
-| [Passive Buzzer](https://www.optimusdigital.ro/) | Piezo buzzer for audio alerts on sentry intrusion and pickup alarm | [2 RON](https://www.optimusdigital.ro/) |
-| [Plusivo Resistor Kit (250 pcs)](https://www.optimusdigital.ro/) | Various resistors for IR LED current limiting (47Ω), red LED limiting (220Ω) and I2C pull-ups (4.7kΩ) | [14 RON](https://www.optimusdigital.ro/) |
-| [Mini Breadboard 400 pts](https://www.optimusdigital.ro/) | Prototyping connections before final wiring | [5 RON](https://www.optimusdigital.ro/) |
-| [Dupont Wire Kit (M-M, M-F, F-F)](https://www.optimusdigital.ro/) | Connecting Pico, sensors, motor driver, servos and LEDs | [24 RON](https://www.optimusdigital.ro/) |
+| [Raspberry Pi Pico 2 W (×2)](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) | Rover brain with Wi-Fi + second board as SWD debug probe | [80 RON](https://www.optimusdigital.ro/) |
+| [2WD Robot Chassis Kit](https://www.optimusdigital.ro/) | Acrylic platform, 2× TT motors, wheels, caster | [30 RON](https://www.optimusdigital.ro/) |
+| [L298N Dual Motor Driver](https://www.st.com/en/motor-drivers/l298.html) | Dual H-bridge driving both TT motors with PWM speed and direction control | [10 RON](https://www.optimusdigital.ro/ro/punti-h/1061-driver-de-motoare-l298n-dual-h-bridge.html) |
+| [HC-SR04 Ultrasonic Sensor](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/9-senzor-ultrasonic-hc-sr04.html) | Distance measurement for the radar sweep and auto-brake | [10 RON](https://www.optimusdigital.ro/ro/senzori-senzori-ultrasonici/9-senzor-ultrasonic-hc-sr04.html) |
+| [SG90 Micro Servo](https://www.optimusdigital.ro/ro/motoare-servo-motoare/26-servo-motor-sg90.html) | Sweeps the ultrasonic sensor 0–180° for the radar | [12 RON](https://www.optimusdigital.ro/ro/motoare-servo-motoare/26-servo-motor-sg90.html) |
+| [AA Battery Holder](https://www.optimusdigital.ro/) | Motor power supply through the L298N | [10 RON](https://www.optimusdigital.ro/) |
+| [USB Power Bank](https://www.optimusdigital.ro/) | Powers the Pico, servo and sensor on the move | owned |
+| [White LED + 220Ω resistor](https://www.optimusdigital.ro/) | Headlight, toggled from the web UI | [1 RON](https://www.optimusdigital.ro/) |
+| [Passive Buzzer](https://www.optimusdigital.ro/) | Horn from the UI and auto-brake alarm | [2 RON](https://www.optimusdigital.ro/) |
+| [Resistors (10 kΩ, 22 kΩ, 220 Ω)](https://www.optimusdigital.ro/) | ECHO 5 V → 3.3 V voltage divider, LED current limiting | [2 RON](https://www.optimusdigital.ro/) |
+| [Breadboard + Dupont wires](https://www.optimusdigital.ro/) | Ground rail, divider and all signal wiring | [20 RON](https://www.optimusdigital.ro/) |
 
-**Estimated total: ~170 RON**
+**Estimated total: ~180 RON**
 
 ## Software
 
 | Library | Description | Usage |
 |---------|-------------|-------|
-| [embassy-rp](https://github.com/embassy-rs/embassy) | Async HAL for the RP2040/RP2350 | Core hardware access for GPIO, PWM, I2C, PIO and timers |
+| [embassy-rp](https://github.com/embassy-rs/embassy) | Async HAL for the RP2350 | GPIO, PWM (motors, servo, buzzer), PIO, watchdog, timers |
 | [embassy-executor](https://github.com/embassy-rs/embassy) | Async task executor for embedded systems | Runs all rover tasks concurrently without an RTOS |
-| [embassy-time](https://github.com/embassy-rs/embassy) | Async timing primitives | Delays, tickers and timeouts in all tasks |
-| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives for async embedded | Channels, mutexes and signals between tasks |
-| [vl53l0x](https://crates.io/crates/vl53l0x) | Driver for VL53L0X ToF sensor | Reads distance for follow-me, patrol and sentry |
-| [mpu6050](https://crates.io/crates/mpu6050) | Driver for MPU6050 6-axis IMU | Reads accelerometer and gyroscope for tilt detection |
-| [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging framework | Debug logging during development |
+| [embassy-time](https://github.com/embassy-rs/embassy) | Async timing primitives | Delays, control-loop periods, echo timeouts |
+| [embassy-sync](https://github.com/embassy-rs/embassy) | Synchronization primitives for async embedded | `Signal` for drive commands, `Mutex` for radar data |
+| [embassy-net](https://github.com/embassy-rs/embassy) | Embedded TCP/IP stack | Static-IP network, TCP sockets for HTTP, UDP for DHCP |
+| [cyw43 / cyw43-pio](https://github.com/embassy-rs/embassy) | Driver for the Pico W wireless chip over PIO-SPI | Access point mode, onboard LED |
+| [static_cell](https://crates.io/crates/static_cell) | Runtime-initialized statics without an allocator | Driver and network stack state |
+| [heapless](https://crates.io/crates/heapless) | Fixed-capacity collections | HTTP response strings without a heap |
+| [fixed](https://crates.io/crates/fixed) | Fixed-point arithmetic | PWM clock divider values |
+| [defmt](https://github.com/knurling-rs/defmt) | Lightweight logging framework | Debug logging over the debug probe |
 | [panic-probe](https://crates.io/crates/panic-probe) | Panic handler that prints over RTT | Diagnoses crashes during development |
 
 ## Links
@@ -112,6 +93,6 @@ Place your KiCAD or similar schematics here in SVG format.
 
 1. [Embassy embedded async framework documentation](https://embassy.dev/book/)
 2. [RP2350 datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
-3. [VL53L0X datasheet](https://www.st.com/resource/en/datasheet/vl53l0x.pdf)
-4. [MPU6050 register map](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf)
-5. [NEC IR protocol reference](https://www.sbprojects.net/knowledge/ir/nec.php)
+3. [Raspberry Pi Pico 2 W pinout](https://datasheets.raspberrypi.com/picow/pico-2-w-pinout.pdf)
+4. [HC-SR04 datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
+5. [Embassy cyw43 access point example](https://github.com/embassy-rs/embassy/blob/main/examples/rp/src/bin/wifi_ap_tcp_server.rs)

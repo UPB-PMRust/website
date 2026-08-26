@@ -1,177 +1,139 @@
-# Audio Spectrum Analyzer on STM32
+# Environment-monitor
 
-Real-time audio spectrum visualization using FFT on embedded hardware
+A connected weather station powered by the Raspberry Pi Pico 2 W, featuring local SD card recording, an active LCD dashboard, and wireless synchronization for long-range data tracking.
 
 :::info
 
 **Author**: Mykyta Troinych \
-**GitHub Project Link**: https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23
+**GitHub Project Link**: [https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23](https://github.com/UPB-PMRust-Students/fils-project-2026-TrOyKa23)
+
 :::
 
 ## Description
 
-This project implements a real-time audio spectrum analyzer using an STM32 microcontroller.  
-Audio signals are captured via a 3.5 mm jack, digitized using an external ADC, processed using Fast Fourier Transform (FFT), and displayed on a TFT screen.
-
-The system provides real-time visualization of frequency components in audio signals.
-
----
+Environment-monitor runs as an asynchronous Rust program on the RP2350 microcontroller inside the Raspberry Pi Pico 2 W. It regularly polls ambient air pressure and temperature via a BME280 unit connected through an I2C bus, renders live sparklines and stats onto an ST7789 display, appends telemetry to a MicroSD card (`TEMPLOG.CSV`), and uploads batched records over the network every half-hour to an external host for comprehensive trend analysis.
 
 ## Motivation
 
-The motivation behind this project is to better understand real-time digital signal processing on embedded systems and to build a practical tool for audio analysis.
-
-It combines multiple important concepts:
-
-- Embedded Rust development
-- Digital Signal Processing (DSP)
-- Real-time data acquisition using DMA
-- Hardware-software integration
-
----
+The initiative was undertaken for self-education and exploration into Rust-based embedded engineering, asynchronous hardware schedulers like Embassy, multiplexing a shared SPI bus, handling micro-scale filesystems, and working with IoT networking stacks.
 
 ## Architecture
 
-The system is composed of the following main components:
+Concurrent tasks are managed on the RP2350 chip using an async Rust environment:
 
-- **Audio Input Module** – captures analog audio signal
-- **ADC Module (PCM1808)** – converts analog signal to digital (I2S)
-- **Data Acquisition Module (I2S + DMA)** – streams data into memory
-- **Processing Module (FFT)** – transforms signal into frequency domain
-- **Display Module (SPI TFT)** – renders frequency spectrum
+- **Central Controller**: Raspberry Pi Pico 2 W executing the Embassy task runner.
+- **BME280 Sensor**: Links via I2C0 to capture pressure and temperature metrics.
+- **Display and Storage**: The ST7789 screen and SD card share the SPI1 channel, controlled via synchronized SPI device wrappers (`SpiDeviceWithConfig`).
+- **Debugging Probe**: A separate Raspberry Pi Pico 2 W provides out-of-circuit debugging over SWD (SWCLK and SWDIO lines).
+- **Wireless Layer**: Relies on the `cyw43` and `embassy-net` libraries for TCP/IP communications.
 
-### Data Flow
-
-Audio → ADC → I2S + DMA → Buffer → FFT → Display
-
----
+```
+                      +-------------------------+           +-------------------------+
+                      |            CORE         |           |            DEBUG        |
+                      |   Raspberry Pi Pico 2 W |-----------|   Raspberry Pi Pico 2 W |
+                      |        (RP2350)         |           |        (RP2350)         |
+                      +------------+------------+           +------------+------------+
+                                   |
+         +-------------------------+-------------------------+
+         | I2C0                    | SPI1 (Shared Bus)       | CYW43439 (Wi-Fi)
+         v                         |                         v
++------------------+     +---------+---------+      +------------------+
+| BME280 Sensor    |     |                   |      | Server / Web App |
+| Temp & Pressure  |     v                   v      | (Trend Graphs)   |
++------------------+ +-------+           +-------+  +------------------+
+                     | ST7789|           | SD    |
+                     | LCD   |           | Card  |
+                     +-------+           +-------+
+```
 
 ## Log
 
-### Week 4-5
+### Milestone 1 — Project Initialization & Sensor Setup
 
-- Project idea defined
-- Research on FFT and embedded DSP
+- Configured the toolchain for `thumbv8m.main-none-eabihf` alongside RP2350-specific configurations (`memory.x` and `build.rs`).
+- Integrated the `bme280-rs` library for asynchronous I2C communication.
+- Enabled RTT diagnostics utilizing `defmt-rtt` combined with `panic-probe`.
+- Soldered physical connections on both the Pico 2 W board and the BME280 breakout.
 
-Defined the project idea: a real-time audio spectrum analyzer running on an STM32 microcontroller.
-Researched FFT algorithms suitable for embedded systems — compared fixed-point vs floating-point implementations and evaluated CMSIS-DSP as a potential acceleration library.
-Studied I2S protocol for audio data acquisition and DMA double-buffering patterns to avoid blocking the main processing loop.
-Decided on the PCM1808 as the external ADC due to its I2S output and straightforward analog front-end requirements.
+![Milestone 1](1.webp)
+![Milestone 1](2.webp)
 
-### Week 6-7
+### Milestone 2 — Shared SPI Bus & Display UI
 
-- PC prototype implemented for FFT visualization
-- Basic signal processing pipeline tested
+- Hooked up the ST7789 screen using the `mipidsi` crate over the SPI1 interface.
+- Developed `ui.rs` to generate a graphical interface complete with a top status bar, active icons, running uptime counters, large digit displays, and miniature historical charts built with `embedded-graphics`.
 
-Implemented a desktop prototype to validate the FFT pipeline before moving to hardware. Fed a Windows Loopback audio steam and confirmed the frequency peaks appeared at the correct position as refference Fab-filter VST plugin in my DAW.
-Set up the Rust embedded project targeting the NUCLEO-U545RE-Q. Configured the Embassy executor with a basic blinky task to verify the toolchain.
-Ordered all hardware components: PCM1808 module, ST7789V 2.4" TFT display, and supporting passives.
+![Milestone 2](3.webp)
 
-### Week 8
+### Milestone 3 — SD Card Filesystem Integration
 
-- SPI display connected and tested
-- Initial hardware setup completed
+- Established a shared bus layout (`SpiDeviceWithConfig` together with `NoopRawMutex`) to cleanly share the SPI channel between the display and storage module.
+- Employed `embedded-sdmmc` to handle FAT filesystems and automate writing comma-separated log entries into `TEMPLOG.CSV` with proper column headers.
+- Synchronizing display output and storage updates.
 
-Connected the ST7789V display over SPI. The display initialized without panicking but showed only a white blank screen.
+![Milestone 3](4.webp)
 
-Initially suspected incorrect SPI polarity — switched CPOL/CPHA combinations, no change.
-Tried lowering SPI clock from 32 MHz down to 8 MHz — screen still blank.
-After hours of debugging, discovered the root cause: the SPI DMA transfer buffer was allocated at 128 bytes, far too small for a full 240×320 frame. Partial writes were silently completing and leaving the framebuffer in an undefined state. Increasing the buffer to 8 KB resolved the issue immediately — the display lit up with a solid color fill on the first successful run.
+### Milestone 4 — Async Network Stack & Server Sync
 
-Verified display orientation and color order (RGB vs BGR) — the ST7789V requires explicit BGR mode configuration, which was missing from the initial driver setup and caused inverted colors.
-Rendered a simple horizontal bar chart using embedded-graphics as a placeholder for the spectrum. Confirmed text rendering at 16px is readable at arm's length on the 2.4" panel.
+- Initialized the `cyw43-pio` driver and necessary background routines for the CYW43439 Wi-Fi chip.
+- Set up a 30-minute interval trigger to bundle recorded logs and transmit them via HTTP/TCP to an upstream server for graphical rendering.
 
-### Week 9
+### Milestone 5 — NTP Time Sync & Robust SD Logging
 
-- Working on the documentation.
+- Configured a background wireless service to connect through DHCP and fetch accurate UTC timestamps from an NTP server upon startup.
+- Introduced a lightweight software RTC (`rtc.rs`) that calculates current dates and times based on the NTP anchor plus elapsed system uptime, adjusted for local timezone offsets.
+- CSV entries now feature precise Date and Time fields (replacing raw uptime tallies) alongside pressure and temperature readings; writing is deferred until time synchronization completes to maintain uniform records from the start.
+- The UI header switches from a placeholder to the synchronized clock once network time is acquired.
+- Added hot-plug recovery for the MicroSD card: extracting and reinserting the card allows file operations to resume automatically without requiring a hard reset.
 
-Integrated the I2S + DMA audio pipeline with the FFT processing block. Initial DMA transfers produced garbled samples — traced to a mismatched sample rate: the PCM1808 was clocked at 48 kHz but the I2S peripheral was configured for 48 kHz (my audio interface is working on this freq), causing drift and aliasing artifacts in the spectrum output. Correcting the clock dividers resolved the issue.
-Connected the rotary encoder on GPIO pins. Used it to control display brightness and to switch between linear and logarithmic frequency scale modes. Added software debounce after observing double-trigger events on fast knob turns.
-Designed a frame enclosure in FreeCAD for 3D printing — a two-piece snap-fit shell sized to hold the NUCLEO board, breadboard section, and display flush on the front panel. Printed a first draft; found the display cutout was 1.5 mm too narrow and the encoder hole was slightly off-center. Adjusted the model and queued a second print.
-Working on final documentation and cleaning up firmware constants.
+### Milestone 6 - 3D Print 
+The custom enclosure for this project was designed from scratch using **Blender**. Since the primary focus of this initiative is learning embedded programming, asynchronous Rust, and networking, the current iteration of the case is a functional prototype. It is slightly flimsy and requires minor dimensional adjustments for a perfect fit, but it serves its purpose perfectly well for housing the components on a desk.
 
----
+- Design Challenges in Blender:
+Designing a functional electronic case in a polygonal modeling tool like Blender (rather than a parametric CAD tool) presented several specific challenges:
+
+- Wall Thickness & Rigidity: Finding the right balance for wall thickness was tricky. The current walls are a bit too thin (leading to the flimsy feel), and adding structural ribs or using the `Solidify` modifier without creating overlapping geometry required manual cleanup.
+- Component Tolerances: Fitting exact real-world dimensions for the Raspberry Pi Pico 2 W, the 2.4" ST7789 display, and the BME280 sensor required tight tolerances. Leaving exact cutouts for the Micro-USB cable and the MicroSD card slot often required manual vertex pushing, as Blender lacks parametric history.
+- Manifold Geometry: Ensuring the final mesh was completely watertight (manifold) for the slicer software without any flipped normals or internal faces.
+- Mounting Points: Designing internal standoffs and snap-fits for the components that are both printable without extensive supports and strong enough not to break off during assembly.
+
+![Milestone 5](5.webp)
+![Milestone 5](6.webp)
 
 ## Hardware
 
-- STM32 Nucleo-U545RE-Q (main microcontroller)
-- PCM1808 external ADC (audio input via I2S)
-- 2.4" TFT SPI display (ST7789V, 240x320)
-- 3.5 mm audio jack
-
----
+The system utilizes a Raspberry Pi Pico 2 W as the central unit connected to an environmental sensor, a color TFT display, and an integrated MicroSD card module.
 
 ### Schematics
 
-                    [POWER & DEBUGGING SECTION]
-
-+-----------------------+      +--------------------------+
-|        Host PC        |      |         Host PC          |
-|    (USB Power 5V)     |      |    (Debug / Logging)     |
-+-----------+-----------+      +------------+-------------+
-            |                               |
-            | (5V via USB)                  | [USB / UART]
-            v                               v
-+----------------------------------------------------------------+
-|                                                                |
-|                     NUCLEO STM32U545RE-Q                       |
-|                    (Main Microcontroller)                      |
-|                                                                |
-|  - I2S + DMA (Audio Input)                                     |
-|  - Double Buffering                                            |
-|  - FFT Processing                                              |
-|  - Spectrum Rendering                                          |
-|                                                                |
-+--------+-------------------+-------------------+---------------+
-         |                   |                   |
-       [I2S]               [SPI]               [GPIO]
-         |                   |                   |
-         v                   v                   v
-+------------------+ +-------------------+ +------------------+
-|                  | |                   | |                  |
-|     PCM1808      | | 2.4" TFT Display  | |    Buttons /     |
-|    Audio ADC     | |      ST7789V      | |     Controls     |
-|  (Analog → I2S)  | |  (240x320, SPI)   | | (Potentiometer)  |
-+--------+---------+ +---------+---------+ +------------------+
-         |
-  [Analog Audio]
-         v
-+------------------+
-|                  |
-|   3.5 mm Jack    |
-|  (Audio Input)   |
-+------------------+
-
-![Audio Spectrum Analyzer](./schematics.webp)
-
----
+![Hardware Schematic](schema.webp)
 
 ### Bill of Materials
 
-| Device                       | Usage                                   | Price                                                                                                                           |
-| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| STM32 Nucleo-U545RE-Q        | Main microcontroller                    | [106.00 RON](https://ro.mouser.com/ProductDetail/STMicroelectronics/NUCLEO-U545RE-Q?qs=mELouGlnn3cp3Tn45zRmFA%3D%3D)            |
-| PCM1808                      | Audio ADC (analog → digital conversion) | [41.5 RON](https://www.emag.ro/convertor-a-d-stereo-pcm1808-24-biti-snr-99-db-tssop-14-pini-741050522202/pd/DKB6J83BM/)         |
-| ST7789V TFT Display          | Frequency spectrum visualization        | [54.4 RON](https://www.emag.ro/display-tft-spi-2-4-inch-240x320-lcd-cu-touchscreen-driver-st7789v-arduino-emg178/pd/DXZMBSYBM/) |
-| 3.5 mm Jack                  | Audio input                             | [2.0 RON]                                                                                                                       |
-| Rotary digital Potentiometer | Scaling, changing graphical interface   | [10.0 RON]                                                                                                                      |
-
----
+| Device                                                                                                                                                                                                 | Usage                                     | Price  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- | ------ |
+| [Raspberry Pi Pico 2 W](https://www.emag.ro/modul-microcontroler-raspberry-pi-pico-2-w-rp2350-520-kb-on-chip-sram-51x21mm-pico2w/pd/DGXG5M3BM/?ref=history-shopping_481466799_10095_1)                 | Core Microcontroller (RP2350) + Wi-Fi     | 60 RON |
+| [Raspberry Pi Pico 2 W](https://www.emag.ro/modul-microcontroler-raspberry-pi-pico-2-w-rp2350-520-kb-on-chip-sram-51x21mm-pico2w/pd/DGXG5M3BM/?ref=history-shopping_481466799_10095_1)                 | Secondary Pico used as SWD Debugger Probe | 60 RON |
+| [BME280 Sensor Module](https://www.emag.ro/modul-senzor-temperatura-umiditate-presiune-bme280-ai0002-s34/pd/DR7HCZBBM/?ref=history-shopping_495609421_257829_1)                                        | Temperature and Pressure sensor (I2C)     | 22 RON |
+| [ST7789 2.4" TFT LCD Module with SD Slot](https://www.emag.ro/display-tft-spi-2-4-inch-240x320-lcd-cu-touchscreen-driver-st7789v-arduino-emg178/pd/DXZMBSYBM/?ref=history-shopping_482724113_221614_1) | 240x320 Display + SD Card Reader (SPI)    | 50 RON |
 
 ## Software
 
-| Library             | Description                | Usage                       |
-| ------------------- | -------------------------- | --------------------------- |
-| embedded-hal        | Hardware abstraction layer | Used for peripheral control |
-| stm32-hal           | MCU-specific HAL           | Used for STM32 peripherals  |
-| embedded-graphics   | 2D graphics library        | Rendering spectrum          |
-| CMSIS-DSP (planned) | DSP optimized library      | FFT acceleration            |
-
----
+| Library                                                         | Description                       | Usage                                                       |
+| --------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------- |
+| [embassy-executor](https://github.com/embassy-rs/embassy)       | Async task executor               | Drives background execution tasks                           |
+| [embassy-rp](https://github.com/embassy-rs/embassy)             | RP2350 Hardware Abstraction Layer | Manages I2C, SPI, GPIO, PIO, and hardware peripherals       |
+| [bme280-rs](https://crates.io/crates/bme280-rs)                 | Async BME280 sensor driver        | Reads temperature and pressure data asynchronously          |
+| [mipidsi](https://crates.io/crates/mipidsi)                     | Display controller driver         | Drives ST7789 LCD display initialization                    |
+| [embedded-graphics](https://crates.io/crates/embedded-graphics) | 2D graphics engine                | Renders text, icons, containers, and sparkline trend graphs |
+| [embedded-sdmmc](https://crates.io/crates/embedded-sdmmc)       | FAT volume and SD card driver     | Writes CSV log records to SD filesystem                     |
+| [cyw43](https://crates.io/crates/cyw43)                         | Wi-Fi chip driver                 | Manages wireless connection on CYW43439                     |
+| [embassy-net](https://crates.io/crates/embassy-net)             | Async network stack               | Handles DHCP, TCP, and network sockets                      |
+| [defmt](https://crates.io/crates/defmt)                         | Efficient logging framework       | Prints internal diagnostics and status over SWD/RTT         |
 
 ## Links
 
-1. https://en.wikipedia.org/wiki/Fast_Fourier_transform
-2. https://www.analog.com/en/products/pcm1808.html
-3. https://docs.rust-embedded.org/book/
-4. https://github.com/embedded-graphics/embedded-graphics
+1. [Raspberry Pi Pico 2 W Documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html)
+2. [Embassy Async Framework Documentation](https://embassy.dev/)
+3. [RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
+4. [Project Repository](https://github.com/TrOyKa23/Environment-monitor)
