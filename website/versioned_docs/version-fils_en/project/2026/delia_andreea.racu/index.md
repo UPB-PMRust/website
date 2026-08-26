@@ -53,8 +53,7 @@ The ESP-01 connects to the local WiFi network and exposes a WebSocket server. Th
 - Created the initial OLED test firmware.
 - Started debugging the Rust toolchain and Embassy configuration.
 
-![Work Progress](work_progress1.svg.webp)
-![Work Progress](work_progress1.1.svg.webp)
+![Work Progress](workprogress.webp.webp)
 
 
 ## Hardware

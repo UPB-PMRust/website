@@ -1,0 +1,111 @@
+#include <WiFi.h>
+#include <WebServer.h>
+#include <WebSocketsServer.h>
+
+const char* SSID = "DIGI-xMu4";
+const char* PASS = "hPzDTzj9xF";
+
+WebServer server(80);
+WebSocketsServer webSocket(81);
+String linie = "";
+
+const char* PAGE = R"HTML(
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3DSpire MIDI</title>
+<style>
+ body{font-family:sans-serif;background:#111;color:#eee;max-width:640px;margin:auto;padding:16px}
+ h1{font-size:20px}
+ #status{font-size:13px;color:#888}
+ #name{font-size:46px;text-align:center;margin:14px 0;min-height:54px}
+ #startBtn{font-size:16px;padding:10px 20px;margin:6px 0;cursor:pointer;border-radius:6px;border:0;background:#4caf50;color:#fff}
+ #vol{font-size:14px}
+ .piano{position:relative;height:150px;margin:16px 0;user-select:none}
+ .white{position:absolute;top:0;width:14.28%;height:150px;background:#fafafa;border:1px solid #333;box-sizing:border-box;border-radius:0 0 4px 4px}
+ .white.active{background:#4caf50}
+ .black{position:absolute;top:0;width:9%;height:95px;background:#222;border:1px solid #000;box-sizing:border-box;z-index:2;border-radius:0 0 3px 3px}
+ .black.active{background:#2196f3}
+ #log{font-size:12px;color:#aaa;height:110px;overflow:auto;border-top:1px solid #333;margin-top:12px;padding-top:8px}
+ #log div{padding:2px 0}
+</style></head>
+<body>
+<h1>3DSpire - MIDI Controller</h1>
+<div id="status">conectare...</div>
+<button id="startBtn">Porneste sunetul</button>
+<div id="name">-</div>
+<div id="vol">Volum: -</div>
+<div class="piano" id="piano"></div>
+<div id="log"></div>
+<script>
+ const whites=[0,2,4,5,7,9,11], blacks=[1,3,6,8,10];
+ const blackLeft={1:9.8,3:24,6:52.6,8:66.9,10:81.2};
+ const piano=document.getElementById('piano'), keyEl={};
+ whites.forEach((pc,i)=>{const d=document.createElement('div');d.className='white';d.style.left=(i*14.28)+'%';piano.appendChild(d);keyEl[pc]=d;});
+ blacks.forEach(pc=>{const d=document.createElement('div');d.className='black';d.style.left=blackLeft[pc]+'%';piano.appendChild(d);keyEl[pc]=d;});
+ let ac=null,master=null,voices=[];
+ document.getElementById('startBtn').onclick=()=>{
+   if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=0.3;master.connect(ac.destination);}
+   ac.resume();document.getElementById('startBtn').textContent='Sunet pornit';
+ };
+ const midiFreq=n=>440*Math.pow(2,(n-69)/12);
+ function stopAll(){if(!ac)return;voices.forEach(v=>{try{v.g.gain.setTargetAtTime(0,ac.currentTime,0.02);v.o.stop(ac.currentTime+0.12);}catch(e){}});voices=[];}
+ function play(notes,volume){
+   if(!ac)return;stopAll();const vol=(volume||80)/100;
+   notes.forEach(n=>{const o=ac.createOscillator();o.type='triangle';o.frequency.value=midiFreq(n);
+     const g=ac.createGain();g.gain.value=0;o.connect(g);g.connect(master);o.start();
+     g.gain.setTargetAtTime(vol*0.5,ac.currentTime,0.01);voices.push({o,g});});
+ }
+ const clearKeys=()=>Object.values(keyEl).forEach(e=>e.classList.remove('active'));
+ const lightKeys=notes=>{clearKeys();notes.forEach(n=>{const e=keyEl[((n%12)+12)%12];if(e)e.classList.add('active');});};
+ const NN=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+ const noteName=n=>NN[((n%12)+12)%12];
+ function log(t){const l=document.getElementById('log'),d=document.createElement('div');d.textContent=t;l.prepend(d);while(l.children.length>30)l.removeChild(l.lastChild);}
+ const ws=new WebSocket("ws://"+location.hostname+":81/");
+ ws.onopen=()=>document.getElementById('status').textContent='conectat';
+ ws.onclose=()=>document.getElementById('status').textContent='deconectat';
+ ws.onmessage=e=>{
+   let m;try{m=JSON.parse(e.data);}catch(err){return;}
+   if(m.mode==='off'){stopAll();clearKeys();document.getElementById('name').textContent='-';document.getElementById('vol').textContent='Volum: -';return;}
+   if(m.mode==='note'){play([m.note],m.volume);lightKeys([m.note]);
+     document.getElementById('name').textContent=noteName(m.note)+' (oct '+m.octave+')';
+     document.getElementById('vol').textContent='Volum: '+m.volume;log('nota '+noteName(m.note));}
+   else if(m.mode==='chord'){play(m.notes,m.volume);lightKeys(m.notes);
+     document.getElementById('name').textContent=m.chord;
+     document.getElementById('vol').textContent='Volum: '+m.volume;log('acord '+m.chord);}
+ };
+</script>
+</body></html>
+)HTML";
+
+void handleRoot(){ server.send(200, "text/html", PAGE); }
+void onWsEvent(uint8_t num, WStype_t type, uint8_t*, size_t){
+  if(type==WStype_CONNECTED)    Serial.printf("Browser conectat (client %u)\n", num);
+  if(type==WStype_DISCONNECTED) Serial.printf("Browser deconectat (client %u)\n", num);
+}
+
+void setup(){
+  Serial.begin(115200);
+  Serial2.begin(115200, SERIAL_8N1, 16, 17);   // 16=RX (de la STM32 PA9), 17=TX
+  WiFi.mode(WIFI_STA); WiFi.begin(SSID, PASS);
+  while(WiFi.status()!=WL_CONNECTED){ delay(500); Serial.print("."); }
+  Serial.print("\nDeschide in browser: http://"); Serial.println(WiFi.localIP());
+  server.on("/", handleRoot); server.begin();
+  webSocket.begin(); webSocket.onEvent(onWsEvent);
+}
+
+void loop(){
+  server.handleClient();
+  webSocket.loop();
+  while(Serial2.available()){
+    char c = Serial2.read();
+    if(c=='\n'){
+      if(linie.length()){
+        webSocket.broadcastTXT(linie);
+        Serial.print("->WS: "); Serial.println(linie);
+        linie = "";
+      }
+    } else if(c!='\r'){
+      linie += c;
+    }
+  }
+}
